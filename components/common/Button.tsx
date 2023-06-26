@@ -10,7 +10,10 @@ export default function Button({
   type = "default",
 }: ButtonProps) {
   return (
-    <div className="w-full bg-main h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold">
+    <div
+      className="w-full bg-main h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold"
+      onClick={onClick}
+    >
       {text}
     </div>
   );
