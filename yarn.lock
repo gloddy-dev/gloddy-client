@@ -450,7 +450,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.3.1":
+"@types/node@npm:^20.3.1":
   version: 20.3.1
   resolution: "@types/node@npm:20.3.1"
   checksum: 63a393ab6d947be17320817b35d7277ef03728e231558166ed07ee30b09fd7c08861be4d746f10fdc63ca7912e8cd023939d4eab887ff6580ff704ff24ed810c
@@ -464,7 +464,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.6":
+"@types/react-dom@npm:^18.2.6":
   version: 18.2.6
   resolution: "@types/react-dom@npm:18.2.6"
   dependencies:
@@ -473,14 +473,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.2.13":
-  version: 18.2.13
-  resolution: "@types/react@npm:18.2.13"
+"@types/react@npm:*, @types/react@npm:^18.2.14":
+  version: 18.2.14
+  resolution: "@types/react@npm:18.2.14"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: f7c15f19c164a29262993ea2aae2085fa38cddd9b8359fd8fefabfced91010b515a3abe2042b2b7f2f86e6b38a25b191415aa9313a9027175e3a000883c858cc
+  checksum: a6a5e8cc78f486b9020d1ad009aa6c56943c68c7c6376e0f8399e9cbcd950b7b8f5d73f00200f5379f5e58d31d57d8aed24357f301d8e86108cd438ce6c8b3dd
   languageName: node
   linkType: hard
 
@@ -2348,9 +2348,9 @@ __metadata:
   resolution: "gloddy-app2@workspace:."
   dependencies:
     "@tanstack/react-query": ^4.29.17
-    "@types/node": 20.3.1
-    "@types/react": 18.2.13
-    "@types/react-dom": 18.2.6
+    "@types/node": ^20.3.1
+    "@types/react": ^18.2.14
+    "@types/react-dom": ^18.2.6
     "@typescript-eslint/eslint-plugin": ^5.60.0
     "@typescript-eslint/parser": ^5.60.0
     antd-mobile: ^5.31.1
@@ -2373,7 +2373,7 @@ __metadata:
     react-hook-form: ^7.45.0
     react-query: ^3.39.3
     tailwindcss: ^3.3.2
-    typescript: 5.1.3
+    typescript: ^5.1.3
     zustand: ^4.3.8
   languageName: unknown
   linkType: soft
@@ -4678,7 +4678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.1.3":
+"typescript@npm:^5.1.3":
   version: 5.1.3
   resolution: "typescript@npm:5.1.3"
   bin:
@@ -4688,7 +4688,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@5.1.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@^5.1.3#~builtin<compat/typescript>":
   version: 5.1.3
   resolution: "typescript@patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"
   bin:
