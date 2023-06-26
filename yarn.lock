@@ -2348,9 +2348,11 @@ __metadata:
   resolution: "gloddy-app2@workspace:."
   dependencies:
     "@tanstack/react-query": ^4.29.17
-    "@types/node": 20.3.1
-    "@types/react": 18.2.13
-    "@types/react-dom": 18.2.6
+    "@types/node": ^20.3.1
+    "@types/react": ^18.2.14
+    "@types/react-dom": ^18.2.6
+    "@typescript-eslint/eslint-plugin": ^5.60.0
+    "@typescript-eslint/parser": ^5.60.0
     antd-mobile: ^5.31.1
     autoprefixer: ^10.4.14
     axios: ^1.4.0
