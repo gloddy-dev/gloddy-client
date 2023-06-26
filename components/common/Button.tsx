@@ -1,20 +1,22 @@
-interface ButtonProps {
+import { clsx } from "clsx";
+import { ButtonHTMLAttributes } from "react";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  onClick?: () => void;
   color?: "blue" | "orange";
 }
-import { clsx } from "clsx";
 
-export default function Button({ text, onClick, color = "blue" }: ButtonProps) {
+export default function Button(props: ButtonProps) {
+  const { text, color = "blue", ...rest } = props;
   return (
-    <div
+    <button
       className={clsx(
         "w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold",
-        color === "blue" ? "bg-blue" : "bg-orange"
+        `bg-${color}`
       )}
-      onClick={onClick}
+      {...rest}
     >
       {text}
-    </div>
+    </button>
   );
 }
