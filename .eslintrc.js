@@ -14,17 +14,15 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'eslint-config-prettier',
     'next/core-web-vitals',
-    'plugin:storybook/recommended',
   ],
-  plugins: [
-    '@typescript-eslint',
-    'import',
-    'prettier',
-    'react',
-    'react-hooks',
-    'jsx-a11y',
-  ],
-  settings: { 'import/resolver': { typescript: {} } },
+  plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks', 'jsx-a11y'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
 
   rules: {
     'prettier/prettier': [
@@ -112,10 +110,7 @@ module.exports = {
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      { ignoreRestSiblings: true },
-    ],
+    '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
     '@typescript-eslint/member-ordering': [
       'error',
       {
@@ -143,17 +138,11 @@ module.exports = {
     'no-var': 'error',
     curly: ['error', 'all'],
     eqeqeq: ['error', 'always', { null: 'ignore' }],
-    'import/no-duplicates': 'error',
+    'import/no-duplicates': 'off',
     'import/order': [
       'error',
       {
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          ['index', 'sibling', 'parent'],
-          'object',
-        ],
+        groups: ['builtin', 'external', 'internal', ['index', 'sibling', 'parent'], 'object'],
         // Import 구문 순서 정하고 싶으면 추가
         pathGroups: [],
         pathGroupsExcludedImportTypes: ['builtin'],
