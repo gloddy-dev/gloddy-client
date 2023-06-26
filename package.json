@@ -6,12 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "postinstall": "husky install"
   },
   "dependencies": {
-    "@types/node": "20.3.1",
-    "@types/react": "18.2.13",
-    "@types/react-dom": "18.2.6",
+    "@tanstack/react-query": "^4.29.17",
     "antd-mobile": "^5.31.1",
     "axios": "^1.4.0",
     "clsx": "^1.2.1",
@@ -22,13 +22,34 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.0",
     "react-query": "^3.39.3",
-    "typescript": "5.1.3",
     "zustand": "^4.3.8"
   },
   "packageManager": "yarn@3.6.0",
   "devDependencies": {
+    "@types/node": "^20.3.1",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
     "autoprefixer": "^10.4.14",
+    "eslint": "^8.43.0",
+    "eslint-config-next": "^13.4.7",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.0",
     "postcss": "^8.4.24",
-    "tailwindcss": "^3.3.2"
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.1.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
