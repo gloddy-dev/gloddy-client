@@ -1,13 +1,5 @@
 'use client';
 
-import boardFill from '@/assets/board_fill.svg';
-import boardWhite from '@/assets/board_white.svg';
-import homeFill from '@/assets/home_fill.svg';
-import homeWhite from '@/assets/home_white.svg';
-import peopleFill from '@/assets/people_fill.svg';
-import peopleWhite from '@/assets/people_white.svg';
-import profileFill from '@/assets/profile_fill.svg';
-import profileWhite from '@/assets/profile_white.svg';
 import { Badge } from 'antd-mobile';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -19,9 +11,9 @@ const tabs = [
     title: '그루핑',
     icon: (active: string) =>
       active === 'grouping' ? (
-        <Image src={homeFill} alt="img" width={30} height={30} />
+        <Image src="/assets/home_fill.svg" alt="img" width={30} height={30} />
       ) : (
-        <Image src={homeWhite} alt="img" width={30} height={30} />
+        <Image src="/assets/home_white.svg" alt="img" width={30} height={30} />
       ),
     badge: Badge.dot,
   },
@@ -30,9 +22,9 @@ const tabs = [
     title: '게시판',
     icon: (active: string) =>
       active === 'board' ? (
-        <Image src={boardFill} alt="img" width={30} height={30} />
+        <Image src="/assets/board_fill.svg" alt="img" width={30} height={30} />
       ) : (
-        <Image src={boardWhite} alt="img" width={30} height={30} />
+        <Image src="/assets/board_white.svg" alt="img" width={30} height={30} />
       ),
     badge: Badge.dot,
   },
@@ -41,9 +33,9 @@ const tabs = [
     title: '나의모임',
     icon: (active: string) =>
       active === 'meeting' ? (
-        <Image src={peopleFill} alt="img" width={30} height={30} />
+        <Image src="/assets/people_fill.svg" alt="img" width={30} height={30} />
       ) : (
-        <Image src={peopleWhite} alt="img" width={30} height={30} />
+        <Image src="/assets/people_white.svg" alt="img" width={30} height={30} />
       ),
     badge: Badge.dot,
   },
@@ -52,9 +44,9 @@ const tabs = [
     title: '프로필',
     icon: (active: string) =>
       active === 'profile' ? (
-        <Image src={profileFill} alt="img" width={30} height={30} />
+        <Image src="/assets/profile_fill.svg" alt="img" width={30} height={30} />
       ) : (
-        <Image src={profileWhite} alt="img" width={30} height={30} />
+        <Image src="/assets/profile_white.svg" alt="img" width={30} height={30} />
       ),
     badge: Badge.dot,
   },
