@@ -12,7 +12,7 @@ export default function Button(props: ButtonProps) {
     <button
       className={clsx(
         'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold',
-        `bg-${color}`
+        `${color === 'blue' ? 'bg-blue' : 'bg-orange'}`
       )}
       {...rest}
     >
