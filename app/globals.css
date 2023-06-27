@@ -3,12 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   box-sizing: border-box;
   -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
   scrollbar-width: none; /* Hide scrollbar for Firefox */
   font-family: Noto Sans KR;
+  white-space: pre-wrap;
 }
 
 ::-webkit-scrollbar {
@@ -16,7 +16,7 @@
 }
 
 * {
-  font-size: 3.7vw;
+  font-size: 4vw;
 }
 
 @media (min-width: 420px) {
