@@ -73,7 +73,7 @@ export default function Onboarding() {
                   <Image alt="logo" src="/assets/main_logo.svg" width={180} height={30} />
                 </div>
                 <div className="fixed w-full bottom-30">
-                  <Button text="시작하기" />
+                  <Button text="시작하기" href="/login" />
                 </div>
               </div>
             </Swiper.Item>
