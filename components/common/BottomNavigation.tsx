@@ -61,7 +61,7 @@ const BottomNavigation = () => {
     router.push(path);
   };
   return (
-    <div className="fixed bottom-0 z-10 left-0 w-full bg-white grid grid-cols-4 h-100 rounded-t-[1.563rem] px-40">
+    <div className="fixed bottom-0 z-10 left-0 w-full bg-white grid grid-cols-4 h-100 rounded-t-25 px-40">
       {tabs.map((tab) => (
         <div
           key={tab.key}
@@ -75,9 +75,9 @@ const BottomNavigation = () => {
           </div>
 
           {activeKey === tab.key ? (
-            <div className="font-700 text-[0.625rem] text-blue">{tab.title}</div>
+            <div className="font-700 text-10 text-blue">{tab.title}</div>
           ) : (
-            <div className="font-400 text-[0.625rem] text-gray4">{tab.title}</div>
+            <div className="font-400 text-10 text-gray4">{tab.title}</div>
           )}
         </div>
       ))}
