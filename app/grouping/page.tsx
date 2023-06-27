@@ -1,11 +1,5 @@
-import BottomNavigation from '@/components/common/BottomNavigation';
-
 const Grouping = () => {
-  return (
-    <div>
-      <BottomNavigation />
-    </div>
-  );
+  return <div className="flex w-full items-center"></div>;
 };
 
 export default Grouping;

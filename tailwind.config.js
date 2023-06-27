@@ -5,7 +5,7 @@ const { pxToRem } = require('./style/theme/spacing');
 module.exports = {
   content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: { colors, spacing: pxToRem },
+    extend: { colors, spacing: pxToRem, fontSize: pxToRem, borderRadius: pxToRem },
     fontWeight: {
       100: '100',
       300: '300',
