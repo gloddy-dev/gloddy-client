@@ -2,10 +2,18 @@
 
 import { Badge } from 'antd-mobile';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ReactElement, ReactNode, useState } from 'react';
 
-const tabs = [
+interface Tab {
+  key: string;
+  title: string;
+  icon: (active: string) => ReactNode;
+  badge: ReactElement;
+}
+
+const tabs: Tab[] = [
   {
     key: 'grouping',
     title: '그루핑',
@@ -55,10 +63,9 @@ const tabs = [
 const BottomNavigation = () => {
   const pathname = usePathname();
   const [activeKey, setActiveKey] = useState(pathname.substring(1));
-  const router = useRouter();
+
   const handleNavigation = (path: string) => {
     setActiveKey(path);
-    router.push(path);
   };
   return (
     <div className="fixed bottom-0 z-10 left-0 w-full bg-white grid grid-cols-4 h-100 rounded-t-25 px-40">
@@ -68,17 +75,19 @@ const BottomNavigation = () => {
           onClick={() => handleNavigation(tab.key)}
           className="flex flex-col justify-center items-center"
         >
-          <div className="h-50 flex justify-center items-center">
-            <Badge color="#1249FC" content={tab.badge}>
-              {tab.icon(activeKey)}
-            </Badge>
-          </div>
+          <Link href={tab.key}>
+            <div className="h-50 flex justify-center items-center">
+              <Badge color="#1249FC" content={tab.badge}>
+                {tab.icon(activeKey)}
+              </Badge>
+            </div>
 
-          {activeKey === tab.key ? (
-            <div className="font-700 text-10 text-blue">{tab.title}</div>
-          ) : (
-            <div className="font-400 text-10 text-gray4">{tab.title}</div>
-          )}
+            {activeKey === tab.key ? (
+              <div className="font-700 text-10 text-blue">{tab.title}</div>
+            ) : (
+              <div className="font-400 text-10 text-gray4">{tab.title}</div>
+            )}
+          </Link>
         </div>
       ))}
     </div>
