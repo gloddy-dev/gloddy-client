@@ -11,5 +11,6 @@ export const colors = {
   gray2: '#AAAAAA',
   gray3: '#CDCDCD',
 
-  white: '#F7F7F7',
+  white: '#FFFFFF',
+  white2: '#F7F7F7',
 } as const;
