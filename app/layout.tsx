@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body className="flex h-screen w-screen justify-center bg-slate-50">
-        <div className="relative h-full w-full max-w-[26.25rem] overflow-y-scroll bg-white px-[1.5rem]">
+        <div className="relative h-full w-full max-w-[26.25rem] overflow-y-scroll bg-[#FFFFFF] px-[1.5rem]">
           {children}
         </div>
       </body>
