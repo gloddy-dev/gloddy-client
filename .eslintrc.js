@@ -146,7 +146,6 @@ module.exports = {
         // Import 구문 순서 정하고 싶으면 추가
         pathGroups: [],
         pathGroupsExcludedImportTypes: ['builtin'],
-        'newlines-between': 'always',
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
