@@ -11,7 +11,7 @@ export default function Button(props: ButtonProps) {
   return (
     <button
       className={clsx(
-        'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold',
+        'w-full h-60 rounded-xl text-center flex justify-center items-center text-white font-bold',
         `bg-${color}`
       )}
       {...rest}
