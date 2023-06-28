@@ -19,9 +19,9 @@ const tabs: Tab[] = [
     title: '그루핑',
     icon: (active: string) =>
       active === 'grouping' ? (
-        <Image src="/assets/home_fill.svg" alt="img" width={30} height={30} />
+        <Image src="/assets/home_fill.svg" alt="grouping-icon" width={30} height={30} />
       ) : (
-        <Image src="/assets/home_white.svg" alt="img" width={30} height={30} />
+        <Image src="/assets/home_white.svg" alt="grouping-icon" width={30} height={30} />
       ),
     badge: Badge.dot,
   },
@@ -30,9 +30,9 @@ const tabs: Tab[] = [
     title: '게시판',
     icon: (active: string) =>
       active === 'board' ? (
-        <Image src="/assets/board_fill.svg" alt="img" width={30} height={30} />
+        <Image src="/assets/board_fill.svg" alt="board-icon" width={30} height={30} />
       ) : (
-        <Image src="/assets/board_white.svg" alt="img" width={30} height={30} />
+        <Image src="/assets/board_white.svg" alt="board-icon" width={30} height={30} />
       ),
     badge: Badge.dot,
   },
@@ -41,9 +41,9 @@ const tabs: Tab[] = [
     title: '나의모임',
     icon: (active: string) =>
       active === 'meeting' ? (
-        <Image src="/assets/people_fill.svg" alt="img" width={30} height={30} />
+        <Image src="/assets/people_fill.svg" alt="people-icon" width={30} height={30} />
       ) : (
-        <Image src="/assets/people_white.svg" alt="img" width={30} height={30} />
+        <Image src="/assets/people_white.svg" alt="people-icon" width={30} height={30} />
       ),
     badge: Badge.dot,
   },
@@ -52,9 +52,9 @@ const tabs: Tab[] = [
     title: '프로필',
     icon: (active: string) =>
       active === 'profile' ? (
-        <Image src="/assets/profile_fill.svg" alt="img" width={30} height={30} />
+        <Image src="/assets/profile_fill.svg" alt="profile-icon" width={30} height={30} />
       ) : (
-        <Image src="/assets/profile_white.svg" alt="img" width={30} height={30} />
+        <Image src="/assets/profile_white.svg" alt="profile-icon" width={30} height={30} />
       ),
     badge: Badge.dot,
   },
@@ -64,15 +64,12 @@ const BottomNavigation = () => {
   const pathname = usePathname();
   const [activeKey, setActiveKey] = useState(pathname.substring(1));
 
-  const handleNavigation = (path: string) => {
-    setActiveKey(path);
-  };
   return (
-    <div className="fixed bottom-0 z-10 left-0 w-full bg-white grid grid-cols-4 h-100 rounded-t-25 px-40">
+    <div className="fixed bottom-0 left-0 w-full bg-white grid grid-cols-4 h-110 rounded-t-25 px-40">
       {tabs.map((tab) => (
         <div
           key={tab.key}
-          onClick={() => handleNavigation(tab.key)}
+          onClick={() => setActiveKey(tab.key)}
           className="flex flex-col justify-center items-center"
         >
           <Link href={tab.key}>
