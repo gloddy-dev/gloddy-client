@@ -7,11 +7,11 @@ export default function GroupingLayout({ children }: { children: React.ReactNode
   const pathname = usePathname();
   const bottomNavPathName = ['/grouping', '/board', '/meeting', '/profile'];
   return (
-    <div>
-      <div className="relative h-full w-full max-w-[26.25rem] overflow-y-scroll bg-white px-24">
+    <div className="h-full w-full max-w-[26.25rem] overflow-y-scroll bg-white3 px-24">
+      <div>
         {children}
+        {bottomNavPathName.includes(pathname) && <BottomNavigation />}
       </div>
-      {bottomNavPathName.includes(pathname) && <BottomNavigation />}
     </div>
   );
 }
