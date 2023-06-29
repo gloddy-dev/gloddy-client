@@ -1,19 +1,52 @@
-import GroupingCard from '@/app/grouping/GroupingCard';
+'use client';
 
-const mockData = {
-  image: '/assets/location.svg',
-  title: 'Let’s go for a walk!',
-  description: 'It’s a group that walks around, talks, and learns languages.',
-  current: '2',
-  total: '4',
-  location: '동대문구 회기동',
-  time: '04.27.FRI 7PM',
-};
+import GroupingCard from '@/app/grouping/GroupingCard';
+import Image from 'next/image';
+import React from 'react';
+
+const mockData = [
+  {
+    image: '/assets/location.svg',
+    title: 'Let’s go for a walk!',
+    description: 'It’s a group that walks around, talks, and learns languages.',
+    current: '2',
+    total: '4',
+    location: '동대문구 회기동',
+    time: '04.27.FRI 7PM',
+  },
+  {
+    image: '/assets/location.svg',
+    title: 'Let’s go for a walk!',
+    description: 'It’s a group that walks around, talks, and learns languages.',
+    current: '2',
+    total: '4',
+    location: '동대문구 회기동',
+    time: '04.27.FRI 7PM',
+  },
+  {
+    image: '/assets/location.svg',
+    title: 'Let’s go for a walk!',
+    description: 'It’s a group that walks around, talks, and learns languages.',
+    current: '2',
+    total: '4',
+    location: '동대문구 회기동',
+    time: '04.27.FRI 7PM',
+  },
+];
 
 const Grouping = () => {
   return (
     <div className="flex w-full items-center">
-      <GroupingCard {...mockData} />
+      <div className="flex flex-col w-full">
+        {React.Children.toArray(
+          mockData.map((mocks) => (
+            <GroupingCard onClick={() => console.log('What the hell')} {...mocks} />
+          ))
+        )}
+      </div>
+      <div className="fixed bottom-120 right-20 z-20">
+        <Image src="/assets/add.svg" alt="add_icon" width={51} height={51} />
+      </div>
     </div>
   );
 };
