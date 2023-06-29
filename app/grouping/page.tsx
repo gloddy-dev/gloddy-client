@@ -2,6 +2,7 @@
 
 import GroupingCard from '@/app/grouping/GroupingCard';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const mockData = [
@@ -36,7 +37,7 @@ const mockData = [
 
 const Grouping = () => {
   return (
-    <div className="flex w-full items-center">
+    <div className="flex w-full items-center px-24">
       <div className="flex flex-col w-full">
         {React.Children.toArray(
           mockData.map((mocks) => (
@@ -45,7 +46,9 @@ const Grouping = () => {
         )}
       </div>
       <div className="fixed bottom-120 right-20 z-20">
-        <Image src="/assets/add.svg" alt="add_icon" width={51} height={51} />
+        <Link href="/grouping/create-meeting">
+          <Image src="/assets/add.svg" alt="add_icon" width={51} height={51} />
+        </Link>
       </div>
     </div>
   );
