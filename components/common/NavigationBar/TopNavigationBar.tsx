@@ -9,7 +9,7 @@ interface TopNavigationBarProps {
 export default function TopNavigationBar({ text, right }: TopNavigationBarProps) {
   const router = useRouter();
   return (
-    <div className="flex justify-between p-20">
+    <div className="flex justify-between ">
       <Image
         alt="back"
         src="/assets/arrow_back.svg"
