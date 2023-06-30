@@ -3,7 +3,7 @@ import { InputHTMLAttributes } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
-  text: string;
+  text?: string;
 }
 
 export default function AuthInput({ text, placeholder, ...rest }: InputProps) {
