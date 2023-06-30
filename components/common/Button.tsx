@@ -14,18 +14,18 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function Button(props: ButtonProps) {
   const { text, color = 'blue', onClick, href, ...rest } = props;
 
-  return !!href ? (
+  return Boolean(href) ? (
     <div
       className={clsx(
         'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center ',
         `${color === 'blue' ? 'bg-blue' : 'bg-orange'}`
       )}
     >
-      <Link href={href} className="text-white font-bold">
+      <Link href={href || ''} className="text-white font-bold">
         {text}
       </Link>
     </div>
-  ) : !!onClick ? (
+  ) : Boolean(onClick) ? (
     <button
       className={clsx(
         'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold',
