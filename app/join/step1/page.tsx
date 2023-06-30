@@ -10,15 +10,22 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 type Inputs = {
   phoneNumber: string;
+  certificateNumber: number;
 };
 
 type InputStatusType = 'default' | 'beforeSend' | 'afterSend';
 
 export default function Step1Page() {
-  const { register, handleSubmit, setValue } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<Inputs>();
+
   const [inputStatus, setInputStatus] = useState<InputStatusType>('default');
 
+  console.log(inputStatus);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
   ) => {
@@ -26,7 +33,7 @@ export default function Step1Page() {
     let formattedValue = currentValue;
     const onlyNumbers = currentValue.replace(/-/g, '');
 
-    if (currentValue.length > 0 || inputStatus !== 'afterSend') {
+    if (currentValue.length > 0 && inputStatus === 'default') {
       setInputStatus('beforeSend');
     }
 
@@ -51,42 +58,83 @@ export default function Step1Page() {
     setValue('phoneNumber', formattedValue);
   };
 
-  const handleSNSButon = () => {
+  const onSubmitPhoneNumber: SubmitHandler<Inputs> = (data) => {
+    console.log(data.phoneNumber);
+    setInputStatus('afterSend');
+  };
+  const onSubmitCertificateNumber: SubmitHandler<Inputs> = (data) => {
+    console.log(data.certificateNumber);
     setInputStatus('afterSend');
   };
 
   return (
     <div>
-      <TitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
+      <section>
+        <TitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
+      </section>
       <div className="h-30" />
-      <form onSubmit={handleSubmit(onSubmit)}>
+
+      <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
         <AuthInput
           placeholder="휴대폰 번호"
-          register={register('phoneNumber', { required: true })}
+          register={register('phoneNumber', {
+            required: true,
+            pattern: {
+              value: /^010 - \d{4} - \d{4}$/,
+              message: '올바른 휴대폰 번호를 입력해주세요.',
+            },
+          })}
           type="number"
           maxLength={17}
           onChange={handleInputChange}
           onKeyDown={handleInputChange}
         />
+
         <div className="h-18" />
         <Button
-          text="인증문자 전송"
-          onClick={handleSNSButon}
+          text={
+            inputStatus === 'beforeSend' || inputStatus === 'default'
+              ? '인증문자 전송'
+              : '인증번호 재전송'
+          }
           disabled={inputStatus === 'default'}
           color={inputStatus === 'beforeSend' ? 'blue' : 'orange'}
           type="submit"
         />
         <div className="h-18" />
       </form>
-      <CircleCheckbox
-        text={<span className=" text-[0.875rem]">휴대폰 번호는 안전하게 보관됩니다.</span>}
-        checked
-      />
-      <div className="h-10" />
-      <CircleCheckbox
-        text={<span className=" text-[0.875rem]">휴대폰 번호는 어디에도 공개되지 않습니다.</span>}
-        checked
-      />
+
+      {inputStatus === 'afterSend' && (
+        <form onSubmit={handleSubmit(onSubmitCertificateNumber)}>
+          <AuthInput
+            placeholder="인증 번호"
+            register={register('certificateNumber', {
+              required: true,
+              pattern: { value: /^\d{6}$/, message: '인증번호 6자리를 입력해주세요.' },
+            })}
+            type="number"
+            maxLength={6}
+          />
+          <div className="h-18" />
+          <Button text="인증번호 확인" type="submit" />
+        </form>
+      )}
+
+      <div className="h-18" />
+
+      <section>
+        <CircleCheckbox
+          text={<span className=" text-[0.875rem]">휴대폰 번호는 안전하게 보관됩니다.</span>}
+          checked
+        />
+        <div className="h-10" />
+        <CircleCheckbox
+          text={<span className=" text-[0.875rem]">휴대폰 번호는 어디에도 공개되지 않습니다.</span>}
+          checked
+        />
+      </section>
+
+      {errors.phoneNumber && errors.phoneNumber?.message}
     </div>
   );
 }
