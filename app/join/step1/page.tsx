@@ -4,16 +4,20 @@ import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
 import { TitleTextMessage } from '@/components/join/TextMessage';
+import { useState } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
+
 type Inputs = {
   phoneNumber: string;
 };
 
+type InputStatusType = 'default' | 'beforeSend' | 'afterSend';
+
 export default function Step1Page() {
-  const handleSNSButon = () => {};
-  const { register, handleSubmit, watch, setValue } = useForm<Inputs>();
+  const { register, handleSubmit, setValue } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const [inputStatus, setInputStatus] = useState<InputStatusType>('default');
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -21,6 +25,10 @@ export default function Step1Page() {
     const currentValue = e.currentTarget.value.replace(/[^0-9-]/g, '');
     let formattedValue = currentValue;
     const onlyNumbers = currentValue.replace(/-/g, '');
+
+    if (currentValue.length > 0) {
+      setInputStatus('beforeSend');
+    }
 
     if ('key' in e && e.key === 'Backspace') {
       if (onlyNumbers.length === 3) {
@@ -43,6 +51,8 @@ export default function Step1Page() {
     setValue('phoneNumber', formattedValue);
   };
 
+  const handleSNSButon = () => {};
+
   return (
     <div>
       <TitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
@@ -57,7 +67,13 @@ export default function Step1Page() {
           onKeyDown={handleInputChange}
         />
         <div className="h-18" />
-        <Button text="인증문자 전송" onClick={handleSNSButon} disabled type="submit" />
+        <Button
+          text="인증문자 전송"
+          onClick={handleSNSButon}
+          disabled={inputStatus === 'default'}
+          color={inputStatus === 'beforeSend' ? 'blue' : 'orange'}
+          type="submit"
+        />
         <div className="h-18" />
       </form>
       <CircleCheckbox
