@@ -9,16 +9,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;
   onClick?: () => void;
   href?: string;
+  disabled?: boolean;
 }
 
 export default function Button(props: ButtonProps) {
-  const { text, color = 'blue', onClick, href, ...rest } = props;
+  const { text, color = 'blue', onClick, href, disabled, ...rest } = props;
+  const buttonColor = disabled ? 'gray5' : color === 'blue' ? 'blue' : 'orange';
+  const textColor = disabled ? 'gray3' : 'white';
 
   return Boolean(href) ? (
     <div
       className={clsx(
         'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center ',
-        `${color === 'blue' ? 'bg-blue' : 'bg-orange'}`
+        `bg-${buttonColor}`,
+        `text-${textColor}`
       )}
     >
       <Link href={href || ''} className="text-white font-bold">
@@ -28,8 +32,9 @@ export default function Button(props: ButtonProps) {
   ) : Boolean(onClick) ? (
     <button
       className={clsx(
-        'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold',
-        `${color === 'blue' ? 'bg-blue' : 'bg-orange'}`
+        'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center font-bold',
+        `bg-${buttonColor}`,
+        `text-${textColor}`
       )}
       onClick={onClick}
       {...rest}
