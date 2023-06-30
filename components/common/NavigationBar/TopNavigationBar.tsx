@@ -1,5 +1,4 @@
 'use client';
-import { NavBar } from 'antd-mobile';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
