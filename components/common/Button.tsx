@@ -17,12 +17,17 @@ export default function Button(props: ButtonProps) {
   const buttonColor = disabled ? 'gray5' : color === 'blue' ? 'blue' : 'orange';
   const textColor = disabled ? 'gray3' : 'white';
 
+  console.log(disabled, color);
   return Boolean(href) ? (
     <div
       className={clsx(
-        'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center ',
-        `bg-${buttonColor}`,
-        `text-${textColor}`
+        'w-full h-[3.75rem]  rounded-xl text-center flex justify-center items-center ',
+        `text-${textColor}`,
+        {
+          'bg-gray5': disabled,
+          'bg-blue': !disabled && color === 'blue',
+          'bg-orange': !disabled && color === 'orange',
+        }
       )}
     >
       <Link href={href || ''} className="text-white font-bold">

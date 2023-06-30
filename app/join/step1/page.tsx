@@ -26,7 +26,7 @@ export default function Step1Page() {
     let formattedValue = currentValue;
     const onlyNumbers = currentValue.replace(/-/g, '');
 
-    if (currentValue.length > 0) {
+    if (currentValue.length > 0 || inputStatus !== 'afterSend') {
       setInputStatus('beforeSend');
     }
 
@@ -51,7 +51,9 @@ export default function Step1Page() {
     setValue('phoneNumber', formattedValue);
   };
 
-  const handleSNSButon = () => {};
+  const handleSNSButon = () => {
+    setInputStatus('afterSend');
+  };
 
   return (
     <div>
