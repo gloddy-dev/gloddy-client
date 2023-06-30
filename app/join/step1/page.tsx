@@ -6,6 +6,8 @@ import AuthInput from '@/components/common/Input/AuthInput';
 import { TitleTextMessage } from '@/components/join/TextMessage';
 import { useState } from 'react';
 
+import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
+import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type Inputs = {
@@ -23,9 +25,10 @@ export default function Step1Page() {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const router = useRouter();
+
   const [inputStatus, setInputStatus] = useState<InputStatusType>('default');
 
-  console.log(inputStatus);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
   ) => {
@@ -60,15 +63,18 @@ export default function Step1Page() {
 
   const onSubmitPhoneNumber: SubmitHandler<Inputs> = (data) => {
     console.log(data.phoneNumber);
+    // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
   const onSubmitCertificateNumber: SubmitHandler<Inputs> = (data) => {
     console.log(data.certificateNumber);
-    setInputStatus('afterSend');
+    // 인증번호 확인 API
+    router.push('/join/step2');
   };
 
   return (
     <div>
+      <TopNavigationBar text="회원가입" />
       <section>
         <TitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
       </section>
