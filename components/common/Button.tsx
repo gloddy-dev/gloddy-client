@@ -9,34 +9,40 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;
   onClick?: () => void;
   href?: string;
+  disabled?: boolean;
 }
 
 export default function Button(props: ButtonProps) {
-  const { text, color = 'blue', onClick, href, ...rest } = props;
+  const { text, color = 'blue', onClick, href, disabled, ...rest } = props;
 
-  return Boolean(href) ? (
+  return (
     <div
       className={clsx(
-        'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center ',
-        `${color === 'blue' ? 'bg-blue' : 'bg-orange'}`
+        'w-full h-[3.75rem]  rounded-xl text-center flex justify-center items-center ',
+        {
+          'text-gray3': disabled,
+          'text-white': !disabled,
+        },
+        {
+          'bg-gray5': disabled,
+          'bg-blue': !disabled && color === 'blue',
+          'bg-orange': !disabled && color === 'orange',
+        }
       )}
     >
-      <Link href={href || ''} className="text-white font-bold">
-        {text}
-      </Link>
+      {Boolean(href) ? (
+        <Link href={href || ''} className="text-white font-bold">
+          {text}
+        </Link>
+      ) : Boolean(onClick) ? (
+        <button onClick={onClick} {...rest} className="w-full full">
+          {text}
+        </button>
+      ) : (
+        <button {...rest} className="w-full full">
+          {text}
+        </button>
+      )}
     </div>
-  ) : Boolean(onClick) ? (
-    <button
-      className={clsx(
-        'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold',
-        `${color === 'blue' ? 'bg-blue' : 'bg-orange'}`
-      )}
-      onClick={onClick}
-      {...rest}
-    >
-      {text}
-    </button>
-  ) : (
-    <div></div>
   );
 }
