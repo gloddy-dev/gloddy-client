@@ -9,12 +9,12 @@ module.exports = {
       colors, spacing: pxToRem, fontSize: pxToRem, borderRadius: pxToRem,
       keyframes: {
         slideUp: {
-          '0%': { transform: 'translateY(100%)' },
+          '0%': { transform: 'translateY(50%)' },
           '100%': { transform: 'translateY(0)' },
         },
       },
       animation: {
-        slideUp: 'slideUp 2s ease-in-out',
+        slideUp: 'slideUp 0.5s ease-in-out',
       },
     },
     fontWeight: {
