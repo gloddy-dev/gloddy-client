@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import Sheet, { SheetRef } from 'react-modal-sheet';
 import ModalWrapper from './ModalWrapper';
 
@@ -29,9 +29,9 @@ export default function BottomUpModal({
         disableDrag
         className="animate-slideUp"
       >
-        <Sheet.Container>
-          <div className="flex justify-center w-full ">
-            <div className="relative h-full w-[26.25rem]  bg-white rounded-t-30 ">
+        <Sheet.Container className="!rounded-t-30">
+          <div className="flex justify-center w-full">
+            <div className="relative h-full w-[26.25rem]  bg-white rounded-t-30">
               <Sheet.Content>
                 <div className="p-25">{children}</div>
               </Sheet.Content>
