@@ -78,7 +78,6 @@ export default function Step1Page() {
       <section>
         <TitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
       </section>
-      <div className="h-30" />
 
       <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
         <AuthInput
