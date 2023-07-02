@@ -5,7 +5,18 @@ const { pxToRem } = require('./style/theme/spacing');
 module.exports = {
   content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: { colors, spacing: pxToRem, fontSize: pxToRem, borderRadius: pxToRem },
+    extend: {
+      colors, spacing: pxToRem, fontSize: pxToRem, borderRadius: pxToRem,
+      keyframes: {
+        slideUp: {
+          '0%': { transform: 'translateY(50%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        slideUp: 'slideUp 0.5s ease-in-out',
+      },
+    },
     fontWeight: {
       100: '100',
       300: '300',
