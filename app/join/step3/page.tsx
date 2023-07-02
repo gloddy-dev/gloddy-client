@@ -4,8 +4,23 @@ import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { TitleTextMessage } from '@/components/join/TextMessage';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
+type Inputs = {
+  email: string;
+};
 export default function Step3Page() {
+  const {
+    register,
+    formState: { errors },
+    watch,
+  } = useForm<Inputs>();
+
+  const handleSubmitEmail = (e: React.SyntheticEvent<Element, Event>) => {
+    e.stopPropagation();
+    console.log(watch('email'));
+  };
+
   return (
     <div className="relative h-full">
       <TopNavigationBar text="회원가입" />
@@ -14,9 +29,24 @@ export default function Step3Page() {
         <TitleTextMessage text={`재학생 인증을 위해\n학교 이메일을 입력해주세요`} />
       </section>
 
-      <section>
-        <AuthInput text="ID" />
-      </section>
+      <form>
+        <AuthInput
+          text="ID"
+          register={register('email', {
+            required: true,
+            pattern: {
+              value: /^010 - \d{4} - \d{4}$/,
+              message: '올바른 휴대폰 번호를 입력해주세요.',
+            },
+          })}
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              handleSubmitEmail(e);
+            }
+          }}
+        />
+      </form>
 
       <div className="h-30" />
 
@@ -48,7 +78,11 @@ export default function Step3Page() {
       </section>
 
       <section className="absolute bottom-0 w-full">
-        <Button text="인증하기" disabled />
+        <Button
+          text="인증하기"
+          onClick={handleSubmitEmail}
+          disabled={watch('email')?.length === 0}
+        />
 
         <div className="h-8" />
 
