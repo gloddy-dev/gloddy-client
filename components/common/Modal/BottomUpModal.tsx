@@ -6,9 +6,15 @@ interface BottomUpModalProps {
   isOpened: boolean;
   setIsOpened: (isOpened: boolean) => void;
   children: React.ReactNode;
+  snap: number;
 }
 
-export default function BottomUpModal({ children, isOpened, setIsOpened }: BottomUpModalProps) {
+export default function BottomUpModal({
+  children,
+  isOpened,
+  setIsOpened,
+  snap,
+}: BottomUpModalProps) {
   const ref = useRef<SheetRef>();
 
   return (
@@ -18,12 +24,10 @@ export default function BottomUpModal({ children, isOpened, setIsOpened }: Botto
         ref={ref}
         isOpen={isOpened}
         onClose={() => setIsOpened(false)}
-        snapPoints={[300]}
+        snapPoints={[snap]}
         initialSnap={0}
         disableDrag
         className="animate-slideUp"
-        onSnap={(snapIndex) => console.log('> Current snap point index:', snapIndex)}
-        onOpenStart={() => console.log('open start')}
       >
         <Sheet.Container>
           <div className="flex justify-center w-full ">
