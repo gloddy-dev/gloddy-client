@@ -1,11 +1,13 @@
 'use client';
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
+import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { TitleTextMessage } from '@/components/join/TextMessage';
 import regexr from '@/constants/regexr';
@@ -21,12 +23,44 @@ export default function Step3Page() {
     handleSubmit,
   } = useForm<Inputs>();
 
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+
   const handleSubmitEmail = (data: Inputs) => {
-    console.log(data.email);
+    // 인증번호 전송
+    setIsModalOpen(true);
   };
 
   return (
     <div className="relative h-full">
+      {isModalOpen && (
+        <BottomUpModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} snap={400}>
+          <div className="flex justify-end">
+            <Image
+              alt="close"
+              src="/assets/close.svg"
+              width={30}
+              height={30}
+              onClick={() => setIsModalOpen(false)}
+            />
+          </div>
+          <section>
+            <p className="text-20 font-700">회원님의 이메일로 </p>
+            <p className="text-20 font-700">인증번호를 전송하였습니다.</p>
+          </section>
+
+          <section className="my-20">
+            <AuthInput text="인증번호" />
+            <div className="p-10 flex justify-between">
+              <p className="underline text-14 text-gray3 ">재전송하기</p>
+              <p className="text-orange">02:59</p>
+            </div>
+          </section>
+
+          <section>
+            <Button text="완료" disabled />
+          </section>
+        </BottomUpModal>
+      )}
       <TopNavigationBar text="회원가입" />
 
       <section>
