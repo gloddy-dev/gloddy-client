@@ -1,29 +1,30 @@
 import { useRef } from 'react';
 import Sheet, { SheetRef } from 'react-modal-sheet';
+
 import ModalWrapper from './ModalWrapper';
 
 interface BottomUpModalProps {
-  isOpened: boolean;
-  setIsOpened: (isOpened: boolean) => void;
+  isModalOpen: boolean;
+  setIsModalOpen: (isModalOpen: boolean) => void;
   children: React.ReactNode;
   snap: number;
 }
 
 export default function BottomUpModal({
   children,
-  isOpened,
-  setIsOpened,
+  isModalOpen,
+  setIsModalOpen,
   snap,
 }: BottomUpModalProps) {
   const ref = useRef<SheetRef>();
 
   return (
     <div>
-      {isOpened && <ModalWrapper />}
+      {isModalOpen && <ModalWrapper />}
       <Sheet
         ref={ref}
-        isOpen={isOpened}
-        onClose={() => setIsOpened(false)}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
         snapPoints={[snap]}
         initialSnap={0}
         disableDrag
