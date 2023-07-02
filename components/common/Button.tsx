@@ -10,10 +10,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   href?: string;
   disabled?: boolean;
+  type?: 'button' | 'submit';
 }
 
 export default function Button(props: ButtonProps) {
-  const { text, color = 'blue', onClick, href, disabled, ...rest } = props;
+  const { text, color = 'blue', onClick, href, disabled, type = 'button', ...rest } = props;
 
   return (
     <div
@@ -36,10 +37,9 @@ export default function Button(props: ButtonProps) {
         </Link>
       ) : Boolean(onClick) ? (
         <button
-          onClick={() => {
-            if (disabled) {return;}
-            onClick();
-          }}
+          type={type}
+          disabled={disabled}
+          onClick={onClick}
           {...rest}
           className="w-full h-full"
         >

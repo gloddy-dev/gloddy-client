@@ -82,7 +82,7 @@ export default function Step3Page() {
         </section>
 
         <section className="absolute bottom-0 w-full">
-          <Button text="인증하기" disabled={watch('email')?.length === 0} />
+          <Button text="인증하기" disabled={watch('email')?.length === 0} type="submit" />
 
           <div className="h-8" />
 
