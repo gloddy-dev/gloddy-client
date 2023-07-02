@@ -3,11 +3,11 @@
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
+import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { TitleTextMessage } from '@/components/join/TextMessage';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type Inputs = {
@@ -78,7 +78,6 @@ export default function Step1Page() {
       <section>
         <TitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
       </section>
-      <div className="h-30" />
 
       <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
         <AuthInput

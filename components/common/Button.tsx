@@ -35,11 +35,18 @@ export default function Button(props: ButtonProps) {
           {text}
         </Link>
       ) : Boolean(onClick) ? (
-        <button onClick={onClick} {...rest} className="w-full full">
+        <button
+          onClick={() => {
+            if (disabled) {return;}
+            onClick();
+          }}
+          {...rest}
+          className="w-full h-full"
+        >
           {text}
         </button>
       ) : (
-        <button {...rest} className="w-full full">
+        <button {...rest} className="w-full h-full">
           {text}
         </button>
       )}
