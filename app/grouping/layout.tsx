@@ -1,6 +1,6 @@
 'use client';
 
-import BottomNavigation from '@/components/common/BottomNavigation';
+import BottomNavigation from '@/components/common/NavigationBar/BottomNavigation';
 import { NavBar, SafeArea } from 'antd-mobile';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
