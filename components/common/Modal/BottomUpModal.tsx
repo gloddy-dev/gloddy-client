@@ -20,7 +20,7 @@ export default function BottomUpModal({ children, isOpened, setIsOpened }: Botto
         onClose={() => setIsOpened(false)}
         snapPoints={[300]}
         initialSnap={0}
-        // disableDrag
+        disableDrag
         className="animate-slideUp"
         onSnap={(snapIndex) => console.log('> Current snap point index:', snapIndex)}
         onOpenStart={() => console.log('open start')}
