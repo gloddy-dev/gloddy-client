@@ -1,5 +1,6 @@
 'use client';
 import clsx from 'clsx';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
@@ -48,8 +49,14 @@ export default function Step3Page() {
 
         <div className="h-30" />
 
-        <p className={clsx('text-orange text-13 font-500', { hidden: !errors.email })}>
-          학교 이메일을 다시 확인해주세요.
+        <p
+          className={clsx('flex  justify-center text-orange text-13 font-500 gap-5', {
+            hidden: !errors.email,
+          })}
+        >
+          <Image alt="alert" src="/assets/alert.svg" width={10} height={30} />
+
+          {errors.email?.message}
         </p>
 
         <section>
