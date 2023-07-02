@@ -1,14 +1,15 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
-import { TitleTextMessage } from '@/components/join/TextMessage';
-import { useState } from 'react';
-
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { useRouter } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { TitleTextMessage } from '@/components/join/TextMessage';
+import regexr from '@/constants/regexr';
 
 type Inputs = {
   phoneNumber: string;
@@ -86,7 +87,7 @@ export default function Step1Page() {
           register={register('phoneNumber', {
             required: true,
             pattern: {
-              value: /^010 - \d{4} - \d{4}$/,
+              value: regexr.phoneNumber,
               message: '올바른 휴대폰 번호를 입력해주세요.',
             },
           })}
