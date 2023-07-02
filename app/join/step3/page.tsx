@@ -1,10 +1,11 @@
 'use client';
+import { useForm } from 'react-hook-form';
+
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { TitleTextMessage } from '@/components/join/TextMessage';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 type Inputs = {
   email: string;
