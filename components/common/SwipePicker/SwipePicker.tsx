@@ -3,7 +3,6 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 
 import clsx from 'clsx';
-import { useState } from 'react';
 import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -25,6 +24,7 @@ export default function SwipePicker({ selectList, isFirst = false, isLast = fals
       mousewheel
       slideToClickedSlide
       centeredSlides
+      // onSlideChange={(swiper) => setHour(swiper.realIndex)}
       pagination={{
         clickable: true,
       }}
