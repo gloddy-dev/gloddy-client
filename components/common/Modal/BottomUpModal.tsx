@@ -10,7 +10,9 @@ interface BottomUpModalProps {
   children: React.ReactNode;
   snap: number;
   disableDrag?: boolean;
-  isCloseButton?: boolean;
+  isLeftButton?: boolean;
+  text?: React.ReactNode;
+  isRightButton?: boolean;
 }
 
 export default function BottomUpModal({
@@ -19,7 +21,9 @@ export default function BottomUpModal({
   setIsModalOpen,
   snap,
   disableDrag = false,
-  isCloseButton = false,
+  isLeftButton = false,
+  text,
+  isRightButton = false,
 }: BottomUpModalProps) {
   const ref = useRef<SheetRef>();
   const snapTo = (i: number) => ref.current?.snapTo(i);
@@ -41,9 +45,21 @@ export default function BottomUpModal({
             <div className="relative h-full w-[26.25rem]  bg-white rounded-t-30">
               <Sheet.Content>
                 <div className="p-25">
-                  {isCloseButton && (
-                    <Sheet.Header>
-                      <div className="flex justify-end">
+                  <Sheet.Header>
+                    <div className="flex justify-between h-50 items-center">
+                      {isLeftButton ? (
+                        <Image
+                          alt="close"
+                          src="/assets/arrow_back.svg"
+                          width={10}
+                          height={10}
+                          onClick={() => snapTo(1)}
+                        />
+                      ) : (
+                        <div />
+                      )}
+                      {text}
+                      {isRightButton ? (
                         <Image
                           alt="close"
                           src="/assets/close.svg"
@@ -51,9 +67,11 @@ export default function BottomUpModal({
                           height={30}
                           onClick={() => snapTo(1)}
                         />
-                      </div>
-                    </Sheet.Header>
-                  )}
+                      ) : (
+                        <div />
+                      )}
+                    </div>
+                  </Sheet.Header>
                   {children}
                 </div>
               </Sheet.Content>

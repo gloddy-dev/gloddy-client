@@ -46,7 +46,7 @@ export default function Step3Page() {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           snap={400}
-          isCloseButton
+          isRightButton
         >
           <section className="text-20 font-700">
             <p>회원님의 이메일로 </p>
