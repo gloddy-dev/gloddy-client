@@ -1,8 +1,9 @@
 'use client';
-import Button from '@/components/common/Button';
-import OnboardingSpeechBubble from '@/components/SpeechBubble/OnboardingSpeechBubble';
 import { PageIndicator, Swiper } from 'antd-mobile';
 import Image from 'next/image';
+
+import Button from '@/components/common/Button';
+import OnboardingSpeechBubble from '@/components/SpeechBubble/OnboardingSpeechBubble';
 
 interface OnboardingMessage {
   id: number;
@@ -70,7 +71,7 @@ export default function Onboarding() {
             <Swiper.Item>
               <div className="h-screen">
                 <div className="h-full flex justify-center items-center">
-                  <Image alt="logo" src="/assets/main_logo.svg" width={180} height={30} />
+                  <Image alt="logo" src="/main_logo.png" width={180} height={30} />
                 </div>
                 <div className="fixed w-full bottom-30">
                   <Button text="시작하기" href="/login" />
