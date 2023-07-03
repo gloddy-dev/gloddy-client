@@ -40,13 +40,13 @@ export default function Button(props: ButtonProps) {
           type={type}
           disabled={disabled}
           onClick={onClick}
-          {...rest}
           className="w-full h-full"
+          {...rest}
         >
           {text}
         </button>
       ) : (
-        <button {...rest} className="w-full h-full">
+        <button className="w-full h-full" type={type} disabled={disabled} {...rest}>
           {text}
         </button>
       )}
