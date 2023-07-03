@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
@@ -14,6 +14,7 @@ import regexr from '@/constants/regexr';
 
 type Inputs = {
   email: string;
+  certificateNumber: number;
 };
 export default function Step3Page() {
   const {
@@ -23,33 +24,42 @@ export default function Step3Page() {
     handleSubmit,
   } = useForm<Inputs>();
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleSubmitEmail = (data: Inputs) => {
+  const handleSubmitEmail: SubmitHandler<Inputs> = (data: Inputs) => {
+    console.log(data.email);
     // 인증번호 전송
     setIsModalOpen(true);
+  };
+  const handleSubmitCertificateNumber: SubmitHandler<Inputs> = (data: Inputs) => {
+    console.log(data.certificateNumber);
+    // 인증번호 확인
+    setIsModalOpen(false);
   };
 
   return (
     <div className="relative h-full">
-      {isModalOpen && (
-        <BottomUpModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} snap={400}>
-          <div className="flex justify-end">
-            <Image
-              alt="close"
-              src="/assets/close.svg"
-              width={30}
-              height={30}
-              onClick={() => setIsModalOpen(false)}
-            />
-          </div>
-          <section>
-            <p className="text-20 font-700">회원님의 이메일로 </p>
-            <p className="text-20 font-700">인증번호를 전송하였습니다.</p>
-          </section>
+      <BottomUpModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        snap={400}
+        isCloseButton
+      >
+        <section>
+          <p className="text-20 font-700">회원님의 이메일로 </p>
+          <p className="text-20 font-700">인증번호를 전송하였습니다.</p>
+        </section>
 
+        <form onSubmit={handleSubmit(handleSubmitCertificateNumber)}>
           <section className="my-20">
-            <AuthInput text="인증번호" />
+            <AuthInput
+              text="인증번호"
+              register={register('certificateNumber', {
+                required: true,
+              })}
+              maxLength={6}
+              type="number"
+            />
             <div className="p-10 flex justify-between">
               <p className="underline text-14 text-gray3 ">재전송하기</p>
               <p className="text-orange">02:59</p>
@@ -57,10 +67,10 @@ export default function Step3Page() {
           </section>
 
           <section>
-            <Button text="완료" disabled />
+            <Button text="완료" disabled={watch('certificateNumber')?.length < 6} />
           </section>
-        </BottomUpModal>
-      )}
+        </form>
+      </BottomUpModal>
       <TopNavigationBar text="회원가입" />
 
       <section>
@@ -81,17 +91,16 @@ export default function Step3Page() {
           />
         </section>
 
-        <div className="h-30" />
-
         <p
-          className={clsx('flex  justify-center text-orange text-13 font-500 gap-5', {
-            hidden: !errors.email,
+          className={clsx('flex justify-center text-orange text-13 font-500 gap-5 float', {
+            invisible: !errors.email,
           })}
         >
           <Image alt="alert" src="/assets/alert.svg" width={10} height={30} />
-
           {errors.email?.message}
         </p>
+
+        <div className="h-10" />
 
         <section>
           <CircleCheckbox
