@@ -1,3 +1,4 @@
+'use client';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
@@ -11,13 +12,7 @@ interface PickerProps {
   isFirst?: boolean;
   isLast?: boolean;
 }
-export default function Picker({
-  selectList,
-  isFirst = false,
-  isLast = false,
-  ...rest
-}: PickerProps) {
-  const [hour, setHour] = useState<number>(0);
+export default function SwipePicker({ selectList, isFirst = false, isLast = false }: PickerProps) {
   return (
     <Swiper
       freeMode={{
@@ -30,7 +25,6 @@ export default function Picker({
       mousewheel
       slideToClickedSlide
       centeredSlides
-      onSlideChange={(swiper) => setHour(swiper.realIndex)}
       pagination={{
         clickable: true,
       }}
