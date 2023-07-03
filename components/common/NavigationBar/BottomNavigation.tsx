@@ -26,17 +26,6 @@ const tabs: Tab[] = [
     badge: Badge.dot,
   },
   {
-    key: 'board',
-    title: '게시판',
-    icon: (active: string) =>
-      active === 'board' ? (
-        <Image src="/assets/board_fill.svg" alt="board-icon" width={30} height={30} />
-      ) : (
-        <Image src="/assets/board_white.svg" alt="board-icon" width={30} height={30} />
-      ),
-    badge: Badge.dot,
-  },
-  {
     key: 'meeting',
     title: '나의모임',
     icon: (active: string) =>
@@ -65,7 +54,7 @@ const BottomNavigation = () => {
   const [activeKey, setActiveKey] = useState(pathname.substring(1));
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white grid grid-cols-4 h-110 rounded-t-25 px-40">
+    <div className="fixed bottom-0 left-0 w-full bg-white grid grid-cols-3 h-110 rounded-t-25 px-40">
       {tabs.map((tab) => (
         <div
           key={tab.key}
