@@ -147,7 +147,13 @@ export default function Step3Page() {
         </section>
 
         <section className="absolute bottom-0 w-full">
-          <Button text="인증하기" type="submit" />
+          <Button
+            text="인증하기"
+            type="submit"
+            disabled={
+              Boolean(errors.email) || watch('email') === undefined || watch('email')?.length === 0
+            }
+          />
 
           <div className="h-8" />
 
