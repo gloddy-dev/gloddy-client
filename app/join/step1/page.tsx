@@ -116,7 +116,10 @@ export default function Step1Page() {
             placeholder="인증 번호"
             register={register('certificateNumber', {
               required: true,
-              pattern: { value: /^\d{6}$/, message: '인증번호 6자리를 입력해주세요.' },
+              pattern: {
+                value: regexr.certificateNumber,
+                message: '인증번호 6자리를 입력해주세요.',
+              },
             })}
             type="number"
             maxLength={6}
