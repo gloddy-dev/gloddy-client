@@ -1,12 +1,12 @@
 'use client';
+import { useState } from 'react';
+
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { TitleTextMessage } from '@/components/join/TextMessage';
-import useBottomUpModal from '@/hooks/useBottomUpModal';
-import { useState } from 'react';
 
 const DUMMY_SEARCH_RESULT_RESULT = [
   {
@@ -27,11 +27,11 @@ const DUMMY_SEARCH_RESULT_RESULT = [
 ];
 
 export default function Step2Page() {
-  const [isOpened, setIsOpened] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
   const [agreeCheckList, setAgreeCheckList] = useState<boolean[]>([false, false]);
   return (
     <div className="relative h-full ">
-      <BottomUpModal isOpened={isOpened} setIsOpened={setIsOpened}>
+      <BottomUpModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} disableDrag>
         <section>
           <div className="text-center font-700">약관 동의</div>
         </section>
@@ -79,7 +79,7 @@ export default function Step2Page() {
           <Button
             text="완료"
             disabled={agreeCheckList.some((checkItem) => !checkItem)}
-            onClick={() => setIsOpened(false)}
+            onClick={() => setIsModalOpen(false)}
           />
         </section>
       </BottomUpModal>

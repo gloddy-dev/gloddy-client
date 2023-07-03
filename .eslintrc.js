@@ -139,19 +139,7 @@ module.exports = {
     curly: ['error', 'all'],
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'import/no-duplicates': 'off',
-    'import/order': [
-      'error',
-      {
-        groups: ['builtin', 'external', 'internal', ['index', 'sibling', 'parent'], 'object'],
-        // Import 구문 순서 정하고 싶으면 추가
-        pathGroups: [],
-        pathGroupsExcludedImportTypes: ['builtin'],
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
-      },
-    ],
+
     'sort-imports': [
       'error',
       {
