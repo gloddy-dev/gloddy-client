@@ -7,7 +7,6 @@ import AuthInput from '@/components/common/Input/AuthInput';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { TitleTextMessage } from '@/components/join/TextMessage';
-import useBottomUpModal from '@/hooks/useBottomUpModal';
 
 const DUMMY_SEARCH_RESULT_RESULT = [
   {
@@ -32,7 +31,7 @@ export default function Step2Page() {
   const [agreeCheckList, setAgreeCheckList] = useState<boolean[]>([false, false]);
   return (
     <div className="relative h-full ">
-      <BottomUpModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+      <BottomUpModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} disableDrag>
         <section>
           <div className="text-center font-700">약관 동의</div>
         </section>

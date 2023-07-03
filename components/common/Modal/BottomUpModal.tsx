@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useRef } from 'react';
 import Sheet, { SheetRef } from 'react-modal-sheet';
 
@@ -8,6 +9,8 @@ interface BottomUpModalProps {
   setIsModalOpen: (isModalOpen: boolean) => void;
   children: React.ReactNode;
   snap: number;
+  disableDrag?: boolean;
+  isCloseButton?: boolean;
 }
 
 export default function BottomUpModal({
@@ -15,8 +18,11 @@ export default function BottomUpModal({
   isModalOpen,
   setIsModalOpen,
   snap,
+  disableDrag = false,
+  isCloseButton = false,
 }: BottomUpModalProps) {
   const ref = useRef<SheetRef>();
+  const snapTo = (i: number) => ref.current?.snapTo(i);
 
   return (
     <div>
@@ -25,16 +31,31 @@ export default function BottomUpModal({
         ref={ref}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        snapPoints={[snap]}
+        snapPoints={[snap, 0]}
         initialSnap={0}
-        disableDrag
+        disableDrag={disableDrag}
         className="animate-slideUp"
       >
         <Sheet.Container className="!rounded-t-30">
           <div className="flex justify-center w-full">
             <div className="relative h-full w-[26.25rem]  bg-white rounded-t-30">
               <Sheet.Content>
-                <div className="p-25">{children}</div>
+                <div className="p-25">
+                  {isCloseButton && (
+                    <Sheet.Header>
+                      <div className="flex justify-end">
+                        <Image
+                          alt="close"
+                          src="/assets/close.svg"
+                          width={30}
+                          height={30}
+                          onClick={() => snapTo(1)}
+                        />
+                      </div>
+                    </Sheet.Header>
+                  )}
+                  {children}
+                </div>
               </Sheet.Content>
             </div>
           </div>
