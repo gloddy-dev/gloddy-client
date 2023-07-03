@@ -15,12 +15,12 @@
   display: none;
 }
 
-* {
+html {
   font-size: 4vw;
 }
 
 @media (min-width: 420px) {
-  * {
+  html {
     font-size: 16px;
   }
 }
@@ -108,3 +108,37 @@
 .react-datepicker .react-datepicker__triangle {
   display: none;
 }
+
+.swiper-slide {
+  opacity: 0.3;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  color: #666;
+  font-size: 1.125rem;
+  background-color: #fff;
+}
+
+.swiper-slide-active {
+  background-color: #f8f8f8;
+  font-weight: 700;
+  font-size: 1.375rem;
+  opacity: 1;
+}
+/*
+.swiper-slide {
+  text-align: center;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  opacity: 0.25;
+  transition: opacity 0.3s ease;
+  cursor: default;
+  font-weight: bold;
+  
+}
+*/
