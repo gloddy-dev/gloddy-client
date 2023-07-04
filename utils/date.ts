@@ -1,5 +1,5 @@
-const date = {
-  getToday: () => {
+const getDate = {
+  today: () => {
     const today = new Date();
     return {
       todayYear: today.getFullYear(),
@@ -9,4 +9,4 @@ const date = {
   },
 };
 
-export default date;
+export default getDate;

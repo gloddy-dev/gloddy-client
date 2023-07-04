@@ -1,6 +1,4 @@
-const { colors } = require('./style/theme/colors');
-const { pxToRem } = require('./style/theme/spacing');
-const { animations } = require('./style/theme/animations');
+const { colors, pxToRem, animations } = require('./style/theme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -25,4 +23,5 @@ module.exports = {
       900: '900',
     },
   },
+  plugins: [require('prettier-plugin-tailwindcss')],
 };

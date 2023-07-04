@@ -52,7 +52,7 @@ export default function SwipePicker({
           <div
             className={clsx(
               {
-                'text-12 text-blue': isRangeString,
+                'text-12  text-blue': isRangeString,
                 'text-14': isTimeZone,
               },
               'flex justify-center items-center h-full'

@@ -8,7 +8,7 @@ import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { TitleTextMessage } from '@/components/join/TextMessage';
+import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 import regexr from '@/constants/regexr';
 
 type Inputs = {
@@ -77,7 +77,7 @@ export default function Step1Page() {
     <div>
       <TopNavigationBar text="회원가입" isLeft={true} />
       <section>
-        <TitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
+        <AuthTitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
       </section>
 
       <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
