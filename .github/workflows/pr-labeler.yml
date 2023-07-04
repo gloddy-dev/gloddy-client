@@ -6,7 +6,9 @@ name: PR labeler
 # 트리거될 이벤트 설정
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened]
+  project_column:
+    types: [updated]
 
 # 트리거되었을 때 실행될 job 작성
 jobs:
