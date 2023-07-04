@@ -46,30 +46,29 @@ export default function BottomUpModal({
               <Sheet.Content>
                 <div className="p-25">
                   <Sheet.Header>
-                    <div className="flex justify-between h-50 items-center">
-                      <article className="grow flex justify-start ">
-                        {isLeftButton && (
-                          <Image
-                            alt="close"
-                            src="/assets/arrow_back.svg"
-                            width={10}
-                            height={10}
-                            onClick={() => snapTo(1)}
-                          />
-                        )}
-                      </article>
-                      <article className="grow flex justify-center">{text}</article>
-                      <article className="grow flex justify-end">
-                        {isRightButton && (
-                          <Image
-                            alt="close"
-                            src="/assets/close.svg"
-                            width={30}
-                            height={30}
-                            onClick={() => snapTo(1)}
-                          />
-                        )}
-                      </article>
+                    <div className="relative  justify-center h-50 items-center">
+                      {isLeftButton && (
+                        <Image
+                          alt="close"
+                          src="/assets/arrow_back.svg"
+                          width={10}
+                          height={10}
+                          onClick={() => snapTo(1)}
+                          className="absolute left-0  inset-y-0 m-auto"
+                        />
+                      )}
+                      <div className="flex justify-center h-full items-center">{text}</div>
+                      {isRightButton && (
+                        <Image
+                          alt="close"
+                          src="/assets/close.svg"
+                          width={30}
+                          height={30}
+                          onClick={() => snapTo(1)}
+                          className="absolute right-0 inset-y-0 m-auto"
+                        />
+                      )}
+                      <div />
                     </div>
                   </Sheet.Header>
                   {children}
