@@ -6,7 +6,7 @@ import ModalWrapper from './ModalWrapper';
 
 interface BottomUpModalProps {
   isModalOpen: boolean;
-  setIsModalOpen: (isModalOpen: boolean) => void;
+  onClose: () => void;
   children: React.ReactNode;
   snap: number;
   disableDrag?: boolean;
@@ -18,7 +18,7 @@ interface BottomUpModalProps {
 export default function BottomUpModal({
   children,
   isModalOpen,
-  setIsModalOpen,
+  onClose,
   snap,
   disableDrag = false,
   isLeftButton = false,
@@ -34,42 +34,41 @@ export default function BottomUpModal({
       <Sheet
         ref={ref}
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={onClose}
         snapPoints={[snap, 0]}
         initialSnap={0}
         disableDrag={disableDrag}
-        className="animate-slideUp"
+        className="animate-slideUp "
       >
-        <Sheet.Container className="!rounded-t-30">
-          <div className="flex justify-center w-full">
+        <Sheet.Container className="!rounded-t-30 ">
+          <div className="flex justify-center w-full ">
             <div className="relative h-full w-[26.25rem]  bg-white rounded-t-30">
               <Sheet.Content>
-                <div className="p-25">
+                <div className="p-25 ">
                   <Sheet.Header>
-                    <div className="flex justify-between h-50 items-center">
-                      {isLeftButton ? (
+                    <div className="relative  justify-center h-50 items-center">
+                      {isLeftButton && (
                         <Image
                           alt="close"
                           src="/assets/arrow_back.svg"
                           width={10}
                           height={10}
                           onClick={() => snapTo(1)}
+                          className="absolute left-0  inset-y-0 m-auto"
                         />
-                      ) : (
-                        <div />
                       )}
-                      {text}
-                      {isRightButton ? (
+                      <div className="flex justify-center h-full items-center">{text}</div>
+                      {isRightButton && (
                         <Image
                           alt="close"
                           src="/assets/close.svg"
                           width={30}
                           height={30}
                           onClick={() => snapTo(1)}
+                          className="absolute right-0 inset-y-0 m-auto"
                         />
-                      ) : (
-                        <div />
                       )}
+                      <div />
                     </div>
                   </Sheet.Header>
                   {children}

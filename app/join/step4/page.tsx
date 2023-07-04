@@ -1,0 +1,162 @@
+'use client';
+import { useRef, useState } from 'react';
+
+import { BirthdayValueType } from '@/@types/date';
+import { JoinStep4InputValue } from '@/@types/inputValue';
+import Button from '@/components/common/Button';
+import CircleImageFrame from '@/components/common/ImageFrame/CircleImageFrame';
+import AuthInput from '@/components/common/Input/AuthInput';
+import BottomUpModal from '@/components/common/Modal/BottomUpModal';
+import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
+import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
+import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
+
+export default function Step5Page() {
+  const imgRef = useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = useState<JoinStep4InputValue>({
+    profileImage: '',
+    birthday: {
+      year: '',
+      month: '',
+      date: '',
+    },
+    sex: '',
+  });
+
+  console.log(inputValue);
+  const [isModalOpen, setIsModalOpen] = useState<{ birthday: boolean; sex: boolean }>({
+    birthday: false,
+    sex: false,
+  });
+
+  const setProfileImage = (value: string) => {
+    setInputValue((prev) => ({
+      ...prev,
+      profileImage: value,
+    }));
+  };
+
+  const setBirthdayValue = (value: BirthdayValueType) => {
+    setInputValue((prev) => ({
+      ...prev,
+      birthday: value,
+    }));
+  };
+
+  const setSexValue = (value: string) => {
+    setInputValue((prev) => ({
+      ...prev,
+      sex: value,
+    }));
+  };
+
+  const handleModalNextButton = () => {
+    if (isModalOpen.birthday) {
+      setIsModalOpen({
+        birthday: false,
+        sex: true,
+      });
+    }
+    if (isModalOpen.sex) {
+      if (inputValue.sex === '') {
+        setInputValue((prev) => ({
+          ...prev,
+          sex: '남성',
+        }));
+      }
+      setIsModalOpen({
+        birthday: false,
+        sex: false,
+      });
+    }
+  };
+
+  return (
+    <div className="relative h-full ">
+      <TopNavigationBar text="회원가입" />
+
+      <CircleImageFrame
+        setProfileImage={setProfileImage}
+        imgRef={imgRef}
+        profileImage={inputValue.profileImage}
+      />
+
+      <section className="gap-10 flex flex-col">
+        <article className="gap-5 flex flex-col">
+          <p className="text-14">닉네임</p>
+          <AuthInput placeholder="닉네임을 입력해주세요." />
+        </article>
+
+        <article className="gap-5 flex flex-col">
+          <p className="text-14">생년월일</p>
+          <AuthInput
+            placeholder="생년월일을 선택해주세요."
+            onClick={() => setIsModalOpen({ sex: false, birthday: true })}
+            value={
+              inputValue.birthday.year &&
+              inputValue.birthday.month &&
+              inputValue.birthday.date &&
+              `${inputValue.birthday.year} ${inputValue.birthday.month} ${inputValue.birthday.date}`
+            }
+            readOnly
+          />
+        </article>
+
+        <article className="gap-5 flex flex-col">
+          <p className="text-14">성별</p>
+          <AuthInput
+            placeholder="성별을 선택해주세요."
+            onClick={() => setIsModalOpen({ sex: true, birthday: false })}
+            value={inputValue.sex}
+            readOnly
+          />
+        </article>
+      </section>
+
+      <section className="absolute bottom-0 w-full">
+        <Button
+          text="다음"
+          disabled={
+            !(
+              inputValue.birthday.date &&
+              inputValue.birthday.month &&
+              inputValue.birthday.year &&
+              inputValue.sex
+            )
+          }
+          href="/join/step6"
+        />
+      </section>
+
+      <BottomUpModal
+        isModalOpen={isModalOpen.birthday || isModalOpen.sex}
+        snap={400}
+        onClose={() => setIsModalOpen({ birthday: false, sex: false })}
+        isRightButton
+        text={
+          <p className="text-gray7 text-18 font-500">
+            {isModalOpen.birthday ? '생년월일' : '성별'}
+          </p>
+        }
+        disableDrag
+      >
+        {isModalOpen.birthday ? (
+          <DateSwipePicker
+            birthdayValue={inputValue.birthday}
+            setBirthdayValue={setBirthdayValue}
+          />
+        ) : (
+          <SexSwipePicker sexValue={inputValue.sex} setSexValue={setSexValue} />
+        )}
+        <Button
+          text="다음"
+          disabled={
+            isModalOpen.birthday &&
+            !(inputValue.birthday.year && inputValue.birthday.month && inputValue.birthday.date)
+          }
+          onClick={handleModalNextButton}
+        />
+      </BottomUpModal>
+    </div>
+  );
+}

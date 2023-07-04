@@ -7,7 +7,7 @@ interface TopNavigationBarProps {
   text: string;
   right?: React.ReactNode;
 }
-export default function TopNavigationBar({ isLeft, text, right }: TopNavigationBarProps) {
+export default function TopNavigationBar({ isLeft = true, text, right }: TopNavigationBarProps) {
   const router = useRouter();
   return (
     <div>

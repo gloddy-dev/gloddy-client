@@ -21,7 +21,7 @@ export default function AuthInput({
       <p className="text-gray2 flex items-center justify-center pl-24 pr-8">{text}</p>
       <input
         placeholder={placeholder}
-        className="bg-[#f6f6f6] text-black   flex-grow pr-5 border-none outline-none"
+        className="bg-[#f6f6f6] text-black  flex-grow pr-5 border-none outline-none  rounded-lg"
         type={type}
         {...register}
         {...rest}
