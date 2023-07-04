@@ -21,11 +21,9 @@ export default function Button(props: ButtonProps) {
       className={clsx(
         'w-full h-[3.75rem]  rounded-xl text-center flex justify-center items-center ',
         {
-          'text-gray3': disabled,
+          'text-gray3 bg-gray5': disabled,
           'text-white': !disabled,
-        },
-        {
-          'bg-gray5': disabled,
+
           'bg-blue': !disabled && color === 'blue',
           'bg-orange': !disabled && color === 'orange',
         }
