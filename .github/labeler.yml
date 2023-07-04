@@ -3,29 +3,36 @@ enable:
   issues: true
   prs: true
 
-# 레이블을 성공적으로 붙이고 PR에 보낼 코멘트를 설정
 comments:
   prs: |
-    Labeler has applied any labels matching special text in your title and description.
-    Please review the labels and make any necessary changes.
+    Labeler가 제목과 설명에 있는 특별한 텍스트와 일치하는 레이블을 적용했습니다.
+    Label을 검토하고 필요한 변경 사항을 적용해 주세요.
 
-# 레이블
 labels:
-  'Component':
+  '✨ Component':
     include:
       - '\bComponent\b'
-  'Test':
+  '🐛 Fix':
     include:
-      - '\bTest\b'
-  'feature':
+      - '\bFix\b'
+  '🐞 Bug':
     include:
       - '\bfeat\b'
-  'documentation':
+  '📄 Page':
     include:
-      - '\bdocs\b'
-  'refactor':
+      - '\bPage\b'
+  '📜 Docs':
     include:
-      - '\brefactor\b'
-  'chore':
+      - '\bDocs\b'
+  '🔧 Setting':
     include:
-      - '\bchore\b'
+      - '\bSetting\b'
+  '🚿 Refactoring':
+    include:
+      - '\bRefactoring\b'
+  '🆘 Help wanted':
+    include:
+      - '\binclude\b'
+  '🔬 Test':
+    include:
+      - '\bTest\b'
