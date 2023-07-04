@@ -1,6 +1,6 @@
 # enable labeler on issues, prs, or both.
 enable:
-  issues: false
+  issues: true
   prs: true
 
 # 레이블을 성공적으로 붙이고 PR에 보낼 코멘트를 설정
@@ -11,12 +11,12 @@ comments:
 
 # 레이블
 labels:
-  '✨ Component':
+  'Component':
     include:
-      - '\b✨ Component\b'
-  'test':
+      - '\bComponent\b'
+  'Test':
     include:
-      - '\btest\b'
+      - '\bTest\b'
   'feature':
     include:
       - '\bfeat\b'

@@ -7,8 +7,8 @@ name: PR labeler
 on:
   pull_request:
     types: [opened, reopened]
-  project_column:
-    types: [updated]
+  # project_column:
+  #   types: [updated]
 
 # 트리거되었을 때 실행될 job 작성
 jobs:
