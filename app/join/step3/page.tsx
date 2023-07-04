@@ -12,6 +12,7 @@ import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { TitleTextMessage } from '@/components/join/TextMessage';
 import regexr from '@/constants/regexr';
+import { useModal } from '@/hooks/useModal';
 
 type Inputs = {
   email: string;
@@ -26,11 +27,11 @@ export default function Step3Page() {
     handleSubmit,
   } = useForm<Inputs>();
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { isModalOpen, openModal, closeModal } = useModal<'modal'>();
 
   const onSubmitEmail: SubmitHandler<Inputs> = (data: Inputs) => {
     console.log(data.email);
-    setIsModalOpen(true);
+    openModal('modal');
     // 인증번호 전송
   };
   const onSubmitCertificateNumber: SubmitHandler<Inputs> = (data: Inputs) => {
@@ -42,12 +43,7 @@ export default function Step3Page() {
   return (
     <div className="relative h-full">
       {isModalOpen && (
-        <BottomUpModal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          snap={400}
-          isRightButton
-        >
+        <BottomUpModal isModalOpen={isModalOpen} onClose={closeModal} snap={400} isRightButton>
           <section className="text-20 font-700">
             <p>회원님의 이메일로 </p>
             <p>인증번호를 전송하였습니다.</p>
@@ -67,8 +63,8 @@ export default function Step3Page() {
                 maxLength={6}
                 type="number"
               />
-              <div className="p-10 flex justify-between">
-                <p className="underline text-14 text-gray3 ">재전송하기</p>
+              <div className="flex justify-between p-10">
+                <p className="text-14 text-gray3 underline ">재전송하기</p>
                 <p className="text-orange">02:59</p>
               </div>
             </section>
@@ -107,7 +103,7 @@ export default function Step3Page() {
           />
         </section>
         <p
-          className={clsx('flex justify-center text-orange text-13 font-500 gap-5 float', {
+          className={clsx('font-500 float flex justify-center gap-5 text-13 text-orange', {
             invisible: !errors.email,
           })}
         >
@@ -121,7 +117,7 @@ export default function Step3Page() {
           <CircleCheckbox
             text={
               <span className="text-14">
-                재학생 인증을 진행하면 <span className="font-700 text-14 text-blue">인증마크</span>
+                재학생 인증을 진행하면 <span className="text-14 font-700 text-blue">인증마크</span>
                 를 받을 수 있어요
               </span>
             }
