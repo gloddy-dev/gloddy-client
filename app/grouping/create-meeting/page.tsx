@@ -91,7 +91,7 @@ const CreateMeeting = () => {
       <BottomUpModal
         isModalOpen={isModalOpen}
         snap={0.9}
-        setIsModalOpen={setIsModalOpen}
+        onClose={() => setIsModalOpen(false)}
         isLeftButton
         isRightButton
         text={<div className="text-18 font-500">모임 일시</div>}
