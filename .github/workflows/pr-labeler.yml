@@ -1,0 +1,25 @@
+# .github/workflows/pr-labeler.yml
+
+# workflow 의 이름
+name: PR labeler
+
+# 트리거될 이벤트 설정
+on:
+  pull_request:
+    types: [opened]
+    
+# 트리거되었을 때 실행될 job 작성
+jobs:
+  labeler:
+  	# runner 설정
+    runs-on: ubuntu-latest
+    # 리파지토리에 대한 권한 설정
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Check Labels
+        id: labeler
+        uses: jimschubert/labeler-action@v1
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
