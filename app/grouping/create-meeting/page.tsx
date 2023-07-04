@@ -12,7 +12,7 @@ import React, { useRef, useState } from 'react';
 
 const CreateMeeting = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [isOpened, setIsOpened] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [meetingImage, setMeetingImage] = useState('');
   const imgRef = useRef<HTMLInputElement | null>(null);
 
@@ -65,7 +65,7 @@ const CreateMeeting = () => {
       <div className="w-full px-20">
         <div
           className="flex w-full flex-col mb-15 cursor-pointer"
-          onClick={() => setIsOpened((prev) => !prev)}
+          onClick={() => setIsModalOpen((prev) => !prev)}
         >
           <div className="text-14 font-500 mb-5">모임 일시</div>
           <div className="bg-gray5 text-black outline-none text-16 font-500 pl-23 py-13 w-full rounded-lg h-50">
@@ -74,7 +74,7 @@ const CreateMeeting = () => {
         </div>
         <div
           className="flex w-full flex-col mb-15 cursor-pointer"
-          onClick={() => setIsOpened((prev) => !prev)}
+          onClick={() => setIsModalOpen((prev) => !prev)}
         >
           <div className="text-14 font-500 mb-5">모임 위치</div>
           <div className="bg-gray5 text-black outline-none text-16 font-500 pl-23 py-13 w-full rounded-lg h-50">
@@ -83,7 +83,7 @@ const CreateMeeting = () => {
         </div>
         <div
           className="flex w-full flex-col mb-15 cursor-pointer"
-          onClick={() => setIsOpened((prev) => !prev)}
+          onClick={() => setIsModalOpen((prev) => !prev)}
         >
           <div className="text-14 font-500 mb-5">모임 인원</div>
           <div className="bg-gray5 text-black outline-none text-16 font-500 pl-23 py-13 w-full rounded-lg h-50">
@@ -95,9 +95,9 @@ const CreateMeeting = () => {
         <Button text="완료" />
       </div>
       <BottomUpModal
-        isModalOpen={isOpened}
+        isModalOpen={isModalOpen}
         snap={0.9}
-        setIsModalOpen={setIsOpened}
+        setIsModalOpen={setIsModalOpen}
         isLeftButton
         isRightButton
         text={<div className="text-18 font-500">모임 일시</div>}

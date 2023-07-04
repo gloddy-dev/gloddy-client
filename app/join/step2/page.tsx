@@ -83,7 +83,7 @@ export default function Step2Page() {
           />
         </section>
       </BottomUpModal>
-      <TopNavigationBar text="회원가입" left={true} />
+      <TopNavigationBar text="회원가입" isLeft={true} />
       <section>
         <TitleTextMessage text={`재학중인 학교\n선택해주세요`} />
       </section>
