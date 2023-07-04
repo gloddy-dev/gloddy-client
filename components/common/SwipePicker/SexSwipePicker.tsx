@@ -4,17 +4,20 @@ const selectList = ['남성', '여성'];
 
 interface SexSwipePickerProps {
   sexValue: string;
-  setSexValue: (value: string) => void;
+  setSexValue: (value: string | number) => void;
 }
 
 export default function SexSwipePicker({ sexValue, setSexValue }: SexSwipePickerProps) {
+  const setValueByKey = (value: number | string) => {
+    setSexValue(value);
+  };
   return (
-    <div className="flex relative h-180">
+    <div className="relative flex h-180">
       <SwipePicker
         isFirst
         isLast
         selectList={selectList}
-        setValue={(value: number) => setSexValue(selectList[value])}
+        setValue={setValueByKey}
         initialValue={sexValue}
       />
     </div>

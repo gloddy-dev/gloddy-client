@@ -7,7 +7,7 @@
   box-sizing: border-box;
   -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
   scrollbar-width: none; /* Hide scrollbar for Firefox */
-  font-family: Noto Sans KR;
+  font-family: Noto Sans KR, serif;
   white-space: pre-wrap;
 }
 
@@ -111,20 +111,6 @@ html {
 }
 
 .swiper-slide {
-  opacity: 0.3;
   -webkit-tap-highlight-color: transparent;
 }
 
-.swiper-slide-prev,
-.swiper-slide-next {
-  color: #666;
-  font-size: 1.125rem;
-  background-color: #fff;
-}
-
-.swiper-slide-active {
-  background-color: #f8f8f8;
-  font-weight: 700;
-  font-size: 1.375rem;
-  opacity: 1;
-}
