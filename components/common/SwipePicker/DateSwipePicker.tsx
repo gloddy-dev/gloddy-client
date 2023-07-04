@@ -34,7 +34,7 @@ export default function DateSwipePicker({ birthdayValue, setBirthdayValue }: Dat
     });
   };
   return (
-    <div className="flex relative h-180">
+    <div className="relative flex h-180">
       <SwipePicker
         selectList={yearList}
         isFirst
