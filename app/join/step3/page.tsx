@@ -2,7 +2,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
@@ -10,7 +9,7 @@ import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { TitleTextMessage } from '@/components/join/TextMessage';
+import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 import regexr from '@/constants/regexr';
 import { useModal } from '@/hooks/useModal';
 
@@ -86,7 +85,7 @@ export default function Step3Page() {
       <TopNavigationBar text="회원가입" isLeft={true} />
 
       <section>
-        <TitleTextMessage text={`재학생 인증을 위해\n학교 이메일을 입력해주세요`} />
+        <AuthTitleTextMessage text={`재학생 인증을 위해\n학교 이메일을 입력해주세요`} />
       </section>
 
       <form onSubmit={handleSubmit(onSubmitEmail)}>

@@ -6,7 +6,7 @@ import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { TitleTextMessage } from '@/components/join/TextMessage';
+import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 import { useModal } from '@/hooks/useModal';
 
 const DUMMY_SEARCH_RESULT_RESULT = [
@@ -89,7 +89,7 @@ export default function Step2Page() {
       </BottomUpModal>
       <TopNavigationBar text="회원가입" isLeft={true} />
       <section>
-        <TitleTextMessage text={`재학중인 학교\n선택해주세요`} />
+        <AuthTitleTextMessage text={`재학중인 학교\n선택해주세요`} />
       </section>
 
       <section>
