@@ -1,0 +1,31 @@
+# enable labeler on issues, prs, or both.
+enable:
+  issues: true
+  prs: true
+
+# 레이블을 성공적으로 붙이고 PR에 보낼 코멘트를 설정
+comments:
+  prs: |
+    Labeler has applied any labels matching special text in your title and description.
+    Please review the labels and make any necessary changes.
+
+# 레이블
+labels:
+  'Component':
+    include:
+      - '\bComponent\b'
+  'Test':
+    include:
+      - '\bTest\b'
+  'feature':
+    include:
+      - '\bfeat\b'
+  'documentation':
+    include:
+      - '\bdocs\b'
+  'refactor':
+    include:
+      - '\brefactor\b'
+  'chore':
+    include:
+      - '\bchore\b'
