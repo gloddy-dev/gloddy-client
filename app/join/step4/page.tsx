@@ -72,13 +72,13 @@ export default function Step5Page() {
         profileImage={inputValue.profileImage}
       />
 
-      <section className="gap-10 flex flex-col">
-        <article className="gap-5 flex flex-col">
+      <section className="flex flex-col gap-10">
+        <article className="flex flex-col gap-5">
           <p className="text-14">닉네임</p>
           <AuthInput placeholder="닉네임을 입력해주세요." />
         </article>
 
-        <article className="gap-5 flex flex-col">
+        <article className="flex flex-col gap-5">
           <p className="text-14">생년월일</p>
           <AuthInput
             placeholder="생년월일을 선택해주세요."
@@ -93,7 +93,7 @@ export default function Step5Page() {
           />
         </article>
 
-        <article className="gap-5 flex flex-col">
+        <article className="flex flex-col gap-5">
           <p className="text-14">성별</p>
           <AuthInput
             placeholder="성별을 선택해주세요."
@@ -125,7 +125,7 @@ export default function Step5Page() {
         onClose={closeModal}
         isRightButton
         text={
-          <p className="text-gray7 text-18 font-500">
+          <p className="font-500 text-18 text-gray7">
             {modalName === 'birthday' ? '생년월일' : '성별'}
           </p>
         }
