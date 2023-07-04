@@ -3,16 +3,16 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 interface TopNavigationBarProps {
-  left?: boolean;
+  isLeft?: boolean;
   text: string;
   right?: React.ReactNode;
 }
-export default function TopNavigationBar({ left, text, right }: TopNavigationBarProps) {
+export default function TopNavigationBar({ isLeft, text, right }: TopNavigationBarProps) {
   const router = useRouter();
   return (
     <div>
       <div className="flex justify-between mb-30">
-        {left ? (
+        {isLeft ? (
           <Image
             alt="back"
             src="/assets/arrow_back.svg"

@@ -9,7 +9,7 @@ export default function GroupingLayout({ children }: { children: React.ReactNode
       <SafeArea position="top" />
       <div className="w-full h-full">
         <div className="px-20 pt-20">
-          <TopNavigationBar left={true} text="모임 개설" />
+          <TopNavigationBar isLeft={true} text="모임 개설" />
         </div>
 
         <div>{children}</div>
