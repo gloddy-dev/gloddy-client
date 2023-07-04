@@ -87,7 +87,7 @@ export default function Step3Page() {
         </BottomUpModal>
       )}
 
-      <TopNavigationBar text="회원가입" />
+      <TopNavigationBar text="회원가입" isLeft={true} />
 
       <section>
         <TitleTextMessage text={`재학생 인증을 위해\n학교 이메일을 입력해주세요`} />
@@ -147,7 +147,13 @@ export default function Step3Page() {
         </section>
 
         <section className="absolute bottom-0 w-full">
-          <Button text="인증하기" type="submit" />
+          <Button
+            text="인증하기"
+            type="submit"
+            disabled={
+              Boolean(errors.email) || watch('email') === undefined || watch('email')?.length === 0
+            }
+          />
 
           <div className="h-8" />
 

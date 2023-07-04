@@ -1,4 +1,5 @@
 'use client';
+
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
@@ -7,24 +8,31 @@ import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface PickerProps {
-  selectList: string[];
+  selectList: string[] | number[];
+  isTimeZone?: boolean;
+  isRangeString?: boolean;
   isFirst?: boolean;
   isLast?: boolean;
 }
-export default function SwipePicker({ selectList, isFirst = false, isLast = false }: PickerProps) {
+export default function SwipePicker({
+  selectList,
+  isFirst = false,
+  isLast = false,
+  isTimeZone = false,
+  isRangeString = false,
+}: PickerProps) {
   return (
     <Swiper
       freeMode={{
         enabled: true,
         sticky: true,
       }}
-      className="h-180 w-full "
+      className="w-full "
       direction={'vertical'}
       slidesPerView={3}
       mousewheel
       slideToClickedSlide
       centeredSlides
-      // onSlideChange={(swiper) => setHour(swiper.realIndex)}
       pagination={{
         clickable: true,
       }}
@@ -35,7 +43,15 @@ export default function SwipePicker({ selectList, isFirst = false, isLast = fals
           key={slideContent}
           className={clsx({ 'rounded-l-10': isFirst, 'rounded-r-10': isLast })}
         >
-          <div className="flex justify-center items-center h-full  color-black2 text-inherit">
+          <div
+            className={clsx(
+              {
+                'text-12 text-blue': isRangeString,
+                'text-14': isTimeZone,
+              },
+              'flex justify-center items-center h-full'
+            )}
+          >
             {slideContent}
           </div>
         </SwiperSlide>

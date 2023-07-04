@@ -31,13 +31,13 @@ export default function Step2Page() {
   const [agreeCheckList, setAgreeCheckList] = useState<boolean[]>([false, false]);
   return (
     <div className="relative h-full ">
-      <BottomUpModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} disableDrag>
-        <section>
-          <div className="text-center font-700">약관 동의</div>
-        </section>
-
-        <div className="h-30" />
-
+      <BottomUpModal
+        snap={300}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        disableDrag
+        text={<div className="text-center font-700">약관 동의</div>}
+      >
         <section>
           <CircleCheckbox
             text="전체 동의"
@@ -83,7 +83,7 @@ export default function Step2Page() {
           />
         </section>
       </BottomUpModal>
-      <TopNavigationBar text="회원가입" />
+      <TopNavigationBar text="회원가입" isLeft={true} />
       <section>
         <TitleTextMessage text={`재학중인 학교\n선택해주세요`} />
       </section>
