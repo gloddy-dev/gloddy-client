@@ -13,6 +13,8 @@ interface PickerProps {
   isRangeString?: boolean;
   isFirst?: boolean;
   isLast?: boolean;
+  initialValue?: string;
+  setValue: (value: number) => void;
 }
 export default function SwipePicker({
   selectList,
@@ -20,6 +22,8 @@ export default function SwipePicker({
   isLast = false,
   isTimeZone = false,
   isRangeString = false,
+  initialValue = '',
+  setValue,
 }: PickerProps) {
   return (
     <Swiper
@@ -27,7 +31,7 @@ export default function SwipePicker({
         enabled: true,
         sticky: true,
       }}
-      className="w-full "
+      className="w-full"
       direction={'vertical'}
       slidesPerView={3}
       mousewheel
@@ -37,6 +41,8 @@ export default function SwipePicker({
         clickable: true,
       }}
       modules={[FreeMode]}
+      onSlideChange={(swiper) => setValue(swiper.activeIndex)}
+      initialSlide={initialValue ? selectList.indexOf(initialValue) : 0}
     >
       {selectList.map((slideContent) => (
         <SwiperSlide
