@@ -10,6 +10,7 @@ comments:
     Please review the labels and make any necessary changes.
 
 # 레이블
+
 labels:
   'Component':
     include:
