@@ -1,14 +1,16 @@
 'use client';
 
+import { Badge } from 'antd-mobile';
+import Image from 'next/image';
+import React, { useRef, useState } from 'react';
+
 import Button from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
 import Input from '@/components/common/Input/Input';
 import TextArea from '@/components/common/Input/TextArea';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
-import { Badge } from 'antd-mobile';
-import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import saveImage from '@/utils/saveImage';
 
 const CreateMeeting = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -16,14 +18,6 @@ const CreateMeeting = () => {
   const [meetingImage, setMeetingImage] = useState('');
   const imgRef = useRef<HTMLInputElement | null>(null);
 
-  const saveImgFile = () => {
-    const file = imgRef.current!.files![0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setMeetingImage(reader.result as string);
-    };
-  };
   return (
     <div className="flex items-center justify-center w-full flex-col pb-100">
       <div className="flex items-center justify-center w-full flex-col px-20">
@@ -40,7 +34,7 @@ const CreateMeeting = () => {
                 id="input-file"
                 className="hidden"
                 ref={imgRef}
-                onChange={saveImgFile}
+                onChange={() => saveImage(setMeetingImage, imgRef)}
               />
             </div>
           }
