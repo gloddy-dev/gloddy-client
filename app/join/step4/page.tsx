@@ -1,8 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
 
-import { BirthdayValueType } from '@/@types/date';
-import { JoinStep4InputValue } from '@/@types/inputValue';
 import Button from '@/components/common/Button';
 import CircleImageFrame from '@/components/common/ImageFrame/CircleImageFrame';
 import AuthInput from '@/components/common/Input/AuthInput';
@@ -10,6 +8,10 @@ import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
 import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
+import { useModal } from '@/hooks/useModal';
+
+import type { BirthdayValueType } from '@/@types/date';
+import type { JoinStep4InputValue } from '@/@types/inputValue';
 
 export default function Step5Page() {
   const imgRef = useRef<HTMLInputElement>(null);
@@ -22,12 +24,7 @@ export default function Step5Page() {
     },
     sex: '',
   });
-
-  console.log(inputValue);
-  const [isModalOpen, setIsModalOpen] = useState<{ birthday: boolean; sex: boolean }>({
-    birthday: false,
-    sex: false,
-  });
+  const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
 
   const setProfileImage = (value: string) => {
     setInputValue((prev) => ({
@@ -51,23 +48,17 @@ export default function Step5Page() {
   };
 
   const handleModalNextButton = () => {
-    if (isModalOpen.birthday) {
-      setIsModalOpen({
-        birthday: false,
-        sex: true,
-      });
+    if (modalName === 'birthday') {
+      openModal('sex');
     }
-    if (isModalOpen.sex) {
+    if (modalName === 'sex') {
       if (inputValue.sex === '') {
         setInputValue((prev) => ({
           ...prev,
           sex: '남성',
         }));
       }
-      setIsModalOpen({
-        birthday: false,
-        sex: false,
-      });
+      closeModal();
     }
   };
 
@@ -81,17 +72,17 @@ export default function Step5Page() {
         profileImage={inputValue.profileImage}
       />
 
-      <section className="gap-10 flex flex-col">
-        <article className="gap-5 flex flex-col">
+      <section className="flex flex-col gap-10">
+        <article className="flex flex-col gap-5">
           <p className="text-14">닉네임</p>
           <AuthInput placeholder="닉네임을 입력해주세요." />
         </article>
 
-        <article className="gap-5 flex flex-col">
+        <article className="flex flex-col gap-5">
           <p className="text-14">생년월일</p>
           <AuthInput
             placeholder="생년월일을 선택해주세요."
-            onClick={() => setIsModalOpen({ sex: false, birthday: true })}
+            onClick={() => openModal('birthday')}
             value={
               inputValue.birthday.year &&
               inputValue.birthday.month &&
@@ -102,11 +93,11 @@ export default function Step5Page() {
           />
         </article>
 
-        <article className="gap-5 flex flex-col">
+        <article className="flex flex-col gap-5">
           <p className="text-14">성별</p>
           <AuthInput
             placeholder="성별을 선택해주세요."
-            onClick={() => setIsModalOpen({ sex: true, birthday: false })}
+            onClick={() => openModal('sex')}
             value={inputValue.sex}
             readOnly
           />
@@ -129,29 +120,30 @@ export default function Step5Page() {
       </section>
 
       <BottomUpModal
-        isModalOpen={isModalOpen.birthday || isModalOpen.sex}
+        isModalOpen={isModalOpen}
         snap={400}
-        onClose={() => setIsModalOpen({ birthday: false, sex: false })}
+        onClose={closeModal}
         isRightButton
         text={
-          <p className="text-gray7 text-18 font-500">
-            {isModalOpen.birthday ? '생년월일' : '성별'}
+          <p className="font-500 text-18 text-gray7">
+            {modalName === 'birthday' ? '생년월일' : '성별'}
           </p>
         }
         disableDrag
       >
-        {isModalOpen.birthday ? (
+        {modalName === 'birthday' && (
           <DateSwipePicker
             birthdayValue={inputValue.birthday}
             setBirthdayValue={setBirthdayValue}
           />
-        ) : (
+        )}
+        {modalName === 'sex' && (
           <SexSwipePicker sexValue={inputValue.sex} setSexValue={setSexValue} />
         )}
         <Button
           text="다음"
           disabled={
-            isModalOpen.birthday &&
+            modalName === 'birthday' &&
             !(inputValue.birthday.year && inputValue.birthday.month && inputValue.birthday.date)
           }
           onClick={handleModalNextButton}

@@ -1,9 +1,9 @@
 import { BirthdayValueType } from '@/@types/date';
-import date from '@/utils/date';
+import getDate from '@/utils/date';
 
 import SwipePicker from './SwipePicker';
 
-const { todayYear, todayMonth, todayDate } = date.getToday();
+const { todayYear, todayMonth, todayDate } = getDate.today();
 
 const yearList = Array.from({ length: 100 }, (_, i) => todayYear - i + '년');
 const monthList = Array.from({ length: 12 }, (_, i) => i + 1 + '월');
@@ -34,7 +34,7 @@ export default function DateSwipePicker({ birthdayValue, setBirthdayValue }: Dat
     });
   };
   return (
-    <div className="flex relative h-180">
+    <div className="relative flex h-180">
       <SwipePicker
         selectList={yearList}
         isFirst

@@ -1,12 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { TitleTextMessage } from '@/components/join/TextMessage';
+import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
+import { useModal } from '@/hooks/useModal';
 
 const DUMMY_SEARCH_RESULT_RESULT = [
   {
@@ -27,14 +28,17 @@ const DUMMY_SEARCH_RESULT_RESULT = [
 ];
 
 export default function Step2Page() {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const { isModalOpen, openModal, closeModal } = useModal<'modal'>();
+  useEffect(() => {
+    openModal('modal');
+  }, [openModal]);
   const [agreeCheckList, setAgreeCheckList] = useState<boolean[]>([false, false]);
   return (
     <div className="relative h-full ">
       <BottomUpModal
         snap={300}
         isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
+        onClose={closeModal}
         disableDrag
         text={<div className="text-center font-700">약관 동의</div>}
       >
@@ -50,7 +54,7 @@ export default function Step2Page() {
               }
             }}
           />
-          <div className="border-[0.5px] border-white3 my-15" />
+          <div className="my-15 border-[0.5px] border-white3" />
           <CircleCheckbox
             text={
               <p>
@@ -79,13 +83,13 @@ export default function Step2Page() {
           <Button
             text="완료"
             disabled={agreeCheckList.some((checkItem) => !checkItem)}
-            onClick={() => setIsModalOpen(false)}
+            onClick={closeModal}
           />
         </section>
       </BottomUpModal>
       <TopNavigationBar text="회원가입" isLeft={true} />
       <section>
-        <TitleTextMessage text={`재학중인 학교\n선택해주세요`} />
+        <AuthTitleTextMessage text={`재학중인 학교\n선택해주세요`} />
       </section>
 
       <section>
@@ -94,9 +98,9 @@ export default function Step2Page() {
 
       <section>
         {DUMMY_SEARCH_RESULT_RESULT.map((searchResult) => (
-          <div key={searchResult.id} className="p-20 border-b-gray6 border-b-[0.5px]">
+          <div key={searchResult.id} className="border-b-[0.5px] border-b-gray6 p-20">
             <div className="text-14">{searchResult.name}</div>
-            <div className="text-12 text-gray2">{searchResult.주소}</div>
+            <div className="text-12 text-gray2">{searchResult.address}</div>
           </div>
         ))}
       </section>

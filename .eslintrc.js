@@ -1,13 +1,9 @@
 module.exports = {
-  // `extends`를 생략해도 이 파일이 있는 위치까지만 부모 eslintrc를 찾도록 제한함
-
   root: true,
-
   env: {
     es6: true,
     node: true,
   },
-
   parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
@@ -136,7 +132,6 @@ module.exports = {
     'object-shorthand': ['error', 'always'],
     'prefer-const': 'error',
     'no-var': 'error',
-    curly: ['error', 'all'],
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'import/no-duplicates': 'off',
 
@@ -165,13 +160,6 @@ module.exports = {
     ],
     'jsx-a11y/aria-props': 'error', // 제대로된 aria-* 이름인지 확인
     'jsx-a11y/aria-proptypes': 'error', // 제대로된 aria-*의 value 인지 검사
-    /**
-     * 일부 속성은 aria 표준이 아니지만 사용중이기 때문에 warn 처리
-     * eg. role="text" 같은 경우 aria 표준은 아니지만 널리 사용되고 있습니다.
-     *
-     * FIXME: 아래 이슈 해결후 error로 격상 하기
-     * https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/792
-     */
     'jsx-a11y/aria-role': 'warn', // 표준 role 값인지 확인하는 룰
     'jsx-a11y/role-supports-aria-props': 'warn', // 서로 같이 쓰면 안되는 aria-* 가 있는지 확인하는룰
     'jsx-a11y/aria-unsupported-elements': 'warn', // 해당 element에서 미지원하는 aria가 들어있는지 확인하는 룰
