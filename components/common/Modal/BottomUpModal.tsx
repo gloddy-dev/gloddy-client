@@ -6,7 +6,7 @@ import ModalWrapper from './ModalWrapper';
 
 interface BottomUpModalProps {
   isModalOpen: boolean;
-  setIsModalOpen: (isModalOpen: boolean) => void;
+  onClose: () => void;
   children: React.ReactNode;
   snap: number;
   disableDrag?: boolean;
@@ -18,7 +18,7 @@ interface BottomUpModalProps {
 export default function BottomUpModal({
   children,
   isModalOpen,
-  setIsModalOpen,
+  onClose,
   snap,
   disableDrag = false,
   isLeftButton = false,
@@ -34,7 +34,7 @@ export default function BottomUpModal({
       <Sheet
         ref={ref}
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={onClose}
         snapPoints={[snap, 0]}
         initialSnap={0}
         disableDrag={disableDrag}
@@ -47,29 +47,29 @@ export default function BottomUpModal({
                 <div className="p-25">
                   <Sheet.Header>
                     <div className="flex justify-between h-50 items-center">
-                      {isLeftButton ? (
-                        <Image
-                          alt="close"
-                          src="/assets/arrow_back.svg"
-                          width={10}
-                          height={10}
-                          onClick={() => snapTo(1)}
-                        />
-                      ) : (
-                        <div />
-                      )}
-                      {text}
-                      {isRightButton ? (
-                        <Image
-                          alt="close"
-                          src="/assets/close.svg"
-                          width={30}
-                          height={30}
-                          onClick={() => snapTo(1)}
-                        />
-                      ) : (
-                        <div />
-                      )}
+                      <article className="grow flex justify-start ">
+                        {isLeftButton && (
+                          <Image
+                            alt="close"
+                            src="/assets/arrow_back.svg"
+                            width={10}
+                            height={10}
+                            onClick={() => snapTo(1)}
+                          />
+                        )}
+                      </article>
+                      <article className="grow flex justify-center">{text}</article>
+                      <article className="grow flex justify-end">
+                        {isRightButton && (
+                          <Image
+                            alt="close"
+                            src="/assets/close.svg"
+                            width={30}
+                            height={30}
+                            onClick={() => snapTo(1)}
+                          />
+                        )}
+                      </article>
                     </div>
                   </Sheet.Header>
                   {children}
