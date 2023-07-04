@@ -23,12 +23,7 @@ export default function Step5Page() {
     },
     sex: '',
   });
-  const { modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
-
-  const [isModalOpen, setIsModalOpen] = useState<{ birthday: boolean; sex: boolean }>({
-    birthday: false,
-    sex: false,
-  });
+  const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
 
   const setProfileImage = (value: string) => {
     setInputValue((prev) => ({
@@ -50,7 +45,6 @@ export default function Step5Page() {
       sex: value,
     }));
   };
-  console.log(modalName);
 
   const handleModalNextButton = () => {
     if (modalName === 'birthday') {
@@ -125,13 +119,13 @@ export default function Step5Page() {
       </section>
 
       <BottomUpModal
-        isModalOpen={modalName === 'birthday' || modalName === 'sex'}
+        isModalOpen={isModalOpen}
         snap={400}
         onClose={closeModal}
         isRightButton
         text={
           <p className="text-gray7 text-18 font-500">
-            {isModalOpen.birthday ? '생년월일' : '성별'}
+            {modalName === 'birthday' ? '생년월일' : '성별'}
           </p>
         }
         disableDrag
