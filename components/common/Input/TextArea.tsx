@@ -10,7 +10,7 @@ export default function TextArea({ placeholder, ...rest }: InputProps) {
   return (
     <textarea
       placeholder={placeholder}
-      className="bg-[#f5f5f5] text-black outline-none text-16 font-500 pl-23 w-full rounded-lg h-112 resize-none"
+      className="font-500 h-112 w-full resize-none rounded-lg bg-gray5 px-23 py-14 text-16 text-black outline-none"
       {...rest}
     />
   );

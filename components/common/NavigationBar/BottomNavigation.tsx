@@ -26,17 +26,6 @@ const tabs: Tab[] = [
     badge: Badge.dot,
   },
   {
-    key: 'board',
-    title: '게시판',
-    icon: (active: string) =>
-      active === 'board' ? (
-        <Image src="/assets/board_fill.svg" alt="board-icon" width={30} height={30} />
-      ) : (
-        <Image src="/assets/board_white.svg" alt="board-icon" width={30} height={30} />
-      ),
-    badge: Badge.dot,
-  },
-  {
     key: 'meeting',
     title: '나의모임',
     icon: (active: string) =>
@@ -65,24 +54,24 @@ const BottomNavigation = () => {
   const [activeKey, setActiveKey] = useState(pathname.substring(1));
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white grid grid-cols-4 h-110 rounded-t-25 px-40">
+    <div className="fixed bottom-0 left-0 grid h-110 w-full grid-cols-3 rounded-t-25 bg-white px-40">
       {tabs.map((tab) => (
         <div
           key={tab.key}
           onClick={() => setActiveKey(tab.key)}
-          className="flex flex-col justify-center items-center"
+          className="flex flex-col items-center justify-center"
         >
           <Link href={tab.key}>
-            <div className="h-50 flex justify-center items-center">
+            <div className="flex h-50 items-center justify-center">
               <Badge color="#1249FC" content={tab.badge}>
                 {tab.icon(activeKey)}
               </Badge>
             </div>
 
             {activeKey === tab.key ? (
-              <div className="font-700 text-10 text-blue">{tab.title}</div>
+              <div className="text-10 font-700 text-blue">{tab.title}</div>
             ) : (
-              <div className="font-400 text-10 text-gray4">{tab.title}</div>
+              <div className="text-10 font-400 text-gray4">{tab.title}</div>
             )}
           </Link>
         </div>

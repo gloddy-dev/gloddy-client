@@ -9,7 +9,7 @@ export default function Input({ placeholder, ...rest }: InputProps) {
   return (
     <input
       placeholder={placeholder}
-      className="bg-[#f5f5f5] text-black outline-none text-16 font-500 pl-23 w-full rounded-lg h-50"
+      className="font-500 h-50 w-full rounded-lg bg-gray5 pl-23 text-16 text-black outline-none"
       {...rest}
       type="text"
     />

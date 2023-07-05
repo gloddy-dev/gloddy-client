@@ -9,34 +9,45 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;
   onClick?: () => void;
   href?: string;
+  disabled?: boolean;
+  type?: 'button' | 'submit';
 }
 
 export default function Button(props: ButtonProps) {
-  const { text, color = 'blue', onClick, href, ...rest } = props;
+  const { text, color = 'blue', onClick, href, disabled, type = 'button', ...rest } = props;
 
-  return !!href ? (
+  return (
     <div
       className={clsx(
-        'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center ',
-        `${color === 'blue' ? 'bg-blue' : 'bg-orange'}`
+        'flex h-[3.75rem]  w-full items-center justify-center rounded-xl text-center ',
+        {
+          'bg-gray5 text-gray3': disabled,
+          'text-white': !disabled,
+
+          'bg-blue': !disabled && color === 'blue',
+          'bg-orange': !disabled && color === 'orange',
+        }
       )}
     >
-      <Link href={href} className="text-white font-bold">
-        {text}
-      </Link>
+      {Boolean(href) ? (
+        <Link href={href || ''} className="font-bold text-white">
+          {text}
+        </Link>
+      ) : Boolean(onClick) ? (
+        <button
+          type={type}
+          disabled={disabled}
+          onClick={onClick}
+          className="h-full w-full"
+          {...rest}
+        >
+          {text}
+        </button>
+      ) : (
+        <button className="h-full w-full" type={type} disabled={disabled} {...rest}>
+          {text}
+        </button>
+      )}
     </div>
-  ) : !!onClick ? (
-    <button
-      className={clsx(
-        'w-full h-[3.75rem] rounded-xl text-center flex justify-center items-center text-white font-bold',
-        `${color === 'blue' ? 'bg-blue' : 'bg-orange'}`
-      )}
-      onClick={onClick}
-      {...rest}
-    >
-      {text}
-    </button>
-  ) : (
-    <div></div>
   );
 }

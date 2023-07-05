@@ -1,8 +1,9 @@
 'use client';
-import Button from '@/components/common/Button';
-import OnboardingSpeechBubble from '@/components/SpeechBubble/OnboardingSpeechBubble';
 import { PageIndicator, Swiper } from 'antd-mobile';
 import Image from 'next/image';
+
+import Button from '@/components/common/Button';
+import OnboardingSpeechBubble from '@/components/SpeechBubble/OnboardingSpeechBubble';
 
 interface OnboardingMessage {
   id: number;
@@ -35,7 +36,7 @@ export default function Onboarding() {
         {onboardingMessageList.map((onboardingMessage: OnboardingMessage) => {
           return onboardingMessage.id < 3 ? (
             <Swiper.Item key={onboardingMessage.id}>
-              <div className="flex flex-col items-center h-screen justify-center">
+              <div className="flex h-screen flex-col items-center justify-center">
                 <div>
                   <OnboardingSpeechBubble text={onboardingMessage.messageBubble} />
                   <div className="h-220">
@@ -46,7 +47,7 @@ export default function Onboarding() {
                       alt="character"
                     />
                   </div>
-                  <div className="text-center font-700 my-80 ">
+                  <div className="my-80 text-center font-700 ">
                     {onboardingMessage.messageComment}
                   </div>
                   <PageIndicator
@@ -61,7 +62,7 @@ export default function Onboarding() {
                       '--active-dot-border-radius': '15px',
                       '--dot-spacing': '8px',
                     }}
-                    className="flex justify-center h-8"
+                    className="flex h-8 justify-center"
                   />
                 </div>
               </div>
@@ -69,10 +70,10 @@ export default function Onboarding() {
           ) : (
             <Swiper.Item>
               <div className="h-screen">
-                <div className="h-full flex justify-center items-center">
-                  <Image alt="logo" src="/assets/main_logo.svg" width={180} height={30} />
+                <div className="flex h-full items-center justify-center">
+                  <Image alt="logo" src="/assets/main_logo.png" width={180} height={30} />
                 </div>
-                <div className="fixed w-full bottom-30">
+                <div className="fixed bottom-30 w-full">
                   <Button text="시작하기" href="/login" />
                 </div>
               </div>
