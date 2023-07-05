@@ -11,7 +11,7 @@ import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar
 import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 import regexr from '@/constants/regexr';
 
-type Inputs = {
+type InputType = {
   phoneNumber: string;
   certificateNumber: number;
 };
@@ -24,7 +24,7 @@ export default function Step1Page() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<InputType>();
 
   const router = useRouter();
 
@@ -62,12 +62,12 @@ export default function Step1Page() {
     setValue('phoneNumber', formattedValue);
   };
 
-  const onSubmitPhoneNumber: SubmitHandler<Inputs> = (data) => {
+  const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
     console.log(data.phoneNumber);
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
-  const onSubmitCertificateNumber: SubmitHandler<Inputs> = (data) => {
+  const onSubmitCertificateNumber: SubmitHandler<InputType> = (data) => {
     console.log(data.certificateNumber);
     // 인증번호 확인 API
     router.push('/join/step2');
