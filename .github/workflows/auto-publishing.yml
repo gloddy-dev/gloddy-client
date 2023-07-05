@@ -16,7 +16,7 @@ jobs:
         run: sh ./build.sh
       - name: Pushes to another repository
         id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
+        uses: cpina/github-action-push-to-another-repository@develop
         env:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_TOKEN }}
         with:
@@ -25,6 +25,6 @@ jobs:
           destination-repository-name: 'gloddy-client-publishing'
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
+          target-branch: develop
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
