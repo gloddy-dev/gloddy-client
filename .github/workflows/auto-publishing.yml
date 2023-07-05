@@ -25,9 +25,9 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_TOKEN }}
         with:
           source-directory: 'output'
-          destination-github-username: 'guesung'
-          destination-repository-name: 'gloddy-client-publishing'
-          user-email: 'gueit214@naver.com'
+          destination-github-username: guesung
+          destination-repository-name: gloddy-client-publishing
+          user-email: gueit214@naver.com
           target-branch: develop
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
