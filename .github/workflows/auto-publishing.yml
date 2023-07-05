@@ -21,7 +21,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_TOKEN }}
         with:
           source-directory: 'output'
-          destination-github-username: 'gueit214'
+          destination-github-username: 'guesung'
           destination-repository-name: 'gloddy-client-publishing'
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
