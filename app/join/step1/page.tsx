@@ -1,14 +1,15 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import AuthInput from '@/components/common/Input/AuthInput';
-import { TitleTextMessage } from '@/components/join/TextMessage';
-import { useState } from 'react';
-
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { useRouter } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
+import regexr from '@/constants/regexr';
 
 type Inputs = {
   phoneNumber: string;
@@ -74,11 +75,10 @@ export default function Step1Page() {
 
   return (
     <div>
-      <TopNavigationBar text="회원가입" />
+      <TopNavigationBar text="회원가입" isLeft={true} />
       <section>
-        <TitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
+        <AuthTitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
       </section>
-      <div className="h-30" />
 
       <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
         <AuthInput
@@ -86,7 +86,7 @@ export default function Step1Page() {
           register={register('phoneNumber', {
             required: true,
             pattern: {
-              value: /^010 - \d{4} - \d{4}$/,
+              value: regexr.phoneNumber,
               message: '올바른 휴대폰 번호를 입력해주세요.',
             },
           })}
@@ -116,7 +116,10 @@ export default function Step1Page() {
             placeholder="인증 번호"
             register={register('certificateNumber', {
               required: true,
-              pattern: { value: /^\d{6}$/, message: '인증번호 6자리를 입력해주세요.' },
+              pattern: {
+                value: regexr.certificateNumber,
+                message: '인증번호 6자리를 입력해주세요.',
+              },
             })}
             type="number"
             maxLength={6}

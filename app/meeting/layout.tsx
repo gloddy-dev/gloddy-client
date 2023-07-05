@@ -1,7 +1,8 @@
 'use client';
 
-import BottomNavigation from '@/components/common/BottomNavigation';
 import { usePathname } from 'next/navigation';
+
+import BottomNavigation from '@/components/common/NavigationBar/BottomNavigation';
 
 export default function MeetingLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

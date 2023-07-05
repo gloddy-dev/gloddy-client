@@ -1,11 +1,19 @@
-const { colors } = require('./style/theme/colors');
-const { pxToRem } = require('./style/theme/spacing');
+const { colors, pxToRem, animations } = require('./style/theme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: { colors, spacing: pxToRem, fontSize: pxToRem, borderRadius: pxToRem },
+    extend: {
+      colors,
+      spacing: pxToRem,
+      fontSize: pxToRem,
+      borderRadius: pxToRem,
+      keyframes: animations,
+      animation: {
+        slideUp: 'slideUp 0.5s ease-in-out',
+      },
+    },
     fontWeight: {
       100: '100',
       300: '300',
@@ -15,4 +23,5 @@ module.exports = {
       900: '900',
     },
   },
+  plugins: [require('prettier-plugin-tailwindcss')],
 };

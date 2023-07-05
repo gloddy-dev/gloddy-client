@@ -9,7 +9,7 @@ export default function SquareCheckbox({ text, checked = false }: SquareCheckbox
   return (
     <div className="flex">
       <Image alt="checkbox" src={checkboxImageAsset} width={15} height={30} className="mx-10" />
-      <p className="text-[#AAA] text-[0.875rem]">{text}</p>
+      <p className="text-[0.875rem] text-[#AAA]">{text}</p>
     </div>
   );
 }
