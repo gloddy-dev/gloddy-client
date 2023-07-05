@@ -9,10 +9,9 @@ import Calendar from '@/components/common/Calendar';
 import Input from '@/components/common/Input/Input';
 import TextArea from '@/components/common/Input/TextArea';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
+import PersonnelPicker from '@/components/common/SwipePicker/PersonnelPicker';
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import saveImage from '@/utils/saveImage';
-
-import PersonnelPicker from '@/components/common/SwipePicker/PersonnelPicker';
 
 interface ModalTabPageProps {
   title: string;

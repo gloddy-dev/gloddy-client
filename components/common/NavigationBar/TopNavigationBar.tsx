@@ -11,7 +11,7 @@ export default function TopNavigationBar({ isLeft = true, text, right }: TopNavi
   const router = useRouter();
   return (
     <div>
-      <div className="flex justify-between mb-30">
+      <div className="mb-30 flex justify-between">
         {isLeft ? (
           <Image
             alt="back"

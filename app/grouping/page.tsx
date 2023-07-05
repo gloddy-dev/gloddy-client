@@ -1,9 +1,10 @@
 'use client';
 
-import GroupingCard from '@/app/grouping/GroupingCard';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+
+import GroupingCard from '@/app/grouping/GroupingCard';
 
 const mockData = [
   {
@@ -38,7 +39,7 @@ const mockData = [
 const Grouping = () => {
   return (
     <div className="flex w-full items-center px-24">
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         {React.Children.toArray(
           mockData.map((mocks) => (
             <GroupingCard onClick={() => console.log('What the hell')} {...mocks} />

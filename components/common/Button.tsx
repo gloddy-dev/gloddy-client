@@ -19,9 +19,9 @@ export default function Button(props: ButtonProps) {
   return (
     <div
       className={clsx(
-        'w-full h-[3.75rem]  rounded-xl text-center flex justify-center items-center ',
+        'flex h-[3.75rem]  w-full items-center justify-center rounded-xl text-center ',
         {
-          'text-gray3 bg-gray5': disabled,
+          'bg-gray5 text-gray3': disabled,
           'text-white': !disabled,
 
           'bg-blue': !disabled && color === 'blue',
@@ -30,7 +30,7 @@ export default function Button(props: ButtonProps) {
       )}
     >
       {Boolean(href) ? (
-        <Link href={href || ''} className="text-white font-bold">
+        <Link href={href || ''} className="font-bold text-white">
           {text}
         </Link>
       ) : Boolean(onClick) ? (
@@ -38,13 +38,13 @@ export default function Button(props: ButtonProps) {
           type={type}
           disabled={disabled}
           onClick={onClick}
-          className="w-full h-full"
+          className="h-full w-full"
           {...rest}
         >
           {text}
         </button>
       ) : (
-        <button className="w-full h-full" type={type} disabled={disabled} {...rest}>
+        <button className="h-full w-full" type={type} disabled={disabled} {...rest}>
           {text}
         </button>
       )}
