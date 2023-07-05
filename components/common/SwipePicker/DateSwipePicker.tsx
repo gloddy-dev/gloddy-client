@@ -3,7 +3,7 @@ import getDate from '@/utils/date';
 
 import SwipePicker from './SwipePicker';
 
-const { todayYear, todayMonth, todayDate } = getDate.today();
+const { todayYear } = getDate.today();
 
 const yearList = Array.from({ length: 100 }, (_, i) => todayYear - i + '년');
 const monthList = Array.from({ length: 12 }, (_, i) => i + 1 + '월');
@@ -15,42 +15,34 @@ interface DateSwipePickerProps {
 }
 
 export default function DateSwipePicker({ birthdayValue, setBirthdayValue }: DateSwipePickerProps) {
-  const setYearValue = (value: number) => {
+  const setValueByKeyType = (value: string | number, keyType: string) => {
     setBirthdayValue({
       ...birthdayValue,
-      year: yearList[value],
+      [keyType]: value,
     });
   };
-  const setMonthValue = (value: number) => {
-    setBirthdayValue({
-      ...birthdayValue,
-      month: monthList[value],
-    });
-  };
-  const setDateValue = (value: number) => {
-    setBirthdayValue({
-      ...birthdayValue,
-      date: dateList[value],
-    });
-  };
+
   return (
     <div className="relative flex h-180">
       <SwipePicker
         selectList={yearList}
         isFirst
-        setValue={setYearValue}
+        setValue={setValueByKeyType}
         initialValue={birthdayValue.year}
+        keyType={'year'}
       />
       <SwipePicker
         selectList={monthList}
-        setValue={setMonthValue}
+        setValue={setValueByKeyType}
         initialValue={birthdayValue.month}
+        keyType={'month'}
       />
       <SwipePicker
         selectList={dateList}
         isLast
-        setValue={setDateValue}
+        setValue={setValueByKeyType}
         initialValue={birthdayValue.date}
+        keyType={'date'}
       />
     </div>
   );
