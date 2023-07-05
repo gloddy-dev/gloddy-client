@@ -17,7 +17,7 @@ labels:
       - '\bFix\b'
   '🐞 Bug':
     include:
-      - '\bfeat\b'
+      - '\bBug\b'
   '📄 Page':
     include:
       - '\bPage\b'

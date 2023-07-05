@@ -3,9 +3,9 @@ interface OnboardingSpeechBubbleProps {
 }
 export default function OnboardingSpeechBubble({ text }: OnboardingSpeechBubbleProps) {
   return (
-    <div className="flex items-center flex-col h-110">
-      <p className="bg-gray5 px-36 py-18 rounded-[10rem] font-700 text-lg">{text}</p>
-      <div className="bg-gray5 rotate-45 w-15 h-15 -translate-y-7 rounded"></div>
+    <div className="flex h-110 flex-col items-center">
+      <p className="rounded-[10rem] bg-gray5 px-36 py-18 text-lg font-700">{text}</p>
+      <div className="h-15 w-15 -translate-y-7 rotate-45 rounded bg-gray5"></div>
     </div>
   );
 }

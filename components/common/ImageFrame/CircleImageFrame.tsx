@@ -14,8 +14,8 @@ export default function CircleImageFrame({
   profileImage,
 }: CircleImageFrameProps) {
   return (
-    <section className="flex justify-center items-center relative h-160">
-      <label className="relative w-100 h-100" htmlFor="profileImage">
+    <section className="relative flex h-160 items-center justify-center">
+      <label className="relative h-100 w-100" htmlFor="profileImage">
         {profileImage ? (
           <Image
             alt="profile"
@@ -25,14 +25,14 @@ export default function CircleImageFrame({
             className="rounded-full object-cover"
           />
         ) : (
-          <div className="w-100 h-100 bg-gray5 rounded-full" />
+          <div className="h-100 w-100 rounded-full bg-gray5" />
         )}
         <Image
           alt="plus"
           src="/assets/plus.svg"
           width={20}
           height={30}
-          className="absolute right-5 bottom-5"
+          className="absolute bottom-5 right-5"
         />
       </label>
 

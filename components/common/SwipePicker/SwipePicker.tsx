@@ -8,14 +8,14 @@ import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface PickerProps {
-  selectList: string[] | number[];
+  selectList: string[];
   keyType?: string;
   isTimeZone?: boolean;
   isRangeString?: boolean;
   isFirst?: boolean;
   isLast?: boolean;
   initialValue?: string;
-  setValue?: (value: number | string, keyType: string) => void;
+  setValue?: (value: string, keyType: string) => void;
 }
 export default function SwipePicker({
   selectList,

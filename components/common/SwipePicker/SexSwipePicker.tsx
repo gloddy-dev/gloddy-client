@@ -4,11 +4,11 @@ const selectList = ['남성', '여성'];
 
 interface SexSwipePickerProps {
   sexValue: string;
-  setSexValue: (value: string | number) => void;
+  setSexValue: (value: string) => void;
 }
 
 export default function SexSwipePicker({ sexValue, setSexValue }: SexSwipePickerProps) {
-  const setValueByKey = (value: number | string) => {
+  const setValueByKey = (value: string) => {
     setSexValue(value);
   };
   return (

@@ -13,7 +13,7 @@ import { useModal } from '@/hooks/useModal';
 import type { BirthdayValueType } from '@/@types/date';
 import type { JoinStep4InputValue } from '@/@types/inputValue';
 
-export default function Step5Page() {
+export default function Step4Page() {
   const imgRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState<JoinStep4InputValue>({
     profileImage: '',
@@ -63,7 +63,7 @@ export default function Step5Page() {
   };
 
   return (
-    <div className="relative h-full ">
+    <div className="relative h-full">
       <TopNavigationBar text="회원가입" />
 
       <CircleImageFrame
@@ -104,7 +104,7 @@ export default function Step5Page() {
         </article>
       </section>
 
-      <section className="absolute bottom-0 w-full">
+      <section className="absolute bottom-0 w-full ">
         <Button
           text="다음"
           disabled={

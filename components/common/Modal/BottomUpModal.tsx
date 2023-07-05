@@ -43,25 +43,25 @@ export default function BottomUpModal({
         className="animate-slideUp"
       >
         <Sheet.Container className="!rounded-t-30">
-          <div className="flex justify-center w-full">
-            <div className="relative h-full w-[26.25rem]  bg-white rounded-t-30">
+          <div className="flex w-full justify-center">
+            <div className="relative h-full w-[26.25rem]  rounded-t-30 bg-white">
               <Sheet.Content>
                 <div className="p-25">
                   <Sheet.Header>
-                    <div className="relative justify-center h-50 items-center">
+                    <div className="relative h-50 items-center justify-center">
                       {isLeftButton && (
                         <Image
                           alt="close"
                           src="/assets/arrow_back.svg"
                           width={10}
                           height={10}
-                          className="absolute left-0  inset-y-0 m-auto"
+                          className="absolute inset-y-0  left-0 m-auto"
                           onClick={() =>
                             handleLeftButtonClick ? handleLeftButtonClick() : snapTo(1)
                           }
                         />
                       )}
-                      <div className="flex justify-center h-full items-center">{text}</div>
+                      <div className="flex h-full items-center justify-center">{text}</div>
                       {isRightButton && (
                         <Image
                           alt="close"
@@ -69,7 +69,7 @@ export default function BottomUpModal({
                           width={30}
                           height={30}
                           onClick={() => snapTo(1)}
-                          className="absolute right-0 inset-y-0 m-auto"
+                          className="absolute inset-y-0 right-0 m-auto"
                         />
                       )}
                       <div />
