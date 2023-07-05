@@ -16,7 +16,7 @@ export default function PersonalityItem({
   return (
     <div
       className={clsx(
-        'h-50 bg-blue w-4/12 flex-grow flex justify-center items-center rounded-full text-16',
+        'flex h-50 w-4/12 flex-grow items-center justify-center rounded-full bg-blue text-16',
         {
           'bg-blue': isSelected,
           'bg-white': !isSelected,
