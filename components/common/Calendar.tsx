@@ -1,11 +1,11 @@
 'use client';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 import { getMonth, getYear } from 'date-fns';
 import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
 import DatePicker from 'react-datepicker';
-
-import 'react-datepicker/dist/react-datepicker.css';
 
 interface Props {
   selectedDate: Date | null;
@@ -43,16 +43,16 @@ const Calendar = ({ selectedDate, setSelectedDate }: Props) => {
         prevMonthButtonDisabled,
         nextMonthButtonDisabled,
       }) => (
-        <div className="flex w-full justify-between px-8 mb-8">
+        <div className="mb-8 flex w-full justify-between px-8">
           <div>
-            <span className="text-18 font-700 mr-5">{getYear(date)}</span>
+            <span className="mr-5 text-18 font-700">{getYear(date)}</span>
             <span className="text-18 font-700">{MONTHS[getMonth(date)]}</span>
           </div>
           <div className="">
             <button
               type="button"
               onClick={decreaseMonth}
-              className="w-6 h-12 mr-42"
+              className="mr-42 h-12 w-6"
               disabled={prevMonthButtonDisabled}
             >
               <Image src="/assets/left_arrow.svg" alt="arrow-icon" width={6} height={12} />
@@ -60,7 +60,7 @@ const Calendar = ({ selectedDate, setSelectedDate }: Props) => {
             <button
               type="button"
               onClick={increaseMonth}
-              className="w-6 h-12"
+              className="h-12 w-6"
               disabled={nextMonthButtonDisabled}
             >
               <Image src="/assets/right_arrow.svg" alt="arrow-icon" width={6} height={12} />

@@ -63,7 +63,7 @@ export default function Step4Page() {
   };
 
   return (
-    <div className="relative h-full ">
+    <div className="relative h-full">
       <TopNavigationBar text="회원가입" />
 
       <CircleImageFrame
@@ -104,7 +104,7 @@ export default function Step4Page() {
         </article>
       </section>
 
-      <section className="absolute bottom-0 w-full">
+      <section className="absolute bottom-0 w-full ">
         <Button
           text="다음"
           disabled={

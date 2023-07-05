@@ -17,11 +17,11 @@ export default function AuthInput({
   ...rest
 }: InputProps) {
   return (
-    <div className="relative flex bg-[#f6f6f6] w-full h-52 rounded-lg">
-      <p className="text-gray2 flex items-center justify-center pl-24 pr-8">{text}</p>
+    <div className="relative flex h-52 w-full rounded-lg bg-[#f6f6f6]">
+      <p className="flex items-center justify-center pl-24 pr-8 text-gray2">{text}</p>
       <input
         placeholder={placeholder}
-        className="bg-[#f6f6f6] text-black  flex-grow pr-5 border-none outline-none  rounded-lg"
+        className="flex-grow rounded-lg  border-none bg-[#f6f6f6] pr-5 text-black  outline-none"
         type={type}
         {...register}
         {...rest}
