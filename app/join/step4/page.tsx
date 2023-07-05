@@ -13,7 +13,7 @@ import { useModal } from '@/hooks/useModal';
 import type { BirthdayValueType } from '@/@types/date';
 import type { JoinStep4InputValue } from '@/@types/inputValue';
 
-export default function Step5Page() {
+export default function Step4Page() {
   const imgRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState<JoinStep4InputValue>({
     profileImage: '',
