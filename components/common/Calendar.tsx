@@ -4,12 +4,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { getMonth, getYear } from 'date-fns';
 import Image from 'next/image';
-import { Dispatch, SetStateAction } from 'react';
 import DatePicker from 'react-datepicker';
 
 interface Props {
   selectedDate: Date | null;
-  setSelectedDate: Dispatch<SetStateAction<Date | null>>;
+  setSelectedDate: (date: Date) => void;
 }
 
 const MONTHS = [
