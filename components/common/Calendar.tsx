@@ -27,7 +27,7 @@ const MONTHS = [
   'December',
 ];
 
-const Calendar = ({ selectedDate, setSelectedDate }: Props) => {
+export default function Calendar({ selectedDate, setSelectedDate }: Props) {
   return (
     <DatePicker
       dateFormat="yyyy.MM.dd"
@@ -70,6 +70,4 @@ const Calendar = ({ selectedDate, setSelectedDate }: Props) => {
       )}
     />
   );
-};
-
-export default Calendar;
+}

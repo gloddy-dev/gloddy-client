@@ -26,7 +26,7 @@ interface FormValue {
   personnel: number;
 }
 
-const CreateMeeting = () => {
+export default function CreateMeeting() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [meetingImage, setMeetingImage] = useState<string>('');
@@ -189,6 +189,4 @@ const CreateMeeting = () => {
       </BottomUpModal>
     </div>
   );
-};
-
-export default CreateMeeting;
+}
