@@ -24,24 +24,30 @@ export default function ImageFrame({
     console.log(imageFile, imageBlob);
     setImage({ imageFile, imageBlob });
   };
-
+  console.log(shape);
   return (
     <section className="relative flex h-160 items-center justify-center">
-      <label className="relative h-100 w-100" htmlFor="profileImage">
+      <label className="relative h-100 w-100" htmlFor="image">
         {imageBlob ? (
           <Image
-            alt="profile"
+            alt="Images"
             src={imageBlob}
             priority
             fill
-            className={clsx('object-cover', {
+            className={clsx('h-full w-full object-cover', {
               'rounded-full': shape === 'circle',
               'rounded-xl': shape === 'square',
             })}
           />
         ) : (
-          <div className="h-100 w-100 rounded-full bg-gray5" />
+          <div
+            className={clsx('h-100 w-100 bg-gray5', {
+              'rounded-full': shape === 'circle',
+              'rounded-xl': shape === 'square',
+            })}
+          />
         )}
+
         <Image
           alt="plus"
           src="/assets/plus.svg"
@@ -55,7 +61,7 @@ export default function ImageFrame({
         className="hidden"
         type="file"
         accept="image/*"
-        id="profileImage"
+        id="image"
         onChange={handleImageInput}
         ref={imgRef}
       />

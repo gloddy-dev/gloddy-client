@@ -5,7 +5,7 @@ import React, { useRef, useState } from 'react';
 import { ImageType } from '@/@types/global';
 import Button from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
-import CircleImageFrame from '@/components/common/ImageFrame/ImageFrame';
+import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
 import Input from '@/components/common/Input/Input';
 import TextArea from '@/components/common/Input/TextArea';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
@@ -130,7 +130,7 @@ export default function CreateMeeting() {
   return (
     <div className="flex w-full flex-col items-center justify-center pb-100">
       <div className="flex w-full flex-col items-center justify-center px-20">
-        <CircleImageFrame
+        <ImageFrame
           setImage={setProfileImage}
           imgRef={imgRef}
           imageBlob={selectValue.meetingImage.imageBlob}
