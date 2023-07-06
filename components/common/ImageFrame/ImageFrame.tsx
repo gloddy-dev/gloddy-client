@@ -30,7 +30,7 @@ export default function ImageFrame({
       <label className="relative h-100 w-100" htmlFor="image">
         {imageBlob ? (
           <Image
-            alt="Images"
+            alt="frameImage"
             src={imageBlob}
             priority
             fill
@@ -53,7 +53,10 @@ export default function ImageFrame({
           src="/assets/plus.svg"
           width={20}
           height={30}
-          className="absolute bottom-5 right-5"
+          className={clsx('absolute ', {
+            'bottom-5 right-5': shape === 'circle',
+            '-right-5 -top-5': shape === 'square',
+          })}
         />
       </label>
 
