@@ -1,18 +1,17 @@
 'use client';
 
-import { Badge } from 'antd-mobile';
-import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 
+import { ImageType } from '@/@types/global';
 import Button from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
+import CircleImageFrame from '@/components/common/ImageFrame/ImageFrame';
 import Input from '@/components/common/Input/Input';
 import TextArea from '@/components/common/Input/TextArea';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import PersonnelPicker from '@/components/common/SwipePicker/PersonnelPicker';
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
-import saveImage from '@/utils/saveImage';
 
 interface ModalTabPageProps {
   title: string;
@@ -27,9 +26,18 @@ interface FormValue {
   personnel: number;
 }
 
+interface SelectValue {
+  meetingImage: ImageType;
+  meetingDate: {
+    date: string;
+    time: string;
+  };
+  meetingLocation: string;
+  meetingNumber: number;
+}
+
 export default function CreateMeeting() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [meetingImage, setMeetingImage] = useState<string>('');
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [formValue, setFormValue] = useState<FormValue>({
     date: '2022.04.27',
@@ -39,8 +47,9 @@ export default function CreateMeeting() {
   });
   const imgRef = useRef<HTMLInputElement | null>(null);
 
-  const { isModalOpen, openModal, closeModal } =
-    useModal<'meetingDate,meetingLocation,meetingNumber'>();
+  const { isModalOpen, openModal, closeModal } = useModal<
+    'meetingDate' | 'meetingLocation' | 'meetingNumber'
+  >();
 
   const setPersonnelValue = (value: number) => {
     setFormValue({
@@ -48,6 +57,19 @@ export default function CreateMeeting() {
       personnel: value,
     });
   };
+
+  const [selectValue, setSelectValue] = useState<SelectValue>({
+    meetingImage: {
+      imageFile: null,
+      imageBlob: '',
+    },
+    meetingDate: {
+      date: '',
+      time: '',
+    },
+    meetingLocation: '',
+    meetingNumber: 0,
+  });
 
   const ModalTabPage: ModalTabPageProps[] = [
     {
@@ -98,32 +120,22 @@ export default function CreateMeeting() {
       ),
     },
   ];
-
+  const setProfileImage = (value: ImageType) => {
+    console.log(value);
+    setSelectValue({
+      ...selectValue,
+      meetingImage: value,
+    });
+  };
   return (
     <div className="flex w-full flex-col items-center justify-center pb-100">
       <div className="flex w-full flex-col items-center justify-center px-20">
-        <Badge
-          color="white"
-          content={
-            <div>
-              <label htmlFor="input-file">
-                <Image src="/assets/image_plus.svg" alt="plus" width={25} height={25} />
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                id="input-file"
-                className="hidden"
-                ref={imgRef}
-                onChange={() => saveImage(setMeetingImage, imgRef)}
-              />
-            </div>
-          }
-        >
-          <div className="h-92 w-92 rounded-8 bg-gray6">
-            {meetingImage && <Image src={meetingImage} alt="file_image" width={92} height={92} />}
-          </div>
-        </Badge>
+        <CircleImageFrame
+          setImage={setProfileImage}
+          imgRef={imgRef}
+          imageBlob={selectValue.meetingImage.imageBlob}
+          shape="square"
+        />
         <div className="mb-15 flex w-full flex-col">
           <div className="font-500 mb-5 text-14">방제목</div>
           <Input placeholder="제목을 입력해주세요" />

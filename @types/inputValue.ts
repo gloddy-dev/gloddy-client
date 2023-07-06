@@ -1,7 +1,8 @@
 import { BirthdayValueType } from './date';
+import { ImageType } from './global';
 
 export interface JoinStep4InputValue {
-  profileImage: string;
+  profileImage: ImageType;
   birthday: BirthdayValueType;
   sex: string;
 }

@@ -1,8 +1,9 @@
 'use client';
 import { useRef, useState } from 'react';
 
+import { ImageType } from '@/@types/global';
 import Button from '@/components/common/Button';
-import CircleImageFrame from '@/components/common/ImageFrame/CircleImageFrame';
+import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
 import AuthInput from '@/components/common/Input/AuthInput';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
@@ -16,7 +17,10 @@ import type { JoinStep4InputValue } from '@/@types/inputValue';
 export default function Step4Page() {
   const imgRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState<JoinStep4InputValue>({
-    profileImage: '',
+    profileImage: {
+      imageFile: null,
+      imageBlob: '',
+    },
     birthday: {
       year: '',
       month: '',
@@ -26,7 +30,7 @@ export default function Step4Page() {
   });
   const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
 
-  const setProfileImage = (value: string) => {
+  const setProfileImage = (value: ImageType) => {
     setInputValue((prev) => ({
       ...prev,
       profileImage: value,
@@ -66,10 +70,10 @@ export default function Step4Page() {
     <div className="relative h-full">
       <TopNavigationBar text="회원가입" />
 
-      <CircleImageFrame
-        setProfileImage={setProfileImage}
+      <ImageFrame
+        setImage={setProfileImage}
         imgRef={imgRef}
-        profileImage={inputValue.profileImage}
+        imageBlob={inputValue.profileImage.imageBlob}
       />
 
       <section className="flex flex-col gap-10">
