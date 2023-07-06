@@ -33,7 +33,7 @@ export default function Calendar({ selectedDate, setSelectedDate }: Props) {
       formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 1)}
       minDate={new Date('2000-01-01')}
       selected={selectedDate}
-      onChange={(date) => setSelectedDate(date)}
+      onChange={(date: Date) => setSelectedDate(date)}
       inline
       renderCustomHeader={({
         date,
