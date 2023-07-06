@@ -7,8 +7,8 @@ import Image from 'next/image';
 import DatePicker from 'react-datepicker';
 
 interface Props {
-  selectedDate: Date | null;
-  setSelectedDate: (date: Date) => void;
+  dateValue: Date | null;
+  setDateValue: (date: Date) => void;
 }
 
 const MONTHS = [
@@ -26,14 +26,14 @@ const MONTHS = [
   'December',
 ];
 
-export default function Calendar({ selectedDate, setSelectedDate }: Props) {
+export default function Calendar({ dateValue, setDateValue }: Props) {
   return (
     <DatePicker
       dateFormat="yyyy.MM.dd"
       formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 1)}
       minDate={new Date('2000-01-01')}
-      selected={selectedDate}
-      onChange={(date: Date) => setSelectedDate(date)}
+      selected={dateValue}
+      onChange={(date: Date) => setDateValue(date)}
       inline
       renderCustomHeader={({
         date,

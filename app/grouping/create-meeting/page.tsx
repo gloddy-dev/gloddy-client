@@ -9,7 +9,7 @@ import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
 import Input from '@/components/common/Input/Input';
 import TextArea from '@/components/common/Input/TextArea';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
-import PersonnelPicker from '@/components/common/SwipePicker/PersonnelPicker';
+import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker';
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
@@ -87,6 +87,7 @@ export default function CreateMeeting() {
   const handleNextButton = () => {
     if (currentTab < 2) setCurrentTab((currentTab: number) => currentTab + 1);
     else {
+      closeModal();
       // TODO: 모임 생성 API 호출
     }
   };
@@ -177,17 +178,17 @@ export default function CreateMeeting() {
         <div className="relative h-full">
           {currentTab === 0 && (
             <div>
-              <Calendar
-                selectedDate={selectValue.meetingDate.date}
-                setSelectedDate={setSelectDate}
-              />
+              <Calendar dateValue={selectValue.meetingDate.date} setDateValue={setSelectDate} />
               <div className="my-10 h-15 bg-white2" />
-              <TimeSwipePicker />
+              <TimeSwipePicker selectedTime={selectValue.selectedTime} setSelected />
             </div>
           )}
-          {currentTab === 1 && <>안</>}
+          {currentTab === 1 && <div></div>}
           {currentTab === 2 && (
-            <PersonnelPicker initialValue={selectValue.meetingNumber} setValue={setSelectNumber} />
+            <NumberSwipePicker
+              numberValue={selectValue.meetingNumber}
+              setNumberValue={setSelectNumber}
+            />
           )}
           <div className="fixed inset-x-0 bottom-20 mx-auto max-w-[23.75rem]">
             <Button text={currentTab < 2 ? '다음' : '완료'} onClick={handleNextButton} />
