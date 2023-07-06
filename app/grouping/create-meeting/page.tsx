@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { ImageType } from '@/@types/global';
 import Button from '@/components/common/Button';
@@ -16,15 +16,22 @@ import { useModal } from '@/hooks/useModal';
 interface ModalTabPageProps {
   title: string;
   snap: number;
-  pageContent: React.ReactNode;
 }
 
-interface FormValue {
-  date: string;
-  time: string;
-  location: string;
-  personnel: number;
-}
+const ModalTabPage: ModalTabPageProps[] = [
+  {
+    title: '모임 일시',
+    snap: 900,
+  },
+  {
+    title: '모임 위치',
+    snap: 500,
+  },
+  {
+    title: '모임 인원',
+    snap: 500,
+  },
+];
 
 interface SelectValue {
   meetingImage: ImageType;
@@ -37,32 +44,8 @@ interface SelectValue {
 }
 
 export default function CreateMeeting() {
-  const [currentTab, setCurrentTab] = useState<number>(0);
-  const [formValue, setFormValue] = useState<FormValue>({
-    date: '2022.04.27',
-    time: '7PM-9PM',
-    location: '서울특별시 동대문구 경희대로 26',
-    personnel: 7,
-  });
   const imgRef = useRef<HTMLInputElement | null>(null);
-
-  const { isModalOpen, openModal, closeModal } = useModal<
-    'meetingDate' | 'meetingLocation' | 'meetingNumber'
-  >();
-
-  const setPersonnelValue = (value: number) => {
-    setFormValue({
-      ...formValue,
-      personnel: value,
-    });
-  };
-  const setSelectDate = (date: Date) => {
-    setSelectValue({
-      ...selectValue,
-      meetingDate: { date, time: selectValue.meetingDate.time },
-    });
-  };
-
+  const [currentTab, setCurrentTab] = useState<number>(0);
   const [selectValue, setSelectValue] = useState<SelectValue>({
     meetingImage: {
       imageFile: null,
@@ -76,62 +59,38 @@ export default function CreateMeeting() {
     meetingNumber: 0,
   });
 
-  const ModalTabPage: ModalTabPageProps[] = [
-    {
-      title: '모임 일시',
-      snap: 0.9,
-      pageContent: (
-        <div className="flex flex-col justify-center">
-          <Calendar selectedDate={selectValue.meetingDate.date} setSelectedDate={setSelectDate} />
+  const { isModalOpen, openModal, closeModal } = useModal<
+    'meetingDate' | 'meetingLocation' | 'meetingNumber'
+  >();
 
-          <div className="my-10 h-15 bg-white2" />
-
-          <TimeSwipePicker />
-
-          <div className="fixed bottom-2  p-20">
-            <Button text="다음" onClick={() => setCurrentTab(1)} />
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: '모임 위치',
-      snap: 0.5,
-      pageContent: (
-        <div className="flex flex-col items-center justify-center">
-          <div>모임 위치</div>
-          <div className="fixed bottom-2 w-full p-20">
-            <Button text="다음" onClick={() => setCurrentTab(2)} />
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: '모임 인원',
-      snap: 0.5,
-      pageContent: (
-        <div className="flex flex-col items-center justify-center">
-          <div className="h-300 w-full">
-            <PersonnelPicker
-              selectList={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-              initialValue={formValue.personnel}
-              setValue={setPersonnelValue}
-            />
-          </div>
-          <div className="m-x-auto  fixed inset-x-0 bottom-2 max-w-[23.75rem] p-20">
-            <Button text="완료" onClick={closeModal} />
-          </div>
-        </div>
-      ),
-    },
-  ];
   const setProfileImage = (value: ImageType) => {
-    console.log(value);
     setSelectValue({
       ...selectValue,
       meetingImage: value,
     });
   };
+
+  const setSelectDate = (date: Date) => {
+    setSelectValue({
+      ...selectValue,
+      meetingDate: { date, time: selectValue.meetingDate.time },
+    });
+  };
+
+  const setSelectNumber = (value: number) => {
+    setSelectValue({
+      ...selectValue,
+      meetingNumber: value,
+    });
+  };
+
+  const handleNextButton = () => {
+    if (currentTab < 2) setCurrentTab((currentTab: number) => currentTab + 1);
+    else {
+      // TODO: 모임 생성 API 호출
+    }
+  };
+
   return (
     <div>
       <ImageFrame
@@ -170,6 +129,9 @@ export default function CreateMeeting() {
           <span className=" text-16 text-gray3">모임 일시를 설정해주세요</span>
         </div>
       </section>
+
+      <div className="h-15" />
+
       <section
         className="mb-15 flex flex-col"
         onClick={() => {
@@ -182,6 +144,8 @@ export default function CreateMeeting() {
           <span className=" text-16 text-gray3">모임 위치를 설정해주세요</span>
         </div>
       </section>
+
+      <div className="h-15" />
 
       <section
         className="mb-15 flex flex-col"
@@ -197,7 +161,7 @@ export default function CreateMeeting() {
       </section>
 
       <div className="fixed inset-x-0 bottom-20 z-10 m-auto max-w-[23.75rem]  bg-white ">
-        <Button text="완료" />
+        <Button text="완료" disabled />
       </div>
 
       <BottomUpModal
@@ -210,7 +174,25 @@ export default function CreateMeeting() {
         isRightButton
         text={<div className=" text-18">{ModalTabPage[currentTab].title}</div>}
       >
-        {ModalTabPage[currentTab].pageContent}
+        <div className="relative h-full">
+          {currentTab === 0 && (
+            <div>
+              <Calendar
+                selectedDate={selectValue.meetingDate.date}
+                setSelectedDate={setSelectDate}
+              />
+              <div className="my-10 h-15 bg-white2" />
+              <TimeSwipePicker />
+            </div>
+          )}
+          {currentTab === 1 && <>안</>}
+          {currentTab === 2 && (
+            <PersonnelPicker initialValue={selectValue.meetingNumber} setValue={setSelectNumber} />
+          )}
+          <div className="fixed inset-x-0 bottom-20 mx-auto max-w-[23.75rem]">
+            <Button text={currentTab < 2 ? '다음' : '완료'} onClick={handleNextButton} />
+          </div>
+        </div>
       </BottomUpModal>
     </div>
   );
