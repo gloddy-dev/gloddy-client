@@ -24,7 +24,6 @@ export default function ImageFrame({
     console.log(imageFile, imageBlob);
     setImage({ imageFile, imageBlob });
   };
-  console.log(shape);
   return (
     <section className="relative flex h-160 items-center justify-center">
       <label className="relative h-100 w-100" htmlFor="image">
