@@ -8,7 +8,7 @@ interface ImageFrameProps {
   setImage: (imageData: ImageType) => void;
   imgRef: React.RefObject<HTMLInputElement>;
   imageBlob: string;
-  shape: 'circle' | 'square';
+  shape?: 'circle' | 'square';
 }
 
 export default function ImageFrame({
