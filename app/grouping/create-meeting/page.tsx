@@ -13,12 +13,12 @@ import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
-interface ModalTabPageProps {
+interface ModalTabProps {
   title: string;
   snap: number;
 }
 
-const ModalTabPage: ModalTabPageProps[] = [
+const ModalTabList: ModalTabProps[] = [
   {
     title: '모임 일시',
     snap: 900,
@@ -102,7 +102,7 @@ export default function CreateMeeting() {
     if (currentTab < 2) setCurrentTab((currentTab: number) => currentTab + 1);
     else {
       closeModal();
-      console.log(selectValue)
+      console.log(selectValue);
       // TODO: 모임 생성 API 호출
     }
   };
@@ -182,13 +182,13 @@ export default function CreateMeeting() {
 
       <BottomUpModal
         isModalOpen={isModalOpen}
-        snap={ModalTabPage[currentTab].snap}
+        snap={ModalTabList[currentTab].snap}
         disableDrag={true}
         isLeftButton={currentTab !== 0}
         handleLeftButtonClick={() => setCurrentTab((prev) => (prev !== 0 ? prev - 1 : 0))}
         onClose={closeModal}
         isRightButton
-        text={<div className=" text-18">{ModalTabPage[currentTab].title}</div>}
+        text={<div className=" text-18">{ModalTabList[currentTab].title}</div>}
       >
         <div className="relative h-full">
           {currentTab === 0 && (
