@@ -29,7 +29,7 @@ interface FormValue {
 interface SelectValue {
   meetingImage: ImageType;
   meetingDate: {
-    date: string;
+    date: Date;
     time: string;
   };
   meetingLocation: string;
@@ -37,7 +37,6 @@ interface SelectValue {
 }
 
 export default function CreateMeeting() {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [formValue, setFormValue] = useState<FormValue>({
     date: '2022.04.27',
@@ -57,6 +56,12 @@ export default function CreateMeeting() {
       personnel: value,
     });
   };
+  const setSelectDate = (date: Date) => {
+    setSelectValue({
+      ...selectValue,
+      meetingDate: { date, time: selectValue.meetingDate.time },
+    });
+  };
 
   const [selectValue, setSelectValue] = useState<SelectValue>({
     meetingImage: {
@@ -64,7 +69,7 @@ export default function CreateMeeting() {
       imageBlob: '',
     },
     meetingDate: {
-      date: '',
+      date: new Date(),
       time: '',
     },
     meetingLocation: '',
@@ -76,14 +81,14 @@ export default function CreateMeeting() {
       title: '모임 일시',
       snap: 0.9,
       pageContent: (
-        <div className="flex flex-col items-center justify-center">
-          <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+        <div className="flex flex-col justify-center">
+          <Calendar selectedDate={selectValue.meetingDate.date} setSelectedDate={setSelectDate} />
 
-          <div className="h-15 w-full bg-white2"></div>
-          <div className="mt-20 h-125 w-full">
-            <TimeSwipePicker />
-          </div>
-          <div className="fixed bottom-2 w-full p-20">
+          <div className="my-10 h-15 bg-white2" />
+
+          <TimeSwipePicker />
+
+          <div className="fixed bottom-2  p-20">
             <Button text="다음" onClick={() => setCurrentTab(1)} />
           </div>
         </div>
@@ -137,7 +142,7 @@ export default function CreateMeeting() {
       />
 
       <section>
-        <div className="font-500 mb-5 text-14">방제목</div>
+        <div className="mb-5 text-14">방제목</div>
         <Input placeholder="제목을 입력해주세요" />
       </section>
 
@@ -153,46 +158,45 @@ export default function CreateMeeting() {
 
       <div className="h-15" />
 
-      <section>
-        <div
-          className="mb-15 flex flex-col"
-          onClick={() => {
-            setCurrentTab(0);
-            openModal('meetingNumber');
-          }}
-        >
-          <div className="font-500 mb-5 text-14">모임 일시</div>
-          <div className="font-500 h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
-            <span className="font-500 text-16 text-gray3">모임 일시를 설정해주세요</span>
-          </div>
+      <section
+        className="mb-15 flex flex-col"
+        onClick={() => {
+          setCurrentTab(0);
+          openModal('meetingNumber');
+        }}
+      >
+        <div className=" mb-5 text-14">모임 일시</div>
+        <div className=" h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
+          <span className=" text-16 text-gray3">모임 일시를 설정해주세요</span>
         </div>
-        <div
-          className="mb-15 flex flex-col"
-          onClick={() => {
-            setCurrentTab(1);
-            openModal('meetingNumber');
-          }}
-        >
-          <div className="font-500 mb-5 text-14">모임 위치</div>
-          <div className="font-500 h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
-            <span className="font-500 text-16 text-gray3">모임 위치를 설정해주세요</span>
-          </div>
-        </div>
-        <div
-          className="mb-15 flex flex-col"
-          onClick={() => {
-            setCurrentTab(2);
-            openModal('meetingNumber');
-          }}
-        >
-          <div className="font-500 mb-5 text-14">모임 인원</div>
-          <div className="font-500 h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
-            <span className="font-500 text-16 text-gray3">모임 인원를 설정해주세요</span>
-          </div>
+      </section>
+      <section
+        className="mb-15 flex flex-col"
+        onClick={() => {
+          setCurrentTab(1);
+          openModal('meetingNumber');
+        }}
+      >
+        <div className=" mb-5 text-14">모임 위치</div>
+        <div className=" h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
+          <span className=" text-16 text-gray3">모임 위치를 설정해주세요</span>
         </div>
       </section>
 
-      <div className="fixed inset-x-0 bottom-20 z-10 m-auto  max-w-[23.75rem]  bg-white">
+      <section
+        className="mb-15 flex flex-col"
+        onClick={() => {
+          setCurrentTab(2);
+          openModal('meetingNumber');
+        }}
+      >
+        <div className=" mb-5 text-14">모임 인원</div>
+        <div className=" h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
+          <span className=" text-16 text-gray3">모임 인원를 설정해주세요</span>
+        </div>
+      </section>
+
+      <div className="fixed inset-x-0 bottom-20 z-10 m-auto max-w-[23.75rem]  bg-white ">
         <Button text="완료" />
       </div>
 
@@ -204,7 +208,7 @@ export default function CreateMeeting() {
         handleLeftButtonClick={() => setCurrentTab((prev) => (prev !== 0 ? prev - 1 : 0))}
         onClose={closeModal}
         isRightButton
-        text={<div className="font-500 text-18">{ModalTabPage[currentTab].title}</div>}
+        text={<div className=" text-18">{ModalTabPage[currentTab].title}</div>}
       >
         {ModalTabPage[currentTab].pageContent}
       </BottomUpModal>
