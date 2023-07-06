@@ -19,20 +19,18 @@ export default function GroupingLayout({ children }: { children: React.ReactNode
 
   return (
     <div className="h-full">
-      <div>
-        {pathname === '/grouping' && (
-          <NavBar
-            left={navTitle}
-            right={searchIcon}
-            backArrow={false}
-            style={{
-              '--height': '57px',
-            }}
-          />
-        )}
-        {children}
-        {bottomNavPathName.includes(pathname) && <BottomNavigation />}
-      </div>
+      {pathname === '/grouping' && (
+        <NavBar
+          left={navTitle}
+          right={searchIcon}
+          backArrow={false}
+          style={{
+            '--height': '57px',
+          }}
+        />
+      )}
+      {children}
+      {bottomNavPathName.includes(pathname) && <BottomNavigation />}
     </div>
   );
 }
