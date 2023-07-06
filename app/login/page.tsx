@@ -10,7 +10,7 @@ export default function LoginPage() {
   const handleLoginOtherAuth = () => {};
   return (
     <div>
-      <section className="h-250 flex justify-center items-center mt-60 ">
+      <section className="mt-60 flex h-250 items-center justify-center ">
         <Image alt="logo" src="/assets/main_logo.svg" width={180} height={30} />
       </section>
       <section className="gap-3">
