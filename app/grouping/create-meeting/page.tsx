@@ -11,6 +11,7 @@ import TextArea from '@/components/common/Input/TextArea';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import PersonnelPicker from '@/components/common/SwipePicker/PersonnelPicker';
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
+import { useModal } from '@/hooks/useModal';
 import saveImage from '@/utils/saveImage';
 
 interface ModalTabPageProps {
@@ -28,7 +29,6 @@ interface FormValue {
 
 export default function CreateMeeting() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [meetingImage, setMeetingImage] = useState<string>('');
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [formValue, setFormValue] = useState<FormValue>({
@@ -38,6 +38,9 @@ export default function CreateMeeting() {
     personnel: 7,
   });
   const imgRef = useRef<HTMLInputElement | null>(null);
+
+  const { isModalOpen, openModal, closeModal } =
+    useModal<'meetingDate,meetingLocation,meetingNumber'>();
 
   const setPersonnelValue = (value: number) => {
     setFormValue({
@@ -88,8 +91,8 @@ export default function CreateMeeting() {
               setValue={setPersonnelValue}
             />
           </div>
-          <div className="fixed bottom-2 w-full p-20">
-            <Button text="완료" onClick={() => setIsModalOpen(false)} />
+          <div className="m-x-auto  fixed inset-x-0 bottom-2 max-w-[23.75rem] p-20">
+            <Button text="완료" onClick={closeModal} />
           </div>
         </div>
       ),
@@ -139,7 +142,7 @@ export default function CreateMeeting() {
           className="mb-15 flex w-full cursor-pointer flex-col"
           onClick={() => {
             setCurrentTab(0);
-            setIsModalOpen((prev) => !prev);
+            openModal('meetingNumber');
           }}
         >
           <div className="font-500 mb-5 text-14">모임 일시</div>
@@ -151,7 +154,7 @@ export default function CreateMeeting() {
           className="mb-15 flex w-full cursor-pointer flex-col"
           onClick={() => {
             setCurrentTab(1);
-            setIsModalOpen((prev) => !prev);
+            openModal('meetingNumber');
           }}
         >
           <div className="font-500 mb-5 text-14">모임 위치</div>
@@ -163,7 +166,7 @@ export default function CreateMeeting() {
           className="mb-15 flex w-full cursor-pointer flex-col"
           onClick={() => {
             setCurrentTab(2);
-            setIsModalOpen((prev) => !prev);
+            openModal('meetingNumber');
           }}
         >
           <div className="font-500 mb-5 text-14">모임 인원</div>
@@ -172,7 +175,7 @@ export default function CreateMeeting() {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 z-10 w-full bg-white px-20 py-20">
+      <div className="fixed inset-x-0 bottom-20 z-10 m-auto w-full max-w-[23.75rem]  bg-white">
         <Button text="완료" />
       </div>
       <BottomUpModal
@@ -181,7 +184,7 @@ export default function CreateMeeting() {
         disableDrag={true}
         isLeftButton={currentTab !== 0}
         handleLeftButtonClick={() => setCurrentTab((prev) => (prev !== 0 ? prev - 1 : 0))}
-        onClose={() => setIsModalOpen(false)}
+        onClose={closeModal}
         isRightButton
         text={<div className="font-500 text-18">{ModalTabPage[currentTab].title}</div>}
       >
