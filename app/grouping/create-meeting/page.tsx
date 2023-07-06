@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 
-import { ImageType } from '@/@types/global';
+import { ImageType, TimeType } from '@/@types/global';
 import Button from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
@@ -37,7 +37,7 @@ interface SelectValue {
   meetingImage: ImageType;
   meetingDate: {
     date: Date;
-    time: string;
+    time: TimeType;
   };
   meetingLocation: string;
   meetingNumber: number;
@@ -53,7 +53,14 @@ export default function CreateMeeting() {
     },
     meetingDate: {
       date: new Date(),
-      time: '',
+      time: {
+        fromHour: '1',
+        fromMin: '00',
+        fromAmPm: 'AM',
+        toHour: '1',
+        toMin: '00',
+        toAmPm: 'AM',
+      },
     },
     meetingLocation: '',
     meetingNumber: 0,
@@ -77,6 +84,13 @@ export default function CreateMeeting() {
     });
   };
 
+  const setSelectTime = (time: TimeType) => {
+    setSelectValue({
+      ...selectValue,
+      meetingDate: { date: selectValue.meetingDate.date, time },
+    });
+  };
+
   const setSelectNumber = (value: number) => {
     setSelectValue({
       ...selectValue,
@@ -88,6 +102,7 @@ export default function CreateMeeting() {
     if (currentTab < 2) setCurrentTab((currentTab: number) => currentTab + 1);
     else {
       closeModal();
+      console.log(selectValue)
       // TODO: 모임 생성 API 호출
     }
   };
@@ -180,7 +195,10 @@ export default function CreateMeeting() {
             <div>
               <Calendar dateValue={selectValue.meetingDate.date} setDateValue={setSelectDate} />
               <div className="my-10 h-15 bg-white2" />
-              <TimeSwipePicker selectedTime={selectValue.selectedTime} setSelected />
+              <TimeSwipePicker
+                timeValue={selectValue.meetingDate.time}
+                setTimeValue={setSelectTime}
+              />
             </div>
           )}
           {currentTab === 1 && <div></div>}
