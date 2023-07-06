@@ -128,68 +128,74 @@ export default function CreateMeeting() {
     });
   };
   return (
-    <div className="flex w-full flex-col items-center justify-center pb-100">
-      <div className="flex w-full flex-col items-center justify-center px-20">
-        <ImageFrame
-          setImage={setProfileImage}
-          imgRef={imgRef}
-          imageBlob={selectValue.meetingImage.imageBlob}
-          shape="square"
-        />
-        <div className="mb-15 flex w-full flex-col">
-          <div className="font-500 mb-5 text-14">방제목</div>
-          <Input placeholder="제목을 입력해주세요" />
+    <div>
+      <ImageFrame
+        setImage={setProfileImage}
+        imgRef={imgRef}
+        imageBlob={selectValue.meetingImage.imageBlob}
+        shape="square"
+      />
+
+      <section>
+        <div className="font-500 mb-5 text-14">방제목</div>
+        <Input placeholder="제목을 입력해주세요" />
+      </section>
+
+      <div className="h-15" />
+
+      <section>
+        <div className="flex justify-between">
+          <div className="font-500 mb-5 text-14">활동 소개글</div>
+          <div className="font-500 text-12 text-gray2">0/30</div>
         </div>
-        <div className="flex w-full flex-col">
-          <div className="flex w-full justify-between">
-            <div className="font-500 mb-5 text-14">활동 소개글</div>
-            <div className="font-500 text-12 text-gray2">0/30</div>
-          </div>
-          <TextArea placeholder="내용을 입력해주세요." />
-        </div>
-      </div>
-      <div className="my-18 h-14 w-full bg-white2"></div>
-      <div className="w-full px-20">
+        <TextArea placeholder="내용을 입력해주세요." />
+      </section>
+
+      <div className="h-15" />
+
+      <section>
         <div
-          className="mb-15 flex w-full cursor-pointer flex-col"
+          className="mb-15 flex flex-col"
           onClick={() => {
             setCurrentTab(0);
             openModal('meetingNumber');
           }}
         >
           <div className="font-500 mb-5 text-14">모임 일시</div>
-          <div className="font-500 h-50 w-full rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
+          <div className="font-500 h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
             <span className="font-500 text-16 text-gray3">모임 일시를 설정해주세요</span>
           </div>
         </div>
         <div
-          className="mb-15 flex w-full cursor-pointer flex-col"
+          className="mb-15 flex flex-col"
           onClick={() => {
             setCurrentTab(1);
             openModal('meetingNumber');
           }}
         >
           <div className="font-500 mb-5 text-14">모임 위치</div>
-          <div className="font-500 h-50 w-full rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
+          <div className="font-500 h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
             <span className="font-500 text-16 text-gray3">모임 위치를 설정해주세요</span>
           </div>
         </div>
         <div
-          className="mb-15 flex w-full cursor-pointer flex-col"
+          className="mb-15 flex flex-col"
           onClick={() => {
             setCurrentTab(2);
             openModal('meetingNumber');
           }}
         >
           <div className="font-500 mb-5 text-14">모임 인원</div>
-          <div className="font-500 h-50 w-full rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
+          <div className="font-500 h-50  rounded-lg bg-gray5 py-13 pl-23 text-16 text-black outline-none">
             <span className="font-500 text-16 text-gray3">모임 인원를 설정해주세요</span>
           </div>
         </div>
-      </div>
-      <div className="fixed inset-x-0 bottom-20 z-10 m-auto w-full max-w-[23.75rem]  bg-white">
+      </section>
+
+      <div className="fixed inset-x-0 bottom-20 z-10 m-auto  max-w-[23.75rem]  bg-white">
         <Button text="완료" />
       </div>
+
       <BottomUpModal
         isModalOpen={isModalOpen}
         snap={ModalTabPage[currentTab].snap}
