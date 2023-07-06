@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { ImageType } from '@/@types/global';
 import Button from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
-import AuthInput from '@/components/common/Input/AuthInput';
+import Input from '@/components/common/Input/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
@@ -79,12 +79,12 @@ export default function Step4Page() {
       <section className="flex flex-col gap-10">
         <article className="flex flex-col gap-5">
           <p className="text-14">닉네임</p>
-          <AuthInput placeholder="닉네임을 입력해주세요." />
+          <Input placeholder="닉네임을 입력해주세요." />
         </article>
 
         <article className="flex flex-col gap-5">
           <p className="text-14">생년월일</p>
-          <AuthInput
+          <Input
             placeholder="생년월일을 선택해주세요."
             onClick={() => openModal('birthday')}
             value={
@@ -99,7 +99,7 @@ export default function Step4Page() {
 
         <article className="flex flex-col gap-5">
           <p className="text-14">성별</p>
-          <AuthInput
+          <Input
             placeholder="성별을 선택해주세요."
             onClick={() => openModal('sex')}
             value={inputValue.sex}

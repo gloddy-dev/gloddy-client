@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
-import AuthInput from '@/components/common/Input/AuthInput';
+import Input from '@/components/common/Input/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
@@ -93,7 +93,7 @@ export default function Step2Page() {
       </section>
 
       <section>
-        <AuthInput text="학교" />
+        <Input text="학교" />
       </section>
 
       <section>

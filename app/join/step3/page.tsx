@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
-import AuthInput from '@/components/common/Input/AuthInput';
+import Input from '@/components/common/Input/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
@@ -50,7 +50,7 @@ export default function Step3Page() {
 
           <form onSubmit={handleSubmit(onSubmitCertificateNumber)}>
             <section className="my-20">
-              <AuthInput
+              <Input
                 text="인증번호"
                 register={register('certificateNumber', {
                   required: true,
@@ -90,7 +90,7 @@ export default function Step3Page() {
 
       <form onSubmit={handleSubmit(onSubmitEmail)}>
         <section>
-          <AuthInput
+          <Input
             text="ID"
             register={register('email', {
               required: true,
