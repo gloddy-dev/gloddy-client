@@ -1,4 +1,4 @@
-import { BirthdayValueType } from '@/@types/date';
+import { BirthdayValueType } from '@/types/date';
 import getDate from '@/utils/date';
 
 import SwipePicker from './SwipePicker';
