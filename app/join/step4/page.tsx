@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { ImageType } from '@/@types/global';
 import Button from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
-import Input from '@/components/common/Input/Input';
+import { Input } from '@/components/common/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';

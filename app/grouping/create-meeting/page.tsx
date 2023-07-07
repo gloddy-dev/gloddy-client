@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import Button from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
-import Input from '@/components/common/Input/Input';
+import { Input } from '@/components/common/Input';
 import TextArea from '@/components/common/Input/TextArea';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker';
@@ -13,7 +13,6 @@ import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
 import type { ImageType, TimeType } from '@/@types/global';
-
 type ModalTabType = {
   title: string;
   snap: number;

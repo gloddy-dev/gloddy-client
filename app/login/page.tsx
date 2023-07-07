@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import Button from '@/components/common/Button';
 import SquareCheckbox from '@/components/common/Checkbox/SquareCheckbox';
-import Input from '@/components/common/Input/Input';
+import { Input } from '@/components/common/Input';
 
 export default function LoginPage() {
   const handleLogin = () => {};

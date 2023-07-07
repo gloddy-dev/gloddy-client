@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
-import Input from '@/components/common/Input/Input';
+import { Input } from '@/components/common/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
