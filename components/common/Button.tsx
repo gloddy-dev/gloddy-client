@@ -4,7 +4,7 @@ import { ButtonHTMLAttributes } from 'react';
 
 type ButtonColor = 'blue' | 'orange';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   color?: ButtonColor;
   onClick?: () => void;
