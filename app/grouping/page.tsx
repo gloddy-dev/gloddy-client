@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
 import GroupingCard from '@/app/grouping/GroupingCard';
+import BottomNavigation from '@/components/common/NavigationBar/BottomNavigation';
 
-const mockData = [
+const DUMMY_GROUPING_DATA = [
   {
     image: '/assets/location.svg',
     title: 'Let’s go for a walk!',
@@ -36,23 +36,28 @@ const mockData = [
   },
 ];
 
-const Grouping = () => {
+export default function Grouping() {
   return (
-    <div className="flex w-full items-center px-24">
-      <div className="flex w-full flex-col">
-        {React.Children.toArray(
-          mockData.map((mocks) => (
-            <GroupingCard onClick={() => console.log('What the hell')} {...mocks} />
-          ))
-        )}
-      </div>
-      <div className="fixed bottom-120 right-20 z-20">
+    <div className="relative h-full">
+      <section className="flex justify-between text-16 font-700">
+        <p>그루핑</p>
+        <Image src="/assets/search_navbar.svg" alt="search" width={15} height={15} />
+      </section>
+
+      <section>
+        {DUMMY_GROUPING_DATA.map((mocks) => (
+          <GroupingCard onClick={() => console.log('What the hell')} {...mocks} key={mocks.total} />
+        ))}
+      </section>
+
+      <section className="absolute bottom-80 right-20">
         <Link href="/grouping/create-meeting">
-          <Image src="/assets/add.svg" alt="add_icon" width={51} height={51} />
+          <Image src="/assets/plus.svg" alt="add_icon" width={40} height={40} />
         </Link>
-      </div>
+      </section>
+
+      <BottomNavigation page="grouping" />
     </div>
   );
-};
+}
 
-export default Grouping;
