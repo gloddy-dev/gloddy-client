@@ -100,7 +100,7 @@ export default function CreateMeeting() {
   };
 
   const handleNextButton = () => {
-    if (currentTab < 2) setCurrentTab((currentTab: number) => currentTab + 1);
+    if (currentTab < ModalTabList.length) setCurrentTab((currentTab: number) => currentTab + 1);
     else {
       closeModal();
       console.log(selectValue);
