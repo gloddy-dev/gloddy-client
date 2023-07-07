@@ -1,20 +1,22 @@
 'use client';
+import Image from 'next/image';
+
 import Button from '@/components/common/Button';
 import SquareCheckbox from '@/components/common/Checkbox/SquareCheckbox';
-import AuthInput from '@/components/common/Input/AuthInput';
-import Image from 'next/image';
+import { Input } from '@/components/common/Input';
 
 export default function LoginPage() {
   const handleLogin = () => {};
   const handleLoginOtherAuth = () => {};
+
   return (
     <div>
-      <section className="h-250 flex justify-center items-center mt-60 ">
+      <section className="mt-60 flex h-250 items-center justify-center ">
         <Image alt="logo" src="/assets/main_logo.svg" width={180} height={30} />
       </section>
       <section className="gap-3">
-        <AuthInput text="ID" />
-        <AuthInput text="PW" />
+        <Input text="ID" />
+        <Input text="PW" />
         <SquareCheckbox text="자동 로그인하기" />
       </section>
       <section>

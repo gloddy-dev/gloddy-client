@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
-import AuthInput from '@/components/common/Input/AuthInput';
+import { Input } from '@/components/common/Input';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 import regexr from '@/constants/regexr';
@@ -81,7 +81,7 @@ export default function Step1Page() {
       </section>
 
       <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
-        <AuthInput
+        <Input
           placeholder="휴대폰 번호"
           register={register('phoneNumber', {
             required: true,
@@ -112,7 +112,7 @@ export default function Step1Page() {
 
       {inputStatus === 'afterSend' && (
         <form onSubmit={handleSubmit(onSubmitCertificateNumber)}>
-          <AuthInput
+          <Input
             placeholder="인증 번호"
             register={register('certificateNumber', {
               required: true,
