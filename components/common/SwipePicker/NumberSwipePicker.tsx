@@ -3,6 +3,7 @@
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
+import clsx from 'clsx';
 import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -34,21 +35,17 @@ export default function NumberSwipePicker({ numberValue = 0, setNumberValue }: P
     >
       {SELECT_LIST.map((slideContent) => (
         <SwiperSlide key={slideContent} className="overflow-visible">
-          {({ isActive, isPrev, isNext }) =>
-            isActive ? (
-              <div className="flex items-center justify-center pt-10 text-66 font-700 text-black2">
-                {slideContent}
-              </div>
-            ) : isPrev || isNext ? (
-              <div className="font-500 flex items-center justify-center pt-30 text-50 text-gray3">
-                {slideContent}
-              </div>
-            ) : (
-              <div className="font-500 flex items-center justify-center pt-50 text-35 text-gray8">
-                {slideContent}
-              </div>
-            )
-          }
+          {({ isActive, isPrev, isNext }) => (
+            <div
+              className={clsx({
+                'pt-10 text-66 font-700 text-black2': isActive,
+                'font-500 pt-30 text-50 text-gray3': isPrev || isNext,
+                'font-500 pt-50 text-35 text-gray8': !isActive && !isPrev && !isNext,
+              })}
+            >
+              {slideContent}
+            </div>
+          )}
         </SwiperSlide>
       ))}
       <div className="z-100 absolute -bottom-55 left-1/2 h-134 w-134  -translate-x-1/2 -translate-y-1/2 rounded-200 bg-white4"></div>
