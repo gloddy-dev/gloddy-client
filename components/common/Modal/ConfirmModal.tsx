@@ -9,9 +9,11 @@ interface ConfirmModalProps {
 }
 
 function ConfirmModal({ isModalOpen, forwardedRef, children }: ConfirmModalProps) {
+  if (!isModalOpen) return null;
+
   return (
     <>
-      {isModalOpen && <ModalWrapper />}
+      <ModalWrapper />
       <div ref={forwardedRef} className="absolute z-10 w-300 rounded-10 bg-white px-16 pb-15 pt-30">
         {children}
       </div>
