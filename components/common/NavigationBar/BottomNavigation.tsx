@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { PageType } from '@/@types';
+
 interface TabType {
   id: string;
   name: string;
@@ -29,7 +31,7 @@ const tabList: TabType[] = [
 ];
 
 interface BottomNavigationProps {
-  page: string;
+  page: PageType;
 }
 
 export default function BottomNavigation({ page }: BottomNavigationProps) {
