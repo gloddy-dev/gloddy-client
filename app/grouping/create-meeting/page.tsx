@@ -2,7 +2,6 @@
 
 import { useRef, useState } from 'react';
 
-import { ImageType, TimeType } from '@/@types/global';
 import Button from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
@@ -12,6 +11,8 @@ import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker';
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
+
+import type { ImageType, TimeType } from '@/@types/global';
 
 type ModalTabType = {
   title: string;
@@ -42,6 +43,8 @@ interface SelectValue {
   location: string;
   number: number;
 }
+
+const TEXT_AREA_COUNT = 0;
 
 export default function CreateMeeting() {
   const imgRef = useRef<HTMLInputElement | null>(null);
@@ -124,7 +127,7 @@ export default function CreateMeeting() {
       <section>
         <div className="flex justify-between">
           <div className="font-500 mb-5 text-14">활동 소개글</div>
-          <div className="font-500 text-12 text-gray2">0/30</div>
+          <div className="font-500 text-12 text-gray2">${TEXT_AREA_COUNT}/30</div>
         </div>
         <TextArea placeholder="내용을 입력해주세요." />
       </section>
