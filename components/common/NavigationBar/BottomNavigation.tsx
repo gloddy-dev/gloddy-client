@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { PageType } from '@/@types';
+import type { PageType } from '@/types';
 
 interface TabType {
   id: string;
