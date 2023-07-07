@@ -1,12 +1,14 @@
 'use client';
+import clsx from 'clsx';
 import { InputHTMLAttributes } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  placeholder?: string;
   text?: string;
+  placeholder?: string;
   register?: UseFormRegisterReturn;
   type?: string;
+  className: string;
 }
 
 export default function Input({
@@ -14,6 +16,7 @@ export default function Input({
   placeholder,
   register,
   type = 'text',
+  className,
   ...rest
 }: InputProps) {
   return (
@@ -21,7 +24,10 @@ export default function Input({
       <p className="flex items-center justify-center pl-24 pr-8 text-gray2">{text}</p>
       <input
         placeholder={placeholder}
-        className="flex-grow rounded-lg border-none  bg-[#f6f6f6] pr-5 text-16 text-black  outline-none"
+        className={clsx(
+          'flex-grow rounded-lg border-none  bg-[#f6f6f6] pr-5 text-16 text-black  outline-none',
+          className
+        )}
         type={type}
         {...register}
         {...rest}
