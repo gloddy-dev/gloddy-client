@@ -4,12 +4,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { getMonth, getYear } from 'date-fns';
 import Image from 'next/image';
-import { Dispatch, SetStateAction } from 'react';
 import DatePicker from 'react-datepicker';
 
 interface Props {
-  selectedDate: Date | null;
-  setSelectedDate: Dispatch<SetStateAction<Date | null>>;
+  dateValue: Date | null;
+  setDateValue: (date: Date) => void;
 }
 
 const MONTHS = [
@@ -27,14 +26,14 @@ const MONTHS = [
   'December',
 ];
 
-const Calendar = ({ selectedDate, setSelectedDate }: Props) => {
+export default function Calendar({ dateValue, setDateValue }: Props) {
   return (
     <DatePicker
       dateFormat="yyyy.MM.dd"
       formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 1)}
       minDate={new Date('2000-01-01')}
-      selected={selectedDate}
-      onChange={(date) => setSelectedDate(date)}
+      selected={dateValue}
+      onChange={(date: Date) => setDateValue(date)}
       inline
       renderCustomHeader={({
         date,
@@ -70,6 +69,4 @@ const Calendar = ({ selectedDate, setSelectedDate }: Props) => {
       )}
     />
   );
-};
-
-export default Calendar;
+}

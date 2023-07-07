@@ -1,6 +1,6 @@
 'use client';
 
-import { NavBar, SafeArea } from 'antd-mobile';
+import { NavBar } from 'antd-mobile';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -18,25 +18,19 @@ export default function GroupingLayout({ children }: { children: React.ReactNode
   );
 
   return (
-    <div className="h-full w-full bg-white3">
-      <div>
-        <SafeArea position="top" />
-        {pathname === '/grouping' && (
-          <NavBar
-            left={navTitle}
-            right={searchIcon}
-            backArrow={false}
-            style={{
-              '--height': '57px',
-            }}
-          />
-        )}
-
-        <div>{children}</div>
-
-        {bottomNavPathName.includes(pathname) && <BottomNavigation />}
-        <SafeArea position="bottom" />
-      </div>
+    <div className="h-full">
+      {pathname === '/grouping' && (
+        <NavBar
+          left={navTitle}
+          right={searchIcon}
+          backArrow={false}
+          style={{
+            '--height': '57px',
+          }}
+        />
+      )}
+      {children}
+      {bottomNavPathName.includes(pathname) && <BottomNavigation />}
     </div>
   );
 }
