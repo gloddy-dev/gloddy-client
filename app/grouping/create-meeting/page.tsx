@@ -40,7 +40,7 @@ interface SelectValue {
     time: TimeType;
   };
   location: string;
-  number: number;
+  meetingNumber: number;
 }
 
 const TEXT_AREA_COUNT = 30;
@@ -65,10 +65,12 @@ export default function CreateMeeting() {
       },
     },
     location: '',
-    number: 0,
+    meetingNumber: 0,
   });
 
-  const { isModalOpen, openModal, closeModal } = useModal<'meetingDate' | 'location' | 'number'>();
+  const { isModalOpen, openModal, closeModal } = useModal<
+    'meetingDate' | 'location' | 'meetingNumber'
+  >();
 
   const setProfileImage = (value: ImageType) => {
     setSelectValue({
@@ -94,7 +96,7 @@ export default function CreateMeeting() {
   const setSelectNumber = (value: number) => {
     setSelectValue({
       ...selectValue,
-      number: value,
+      meetingNumber: value,
     });
   };
 
@@ -137,7 +139,7 @@ export default function CreateMeeting() {
         className="mb-15 flex flex-col"
         onClick={() => {
           setCurrentTab(0);
-          openModal('number');
+          openModal('meetingNumber');
         }}
       >
         <div className=" mb-5 text-14">모임 일시</div>
@@ -152,7 +154,7 @@ export default function CreateMeeting() {
         className="mb-15 flex flex-col"
         onClick={() => {
           setCurrentTab(1);
-          openModal('number');
+          openModal('meetingNumber');
         }}
       >
         <div className=" mb-5 text-14">모임 위치</div>
@@ -167,7 +169,7 @@ export default function CreateMeeting() {
         className="mb-15 flex flex-col"
         onClick={() => {
           setCurrentTab(2);
-          openModal('number');
+          openModal('meetingNumber');
         }}
       >
         <div className=" mb-5 text-14">모임 인원</div>
@@ -203,7 +205,10 @@ export default function CreateMeeting() {
           )}
           {currentTab === 1 && <div></div>}
           {currentTab === 2 && (
-            <NumberSwipePicker numberValue={selectValue.number} setNumberValue={setSelectNumber} />
+            <NumberSwipePicker
+              numberValue={selectValue.meetingNumber}
+              setNumberValue={setSelectNumber}
+            />
           )}
           <div className="fixed inset-x-0 bottom-20 mx-auto max-w-[23.75rem]">
             <Button text={currentTab < 2 ? '다음' : '완료'} onClick={handleNextButton} />
