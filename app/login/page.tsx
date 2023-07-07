@@ -8,6 +8,7 @@ import Input from '@/components/common/Input/Input';
 export default function LoginPage() {
   const handleLogin = () => {};
   const handleLoginOtherAuth = () => {};
+
   return (
     <div>
       <section className="mt-60 flex h-250 items-center justify-center ">
