@@ -1,7 +1,5 @@
 'use client';
 
-import { SafeArea } from 'antd-mobile';
-
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 
 export default function GroupingLayout({ children }: { children: React.ReactNode }) {
