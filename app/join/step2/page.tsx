@@ -34,7 +34,8 @@ export default function Step2Page() {
   }, [openModal]);
   const [agreeCheckList, setAgreeCheckList] = useState<boolean[]>([false, false]);
   return (
-    <div className="relative h-full ">
+    <div className="relative h-full">
+      <TopNavigationBar text="회원가입" />
       <BottomUpModal
         snap={300}
         isModalOpen={isModalOpen}
@@ -87,13 +88,12 @@ export default function Step2Page() {
           />
         </section>
       </BottomUpModal>
-      <TopNavigationBar text="회원가입" isLeft={true} />
       <section>
         <AuthTitleTextMessage text={`재학중인 학교\n선택해주세요`} />
       </section>
 
       <section>
-        <Input text="학교" />
+        <Input label="학교" />
       </section>
 
       <section>
