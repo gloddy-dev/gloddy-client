@@ -11,7 +11,7 @@ import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
 import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
-import type { BirthdayValueType } from '@/@types/date';
+import type { BirthdayValueType } from '@/types/date';
 import type { JoinStep4InputValue } from '@/@types/inputValue';
 
 export default function Step4Page() {
