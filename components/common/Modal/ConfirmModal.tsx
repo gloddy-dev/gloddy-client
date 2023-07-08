@@ -1,52 +1,41 @@
-import { forwardRef } from 'react';
+import Button, { ButtonProps } from '@/components/common/Button';
+import PortalWrapper from '@/components/common/PortalWrapper';
 import ModalWrapper from './ModalWrapper';
-import Button, { type ButtonProps } from '@/components/common/Button';
 
 interface ConfirmModalProps {
-  isModalOpen: boolean;
-  forwardedRef?: React.Ref<HTMLDivElement>;
+  isOpen?: boolean;
+  okText: ButtonProps['text'];
+  cancelText: ButtonProps['text'];
+  okColor?: ButtonProps['color'];
+  cancelColor?: ButtonProps['color'];
+  onClickOk?: () => void;
+  onClickCancel?: () => void;
   children?: React.ReactNode;
 }
 
-function ConfirmModal({ isModalOpen, forwardedRef, children }: ConfirmModalProps) {
-  if (!isModalOpen) return null;
+export default function ConfirmModal({
+  isOpen,
+  onClickOk,
+  onClickCancel,
+  okText,
+  cancelText,
+  okColor,
+  cancelColor = 'gray',
+  children,
+}: ConfirmModalProps) {
+  if (!isOpen) return null;
 
   return (
-    <>
-      <ModalWrapper />
-      <div ref={forwardedRef} className="absolute z-10 w-300 rounded-10 bg-white px-16 pb-15 pt-30">
-        {children}
-      </div>
-    </>
+    <PortalWrapper>
+      <ModalWrapper>
+        <div className="w-300 rounded-10 bg-white px-16 pb-15 pt-30">
+          <div className="mb-20 flex flex-col items-center text-center">{children}</div>
+          <div className="flex flex-col gap-8">
+            <Button onClick={onClickOk} text={okText} color={okColor} />
+            <Button onClick={onClickCancel} text={cancelText} color={cancelColor} />
+          </div>
+        </div>
+      </ModalWrapper>
+    </PortalWrapper>
   );
 }
-
-interface ModalContentProps {
-  okButtonProps: ButtonProps;
-  cancelButtonProps: ButtonProps;
-  children?: React.ReactNode;
-}
-
-function ModalContent({ okButtonProps, cancelButtonProps, children }: ModalContentProps) {
-  return (
-    <div className="p-25">
-      {children}
-      <div className="mt-25 flex flex-col gap-8">
-        <Button {...okButtonProps} />
-        <Button {...cancelButtonProps} />
-      </div>
-    </div>
-  );
-}
-
-const confirmModalRef = forwardRef<HTMLDivElement, ConfirmModalProps>(
-  (props, ref): JSX.Element => (
-    <ConfirmModal {...props} forwardedRef={ref}>
-      {props.children}
-    </ConfirmModal>
-  )
-);
-
-export default Object.assign(confirmModalRef, {
-  Content: ModalContent,
-});
