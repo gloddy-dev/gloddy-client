@@ -19,7 +19,7 @@ export default function Button(props: ButtonProps) {
   return (
     <div
       className={clsx(
-        'flex h-[3.75rem]  w-full items-center justify-center rounded-xl text-center ',
+        'flex h-[3.75rem]  w-full items-center justify-center rounded-xl text-center text-16',
         {
           'bg-gray5 text-gray3': disabled,
           'text-white': !disabled,
@@ -34,17 +34,11 @@ export default function Button(props: ButtonProps) {
           {text}
         </Link>
       ) : Boolean(onClick) ? (
-        <button
-          type={type}
-          disabled={disabled}
-          onClick={onClick}
-          className="h-full w-full"
-          {...rest}
-        >
+        <button type={type} onClick={onClick} className="h-full w-full" {...rest}>
           {text}
         </button>
       ) : (
-        <button className="h-full w-full" type={type} disabled={disabled} {...rest}>
+        <button className=" h-full w-full" type={type} {...rest}>
           {text}
         </button>
       )}

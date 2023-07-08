@@ -40,7 +40,7 @@ export default function BottomUpModal({
         snapPoints={[snap, 0]}
         initialSnap={0}
         disableDrag={disableDrag}
-        className="animate-slideUp"
+        className="fixed inset-x-0 m-auto max-w-[26.25rem] animate-slideUp"
       >
         <Sheet.Container className="!rounded-t-30">
           <div className="flex w-full justify-center">

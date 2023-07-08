@@ -1,83 +1,60 @@
 'use client';
 
-import { Badge } from 'antd-mobile';
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ReactElement, ReactNode, useState } from 'react';
 
-interface Tab {
-  key: string;
+import type { PageType } from '@/types';
+
+interface TabType {
+  id: string;
+  name: string;
   title: string;
-  icon: (active: string) => ReactNode;
-  badge: ReactElement;
 }
 
-const tabs: Tab[] = [
+const tabList: TabType[] = [
   {
-    key: 'grouping',
+    id: '1',
+    name: 'grouping',
     title: '그루핑',
-    icon: (active: string) =>
-      active === 'grouping' ? (
-        <Image src="/assets/home_fill.svg" alt="grouping-icon" width={30} height={30} />
-      ) : (
-        <Image src="/assets/home_white.svg" alt="grouping-icon" width={30} height={30} />
-      ),
-    badge: Badge.dot,
   },
   {
-    key: 'meeting',
+    id: '2',
+    name: 'meeting',
     title: '나의모임',
-    icon: (active: string) =>
-      active === 'meeting' ? (
-        <Image src="/assets/people_fill.svg" alt="people-icon" width={30} height={30} />
-      ) : (
-        <Image src="/assets/people_white.svg" alt="people-icon" width={30} height={30} />
-      ),
-    badge: Badge.dot,
   },
   {
-    key: 'profile',
+    id: '3',
+    name: 'profile',
     title: '프로필',
-    icon: (active: string) =>
-      active === 'profile' ? (
-        <Image src="/assets/profile_fill.svg" alt="profile-icon" width={30} height={30} />
-      ) : (
-        <Image src="/assets/profile_white.svg" alt="profile-icon" width={30} height={30} />
-      ),
-    badge: Badge.dot,
   },
 ];
 
-const BottomNavigation = () => {
-  const pathname = usePathname();
-  const [activeKey, setActiveKey] = useState(pathname.substring(1));
+interface BottomNavigationProps {
+  page: PageType;
+}
 
+export default function BottomNavigation({ page }: BottomNavigationProps) {
   return (
-    <div className="fixed bottom-0 left-0 grid h-110 w-full grid-cols-3 rounded-t-25 bg-white px-40">
-      {tabs.map((tab) => (
-        <div
-          key={tab.key}
-          onClick={() => setActiveKey(tab.key)}
-          className="flex flex-col items-center justify-center"
-        >
-          <Link href={tab.key}>
-            <div className="flex h-50 items-center justify-center">
-              <Badge color="#1249FC" content={tab.badge}>
-                {tab.icon(activeKey)}
-              </Badge>
-            </div>
-
-            {activeKey === tab.key ? (
-              <div className="text-10 font-700 text-blue">{tab.title}</div>
-            ) : (
-              <div className="text-10 font-400 text-gray4">{tab.title}</div>
-            )}
-          </Link>
-        </div>
+    <div className="fixed inset-x-0 bottom-0 mx-auto flex max-w-[26.25rem] justify-around rounded-t-25 bg-white">
+      {tabList.map((tab: TabType) => (
+        <Link href={tab.name} key={tab.id}>
+          <Image
+            src={`/assets/tabIcon/${tab.name}${tab.name === page ? '_filled' : ''}.svg`}
+            alt={tab.title}
+            width={30}
+            height={30}
+          />
+          <div
+            className={clsx('text-10 font-700', {
+              'text-gray4': tab.name !== page,
+              'text-blue': tab.name === page,
+            })}
+          >
+            {tab.title}
+          </div>
+        </Link>
       ))}
     </div>
   );
 };
-
-export default BottomNavigation;

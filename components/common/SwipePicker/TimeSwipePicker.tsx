@@ -1,79 +1,67 @@
-import SwipePicker from './SwipePicker';
 import { useState } from 'react';
+
+import { TimeType } from '@/@types/global';
+
+import SwipePicker from './SwipePicker';
 
 const hourList = Array.from({ length: 12 }, (_, i) => `${i + 1}`);
 const minuteList = Array.from({ length: 60 }, (_, i) => (i > 9 ? `${i}` : `0${i}`));
 const ampmList = ['AM', 'PM'];
 
-interface TimeSwiperPickerProps {
-  fromHour: string;
-  fromMin: string;
-  fromAmPm: string;
-  toHour: string;
-  toMin: string;
-  toAmPm: string;
+interface TimeSwipePickerProps {
+  timeValue: TimeType;
+  setTimeValue: (time: TimeType) => void;
 }
 
-export default function TimeSwipePicker() {
-  const [timeRange, setTimeRange] = useState<TimeSwiperPickerProps>({
-    fromHour: '1',
-    fromMin: '00',
-    fromAmPm: 'AM',
-    toHour: '1',
-    toMin: '00',
-    toAmPm: 'AM',
-  });
-
+export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePickerProps) {
   const setValueByKeyType = (value: string | number, keyType: string) => {
-    setTimeRange({
-      ...timeRange,
+    setTimeValue({
+      ...timeValue,
       [keyType]: value,
     });
   };
 
-  console.log(timeRange);
-
   return (
-    <div className="flex h-125 w-full">
+    <div className="flex h-125 ">
       <SwipePicker
         selectList={hourList}
-        initialValue={timeRange.fromHour}
-        keyType={'fromHour'}
+        initialValue={timeValue.fromHour}
+        keyType="fromHour"
         setValue={setValueByKeyType}
         isFirst
       />
       <SwipePicker selectList={[':']} />
       <SwipePicker
         selectList={minuteList}
-        keyType={'fromMin'}
-        initialValue={timeRange.fromMin}
+        keyType="fromMin"
+        initialValue={timeValue.fromMin}
         setValue={setValueByKeyType}
       />
       <SwipePicker
         selectList={ampmList}
-        initialValue={timeRange.fromAmPm}
-        keyType={'fromAmPm'}
+        initialValue={timeValue.fromAmPm}
+        keyType="fromAmPm"
         isTimeZone={true}
         setValue={setValueByKeyType}
       />
       <SwipePicker selectList={['부터']} isRangeString={true} />
       <SwipePicker
         selectList={hourList}
-        keyType={'toHour'}
-        initialValue={timeRange.toHour}
+        keyType="toHour"
+        initialValue={timeValue.toHour}
         setValue={setValueByKeyType}
       />
       <SwipePicker selectList={[':']} />
       <SwipePicker
         selectList={minuteList}
-        keyType={'toMin'}
-        initialValue={timeRange.toMin}
+        keyType="toMin"
+        initialValue={timeValue.toMin}
         setValue={setValueByKeyType}
       />
       <SwipePicker
         selectList={ampmList}
-        initialValue={timeRange.toAmPm}
-        keyType={'toAmPm'}
+        initialValue={timeValue.toAmPm}
+        keyType="toAmPm"
         isTimeZone={true}
         setValue={setValueByKeyType}
       />
