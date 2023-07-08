@@ -1,5 +1,6 @@
 import Button, { ButtonProps } from '@/components/common/Button';
 import ModalWrapper from './ModalWrapper';
+import type { PropsWithChildren } from 'react';
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -9,7 +10,6 @@ interface ConfirmModalProps {
   cancelColor?: ButtonProps['color'];
   onClickOk?: () => void;
   onClickCancel?: () => void;
-  children?: React.ReactNode;
 }
 
 export default function ConfirmModal({
@@ -21,7 +21,7 @@ export default function ConfirmModal({
   okColor = 'blue',
   cancelColor = 'gray',
   children,
-}: ConfirmModalProps) {
+}: PropsWithChildren<ConfirmModalProps>) {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClickCancel}>
       <div className="w-300 rounded-10 bg-white px-16 pb-15 pt-30">
