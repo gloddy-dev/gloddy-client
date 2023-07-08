@@ -33,7 +33,7 @@ export default function InputForm() {
     let formattedValue = currentValue;
     const onlyNumbers = currentValue.replace(/-/g, '');
 
-    if (currentValue.length > 0 && inputStatus === 'default') {
+    if (onlyNumbers.length === 11) {
       setInputStatus('beforeSend');
     }
 
