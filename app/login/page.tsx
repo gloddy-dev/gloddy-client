@@ -15,8 +15,8 @@ export default function LoginPage() {
         <Image alt="logo" src="/assets/main_logo.svg" width={180} height={30} />
       </section>
       <section className="gap-3">
-        <Input text="ID" />
-        <Input text="PW" />
+        <Input label="ID" />
+        <Input label="PW" />
         <SquareCheckbox text="자동 로그인하기" />
       </section>
       <section>

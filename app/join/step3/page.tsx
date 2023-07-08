@@ -51,7 +51,7 @@ export default function Step3Page() {
           <form onSubmit={handleSubmit(onSubmitCertificateNumber)}>
             <section className="my-20">
               <Input
-                text="인증번호"
+                label="인증번호"
                 register={register('certificateNumber', {
                   required: true,
                   pattern: {
@@ -91,7 +91,7 @@ export default function Step3Page() {
       <form onSubmit={handleSubmit(onSubmitEmail)}>
         <section>
           <Input
-            text="ID"
+            label="ID"
             register={register('email', {
               required: true,
               pattern: {
