@@ -17,9 +17,9 @@ export default function ConfirmModal({
   isOpen,
   onClickOk,
   onClickCancel,
-  okText,
-  cancelText,
-  okColor,
+  okText = '네',
+  cancelText = '아니요',
+  okColor = 'blue',
   cancelColor = 'gray',
   children,
 }: ConfirmModalProps) {
