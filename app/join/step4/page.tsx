@@ -1,7 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
 
-import { ImageType } from '@/@types/global';
 import Button from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
 import { Input } from '@/components/common/Input';
@@ -11,8 +10,9 @@ import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
 import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
+import type { ImageType } from '@/types/global';
 import type { BirthdayValueType } from '@/types/date';
-import type { JoinStep4InputValue } from '@/@types/inputValue';
+import type { JoinStep4InputValue } from '@/types/inputValue';
 
 export default function Step4Page() {
   const imgRef = useRef<HTMLInputElement>(null);
