@@ -38,6 +38,7 @@ export default function InputForm() {
     // 인증번호 확인
     router.push('/join/step4');
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmitEmail)}>
