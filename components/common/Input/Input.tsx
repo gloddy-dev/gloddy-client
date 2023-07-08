@@ -8,7 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   register?: UseFormRegisterReturn;
   type?: string;
-  className: string;
+  className?: string;
 }
 
 export default function Input({
