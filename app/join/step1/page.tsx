@@ -75,7 +75,7 @@ export default function Step1Page() {
 
   return (
     <div>
-      <TopNavigationBar text="회원가입" isLeft={true} />
+      <TopNavigationBar text="회원가입" />
       <section>
         <AuthTitleTextMessage text={`휴대폰 번호를\n인증해주세요`} />
       </section>
@@ -90,7 +90,6 @@ export default function Step1Page() {
               message: '올바른 휴대폰 번호를 입력해주세요.',
             },
           })}
-          type="number"
           maxLength={17}
           onChange={handleInputChange}
           onKeyDown={handleInputChange}
