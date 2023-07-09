@@ -12,7 +12,7 @@ type InputType = {
   certificateNumber: number;
 };
 
-type InputStatusType = 'default' | 'beforeSend' | 'afterSend';
+type InputStatusType = 'notReadyForSend' | 'readyForSend' | 'afterSend';
 
 const formatNumber = (phoneNumber: string): string => {
   if (phoneNumber.length > 6)
@@ -37,7 +37,8 @@ export default function InputForm() {
     formState: { errors },
   } = useForm<InputType>();
 
-  const [inputStatus, setInputStatus] = useState<InputStatusType>('default');
+  const [inputStatus, setInputStatus] = useState<InputStatusType>('notReadyForSend');
+  console.log(inputStatus);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -45,9 +46,9 @@ export default function InputForm() {
     const phoneNumber = e.currentTarget.value.replace(/[^0-9-]/g, '');
     const phoneNumberWithoutHyphen = phoneNumber.replace(/-/g, '');
 
-    if (phoneNumberWithoutHyphen.length === 11) {
-      setInputStatus('beforeSend');
-    }
+    if (phoneNumberWithoutHyphen.length === 11) setInputStatus('readyForSend');
+    else setInputStatus('notReadyForSend');
+
     if ('key' in e && e.key === 'Backspace') {
       setValue('phoneNumber', formatNumberBackSpace(phoneNumberWithoutHyphen));
     } else {
@@ -78,21 +79,20 @@ export default function InputForm() {
               value: regexr.phoneNumber,
               message: '올바른 휴대폰 번호를 입력해주세요.',
             },
+            onChange: handleInputChange,
           })}
-          maxLength={17}
-          onChange={handleInputChange}
           onKeyDown={handleInputChange}
         />
 
         <div className="h-18" />
         <Button
           text={
-            inputStatus === 'beforeSend' || inputStatus === 'default'
+            inputStatus === 'readyForSend' || inputStatus === 'notReadyForSend'
               ? '인증문자 전송'
               : '인증번호 재전송'
           }
-          disabled={inputStatus === 'default'}
-          color={inputStatus === 'beforeSend' ? 'blue' : 'orange'}
+          disabled={inputStatus === 'notReadyForSend'}
+          color={inputStatus === 'readyForSend' ? 'blue' : 'orange'}
           type="submit"
         />
         <div className="h-18" />
