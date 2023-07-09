@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import { Spacing } from '@/components/common/Spacing';
 import regexr from '@/constants/regexr';
 
 type InputType = {
@@ -95,8 +96,9 @@ export default function InputForm() {
           color={inputStatus === 'readyForSend' ? 'blue' : 'orange'}
           type="submit"
         />
-        <div className="h-18" />
       </form>
+
+      <Spacing size={18} />
 
       {inputStatus === 'afterSend' && (
         <form onSubmit={handleSubmit(onSubmitCertificateNumber)}>
