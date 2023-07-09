@@ -26,6 +26,7 @@ export default function BottomModal() {
       isAgreed: false,
     },
   ]);
+
   useEffect(() => {
     openModal('modal');
   }, [openModal]);
