@@ -14,7 +14,28 @@ type InputType = {
 
 type InputStatusType = 'default' | 'beforeSend' | 'afterSend';
 
+const formatNumber = (onlyNumbers: string): string => {
+  if (onlyNumbers.length > 2) {
+    if (onlyNumbers.length > 6) {
+      return `${onlyNumbers.slice(0, 3)} - ${onlyNumbers.slice(3, 7)} - ${onlyNumbers.slice(7)}`;
+    } else {
+      return `${onlyNumbers.slice(0, 3)} - ${onlyNumbers.slice(3)}`;
+    }
+  } else return onlyNumbers;
+};
+
+const formatNumberBackSpace = (onlyNumbers: string): string => {
+  console.log(onlyNumbers, onlyNumbers.length);
+  if (onlyNumbers.length === 3) {
+    return `${onlyNumbers.slice(0, 3)}`;
+  } else if (onlyNumbers.length === 7) {
+    return `${onlyNumbers.slice(0, 7)}`;
+  } else return onlyNumbers;
+};
+
 export default function InputForm() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -22,40 +43,27 @@ export default function InputForm() {
     formState: { errors },
   } = useForm<InputType>();
 
-  const router = useRouter();
-
   const [inputStatus, setInputStatus] = useState<InputStatusType>('default');
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
   ) => {
     const currentValue = e.currentTarget.value.replace(/[^0-9-]/g, '');
-    let formattedValue = currentValue;
     const onlyNumbers = currentValue.replace(/-/g, '');
 
     if (onlyNumbers.length === 11) {
       setInputStatus('beforeSend');
     }
 
+    let formatedNumber;
+
     if ('key' in e && e.key === 'Backspace') {
-      if (onlyNumbers.length === 3) {
-        formattedValue = `${onlyNumbers.slice(0, 3)}`;
-      } else if (onlyNumbers.length === 7) {
-        formattedValue = `${onlyNumbers.slice(0, 7)}`;
-      }
+      formatedNumber = formatNumberBackSpace(onlyNumbers);
     } else {
-      if (onlyNumbers.length > 2) {
-        if (onlyNumbers.length > 6) {
-          formattedValue = `${onlyNumbers.slice(0, 3)} - ${onlyNumbers.slice(
-            3,
-            7
-          )} - ${onlyNumbers.slice(7)}`;
-        } else {
-          formattedValue = `${onlyNumbers.slice(0, 3)} - ${onlyNumbers.slice(3)}`;
-        }
-      }
+      formatedNumber = formatNumber(onlyNumbers);
     }
-    setValue('phoneNumber', formattedValue);
+
+    setValue('phoneNumber', formatedNumber);
   };
 
   const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
@@ -63,6 +71,7 @@ export default function InputForm() {
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
+
   const onSubmitCertificateNumber: SubmitHandler<InputType> = (data) => {
     console.log(data.certificateNumber);
     // 인증번호 확인 API
@@ -111,7 +120,6 @@ export default function InputForm() {
                 message: '인증번호 6자리를 입력해주세요.',
               },
             })}
-            type="number"
             maxLength={6}
           />
           <div className="h-18" />
