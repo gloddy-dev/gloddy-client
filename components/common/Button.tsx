@@ -1,10 +1,10 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
-import { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
-type ButtonColor = 'blue' | 'orange';
+export type ButtonColor = 'blue' | 'orange' | 'gray';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   color?: ButtonColor;
   onClick?: () => void;
@@ -26,6 +26,7 @@ export default function Button(props: ButtonProps) {
 
           'bg-blue': !disabled && color === 'blue',
           'bg-orange': !disabled && color === 'orange',
+          'bg-gray3 text-white': !disabled && color === 'gray',
         }
       )}
     >
@@ -38,7 +39,7 @@ export default function Button(props: ButtonProps) {
           {text}
         </button>
       ) : (
-        <button className=" h-full w-full" type={type} {...rest}>
+        <button className="h-full w-full" type={type} {...rest}>
           {text}
         </button>
       )}
