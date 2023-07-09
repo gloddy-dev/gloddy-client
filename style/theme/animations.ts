@@ -19,7 +19,7 @@ export const animations = {
   },
   slideUp: {
     '0%': { transform: 'translateY(100%)' },
-    '100%': { transform: 'translateX(0)' },
+    '100%': { transform: 'translateY(0)' },
   },
   slideDown: {
     '0%': { transform: 'translateY(0%)' },
