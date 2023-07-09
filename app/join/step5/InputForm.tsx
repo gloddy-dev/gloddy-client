@@ -8,23 +8,24 @@ import { personalityList } from '@/constants/personalityList';
 export default function InputForm() {
   const [selectedPersonalityList, setSelectedPersonalityList] = useState<number[]>([]);
 
-  const handlePersonalityClick = (index: number) => {
-    if (selectedPersonalityList.includes(index)) {
-      setSelectedPersonalityList(selectedPersonalityList.filter((item) => item !== index));
-    } else {
-      setSelectedPersonalityList([...selectedPersonalityList, index]);
+  const handlePersonalityClick = (id: number) => {
+    if (selectedPersonalityList.includes(id)) {
+      setSelectedPersonalityList((prev) => prev.filter((item) => item !== id));
+      return;
     }
+    setSelectedPersonalityList([...selectedPersonalityList, id]);
   };
+
   return (
     <div>
       <section className="flex flex-wrap gap-12">
-        {personalityList.map((personality, index: number) => (
+        {personalityList.map((personality) => (
           <PersonalityItem
             key={personality.id}
             personality={personality}
-            isSelected={selectedPersonalityList.includes(index)}
+            isSelected={selectedPersonalityList.includes(+personality.id)}
             onClick={() => {
-              handlePersonalityClick(index);
+              handlePersonalityClick(+personality.id);
             }}
           />
         ))}
