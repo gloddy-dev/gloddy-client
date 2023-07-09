@@ -17,7 +17,6 @@ export default function Step1Page() {
       <InputForm />
 
       <Spacing size={18} />
-      <div className="h-18" />
 
       <section>
         <CircleCheckbox
