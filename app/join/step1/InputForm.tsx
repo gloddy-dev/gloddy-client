@@ -14,23 +14,17 @@ type InputType = {
 
 type InputStatusType = 'default' | 'beforeSend' | 'afterSend';
 
-const formatNumber = (onlyNumbers: string): string => {
-  if (onlyNumbers.length > 2) {
-    if (onlyNumbers.length > 6) {
-      return `${onlyNumbers.slice(0, 3)} - ${onlyNumbers.slice(3, 7)} - ${onlyNumbers.slice(7)}`;
-    } else {
-      return `${onlyNumbers.slice(0, 3)} - ${onlyNumbers.slice(3)}`;
-    }
-  } else return onlyNumbers;
+const formatNumber = (phoneNumber: string): string => {
+  if (phoneNumber.length > 6)
+    return `${phoneNumber.slice(0, 3)} - ${phoneNumber.slice(3, 7)} - ${phoneNumber.slice(7)}`;
+  if (phoneNumber.length > 2) return `${phoneNumber.slice(0, 3)} - ${phoneNumber.slice(3)}`;
+  return phoneNumber;
 };
 
-const formatNumberBackSpace = (onlyNumbers: string): string => {
-  console.log(onlyNumbers, onlyNumbers.length);
-  if (onlyNumbers.length === 3) {
-    return `${onlyNumbers.slice(0, 3)}`;
-  } else if (onlyNumbers.length === 7) {
-    return `${onlyNumbers.slice(0, 7)}`;
-  } else return onlyNumbers;
+const formatNumberBackSpace = (phoneNumber: string): string => {
+  if (phoneNumber.length === 3) return `${phoneNumber.slice(0, 3)}`;
+  if (phoneNumber.length === 7) return `${phoneNumber.slice(0, 7)}`;
+  return phoneNumber;
 };
 
 export default function InputForm() {
@@ -48,22 +42,17 @@ export default function InputForm() {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
   ) => {
-    const currentValue = e.currentTarget.value.replace(/[^0-9-]/g, '');
-    const onlyNumbers = currentValue.replace(/-/g, '');
+    const phoneNumber = e.currentTarget.value.replace(/[^0-9-]/g, '');
+    const phoneNumberWithoutHyphen = phoneNumber.replace(/-/g, '');
 
-    if (onlyNumbers.length === 11) {
+    if (phoneNumberWithoutHyphen.length === 11) {
       setInputStatus('beforeSend');
     }
-
-    let formatedNumber;
-
     if ('key' in e && e.key === 'Backspace') {
-      formatedNumber = formatNumberBackSpace(onlyNumbers);
+      setValue('phoneNumber', formatNumberBackSpace(phoneNumberWithoutHyphen));
     } else {
-      formatedNumber = formatNumber(onlyNumbers);
+      setValue('phoneNumber', formatNumber(phoneNumberWithoutHyphen));
     }
-
-    setValue('phoneNumber', formatedNumber);
   };
 
   const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
