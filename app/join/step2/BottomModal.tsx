@@ -6,10 +6,26 @@ import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import { useModal } from '@/hooks/useModal';
 
-interface BottomModalProps {}
+type AgreeCheckListType = {
+  name: string;
+  required: boolean;
+  isAgreed: boolean;
+};
+
 export default function BottomModal() {
   const { isModalOpen, openModal, closeModal } = useModal<'modal'>();
-  const [agreeCheckList, setAgreeCheckList] = useState<boolean[]>([false, false]);
+  const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>([
+    {
+      name: '서비스 이용약관 동의',
+      required: true,
+      isAgreed: false,
+    },
+    {
+      name: '개인정보 수집 및 이용 동의',
+      required: true,
+      isAgreed: false,
+    },
+  ]);
   useEffect(() => {
     openModal('modal');
   }, [openModal]);
@@ -25,36 +41,41 @@ export default function BottomModal() {
       <section>
         <CircleCheckbox
           text="전체 동의"
-          checked={agreeCheckList[0] && agreeCheckList[1]}
+          checked={agreeCheckList.every((agree) => agree.isAgreed)}
           onClick={() => {
-            if (agreeCheckList[0] && agreeCheckList[1]) {
-              setAgreeCheckList([false, false]);
+            if (agreeCheckList.every((agree) => agree.isAgreed)) {
+              setAgreeCheckList((agreeCheckList) =>
+                agreeCheckList.map((agree) => ({ ...agree, isAgreed: false }))
+              );
             } else {
-              setAgreeCheckList([true, true]);
+              setAgreeCheckList((agreeCheckList) =>
+                agreeCheckList.map((agree) => ({ ...agree, isAgreed: true }))
+              );
             }
           }}
         />
         <div className="my-15 border-[0.5px] border-white3" />
-        <CircleCheckbox
-          text={
-            <p>
-              <span className="text-12 text-gray3">(필수) </span>
-              <span className="text-12">서비스 이용약관 동의</span>
-            </p>
-          }
-          checked={agreeCheckList[0]}
-          onClick={() => setAgreeCheckList((prev) => [!prev[0], prev[1]])}
-        />
-        <CircleCheckbox
-          text={
-            <p>
-              <span className="text-12 text-gray3">(필수) </span>
-              <span className="text-12">개인정보 취급방침 동의</span>
-            </p>
-          }
-          checked={agreeCheckList[1]}
-          onClick={() => setAgreeCheckList((prev) => [prev[0], !prev[1]])}
-        />
+        {agreeCheckList.map((agree) => (
+          <CircleCheckbox
+            key={agree.name}
+            text={
+              <p>
+                <span className="text-12 text-gray3">{agree.required && '(필수)'}</span>
+                <span className="text-12">{agree.name}</span>
+              </p>
+            }
+            checked={agree.isAgreed}
+            onClick={() => {
+              setAgreeCheckList((prev) =>
+                prev.map((prevAgree) =>
+                  prevAgree.name === agree.name
+                    ? { ...prevAgree, isAgreed: !prevAgree.isAgreed }
+                    : prevAgree
+                )
+              );
+            }}
+          />
+        ))}
       </section>
 
       <div className="h-30" />
