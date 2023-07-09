@@ -3,6 +3,8 @@ import { Input } from '@/components/common/Input';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 
+import BottomModal from './BottomModal';
+
 const DUMMY_SEARCH_RESULT_RESULT = [
   {
     id: 1,
@@ -26,13 +28,9 @@ export default function Step2Page() {
     <div className="relative h-full">
       <TopNavigationBar text="회원가입" />
 
-      <section>
-        <AuthTitleTextMessage text={`재학중인 학교\n선택해주세요`} />
-      </section>
+      <AuthTitleTextMessage text={`재학중인 학교\n선택해주세요`} />
 
-      <section>
-        <Input label="학교" />
-      </section>
+      <Input label="학교" />
 
       <section>
         {DUMMY_SEARCH_RESULT_RESULT.map((searchResult) => (
@@ -46,6 +44,8 @@ export default function Step2Page() {
       <section className="absolute bottom-0 w-full">
         <Button text="완료" disabled />
       </section>
+
+      <BottomModal />
     </div>
   );
 }
