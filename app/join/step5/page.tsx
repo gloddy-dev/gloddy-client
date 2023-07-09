@@ -1,5 +1,5 @@
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { Spacing } from '@/components/common/Spacing';
+import Spacing from '@/components/common/Spacing';
 import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 
 import InputForm from './InputForm';
