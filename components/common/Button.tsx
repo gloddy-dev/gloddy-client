@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
+
 import type { ButtonHTMLAttributes } from 'react';
 
 export type ButtonColor = 'blue' | 'orange' | 'gray';
@@ -11,15 +12,25 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   disabled?: boolean;
   type?: 'button' | 'submit';
+  className?: string;
 }
 
 export default function Button(props: ButtonProps) {
-  const { text, color = 'blue', onClick, href, disabled, type = 'button', ...rest } = props;
+  const {
+    text,
+    color = 'blue',
+    onClick,
+    href,
+    disabled,
+    type = 'button',
+    className,
+    ...rest
+  } = props;
 
   return (
     <div
       className={clsx(
-        'flex h-[3.75rem]  w-full items-center justify-center rounded-xl text-center text-16',
+        'flex h-[3.75rem] w-full items-center justify-center rounded-xl text-center text-16',
         {
           'bg-gray5 text-gray3': disabled,
           'text-white': !disabled,
@@ -27,7 +38,8 @@ export default function Button(props: ButtonProps) {
           'bg-blue': !disabled && color === 'blue',
           'bg-orange': !disabled && color === 'orange',
           'bg-gray3 text-white': !disabled && color === 'gray',
-        }
+        },
+        className
       )}
     >
       {Boolean(href) ? (
