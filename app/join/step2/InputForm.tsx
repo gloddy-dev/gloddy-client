@@ -1,7 +1,9 @@
 'use client';
 import { useForm } from 'react-hook-form';
 
+import Button from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import useJoin from '@/store/useJoin';
 
 type InputType = {
   school: string;
@@ -15,8 +17,10 @@ export default function InputForm() {
     handleSubmit,
   } = useForm<InputType>();
 
+  const { setJoinValue } = useJoin();
+
   const onSubmit = (data: InputType) => {
-    console.log(data);
+    setJoinValue('school', data.school);
   };
 
   return (
@@ -27,6 +31,8 @@ export default function InputForm() {
           required: true,
         })}
       />
+
+      <Button text="완료" type="submit" className="absolute bottom-0 w-full" />
     </form>
   );
 }
