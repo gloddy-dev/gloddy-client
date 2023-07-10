@@ -7,6 +7,7 @@ import Button from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import Spacing from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
+import useJoin from '@/store/useJoin';
 
 type InputType = {
   phoneNumber: string;
@@ -39,7 +40,7 @@ export default function InputForm() {
   } = useForm<InputType>();
 
   const [inputStatus, setInputStatus] = useState<InputStatusType>('notReadyForSend');
-  console.log(inputStatus);
+  const { setJoinValue } = useJoin();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -59,6 +60,7 @@ export default function InputForm() {
 
   const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
     console.log(data.phoneNumber);
+    setJoinValue('phoneNumber', data.phoneNumber);
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
