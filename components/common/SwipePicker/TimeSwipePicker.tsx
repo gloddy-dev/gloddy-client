@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-import { TimeType } from '@/@types/global';
+import type { TimeType } from '@/types/global';
 
 import SwipePicker from './SwipePicker';
 

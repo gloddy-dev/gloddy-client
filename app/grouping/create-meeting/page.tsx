@@ -11,7 +11,7 @@ import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
-import type { ImageType, TimeType } from '@/@types/global';
+import type { ImageType, TimeType } from '@/types/global';
 
 type ModalTabType = {
   title: string;
