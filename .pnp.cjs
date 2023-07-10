@@ -58,6 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-datepicker", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:4.15.0"],\
             ["react-dom", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:18.2.0"],\
             ["react-hook-form", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.45.0"],\
+            ["react-kakao-maps-sdk", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:1.1.9"],\
             ["react-modal-sheet", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:2.0.0"],\
             ["react-query", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:3.39.3"],\
             ["swiper", "npm:9.4.1"],\
@@ -3313,6 +3314,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-datepicker", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:4.15.0"],\
             ["react-dom", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:18.2.0"],\
             ["react-hook-form", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.45.0"],\
+            ["react-kakao-maps-sdk", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:1.1.9"],\
             ["react-modal-sheet", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:2.0.0"],\
             ["react-query", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:3.39.3"],\
             ["swiper", "npm:9.4.1"],\
@@ -3964,6 +3966,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jsx-ast-utils", "npm:3.3.3"],\
             ["array-includes", "npm:3.1.6"],\
             ["object.assign", "npm:4.1.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["kakao.maps.d.ts", [\
+        ["npm:0.1.38", {\
+          "packageLocation": "./.yarn/cache/kakao.maps.d.ts-npm-0.1.38-03eb4dd220-4033de2f1a.zip/node_modules/kakao.maps.d.ts/",\
+          "packageDependencies": [\
+            ["kakao.maps.d.ts", "npm:0.1.38"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5294,6 +5305,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/react-is-npm-18.2.0-0cc5edb910-e72d0ba81b.zip/node_modules/react-is/",\
           "packageDependencies": [\
             ["react-is", "npm:18.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-kakao-maps-sdk", [\
+        ["npm:1.1.9", {\
+          "packageLocation": "./.yarn/cache/react-kakao-maps-sdk-npm-1.1.9-b003f26bfb-030f49011b.zip/node_modules/react-kakao-maps-sdk/",\
+          "packageDependencies": [\
+            ["react-kakao-maps-sdk", "npm:1.1.9"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:1.1.9", {\
+          "packageLocation": "./.yarn/__virtual__/react-kakao-maps-sdk-virtual-ae887fed79/0/cache/react-kakao-maps-sdk-npm-1.1.9-b003f26bfb-030f49011b.zip/node_modules/react-kakao-maps-sdk/",\
+          "packageDependencies": [\
+            ["react-kakao-maps-sdk", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:1.1.9"],\
+            ["@types/react", "npm:18.2.14"],\
+            ["@types/react-dom", "npm:18.2.6"],\
+            ["kakao.maps.d.ts", "npm:0.1.38"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
