@@ -13,19 +13,19 @@ import { useModal } from '@/hooks/useModal';
 
 import type { BirthdayValueType } from '@/types/date';
 import type { ImageType } from '@/types/global';
-import type { JoinStep4InputValue } from '@/types/inputValue';
+
+type InputType = {
+  nickname: string;
+  profileImage: ImageType;
+  birthday: BirthdayValueType;
+  sex: string;
+};
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
   const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
 
-  const {
-    register,
-    formState: { errors },
-    watch,
-    handleSubmit,
-    setValue,
-  } = useForm<JoinStep4InputValue>({
+  const { register, watch, handleSubmit, setValue } = useForm<InputType>({
     defaultValues: {
       profileImage: {
         imageFile: null,
@@ -39,6 +39,13 @@ export default function InputForm() {
       sex: '',
     },
   });
+
+  const isAllReady =
+    !!watch('nickname') &&
+    !!watch('birthday').year &&
+    !!watch('birthday').month &&
+    !!watch('birthday').date &&
+    !!watch('sex');
 
   const setProfileImage = (value: ImageType) => {
     setValue('profileImage', value);
@@ -75,7 +82,12 @@ export default function InputForm() {
       <section className="flex flex-col gap-10">
         <article className="flex flex-col gap-5">
           <p className="text-14">닉네임</p>
-          <Input placeholder="닉네임을 입력해주세요." />
+          <Input
+            placeholder="닉네임을 입력해주세요."
+            register={register('nickname', {
+              required: true,
+            })}
+          />
         </article>
 
         <article className="flex flex-col gap-5">
@@ -104,20 +116,12 @@ export default function InputForm() {
         </article>
       </section>
 
-      <section className="absolute bottom-0 w-full ">
-        <Button
-          text="다음"
-          disabled={
-            !(
-              watch('birthday').date &&
-              watch('birthday').month &&
-              watch('birthday').year &&
-              watch('sex')
-            )
-          }
-          href="/join/step6"
-        />
-      </section>
+      <Button
+        text={isAllReady ? '완료' : '다음'}
+        disabled={!isAllReady}
+        type="submit"
+        className="absolute bottom-0 w-full"
+      />
 
       <BottomUpModal
         isModalOpen={isModalOpen}
@@ -138,10 +142,10 @@ export default function InputForm() {
           <SexSwipePicker sexValue={watch('sex')} setSexValue={setSexValue} />
         )}
         <Button
-          text="다음"
+          text={modalName === 'birthday' ? '다음' : '완료'}
           disabled={
             modalName === 'birthday' &&
-            !(watch('birthday').year && watch('birthday').month && watch('birthday').date)
+            !(!!watch('birthday').year && !!watch('birthday').month && !!watch('birthday').date)
           }
           onClick={handleModalNextButton}
         />
