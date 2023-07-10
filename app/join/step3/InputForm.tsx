@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
-import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import { Input } from '@/components/common/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import regexr from '@/constants/regexr';
@@ -65,35 +64,6 @@ export default function InputForm() {
         </p>
 
         <div className="h-10" />
-
-        <section>
-          <CircleCheckbox
-            text={
-              <span className="text-14">
-                재학생 인증을 진행하면 <span className="text-14 font-700 text-blue">인증마크</span>
-                를 받을 수 있어요
-              </span>
-            }
-            checked
-          />
-          <div className="h-10" />
-          <CircleCheckbox
-            text={
-              <span className="text-14">신뢰있는 모임을 위해 재학생 인증을 꼭 진행해주세요</span>
-            }
-            checked
-          />
-          <div className="h-10" />
-          <CircleCheckbox
-            text={
-              <span className="text-14">
-                재학생 이메일 발급 <br />
-                https://www.instagram.com/gloddykorea/
-              </span>
-            }
-            checked
-          />
-        </section>
 
         <section className="absolute bottom-0 w-full">
           <Button
