@@ -10,6 +10,7 @@ import { Input } from '@/components/common/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import { regexr } from '@/constants/regexr';
 import { useModal } from '@/hooks/useModal';
+import useJoin from '@/store/useJoin';
 
 type InputType = {
   email: string;
@@ -24,12 +25,13 @@ export default function InputForm() {
     watch,
     handleSubmit,
   } = useForm<InputType>();
-
   const { isModalOpen, openModal, closeModal } = useModal<'modal'>();
+  const { setJoinValue } = useJoin();
 
   const onSubmitEmail: SubmitHandler<InputType> = (data: InputType) => {
     console.log(data.email);
     openModal('modal');
+    setJoinValue('email', data.email);
     // 인증번호 전송
   };
   const onSubmitCertificateNumber: SubmitHandler<InputType> = (data: InputType) => {
@@ -99,7 +101,6 @@ export default function InputForm() {
                   },
                 })}
                 maxLength={6}
-                type="number"
               />
               <div className="flex justify-between p-10">
                 <p className="text-14 text-gray3 underline ">재전송하기</p>
