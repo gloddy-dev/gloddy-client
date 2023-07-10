@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BASE_API_URL } from '@/constants/common';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-const api = axios.create({
+const privateApi = axios.create({
   baseURL: BASE_API_URL,
 });
 
@@ -18,7 +18,7 @@ function onResponseError(error: AxiosError) {
   return Promise.reject(error);
 }
 
-api.interceptors.request.use(onRequest);
-api.interceptors.response.use(onResponse, onResponseError);
+privateApi.interceptors.request.use(onRequest);
+privateApi.interceptors.response.use(onResponse, onResponseError);
 
-export default api;
+export default privateApi;
