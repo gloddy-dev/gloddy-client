@@ -9,7 +9,7 @@ import Button from '@/components/common/Button';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import { Input } from '@/components/common/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
-import regexr from '@/constants/regexr';
+import { regexr } from '@/constants/regexr';
 import { useModal } from '@/hooks/useModal';
 
 type InputType = {
