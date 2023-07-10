@@ -42,15 +42,17 @@ export default function Button(props: ButtonProps) {
         className
       )}
     >
-      {Boolean(href) ? (
+      {!!href && (
         <Link href={href || ''} className="font-bold text-white">
           {text}
         </Link>
-      ) : Boolean(onClick) ? (
+      )}
+      {!!onClick && (
         <button type={type} onClick={onClick} className="h-full w-full" {...rest}>
           {text}
         </button>
-      ) : (
+      )}
+      {!href && !onClick && (
         <button className="h-full w-full" type={type} {...rest}>
           {text}
         </button>
