@@ -1,4 +1,3 @@
-import Button from '@/components/common/Button';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 
@@ -39,10 +38,6 @@ export default function Step2Page() {
             <div className="text-12 text-gray2">{searchResult.address}</div>
           </div>
         ))}
-      </section>
-
-      <section className="absolute bottom-0 w-full">
-        <Button text="완료" disabled />
       </section>
 
       <BottomModal />
