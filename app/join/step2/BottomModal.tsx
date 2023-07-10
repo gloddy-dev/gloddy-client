@@ -31,6 +31,15 @@ export default function BottomModal() {
     openModal('modal');
   }, [openModal]);
 
+  const handleAgreeCheckList = () => {
+    setAgreeCheckList((agreeCheckList) =>
+      agreeCheckList.map((agree) => ({
+        ...agree,
+        isAgreed: !agreeCheckList.every((agree) => agree.isAgreed),
+      }))
+    );
+  };
+
   return (
     <BottomUpModal
       snap={300}
@@ -44,15 +53,7 @@ export default function BottomModal() {
           text="전체 동의"
           checked={agreeCheckList.every((agree) => agree.isAgreed)}
           onClick={() => {
-            if (agreeCheckList.every((agree) => agree.isAgreed)) {
-              setAgreeCheckList((agreeCheckList) =>
-                agreeCheckList.map((agree) => ({ ...agree, isAgreed: false }))
-              );
-            } else {
-              setAgreeCheckList((agreeCheckList) =>
-                agreeCheckList.map((agree) => ({ ...agree, isAgreed: true }))
-              );
-            }
+            handleAgreeCheckList;
           }}
         />
         <div className="my-15 border-[0.5px] border-white3" />
