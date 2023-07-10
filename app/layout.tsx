@@ -1,6 +1,7 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
+import Provider from './provider';
 
 export const metadata: Metadata = {
   title: 'Gloddy',
@@ -44,9 +45,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body className="flex h-[100dvh] w-screen justify-center bg-slate-50 ">
-        <div className="relative h-full w-full max-w-[450px] overflow-y-scroll bg-white">
-          {children}
-        </div>
+        <Provider>
+          <div className="relative h-full w-full max-w-450 overflow-y-scroll bg-white">
+            {children}
+          </div>
+        </Provider>
       </body>
     </html>
   );

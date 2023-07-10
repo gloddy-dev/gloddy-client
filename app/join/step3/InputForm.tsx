@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import Button from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
-import regexr from '@/constants/regexr';
+import { regexr } from '@/constants/regexr';
 import { useModal } from '@/hooks/useModal';
 
 type InputType = {
