@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
@@ -16,39 +17,39 @@ import type { JoinStep4InputValue } from '@/types/inputValue';
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
-  const [inputValue, setInputValue] = useState<JoinStep4InputValue>({
-    profileImage: {
-      imageFile: null,
-      imageBlob: '',
-    },
-    birthday: {
-      year: '',
-      month: '',
-      date: '',
-    },
-    sex: '',
-  });
   const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
 
+  const {
+    register,
+    formState: { errors },
+    watch,
+    handleSubmit,
+    setValue,
+  } = useForm<JoinStep4InputValue>({
+    defaultValues: {
+      profileImage: {
+        imageFile: null,
+        imageBlob: '',
+      },
+      birthday: {
+        year: '',
+        month: '',
+        date: '',
+      },
+      sex: '',
+    },
+  });
+
   const setProfileImage = (value: ImageType) => {
-    setInputValue((prev) => ({
-      ...prev,
-      profileImage: value,
-    }));
+    setValue('profileImage', value);
   };
 
   const setBirthdayValue = (value: BirthdayValueType) => {
-    setInputValue((prev) => ({
-      ...prev,
-      birthday: value,
-    }));
+    setValue('birthday', value);
   };
 
   const setSexValue = (value: string) => {
-    setInputValue((prev) => ({
-      ...prev,
-      sex: value,
-    }));
+    setValue('sex', value);
   };
 
   const handleModalNextButton = () => {
@@ -56,21 +57,19 @@ export default function InputForm() {
       openModal('sex');
     }
     if (modalName === 'sex') {
-      if (inputValue.sex === '') {
-        setInputValue((prev) => ({
-          ...prev,
-          sex: '남성',
-        }));
+      if (watch('sex') === '') {
+        setValue('sex', '남성');
       }
       closeModal();
     }
   };
+
   return (
     <div>
       <ImageFrame
         setImage={setProfileImage}
         imgRef={imgRef}
-        imageBlob={inputValue.profileImage.imageBlob}
+        imageBlob={watch('profileImage').imageBlob}
       />
 
       <section className="flex flex-col gap-10">
@@ -85,10 +84,10 @@ export default function InputForm() {
             placeholder="생년월일을 선택해주세요."
             onClick={() => openModal('birthday')}
             value={
-              inputValue.birthday.year &&
-              inputValue.birthday.month &&
-              inputValue.birthday.date &&
-              `${inputValue.birthday.year} ${inputValue.birthday.month} ${inputValue.birthday.date}`
+              watch('birthday').year &&
+              watch('birthday').month &&
+              watch('birthday').date &&
+              `${watch('birthday').year} ${watch('birthday').month} ${watch('birthday').date}`
             }
             readOnly
           />
@@ -99,7 +98,7 @@ export default function InputForm() {
           <Input
             placeholder="성별을 선택해주세요."
             onClick={() => openModal('sex')}
-            value={inputValue.sex}
+            value={watch('sex')}
             readOnly
           />
         </article>
@@ -110,10 +109,10 @@ export default function InputForm() {
           text="다음"
           disabled={
             !(
-              inputValue.birthday.date &&
-              inputValue.birthday.month &&
-              inputValue.birthday.year &&
-              inputValue.sex
+              watch('birthday').date &&
+              watch('birthday').month &&
+              watch('birthday').year &&
+              watch('sex')
             )
           }
           href="/join/step6"
@@ -133,19 +132,16 @@ export default function InputForm() {
         disableDrag
       >
         {modalName === 'birthday' && (
-          <DateSwipePicker
-            birthdayValue={inputValue.birthday}
-            setBirthdayValue={setBirthdayValue}
-          />
+          <DateSwipePicker birthdayValue={watch('birthday')} setBirthdayValue={setBirthdayValue} />
         )}
         {modalName === 'sex' && (
-          <SexSwipePicker sexValue={inputValue.sex} setSexValue={setSexValue} />
+          <SexSwipePicker sexValue={watch('sex')} setSexValue={setSexValue} />
         )}
         <Button
           text="다음"
           disabled={
             modalName === 'birthday' &&
-            !(inputValue.birthday.year && inputValue.birthday.month && inputValue.birthday.date)
+            !(watch('birthday').year && watch('birthday').month && watch('birthday').date)
           }
           onClick={handleModalNextButton}
         />
