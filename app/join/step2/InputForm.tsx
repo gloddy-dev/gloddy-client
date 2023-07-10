@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
@@ -10,6 +11,8 @@ type InputType = {
 };
 
 export default function InputForm() {
+  const router = useRouter();
+
   const {
     register,
     formState: { errors },
@@ -21,6 +24,7 @@ export default function InputForm() {
 
   const onSubmit = (data: InputType) => {
     setJoinValue('school', data.school);
+    router.push('/join/step3');
   };
 
   return (
