@@ -31,12 +31,20 @@ export default function BottomModal() {
     openModal('modal');
   }, [openModal]);
 
-  const handleAgreeCheckList = () => {
+  const handleAgreeAllCheckList = () => {
     setAgreeCheckList((agreeCheckList) =>
       agreeCheckList.map((agree) => ({
         ...agree,
         isAgreed: !agreeCheckList.every((agree) => agree.isAgreed),
       }))
+    );
+  };
+
+  const handleAgreeCheckList = (name: string) => {
+    setAgreeCheckList((prev) =>
+      prev.map((prevAgree) =>
+        prevAgree.name === name ? { ...prevAgree, isAgreed: !prevAgree.isAgreed } : prevAgree
+      )
     );
   };
 
@@ -52,9 +60,7 @@ export default function BottomModal() {
         <CircleCheckbox
           text="전체 동의"
           checked={agreeCheckList.every((agree) => agree.isAgreed)}
-          onClick={() => {
-            handleAgreeCheckList;
-          }}
+          onClick={() => handleAgreeAllCheckList()}
         />
         <div className="my-15 border-[0.5px] border-white3" />
         {agreeCheckList.map((agree) => (
@@ -67,15 +73,7 @@ export default function BottomModal() {
               </p>
             }
             checked={agree.isAgreed}
-            onClick={() => {
-              setAgreeCheckList((prev) =>
-                prev.map((prevAgree) =>
-                  prevAgree.name === agree.name
-                    ? { ...prevAgree, isAgreed: !prevAgree.isAgreed }
-                    : prevAgree
-                )
-              );
-            }}
+            onClick={() => handleAgreeCheckList(agree.name)}
           />
         ))}
       </section>
