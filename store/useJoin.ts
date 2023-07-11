@@ -2,13 +2,13 @@ import { create } from 'zustand';
 
 interface JoinState {
   phoneNumber: string;
-  birth: string;
-  email: string;
-  gender: string;
-  name: string;
-  password: string;
-  personalities: string[];
   school: string;
+  email: string;
+  name: string;
+  birth: string;
+  gender: string;
+  password: string; // 없어질 예정
+  personalities: string[];
   setJoinValue: (key: ValueStringType, value: string) => void;
   setJoinValueArray: (key: ValueStringArrayType, value: string[]) => void;
 }
@@ -20,19 +20,20 @@ type ValueStringType =
   | 'gender'
   | 'name'
   | 'password'
-  | 'school';
+  | 'school'
+  | 'nickname';
 
 type ValueStringArrayType = 'personalities';
 
 const useJoin = create<JoinState>((set) => ({
-  phoneNumber: '22',
-  birth: '',
-  email: '',
-  gender: '',
-  name: '',
-  password: '',
-  personalities: [''],
+  phoneNumber: '',
   school: '',
+  email: '',
+  name: '',
+  birth: '',
+  gender: '',
+  password: '', // 없어질 예정
+  personalities: [''],
   setJoinValue: (key: ValueStringType, value: string) => set(() => ({ [key]: value })),
   setJoinValueArray: (key: ValueStringArrayType, value: string[]) =>
     set(() => ({ [key]: [...value] })),
