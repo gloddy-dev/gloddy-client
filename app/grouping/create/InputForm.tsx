@@ -16,20 +16,34 @@ import { useModal } from '@/hooks/useModal';
 import InputSection from './InputSection';
 
 import type { ImageType, TimeType } from '@/types';
+
 const TEXT_AREA_COUNT: number = 30;
+
+type ModalTabType = {
+  name: string;
+  title: string;
+  snap: number;
+  message: string;
+};
 
 const ModalTabList: ModalTabType[] = [
   {
+    name: 'meetingDate',
     title: '모임 일시',
     snap: 900,
+    message: '모임 일시를 설정해주세요',
   },
   {
+    name: 'meetingLocation',
     title: '모임 위치',
     snap: 500,
+    message: '모임 위치를 설정해주세요',
   },
   {
+    name: 'meetingNumber',
     title: '모임 인원',
     snap: 500,
+    message: '모임 인원을 설정해주세요',
   },
 ];
 
@@ -59,11 +73,6 @@ const inputDefaultValues = {
   meetingNumber: 0,
 };
 
-type ModalTabType = {
-  title: string;
-  snap: number;
-};
-
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const [currentTab, setCurrentTab] = useState<number>(0);
@@ -78,12 +87,21 @@ export default function InputForm() {
 
   const handleNextButton = () => {
     if (modalName === 'meetingDate') openModal('meetingLocation');
-    if (currentTab < ModalTabList.length) setCurrentTab((currentTab: number) => currentTab + 1);
-    else {
+    if (modalName === 'meetingLocation') openModal('meetingNumber');
+    if (modalName === 'meetingNumber') {
       closeModal();
       // TODO: 모임 생성 API
     }
   };
+
+  const handlePreviousButton = () => {
+    if (modalName === 'meetingDate') return;
+    if (modalName === 'meetingLocation') openModal('meetingDate');
+    if (modalName === 'meetingNumber') openModal('meetingLocation');
+  };
+
+  console.log(ModalTabList.find((modalTab) => modalTab.name === modalName)?.snap);
+
   return (
     <div>
       <ImageFrame
@@ -109,6 +127,8 @@ export default function InputForm() {
       </section>
 
       <Spacing size={15} />
+
+      {/* [] */}
 
       <InputSection
         title="모임 일시"
@@ -140,13 +160,17 @@ export default function InputForm() {
 
       <BottomUpModal
         isModalOpen={isModalOpen}
-        snap={ModalTabList[currentTab].snap}
+        snap={ModalTabList.find((modalTab) => modalTab.name === modalName)?.snap || 0}
         disableDrag={true}
-        isLeftButton={currentTab !== 0}
-        handleLeftButtonClick={() => setCurrentTab((prev) => (prev !== 0 ? prev - 1 : 0))}
+        isLeftButton={modalName !== 'meetingDate'}
+        handleLeftButtonClick={handlePreviousButton}
         onClose={closeModal}
         isRightButton
-        text={<div className=" text-18">{ModalTabList[currentTab].title}</div>}
+        text={
+          <div className="text-18">
+            {ModalTabList.find((modalTab) => modalTab.name === modalName)?.title || ''}
+          </div>
+        }
       >
         <div className="relative h-full">
           {modalName === 'meetingDate' && (
