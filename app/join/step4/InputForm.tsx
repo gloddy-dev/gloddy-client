@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
@@ -44,12 +44,10 @@ export default function InputForm() {
     },
   });
 
-  const isAllReady =
-    !!watch('nickname') &&
-    !!watch('birthday').year &&
-    !!watch('birthday').month &&
-    !!watch('birthday').date &&
-    !!watch('gender');
+  const isBirthDayEntered =
+    !!watch('birthday').year && !!watch('birthday').month && !!watch('birthday').date;
+
+  const isAllEntered = isBirthDayEntered && !!watch('nickname') && !!watch('gender');
 
   const handleModalNextButton = () => {
     if (modalName === 'birthday') {
@@ -118,8 +116,8 @@ export default function InputForm() {
       </section>
 
       <Button
-        text={isAllReady ? '완료' : '다음'}
-        disabled={!isAllReady}
+        text={isAllEntered ? '완료' : '다음'}
+        disabled={!isAllEntered}
         type="submit"
         className="absolute bottom-0 w-full"
         onClick={handleSubmit(onSubmitForm)}
@@ -151,10 +149,7 @@ export default function InputForm() {
         )}
         <Button
           text={modalName === 'birthday' ? '다음' : '완료'}
-          disabled={
-            modalName === 'birthday' &&
-            !(!!watch('birthday').year && !!watch('birthday').month && !!watch('birthday').date)
-          }
+          disabled={modalName === 'birthday' && !isBirthDayEntered}
           onClick={handleModalNextButton}
           className="absolute bottom-0 w-full"
         />
