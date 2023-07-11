@@ -48,6 +48,8 @@ const ModalTabList: ModalTabType[] = [
 ];
 
 type InputType = {
+  title: string;
+  description: string;
   image: ImageType;
   date: Date;
   time: TimeType;
@@ -56,6 +58,8 @@ type InputType = {
 };
 
 const inputDefaultValues = {
+  title: '',
+  description: '',
   image: {
     imageFile: null,
     imageBlob: '',
@@ -75,8 +79,6 @@ const inputDefaultValues = {
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement | null>(null);
-  const [currentTab, setCurrentTab] = useState<number>(0);
-
   const { register, watch, handleSubmit, setValue } = useForm<InputType>({
     defaultValues: inputDefaultValues,
   });
@@ -95,12 +97,22 @@ export default function InputForm() {
   };
 
   const handlePreviousButton = () => {
-    if (modalName === 'meetingDate') return;
     if (modalName === 'meetingLocation') openModal('meetingDate');
     if (modalName === 'meetingNumber') openModal('meetingLocation');
   };
 
-  console.log(ModalTabList.find((modalTab) => modalTab.name === modalName)?.snap);
+  const isAllEntered =
+    !!watch('title') &&
+    !!watch('description') &&
+    !!watch('date') &&
+    !!watch('time').fromHour &&
+    !!watch('time').fromMin &&
+    !!watch('time').fromAmPm &&
+    !!watch('time').toHour &&
+    !!watch('time').toMin &&
+    !!watch('time').toAmPm &&
+    !!watch('meetingLocation') &&
+    !!watch('meetingNumber');
 
   return (
     <div>
@@ -113,22 +125,32 @@ export default function InputForm() {
 
       <section>
         <div className="mb-5 text-14">방제목</div>
-        <Input placeholder="제목을 입력해주세요" />
+        <Input
+          placeholder="제목을 입력해주세요"
+          register={register('title', {
+            required: true,
+            maxLength: 20,
+          })}
+        />
       </section>
 
       <Spacing size={15} />
 
       <section>
         <div className="flex justify-between">
-          <div className="font-500 mb-5 text-14">활동 소개글</div>
-          <div className="font-500 text-12 text-gray2">0/${TEXT_AREA_COUNT}</div>
+          <div className="mb-5 text-14">활동 소개글</div>
+          <div className="text-12 text-gray2">0/${TEXT_AREA_COUNT}</div>
         </div>
-        <TextArea placeholder="내용을 입력해주세요." />
+        <TextArea
+          placeholder="내용을 입력해주세요."
+          register={register('description', {
+            required: true,
+            maxLength: 20,
+          })}
+        />
       </section>
 
       <Spacing size={15} />
-
-      {/* [] */}
 
       <InputSection
         title="모임 일시"
@@ -154,7 +176,7 @@ export default function InputForm() {
 
       <Button
         text="완료"
-        disabled
+        disabled={!isAllEntered}
         className="fixed inset-x-0 bottom-20 z-10 m-auto max-w-[23.75rem] bg-white"
       />
 
