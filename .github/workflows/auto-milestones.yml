@@ -2,7 +2,10 @@ name: 'Auto Milestone Assign'
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened, edited]
+  issues:
+    types: [opened, reopened, edited]
+  
 
 jobs:
   assign-milestone:
