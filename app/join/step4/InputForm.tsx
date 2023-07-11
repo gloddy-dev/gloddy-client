@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -10,10 +11,9 @@ import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
 import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
 import { useModal } from '@/hooks/useModal';
+import useJoin from '@/store/useJoin';
 
-import type { BirthdayValueType } from '@/types/date';
-import type { ImageType } from '@/types/global';
-
+import type { BirthdayValueType, ImageType } from '@/types';
 type InputType = {
   nickname: string;
   profileImage: ImageType;
@@ -24,6 +24,8 @@ type InputType = {
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
   const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
+  const { setJoinValue } = useJoin();
+  const router = useRouter();
 
   const { register, watch, handleSubmit, setValue } = useForm<InputType>({
     defaultValues: {
@@ -58,6 +60,15 @@ export default function InputForm() {
       }
       closeModal();
     }
+  };
+
+  const onSubmitForm = (data: InputType) => {
+    const { nickname, profileImage, birthday, sex } = data;
+    // TODO : profileImage 백엔드와 소통 필요
+    setJoinValue('name', nickname);
+    setJoinValue('birth', `${birthday.year}-${birthday.month}-${birthday.date}`);
+    setJoinValue('gender', sex);
+    router.push('/join/step5');
   };
 
   return (
@@ -110,6 +121,7 @@ export default function InputForm() {
         disabled={!isAllReady}
         type="submit"
         className="absolute bottom-0 w-full"
+        onClick={handleSubmit(onSubmitForm)}
       />
 
       <BottomUpModal
@@ -143,6 +155,7 @@ export default function InputForm() {
             !(!!watch('birthday').year && !!watch('birthday').month && !!watch('birthday').date)
           }
           onClick={handleModalNextButton}
+          className="absolute bottom-0 w-full"
         />
       </BottomUpModal>
     </div>
