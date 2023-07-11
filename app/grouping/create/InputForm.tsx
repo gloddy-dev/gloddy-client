@@ -73,7 +73,7 @@ const inputDefaultValues = {
     toMin: '00',
     toAmPm: 'AM',
   },
-  meetingLocation: '',
+  meetingLocation: '경희대학교',
 };
 
 function getDayName(dayIndex: number) {
@@ -95,17 +95,14 @@ export default function InputForm() {
   const { isModalOpen, openModal, closeModal, modalName } = useModal<ModalNameType>();
 
   const handlePreviousButton = () => {
-    if (modalName === 'meetingDate') openModal('meetingLocation');
-    if (modalName === 'meetingLocation') openModal('meetingNumber');
+    if (modalName === 'meetingNumber') openModal('meetingLocation');
+    if (modalName === 'meetingLocation') openModal('meetingDate');
   };
 
   const handleNextButton = () => {
-    if (modalName === 'meetingNumber') openModal('meetingLocation');
-    if (modalName === 'meetingLocation') openModal('meetingDate');
-    else {
-      closeModal();
-      // TODO: 모임 생성 API
-    }
+    if (modalName === 'meetingDate') openModal('meetingLocation');
+    if (modalName === 'meetingLocation') openModal('meetingNumber');
+    else closeModal();
   };
 
   function displayDate() {
@@ -121,7 +118,8 @@ export default function InputForm() {
     }`;
   }
 
-  const handleSubmitButton = (data) => {
+  const handleSubmitButton = (data: InputType) => {
+    // TODO : 서버 api 전송
     console.log(data);
   };
 
@@ -148,7 +146,7 @@ export default function InputForm() {
       />
 
       <section>
-        <div className="mb-5 text-14">방제목</div>
+        <div className="mb-5 text-14">방 제목</div>
         <Input
           placeholder="제목을 입력해주세요"
           register={register('title', {
@@ -189,14 +187,13 @@ export default function InputForm() {
       <Button
         text="완료"
         disabled={!isAllEntered}
-        className="fixed inset-x-0 bottom-20 z-10 m-auto max-w-380 bg-white"
-        onClick={isAllEntered ? handleSubmit(handleSubmitButton) : handleNextButton}
+        className="fixed inset-x-0 bottom-20 z-10 m-auto max-w-380"
+        onClick={handleSubmit(handleSubmitButton)}
       />
 
       <BottomUpModal
         isModalOpen={isModalOpen}
         snap={modalTabList.find((modalTab) => modalTab.name === modalName)?.snap || 0}
-        disableDrag={true}
         isLeftButton={modalName !== 'meetingDate'}
         handleLeftButtonClick={handlePreviousButton}
         onClose={closeModal}
