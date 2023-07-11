@@ -1,18 +1,20 @@
+import { InputHTMLAttributes } from 'react';
+
 import { Input } from '@/components/common/Input';
 import Spacing from '@/components/common/Spacing';
 
-interface InputSectionProps {
+interface InputSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
-  message: string;
   onClick: () => void;
 }
 
-export default function InputSection({ title, message, onClick }: InputSectionProps) {
+export default function InputSection({ title, onClick, ...rest }: InputSectionProps) {
   return (
     <section onClick={onClick}>
       <p className="text-14">{title}</p>
-      <Spacing size={5} />
-      <Input readOnly className="text-gray3 outline-none" onClick={onClick} value={message} />
+      <Spacing size={10} />
+      <Input readOnly {...rest} />
+      <Spacing size={15} />
     </section>
   );
 }
