@@ -4,6 +4,7 @@ import MemberSection from './MemberSection';
 import TimeSection from './TimeSection';
 import LocationSection from './LocationSection';
 import ApplyButton from './ApplyButton';
+import Spacing from '@/components/common/Spacing';
 
 const DETAIL_DUMMY_DATA = {
   image: '/assets/main_logo.png',
@@ -28,9 +29,11 @@ export default function DetailPage({
     <main>
       <TopNavigationBar />
       <TopSection id={id} title={title} thumbnailUrl={image} description={description} />
-      <div className="flex flex-col gap-16 p-20 pb-100">
+      <div className="p-20 pb-100">
         <MemberSection />
+        <Spacing size={18} />
         <TimeSection time={time} />
+        <Spacing size={18} />
         <LocationSection location={location} />
       </div>
       <ApplyButton />
