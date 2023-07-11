@@ -27,6 +27,7 @@ export default function InputForm() {
 
   const { register, watch, handleSubmit, setValue } = useForm<InputType>({
     defaultValues: {
+      nickname: '',
       profileImage: {
         imageFile: null,
         imageBlob: '',
@@ -47,18 +48,6 @@ export default function InputForm() {
     !!watch('birthday').date &&
     !!watch('sex');
 
-  const setProfileImage = (value: ImageType) => {
-    setValue('profileImage', value);
-  };
-
-  const setBirthdayValue = (value: BirthdayValueType) => {
-    setValue('birthday', value);
-  };
-
-  const setSexValue = (value: string) => {
-    setValue('sex', value);
-  };
-
   const handleModalNextButton = () => {
     if (modalName === 'birthday') {
       openModal('sex');
@@ -74,7 +63,7 @@ export default function InputForm() {
   return (
     <div>
       <ImageFrame
-        setImage={setProfileImage}
+        setImage={(value: ImageType) => setValue('profileImage', value)}
         imgRef={imgRef}
         imageBlob={watch('profileImage').imageBlob}
       />
@@ -136,10 +125,16 @@ export default function InputForm() {
         disableDrag
       >
         {modalName === 'birthday' && (
-          <DateSwipePicker birthdayValue={watch('birthday')} setBirthdayValue={setBirthdayValue} />
+          <DateSwipePicker
+            birthdayValue={watch('birthday')}
+            setBirthdayValue={(value: BirthdayValueType) => setValue('birthday', value)}
+          />
         )}
         {modalName === 'sex' && (
-          <SexSwipePicker sexValue={watch('sex')} setSexValue={setSexValue} />
+          <SexSwipePicker
+            sexValue={watch('sex')}
+            setSexValue={(value: string) => setValue('sex', value)}
+          />
         )}
         <Button
           text={modalName === 'birthday' ? '다음' : '완료'}
