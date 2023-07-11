@@ -9,6 +9,8 @@ module.exports = {
       spacing: pxToRem,
       maxWidth: pxToRem,
       maxHeight: pxToRem,
+      minWidth: pxToRem,
+      minHeight: pxToRem,
       fontSize: pxToRem,
       borderRadius: pxToRem,
       keyframes: animations,
