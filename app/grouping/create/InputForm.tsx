@@ -17,16 +17,19 @@ import InputSection from './InputSection';
 
 import type { ImageType, TimeType } from '@/types';
 
-const TEXT_AREA_COUNT: number = 30;
+const TEXT_AREA_COUNT = 30;
+
+type ModalNameType = 'meetingDate' | 'meetingLocation' | 'meetingNumber'
+
 
 type ModalTabType = {
-  name: string;
+  name: ModalNameType;
   title: string;
   snap: number;
   message: string;
 };
 
-const ModalTabList: ModalTabType[] = [
+const modalTabList: ModalTabType[] = [
   {
     name: 'meetingDate',
     title: '모임 일시',
@@ -83,9 +86,7 @@ export default function InputForm() {
     defaultValues: inputDefaultValues,
   });
 
-  const { isModalOpen, openModal, closeModal, modalName } = useModal<
-    'meetingDate' | 'meetingLocation' | 'meetingNumber'
-  >();
+  const { isModalOpen, openModal, closeModal, modalName } = useModal<ModalNameType>();
 
   const handleNextButton = () => {
     if (modalName === 'meetingDate') openModal('meetingLocation');
@@ -122,7 +123,6 @@ export default function InputForm() {
         imageBlob={watch('image').imageBlob}
         shape="square"
       />
-
       <section>
         <div className="mb-5 text-14">방제목</div>
         <Input
@@ -133,9 +133,7 @@ export default function InputForm() {
           })}
         />
       </section>
-
       <Spacing size={15} />
-
       <section>
         <div className="flex justify-between">
           <div className="mb-5 text-14">활동 소개글</div>
@@ -149,40 +147,42 @@ export default function InputForm() {
           })}
         />
       </section>
-
       <Spacing size={15} />
+
+      {modalTabList.map((modalTab: ModalTabType) => (
+        <InputSection
+          key={modalTab.title}
+          title={modalTab.title}
+          message={modalTab.message}
+          onClick={() => openModal(modalTab.name)}
+        />
+      ))}
 
       <InputSection
         title="모임 일시"
         message="모임 일시를 설정해주세요"
         onClick={() => openModal('meetingDate')}
       />
-
       <Spacing size={15} />
-
       <InputSection
         title="모임 위치"
         message="모임 위치를 설정해주세요"
         onClick={() => openModal('meetingLocation')}
       />
-
       <Spacing size={15} />
-
       <InputSection
         title="모임 인원"
         message="모임 인원를 설정해주세요"
         onClick={() => openModal('meetingNumber')}
       />
-
       <Button
         text="완료"
         disabled={!isAllEntered}
         className="fixed inset-x-0 bottom-20 z-10 m-auto max-w-[23.75rem] bg-white"
       />
-
       <BottomUpModal
         isModalOpen={isModalOpen}
-        snap={ModalTabList.find((modalTab) => modalTab.name === modalName)?.snap || 0}
+        snap={modalTabList.find((modalTab) => modalTab.name === modalName)?.snap || 0}
         disableDrag={true}
         isLeftButton={modalName !== 'meetingDate'}
         handleLeftButtonClick={handlePreviousButton}
@@ -190,7 +190,7 @@ export default function InputForm() {
         isRightButton
         text={
           <div className="text-18">
-            {ModalTabList.find((modalTab) => modalTab.name === modalName)?.title || ''}
+            {modalTabList.find((modalTab) => modalTab.name === modalName)?.title || ''}
           </div>
         }
       >
