@@ -29,13 +29,11 @@ export default function InputForm() {
   const { setJoinValue } = useJoin();
 
   const onSubmitEmail: SubmitHandler<InputType> = (data: InputType) => {
-    console.log(data.email);
     openModal('modal');
     setJoinValue('email', data.email);
     // 인증번호 전송
   };
   const onSubmitCertificateNumber: SubmitHandler<InputType> = (data: InputType) => {
-    console.log(data.certificateNumber);
     // 인증번호 확인
     router.push('/join/step4');
   };

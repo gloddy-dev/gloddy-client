@@ -59,14 +59,12 @@ export default function InputForm() {
   };
 
   const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
-    console.log(data.phoneNumber);
     setJoinValue('phoneNumber', data.phoneNumber);
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
 
   const onSubmitCertificateNumber: SubmitHandler<InputType> = (data) => {
-    console.log(data.certificateNumber);
     // 인증번호 확인 API
     router.push('/join/step2');
   };
