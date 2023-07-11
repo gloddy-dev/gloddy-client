@@ -14,16 +14,17 @@ import { useModal } from '@/hooks/useModal';
 import useJoin from '@/store/useJoin';
 
 import type { BirthdayValueType, ImageType } from '@/types';
+
 type InputType = {
   nickname: string;
   profileImage: ImageType;
   birthday: BirthdayValueType;
-  sex: string;
+  gender: string;
 };
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
-  const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
+  const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'gender'>();
   const { setJoinValue } = useJoin();
   const router = useRouter();
 
@@ -39,7 +40,7 @@ export default function InputForm() {
         month: '',
         date: '',
       },
-      sex: '',
+      gender: '',
     },
   });
 
@@ -48,26 +49,26 @@ export default function InputForm() {
     !!watch('birthday').year &&
     !!watch('birthday').month &&
     !!watch('birthday').date &&
-    !!watch('sex');
+    !!watch('gender');
 
   const handleModalNextButton = () => {
     if (modalName === 'birthday') {
-      openModal('sex');
+      openModal('gender');
     }
-    if (modalName === 'sex') {
-      if (watch('sex') === '') {
-        setValue('sex', '남성');
+    if (modalName === 'gender') {
+      if (watch('gender') === '') {
+        setValue('gender', '남성');
       }
       closeModal();
     }
   };
 
   const onSubmitForm = (data: InputType) => {
-    const { nickname, profileImage, birthday, sex } = data;
-    // TODO : profileImage 백엔드와 소통 필요
+    const { nickname, profileImage, birthday, gender } = data;
+    // TODO profileImage 추가 : 백엔드와 소통 필요
     setJoinValue('name', nickname);
     setJoinValue('birth', `${birthday.year}-${birthday.month}-${birthday.date}`);
-    setJoinValue('gender', sex);
+    setJoinValue('gender', gender);
     router.push('/join/step5');
   };
 
@@ -109,8 +110,8 @@ export default function InputForm() {
           <p className="text-14">성별</p>
           <Input
             placeholder="성별을 선택해주세요."
-            onClick={() => openModal('sex')}
-            value={watch('sex')}
+            onClick={() => openModal('gender')}
+            value={watch('gender')}
             readOnly
           />
         </article>
@@ -142,10 +143,10 @@ export default function InputForm() {
             setBirthdayValue={(value: BirthdayValueType) => setValue('birthday', value)}
           />
         )}
-        {modalName === 'sex' && (
+        {modalName === 'gender' && (
           <SexSwipePicker
-            sexValue={watch('sex')}
-            setSexValue={(value: string) => setValue('sex', value)}
+            sexValue={watch('gender')}
+            setSexValue={(value: string) => setValue('gender', value)}
           />
         )}
         <Button
