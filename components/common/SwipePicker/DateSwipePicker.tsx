@@ -1,4 +1,4 @@
-import type { BirthdayValueType } from '@/types/date';
+import type { BirthdayValueType } from '@/types';
 import getDate from '@/utils/date';
 
 import SwipePicker from './SwipePicker';
@@ -24,26 +24,9 @@ export default function DateSwipePicker({ birthdayValue, setBirthdayValue }: Dat
 
   return (
     <div className="relative flex h-180">
-      <SwipePicker
-        selectList={yearList}
-        isFirst
-        setValue={setValueByKeyType}
-        initialValue={birthdayValue.year}
-        keyType={'year'}
-      />
-      <SwipePicker
-        selectList={monthList}
-        setValue={setValueByKeyType}
-        initialValue={birthdayValue.month}
-        keyType={'month'}
-      />
-      <SwipePicker
-        selectList={dateList}
-        isLast
-        setValue={setValueByKeyType}
-        initialValue={birthdayValue.date}
-        keyType={'date'}
-      />
+      <SwipePicker selectList={yearList} isFirst setValue={setValueByKeyType} keyType={'year'} />
+      <SwipePicker selectList={monthList} setValue={setValueByKeyType} keyType={'month'} />
+      <SwipePicker selectList={dateList} isLast setValue={setValueByKeyType} keyType={'date'} />
     </div>
   );
 }

@@ -57,7 +57,6 @@ export default function InputForm() {
     if (modalName === 'gender') {
       if (watch('gender') === '') {
         setValue('gender', '남성');
-        return;
       }
       closeModal();
     }
@@ -147,10 +146,7 @@ export default function InputForm() {
           />
         )}
         {modalName === 'gender' && (
-          <SexSwipePicker
-            sexValue={watch('gender')}
-            setSexValue={(value: string) => setValue('gender', value)}
-          />
+          <SexSwipePicker setSexValue={(value: string) => setValue('gender', value)} />
         )}
         <Button
           text={modalName === 'birthday' ? '다음' : '완료'}
