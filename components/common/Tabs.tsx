@@ -1,6 +1,6 @@
 'use client';
 import clsx from 'clsx';
-import { type PropsWithChildren, createContext, useContext, useState } from 'react';
+import { type PropsWithChildren, createContext, useContext, useEffect, useState } from 'react';
 import type { StrictPropsWithChildren } from '@/types';
 
 const TabsContext = createContext<{
@@ -26,12 +26,21 @@ function List({ children }: StrictPropsWithChildren) {
 interface TabProps {
   value: string;
   text: string;
+  queryString?: string;
 }
 
-function Tab({ value, text }: TabProps) {
+function Tab({ value, text, queryString }: TabProps) {
   const { activeTab, setActiveTab } = useContext(TabsContext)!;
 
   const isActive = activeTab === value;
+
+  useEffect(() => {
+    if (isActive) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', queryString ?? value);
+      window.history.replaceState(null, '', url.toString());
+    }
+  }, [isActive, queryString, value]);
 
   return (
     <div
