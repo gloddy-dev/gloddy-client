@@ -1,4 +1,4 @@
-export const pxToRem = {
+const pxToRem = {
   '0': '0rem',
   '1': '0.0625rem',
   '2': '0.125rem',
@@ -1025,3 +1025,17 @@ export const pxToRem = {
   '1023': '63.9375rem',
   '1024': '64rem',
 } as const;
+
+export const pxToRemTailwind = {
+  spacing: pxToRem,
+  maxWidth: pxToRem,
+  maxHeight: pxToRem,
+  minWidth: pxToRem,
+  minHeight: pxToRem,
+  fontSize: pxToRem,
+  borderRadius: pxToRem,
+  borderWidth: pxToRem,
+  letterSpacing: pxToRem,
+  lineHeight: pxToRem,
+  flex: pxToRem,
+};

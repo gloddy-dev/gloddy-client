@@ -44,9 +44,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body className="flex h-[100dvh] w-screen justify-center bg-slate-50 ">
+      <body className="flex h-[100dvh] w-screen justify-center bg-slate-50">
         <Provider>
-          <div className="relative h-full w-full max-w-450 overflow-y-scroll bg-white">
+          <div className="relative h-full w-full max-w-450 overflow-y-scroll bg-white text-black">
             {children}
           </div>
         </Provider>

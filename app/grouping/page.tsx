@@ -38,7 +38,7 @@ const DUMMY_GROUPING_DATA = [
 
 export default function Grouping() {
   return (
-    <div className="relative h-full">
+    <div className="relative h-full p-20">
       <section className="mb-17 flex justify-between text-16 font-700">
         <p>그루핑</p>
         <Image src="/assets/search_navbar.svg" alt="search" width={15} height={15} />
