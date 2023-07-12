@@ -31,7 +31,6 @@ export default function NumberSwipePicker({ numberValue = 0, setNumberValue }: P
       }}
       modules={[FreeMode]}
       onSlideChange={(swiper) => setNumberValue && setNumberValue(SELECT_LIST[swiper.activeIndex])}
-      initialSlide={numberValue ? SELECT_LIST.indexOf(numberValue as never) : 0}
     >
       {SELECT_LIST.map((slideContent) => (
         <SwiperSlide key={slideContent} className="overflow-visible">
