@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
+import DivisionSpacing from '@/components/common/DivisionSpacing';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
 import { Input, TextArea } from '@/components/common/Input';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
@@ -74,7 +75,7 @@ const inputDefaultValues = {
     toAmPm: 'AM',
   },
   meetingLocation: '경희대학교',
-  meetingNumber: 0,
+  // meetingNumber: 0,
 };
 
 function getDayName(dayIndex: number) {
@@ -117,6 +118,7 @@ export default function InputForm() {
         openModal('meetingNumber');
         break;
       case 'meetingNumber':
+        if (watch('meetingNumber') === undefined) setValue('meetingNumber', 1);
         closeModal();
         break;
       default:
@@ -230,7 +232,7 @@ export default function InputForm() {
                 dateValue={watch('date')}
                 setDateValue={(date: Date) => setValue('date', date)}
               />
-              <div className="my-10 h-15 bg-white2" />
+              <DivisionSpacing />
               <TimeSwipePicker
                 timeValue={watch('time')}
                 setTimeValue={(time: TimeType) => setValue('time', time)}
@@ -247,7 +249,7 @@ export default function InputForm() {
           <Button
             text={modalName === 'meetingNumber' ? '완료' : '다음'}
             onClick={handleNextButton}
-            className="fixed inset-x-0 bottom-20 mx-auto max-w-380 "
+            className="fixed inset-x-0 bottom-20 mx-auto max-w-380"
           />
         </div>
       </BottomUpModal>
