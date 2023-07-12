@@ -138,6 +138,7 @@ export default function InputForm() {
       watch('time').toAmPm
     }`;
   }
+  console.log(watch('meetingLocation'), watch('meetingNumber'));
 
   const handleSubmitButton = (data: InputType) => {
     // TODO : 서버 api 전송
@@ -199,7 +200,13 @@ export default function InputForm() {
         <InputSection
           key={modalTab.title}
           title={modalTab.title}
-          value={modalTab.name === 'meetingDate' ? displayDate() : watch(modalTab.name)}
+          value={
+            modalTab.name === 'meetingDate'
+              ? displayDate()
+              : !!watch(modalTab.name)
+              ? watch(modalTab.name)
+              : ''
+          }
           placeholder={modalTab.message}
           onClick={() => openModal(modalTab.name)}
         />
@@ -242,8 +249,8 @@ export default function InputForm() {
           {modalName === 'meetingLocation' && <div>{/* TODO : 모임 위치 */}</div>}
           {modalName === 'meetingNumber' && (
             <NumberSwipePicker
-              numberValue={watch('meetingNumber')}
               setNumberValue={(value: number) => setValue('meetingNumber', value)}
+              numberValue={watch('meetingNumber')}
             />
           )}
           <Button

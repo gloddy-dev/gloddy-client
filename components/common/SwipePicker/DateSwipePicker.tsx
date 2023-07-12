@@ -24,9 +24,26 @@ export default function DateSwipePicker({ birthdayValue, setBirthdayValue }: Dat
 
   return (
     <div className="relative flex h-180">
-      <SwipePicker selectList={yearList} isFirst setValue={setValueByKeyType} keyType={'year'} />
-      <SwipePicker selectList={monthList} setValue={setValueByKeyType} keyType={'month'} />
-      <SwipePicker selectList={dateList} isLast setValue={setValueByKeyType} keyType={'date'} />
+      <SwipePicker
+        selectList={yearList}
+        isFirst
+        setValue={setValueByKeyType}
+        keyType={'year'}
+        initialValue={birthdayValue.year}
+      />
+      <SwipePicker
+        selectList={monthList}
+        setValue={setValueByKeyType}
+        keyType={'month'}
+        initialValue={birthdayValue.month}
+      />
+      <SwipePicker
+        selectList={dateList}
+        isLast
+        setValue={setValueByKeyType}
+        keyType={'date'}
+        initialValue={birthdayValue.date}
+      />
     </div>
   );
 }
