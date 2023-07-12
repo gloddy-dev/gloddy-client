@@ -15,18 +15,16 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export default function Button(props: ButtonProps) {
-  const {
-    text,
-    color = 'blue',
-    onClick,
-    href,
-    disabled,
-    type = 'button',
-    className,
-    ...rest
-  } = props;
-
+export default function Button({
+  text,
+  color = 'blue',
+  onClick,
+  href,
+  disabled,
+  type = 'button',
+  className,
+  ...rest
+}: ButtonProps) {
   return (
     <div
       className={clsx(
