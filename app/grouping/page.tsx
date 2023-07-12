@@ -3,9 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import GroupingCard from '@/app/grouping/GroupingCard';
 import { BottomNavigationBar } from '@/components/common/NavigationBar';
 import Spacing from '@/components/common/Spacing';
+
+import GroupingCard from './components/GroupingCard';
+import GroupingTopNavigationBar from './components/GroupingTopNavigationBar';
 
 const DUMMY_GROUPING_DATA = [
   {
@@ -40,7 +42,7 @@ const DUMMY_GROUPING_DATA = [
 export default function Grouping() {
   return (
     <div className="relative h-full">
-      <TopNavigationBar />
+      <GroupingTopNavigationBar />
 
       <Spacing size={18} />
 
