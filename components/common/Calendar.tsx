@@ -54,7 +54,7 @@ export default function Calendar({ dateValue, setDateValue }: Props) {
               className="mr-42 h-12 w-6"
               disabled={prevMonthButtonDisabled}
             >
-              <Image src="/assets/left_arrow.svg" alt="arrow-icon" width={6} height={12} />
+              <Image src="/assets/arrow_left.svg" alt="arrow-icon" width={6} height={12} />
             </button>
             <button
               type="button"
@@ -62,7 +62,7 @@ export default function Calendar({ dateValue, setDateValue }: Props) {
               className="h-12 w-6"
               disabled={nextMonthButtonDisabled}
             >
-              <Image src="/assets/right_arrow.svg" alt="arrow-icon" width={6} height={12} />
+              <Image src="/assets/arrow_right.svg" alt="arrow-icon" width={6} height={12} />
             </button>
           </div>
         </div>
