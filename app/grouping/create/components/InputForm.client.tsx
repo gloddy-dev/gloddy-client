@@ -138,7 +138,6 @@ export default function InputForm() {
       watch('time').toAmPm
     }`;
   }
-  console.log(watch('meetingLocation'), watch('meetingNumber'));
 
   const handleSubmitButton = (data: InputType) => {
     // TODO : 서버 api 전송
