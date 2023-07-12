@@ -50,9 +50,17 @@ export default function InputForm() {
   const isAllEntered = isBirthDayEntered && !!watch('nickname') && !!watch('gender');
 
   const handleModalNextButton = () => {
-    if (modalName === 'birthday') openModal('gender');
-    if (modalName === 'gender' && watch('gender') === '') setValue('gender', '남성');
-    if (modalName === 'gender') closeModal();
+    if (modalName === 'birthday') {
+      openModal('gender');
+      return;
+    }
+    if (modalName === 'gender') {
+      if (watch('gender') === '') {
+        setValue('gender', '남성');
+        return;
+      }
+      closeModal();
+    }
   };
 
   const onSubmitForm = (data: InputType) => {
