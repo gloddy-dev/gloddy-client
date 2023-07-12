@@ -2,8 +2,8 @@
 
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 
+import { AuthTitleTextMessage } from '../AuthTitleTextMessage';
 import InputForm from './InputForm';
 
 export default function Step3Page() {
