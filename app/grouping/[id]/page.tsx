@@ -1,8 +1,8 @@
 import TopNavigationBar from './components/TopNavigationBar.client';
 import TopSection from './components/TopSection.server';
 import ApplyButton from './components/ApplyButton.client';
-import DetailContent from './components/DetailContent.server';
-import BoardContent from './components/BoardContent.server';
+import DetailContent from './components/detail/DetailContent.server';
+import BoardContent from './components/board/BoardContent.server';
 import ContentSection from './components/ContentSection.client';
 
 const DETAIL_DUMMY_DATA = {
