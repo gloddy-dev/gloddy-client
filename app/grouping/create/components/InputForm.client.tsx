@@ -13,7 +13,6 @@ import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
-import GroupingCreateTopNavigationBar from './GroupingCreateTopNavigationBar.server';
 import InputSection from './InputSection.server';
 
 import type { ImageType, TimeType } from '@/types';
@@ -75,6 +74,7 @@ const inputDefaultValues = {
     toAmPm: 'AM',
   },
   meetingLocation: '경희대학교',
+  meetingNumber: 0,
 };
 
 function getDayName(dayIndex: number) {
@@ -96,14 +96,32 @@ export default function InputForm() {
   const { isModalOpen, openModal, closeModal, modalName } = useModal<ModalNameType>();
 
   const handlePreviousButton = () => {
-    if (modalName === 'meetingNumber') openModal('meetingLocation');
-    if (modalName === 'meetingLocation') openModal('meetingDate');
+    switch (modalName) {
+      case 'meetingNumber':
+        openModal('meetingLocation');
+        break;
+      case 'meetingLocation':
+        openModal('meetingDate');
+        break;
+      default:
+        console.log('No matching modalName found');
+    }
   };
 
   const handleNextButton = () => {
-    if (modalName === 'meetingDate') openModal('meetingLocation');
-    if (modalName === 'meetingLocation') openModal('meetingNumber');
-    else closeModal();
+    switch (modalName) {
+      case 'meetingDate':
+        openModal('meetingLocation');
+        break;
+      case 'meetingLocation':
+        openModal('meetingNumber');
+        break;
+      case 'meetingNumber':
+        closeModal();
+        break;
+      default:
+        closeModal();
+    }
   };
 
   function displayDate() {
@@ -139,7 +157,6 @@ export default function InputForm() {
 
   return (
     <div>
-      <GroupingCreateTopNavigationBar />
       <ImageFrame
         setImage={(value: ImageType) => setValue('image', value)}
         imgRef={imgRef}
