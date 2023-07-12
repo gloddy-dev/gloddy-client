@@ -1,13 +1,13 @@
-import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import Spacing from '@/components/common/Spacing';
 
-import { AuthTitleTextMessage } from '../AuthTitleTextMessage';
+import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage';
+import JoinTopNavigationBar from '../components/JoinTopNavigationBar';
 import InputForm from './InputForm';
 
 export default function Step5Page() {
   return (
     <div className="relative h-full ">
-      <TopNavigationBar text="회원가입" />
+      <JoinTopNavigationBar />
 
       <AuthTitleTextMessage text={`사용자님의 성격을\n선택해주세요!`} />
 

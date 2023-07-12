@@ -1,11 +1,10 @@
-import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-
-import InputForm from './InputForm';
+import JoinTopNavigationBar from '../components/JoinTopNavigationBar';
+import InputForm from './components/InputForm';
 
 export default function Step4Page() {
   return (
     <div className="relative h-full">
-      <TopNavigationBar text="회원가입" />
+      <JoinTopNavigationBar />
 
       <InputForm />
     </div>
