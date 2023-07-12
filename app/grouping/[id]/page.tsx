@@ -1,10 +1,9 @@
 import TopNavigationBar from './components/TopNavigationBar.client';
-import TopSection from './components/TopSection.client';
-import MemberSection from './components/MemberSection.server';
-import TimeSection from './components/TimeSection.server';
-import LocationSection from './components/LocationSection.server';
+import TopSection from './components/TopSection.server';
 import ApplyButton from './components/ApplyButton.client';
-import Spacing from '@/components/common/Spacing';
+import DetailContent from './components/DetailContent.server';
+import BoardContent from './components/BoardContent.server';
+import ContentSection from './components/ContentSection.client';
 
 const DETAIL_DUMMY_DATA = {
   image: '/assets/main_logo.png',
@@ -16,7 +15,7 @@ const DETAIL_DUMMY_DATA = {
   time: '04.27.FRI 7PM',
 };
 
-export default function DetailPage({
+export default function GroupingByIdPage({
   params: { id },
 }: {
   params: {
@@ -28,15 +27,11 @@ export default function DetailPage({
   return (
     <main>
       <TopNavigationBar />
-      <TopSection id={id} title={title} thumbnailUrl={image} description={description} />
-      <div className="p-20">
-        <MemberSection />
-        <Spacing size={18} />
-        <TimeSection time={time} />
-        <Spacing size={18} />
-        <LocationSection location={location} />
-        <Spacing size={100} />
-      </div>
+      <TopSection title={title} thumbnailUrl={image} description={description} />
+      <ContentSection
+        detailNode={<DetailContent location={location} time={time} />}
+        boardNode={<BoardContent />}
+      />
       <ApplyButton />
     </main>
   );

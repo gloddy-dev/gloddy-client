@@ -1,16 +1,13 @@
-'use client';
 import Spacing from '@/components/common/Spacing';
-import Tabs from '@/components/common/Tabs';
 import Image from 'next/image';
 
 interface TopSectionProps {
-  id: string;
   thumbnailUrl: string;
   title: string;
-  description?: string;
+  description: string;
 }
 
-export default function TopSection({ id, title, thumbnailUrl, description }: TopSectionProps) {
+export default function TopSection({ title, thumbnailUrl, description }: TopSectionProps) {
   return (
     <section>
       <div className="relative h-350">
@@ -29,10 +26,6 @@ export default function TopSection({ id, title, thumbnailUrl, description }: Top
         <Spacing size={8} />
         <p className="text-12 font-400 text-gray2">{description}</p>
       </div>
-      <Tabs>
-        <Tabs.Tab title="상세정보" url={`/grouping/${id}`} />
-        <Tabs.Tab title="게시판" url={`/grouping/${id}/board`} />
-      </Tabs>
     </section>
   );
 }
