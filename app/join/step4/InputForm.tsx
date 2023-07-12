@@ -25,7 +25,7 @@ type InputType = {
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
   const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'gender'>();
-  const { setMultipleJoinValues } = useJoin();
+  const { setJoinValue } = useJoin();
   const router = useRouter();
 
   const { register, watch, handleSubmit, setValue } = useForm<InputType>({
@@ -58,7 +58,7 @@ export default function InputForm() {
   const onSubmitForm = (data: InputType) => {
     const { nickname, profileImage, birthday, gender } = data;
     // TODO profileImage 추가 : 백엔드와 소통 필요
-    setMultipleJoinValues({
+    setJoinValue({
       gender,
       name: nickname,
       birth: `${birthday.year}-${birthday.month}-${birthday.date}`,
