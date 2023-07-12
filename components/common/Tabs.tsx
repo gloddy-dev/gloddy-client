@@ -4,9 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import type { StrictPropsWithChildren } from '@/types';
 
 export default function Tabs({ children }: StrictPropsWithChildren) {
-  return (
-    <div className="flex h-50 border-collapse border-b-[.0625rem] border-white3">{children}</div>
-  );
+  return <div className="flex h-50 border-b border-white3">{children}</div>;
 }
 
 interface TabProps {
