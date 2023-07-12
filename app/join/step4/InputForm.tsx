@@ -1,6 +1,8 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
@@ -9,74 +11,87 @@ import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
 import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
 import { useModal } from '@/hooks/useModal';
+import useJoin from '@/store/useJoin';
 
-import type { BirthdayValueType } from '@/types/date';
-import type { ImageType } from '@/types/global';
-import type { JoinStep4InputValue } from '@/types/inputValue';
+import type { BirthdayValueType, ImageType } from '@/types';
+
+type InputType = {
+  nickname: string;
+  profileImage: ImageType;
+  birthday: BirthdayValueType;
+  gender: string;
+};
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
-  const [inputValue, setInputValue] = useState<JoinStep4InputValue>({
-    profileImage: {
-      imageFile: null,
-      imageBlob: '',
+  const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'gender'>();
+  const { setJoinValue } = useJoin();
+  const router = useRouter();
+
+  const { register, watch, handleSubmit, setValue } = useForm<InputType>({
+    defaultValues: {
+      nickname: '',
+      profileImage: {
+        imageFile: null,
+        imageBlob: '',
+      },
+      birthday: {
+        year: '',
+        month: '',
+        date: '',
+      },
+      gender: '',
     },
-    birthday: {
-      year: '',
-      month: '',
-      date: '',
-    },
-    sex: '',
   });
-  const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'sex'>();
 
-  const setProfileImage = (value: ImageType) => {
-    setInputValue((prev) => ({
-      ...prev,
-      profileImage: value,
-    }));
-  };
+  const isBirthDayEntered =
+    !!watch('birthday').year && !!watch('birthday').month && !!watch('birthday').date;
 
-  const setBirthdayValue = (value: BirthdayValueType) => {
-    setInputValue((prev) => ({
-      ...prev,
-      birthday: value,
-    }));
-  };
-
-  const setSexValue = (value: string) => {
-    setInputValue((prev) => ({
-      ...prev,
-      sex: value,
-    }));
-  };
+  const isAllEntered = isBirthDayEntered && !!watch('nickname') && !!watch('gender');
 
   const handleModalNextButton = () => {
     if (modalName === 'birthday') {
-      openModal('sex');
+      openModal('gender');
+      return;
     }
-    if (modalName === 'sex') {
-      if (inputValue.sex === '') {
-        setInputValue((prev) => ({
-          ...prev,
-          sex: '남성',
-        }));
+    if (modalName === 'gender') {
+      if (watch('gender') === '') {
+        setValue('gender', '남성');
+        return;
       }
       closeModal();
     }
   };
+
+  const onSubmitForm = (data: InputType) => {
+    const { nickname, profileImage, birthday, gender } = data;
+    // TODO profileImage 추가 : 백엔드와 소통 필요
+    setJoinValue({
+      gender,
+      name: nickname,
+      birth: `${birthday.year}-${birthday.month}-${birthday.date}`,
+    });
+
+    router.push('/join/step5');
+  };
+
   return (
     <div>
       <ImageFrame
-        setImage={setProfileImage}
+        setImage={(value: ImageType) => setValue('profileImage', value)}
         imgRef={imgRef}
-        imageBlob={inputValue.profileImage.imageBlob}
+        imageBlob={watch('profileImage').imageBlob}
       />
 
       <section className="flex flex-col gap-10">
         <article className="flex flex-col gap-5">
           <p className="text-14">닉네임</p>
-          <Input placeholder="닉네임을 입력해주세요." />
+          <Input
+            placeholder="닉네임을 입력해주세요."
+            register={register('nickname', {
+              required: true,
+            })}
+          />
         </article>
 
         <article className="flex flex-col gap-5">
@@ -85,10 +100,10 @@ export default function InputForm() {
             placeholder="생년월일을 선택해주세요."
             onClick={() => openModal('birthday')}
             value={
-              inputValue.birthday.year &&
-              inputValue.birthday.month &&
-              inputValue.birthday.date &&
-              `${inputValue.birthday.year} ${inputValue.birthday.month} ${inputValue.birthday.date}`
+              watch('birthday').year &&
+              watch('birthday').month &&
+              watch('birthday').date &&
+              `${watch('birthday').year} ${watch('birthday').month} ${watch('birthday').date}`
             }
             readOnly
           />
@@ -98,27 +113,20 @@ export default function InputForm() {
           <p className="text-14">성별</p>
           <Input
             placeholder="성별을 선택해주세요."
-            onClick={() => openModal('sex')}
-            value={inputValue.sex}
+            onClick={() => openModal('gender')}
+            value={watch('gender')}
             readOnly
           />
         </article>
       </section>
 
-      <section className="absolute bottom-0 w-full ">
-        <Button
-          text="다음"
-          disabled={
-            !(
-              inputValue.birthday.date &&
-              inputValue.birthday.month &&
-              inputValue.birthday.year &&
-              inputValue.sex
-            )
-          }
-          href="/join/step6"
-        />
-      </section>
+      <Button
+        text={isAllEntered ? '완료' : '다음'}
+        disabled={!isAllEntered}
+        type="submit"
+        className="absolute bottom-0 w-full"
+        onClick={handleSubmit(onSubmitForm)}
+      />
 
       <BottomUpModal
         isModalOpen={isModalOpen}
@@ -134,20 +142,21 @@ export default function InputForm() {
       >
         {modalName === 'birthday' && (
           <DateSwipePicker
-            birthdayValue={inputValue.birthday}
-            setBirthdayValue={setBirthdayValue}
+            birthdayValue={watch('birthday')}
+            setBirthdayValue={(value: BirthdayValueType) => setValue('birthday', value)}
           />
         )}
-        {modalName === 'sex' && (
-          <SexSwipePicker sexValue={inputValue.sex} setSexValue={setSexValue} />
+        {modalName === 'gender' && (
+          <SexSwipePicker
+            sexValue={watch('gender')}
+            setSexValue={(value: string) => setValue('gender', value)}
+          />
         )}
         <Button
-          text="다음"
-          disabled={
-            modalName === 'birthday' &&
-            !(inputValue.birthday.year && inputValue.birthday.month && inputValue.birthday.date)
-          }
+          text={modalName === 'birthday' ? '다음' : '완료'}
+          disabled={modalName === 'birthday' && !isBirthDayEntered}
           onClick={handleModalNextButton}
+          className="absolute bottom-0 w-full"
         />
       </BottomUpModal>
     </div>

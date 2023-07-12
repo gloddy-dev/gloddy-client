@@ -1,8 +1,8 @@
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import Spacing from '@/components/common/Spacing';
-import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 
+import { AuthTitleTextMessage } from '../AuthTitleTextMessage';
 import InputForm from './InputForm';
 
 export default function Step1Page() {

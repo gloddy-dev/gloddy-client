@@ -1,4 +1,4 @@
-import { IS_PRODUCTION } from '@/constants/common';
+import { IS_PRODUCTION } from '@/constants';
 
 import useDidMount from './common/useDidMount/useDidMount';
 

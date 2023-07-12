@@ -1,7 +1,7 @@
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import Spacing from '@/components/common/Spacing';
-import { AuthTitleTextMessage } from '@/components/TextMessage/AuthTextMessage';
 
+import { AuthTitleTextMessage } from '../AuthTitleTextMessage';
 import InputForm from './InputForm';
 
 export default function Step5Page() {
@@ -13,9 +13,9 @@ export default function Step5Page() {
 
       <p className="text-14 text-gray2">3개를 선택해주세요.</p>
 
-      <InputForm />
-
       <Spacing size={30} />
+
+      <InputForm />
     </div>
   );
 }

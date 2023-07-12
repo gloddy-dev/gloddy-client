@@ -83,7 +83,7 @@ export default function BottomModal() {
       <section>
         <Button
           text="완료"
-          disabled={agreeCheckList.some((checkItem) => !checkItem)}
+          disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
           onClick={closeModal}
         />
       </section>
