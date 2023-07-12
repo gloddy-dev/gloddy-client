@@ -1,7 +1,10 @@
 'use client';
 
+import Link from 'next/link';
+
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
+import { INSTAGRAM_URL } from '@/constants/common';
 
 import { AuthTitleTextMessage } from '../AuthTitleTextMessage';
 import InputForm from './InputForm';
@@ -35,7 +38,7 @@ export default function Step3Page() {
           text={
             <span className="text-14">
               재학생 이메일 발급 <br />
-              https://www.instagram.com/gloddykorea/
+              <Link href={INSTAGRAM_URL}>{INSTAGRAM_URL}</Link>
             </span>
           }
           checked
