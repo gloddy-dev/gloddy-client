@@ -1,7 +1,7 @@
-import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage';
-import JoinTopNavigationBar from '../components/JoinTopNavigationBar';
-import BottomModal from './components/BottomModal';
-import InputForm from './components/InputForm';
+import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage.server';
+import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
+import BottomModal from './components/BottomModal.client';
+import InputForm from './components/InputForm.client';
 
 export default function Step2Page() {
   return (

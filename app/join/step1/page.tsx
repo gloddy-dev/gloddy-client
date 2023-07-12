@@ -1,9 +1,9 @@
 import Spacing from '@/components/common/Spacing';
 
-import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage';
-import JoinTopNavigationBar from '../components/JoinTopNavigationBar';
-import CheckboxSection from './components/CheckboxSection';
-import InputForm from './components/InputForm';
+import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage.server';
+import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
+import CheckboxSection from './components/CheckboxSection.server';
+import InputForm from './components/InputForm.client';
 
 export default function Step1Page() {
   return (

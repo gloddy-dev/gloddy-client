@@ -13,7 +13,7 @@ import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
-import InputSection from './InputSection';
+import InputSection from './InputSection.server';
 
 import type { ImageType, TimeType } from '@/types';
 

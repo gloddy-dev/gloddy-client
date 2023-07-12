@@ -5,9 +5,9 @@ import Link from 'next/link';
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import { INSTAGRAM_URL } from '@/constants';
 
-import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage';
-import JoinTopNavigationBar from '../components/JoinTopNavigationBar';
-import InputForm from './components/InputForm';
+import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage.server';
+import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
+import InputForm from './components/InputForm.client';
 
 export default function Step3Page() {
   return (
