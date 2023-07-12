@@ -1,3 +1,9 @@
+import Notice from './Notice';
+
 export default function BoardContent() {
-  return <div className="h-900">게시판</div>;
+  return (
+    <div>
+      <Notice />
+    </div>
+  );
 }
