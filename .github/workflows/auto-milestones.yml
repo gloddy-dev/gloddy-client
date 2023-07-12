@@ -2,7 +2,10 @@ name: 'Auto Milestone Assign'
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened, edited]
+  issues:
+    types: [opened, reopened, edited]
+  
 
 jobs:
   assign-milestone:
@@ -12,4 +15,4 @@ jobs:
       - uses: zoispag/action-assign-milestone@v1
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
-          milestone: '7월 1주차 Sprint'
+          milestone: '7월 2주차 Sprint'

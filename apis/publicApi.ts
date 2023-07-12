@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { BASE_API_URL } from '@/constants/common';
+
+import { BASE_API_URL } from '@/constants';
+
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 const publicApi = axios.create({
