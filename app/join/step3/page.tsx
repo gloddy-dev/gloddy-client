@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
 import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
-import { INSTAGRAM_URL } from '@/constants/common';
+import { INSTAGRAM_URL } from '@/constants';
 
 import { AuthTitleTextMessage } from '../AuthTitleTextMessage';
 import InputForm from './InputForm';
