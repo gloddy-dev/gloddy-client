@@ -2,7 +2,7 @@ import Spacing from '@/components/common/Spacing';
 
 import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage';
 import JoinTopNavigationBar from '../components/JoinTopNavigationBar';
-import InputForm from './InputForm';
+import InputForm from './components/InputForm';
 
 export default function Step5Page() {
   return (
