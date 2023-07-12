@@ -13,6 +13,7 @@ import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 import { useModal } from '@/hooks/useModal';
 
+import GroupingCreateTopNavigationBar from './GroupingCreateTopNavigationBar.server';
 import InputSection from './InputSection.server';
 
 import type { ImageType, TimeType } from '@/types';
@@ -138,6 +139,7 @@ export default function InputForm() {
 
   return (
     <div>
+      <GroupingCreateTopNavigationBar />
       <ImageFrame
         setImage={(value: ImageType) => setValue('image', value)}
         imgRef={imgRef}
