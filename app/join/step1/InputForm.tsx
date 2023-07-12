@@ -59,7 +59,7 @@ export default function InputForm() {
   };
 
   const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
-    setJoinValue('phoneNumber', data.phoneNumber);
+    setJoinValue({ phoneNumber: data.phoneNumber });
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };

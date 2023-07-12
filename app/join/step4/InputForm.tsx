@@ -25,7 +25,7 @@ type InputType = {
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
   const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'gender'>();
-  const { setJoinValue } = useJoin();
+  const { setMultipleJoinValues } = useJoin();
   const router = useRouter();
 
   const { register, watch, handleSubmit, setValue } = useForm<InputType>({
@@ -50,23 +50,20 @@ export default function InputForm() {
   const isAllEntered = isBirthDayEntered && !!watch('nickname') && !!watch('gender');
 
   const handleModalNextButton = () => {
-    if (modalName === 'birthday') {
-      openModal('gender');
-    }
-    if (modalName === 'gender') {
-      if (watch('gender') === '') {
-        setValue('gender', '남성');
-      }
-      closeModal();
-    }
+    if (modalName === 'birthday') openModal('gender');
+    if (modalName === 'gender' && watch('gender') === '') setValue('gender', '남성');
+    if (modalName === 'gender') closeModal();
   };
 
   const onSubmitForm = (data: InputType) => {
     const { nickname, profileImage, birthday, gender } = data;
     // TODO profileImage 추가 : 백엔드와 소통 필요
-    setJoinValue('name', nickname);
-    setJoinValue('birth', `${birthday.year}-${birthday.month}-${birthday.date}`);
-    setJoinValue('gender', gender);
+    setMultipleJoinValues({
+      gender,
+      name: nickname,
+      birth: `${birthday.year}-${birthday.month}-${birthday.date}`,
+    });
+
     router.push('/join/step5');
   };
 

@@ -30,7 +30,7 @@ export default function InputForm() {
 
   const onSubmitEmail: SubmitHandler<InputType> = (data: InputType) => {
     openModal('modal');
-    setJoinValue('email', data.email);
+    setJoinValue({ email: data.email });
     // 인증번호 전송
   };
   const onSubmitCertificateNumber: SubmitHandler<InputType> = (data: InputType) => {

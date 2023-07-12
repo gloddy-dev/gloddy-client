@@ -41,7 +41,7 @@ export default function InputForm() {
   const { setJoinValue } = useJoin();
 
   const onSubmit = (data: InputType) => {
-    setJoinValue('school', data.school);
+    setJoinValue({ school: data.school });
     router.push('/join/step3');
   };
 
