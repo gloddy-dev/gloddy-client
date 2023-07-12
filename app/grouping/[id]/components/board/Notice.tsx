@@ -34,16 +34,15 @@ interface NoticeItemProps {
 
 function NoticeItem({ title, onClick }: NoticeItemProps) {
   return (
-    <div className="flex items-center gap-8">
+    <div className="flex items-center gap-8" onClick={onClick}>
       <Image src="/assets/notice.svg" alt="notice" width={15} height={15} />
-      {title}
+      <p className="text-12 text-gray">{title}</p>
       <Image
         src="/assets/arrow_right_gray.svg"
         alt="right"
         width={7}
         height={14}
         className="cursor-pointer"
-        onClick={onClick}
       />
     </div>
   );
