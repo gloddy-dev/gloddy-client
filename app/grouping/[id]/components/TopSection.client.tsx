@@ -1,4 +1,5 @@
 'use client';
+import Spacing from '@/components/common/Spacing';
 import Tabs from '@/components/common/Tabs';
 import Image from 'next/image';
 
@@ -23,7 +24,9 @@ export default function TopSection({ id, title, thumbnailUrl, description }: Top
         />
       </div>
       <div className="p-20">
-        <h1 className="mb-8 mt-16 text-18 font-700 text-gray">{title}</h1>
+        <Spacing size={16} />
+        <h1 className="text-18 font-700 text-gray">{title}</h1>
+        <Spacing size={8} />
         <p className="text-12 font-400 text-gray2">{description}</p>
       </div>
       <Tabs>

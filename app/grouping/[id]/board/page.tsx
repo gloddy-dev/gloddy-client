@@ -1,5 +1,5 @@
-import TopNavigationBar from '../TopNavigationBar';
-import TopSection from '../TopSection';
+import TopNavigationBar from '../components/TopNavigationBar.client';
+import TopSection from '../components/TopSection.client';
 
 const DETAIL_DUMMY_DATA = {
   image: '/assets/location.svg',

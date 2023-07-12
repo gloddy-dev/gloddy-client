@@ -1,9 +1,9 @@
-import TopNavigationBar from './TopNavigationBar';
-import TopSection from './TopSection';
-import MemberSection from './MemberSection';
-import TimeSection from './TimeSection';
-import LocationSection from './LocationSection';
-import ApplyButton from './ApplyButton';
+import TopNavigationBar from './components/TopNavigationBar.client';
+import TopSection from './components/TopSection.client';
+import MemberSection from './components/MemberSection.server';
+import TimeSection from './components/TimeSection.server';
+import LocationSection from './components/LocationSection.server';
+import ApplyButton from './components/ApplyButton.client';
 import Spacing from '@/components/common/Spacing';
 
 const DETAIL_DUMMY_DATA = {
@@ -29,12 +29,13 @@ export default function DetailPage({
     <main>
       <TopNavigationBar />
       <TopSection id={id} title={title} thumbnailUrl={image} description={description} />
-      <div className="p-20 pb-100">
+      <div className="p-20">
         <MemberSection />
         <Spacing size={18} />
         <TimeSection time={time} />
         <Spacing size={18} />
         <LocationSection location={location} />
+        <Spacing size={100} />
       </div>
       <ApplyButton />
     </main>

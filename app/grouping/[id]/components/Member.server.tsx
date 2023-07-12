@@ -16,11 +16,11 @@ export default function Member({
 }: MemberProps) {
   return (
     <div className="flex flex-col items-center gap-8">
-      {isCertified ? (
-        <Image src="/assets/certified_student.svg" alt="leader_mark" width={44} height={12} />
-      ) : (
-        <div className="h-12"></div>
-      )}
+      <div className="h-12">
+        {isCertified && (
+          <Image src="/assets/certified_student.svg" alt="leader_mark" width={44} height={12} />
+        )}
+      </div>
       <div className="relative h-40 w-40">
         <Image src={imageUrl} alt="member" className="rounded-full object-cover" fill />
         {isLeader && (
