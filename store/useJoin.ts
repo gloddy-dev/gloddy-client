@@ -9,7 +9,7 @@ interface JoinState {
   gender: string;
   password: string; // 없어질 예정
   personalities: string[];
-  setJoinValue: (key: ValueStringType, value: string) => void;
+  setJoinValue: (values: Partial<JoinState>) => void;
   setJoinValueArray: (key: ValueStringArrayType, value: string[]) => void;
 }
 
@@ -34,7 +34,7 @@ const useJoin = create<JoinState>((set) => ({
   gender: '',
   password: '', // 없어질 예정
   personalities: [''],
-  setJoinValue: (key: ValueStringType, value: string) => set(() => ({ [key]: value })),
+  setJoinValue: (values: Partial<JoinState>) => set((state) => ({ ...state, ...values })),
   setJoinValueArray: (key: ValueStringArrayType, value: string[]) =>
     set(() => ({ [key]: [...value] })),
 }));
