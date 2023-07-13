@@ -3,9 +3,9 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import Button from '@/components/common/Button';
+import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import Spacing from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
 import useJoin from '@/store/useJoin';
 

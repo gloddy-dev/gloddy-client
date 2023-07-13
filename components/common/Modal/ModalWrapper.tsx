@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
-import PortalWrapper from '../PortalWrapper';
+import PortalWrapper from '../PotalWrapper';
 import type { StrictPropsWithChildren } from '@/types';
 
 interface ModalWrapperProps {

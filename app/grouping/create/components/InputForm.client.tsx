@@ -3,15 +3,13 @@
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-import Button from '@/components/common/Button';
+import { Button } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
-import DivisionSpacing from '@/components/common/DivisionSpacing';
-import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
+import ImageFrame from '@/components/common/ImageFrame';
 import { Input, TextArea } from '@/components/common/Input';
-import BottomUpModal from '@/components/common/Modal/BottomUpModal';
-import Spacing from '@/components/common/Spacing';
-import NumberSwipePicker from '@/components/common/SwipePicker/NumberSwipePicker';
-import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
+import { BottomUpModal } from '@/components/common/Modal';
+import { DivisionSpacing, Spacing } from '@/components/common/Spacing';
+import { NumberSwipePicker, TimeSwipePicker } from '@/components/common/SwipePicker';
 import { useModal } from '@/hooks/useModal';
 
 import InputSection from './InputSection.server';
