@@ -4,57 +4,19 @@ import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '@/components/common/Button';
-import Calendar from '@/components/common/Calendar';
 import ImageFrame from '@/components/common/ImageFrame';
-import { Input, TextArea } from '@/components/common/Input';
-import { BottomUpModal } from '@/components/common/Modal';
-import { DivisionSpacing, Spacing } from '@/components/common/Spacing';
-import { NumberSwipePicker, TimeSwipePicker } from '@/components/common/SwipePicker';
+import { Input } from '@/components/common/Input';
+import { Spacing } from '@/components/common/Spacing';
 import { useModal } from '@/hooks/useModal';
 
-import InputSection from './InputSection.server';
+import DateBottomUpModal from './inputSection/DateBottomUpModal';
 import DescriptionSection from './inputSection/DescriptionSection';
+import LocationBottomUpModal from './inputSection/LocationBottomUpModal';
+import NumberBottomUpModal from './inputSection/NumberBottomUpModal';
 import TitleSection from './inputSection/TitleSection';
 
 import type { ImageType, TimeType } from '@/types';
-
-type ModalNameType = 'meetingDate' | 'meetingLocation' | 'meetingNumber';
-type ModalTabType = {
-  name: ModalNameType;
-  title: string;
-  snap: number;
-  message: string;
-};
-const modalTabList: ModalTabType[] = [
-  {
-    name: 'meetingDate',
-    title: '모임 일시',
-    snap: 650,
-    message: '모임 일시를 설정해주세요',
-  },
-  {
-    name: 'meetingLocation',
-    title: '모임 위치',
-    snap: 500,
-    message: '모임 위치를 설정해주세요',
-  },
-  {
-    name: 'meetingNumber',
-    title: '모임 인원',
-    snap: 500,
-    message: '모임 인원을 설정해주세요',
-  },
-];
-
-type InputType = {
-  title: string;
-  description: string;
-  image: ImageType;
-  date: Date;
-  time: TimeType;
-  meetingLocation: string;
-  meetingNumber: number;
-};
+import type { InputType, ModalNameType } from '../type';
 
 const inputDefaultValues = {
   title: '',
@@ -99,37 +61,7 @@ export default function InputForm() {
     defaultValues: inputDefaultValues,
   });
 
-  const { isModalOpen, openModal, closeModal, modalName } = useModal<ModalNameType>();
-
-  const handlePreviousButton = () => {
-    switch (modalName) {
-      case 'meetingNumber':
-        openModal('meetingLocation');
-        break;
-      case 'meetingLocation':
-        openModal('meetingDate');
-        break;
-      default:
-        console.log('No matching modalName found');
-    }
-  };
-
-  const handleNextButton = () => {
-    switch (modalName) {
-      case 'meetingDate':
-        openModal('meetingLocation');
-        break;
-      case 'meetingLocation':
-        openModal('meetingNumber');
-        break;
-      case 'meetingNumber':
-        if (watch('meetingNumber') === undefined) setValue('meetingNumber', 1);
-        closeModal();
-        break;
-      default:
-        closeModal();
-    }
-  };
+  const { openModal, closeModal, modalName } = useModal<ModalNameType>();
 
   const handleSubmitButton = (data: InputType) => {
     // TODO : 서버 api 전송
@@ -176,21 +108,30 @@ export default function InputForm() {
 
       <Spacing size={15} />
 
-      {modalTabList.map((modalTab: ModalTabType) => (
-        <InputSection
-          key={modalTab.title}
-          title={modalTab.title}
-          value={
-            modalTab.name === 'meetingDate'
-              ? displayDate(watch('date'), watch('time'))
-              : !!watch(modalTab.name)
-              ? watch(modalTab.name)
-              : ''
-          }
-          placeholder={modalTab.message}
-          onClick={() => openModal(modalTab.name)}
+      <section onClick={() => openModal('meetingDate')}>
+        <p className="text-14">모임 일시</p>
+        <Spacing size={10} />
+        <Input
+          readOnly
+          value={displayDate(watch('date'), watch('time'))}
+          placeholder="모임 시간을 설정해주세요."
         />
-      ))}
+        <Spacing size={15} />
+      </section>
+
+      <section onClick={() => openModal('meetingLocation')}>
+        <p className="text-14">모임 장소</p>
+        <Spacing size={10} />
+        <Input readOnly value={watch('meetingLocation')} placeholder="모임 장소를 설정해주세요." />
+        <Spacing size={15} />
+      </section>
+
+      <section onClick={() => openModal('meetingNumber')}>
+        <p className="text-14">모임 장소</p>
+        <Spacing size={10} />
+        <Input readOnly value={watch('meetingNumber')} placeholder="모임 인원을 설정해주세요." />
+        <Spacing size={15} />
+      </section>
 
       <Button
         text="완료"
@@ -199,47 +140,31 @@ export default function InputForm() {
         onClick={handleSubmit(handleSubmitButton)}
       />
 
-      <BottomUpModal
-        isModalOpen={isModalOpen}
-        snap={modalTabList.find((modalTab) => modalTab.name === modalName)?.snap || 0}
-        isLeftButton={modalName !== 'meetingDate'}
-        handleLeftButtonClick={handlePreviousButton}
-        onClose={closeModal}
-        isRightButton
-        text={
-          <div className="text-18">
-            {modalTabList.find((modalTab) => modalTab.name === modalName)?.title || ''}
-          </div>
-        }
-      >
-        <div className="relative h-full">
-          {modalName === 'meetingDate' && (
-            <div>
-              <Calendar
-                dateValue={watch('date')}
-                setDateValue={(date: Date) => setValue('date', date)}
-              />
-              <DivisionSpacing />
-              <TimeSwipePicker
-                timeValue={watch('time')}
-                setTimeValue={(time: TimeType) => setValue('time', time)}
-              />
-            </div>
-          )}
-          {modalName === 'meetingLocation' && <div>{/* TODO : 모임 위치 */}</div>}
-          {modalName === 'meetingNumber' && (
-            <NumberSwipePicker
-              setNumberValue={(value: number) => setValue('meetingNumber', value)}
-              numberValue={watch('meetingNumber')}
-            />
-          )}
-          <Button
-            text={modalName === 'meetingNumber' ? '완료' : '다음'}
-            onClick={handleNextButton}
-            className="fixed inset-x-0 bottom-20 mx-auto max-w-380"
-          />
-        </div>
-      </BottomUpModal>
+      <DateBottomUpModal
+        isModalOpen={modalName === 'meetingDate'}
+        closeModal={closeModal}
+        onPreviousClick={() => openModal('meetingDate')}
+        onNextClick={() => openModal('meetingLocation')}
+        setValue={setValue}
+        date={watch('date')}
+        time={watch('time')}
+      />
+      <LocationBottomUpModal
+        isModalOpen={modalName === 'meetingLocation'}
+        closeModal={closeModal}
+        onPreviousClick={() => openModal('meetingLocation')}
+        onNextClick={() => openModal('meetingNumber')}
+        setValue={setValue}
+        location={watch('meetingLocation')}
+      />
+      <NumberBottomUpModal
+        isModalOpen={modalName === 'meetingNumber'}
+        closeModal={closeModal}
+        onPreviousClick={() => openModal('meetingNumber')}
+        onNextClick={closeModal}
+        setValue={setValue}
+        number={watch('meetingNumber')}
+      />
     </div>
   );
 }
