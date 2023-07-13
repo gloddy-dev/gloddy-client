@@ -4,6 +4,7 @@ import GroupingCard from './GroupingCard.client';
 
 const DUMMY_GROUPING_DATA = [
   {
+    id: '1',
     image: '/assets/location.svg',
     title: 'Let’s go for a walk!',
     description: 'It’s a group that walks around, talks, and learns languages.',
@@ -13,6 +14,7 @@ const DUMMY_GROUPING_DATA = [
     time: '04.27.FRI 7PM',
   },
   {
+    id: '2',
     image: '/assets/location.svg',
     title: 'Let’s go for a walk!',
     description: 'It’s a group that walks around, talks, and learns languages.',
@@ -22,6 +24,7 @@ const DUMMY_GROUPING_DATA = [
     time: '04.27.FRI 7PM',
   },
   {
+    id: '3',
     image: '/assets/location.svg',
     title: 'Let’s go for a walk!',
     description: 'It’s a group that walks around, talks, and learns languages.',
@@ -39,7 +42,7 @@ export default function GroupingCardList() {
         <GroupingCard
           onClick={() => console.log('What the hell')}
           {...groupingData}
-          key={groupingData.total}
+          key={groupingData.id}
         />
       ))}
     </section>
