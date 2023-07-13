@@ -1,4 +1,4 @@
-import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
+import { CircleCheckbox } from '@/components/common/Checkbox';
 
 export default function CheckboxSection() {
   return (

@@ -1,9 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import Button from '@/components/common/Button';
-import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
-import BottomUpModal from '@/components/common/Modal/BottomUpModal';
+import { Button } from '@/components/common/Button';
+import { CircleCheckbox } from '@/components/common/Checkbox';
+import { BottomUpModal } from '@/components/common/Modal';
 import { useModal } from '@/hooks/useModal';
 
 type AgreeCheckListType = {

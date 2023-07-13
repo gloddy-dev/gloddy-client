@@ -1,4 +1,4 @@
-import Spacing from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 
 interface LocationSectionProps {
   location: string;

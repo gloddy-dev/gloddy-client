@@ -1,7 +1,7 @@
 import type { InputHTMLAttributes } from 'react';
 
 import { Input } from '@/components/common/Input';
-import Spacing from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 
 interface InputSectionProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;

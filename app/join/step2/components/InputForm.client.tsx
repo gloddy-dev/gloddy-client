@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-import Button from '@/components/common/Button';
+import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import useJoin from '@/store/useJoin';
 

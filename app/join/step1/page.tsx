@@ -1,6 +1,6 @@
-import Spacing from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 
-import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage.server';
+import AuthTitleTextMessage from '../components/AuthTitleTextMessage.server';
 import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
 import CheckboxSection from './components/CheckboxSection.server';
 import InputForm from './components/InputForm.client';

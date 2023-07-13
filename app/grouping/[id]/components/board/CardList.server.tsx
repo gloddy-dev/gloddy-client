@@ -1,4 +1,4 @@
-import Spacing from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 import CardHeader from './CardHeader.client';
 import CardContent from './CardContent.server';
 import CardFooter from './CardFooter.client';

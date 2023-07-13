@@ -9,11 +9,11 @@ export default function CircleCheckbox({
   text,
   checked = false,
   onClick,
-  ...rest
+  ...props
 }: CircleCheckboxProps) {
   const checkboxImageAsset = `/assets/checkbox_circle${checked ? '_checked' : ''}.svg`;
   return (
-    <div className="flex items-baseline" onClick={onClick} {...rest}>
+    <div className="flex items-baseline" onClick={onClick} {...props}>
       <Image
         alt="checkbox"
         src={checkboxImageAsset}

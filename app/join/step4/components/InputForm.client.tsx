@@ -4,10 +4,10 @@ import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-import Button from '@/components/common/Button';
-import ImageFrame from '@/components/common/ImageFrame/ImageFrame';
+import { Button } from '@/components/common/Button';
+import ImageFrame from '@/components/common/ImageFrame';
 import { Input } from '@/components/common/Input';
-import BottomUpModal from '@/components/common/Modal/BottomUpModal';
+import { BottomUpModal } from '@/components/common/Modal';
 import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
 import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
 import { useModal } from '@/hooks/useModal';
