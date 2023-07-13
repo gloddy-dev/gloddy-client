@@ -25,7 +25,7 @@ export default function Input({
       <input
         placeholder={placeholder}
         className={clsx(
-          'flex-grow rounded-lg border-none  bg-[#f6f6f6] pr-5 text-16 text-black  outline-none',
+          'flex-grow rounded-lg border-none  bg-[#f6f6f6] pr-5 text-16 text-black outline-none placeholder:text-gray3',
           { 'indent-20': !label },
           className
         )}

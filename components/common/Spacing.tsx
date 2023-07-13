@@ -1,15 +1,20 @@
-import clsx from 'clsx';
 import { HTMLAttributes, memo } from 'react';
 
 interface SpacingProps extends HTMLAttributes<HTMLDivElement> {
   direction?: 'horizontal' | 'vertical';
+  className?: string;
   size: number;
 }
 
-export default memo(function Spacing({ direction = 'vertical', size, ...props }: SpacingProps) {
+export default memo(function Spacing({
+  size,
+  direction = 'vertical',
+  className,
+  ...props
+}: SpacingProps) {
   return (
     <div
-      className="flex-none"
+      className={`flex-none ${className}`}
       style={{
         [direction === 'vertical' ? 'height' : 'width']: size + 'px',
       }}

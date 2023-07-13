@@ -3,16 +3,16 @@
 import Link from 'next/link';
 
 import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
-import TopNavigationBar from '@/components/common/NavigationBar/TopNavigationBar';
 import { INSTAGRAM_URL } from '@/constants';
 
-import { AuthTitleTextMessage } from '../AuthTitleTextMessage';
-import InputForm from './InputForm';
+import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage.server';
+import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
+import InputForm from './components/InputForm.client';
 
 export default function Step3Page() {
   return (
     <div className="relative h-full">
-      <TopNavigationBar text="회원가입" isLeft={true} />
+      <JoinTopNavigationBar />
 
       <AuthTitleTextMessage text={`재학생 인증을 위해\n학교 이메일을 입력해주세요`} />
 

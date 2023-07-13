@@ -1,31 +1,15 @@
-'use client';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-
 interface TopNavigationBarProps {
-  isLeft?: boolean;
-  text: string;
-  right?: React.ReactNode;
+  leftNode?: React.ReactNode;
+  text?: string;
+  rightNode?: React.ReactNode;
 }
-export default function TopNavigationBar({ isLeft = true, text, right }: TopNavigationBarProps) {
-  const router = useRouter();
+
+export default function TopNavigationBar({ leftNode, text, rightNode }: TopNavigationBarProps) {
   return (
-    <div className="mb-30 flex justify-between ">
-      {isLeft ? (
-        <Image
-          alt="back"
-          src="/assets/arrow_back.svg"
-          width={8}
-          height={30}
-          onClick={() => {
-            router.back();
-          }}
-        />
-      ) : (
-        <div></div>
-      )}
-      <div className="font-500">{text}</div>
-      <div>{right}</div>
+    <div className="flex h-60 items-center justify-between">
+      {leftNode ? leftNode : <div />}
+      {text ? <div className="font-500">{text}</div> : <div />}
+      {rightNode ? rightNode : <div />}
     </div>
   );
 }

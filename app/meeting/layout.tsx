@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 
-import BottomNavigation from '@/components/common/NavigationBar/BottomNavigation';
+import { BottomNavigationBar } from '@/components/common/NavigationBar';
 
 export default function MeetingLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

@@ -57,7 +57,6 @@ export default function InputForm() {
     if (modalName === 'gender') {
       if (watch('gender') === '') {
         setValue('gender', '남성');
-        return;
       }
       closeModal();
     }

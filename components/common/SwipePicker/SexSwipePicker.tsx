@@ -3,8 +3,8 @@ import SwipePicker from './SwipePicker';
 const selectList = ['남성', '여성'];
 
 interface SexSwipePickerProps {
-  sexValue: string;
   setSexValue: (value: string) => void;
+  sexValue: string;
 }
 
 export default function SexSwipePicker({ sexValue, setSexValue }: SexSwipePickerProps) {
