@@ -3,7 +3,7 @@
 import { BottomNavigationBar } from '@/components/common/NavigationBar';
 import Spacing from '@/components/common/Spacing';
 
-import FloatingBubbleSection from './components/FloatingBubbleSection.client';
+import FloatingBubbleSection from './components/FloatingBubbleSection.server';
 import GroupingCardList from './components/GroupingCardList.client';
 import GroupingTopNavigationBar from './components/GroupingTopNavigationBar.server';
 
