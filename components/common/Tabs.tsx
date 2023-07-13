@@ -11,6 +11,7 @@ const TabsContext = createContext<{
 interface TabsProps {
   defaultActiveTab: string;
 }
+
 export default function Tabs({ defaultActiveTab, children }: StrictPropsWithChildren<TabsProps>) {
   const [activeTab, setActiveTab] = useState(defaultActiveTab);
 
