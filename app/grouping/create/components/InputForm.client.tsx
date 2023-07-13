@@ -31,7 +31,7 @@ const modalTabList: ModalTabType[] = [
   {
     name: 'meetingDate',
     title: '모임 일시',
-    snap: 900,
+    snap: 650,
     message: '모임 일시를 설정해주세요',
   },
   {
@@ -75,7 +75,6 @@ const inputDefaultValues = {
     toAmPm: 'AM',
   },
   meetingLocation: '경희대학교',
-  // meetingNumber: 0,
 };
 
 function getDayName(dayIndex: number) {
