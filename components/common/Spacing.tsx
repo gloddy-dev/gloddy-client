@@ -15,7 +15,10 @@ export default memo(function Spacing({
 }: SpacingProps) {
   return (
     <div
-      className={clsx('flex-none', direction === 'vertical' ? `h-${size}` : `w-${size}`, className)}
+      className="flex-none"
+      style={{
+        [direction === 'vertical' ? 'height' : 'width']: size + 'px',
+      }}
       {...props}
     />
   );
