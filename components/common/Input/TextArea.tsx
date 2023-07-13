@@ -3,7 +3,7 @@
 import type { TextareaHTMLAttributes } from 'react';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   placeholder: string;
   register?: UseFormRegisterReturn;
 }
