@@ -7,5 +7,7 @@ interface DivisionSpacing {
 }
 
 export default function DivisionSpacing({ color = 'white2' }) {
-  return <Spacing size={10} className={clsx('fixed inset-x-0 mx-auto max-w-450', `bg-${color}`)} />;
+  const bgColor = `bg-${color}`;
+
+  return <Spacing size={10} className={clsx('fixed inset-x-0 mx-auto max-w-450', bgColor)} />;
 }
