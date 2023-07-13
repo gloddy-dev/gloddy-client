@@ -87,6 +87,14 @@ function getMonthName(monthIndex: number) {
   return months[monthIndex];
 }
 
+function displayDate(date, time) {
+  const year = date.getFullYear();
+  const month = getMonthName(date.getMonth());
+  const day = date.getDate();
+  const dayName = getDayName(date.getDay());
+  return `${year}. ${month}. ${day} ${dayName} ${time.fromHour}:${time.fromMin} ${time.fromAmPm} ~ ${time.toHour}:${time.toMin} ${time.toAmPm}`;
+}
+
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const { register, watch, handleSubmit, setValue } = useForm<InputType>({
@@ -124,19 +132,6 @@ export default function InputForm() {
         closeModal();
     }
   };
-
-  function displayDate() {
-    const date = watch('date');
-    const year = date.getFullYear();
-    const month = getMonthName(date.getMonth());
-    const day = date.getDate();
-    const dayName = getDayName(date.getDay());
-    return `${year}. ${month}. ${day} ${dayName} ${watch('time').fromHour}:${
-      watch('time').fromMin
-    } ${watch('time').fromAmPm} ~ ${watch('time').toHour}:${watch('time').toMin} ${
-      watch('time').toAmPm
-    }`;
-  }
 
   const handleSubmitButton = (data: InputType) => {
     // TODO : 서버 api 전송
@@ -200,7 +195,7 @@ export default function InputForm() {
           title={modalTab.title}
           value={
             modalTab.name === 'meetingDate'
-              ? displayDate()
+              ? displayDate(watch('date'), watch('time'))
               : !!watch(modalTab.name)
               ? watch(modalTab.name)
               : ''
@@ -217,6 +212,7 @@ export default function InputForm() {
         onClick={handleSubmit(handleSubmitButton)}
       />
 
+      {BottomUpModalDate}
       <BottomUpModal
         isModalOpen={isModalOpen}
         snap={modalTabList.find((modalTab) => modalTab.name === modalName)?.snap || 0}
