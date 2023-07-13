@@ -1,5 +1,5 @@
 'use client';
-import Spacing from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 
 export default function CardFooter() {

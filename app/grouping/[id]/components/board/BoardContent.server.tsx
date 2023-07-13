@@ -1,4 +1,4 @@
-import Spacing from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 import CardList from './CardList.server';
 import Notice from './Notice.client';
 

@@ -1,4 +1,4 @@
-import Spacing from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 import MemberSection from './MemberSection.server';
 import TimeSection from './TimeSection.server';
 import LocationSection from './LocationSection.server';

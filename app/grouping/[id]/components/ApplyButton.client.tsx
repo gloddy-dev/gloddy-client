@@ -1,5 +1,5 @@
 'use client';
-import Button from '@/components/common/Button';
+import { Button } from '@/components/common/Button';
 
 export default function ApplyButton() {
   const handleApplyClick = () => {

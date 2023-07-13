@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
 
-import Button from '@/components/common/Button';
-import SquareCheckbox from '@/components/common/Checkbox/SquareCheckbox';
+import { Button } from '@/components/common/Button';
+import { SquareCheckbox } from '@/components/common/Checkbox';
 import { Input } from '@/components/common/Input';
 
 export default function LoginPage() {

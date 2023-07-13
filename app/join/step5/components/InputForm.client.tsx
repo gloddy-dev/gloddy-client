@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 
-import Button from '@/components/common/Button';
-import PersonalityItem from '@/components/join/PersonalityItem';
+import { Button } from '@/components/common/Button';
+import PersonalityItem from '../../components/PersonalityItem.server';
 import { personalityList } from '@/constants/personalityList';
 import useJoin from '@/store/useJoin';
 

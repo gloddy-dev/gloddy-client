@@ -30,11 +30,11 @@ const tabList: TabType[] = [
   },
 ];
 
-interface BottomNavigationProps {
+interface BottomNavigationBarProps {
   page: PageType;
 }
 
-export default function BottomNavigation({ page }: BottomNavigationProps) {
+export default function BottomNavigationBar({ page }: BottomNavigationBarProps) {
   return (
     <div className="fixed inset-x-0 bottom-0 mx-auto flex max-w-[26.25rem] justify-around rounded-t-25 bg-white">
       {tabList.map((tab: TabType) => (
@@ -57,4 +57,4 @@ export default function BottomNavigation({ page }: BottomNavigationProps) {
       ))}
     </div>
   );
-};
+}

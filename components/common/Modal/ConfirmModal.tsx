@@ -1,5 +1,6 @@
-import Button, { ButtonProps } from '@/components/common/Button';
+import { Button } from '@/components/common/Button';
 import ModalWrapper from './ModalWrapper';
+import type { ButtonProps } from '../Button/Button';
 import type { PropsWithChildren } from 'react';
 
 interface ConfirmModalProps {

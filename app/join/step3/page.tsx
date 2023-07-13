@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 
-import CircleCheckbox from '@/components/common/Checkbox/CircleCheckbox';
+import { CircleCheckbox } from '@/components/common/Checkbox';
 import { INSTAGRAM_URL } from '@/constants';
 
-import { AuthTitleTextMessage } from '../components/AuthTitleTextMessage.server';
+import AuthTitleTextMessage from '../components/AuthTitleTextMessage.server';
 import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
 import InputForm from './components/InputForm.client';
 
