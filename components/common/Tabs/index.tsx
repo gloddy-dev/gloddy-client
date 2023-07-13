@@ -5,12 +5,12 @@ import { type PropsWithChildren, createContext, useContext, useEffect, useState 
 import type { StrictPropsWithChildren } from '@/types';
 
 const TabsContext = createContext<{
-  activeTab: any;
-  setActiveTab: (value: any) => void;
+  activeTab: string | number;
+  setActiveTab: (value: string | number) => void;
 } | null>(null);
 
 interface TabsProps {
-  defaultActiveTab: any;
+  defaultActiveTab: string | number;
 }
 
 export default function Tabs({ defaultActiveTab, children }: StrictPropsWithChildren<TabsProps>) {
