@@ -4,24 +4,24 @@ import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
 
-import InputSection from './InputSection.server';
+import InputSection from './InputArea.server';
 
 import type { InputType, ModalNameType } from '../../type';
 
-interface LocationBottomUpModalProps {
+interface NumberSectionModalProps {
   isModalOpen: boolean;
   openModal: (name: ModalNameType) => void;
   closeModal: () => void;
   value: number;
   setValue: UseFormSetValue<InputType>;
 }
-export default function LocationBottomUpModal({
+export default function NumberSectionModal({
   isModalOpen,
   openModal,
   closeModal,
   value,
   setValue,
-}: LocationBottomUpModalProps) {
+}: NumberSectionModalProps) {
   return (
     <>
       <InputSection

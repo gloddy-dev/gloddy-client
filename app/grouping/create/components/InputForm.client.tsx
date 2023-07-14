@@ -8,10 +8,10 @@ import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { useModal } from '@/hooks/useModal';
 
-import DateBottomUpModal from './inputSection/DateBottomUpModal';
+import DateSection from './inputSection/DateSection';
 import DescriptionSection from './inputSection/DescriptionSection';
-import LocationBottomUpModal from './inputSection/LocationBottomUpModal';
-import NumberBottomUpModal from './inputSection/NumberBottomUpModal';
+import LocationSection from './inputSection/LocationSection';
+import NumberSectionModal from './inputSection/NumberSection';
 import TitleSection from './inputSection/TitleSection';
 
 import type { ImageType } from '@/types';
@@ -88,21 +88,21 @@ export default function InputForm() {
 
       <Spacing size={15} />
 
-      <DateBottomUpModal
+      <DateSection
         isModalOpen={modalName === 'meetingDate'}
         openModal={openModal}
         closeModal={closeModal}
         value={{ date: watch('date'), time: watch('time') }}
         setValue={setValue}
       />
-      <LocationBottomUpModal
+      <LocationSection
         isModalOpen={modalName === 'meetingLocation'}
         openModal={openModal}
         closeModal={closeModal}
         value={watch('meetingLocation')}
         setValue={setValue}
       />
-      <NumberBottomUpModal
+      <NumberSectionModal
         isModalOpen={modalName === 'meetingNumber'}
         openModal={openModal}
         closeModal={closeModal}

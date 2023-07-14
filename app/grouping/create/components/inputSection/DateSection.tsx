@@ -6,7 +6,7 @@ import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
 
-import InputSection from './InputSection.server';
+import InputSection from './InputArea.server';
 
 import type { TimeType } from '@/types';
 
@@ -30,7 +30,7 @@ function displayDate(date: Date, time: TimeType) {
   return `${year}. ${month}. ${day} ${dayName} ${time.fromHour}:${time.fromMin} ${time.fromAmPm} ~ ${time.toHour}:${time.toMin} ${time.toAmPm}`;
 }
 
-interface DateBottomUpModalProps {
+interface DateSectionProps {
   openModal: (modalName: ModalNameType) => void;
   isModalOpen: boolean;
   value: {
@@ -41,13 +41,13 @@ interface DateBottomUpModalProps {
   closeModal: () => void;
 }
 
-export default function DateBottomUpModal({
+export default function DateSection({
   isModalOpen,
   closeModal,
   openModal,
   value,
   setValue,
-}: DateBottomUpModalProps) {
+}: DateSectionProps) {
   return (
     <>
       <InputSection

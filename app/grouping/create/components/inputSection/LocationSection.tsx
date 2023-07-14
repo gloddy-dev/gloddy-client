@@ -4,22 +4,22 @@ import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 
 import { InputType, ModalNameType } from '../../type';
-import InputSection from './InputSection.server';
+import InputSection from './InputArea.server';
 
-interface LocationBottomUpModalProps {
+interface LocationSectionProps {
   isModalOpen: boolean;
   openModal: (name: ModalNameType) => void;
   closeModal: () => void;
   value: string;
   setValue: UseFormSetValue<InputType>;
 }
-export default function LocationBottomUpModal({
+export default function LocationSection({
   isModalOpen,
   openModal,
   closeModal,
   value,
   setValue,
-}: LocationBottomUpModalProps) {
+}: LocationSectionProps) {
   return (
     <>
       <InputSection
