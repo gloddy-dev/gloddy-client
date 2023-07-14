@@ -1,6 +1,6 @@
-import { Spacing } from '@/components/common/Spacing';
 import CardList from './CardList.server';
 import Notice from './Notice.client';
+import { Spacing } from '@/components/common/Spacing';
 
 const DUMMY_DATA = [
   {

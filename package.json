@@ -17,8 +17,6 @@
     "axios": "^1.4.0",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.7",
     "framer-motion": "^10.12.18",
     "next": "13.4.7",
     "react": "18.2.0",
