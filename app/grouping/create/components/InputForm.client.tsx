@@ -8,11 +8,11 @@ import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { useModal } from '@/hooks/useModal';
 
-import DateSection from './inputSection/DateSection';
-import DescriptionSection from './inputSection/DescriptionSection';
-import LocationSection from './inputSection/LocationSection';
-import NumberSectionModal from './inputSection/NumberSection';
-import TitleSection from './inputSection/TitleSection';
+import DateSection from './inputSection/DateSection.server';
+import DescriptionSection from './inputSection/DescriptionSection.server';
+import LocationSection from './inputSection/LocationSection.server';
+import NumberSectionModal from './inputSection/NumberSection.server';
+import TitleSection from './inputSection/TitleSection.server';
 
 import type { ImageType } from '@/types';
 import type { InputType, ModalNameType } from '../type';
