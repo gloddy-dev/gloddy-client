@@ -1,56 +1,85 @@
 import { UseFormSetValue } from 'react-hook-form';
 
-import { Button } from '@/components/common/Button';
+import { BottomFixedButton } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
-import { TimeType } from '@/types';
 
-import { InputType } from '../../type';
+import InputSection from './InputSection.server';
+
+import type { TimeType } from '@/types';
+
+import type { InputType, ModalNameType } from '../../type';
+
+function getDayName(dayIndex: number) {
+  const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  return days[dayIndex];
+}
+
+function getMonthName(monthIndex: number) {
+  const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  return months[monthIndex];
+}
+
+function displayDate(date: Date, time: TimeType) {
+  const year = date.getFullYear();
+  const month = getMonthName(date.getMonth());
+  const day = date.getDate();
+  const dayName = getDayName(date.getDay());
+  return `${year}. ${month}. ${day} ${dayName} ${time.fromHour}:${time.fromMin} ${time.fromAmPm} ~ ${time.toHour}:${time.toMin} ${time.toAmPm}`;
+}
 
 interface DateBottomUpModalProps {
+  openModal: (modalName: ModalNameType) => void;
   isModalOpen: boolean;
-  onPreviousClick: () => void;
-  onNextClick: () => void;
-  date: Date;
-  time: TimeType;
+  value: {
+    date: Date;
+    time: TimeType;
+  };
   setValue: UseFormSetValue<InputType>;
   closeModal: () => void;
 }
+
 export default function DateBottomUpModal({
   isModalOpen,
-  onPreviousClick,
-  onNextClick,
-  date,
-  time,
-  setValue,
   closeModal,
+  openModal,
+  value,
+  setValue,
 }: DateBottomUpModalProps) {
   return (
-    <BottomUpModal
-      isModalOpen={isModalOpen}
-      snap={650}
-      handleLeftButtonClick={onPreviousClick}
-      onClose={closeModal}
-      isRightButton
-      text={<div className="text-18">모임 일시</div>}
-    >
-      <div className="relative h-full">
-        <div>
-          <Calendar dateValue={date} setDateValue={(date: Date) => setValue('date', date)} />
-          <DivisionSpacing />
-          <TimeSwipePicker
-            timeValue={time}
-            setTimeValue={(time: TimeType) => setValue('time', time)}
-          />
-        </div>
-      </div>
-      <Button
-        text="다음"
-        onClick={onNextClick}
-        className="fixed inset-x-0 bottom-20 mx-auto max-w-380"
+    <>
+      <InputSection
+        title="모임 일시"
+        onClick={() => openModal('meetingDate')}
+        value={displayDate(value.date, value.time)}
+        placeholder="모임 시간을 설정해주세요."
       />
-    </BottomUpModal>
+
+      <BottomUpModal
+        isModalOpen={isModalOpen}
+        snap={650}
+        handleLeftButtonClick={() => openModal('meetingDate')}
+        onClose={closeModal}
+        isRightButton
+        text={<div className="text-18">모임 일시</div>}
+      >
+        <div className="relative h-full">
+          <div>
+            <Calendar
+              dateValue={value.date}
+              setDateValue={(date: Date) => setValue('date', date)}
+            />
+            <DivisionSpacing />
+            <TimeSwipePicker
+              timeValue={value.time}
+              setTimeValue={(time: TimeType) => setValue('time', time)}
+            />
+          </div>
+        </div>
+        <BottomFixedButton text="다음" onClick={() => openModal('meetingLocation')} />
+      </BottomUpModal>
+    </>
   );
 }

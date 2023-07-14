@@ -1,49 +1,58 @@
 import { UseFormSetValue } from 'react-hook-form';
 
-import { Button } from '@/components/common/Button';
+import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
 
-import { InputType } from '../../type';
+import InputSection from './InputSection.server';
 
-// Location앞에
+import type { InputType, ModalNameType } from '../../type';
 
 interface LocationBottomUpModalProps {
   isModalOpen: boolean;
-  onPreviousClick: () => void;
-  onNextClick: () => void;
-  number: number;
-  setValue: UseFormSetValue<InputType>;
+  openModal: (name: ModalNameType) => void;
   closeModal: () => void;
+  value: number;
+  setValue: UseFormSetValue<InputType>;
 }
 export default function LocationBottomUpModal({
   isModalOpen,
-  onPreviousClick,
-  onNextClick,
-  setValue,
+  openModal,
   closeModal,
-  number,
+  value,
+  setValue,
 }: LocationBottomUpModalProps) {
   return (
-    <BottomUpModal
-      isModalOpen={isModalOpen}
-      snap={500}
-      handleLeftButtonClick={onPreviousClick}
-      onClose={closeModal}
-      isRightButton
-      text={<div className="text-18">모임 장소</div>}
-    >
-      <div className="relative h-full">
-        <NumberSwipePicker
-          setNumberValue={(value: number) => setValue('meetingNumber', value)}
-          numberValue={number}
-        />
-      </div>
-      <Button
-        text="완료"
-        onClick={onNextClick}
-        className="fixed inset-x-0 bottom-20 mx-auto max-w-380"
+    <>
+      <InputSection
+        title="모임 인원"
+        onClick={() => openModal('meetingNumber')}
+        value={value}
+        placeholder="모임 인원을 설정해주세요."
       />
-    </BottomUpModal>
+
+      <BottomUpModal
+        isModalOpen={isModalOpen}
+        snap={500}
+        handleLeftButtonClick={() => openModal('meetingNumber')}
+        onClose={closeModal}
+        isRightButton
+        text={<div className="text-18">모임 장소</div>}
+      >
+        <div className="relative h-full">
+          <NumberSwipePicker
+            setNumberValue={(value: number) => setValue('meetingNumber', value)}
+            numberValue={value}
+          />
+        </div>
+        <BottomFixedButton
+          text="완료"
+          onClick={() => {
+            if (value === undefined) setValue('meetingNumber', 1);
+            closeModal();
+          }}
+        />
+      </BottomUpModal>
+    </>
   );
 }

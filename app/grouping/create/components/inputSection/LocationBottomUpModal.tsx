@@ -1,45 +1,47 @@
 import { UseFormSetValue } from 'react-hook-form';
 
-import { Button } from '@/components/common/Button';
+import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 
-import { InputType } from '../../type';
-
-// Location앞에
+import { InputType, ModalNameType } from '../../type';
+import InputSection from './InputSection.server';
 
 interface LocationBottomUpModalProps {
   isModalOpen: boolean;
-  onPreviousClick: () => void;
-  onNextClick: () => void;
-  location: string;
-  setValue: UseFormSetValue<InputType>;
+  openModal: (name: ModalNameType) => void;
   closeModal: () => void;
+  value: string;
+  setValue: UseFormSetValue<InputType>;
 }
 export default function LocationBottomUpModal({
   isModalOpen,
-  onPreviousClick,
-  onNextClick,
-  setValue,
+  openModal,
   closeModal,
-  location,
+  value,
+  setValue,
 }: LocationBottomUpModalProps) {
   return (
-    <BottomUpModal
-      isModalOpen={isModalOpen}
-      snap={500}
-      handleLeftButtonClick={onPreviousClick}
-      onClose={closeModal}
-      isRightButton
-      text={<div className="text-18">모임 장소</div>}
-    >
-      <div className="relative h-full">
-        <div></div>
-      </div>
-      <Button
-        text="다음"
-        onClick={onNextClick}
-        className="fixed inset-x-0 bottom-20 mx-auto max-w-380"
+    <>
+      <InputSection
+        title="모임 장소"
+        onClick={() => openModal('meetingLocation')}
+        value={value}
+        placeholder="모임 장소를 설정해주세요."
       />
-    </BottomUpModal>
+
+      <BottomUpModal
+        isModalOpen={isModalOpen}
+        snap={500}
+        handleLeftButtonClick={() => openModal('meetingLocation')}
+        onClose={closeModal}
+        isRightButton
+        text={<div className="text-18">모임 장소</div>}
+      >
+        <div className="relative h-full">
+          <div></div>
+        </div>
+        <BottomFixedButton text="다음" onClick={() => openModal('meetingNumber')} />
+      </BottomUpModal>
+    </>
   );
 }
