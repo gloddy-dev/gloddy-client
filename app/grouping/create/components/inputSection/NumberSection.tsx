@@ -27,7 +27,7 @@ export default function NumberSectionModal({
       <InputSection
         title="모임 인원"
         onClick={() => openModal('meetingNumber')}
-        value={value}
+        value={value ? value : ''}
         placeholder="모임 인원을 설정해주세요."
       />
 
@@ -48,7 +48,7 @@ export default function NumberSectionModal({
         <BottomFixedButton
           text="완료"
           onClick={() => {
-            if (value === undefined) setValue('meetingNumber', 1);
+            if (!value) setValue('meetingNumber', 1);
             closeModal();
           }}
         />

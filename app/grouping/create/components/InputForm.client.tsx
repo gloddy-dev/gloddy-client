@@ -33,7 +33,8 @@ const inputDefaultValues = {
     toMin: '00',
     toAmPm: 'AM',
   },
-  meetingLocation: '경희대학교',
+  meetingLocation: '',
+  meetingNumber: 0,
 };
 
 export default function InputForm() {
