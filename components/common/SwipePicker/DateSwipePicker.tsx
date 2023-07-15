@@ -1,7 +1,7 @@
-import type { BirthdayValueType } from '@/types';
+import SwipePicker from './SwipePicker';
 import getDate from '@/utils/date';
 
-import SwipePicker from './SwipePicker';
+import type { BirthdayValueType } from '@/types';
 
 const { todayYear } = getDate.today();
 
