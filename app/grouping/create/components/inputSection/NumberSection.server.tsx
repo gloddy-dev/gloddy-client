@@ -2,24 +2,18 @@ import InputArea from './InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import { BottomUpModal } from '@/components/common/Modal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
+import useModalState from '@/store/useModalStatus';
 import { UseFormSetValue } from 'react-hook-form';
 
-import type { CreateMeetingRequestType, ModalNameType } from '../../type';
+import type { CreateMeetingRequestType } from '../../type';
 
 interface NumberSectionProps {
-  isModalOpen: boolean;
-  openModal: (name: ModalNameType) => void;
-  closeModal: () => void;
   value: number;
   setValue: UseFormSetValue<CreateMeetingRequestType>;
 }
-export default function NumberSection({
-  isModalOpen,
-  openModal,
-  closeModal,
-  value,
-  setValue,
-}: NumberSectionProps) {
+export default function NumberSection({ value, setValue }: NumberSectionProps) {
+  const { modalName, openModal, closeModal } = useModalState();
+
   return (
     <>
       <InputArea
@@ -30,7 +24,7 @@ export default function NumberSection({
       />
 
       <BottomUpModal
-        isModalOpen={isModalOpen}
+        isModalOpen={modalName === 'meetingNumber'}
         snap={500}
         handleLeftButtonClick={() => openModal('meetingNumber')}
         onClose={closeModal}

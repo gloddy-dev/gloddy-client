@@ -4,6 +4,7 @@ import Calendar from '@/components/common/Calendar';
 import { BottomUpModal } from '@/components/common/Modal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
+import useModalState from '@/store/useModalStatus';
 import { UseFormSetValue } from 'react-hook-form';
 
 import type { CreateMeetingRequestType, ModalNameType } from '../../type';
@@ -28,23 +29,16 @@ function displayDate(date: Date, time: TimeType) {
 }
 
 interface DateSectionProps {
-  openModal: (modalName: ModalNameType) => void;
-  isModalOpen: boolean;
   value: {
     date: Date;
     time: TimeType;
   };
   setValue: UseFormSetValue<CreateMeetingRequestType>;
-  closeModal: () => void;
 }
 
-export default function DateSection({
-  isModalOpen,
-  closeModal,
-  openModal,
-  value,
-  setValue,
-}: DateSectionProps) {
+export default function DateSection({ value, setValue }: DateSectionProps) {
+  const { modalName, openModal, closeModal } = useModalState();
+
   return (
     <>
       <InputSection
@@ -55,7 +49,7 @@ export default function DateSection({
       />
 
       <BottomUpModal
-        isModalOpen={isModalOpen}
+        isModalOpen={modalName === 'meetingDate'}
         snap={650}
         handleLeftButtonClick={() => openModal('meetingDate')}
         onClose={closeModal}

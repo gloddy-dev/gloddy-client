@@ -1,23 +1,18 @@
 import InputSection from './InputArea.server';
-import { CreateMeetingRequestType, ModalNameType } from '../../type';
+import { CreateMeetingRequestType } from '../../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
+import useModalState from '@/store/useModalStatus';
 import { UseFormSetValue } from 'react-hook-form';
 
 interface LocationSectionProps {
-  isModalOpen: boolean;
-  openModal: (name: ModalNameType) => void;
-  closeModal: () => void;
   value: string;
   setValue: UseFormSetValue<CreateMeetingRequestType>;
 }
-export default function LocationSection({
-  isModalOpen,
-  openModal,
-  closeModal,
-  value,
-  setValue,
-}: LocationSectionProps) {
+
+export default function LocationSection({ value, setValue }: LocationSectionProps) {
+  const { modalName, openModal, closeModal } = useModalState();
+
   return (
     <>
       <InputSection
@@ -28,7 +23,7 @@ export default function LocationSection({
       />
 
       <BottomUpModal
-        isModalOpen={isModalOpen}
+        isModalOpen={modalName === 'meetingLocation'}
         snap={500}
         handleLeftButtonClick={() => openModal('meetingLocation')}
         onClose={closeModal}
