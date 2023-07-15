@@ -2,9 +2,11 @@
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-import { Button } from '@/components/common/Button';
+import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import useJoin from '@/store/useJoin';
+
+import SearchResultSection from './SearchResultSection.client';
 
 type InputType = {
   school: string;
@@ -54,16 +56,9 @@ export default function InputForm() {
         })}
       />
 
-      <section>
-        {DUMMY_SEARCH_RESULT_LIST.map((searchResult) => (
-          <div key={searchResult.id} className="border-b-[0.5px] border-b-gray6 p-20">
-            <div className="text-14">{searchResult.name}</div>
-            <div className="text-12 text-gray2">{searchResult.address}</div>
-          </div>
-        ))}
-      </section>
+      <SearchResultSection searchResultList={DUMMY_SEARCH_RESULT_LIST} />
 
-      <Button text="완료" type="submit" className="absolute bottom-0" disabled={!watch('school')} />
+      <BottomFixedButton text="완료" type="submit" disabled={!watch('school')} />
     </form>
   );
 }
