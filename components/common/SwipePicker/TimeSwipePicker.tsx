@@ -1,6 +1,6 @@
-import type { TimeType } from '@/types/global';
-
 import SwipePicker from './SwipePicker';
+
+import type { TimeType } from '@/types';
 
 const hourList = Array.from({ length: 12 }, (_, i) => `${i + 1}`);
 const minuteList = Array.from({ length: 60 }, (_, i) => (i > 9 ? `${i}` : `0${i}`));
@@ -67,5 +67,3 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
     </div>
   );
 }
-
-// 2022. 04. 27. FRI  7PM - 9PM
