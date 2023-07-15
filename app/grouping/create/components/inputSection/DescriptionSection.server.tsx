@@ -1,22 +1,20 @@
 import { TextArea } from '@/components/common/Input';
-import { TextareaHTMLAttributes } from 'react';
-
-import type { InputProps } from '@/components/common/Input/Input';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 const TEXT_AREA_COUNT = 30;
 
-export interface DescriptionSectionProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  register?: InputProps['register'];
+interface DescriptionSectionProps {
+  register: UseFormRegisterReturn<'description'>;
 }
 
-export default function DescriptionSection({ ...props }: DescriptionSectionProps) {
+export default function DescriptionSection({ register }: DescriptionSectionProps) {
   return (
     <section>
       <div className="flex justify-between">
         <div className="mb-5 text-14">활동 소개글</div>
         <div className="text-12 text-gray2">0/{TEXT_AREA_COUNT}</div>
       </div>
-      <TextArea placeholder="내용을 입력해주세요." {...props} />
+      <TextArea placeholder="내용을 입력해주세요." {...register} />
     </section>
   );
 }

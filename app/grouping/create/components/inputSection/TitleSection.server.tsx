@@ -1,11 +1,15 @@
 import { Input } from '@/components/common/Input';
-import { InputProps } from '@/components/common/Input/Input';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
-export default function TitleSection({ ...props }: InputProps) {
+interface TitleSectionProps {
+  register: UseFormRegisterReturn<'title'>;
+}
+
+export default function TitleSection({ register }: TitleSectionProps) {
   return (
-    <section {...props}>
+    <section>
       <div className="mb-5 text-14">방 제목</div>
-      <Input placeholder="제목을 입력해주세요" {...props} />
+      <Input placeholder="제목을 입력해주세요" {...register} />
     </section>
   );
 }
