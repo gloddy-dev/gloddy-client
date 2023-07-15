@@ -2,7 +2,7 @@ import InputArea from './InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import { BottomUpModal } from '@/components/common/Modal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
-import useModalState from '@/store/useModalStatus';
+import useModalState from '@/store/useModals';
 import { UseFormSetValue } from 'react-hook-form';
 
 import type { CreateMeetingRequestType } from '../../type';
@@ -30,6 +30,7 @@ export default function NumberSection({ value, setValue }: NumberSectionProps) {
         onClose={closeModal}
         isRightButton
         text={<div className="text-18">모임 장소</div>}
+        isTapOutsideToClose
       >
         <div className="relative h-full">
           <NumberSwipePicker

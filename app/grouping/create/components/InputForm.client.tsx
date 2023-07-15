@@ -41,9 +41,7 @@ export default function InputForm() {
     defaultValues: inputDefaultValues,
   });
 
-  const { openModal, closeModal, modalName } = useModal<ModalNameType>();
-
-  const handleSubmitButton = (data: CreateMeetingRequestType) => {
+  const handleCreateMeetingSubmit = (data: CreateMeetingRequestType) => {
     // TODO : 서버 api 전송
     console.log(data);
   };
@@ -94,7 +92,7 @@ export default function InputForm() {
       <BottomFixedButton
         text="완료"
         disabled={!isAllEntered}
-        onClick={handleSubmit(handleSubmitButton)}
+        onClick={handleSubmit(handleCreateMeetingSubmit)}
       />
     </div>
   );

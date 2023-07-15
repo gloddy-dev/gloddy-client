@@ -2,7 +2,7 @@ import InputSection from './InputArea.server';
 import { CreateMeetingRequestType } from '../../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
-import useModalState from '@/store/useModalStatus';
+import useModalState from '@/store/useModals';
 import { UseFormSetValue } from 'react-hook-form';
 
 interface LocationSectionProps {
@@ -29,6 +29,7 @@ export default function LocationSection({ value, setValue }: LocationSectionProp
         onClose={closeModal}
         isRightButton
         text={<div className="text-18">모임 장소</div>}
+        isTapOutsideToClose
       >
         <div className="relative h-full">
           <div></div>

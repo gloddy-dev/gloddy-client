@@ -4,7 +4,7 @@ import Calendar from '@/components/common/Calendar';
 import { BottomUpModal } from '@/components/common/Modal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
-import useModalState from '@/store/useModalStatus';
+import useModalState from '@/store/useModals';
 import { UseFormSetValue } from 'react-hook-form';
 
 import type { CreateMeetingRequestType, ModalNameType } from '../../type';
@@ -55,6 +55,7 @@ export default function DateSection({ value, setValue }: DateSectionProps) {
         onClose={closeModal}
         isRightButton
         text={<div className="text-18">모임 일시</div>}
+        isTapOutsideToClose
       >
         <div className="relative h-full">
           <div>
