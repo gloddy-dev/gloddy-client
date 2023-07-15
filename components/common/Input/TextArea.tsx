@@ -3,12 +3,12 @@
 import type { TextareaHTMLAttributes } from 'react';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   placeholder: string;
   register?: UseFormRegisterReturn;
 }
 
-export default function TextArea({ placeholder, register, ...props }: InputProps) {
+export default function TextArea({ placeholder, register, ...props }: TextAreaProps) {
   return (
     <textarea
       placeholder={placeholder}
