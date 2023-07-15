@@ -1,26 +1,14 @@
 'use client';
 
-import clsx from 'clsx';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
-import { BottomFixedButton, Button } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
-import { BottomUpModal } from '@/components/common/Modal';
-import { regexr } from '@/constants/regexr';
 import { useModal } from '@/hooks/useModal';
 import useJoin from '@/store/useJoin';
-import { Spacing } from '@/components/common/Spacing';
-import BomttomFixed from '@/components/common/BottomFixed';
-
-type InputType = {
-  email: string;
-  certificateNumber: number;
-};
+import { InputType } from '../type';
+import CertificationSection from './CertificationSection';
+import EmailSection from './EmailSection';
 
 export default function InputForm() {
-  const router = useRouter();
   const {
     register,
     formState: { errors },
@@ -31,93 +19,26 @@ export default function InputForm() {
   const { isModalOpen, openModal, closeModal } = useModal<'certification'>();
   const { setJoinValue } = useJoin();
 
-  const onSubmitEmail: SubmitHandler<InputType> = (data: InputType) => {
-    openModal('certification');
-    setJoinValue({ email: data.email });
-    // 인증번호 전송
-  };
-  const onSubmitCertificateNumber: SubmitHandler<InputType> = (data: InputType) => {
-    // 인증번호 확인
-    router.push('/join/step4');
-  };
-
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmitEmail)}>
-        <section>
-          <Input
-            label="ID"
-            register={register('email', {
-              required: true,
-              pattern: {
-                value: regexr.email,
-                message: '학교 이메일을 다시 확인해주세요.',
-              },
-            })}
-          />
-        </section>
+      <EmailSection
+        isModalOpen={isModalOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+        register={register}
+        handleSubmit={handleSubmit}
+        setJoinValue={setJoinValue}
+        email={watch('email')}
+        isError={!!errors.email}
+      />
 
-        <p
-          className={clsx('font-500 float flex justify-center gap-5 text-13 text-orange', {
-            invisible: !errors.email,
-          })}
-        >
-          <Image alt="alert" src="/assets/alert.svg" width={10} height={30} />
-          {errors.email?.message}
-        </p>
-
-        <Spacing size={10} />
-
-        <BomttomFixed>
-          <Button
-            text="인증하기"
-            type="submit"
-            disabled={
-              !!errors.email || watch('email') === undefined || watch('email')?.length === 0
-            }
-          />
-
-          <Spacing size={8} />
-
-          <Button text="다음에 인증하기" color="orange" href="/join/step4" />
-        </BomttomFixed>
-      </form>
-
-      <BottomUpModal isModalOpen={isModalOpen} onClose={closeModal} snap={400} isRightButton>
-        <section className="text-20 font-700">
-          <p>회원님의 이메일로 </p>
-          <p>인증번호를 전송하였습니다.</p>
-        </section>
-
-        <form onSubmit={handleSubmit(onSubmitCertificateNumber)}>
-          <section className="my-20">
-            <Input
-              label="인증번호"
-              register={register('certificateNumber', {
-                required: true,
-                pattern: {
-                  value: regexr.certificateNumber,
-                  message: '인증 번호를 다시 확인해주세요.',
-                },
-              })}
-              maxLength={6}
-            />
-            <div className="flex justify-between p-10">
-              <p className="text-14 text-gray3 underline ">재전송하기</p>
-              <p className="text-orange">02:59</p>
-            </div>
-          </section>
-
-          <BottomFixedButton
-            text="완료"
-            disabled={
-              String(watch('certificateNumber'))?.length < 6 ||
-              watch('certificateNumber') === undefined
-            }
-            type="submit"
-          />
-        </form>
-      </BottomUpModal>
+      <CertificationSection
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        register={register}
+        handleSubmit={handleSubmit}
+        certificateNumber={watch('certificateNumber')}
+      />
     </div>
   );
 }
