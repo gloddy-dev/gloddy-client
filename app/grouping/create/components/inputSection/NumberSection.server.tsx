@@ -1,33 +1,31 @@
+import InputArea from './InputArea.server';
+import { BottomFixedButton } from '@/components/common/Button';
+import { BottomUpModal } from '@/components/common/Modal';
+import { NumberSwipePicker } from '@/components/common/SwipePicker';
 import { UseFormSetValue } from 'react-hook-form';
 
-import { BottomFixedButton } from '@/components/common/Button';
-import BottomUpModal from '@/components/common/Modal/BottomUpModal';
-import { NumberSwipePicker } from '@/components/common/SwipePicker';
+import type { CreateMeetingRequestType, ModalNameType } from '../../type';
 
-import InputSection from './InputArea.server';
-
-import type { InputType, ModalNameType } from '../../type';
-
-interface NumberSectionModalProps {
+interface NumberSectionProps {
   isModalOpen: boolean;
   openModal: (name: ModalNameType) => void;
   closeModal: () => void;
   value: number;
-  setValue: UseFormSetValue<InputType>;
+  setValue: UseFormSetValue<CreateMeetingRequestType>;
 }
-export default function NumberSectionModal({
+export default function NumberSection({
   isModalOpen,
   openModal,
   closeModal,
   value,
   setValue,
-}: NumberSectionModalProps) {
+}: NumberSectionProps) {
   return (
     <>
-      <InputSection
+      <InputArea
         title="모임 인원"
         onClick={() => openModal('meetingNumber')}
-        value={value ? value : ''}
+        value={value ? value : undefined}
         placeholder="모임 인원을 설정해주세요."
       />
 

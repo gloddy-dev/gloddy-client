@@ -1,17 +1,15 @@
-import { UseFormSetValue } from 'react-hook-form';
-
+import InputSection from './InputArea.server';
+import { CreateMeetingRequestType, ModalNameType } from '../../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
-
-import { InputType, ModalNameType } from '../../type';
-import InputSection from './InputArea.server';
+import { UseFormSetValue } from 'react-hook-form';
 
 interface LocationSectionProps {
   isModalOpen: boolean;
   openModal: (name: ModalNameType) => void;
   closeModal: () => void;
   value: string;
-  setValue: UseFormSetValue<InputType>;
+  setValue: UseFormSetValue<CreateMeetingRequestType>;
 }
 export default function LocationSection({
   isModalOpen,
