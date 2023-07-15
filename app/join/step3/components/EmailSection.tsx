@@ -9,9 +9,7 @@ import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-
 import { InputType } from '../type';
 
 interface EmailSectionProps {
-  isModalOpen: boolean;
   openModal: (type: 'certification') => void;
-  closeModal: () => void;
   register: UseFormRegister<InputType>;
   handleSubmit: UseFormHandleSubmit<InputType>;
   email: string;
@@ -19,9 +17,7 @@ interface EmailSectionProps {
   isError: boolean;
 }
 export default function EmailSection({
-  isModalOpen,
   openModal,
-  closeModal,
   register,
   handleSubmit,
   email,

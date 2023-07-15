@@ -22,9 +22,7 @@ export default function InputForm() {
   return (
     <div>
       <EmailSection
-        isModalOpen={isModalOpen}
         openModal={openModal}
-        closeModal={closeModal}
         register={register}
         handleSubmit={handleSubmit}
         setJoinValue={setJoinValue}
