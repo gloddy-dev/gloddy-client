@@ -15,8 +15,9 @@ interface PickerProps {
   isFirst?: boolean;
   isLast?: boolean;
   setValue?: (value: string, keyType: string) => void;
-  initialValue?: string;
+  value?: string;
 }
+
 export default function SwipePicker({
   selectList,
   keyType = '',
@@ -25,32 +26,29 @@ export default function SwipePicker({
   isTimeZone = false,
   isRangeString = false,
   setValue,
-  initialValue,
+  value,
 }: PickerProps) {
   return (
     <Swiper
+      mousewheel
+      slideToClickedSlide
+      centeredSlides
+      className="w-full"
+      direction={'vertical'}
+      slidesPerView={3}
+      modules={[FreeMode]}
+      pagination={{
+        clickable: true,
+      }}
       freeMode={{
         enabled: true,
         sticky: true,
       }}
-      className="w-full"
-      direction={'vertical'}
-      slidesPerView={3}
-      mousewheel
-      slideToClickedSlide
-      centeredSlides
-      pagination={{
-        clickable: true,
-      }}
-      modules={[FreeMode]}
       onSlideChange={(swiper) => setValue && setValue(selectList[swiper.activeIndex], keyType)}
-      initialSlide={initialValue ? selectList.indexOf(initialValue) : 0}
+      initialSlide={value ? selectList.indexOf(value) : 0}
     >
       {selectList.map((slideContent) => (
-        <SwiperSlide
-          key={slideContent}
-          className={clsx({ 'rounded-l-10': isFirst, 'rounded-r-10': isLast })}
-        >
+        <SwiperSlide key={slideContent}>
           {({ isActive }) =>
             isActive ? (
               <div
@@ -59,6 +57,9 @@ export default function SwipePicker({
                     'text-25 text-gray': !isRangeString && !isTimeZone,
                     'text-12 text-blue': isRangeString,
                     'text-14': isTimeZone,
+
+                    'rounded-l-10': isFirst,
+                    'rounded-r-10': isLast,
                   },
                   'flex h-full items-center justify-center bg-[#f8f8f8] font-700 opacity-100'
                 )}

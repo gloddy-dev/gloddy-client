@@ -29,20 +29,20 @@ export default function DateSwipePicker({ birthdayValue, setBirthdayValue }: Dat
         isFirst
         setValue={setValueByKeyType}
         keyType={'year'}
-        initialValue={birthdayValue.year}
+        value={birthdayValue.year}
       />
       <SwipePicker
         selectList={monthList}
         setValue={setValueByKeyType}
         keyType={'month'}
-        initialValue={birthdayValue.month}
+        value={birthdayValue.month}
       />
       <SwipePicker
         selectList={dateList}
         isLast
         setValue={setValueByKeyType}
         keyType={'date'}
-        initialValue={birthdayValue.date}
+        value={birthdayValue.date}
       />
     </div>
   );
