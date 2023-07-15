@@ -1,21 +1,19 @@
 'use client';
 
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
-
+import DateSection from './inputSection/DateSection.server';
+import DescriptionSection from './inputSection/DescriptionSection.server';
+import LocationSection from './inputSection/LocationSection.server';
+import NumberSection from './inputSection/NumberSection.server';
+import TitleSection from './inputSection/TitleSection.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { useModal } from '@/hooks/useModal';
+import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
-import DateSection from './inputSection/DateSection.server';
-import DescriptionSection from './inputSection/DescriptionSection.server';
-import LocationSection from './inputSection/LocationSection.server';
-import NumberSectionModal from './inputSection/NumberSection.server';
-import TitleSection from './inputSection/TitleSection.server';
-
+import type { CreateMeetingRequestType, ModalNameType } from '../type';
 import type { ImageType } from '@/types';
-import type { InputType, ModalNameType } from '../type';
 
 const inputDefaultValues = {
   title: '',
@@ -39,13 +37,13 @@ const inputDefaultValues = {
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement | null>(null);
-  const { register, watch, handleSubmit, setValue } = useForm<InputType>({
+  const { register, watch, handleSubmit, setValue } = useForm<CreateMeetingRequestType>({
     defaultValues: inputDefaultValues,
   });
 
   const { openModal, closeModal, modalName } = useModal<ModalNameType>();
 
-  const handleSubmitButton = (data: InputType) => {
+  const handleSubmitButton = (data: CreateMeetingRequestType) => {
     // TODO : 서버 api 전송
     console.log(data);
   };
@@ -103,7 +101,7 @@ export default function InputForm() {
         value={watch('meetingLocation')}
         setValue={setValue}
       />
-      <NumberSectionModal
+      <NumberSection
         isModalOpen={modalName === 'meetingNumber'}
         openModal={openModal}
         closeModal={closeModal}

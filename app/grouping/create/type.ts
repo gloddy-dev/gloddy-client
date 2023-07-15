@@ -1,6 +1,6 @@
 import type { ImageType, TimeType } from '@/types';
 
-export type InputType = {
+export type CreateMeetingRequestType = {
   title: string;
   description: string;
   image: ImageType;
