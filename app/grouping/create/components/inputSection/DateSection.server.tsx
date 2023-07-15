@@ -1,16 +1,13 @@
-import { UseFormSetValue } from 'react-hook-form';
-
+import InputSection from './InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
-import BottomUpModal from '@/components/common/Modal/BottomUpModal';
+import { BottomUpModal } from '@/components/common/Modal';
 import { DivisionSpacing } from '@/components/common/Spacing';
-import TimeSwipePicker from '@/components/common/SwipePicker/TimeSwipePicker';
+import { TimeSwipePicker } from '@/components/common/SwipePicker';
+import { UseFormSetValue } from 'react-hook-form';
 
-import InputSection from './InputArea.server';
-
+import type { CreateMeetingRequestType, ModalNameType } from '../../type';
 import type { TimeType } from '@/types';
-
-import type { InputType, ModalNameType } from '../../type';
 
 function getDayName(dayIndex: number) {
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
@@ -37,7 +34,7 @@ interface DateSectionProps {
     date: Date;
     time: TimeType;
   };
-  setValue: UseFormSetValue<InputType>;
+  setValue: UseFormSetValue<CreateMeetingRequestType>;
   closeModal: () => void;
 }
 
