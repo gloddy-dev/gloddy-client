@@ -1,13 +1,13 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
 import useJoin from '@/store/useJoin';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 type InputType = {
   phoneNumber: string;
@@ -85,7 +85,8 @@ export default function InputForm() {
           onKeyDown={handleInputChange}
         />
 
-        <div className="h-18" />
+        <Spacing size={15} />
+
         <Button
           text={
             inputStatus === 'readyForSend' || inputStatus === 'notReadyForSend'
