@@ -1,9 +1,8 @@
-import TopNavigationBar from './components/TopNavigationBar.client';
-import TopSection from './components/TopSection.server';
-import ApplyButton from './components/ApplyButton.client';
-import DetailContent from './components/detail/DetailContent.server';
 import BoardContent from './components/board/BoardContent.server';
 import ContentSection from './components/ContentSection.client';
+import DetailContent from './components/detail/DetailContent.server';
+import TopNavigationBar from './components/TopNavigationBar.client';
+import TopSection from './components/TopSection.client';
 
 const DETAIL_DUMMY_DATA = {
   image: '/assets/main_logo.png',
@@ -32,7 +31,6 @@ export default function GroupingByIdPage({
         detailNode={<DetailContent location={location} time={time} />}
         boardNode={<BoardContent />}
       />
-      <ApplyButton />
     </main>
   );
 }

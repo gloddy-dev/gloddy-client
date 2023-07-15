@@ -1,16 +1,24 @@
 'use client';
+import { BottomFixedButton } from '@/components/common/Button';
 import Tabs from '@/components/common/Tabs';
 import { useSearchParams } from 'next/navigation';
+
+import type { TabType } from '../type';
 
 interface ContentSectionProps {
   detailNode: React.ReactNode;
   boardNode: React.ReactNode;
+  isLeader?: boolean;
 }
 
-export default function ContentSection({ detailNode, boardNode }: ContentSectionProps) {
+export default function ContentSection({ detailNode, boardNode, isLeader }: ContentSectionProps) {
   const searchParams = useSearchParams();
 
-  const currentTab = searchParams.get('tab') ?? 'detail';
+  const currentTab = (searchParams.get('tab') ?? 'detail') as TabType;
+
+  const handleApplyClick = () => {};
+
+  const handleWriteClick = () => {};
 
   return (
     <section>
@@ -21,9 +29,11 @@ export default function ContentSection({ detailNode, boardNode }: ContentSection
         </Tabs.List>
         <Tabs.Panel value="detail">
           <div className="p-20">{detailNode}</div>
+          {!isLeader && <BottomFixedButton text="지원하기" onClick={handleApplyClick} />}
         </Tabs.Panel>
         <Tabs.Panel value="board">
           <div className="p-20">{boardNode}</div>
+          <BottomFixedButton text="글쓰기" onClick={handleWriteClick} />
         </Tabs.Panel>
       </Tabs>
     </section>
