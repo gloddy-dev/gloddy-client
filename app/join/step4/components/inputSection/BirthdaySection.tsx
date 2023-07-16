@@ -3,19 +3,17 @@ import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
 import { Spacing } from '@/components/common/Spacing';
 import { DateSwipePicker } from '@/components/common/SwipePicker';
+import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 import { BirthdayValueType } from '@/types';
 
-interface BirthdaySectionProps {
-  setValue: (value: BirthdayValueType) => void;
-  value: BirthdayValueType;
-}
-export default function BirthdaySection({ value, setValue }: BirthdaySectionProps) {
+export default function BirthdaySection() {
   const { modalName, openModal, closeModal } = useModalStore();
+  const { birth, setJoinValue } = useJoinStore();
 
   const isModalOpen = modalName === 'birthday';
 
-  const isBirthDayEntered = !!value.year && !!value.month && !!value.date;
+  const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
   return (
     <section>
@@ -24,7 +22,7 @@ export default function BirthdaySection({ value, setValue }: BirthdaySectionProp
       <Input
         placeholder="생년월일을 선택해주세요."
         onClick={() => openModal('birthday')}
-        value={isBirthDayEntered ? `${value.year} ${value.month} ${value.date}` : ''}
+        value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
         readOnly
       />
 
@@ -41,8 +39,8 @@ export default function BirthdaySection({ value, setValue }: BirthdaySectionProp
         disableDrag
       >
         <DateSwipePicker
-          birthdayValue={value}
-          setBirthdayValue={(value: BirthdayValueType) => setValue(value)}
+          birthdayValue={birth}
+          setBirthdayValue={(birth: BirthdayValueType) => setJoinValue({ birth })}
         />
         <BottomFixedButton
           text="다음"

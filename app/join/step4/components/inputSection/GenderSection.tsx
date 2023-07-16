@@ -2,20 +2,17 @@ import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
 import GenderSwipePicker from '@/components/common/SwipePicker/GenderSwipePicker';
+import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
-import { GenderType } from '@/types';
 
-interface GenderInputSectionProps {
-  value: string;
-  setValue: (value: GenderType) => void;
-}
-export default function GenderSection({ value, setValue }: GenderInputSectionProps) {
+export default function GenderSection() {
   const { modalName, openModal, closeModal } = useModalStore();
+  const { gender, setJoinValue } = useJoinStore();
 
   const isModalOpen = modalName === 'gender';
 
   const handleNextButtonClick = () => {
-    if (!value) setValue('남성');
+    if (!gender) setJoinValue({ gender: '남성' });
     closeModal();
   };
 
@@ -25,7 +22,7 @@ export default function GenderSection({ value, setValue }: GenderInputSectionPro
       <Input
         placeholder="성별을 선택해주세요."
         onClick={() => openModal('gender')}
-        value={value}
+        value={gender}
         readOnly
       />
       <BottomSheet
@@ -36,7 +33,10 @@ export default function GenderSection({ value, setValue }: GenderInputSectionPro
         text={<p className="font-500 text-18 text-gray7">성별</p>}
         disableDrag
       >
-        <GenderSwipePicker genderValue={value} setGenderValue={setValue} />
+        <GenderSwipePicker
+          genderValue={gender}
+          setGenderValue={(value) => setJoinValue({ gender: value })}
+        />
         <BottomFixedButton text="완료" onClick={handleNextButtonClick} />
       </BottomSheet>
     </section>
