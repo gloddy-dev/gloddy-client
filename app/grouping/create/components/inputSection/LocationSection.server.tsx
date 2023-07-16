@@ -2,7 +2,7 @@ import InputSection from './InputArea.server';
 import { CreateMeetingRequestType } from '../../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
-import useModalState from '@/store/useModals';
+import useModalState from '@/store/useModalStore';
 import { UseFormSetValue } from 'react-hook-form';
 
 interface LocationSectionProps {

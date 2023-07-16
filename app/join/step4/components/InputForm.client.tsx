@@ -1,19 +1,19 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
-
 import { Button } from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Input } from '@/components/common/Input';
 import { BottomUpModal } from '@/components/common/Modal';
 import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
 import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
-import { useModal } from '@/hooks/useModal';
 import useJoin from '@/store/useJoin';
+import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 import type { BirthdayValueType, ImageType } from '@/types';
+
+import { useModals } from '@/hooks/useModals';
 
 type InputType = {
   nickname: string;
@@ -24,7 +24,7 @@ type InputType = {
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
-  const { isModalOpen, modalName, openModal, closeModal } = useModal<'birthday' | 'gender'>();
+  const { isModalOpen, modalName, openModal, closeModal } = useModals<'birthday' | 'gender'>();
   const { setJoinValue } = useJoin();
   const router = useRouter();
 

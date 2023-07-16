@@ -8,12 +8,13 @@ import TitleSection from './inputSection/TitleSection.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
-import { useModal } from '@/hooks/useModal';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import type { CreateMeetingRequestType, ModalNameType } from '../type';
 import type { ImageType } from '@/types';
+
+import { useModals } from '@/hooks/useModals';
 
 const inputDefaultValues = {
   title: '',

@@ -1,16 +1,16 @@
 'use client';
 
+import { Button } from '@/components/common/Button';
+import { Input } from '@/components/common/Input';
+import { BottomUpModal } from '@/components/common/Modal';
+import { regexr } from '@/constants/regexr';
+import useJoin from '@/store/useJoin';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { Button } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
-import { BottomUpModal } from '@/components/common/Modal';
-import { regexr } from '@/constants/regexr';
-import { useModal } from '@/hooks/useModal';
-import useJoin from '@/store/useJoin';
+import { useModals } from '@/hooks/useModals';
 
 type InputType = {
   email: string;
@@ -25,7 +25,7 @@ export default function InputForm() {
     watch,
     handleSubmit,
   } = useForm<InputType>();
-  const { isModalOpen, openModal, closeModal } = useModal<'modal'>();
+  const { isModalOpen, openModal, closeModal } = useModals<'modal'>();
   const { setJoinValue } = useJoin();
 
   const onSubmitEmail: SubmitHandler<InputType> = (data: InputType) => {

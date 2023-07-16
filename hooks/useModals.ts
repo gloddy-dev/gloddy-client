@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-export const useModal = <ModalName>() => {
+export const useModals = <ModalName>() => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalName, setModalName] = useState<ModalName>();
   const [modalProps, setModalProps] = useState({});

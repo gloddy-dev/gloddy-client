@@ -7,10 +7,10 @@ interface ModalState {
   closeModal: () => void;
 }
 
-const useModals = create<ModalState>((set) => ({
+const useModalStore = create<ModalState>((set) => ({
   modalName: null as ModalNameType | null,
   openModal: (modalName: ModalNameType) => set({ modalName }),
   closeModal: () => set({ modalName: null }),
 }));
 
-export default useModals;
+export default useModalStore;
