@@ -1,12 +1,17 @@
 'use client';
 
+import CertificationSection from './CertificationSection';
+import EmailSection from './EmailSection';
+import { InputType } from '../type';
+import useJoin from '@/store/useJoin';
 import { useForm } from 'react-hook-form';
 
 import { useModal } from '@/hooks/useModal';
-import useJoin from '@/store/useJoin';
-import { InputType } from '../type';
-import CertificationSection from './CertificationSection';
-import EmailSection from './EmailSection';
+
+type InputType = {
+  email: string;
+  certificateNumber: number;
+};
 
 export default function InputForm() {
   const {
