@@ -1,13 +1,11 @@
 'use client';
 
-import Link from 'next/link';
-
-import { CircleCheckbox } from '@/components/common/Checkbox';
-import { INSTAGRAM_URL } from '@/constants';
-
+import InputForm from './components/InputForm.client';
 import AuthTitleTextMessage from '../components/AuthTitleTextMessage.server';
 import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
-import InputForm from './components/InputForm.client';
+import { CircleCheckbox } from '@/components/common/Checkbox';
+import { INSTAGRAM_URL } from '@/constants';
+import Link from 'next/link';
 
 export default function Step3Page() {
   return (
