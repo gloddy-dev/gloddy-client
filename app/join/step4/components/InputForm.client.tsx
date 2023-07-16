@@ -1,19 +1,15 @@
 'use client';
 
-import { Button } from '@/components/common/Button';
+import BirthdaySection from './inputSection/BirthdaySection';
+import GenderSection from './inputSection/GenderSection';
+import NicknameSection from './inputSection/NicknameSection';
+import { BottomFixedButton } from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame';
-import { Input } from '@/components/common/Input';
-import { BottomUpModal } from '@/components/common/Modal';
 import { Spacing } from '@/components/common/Spacing';
-import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
-import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
 import { useModals } from '@/hooks/useModals';
 import useJoin from '@/store/useJoin';
 import { useRouter } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
 import type { BirthdayValueType, ImageType } from '@/types';
@@ -96,7 +92,7 @@ export default function InputForm() {
 
       <Spacing size={10} />
 
-      <SexSection />
+      <GenderSection />
 
       <Spacing size={10} />
 
