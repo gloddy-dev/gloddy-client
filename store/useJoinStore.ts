@@ -25,7 +25,7 @@ type ValueStringType =
 
 type ValueStringArrayType = 'personalities';
 
-const useJoin = create<JoinState>((set) => ({
+const useJoinStore = create<JoinState>((set) => ({
   phoneNumber: '',
   school: '',
   email: '',
@@ -39,4 +39,4 @@ const useJoin = create<JoinState>((set) => ({
     set(() => ({ [key]: [...value] })),
 }));
 
-export default useJoin;
+export default useJoinStore;

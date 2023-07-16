@@ -7,7 +7,7 @@ import { BottomFixedButton } from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { useModals } from '@/hooks/useModals';
-import useJoin from '@/store/useJoin';
+import useJoinStore from '@/store/useJoinStore';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -24,7 +24,7 @@ type InputType = {
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
   const { isModalOpen, modalName, openModal, closeModal } = useModals<'birthday' | 'gender'>();
-  const { setJoinValue } = useJoin();
+  const { setJoinValue } = useJoinStore();
   const router = useRouter();
 
   const { register, watch, handleSubmit, setValue } = useForm<InputType>({

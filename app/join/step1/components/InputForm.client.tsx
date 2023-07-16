@@ -1,12 +1,12 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import useJoin from '@/store/useJoin';
+import useJoinStore from '@/store/useJoinStore';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type InputType = {
@@ -40,7 +40,7 @@ export default function InputForm() {
   } = useForm<InputType>();
 
   const [inputStatus, setInputStatus] = useState<InputStatusType>('notReadyForSend');
-  const { setJoinValue } = useJoin();
+  const { setJoinValue } = useJoinStore();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>

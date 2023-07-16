@@ -1,10 +1,10 @@
 'use client';
-import { useState } from 'react';
 
-import { Button } from '@/components/common/Button';
 import PersonalityItem from '../../components/PersonalityItem.server';
+import { Button } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
-import useJoin from '@/store/useJoin';
+import useJoinStore from '@/store/useJoinStore';
+import { useState } from 'react';
 
 export default function InputForm() {
   const [selectedPersonalityList, setSelectedPersonalityList] = useState<number[]>([]);
@@ -17,7 +17,7 @@ export default function InputForm() {
     setSelectedPersonalityList([...selectedPersonalityList, id]);
   };
 
-  const { phoneNumber, school, email, name, birth, gender } = useJoin();
+  const { phoneNumber, school, email, name, birth, gender } = useJoinStore();
 
   const handleSubmit = () => {
     console.log(phoneNumber, school, email, name, birth, gender, selectedPersonalityList);

@@ -4,7 +4,7 @@ import CertificationSection from './CertificationSection';
 import EmailSection from './EmailSection';
 import { InputType } from '../type';
 import { useModals } from '@/hooks/useModals';
-import useJoin from '@/store/useJoin';
+import useJoinStore from '@/store/useJoinStore';
 import { useForm } from 'react-hook-form';
 
 export default function InputForm() {
@@ -16,7 +16,7 @@ export default function InputForm() {
   } = useForm<InputType>();
 
   const { isModalOpen, openModal, closeModal } = useModals<'certification'>();
-  const { setJoinValue } = useJoin();
+  const { setJoinValue } = useJoinStore();
 
   return (
     <div>

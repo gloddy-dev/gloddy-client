@@ -1,12 +1,10 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-
+import SearchResultSection from './SearchResultSection.client';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import useJoin from '@/store/useJoin';
-
-import SearchResultSection from './SearchResultSection.client';
+import useJoinStore from '@/store/useJoinStore';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 
 type InputType = {
   school: string;
@@ -40,7 +38,7 @@ export default function InputForm() {
     handleSubmit,
   } = useForm<InputType>();
 
-  const { setJoinValue } = useJoin();
+  const { setJoinValue } = useJoinStore();
 
   const onSubmit = (data: InputType) => {
     setJoinValue({ school: data.school });
