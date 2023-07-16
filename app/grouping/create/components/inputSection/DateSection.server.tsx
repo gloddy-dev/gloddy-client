@@ -1,4 +1,4 @@
-import InputSection from './InputArea.server';
+import InputArea from './InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
 import { BottomUpModal } from '@/components/common/Modal';
@@ -7,7 +7,7 @@ import { TimeSwipePicker } from '@/components/common/SwipePicker';
 import useModalState from '@/store/useModalStore';
 import { UseFormSetValue } from 'react-hook-form';
 
-import type { CreateMeetingRequestType, ModalNameType } from '../../type';
+import type { CreateMeetingRequestType } from '../../type';
 import type { TimeType } from '@/types';
 
 function getDayName(dayIndex: number) {
@@ -41,7 +41,7 @@ export default function DateSection({ value, setValue }: DateSectionProps) {
 
   return (
     <>
-      <InputSection
+      <InputArea
         title="모임 일시"
         onClick={() => openModal('meetingDate')}
         value={displayDate(value.date, value.time)}

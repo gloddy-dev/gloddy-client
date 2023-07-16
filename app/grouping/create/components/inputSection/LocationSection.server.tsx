@@ -1,4 +1,4 @@
-import InputSection from './InputArea.server';
+import InputArea from './InputArea.server';
 import { CreateMeetingRequestType } from '../../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import BottomUpModal from '@/components/common/Modal/BottomUpModal';
@@ -15,7 +15,7 @@ export default function LocationSection({ value, setValue }: LocationSectionProp
 
   return (
     <>
-      <InputSection
+      <InputArea
         title="모임 장소"
         onClick={() => openModal('meetingLocation')}
         value={value}
