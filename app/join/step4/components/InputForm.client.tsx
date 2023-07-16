@@ -3,27 +3,19 @@
 import BirthdaySection from './inputSection/BirthdaySection';
 import GenderSection from './inputSection/GenderSection';
 import NicknameSection from './inputSection/NicknameSection';
+import { InputType } from '../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
-import { useModals } from '@/hooks/useModals';
 import useJoinStore from '@/store/useJoinStore';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-import type { BirthdayValueType, ImageType } from '@/types';
-
-type InputType = {
-  nickname: string;
-  profileImage: ImageType;
-  birthday: BirthdayValueType;
-  gender: string;
-};
+import type { BirthdayValueType, GenderType, ImageType } from '@/types';
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
-  const { isModalOpen, modalName, openModal, closeModal } = useModals<'birthday' | 'gender'>();
   const { setJoinValue } = useJoinStore();
   const router = useRouter();
 
@@ -39,7 +31,6 @@ export default function InputForm() {
         month: '',
         date: '',
       },
-      gender: '',
     },
   });
 
@@ -48,20 +39,7 @@ export default function InputForm() {
 
   const isAllEntered = isBirthDayEntered && !!watch('nickname') && !!watch('gender');
 
-  const handleModalNextButton = () => {
-    if (modalName === 'birthday') {
-      openModal('gender');
-      return;
-    }
-    if (modalName === 'gender') {
-      if (watch('gender') === '') {
-        setValue('gender', '남성');
-      }
-      closeModal();
-    }
-  };
-
-  const onSubmitForm = (data: InputType) => {
+  const onFormSubmit = (data: InputType) => {
     const { nickname, profileImage, birthday, gender } = data;
     // TODO profileImage 추가 : 백엔드와 소통 필요
     setJoinValue({
@@ -86,13 +64,20 @@ export default function InputForm() {
           required: true,
         })}
       />
-      <Spacing size={10} />
-
-      <BirthdaySection />
 
       <Spacing size={10} />
 
-      <GenderSection />
+      <BirthdaySection
+        setValue={(value: BirthdayValueType) => setValue('birthday', value)}
+        value={watch('birthday')}
+      />
+
+      <Spacing size={10} />
+
+      <GenderSection
+        value={watch('gender')}
+        setValue={(value: GenderType) => setValue('gender', value)}
+      />
 
       <Spacing size={10} />
 
@@ -100,7 +85,7 @@ export default function InputForm() {
         text={isAllEntered ? '완료' : '다음'}
         disabled={!isAllEntered}
         type="submit"
-        onClick={handleSubmit(onSubmitForm)}
+        onClick={handleSubmit(onFormSubmit)}
       />
     </div>
   );
