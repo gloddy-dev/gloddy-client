@@ -1,10 +1,11 @@
 'use client';
-import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/common/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { BottomUpModal } from '@/components/common/Modal';
-import { useModal } from '@/hooks/useModal';
+import { useEffect, useState } from 'react';
+
+import { useModals } from '@/hooks/useModals';
 
 type AgreeCheckListType = {
   name: string;
@@ -13,7 +14,7 @@ type AgreeCheckListType = {
 };
 
 export default function BottomModal() {
-  const { isModalOpen, openModal, closeModal } = useModal<'modal'>();
+  const { isModalOpen, openModal, closeModal } = useModals<'modal'>();
   const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>([
     {
       name: '서비스 이용약관 동의',

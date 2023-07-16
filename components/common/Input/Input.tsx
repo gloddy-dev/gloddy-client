@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import type { InputHTMLAttributes } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   placeholder?: string;
   register?: UseFormRegisterReturn;

@@ -1,6 +1,6 @@
-import type { TimeType } from '@/types/global';
-
 import SwipePicker from './SwipePicker';
+
+import type { TimeType } from '@/types';
 
 const hourList = Array.from({ length: 12 }, (_, i) => `${i + 1}`);
 const minuteList = Array.from({ length: 60 }, (_, i) => (i > 9 ? `${i}` : `0${i}`));
@@ -23,7 +23,7 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
     <div className="flex h-125 ">
       <SwipePicker
         selectList={hourList}
-        initialValue={timeValue.fromHour}
+        value={timeValue.fromHour}
         keyType="fromHour"
         setValue={setValueByKeyType}
         isFirst
@@ -32,12 +32,12 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
       <SwipePicker
         selectList={minuteList}
         keyType="fromMin"
-        initialValue={timeValue.fromMin}
+        value={timeValue.fromMin}
         setValue={setValueByKeyType}
       />
       <SwipePicker
         selectList={ampmList}
-        initialValue={timeValue.fromAmPm}
+        value={timeValue.fromAmPm}
         keyType="fromAmPm"
         isTimeZone={true}
         setValue={setValueByKeyType}
@@ -46,19 +46,19 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
       <SwipePicker
         selectList={hourList}
         keyType="toHour"
-        initialValue={timeValue.toHour}
+        value={timeValue.toHour}
         setValue={setValueByKeyType}
       />
       <SwipePicker selectList={[':']} />
       <SwipePicker
         selectList={minuteList}
         keyType="toMin"
-        initialValue={timeValue.toMin}
+        value={timeValue.toMin}
         setValue={setValueByKeyType}
       />
       <SwipePicker
         selectList={ampmList}
-        initialValue={timeValue.toAmPm}
+        value={timeValue.toAmPm}
         keyType="toAmPm"
         isTimeZone={true}
         setValue={setValueByKeyType}
@@ -67,5 +67,3 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
     </div>
   );
 }
-
-// 2022. 04. 27. FRI  7PM - 9PM
