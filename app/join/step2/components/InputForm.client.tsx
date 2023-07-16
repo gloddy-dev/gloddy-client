@@ -1,16 +1,13 @@
 'use client';
 import SearchResultSection from './SearchResultSection.client';
+import { InputType, SearchResultType } from '../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import useJoinStore from '@/store/useJoinStore';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-type InputType = {
-  school: string;
-};
-
-const DUMMY_SEARCH_RESULT_LIST = [
+const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
   {
     id: 1,
     name: '경희대학교 서울캠퍼스',

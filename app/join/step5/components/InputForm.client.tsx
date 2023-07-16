@@ -25,7 +25,7 @@ export default function InputForm() {
 
   return (
     <div>
-      {/* TODO : Compound Component Pattern으로 구현할 것 (규성) */}
+      {/* TODO : Compound Component Pattern으로 구현할 예정 (규성) */}
       <section className="flex flex-wrap gap-12">
         {personalityList.map((personality) => (
           <PersonalityItem
