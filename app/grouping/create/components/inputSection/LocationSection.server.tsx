@@ -1,9 +1,10 @@
 import InputArea from './InputArea.server';
 import { CreateMeetingRequestType } from '../../type';
 import { BottomFixedButton } from '@/components/common/Button';
-import BottomUpModal from '@/components/common/Modal/BottomUpModal';
 import useModalState from '@/store/useModalStore';
 import { UseFormSetValue } from 'react-hook-form';
+
+import BottomSheet from '@/components/common/Modal/BottomSheet';
 
 interface LocationSectionProps {
   value: string;
@@ -22,7 +23,7 @@ export default function LocationSection({ value, setValue }: LocationSectionProp
         placeholder="모임 장소를 설정해주세요."
       />
 
-      <BottomUpModal
+      <BottomSheet
         isModalOpen={modalName === 'meetingLocation'}
         snap={500}
         handleLeftButtonClick={() => openModal('meetingLocation')}
@@ -35,7 +36,7 @@ export default function LocationSection({ value, setValue }: LocationSectionProp
           <div></div>
         </div>
         <BottomFixedButton text="다음" onClick={() => openModal('meetingNumber')} />
-      </BottomUpModal>
+      </BottomSheet>
     </>
   );
 }

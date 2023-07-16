@@ -1,6 +1,6 @@
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import { BottomUpModal } from '@/components/common/Modal';
+import { BottomSheet } from '@/components/common/Modal';
 import { Spacing } from '@/components/common/Spacing';
 import { DateSwipePicker } from '@/components/common/SwipePicker';
 import useModalStore from '@/store/useModalStore';
@@ -28,7 +28,7 @@ export default function BirthdaySection({ value, setValue }: BirthdaySectionProp
         readOnly
       />
 
-      <BottomUpModal
+      <BottomSheet
         isModalOpen={isModalOpen}
         snap={400}
         onClose={closeModal}
@@ -49,7 +49,7 @@ export default function BirthdaySection({ value, setValue }: BirthdaySectionProp
           disabled={!isBirthDayEntered}
           onClick={() => openModal('gender')}
         />
-      </BottomUpModal>
+      </BottomSheet>
     </section>
   );
 }

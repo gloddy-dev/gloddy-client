@@ -1,7 +1,7 @@
 import InputArea from './InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
-import { BottomUpModal } from '@/components/common/Modal';
+import { BottomSheet } from '@/components/common/Modal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
 import useModalState from '@/store/useModalStore';
@@ -48,7 +48,7 @@ export default function DateSection({ value, setValue }: DateSectionProps) {
         placeholder="모임 시간을 설정해주세요."
       />
 
-      <BottomUpModal
+      <BottomSheet
         isModalOpen={modalName === 'meetingDate'}
         snap={650}
         handleLeftButtonClick={() => openModal('meetingDate')}
@@ -71,7 +71,7 @@ export default function DateSection({ value, setValue }: DateSectionProps) {
           </div>
         </div>
         <BottomFixedButton text="다음" onClick={() => openModal('meetingLocation')} />
-      </BottomUpModal>
+      </BottomSheet>
     </>
   );
 }

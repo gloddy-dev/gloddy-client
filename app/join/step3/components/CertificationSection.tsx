@@ -1,12 +1,12 @@
+import { InputType } from '../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import { BottomUpModal } from '@/components/common/Modal';
+import { BottomSheet } from '@/components/common/Modal';
 import { regexr } from '@/constants/regexr';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
-import { InputType } from '../type';
 
-interface BottomUpModalFormProps {
+interface BottomSheetFormProps {
   isModalOpen: boolean;
   closeModal: () => void;
   register: UseFormRegister<InputType>;
@@ -20,7 +20,7 @@ export default function CertificationSection({
   register,
   handleSubmit,
   certificateNumber,
-}: BottomUpModalFormProps) {
+}: BottomSheetFormProps) {
   const router = useRouter();
 
   const onSubmitCertificateNumber: SubmitHandler<InputType> = (data: InputType) => {
@@ -30,7 +30,7 @@ export default function CertificationSection({
   };
 
   return (
-    <BottomUpModal isModalOpen={isModalOpen} onClose={closeModal} snap={400} isRightButton>
+    <BottomSheet isModalOpen={isModalOpen} onClose={closeModal} snap={400} isRightButton>
       <section className="text-20 font-700">
         <p>회원님의 이메일로 </p>
         <p>인증번호를 전송하였습니다.</p>
@@ -60,6 +60,6 @@ export default function CertificationSection({
           type="submit"
         />
       </form>
-    </BottomUpModal>
+    </BottomSheet>
   );
 }

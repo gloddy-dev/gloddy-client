@@ -1,6 +1,6 @@
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import { BottomUpModal } from '@/components/common/Modal';
+import { BottomSheet } from '@/components/common/Modal';
 import GenderSwipePicker from '@/components/common/SwipePicker/GenderSwipePicker';
 import useModalStore from '@/store/useModalStore';
 import { GenderType } from '@/types';
@@ -28,7 +28,7 @@ export default function GenderSection({ value, setValue }: GenderInputSectionPro
         value={value}
         readOnly
       />
-      <BottomUpModal
+      <BottomSheet
         isModalOpen={isModalOpen}
         snap={400}
         onClose={closeModal}
@@ -38,7 +38,7 @@ export default function GenderSection({ value, setValue }: GenderInputSectionPro
       >
         <GenderSwipePicker genderValue={value} setGenderValue={setValue} />
         <BottomFixedButton text="완료" onClick={handleNextButtonClick} />
-      </BottomUpModal>
+      </BottomSheet>
     </section>
   );
 }
