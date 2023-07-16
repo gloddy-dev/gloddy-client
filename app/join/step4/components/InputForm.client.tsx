@@ -1,17 +1,18 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
-
-import { Button } from '@/components/common/Button';
+import NicknameInputSection from './inputSection/NicknameInputSection';
+import { BottomFixedButton, Button } from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Input } from '@/components/common/Input';
 import { BottomUpModal } from '@/components/common/Modal';
+import { Spacing } from '@/components/common/Spacing';
 import DateSwipePicker from '@/components/common/SwipePicker/DateSwipePicker';
 import SexSwipePicker from '@/components/common/SwipePicker/SexSwipePicker';
 import { useModal } from '@/hooks/useModal';
 import useJoin from '@/store/useJoin';
+import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 import type { BirthdayValueType, ImageType } from '@/types';
 
@@ -82,48 +83,43 @@ export default function InputForm() {
         imageBlob={watch('profileImage').imageBlob}
       />
 
-      <section className="flex flex-col gap-10">
-        <article className="flex flex-col gap-5">
-          <p className="text-14">닉네임</p>
-          <Input
-            placeholder="닉네임을 입력해주세요."
-            register={register('nickname', {
-              required: true,
-            })}
-          />
-        </article>
+      <NicknameInputSection
+        register={register('nickname', {
+          required: true,
+        })}
+      />
+      <Spacing size={10} />
 
-        <article className="flex flex-col gap-5">
-          <p className="text-14">생년월일</p>
-          <Input
-            placeholder="생년월일을 선택해주세요."
-            onClick={() => openModal('birthday')}
-            value={
-              watch('birthday').year &&
-              watch('birthday').month &&
-              watch('birthday').date &&
-              `${watch('birthday').year} ${watch('birthday').month} ${watch('birthday').date}`
-            }
-            readOnly
-          />
-        </article>
-
-        <article className="flex flex-col gap-5">
-          <p className="text-14">성별</p>
-          <Input
-            placeholder="성별을 선택해주세요."
-            onClick={() => openModal('gender')}
-            value={watch('gender')}
-            readOnly
-          />
-        </article>
+      <section className="flex flex-col gap-5">
+        <p className="text-14">생년월일</p>
+        <Input
+          placeholder="생년월일을 선택해주세요."
+          onClick={() => openModal('birthday')}
+          value={
+            watch('birthday').year &&
+            watch('birthday').month &&
+            watch('birthday').date &&
+            `${watch('birthday').year} ${watch('birthday').month} ${watch('birthday').date}`
+          }
+          readOnly
+        />
       </section>
+      <Spacing size={10} />
+      <section className="flex flex-col gap-5">
+        <p className="text-14">성별</p>
+        <Input
+          placeholder="성별을 선택해주세요."
+          onClick={() => openModal('gender')}
+          value={watch('gender')}
+          readOnly
+        />
+      </section>
+      <Spacing size={10} />
 
-      <Button
+      <BottomFixedButton
         text={isAllEntered ? '완료' : '다음'}
         disabled={!isAllEntered}
         type="submit"
-        className="absolute bottom-0 w-full"
         onClick={handleSubmit(onSubmitForm)}
       />
 
