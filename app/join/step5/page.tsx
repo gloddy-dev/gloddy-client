@@ -1,8 +1,7 @@
-import { Spacing } from '@/components/common/Spacing';
-
+import InputForm from './components/InputForm.client';
 import AuthTitleTextMessage from '../components/AuthTitleTextMessage.server';
 import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
-import InputForm from './components/InputForm.client';
+import { Spacing } from '@/components/common/Spacing';
 
 export default function Step5Page() {
   return (
