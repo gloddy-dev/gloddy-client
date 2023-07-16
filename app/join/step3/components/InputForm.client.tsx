@@ -16,22 +16,17 @@ export default function InputForm() {
   } = useForm<InputType>();
 
   const { isModalOpen, openModal, closeModal } = useModals<'certification'>();
-  const { setJoinValue } = useJoinStore();
 
   return (
     <div>
       <EmailSection
-        openModal={openModal}
         register={register}
         handleSubmit={handleSubmit}
-        setJoinValue={setJoinValue}
         email={watch('email')}
         isError={!!errors.email}
       />
 
       <CertificationSection
-        isModalOpen={isModalOpen}
-        closeModal={closeModal}
         register={register}
         handleSubmit={handleSubmit}
         certificateNumber={watch('certificateNumber')}

@@ -3,25 +3,25 @@ import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
 import { regexr } from '@/constants/regexr';
+import useModalStore from '@/store/useModalStore';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 interface BottomSheetFormProps {
-  isModalOpen: boolean;
-  closeModal: () => void;
   register: UseFormRegister<InputType>;
   handleSubmit: UseFormHandleSubmit<InputType>;
   certificateNumber: number;
 }
 
 export default function CertificationSection({
-  isModalOpen,
-  closeModal,
   register,
   handleSubmit,
   certificateNumber,
 }: BottomSheetFormProps) {
   const router = useRouter();
+  const { closeModal, modalName } = useModalStore();
+
+  const isModalOpen = modalName === 'certification';
 
   const onSubmitCertificateNumber: SubmitHandler<InputType> = (data: InputType) => {
     // 인증번호 확인
@@ -56,7 +56,7 @@ export default function CertificationSection({
 
         <BottomFixedButton
           text="완료"
-          disabled={('' + certificateNumber)?.length < 6 || certificateNumber === undefined}
+          disabled={('' + certificateNumber)?.length < 6 || !certificateNumber}
           type="submit"
         />
       </form>
