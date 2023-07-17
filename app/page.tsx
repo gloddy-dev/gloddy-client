@@ -1,3 +1,6 @@
+import { redirect } from 'next/navigation';
+
 export default function Home() {
-  return <main>Hel hh</main>;
+  redirect('join/step1');
+  return <main></main>;
 }
