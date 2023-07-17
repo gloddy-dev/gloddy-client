@@ -4,13 +4,12 @@ import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomUpModal } from '@/components/common/Modal';
 import { regexr } from '@/constants/regexr';
+import { useModals } from '@/hooks/useModals';
 import useJoin from '@/store/useJoin';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
-import { useModals } from '@/hooks/useModals';
 
 type InputType = {
   email: string;
