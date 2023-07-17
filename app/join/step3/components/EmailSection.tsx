@@ -17,7 +17,12 @@ interface EmailSectionProps {
   isError: boolean;
 }
 
-export default function EmailSection({ register, handleSubmit, email, isError }: EmailSectionProps) {
+export default function EmailSection({
+  register,
+  handleSubmit,
+  email,
+  isError,
+}: EmailSectionProps) {
   const { openModal } = useModalStore();
   const { setJoinValue } = useJoinStore();
 
