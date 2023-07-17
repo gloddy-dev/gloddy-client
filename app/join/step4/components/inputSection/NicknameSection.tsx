@@ -3,7 +3,7 @@ import { Spacing } from '@/components/common/Spacing';
 import useJoinStore from '@/store/useJoinStore';
 
 export default function NicknameSection() {
-  const { setJoinValue } = useJoinStore();
+  const { name, setJoinValue } = useJoinStore();
 
   return (
     <section>
@@ -12,6 +12,7 @@ export default function NicknameSection() {
       <Input
         placeholder="닉네임을 입력해주세요."
         onChange={(e) => setJoinValue({ name: e.target.value })}
+        value={name}
       />
     </section>
   );
