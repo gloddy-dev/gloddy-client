@@ -1,27 +1,42 @@
 import FloatingBubbleSection from './components/FloatingBubbleSection.server';
 import GroupingCardList from './components/GroupingCardList.client';
 import GroupingTopNavigationBar from './components/GroupingTopNavigationBar.server';
-import { getGroupsServerServer } from '@/apis/groups';
+import { getGroupsServer, keys } from '@/apis/groups';
+import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
+import { HydrationProvider } from '@/components/common/HydrationProvider';
 import { BottomNavigationBar } from '@/components/common/NavigationBar';
 import { Spacing } from '@/components/common/Spacing';
+import { Suspense } from 'react';
 
-export default function Grouping() {
+const GroupingComponent = () => {
   const getGroupsQuery = async () => {
     const data = await getGroupsServer();
     return data;
   };
 
   return (
-    <div className="relative h-full">
+    <HydrationProvider queryKey={keys} queryFn={getGroupsQuery}>
+      <GroupingCardList />
+    </HydrationProvider>
+  );
+};
+
+export default function Grouping() {
+  return (
+    <>
       <GroupingTopNavigationBar />
 
       <Spacing size={18} />
 
-      <GroupingCardList />
+      <RetryErrorBoundary>
+        <Suspense>
+          <GroupingComponent />
+        </Suspense>
+      </RetryErrorBoundary>
 
       <FloatingBubbleSection />
 
       <BottomNavigationBar page="grouping" />
-    </div>
+    </>
   );
 }
