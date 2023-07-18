@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import Sheet, { type SheetRef } from 'react-modal-sheet';
 
-interface BottomUpModalProps {
+interface BottomSheetProps {
   isModalOpen: boolean;
   snap: number;
   children: React.ReactNode;
@@ -15,7 +15,7 @@ interface BottomUpModalProps {
   handleLeftButtonClick?: () => void;
 }
 
-export default function BottomUpModal({
+export default function BottomSheet({
   children,
   isModalOpen,
   handleLeftButtonClick,
@@ -26,7 +26,7 @@ export default function BottomUpModal({
   isLeftButton = false,
   isRightButton = false,
   isTapOutsideToClose = false,
-}: BottomUpModalProps) {
+}: BottomSheetProps) {
   const ref = useRef<SheetRef>();
   const snapTo = (i: number) => ref.current?.snapTo(i);
 

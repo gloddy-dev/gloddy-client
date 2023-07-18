@@ -1,6 +1,6 @@
 import InputArea from './InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
-import { BottomUpModal } from '@/components/common/Modal';
+import { BottomSheet } from '@/components/common/Modal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
 import useModalState from '@/store/useModalStore';
 import { UseFormSetValue } from 'react-hook-form';
@@ -23,8 +23,8 @@ export default function NumberSection({ value, setValue }: NumberSectionProps) {
         placeholder="모임 인원을 설정해주세요."
       />
 
-      <BottomUpModal
-        isModalOpen={modalName === 'meetingNumber'}
+      <BottomSheet
+        isOpen={modalName === 'meetingNumber'}
         snap={500}
         handleLeftButtonClick={() => openModal('meetingNumber')}
         onClose={closeModal}
@@ -45,7 +45,7 @@ export default function NumberSection({ value, setValue }: NumberSectionProps) {
             closeModal();
           }}
         />
-      </BottomUpModal>
+      </BottomSheet>
     </>
   );
 }
