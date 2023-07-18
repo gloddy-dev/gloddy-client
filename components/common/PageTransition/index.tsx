@@ -1,15 +1,11 @@
 import { HTMLMotionProps, motion } from 'framer-motion';
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef } from 'react';
 
 interface PageTransitionProps extends HTMLMotionProps<'div'> {
   isStartLeft?: boolean;
 }
-type PageTransitionRef = React.ForwardedRef<HTMLDivElement>;
 
-function PageTransition(
-  { isStartLeft = true, children, ...props }: PageTransitionProps,
-  ref: PageTransitionRef
-) {
+function PageTransition({ isStartLeft = true, children, ...props }: PageTransitionProps) {
   const startPosition = isStartLeft ? { x: '-100%' } : { x: '100%' };
   const middlePosition = { x: 0 };
   const endPosition = isStartLeft ? { x: '100%' } : { x: '-100%' };
@@ -18,7 +14,6 @@ function PageTransition(
 
   return (
     <motion.div
-      ref={ref}
       initial={startPosition}
       animate={middlePosition}
       exit={endPosition}

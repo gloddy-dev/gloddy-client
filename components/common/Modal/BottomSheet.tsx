@@ -41,7 +41,7 @@ export default function BottomSheet({
       className="fixed inset-x-0 m-auto max-w-450"
       tweenConfig={{
         ease: 'easeInOut',
-        duration: 0.5,
+        duration: 0.2,
       }}
     >
       <Sheet.Backdrop

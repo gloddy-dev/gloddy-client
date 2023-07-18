@@ -1,16 +1,10 @@
 'use client';
 import PageTransition from '@/components/common/PageTransition';
-import React from 'react';
 
-type IndexPageProps = {};
-type IndexPageRef = React.ForwardedRef<HTMLDivElement>;
-
-const Meeting = (props: IndexPageProps, ref: IndexPageRef) => {
+export default function Meeting() {
   return (
-    <PageTransition ref={ref} isStartLeft={false}>
+    <PageTransition isStartLeft={false}>
       <div>Meeting</div>
     </PageTransition>
   );
-};
-
-export default Meeting;
+}
