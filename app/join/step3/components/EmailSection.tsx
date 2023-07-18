@@ -1,4 +1,4 @@
-import BomttomFixed from '@/components/common/BottomFixed';
+import BomttomFixedDiv from '@/components/common/BomttomFixedDiv';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -57,7 +57,7 @@ export default function EmailSection({
 
       <Spacing size={10} />
 
-      <BomttomFixed>
+      <BomttomFixedDiv>
         <Button
           text="인증하기"
           type="submit"
@@ -67,7 +67,7 @@ export default function EmailSection({
         <Spacing size={8} />
 
         <Button text="다음에 인증하기" color="orange" href="/join/step4" />
-      </BomttomFixed>
+      </BomttomFixedDiv>
     </form>
   );
 }
