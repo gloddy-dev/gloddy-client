@@ -1,7 +1,7 @@
 import FloatingBubbleSection from './components/FloatingBubbleSection.server';
 import GroupingCardList from './components/GroupingCardList.client';
 import GroupingTopNavigationBar from './components/GroupingTopNavigationBar.server';
-import { getGroupsServer, keys } from '@/apis/groups';
+import { Keys, getGroupsServer } from '@/apis/groups';
 import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/HydrationProvider';
 import { BottomNavigationBar } from '@/components/common/NavigationBar';
@@ -11,11 +11,12 @@ import { Suspense } from 'react';
 const GroupingComponent = () => {
   const getGroupsQuery = async () => {
     const data = await getGroupsServer();
+    console.log(data);
     return data;
   };
 
   return (
-    <HydrationProvider queryKey={keys} queryFn={getGroupsQuery}>
+    <HydrationProvider queryKey={Keys.getGroupsServer()} queryFn={getGroupsQuery}>
       <GroupingCardList />
     </HydrationProvider>
   );
