@@ -5,7 +5,7 @@ import type { ButtonProps } from '../Button/Button';
 import type { PropsWithChildren } from 'react';
 
 interface ConfirmModalProps {
-  isModalOpen: boolean;
+  isOpen: boolean;
   okText: ButtonProps['text'];
   cancelText: ButtonProps['text'];
   okColor?: ButtonProps['color'];
@@ -15,7 +15,7 @@ interface ConfirmModalProps {
 }
 
 export default function ConfirmModal({
-  isModalOpen,
+  isOpen,
   onClickOk,
   onClickCancel,
   okText = '네',
@@ -25,7 +25,7 @@ export default function ConfirmModal({
   children,
 }: PropsWithChildren<ConfirmModalProps>) {
   return (
-    <ModalWrapper isModalOpen={isModalOpen} onClose={onClickCancel}>
+    <ModalWrapper isOpen={isOpen} onClose={onClickCancel}>
       <div className="w-300 rounded-10 bg-white px-16 pb-15 pt-30">
         <div className="mb-20 flex flex-col items-center text-center">{children}</div>
         <div className="flex flex-col gap-8">
