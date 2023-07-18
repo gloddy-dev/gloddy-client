@@ -85,7 +85,7 @@ export default function InputForm() {
           onKeyDown={handleInputChange}
         />
 
-        <Spacing size={15} />
+        <Spacing size={18} />
 
         <Button
           text={
