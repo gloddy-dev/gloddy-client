@@ -45,15 +45,15 @@ export default function EmailSection({
         />
       </section>
 
-      <p
-        className={clsx('font-500 float flex justify-center text-13 text-orange', {
+      <section
+        className={clsx('font-500 flex justify-center text-13 text-orange', {
           invisible: !isError,
         })}
       >
         <Image alt="alert" src="/assets/alert.svg" width={10} height={30} />
         <Spacing size={5} direction="horizontal" />
         <span>학교 이메일을 다시 확인해주세요.</span>
-      </p>
+      </section>
 
       <Spacing size={10} />
 
