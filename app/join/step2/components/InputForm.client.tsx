@@ -1,11 +1,12 @@
 'use client';
 import SearchResultSection from './SearchResultSection.client';
-import { InputType, SearchResultType } from '../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import useJoinStore from '@/store/useJoinStore';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+
+import type { SearchResultType, Step2InputType } from '../type';
 
 const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
   {
@@ -33,11 +34,11 @@ export default function InputForm() {
     formState: { errors },
     watch,
     handleSubmit,
-  } = useForm<InputType>();
+  } = useForm<Step2InputType>();
 
   const { setJoinValue } = useJoinStore();
 
-  const onSubmit = (data: InputType) => {
+  const onSubmit = (data: Step2InputType) => {
     setJoinValue({ school: data.school });
     router.push('/join/step3');
   };

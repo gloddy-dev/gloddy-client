@@ -2,8 +2,9 @@
 
 import CertificationSection from './CertificationSection';
 import EmailSection from './EmailSection';
-import { InputType } from '../type';
 import { useForm } from 'react-hook-form';
+
+import type { Step3InputType } from '../type';
 
 export default function InputForm() {
   const {
@@ -11,7 +12,7 @@ export default function InputForm() {
     formState: { errors },
     watch,
     handleSubmit,
-  } = useForm<InputType>();
+  } = useForm<Step3InputType>();
 
   return (
     <div>

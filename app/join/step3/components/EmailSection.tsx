@@ -1,4 +1,3 @@
-import { InputType } from '../type';
 import BomttomFixed from '@/components/common/BottomFixed';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
@@ -10,9 +9,11 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
+import type { Step3InputType } from '../type';
+
 interface EmailSectionProps {
-  register: UseFormRegister<InputType>;
-  handleSubmit: UseFormHandleSubmit<InputType>;
+  register: UseFormRegister<Step3InputType>;
+  handleSubmit: UseFormHandleSubmit<Step3InputType>;
   email: string;
   isError: boolean;
 }
@@ -26,7 +27,7 @@ export default function EmailSection({
   const { openModal } = useModalStore();
   const { setJoinValue } = useJoinStore();
 
-  const onSubmitEmail: SubmitHandler<InputType> = (data: InputType) => {
+  const onSubmitEmail: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
     openModal('certification');
     setJoinValue({ email: data.email });
     // 인증번호 전송

@@ -5,7 +5,8 @@ import { Spacing } from '@/components/common/Spacing';
 import { DateSwipePicker } from '@/components/common/SwipePicker';
 import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
-import { BirthdayValueType } from '@/types';
+
+import type { BirthdayValueType } from '@/types';
 
 export default function BirthdaySection() {
   const { modalName, openModal, closeModal } = useModalStore();

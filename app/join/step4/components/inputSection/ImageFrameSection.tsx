@@ -1,7 +1,8 @@
 import ImageFrame from '@/components/common/ImageFrame';
 import useJoinStore from '@/store/useJoinStore';
-import { ImageType } from '@/types';
 import { useRef } from 'react';
+
+import type { ImageType } from '@/types';
 
 export default function ImageFrameSection() {
   const imgRef = useRef<HTMLInputElement>(null);

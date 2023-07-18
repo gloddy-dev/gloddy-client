@@ -1,4 +1,3 @@
-import { InputType } from '../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
@@ -7,9 +6,11 @@ import useModalStore from '@/store/useModalStore';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
+import type { Step3InputType } from '../type';
+
 interface BottomSheetFormProps {
-  register: UseFormRegister<InputType>;
-  handleSubmit: UseFormHandleSubmit<InputType>;
+  register: UseFormRegister<Step3InputType>;
+  handleSubmit: UseFormHandleSubmit<Step3InputType>;
   certificateNumber: number;
 }
 
@@ -23,7 +24,7 @@ export default function CertificationSection({
 
   const isModalOpen = modalName === 'certification';
 
-  const onSubmitCertificateNumber: SubmitHandler<InputType> = (data: InputType) => {
+  const onSubmitCertificateNumber: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
     // 인증번호 확인
     console.log(data);
     router.push('/join/step4');
