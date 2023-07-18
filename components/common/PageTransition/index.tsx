@@ -7,7 +7,7 @@ interface PageTransitionProps extends HTMLMotionProps<'div'> {
 type PageTransitionRef = React.ForwardedRef<HTMLDivElement>;
 
 function PageTransition(
-  { isStartLeft = true, children, ...rest }: PageTransitionProps,
+  { isStartLeft = true, children, ...props }: PageTransitionProps,
   ref: PageTransitionRef
 ) {
   const startPosition = isStartLeft ? { x: '-100%' } : { x: '100%' };
@@ -23,7 +23,7 @@ function PageTransition(
       animate={middlePosition}
       exit={endPosition}
       transition={transition}
-      {...rest}
+      {...props}
       className="h-full"
     >
       {children}
