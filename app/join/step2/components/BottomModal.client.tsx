@@ -13,7 +13,7 @@ type AgreeCheckListType = {
 };
 
 export default function BottomModal() {
-  const { isOpen, openModal, closeModal } = useModals<'modal'>();
+  const { isModalOpen, openModal, closeModal } = useModals<'modal'>();
   const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>([
     {
       name: '서비스 이용약관 동의',
@@ -51,7 +51,7 @@ export default function BottomModal() {
   return (
     <BottomSheet
       snap={300}
-      isOpen={isOpen}
+      isModalOpen={isModalOpen}
       onClose={closeModal}
       disableDrag
       text={<div className="text-center font-700">약관 동의</div>}

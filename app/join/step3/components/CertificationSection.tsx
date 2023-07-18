@@ -22,7 +22,7 @@ export default function CertificationSection({
   const router = useRouter();
   const { closeModal, modalName } = useModalStore();
 
-  const isOpen = modalName === 'certification';
+  const isModalOpen = modalName === 'certification';
 
   const onSubmitCertificateNumber: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
     // 인증번호 확인
@@ -31,7 +31,7 @@ export default function CertificationSection({
   };
 
   return (
-    <BottomSheet isOpen={isOpen} onClose={closeModal} snap={400} isRightButton>
+    <BottomSheet isModalOpen={isModalOpen} onClose={closeModal} snap={400} isRightButton>
       <section className="text-20 font-700">
         <p>회원님의 이메일로 </p>
         <p>인증번호를 전송하였습니다.</p>

@@ -24,7 +24,7 @@ export default function NumberSection({ value, setValue }: NumberSectionProps) {
       />
 
       <BottomSheet
-        isOpen={modalName === 'meetingNumber'}
+        isModalOpen={modalName === 'meetingNumber'}
         snap={500}
         handleLeftButtonClick={() => openModal('meetingNumber')}
         onClose={closeModal}
