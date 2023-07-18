@@ -1,10 +1,9 @@
 import InputArea from './InputArea.server';
 import { CreateMeetingRequestType } from '../../type';
 import { BottomFixedButton } from '@/components/common/Button';
+import BottomSheet from '@/components/common/Modal/BottomSheet';
 import useModalState from '@/store/useModalStore';
 import { UseFormSetValue } from 'react-hook-form';
-
-import BottomSheet from '@/components/common/Modal/BottomSheet';
 
 interface LocationSectionProps {
   value: string;
