@@ -12,7 +12,7 @@ export default function BirthdaySection() {
   const { modalName, openModal, closeModal } = useModalStore();
   const { birth, setJoinValue } = useJoinStore();
 
-  const isModalOpen = modalName === 'birthday';
+  const isOpen = modalName === 'birthday';
 
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
@@ -28,7 +28,7 @@ export default function BirthdaySection() {
       />
 
       <BottomSheet
-        isModalOpen={isModalOpen}
+        isOpen={isOpen}
         snap={400}
         onClose={closeModal}
         isRightButton

@@ -49,7 +49,7 @@ export default function DateSection({ value, setValue }: DateSectionProps) {
       />
 
       <BottomSheet
-        isModalOpen={modalName === 'meetingDate'}
+        isOpen={modalName === 'meetingDate'}
         snap={650}
         handleLeftButtonClick={() => openModal('meetingDate')}
         onClose={closeModal}

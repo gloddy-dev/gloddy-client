@@ -9,7 +9,7 @@ export default function GenderSection() {
   const { modalName, openModal, closeModal } = useModalStore();
   const { gender, setJoinValue } = useJoinStore();
 
-  const isModalOpen = modalName === 'gender';
+  const isOpen = modalName === 'gender';
 
   const handleNextButtonClick = () => {
     if (!gender) setJoinValue({ gender: '남성' });
@@ -26,7 +26,7 @@ export default function GenderSection() {
         readOnly
       />
       <BottomSheet
-        isModalOpen={isModalOpen}
+        isOpen={isOpen}
         snap={400}
         onClose={closeModal}
         isRightButton
