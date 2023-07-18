@@ -1,6 +1,5 @@
-import clsx from 'clsx';
-
 import Spacing from './Spacing';
+import clsx from 'clsx';
 
 interface DivisionSpacing {
   className?: string;
