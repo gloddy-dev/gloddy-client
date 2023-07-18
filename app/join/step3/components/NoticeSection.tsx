@@ -1,8 +1,8 @@
 import { CircleCheckbox } from '@/components/common/Checkbox';
+import { Spacing } from '@/components/common/Spacing';
 import { INSTAGRAM_URL } from '@/constants';
 import Link from 'next/link';
 
-interface NoticeSectionProps {}
 export default function NoticeSection() {
   return (
     <section>
@@ -15,12 +15,12 @@ export default function NoticeSection() {
         }
         checked
       />
-      <div className="h-10" />
+      <Spacing size={10} />
       <CircleCheckbox
         text={<span className="text-14">신뢰있는 모임을 위해 재학생 인증을 꼭 진행해주세요</span>}
         checked
       />
-      <div className="h-10" />
+      <Spacing size={10} />
       <CircleCheckbox
         text={
           <span className="text-14">
