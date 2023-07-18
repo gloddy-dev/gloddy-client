@@ -1,4 +1,4 @@
-import { SearchResultType } from '../type';
+import type { SearchResultType } from '../type';
 
 interface SearchResultSectionProps {
   searchResultList: SearchResultType[];
