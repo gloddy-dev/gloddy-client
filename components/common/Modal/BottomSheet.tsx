@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import Sheet, { type SheetRef } from 'react-modal-sheet';
 
 interface BottomSheetProps {
-  isModalOpen: boolean;
+  isOpen: boolean;
   snap: number;
   children: React.ReactNode;
   onClose: () => void;
@@ -17,7 +17,7 @@ interface BottomSheetProps {
 
 export default function BottomSheet({
   children,
-  isModalOpen,
+  isOpen,
   handleLeftButtonClick,
   onClose,
   snap,
@@ -33,7 +33,7 @@ export default function BottomSheet({
   return (
     <Sheet
       ref={ref}
-      isOpen={isModalOpen}
+      isOpen={isOpen}
       onClose={onClose}
       snapPoints={[snap, 0]}
       initialSnap={0}
@@ -41,7 +41,7 @@ export default function BottomSheet({
       className="fixed inset-x-0 m-auto max-w-450"
       tweenConfig={{
         ease: 'easeInOut',
-        duration: 0.5,
+        duration: 0.2,
       }}
     >
       <Sheet.Backdrop

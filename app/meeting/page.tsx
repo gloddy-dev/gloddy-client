@@ -1,7 +1,10 @@
-import React from 'react';
+'use client';
+import PageTransition from '@/components/common/PageTransition';
 
-const Meeting = () => {
-  return <div></div>;
-};
-
-export default Meeting;
+export default function Meeting() {
+  return (
+    <PageTransition isStartLeft={false}>
+      <div>Meeting</div>
+    </PageTransition>
+  );
+}
