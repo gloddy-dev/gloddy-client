@@ -1,1 +1,5 @@
-export const Keys = {} as const;
+const Keys = {
+  getGroupsServer: () => ['getGroups'],
+};
+
+export default Keys;
