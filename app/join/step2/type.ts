@@ -1,4 +1,4 @@
-export type InputType = {
+export type Step2InputType = {
   school: string;
 };
 

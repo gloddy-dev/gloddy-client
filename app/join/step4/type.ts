@@ -1,6 +1,6 @@
-import { BirthdayValueType, GenderType, ImageType } from '@/types';
+import type { BirthdayValueType, GenderType, ImageType } from '@/types';
 
-export type InputType = {
+export type Step4InputType = {
   nickname: string;
   profileImage: ImageType;
   birthday: BirthdayValueType;
