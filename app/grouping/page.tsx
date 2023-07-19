@@ -11,7 +11,6 @@ import { Suspense } from 'react';
 const GroupingComponent = () => {
   const getGroupsQuery = async () => {
     const data = await getGroupsServer();
-    console.log(data);
     return data;
   };
 

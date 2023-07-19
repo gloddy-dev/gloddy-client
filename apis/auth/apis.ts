@@ -12,7 +12,7 @@ const TEST_ID = {
   password: 'qwqw5533',
 };
 
-export const login = async () => {
+export const login = async (): Promise<LoginResponse> => {
   const data = await publicApi.post('/api/v1/auth/login', TEST_ID);
   return data;
 };
