@@ -1,11 +1,5 @@
+import { LoginResponse } from './type';
 import publicApi from '../config/publicApi';
-
-export type LoginResponse = {
-  errorCode: string;
-  userId: number;
-  authority: string;
-  token: string;
-};
 
 const TEST_ID = {
   email: 'testy54@soongsil.ac.kr',
