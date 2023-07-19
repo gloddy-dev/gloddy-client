@@ -1,5 +1,5 @@
-import { ErrorType } from './api.types';
 import { ApiError } from './customError';
+import { ErrorType } from './type';
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 export const onRequestError = (error: AxiosError) => {
