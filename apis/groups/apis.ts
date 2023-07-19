@@ -1,6 +1,6 @@
 import privateApi from '../config/privateApi';
 
-type GroupServerResponse = {
+type GroupResponse = {
   totalCount: number;
   currentCount: number;
   currentPage: number;
@@ -8,7 +8,7 @@ type GroupServerResponse = {
   contents: any[];
 };
 
-export const getGroupsServer = async () => {
-  const data = await privateApi<GroupServerResponse>('/api/v1/groups?size=5&page=5');
+export const getGroups = async (pageNum: number) => {
+  const data = await privateApi<GroupResponse>(`/api/v1/groups?size=5&page=${pageNum}`);
   return data;
 };

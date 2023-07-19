@@ -37,10 +37,6 @@ const DUMMY_GROUPING_DATA = [
 ];
 
 export default function GroupingCardList() {
-  const { data } = useGetGroups();
-
-  console.log(data);
-
   return (
     <section>
       {DUMMY_GROUPING_DATA.map((groupingData) => (

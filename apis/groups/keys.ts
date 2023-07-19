@@ -1,3 +1,3 @@
 export const Keys = {
-  getGroupsServer: () => ['getGroups'],
+  getGroups: () => ['getGroups'],
 };
