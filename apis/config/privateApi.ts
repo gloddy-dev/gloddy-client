@@ -3,7 +3,9 @@ import { onRequestClient } from './interceptor.client';
 import { BASE_API_URL } from '@/constants';
 import axios from 'axios';
 
-const privateApi = axios.create({
+import type { CustomInstance } from './type';
+
+const privateApi: CustomInstance = axios.create({
   baseURL: BASE_API_URL,
   withCredentials: true,
 });
