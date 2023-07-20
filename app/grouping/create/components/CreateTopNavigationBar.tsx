@@ -3,11 +3,10 @@ import { TopNavigationBar } from '@/components/common/NavigationBar';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function JoinTopNavigationBar() {
+export default function CreateTopNavigationBar() {
   const router = useRouter();
   return (
     <TopNavigationBar
-      text="회원가입"
       leftNode={
         <Image
           alt="back"
@@ -19,6 +18,7 @@ export default function JoinTopNavigationBar() {
           }}
         />
       }
+      text="모임 개설하기"
     />
   );
 }

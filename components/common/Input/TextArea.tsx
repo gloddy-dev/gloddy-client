@@ -1,20 +1,28 @@
 'use client';
 
-import type { TextareaHTMLAttributes } from 'react';
-import type { UseFormRegisterReturn } from 'react-hook-form';
+import cn from '@/utils/cn';
+import { type TextareaHTMLAttributes, forwardRef } from 'react';
 
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   placeholder: string;
-  register?: UseFormRegisterReturn;
+  className?: string;
 }
 
-export default function TextArea({ placeholder, register, ...props }: TextAreaProps) {
+function TextArea(
+  { placeholder, className, ...props }: TextAreaProps,
+  ref: React.Ref<HTMLTextAreaElement>
+) {
   return (
     <textarea
+      ref={ref}
       placeholder={placeholder}
-      className="font-500 h-112 w-full resize-none rounded-lg bg-gray5 p-10 px-23 py-14 text-16 text-black outline-none placeholder:text-gray3"
-      {...register}
+      className={cn(
+        'font-500 h-112 w-full resize-none rounded-lg bg-gray5 p-10 px-23 py-14 text-16 text-black outline-none placeholder:text-gray3',
+        className
+      )}
       {...props}
     />
   );
 }
+
+export default forwardRef(TextArea);

@@ -3,6 +3,7 @@
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
+import { GenderType } from '@/types';
 import clsx from 'clsx';
 import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,8 +15,8 @@ interface PickerProps {
   isRangeString?: boolean;
   isFirst?: boolean;
   isLast?: boolean;
-  setValue?: (value: string, keyType: string) => void;
-  value?: string;
+  setValue?: (value: string | GenderType, keyType: string) => void;
+  value?: string | GenderType;
 }
 
 export default function SwipePicker({

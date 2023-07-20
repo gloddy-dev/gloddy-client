@@ -1,16 +1,14 @@
 'use client';
+import SearchResultSection from './SearchResultSection.client';
+import { BottomFixedButton } from '@/components/common/Button';
+import { Input } from '@/components/common/Input';
+import useJoinStore from '@/store/useJoinStore';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-import { Button } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
-import useJoin from '@/store/useJoin';
+import type { SearchResultType, Step2InputType } from '../type';
 
-type InputType = {
-  school: string;
-};
-
-const DUMMY_SEARCH_RESULT_LIST = [
+const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
   {
     id: 1,
     name: '경희대학교 서울캠퍼스',
@@ -36,11 +34,11 @@ export default function InputForm() {
     formState: { errors },
     watch,
     handleSubmit,
-  } = useForm<InputType>();
+  } = useForm<Step2InputType>();
 
-  const { setJoinValue } = useJoin();
+  const { setJoinValue } = useJoinStore();
 
-  const onSubmit = (data: InputType) => {
+  const onSubmit = (data: Step2InputType) => {
     setJoinValue({ school: data.school });
     router.push('/join/step3');
   };
@@ -54,16 +52,9 @@ export default function InputForm() {
         })}
       />
 
-      <section>
-        {DUMMY_SEARCH_RESULT_LIST.map((searchResult) => (
-          <div key={searchResult.id} className="border-b-[0.5px] border-b-gray6 p-20">
-            <div className="text-14">{searchResult.name}</div>
-            <div className="text-12 text-gray2">{searchResult.address}</div>
-          </div>
-        ))}
-      </section>
+      <SearchResultSection searchResultList={DUMMY_SEARCH_RESULT_LIST} />
 
-      <Button text="완료" type="submit" className="absolute bottom-0" disabled={!watch('school')} />
+      <BottomFixedButton text="완료" type="submit" disabled={!watch('school')} />
     </form>
   );
 }

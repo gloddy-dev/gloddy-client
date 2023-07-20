@@ -28,6 +28,7 @@ export default function GroupingByIdPage({
       <TopNavigationBar />
       <TopSection title={title} thumbnailUrl={image} description={description} />
       <ContentSection
+        groupingId={id}
         detailNode={<DetailContent location={location} time={time} />}
         boardNode={<BoardContent />}
       />
