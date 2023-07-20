@@ -1,15 +1,14 @@
-import { ModalNameType } from '@/app/grouping/create/type';
 import { create } from 'zustand';
 
 interface ModalState {
-  modalName: ModalNameType | null;
-  openModal: (modalName: ModalNameType) => void;
+  modalName: string | null;
+  openModal: (modalName: string) => void;
   closeModal: () => void;
 }
 
 const useModalStore = create<ModalState>((set) => ({
-  modalName: null as ModalNameType | null,
-  openModal: (modalName: ModalNameType) => set({ modalName }),
+  modalName: null as string | null,
+  openModal: (modalName: string) => set({ modalName }),
   closeModal: () => set({ modalName: null }),
 }));
 

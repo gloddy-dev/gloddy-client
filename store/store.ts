@@ -1,1 +1,1 @@
-export { default as useJoin } from './useJoin';
+export { default as useJoinStore } from './useJoinStore';

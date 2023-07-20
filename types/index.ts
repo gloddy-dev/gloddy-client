@@ -24,3 +24,4 @@ export interface BirthdayValueType {
   date: string;
 }
 
+export type GenderType = '남성' | '여성';
