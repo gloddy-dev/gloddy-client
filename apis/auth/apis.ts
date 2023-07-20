@@ -1,12 +1,12 @@
-import { LoginResponse } from './type';
 import publicApi from '../config/publicApi';
+
+import type { LoginResponse } from './type';
 
 const TEST_ID = {
   email: 'testy54@soongsil.ac.kr',
   password: 'qwqw5533',
 };
 
-export const login = async (): Promise<LoginResponse> => {
-  const data = await publicApi.post('/api/v1/auth/login', TEST_ID);
-  return data;
+export const postLogin = () => {
+  return publicApi.post<LoginResponse>('/api/v1/auth/login', TEST_ID);
 };
