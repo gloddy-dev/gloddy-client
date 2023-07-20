@@ -1,30 +1,27 @@
+import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import clsx from 'clsx';
 import Image from 'next/image';
-
-import { makeFileToBlob } from '@/utils/makeFileToBlob';
+import { ForwardedRef, forwardRef } from 'react';
 
 import type { ImageType } from '@/types';
 
-
 interface ImageFrameProps {
   setImage: (imageData: ImageType) => void;
-  imgRef: React.RefObject<HTMLInputElement>;
   imageBlob: string;
   shape?: 'circle' | 'square';
 }
 
-export default function ImageFrame({
-  setImage,
-  imgRef,
-  imageBlob,
-  shape = 'circle',
-}: ImageFrameProps) {
-  const handleImageInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
+export default forwardRef(function ImageFrame(
+  { setImage, imageBlob, shape = 'circle' }: ImageFrameProps,
+  imgRef: ForwardedRef<HTMLInputElement>
+) {
+  const handleImageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const imageFile = e.target.files?.[0];
     if (imageFile === undefined) return;
-    const imageBlob = await makeFileToBlob(imageFile);
+    const imageBlob = makeFileToBlob(imageFile);
     setImage({ imageFile, imageBlob });
   };
+
   return (
     <section className="relative flex h-160 items-center justify-center">
       <label className="relative h-100 w-100" htmlFor="image">
@@ -70,4 +67,4 @@ export default function ImageFrame({
       />
     </section>
   );
-}
+});

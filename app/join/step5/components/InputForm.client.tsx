@@ -1,10 +1,10 @@
 'use client';
-import { useState } from 'react';
 
-import { Button } from '@/components/common/Button';
 import PersonalityItem from '../../components/PersonalityItem.server';
+import { BottomFixedButton, Button } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
-import useJoin from '@/store/useJoin';
+import useJoinStore from '@/store/useJoinStore';
+import { useState } from 'react';
 
 export default function InputForm() {
   const [selectedPersonalityList, setSelectedPersonalityList] = useState<number[]>([]);
@@ -17,7 +17,7 @@ export default function InputForm() {
     setSelectedPersonalityList([...selectedPersonalityList, id]);
   };
 
-  const { phoneNumber, school, email, name, birth, gender } = useJoin();
+  const { phoneNumber, school, email, name, birth, gender } = useJoinStore();
 
   const handleSubmit = () => {
     console.log(phoneNumber, school, email, name, birth, gender, selectedPersonalityList);
@@ -25,6 +25,7 @@ export default function InputForm() {
 
   return (
     <div>
+      {/* TODO : Compound Component Pattern으로 구현할 예정 (규성) */}
       <section className="flex flex-wrap gap-12">
         {personalityList.map((personality) => (
           <PersonalityItem
@@ -38,13 +39,11 @@ export default function InputForm() {
         ))}
       </section>
 
-      <section className="absolute bottom-0 w-full">
-        <Button
-          text="완료"
-          disabled={selectedPersonalityList.length === 0}
-          onClick={handleSubmit}
-        />
-      </section>
+      <BottomFixedButton
+        text="완료"
+        disabled={selectedPersonalityList.length === 0}
+        onClick={handleSubmit}
+      />
     </div>
   );
 }
