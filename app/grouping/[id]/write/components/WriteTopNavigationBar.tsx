@@ -44,6 +44,7 @@ export default function WriteTopNavigationBar() {
             width={24}
             height={24}
             onClick={() => inputFileRef.current?.click()}
+            className="cursor-pointer"
           />
           <input
             ref={inputFileRef}
