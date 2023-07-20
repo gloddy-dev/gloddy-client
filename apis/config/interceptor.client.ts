@@ -1,9 +1,9 @@
-import { login } from '../auth';
+import { postLogin } from '../auth';
 import { InternalAxiosRequestConfig } from 'axios';
 
 export const onRequestClient = async (config: InternalAxiosRequestConfig) => {
   try {
-    const data = await login();
+    const data = await postLogin();
     const token = data.token;
 
     if (token) {
