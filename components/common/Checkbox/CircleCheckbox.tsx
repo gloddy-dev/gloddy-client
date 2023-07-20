@@ -13,14 +13,8 @@ export default function CircleCheckbox({
 }: CircleCheckboxProps) {
   const checkboxImageAsset = `/assets/checkbox_circle${checked ? '_checked' : ''}.svg`;
   return (
-    <div className="flex items-baseline" onClick={onClick} {...props}>
-      <Image
-        alt="checkbox"
-        src={checkboxImageAsset}
-        width={15}
-        height={30}
-        className="mx-10 translate-y-5"
-      />
+    <div className="flex items-center" onClick={onClick} {...props}>
+      <Image alt="checkbox" src={checkboxImageAsset} width={15} height={30} className="mx-10" />
       {text}
     </div>
   );
