@@ -11,12 +11,17 @@ import { Suspense } from 'react';
 const GroupingComponent = () => {
   const getGroupsQuery = async () => {
     const data = await getGroups(0);
+    console.log(data);
     return data;
   };
 
   return (
     <HydrationProvider queryKey={Keys.getGroups()} queryFn={getGroupsQuery}>
-      <GroupingCardList />
+      <RetryErrorBoundary>
+        <Suspense>
+          <GroupingCardList />
+        </Suspense>
+      </RetryErrorBoundary>
     </HydrationProvider>
   );
 };
@@ -28,11 +33,7 @@ export default function Grouping() {
 
       <Spacing size={18} />
 
-      <RetryErrorBoundary>
-        <Suspense>
-          <GroupingComponent />
-        </Suspense>
-      </RetryErrorBoundary>
+      <GroupingComponent />
 
       <FloatingBubbleSection />
 
