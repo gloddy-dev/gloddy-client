@@ -4,7 +4,7 @@ import { TextArea } from '@/components/common/Input';
 const TEXT_AREA_COUNT = 30;
 
 export default function DescriptionSection() {
-  const { register, watch } = useCreateMeetingContext();
+  const { register } = useCreateMeetingContext();
 
   return (
     <section>
@@ -14,7 +14,7 @@ export default function DescriptionSection() {
       </div>
       <TextArea
         placeholder="내용을 입력해주세요."
-        register={register('description', {
+        {...register('description', {
           required: true,
         })}
       />
