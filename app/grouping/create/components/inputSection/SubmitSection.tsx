@@ -1,12 +1,12 @@
 import { CreateMeetingRequestType } from '../../type';
+import { useCreateMeetingContext } from '../CreateMettingContext';
 import { BottomFixedButton } from '@/components/common/Button';
-import { useFormContext } from 'react-hook-form';
 
 export default function SubmitSection() {
   const {
     handleSubmit,
     formState: { isDirty, isValid },
-  } = useFormContext();
+  } = useCreateMeetingContext();
 
   const onCreateMeetingSubmit = (data: CreateMeetingRequestType) => {
     // TODO : 서버 api 전송

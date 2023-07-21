@@ -1,15 +1,13 @@
 import InputArea from './InputArea.server';
+import { useCreateMeetingContext } from '../CreateMettingContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import { BottomSheet } from '@/components/common/Modal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
 import useModalState from '@/store/useModalStore';
-import { UseFormSetValue, useFormContext } from 'react-hook-form';
-
-import type { CreateMeetingRequestType } from '../../type';
 
 export default function NumberSection() {
   const { modalName, openModal, closeModal } = useModalState();
-  const { watch, setValue } = useFormContext();
+  const { watch, setValue } = useCreateMeetingContext();
 
   return (
     <>

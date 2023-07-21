@@ -5,7 +5,7 @@ import { BottomSheet } from '@/components/common/Modal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
 import useModalState from '@/store/useModalStore';
-import { useFormContext } from 'react-hook-form';
+import { useCreateMeetingContext } from '../CreateMettingContext';
 
 import type { TimeType } from '@/types';
 
@@ -30,7 +30,7 @@ function displayDate(date: Date, time: TimeType) {
 
 export default function DateSection() {
   const { modalName, openModal, closeModal } = useModalState();
-  const { watch, setValue } = useFormContext();
+  const { watch, setValue } = useCreateMeetingContext();
 
   return (
     <>

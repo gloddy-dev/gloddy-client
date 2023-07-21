@@ -1,3 +1,4 @@
+import { createContext, useContext, useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import type { CreateMeetingRequestType } from '../type';
@@ -19,14 +20,30 @@ const inputDefaultValues = {
     toMin: '00',
     toAmPm: 'AM',
   },
-  meetingLocation: '',
+  // meetingLocation: '', // TODO : 지도 api 연동 후 추가
   meetingNumber: 0,
 };
+const CreateMeetingContext = createContext<any>(null);
 
 export default function CreateMeetingContextProvider({ children }: StrictPropsWithChildren) {
   const methods = useForm<CreateMeetingRequestType>({
     defaultValues: inputDefaultValues,
   });
 
-  return <FormProvider {...methods}>{children}</FormProvider>;
+  const contextValue = { ...methods };
+
+  return (
+    <CreateMeetingContext.Provider value={contextValue}>{children}</CreateMeetingContext.Provider>
+  );
 }
+
+const useCreateMeetingContext = () => {
+  const ctx = useContext(CreateMeetingContext);
+  if (!ctx)
+    throw new Error(
+      'Cannot find SignupContext. It should be wrapped within SignupContextProvider.'
+    );
+  return ctx;
+};
+
+export { useCreateMeetingContext };

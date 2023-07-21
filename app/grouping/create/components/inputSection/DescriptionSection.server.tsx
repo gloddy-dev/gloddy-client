@@ -1,10 +1,10 @@
+import { useCreateMeetingContext } from '../CreateMettingContext';
 import { TextArea } from '@/components/common/Input';
-import { useFormContext } from 'react-hook-form';
 
 const TEXT_AREA_COUNT = 30;
 
 export default function DescriptionSection() {
-  const { register } = useFormContext();
+  const { register } = useCreateMeetingContext();
 
   return (
     <section>

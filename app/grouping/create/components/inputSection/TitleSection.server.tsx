@@ -1,9 +1,8 @@
+import { useCreateMeetingContext } from '../CreateMettingContext';
 import { Input } from '@/components/common/Input';
-import { useFormContext } from 'react-hook-form';
 
 export default function TitleSection() {
-  const { register, watch } = useFormContext();
-  console.log(watch('title'));
+  const { register } = useCreateMeetingContext();
 
   return (
     <section>

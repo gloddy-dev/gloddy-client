@@ -1,12 +1,12 @@
+import { useCreateMeetingContext } from '../CreateMettingContext';
 import ImageFrame from '@/components/common/ImageFrame';
 import { useRef } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 import type { ImageType } from '@/types';
 
 export default function ImageSection() {
   const imgRef = useRef<HTMLInputElement>(null);
-  const { setValue, watch } = useFormContext();
+  const { setValue, watch } = useCreateMeetingContext();
 
   return (
     <ImageFrame

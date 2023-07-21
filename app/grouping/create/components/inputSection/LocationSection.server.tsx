@@ -1,12 +1,12 @@
 import InputArea from './InputArea.server';
+import { useCreateMeetingContext } from '../CreateMettingContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import BottomSheet from '@/components/common/Modal/BottomSheet';
 import useModalState from '@/store/useModalStore';
-import { useFormContext } from 'react-hook-form';
 
 export default function LocationSection() {
   const { modalName, openModal, closeModal } = useModalState();
-  const { watch, setValue } = useFormContext();
+  const { watch, setValue } = useCreateMeetingContext();
 
   return (
     <>
