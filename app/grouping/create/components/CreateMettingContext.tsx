@@ -1,13 +1,7 @@
-import { CreateMeetingRequestType } from '../type';
-import { StrictPropsWithChildren } from '@/types';
-import { createContext, useContext, useMemo } from 'react';
-import {
-  UseFormHandleSubmit,
-  UseFormRegister,
-  UseFormSetValue,
-  UseFormWatch,
-  useForm,
-} from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+
+import type { CreateMeetingRequestType } from '../type';
+import type { StrictPropsWithChildren } from '@/types';
 
 const inputDefaultValues = {
   title: '',
@@ -29,39 +23,10 @@ const inputDefaultValues = {
   meetingNumber: 0,
 };
 
-interface CreateMeetingContextValue {
-  register: UseFormRegister<any>;
-  watch: UseFormWatch<any>;
-  handleSubmit: UseFormHandleSubmit<any>;
-  setValue: UseFormSetValue<any>;
-}
-
-const CreateMeetingContext = createContext<CreateMeetingContextValue | null>(null);
-
 export default function CreateMeetingContextProvider({ children }: StrictPropsWithChildren) {
-  const { register, watch, handleSubmit, setValue } = useForm<CreateMeetingRequestType>({
+  const methods = useForm<CreateMeetingRequestType>({
     defaultValues: inputDefaultValues,
   });
 
-  const contextValue = { register, watch, handleSubmit, setValue };
-
-  // const contextValue = useMemo(
-  //   () => ({ register, watch, handleSubmit, setValue }),
-  //   [register, watch, handleSubmit, setValue]
-  // );
-
-  return (
-    <CreateMeetingContext.Provider value={contextValue}>{children}</CreateMeetingContext.Provider>
-  );
+  return <FormProvider {...methods}>{children}</FormProvider>;
 }
-
-const useCreateMeetingContext = () => {
-  const ctx = useContext(CreateMeetingContext);
-  if (!ctx)
-    throw new Error(
-      'Cannot find SignupContext. It should be wrapped within SignupContextProvider.'
-    );
-  return ctx;
-};
-
-export { CreateMeetingContextProvider, useCreateMeetingContext };

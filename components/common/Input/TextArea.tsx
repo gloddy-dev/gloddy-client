@@ -2,12 +2,12 @@
 
 import cn from '@/utils/cn';
 import { type TextareaHTMLAttributes, forwardRef } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   placeholder: string;
   className?: string;
-  register?: UseFormRegister<any>;
+  register?: UseFormRegisterReturn;
 }
 
 function TextArea(

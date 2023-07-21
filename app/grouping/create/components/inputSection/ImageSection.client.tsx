@@ -1,7 +1,8 @@
 import ImageFrame from '@/components/common/ImageFrame';
-import { ImageType } from '@/types';
 import { useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
+
+import type { ImageType } from '@/types';
 
 export default function ImageSection() {
   const imgRef = useRef<HTMLInputElement>(null);

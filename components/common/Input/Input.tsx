@@ -1,9 +1,9 @@
 'use client';
 import { Spacing } from '../Spacing';
 import clsx from 'clsx';
-import { UseFormRegisterReturn } from 'react-hook-form';
 
 import type { InputHTMLAttributes } from 'react';
+import type { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
