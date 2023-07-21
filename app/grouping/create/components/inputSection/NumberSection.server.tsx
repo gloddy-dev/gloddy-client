@@ -3,23 +3,20 @@ import { BottomFixedButton } from '@/components/common/Button';
 import { BottomSheet } from '@/components/common/Modal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
 import useModalState from '@/store/useModalStore';
-import { UseFormSetValue } from 'react-hook-form';
+import { UseFormSetValue, useFormContext } from 'react-hook-form';
 
 import type { CreateMeetingRequestType } from '../../type';
 
-interface NumberSectionProps {
-  value: number;
-  setValue: UseFormSetValue<CreateMeetingRequestType>;
-}
-export default function NumberSection({ value, setValue }: NumberSectionProps) {
+export default function NumberSection() {
   const { modalName, openModal, closeModal } = useModalState();
+  const { watch, setValue } = useFormContext();
 
   return (
     <>
       <InputArea
         title="모임 인원"
         onClick={() => openModal('meetingNumber')}
-        value={value ? value : undefined}
+        value={watch('meetingNumber') ? watch('meetingNumber') : undefined}
         placeholder="모임 인원을 설정해주세요."
       />
 
@@ -35,13 +32,13 @@ export default function NumberSection({ value, setValue }: NumberSectionProps) {
         <div className="relative h-full">
           <NumberSwipePicker
             setNumberValue={(value: number) => setValue('meetingNumber', value)}
-            numberValue={value}
+            numberValue={watch('meetingNumber')}
           />
         </div>
         <BottomFixedButton
           text="완료"
           onClick={() => {
-            if (!value) setValue('meetingNumber', 1);
+            if (!watch('meetingNumber')) setValue('meetingNumber', 1);
             closeModal();
           }}
         />

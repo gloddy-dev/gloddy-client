@@ -1,15 +1,20 @@
 import { Input } from '@/components/common/Input';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
-interface TitleSectionProps {
-  register: UseFormRegisterReturn<'title'>;
-}
+export default function TitleSection() {
+  const { register, watch } = useFormContext();
+  console.log(watch('title'));
 
-export default function TitleSection({ register }: TitleSectionProps) {
   return (
     <section>
       <div className="mb-5 text-14">방 제목</div>
-      <Input placeholder="제목을 입력해주세요" {...register} />
+      <Input
+        placeholder="제목을 입력해주세요"
+        register={register('title', {
+          required: true,
+          maxLength: 20,
+        })}
+      />
     </section>
   );
 }

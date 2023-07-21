@@ -2,17 +2,15 @@
 
 import DateSection from './inputSection/DateSection.server';
 import DescriptionSection from './inputSection/DescriptionSection.server';
+import ImageSection from './inputSection/ImageSection.client';
 import LocationSection from './inputSection/LocationSection.server';
 import NumberSection from './inputSection/NumberSection.server';
+import SubmitSection from './inputSection/SubmitSection';
 import TitleSection from './inputSection/TitleSection.server';
-import { BottomFixedButton } from '@/components/common/Button';
-import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
-import { ForwardedRef, useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import type { CreateMeetingRequestType } from '../type';
-import type { ImageType } from '@/types';
 
 const inputDefaultValues = {
   title: '',
@@ -35,65 +33,27 @@ const inputDefaultValues = {
 };
 
 export default function InputForm() {
-  const imgRef = useRef<HTMLInputElement>(null);
-
-  const { register, watch, handleSubmit, setValue } = useForm<CreateMeetingRequestType>({
+  const methods = useForm<CreateMeetingRequestType>({
     defaultValues: inputDefaultValues,
   });
 
-  const handleCreateMeetingSubmit = (data: CreateMeetingRequestType) => {
-    // TODO : 서버 api 전송
-    console.log(data);
-  };
-
-  const isAllEntered =
-    !!watch('title') &&
-    !!watch('description') &&
-    !!watch('date') &&
-    !!watch('time').fromHour &&
-    !!watch('time').fromMin &&
-    !!watch('time').fromAmPm &&
-    !!watch('time').toHour &&
-    !!watch('time').toMin &&
-    !!watch('time').toAmPm &&
-    !!watch('meetingLocation') &&
-    !!watch('meetingNumber');
-
   return (
     <div>
-      <ImageFrame
-        setImage={(value: ImageType) => setValue('image', value)}
-        imageBlob={watch('image')?.imageBlob}
-        shape="square"
-        ref={imgRef}
-      />
+      <FormProvider {...methods}>
+        <ImageSection />
 
-      <TitleSection
-        register={register('title', {
-          required: true,
-          maxLength: 20,
-        })}
-      />
+        <TitleSection />
 
-      <Spacing size={15} />
+        <Spacing size={15} />
 
-      <DescriptionSection
-        register={register('description', {
-          required: true,
-        })}
-      />
+        <DescriptionSection />
 
-      <Spacing size={15} />
-
-      <DateSection value={{ date: watch('date'), time: watch('time') }} setValue={setValue} />
-      <LocationSection value={watch('meetingLocation')} setValue={setValue} />
-      <NumberSection value={watch('meetingNumber')} setValue={setValue} />
-
-      <BottomFixedButton
-        text="완료"
-        disabled={!isAllEntered}
-        onClick={handleSubmit(handleCreateMeetingSubmit)}
-      />
+        <DateSection />
+        <LocationSection />
+        <NumberSection />
+        <Spacing size={15} />
+        <SubmitSection />
+      </FormProvider>
     </div>
   );
 }
