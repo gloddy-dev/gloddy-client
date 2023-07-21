@@ -83,6 +83,7 @@ export default function InputForm() {
             onChange: handleInputChange,
           })}
           onKeyDown={handleInputChange}
+          maxLength={17}
         />
 
         <Spacing size={18} />
