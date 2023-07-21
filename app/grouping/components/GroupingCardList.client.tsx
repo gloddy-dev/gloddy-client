@@ -1,6 +1,7 @@
 'use client';
 
 import GroupingCard from './GroupingCard.client';
+import { useGetGroups } from '@/apis/groups';
 
 const DUMMY_GROUPING_DATA = [
   {
