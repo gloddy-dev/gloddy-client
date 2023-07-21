@@ -1,6 +1,6 @@
 'use client';
 
-import { useFeedbackContext } from '../../FeedbackFormProvider';
+import { useFeedbackContext } from '../../FeedbackContext';
 import { Spacing } from '@/components/common/Spacing';
 import cn from '@/utils/cn';
 import Image from 'next/image';

@@ -1,6 +1,6 @@
 'use client';
 import MateCard from './MateCard';
-import { useFeedbackContext } from '../../FeedbackFormProvider';
+import { useFeedbackContext } from '../../FeedbackContext';
 
 import type { User } from '../../type';
 

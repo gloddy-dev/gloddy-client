@@ -1,5 +1,5 @@
 import FeedbackWrapper from './components/FeedbackWrapper';
-import FeedbackFormProvider from './FeedbackFormProvider';
+import FeedbackFormProvider from './FeedbackContext';
 
 export default function FeedbackPage() {
   return (
