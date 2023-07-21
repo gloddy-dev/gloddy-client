@@ -38,9 +38,9 @@ export default function InputForm() {
         {...register('content', { required: true })}
       />
       {images.length > 0 && <Spacing size={15} />}
-      <div className="flex w-full gap-14">
+      <div className="flex gap-14">
         {images.map(({ imageBlob }) => (
-          <div key={imageBlob} className="relative w-full before:block before:pb-[100%]">
+          <div key={imageBlob} className="relative grow before:block before:pb-[100%]">
             <Image src={imageBlob} alt="select-img" className="rounded-10 object-cover" fill />
           </div>
         ))}
