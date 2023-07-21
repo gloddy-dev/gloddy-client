@@ -1,6 +1,6 @@
 'use client';
 
-import CreateMeetingContextProvider from './CreateMettingContext';
+import CreateMeetingContextProvider from './CreateMeetingContext';
 import DateSection from './inputSection/DateSection.server';
 import DescriptionSection from './inputSection/DescriptionSection.server';
 import ImageSection from './inputSection/ImageSection.client';

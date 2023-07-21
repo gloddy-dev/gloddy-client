@@ -1,4 +1,4 @@
-import { useCreateMeetingContext } from '../CreateMettingContext';
+import { useCreateMeetingContext } from '../CreateMeetingContext';
 import ImageFrame from '@/components/common/ImageFrame';
 import { useRef } from 'react';
 

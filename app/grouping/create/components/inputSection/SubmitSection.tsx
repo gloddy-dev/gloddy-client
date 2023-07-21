@@ -1,5 +1,5 @@
 import { CreateMeetingRequestType } from '../../type';
-import { useCreateMeetingContext } from '../CreateMettingContext';
+import { useCreateMeetingContext } from '../CreateMeetingContext';
 import { BottomFixedButton } from '@/components/common/Button';
 
 export default function SubmitSection() {

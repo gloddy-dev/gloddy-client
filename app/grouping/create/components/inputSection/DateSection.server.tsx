@@ -5,7 +5,7 @@ import { BottomSheet } from '@/components/common/Modal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
 import useModalState from '@/store/useModalStore';
-import { useCreateMeetingContext } from '../CreateMettingContext';
+import { useCreateMeetingContext } from '../CreateMeetingContext';
 
 import type { TimeType } from '@/types';
 

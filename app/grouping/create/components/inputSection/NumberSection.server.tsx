@@ -1,5 +1,5 @@
 import InputArea from './InputArea.server';
-import { useCreateMeetingContext } from '../CreateMettingContext';
+import { useCreateMeetingContext } from '../CreateMeetingContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import { BottomSheet } from '@/components/common/Modal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';

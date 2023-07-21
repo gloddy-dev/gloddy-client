@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo } from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn, useForm } from 'react-hook-form';
 
 import type { CreateMeetingRequestType } from '../type';
 import type { StrictPropsWithChildren } from '@/types';
@@ -23,7 +23,7 @@ const inputDefaultValues = {
   // meetingLocation: '', // TODO : 지도 api 연동 후 추가
   meetingNumber: 0,
 };
-const CreateMeetingContext = createContext<any>(null);
+const CreateMeetingContext = createContext<UseFormReturn | null>(null);
 
 export default function CreateMeetingContextProvider({ children }: StrictPropsWithChildren) {
   const methods = useForm<CreateMeetingRequestType>({
@@ -33,7 +33,9 @@ export default function CreateMeetingContextProvider({ children }: StrictPropsWi
   const contextValue = { ...methods };
 
   return (
-    <CreateMeetingContext.Provider value={contextValue}>{children}</CreateMeetingContext.Provider>
+    <CreateMeetingContext.Provider value={contextValue as unknown as UseFormReturn}>
+      {children}
+    </CreateMeetingContext.Provider>
   );
 }
 

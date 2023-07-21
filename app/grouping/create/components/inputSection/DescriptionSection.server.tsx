@@ -1,4 +1,4 @@
-import { useCreateMeetingContext } from '../CreateMettingContext';
+import { useCreateMeetingContext } from '../CreateMeetingContext';
 import { TextArea } from '@/components/common/Input';
 import clsx from 'clsx';
 

@@ -1,4 +1,4 @@
-import { useCreateMeetingContext } from '../CreateMettingContext';
+import { useCreateMeetingContext } from '../CreateMeetingContext';
 import { Input } from '@/components/common/Input';
 
 export default function TitleSection() {
