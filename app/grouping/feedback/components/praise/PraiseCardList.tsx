@@ -9,8 +9,8 @@ interface PraiseCardListProps {
 export default function PraiseCardList({ userList }: PraiseCardListProps) {
   return (
     <div className="flex flex-col gap-12">
-      {userList.map(({ id, name, imageUrl }) => (
-        <PraiseCard key={id} name={name} imageUrl={imageUrl} />
+      {userList.map((user) => (
+        <PraiseCard key={user.id} user={user} />
       ))}
     </div>
   );
