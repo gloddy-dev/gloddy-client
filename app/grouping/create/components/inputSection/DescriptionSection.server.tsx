@@ -13,8 +13,10 @@ export default function DescriptionSection() {
       <div className="flex justify-between">
         <div className="mb-5 text-14">활동 소개글</div>
         <div className="text-12 text-gray2">
-          <span className={clsx({ 'text-red-500': isRed })}> {watch('description').length}</span>/
-          {TEXT_AREA_COUNT}
+          <span className={clsx({ 'text-red-500': isTextOver })}>
+            {watch('description').length}
+          </span>
+          /{TEXT_AREA_COUNT}
         </div>
       </div>
       <TextArea
