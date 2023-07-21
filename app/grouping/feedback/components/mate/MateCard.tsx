@@ -1,5 +1,5 @@
 'use client';
-import { useFeedbackContext } from '../../FeedbackFormProvider';
+import { useFeedbackContext } from '../../FeedbackContext';
 import { TextArea } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import cn from '@/utils/cn';
