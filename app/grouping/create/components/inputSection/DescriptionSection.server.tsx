@@ -4,7 +4,7 @@ import { TextArea } from '@/components/common/Input';
 const TEXT_AREA_COUNT = 30;
 
 export default function DescriptionSection() {
-  const { register } = useCreateMeetingContext();
+  const { register, watch } = useCreateMeetingContext();
 
   return (
     <section>
