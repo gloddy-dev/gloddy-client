@@ -47,7 +47,7 @@ export default function InputForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
         label="학교"
-        register={register('school', {
+        {...register('school', {
           required: true,
         })}
       />

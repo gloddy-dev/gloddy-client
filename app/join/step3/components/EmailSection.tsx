@@ -38,7 +38,7 @@ export default function EmailSection({
       <section>
         <Input
           label="ID"
-          register={register('email', {
+          {...register('email', {
             required: true,
             pattern: regexr.email,
           })}

@@ -21,7 +21,7 @@ export default function DescriptionSection() {
       </div>
       <TextArea
         placeholder="내용을 입력해주세요."
-        register={register('description', {
+        {...register('description', {
           required: true,
         })}
       />

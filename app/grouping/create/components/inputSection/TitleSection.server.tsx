@@ -9,7 +9,7 @@ export default function TitleSection() {
       <div className="mb-5 text-14">방 제목</div>
       <Input
         placeholder="제목을 입력해주세요"
-        register={register('title', {
+        {...register('title', {
           required: true,
           maxLength: 20,
         })}
