@@ -1,16 +1,14 @@
 'use client';
 import MateComponent from './mate/MateComponent';
 import PraiseComponent from './praise/PraiseComponent';
-import { useFeedbackContext } from '../FeedbackContext';
 import { useFunnel } from '@/hooks/useFunnel';
 
 import type { FeedbackRequestType } from '../type';
 
-export default function FeedbackWrapper() {
+export default function FeedbackFunnel() {
   const { Funnel, prevStep, nextStep } = useFunnel(['praise', 'mate']);
-  const { handleSubmit, control } = useFeedbackContext();
 
-  const onSubmit = (data: FeedbackRequestType) => {
+  const handleSubmit = (data: FeedbackRequestType) => {
     console.log(data);
   };
 
@@ -20,11 +18,7 @@ export default function FeedbackWrapper() {
         <PraiseComponent onPrevClick={prevStep} onNextClick={nextStep} />
       </Funnel.Step>
       <Funnel.Step name="mate">
-        <MateComponent
-          onPrevClick={prevStep}
-          onNextClick={handleSubmit(onSubmit)}
-          control={control}
-        />
+        <MateComponent onPrevClick={prevStep} onNextClick={handleSubmit} />
       </Funnel.Step>
     </Funnel>
   );
