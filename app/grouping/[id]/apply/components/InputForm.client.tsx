@@ -30,7 +30,7 @@ export default function InputForm() {
       <TextArea
         placeholder="제목을 입력해주세요."
         className="h-135 text-14"
-        {...register('introduction', { required: true })}
+        register={register('introduction', { required: true })}
       />
       <Spacing size={25} />
       <p>모임에 함께 하고 싶은 이유</p>
@@ -38,7 +38,7 @@ export default function InputForm() {
       <TextArea
         placeholder="제목을 입력해주세요."
         className="h-135 text-14"
-        {...register('reason', { required: true })}
+        register={register('reason', { required: true })}
       />
       <BottomFixedButton
         text="지원하기"

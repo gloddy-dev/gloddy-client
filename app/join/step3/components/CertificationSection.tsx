@@ -41,7 +41,7 @@ export default function CertificationSection({
         <section className="my-20">
           <Input
             label="인증번호"
-            {...register('certificateNumber', {
+            register={register('certificateNumber', {
               pattern: {
                 value: regexr.certificateNumber,
                 message: '인증 번호를 다시 확인해주세요.',
