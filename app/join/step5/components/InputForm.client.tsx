@@ -1,6 +1,7 @@
 'use client';
 
 import PersonalityItem from '../../components/PersonalityItem.server';
+import { postSignUp } from '@/apis/auth';
 import { BottomFixedButton, Button } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
 import useJoinStore from '@/store/useJoinStore';
@@ -12,20 +13,23 @@ export default function InputForm() {
 
   const [selectedPersonalityList, setSelectedPersonalityList] = useState<number[]>([]);
 
-  const handlePersonalityClick = React.useCallback((id: number) => {
+  const handlePersonalityClick = (id: number) => {
     setSelectedPersonalityList((prev) => {
       if (prev.includes(id)) {
         return prev.filter((item) => item !== id);
       }
       return [...prev, id];
     });
-  }, []);
+  };
 
   const { phoneNumber, school, email, name, birth, gender } = useJoinStore();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log(phoneNumber, school, email, name, birth, gender, selectedPersonalityList);
-    router.push('/grouping');
+
+    await postSignUp();
+
+    // router.push('/grouping');
   };
 
   return (
