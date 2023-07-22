@@ -1,10 +1,10 @@
 'use client';
 import MateCardList from './MateCardList';
+import { useFeedbackContext } from '../../FeedbackContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import { TopNavigationBar } from '@/components/common/NavigationBar';
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
-import { Control, useFormState } from 'react-hook-form';
 
 import type { FeedbackRequestType } from '../../type';
 
@@ -33,13 +33,15 @@ const DUMMY_USERLIST = [
 
 interface MateComponentProps {
   onPrevClick?: () => void;
-  onNextClick?: () => void;
+  onNextClick?: (data: FeedbackRequestType) => void;
   nextButtonNode?: React.ReactNode;
-  control?: Control<FeedbackRequestType>;
 }
 
-export default function MateComponent({ onPrevClick, onNextClick, control }: MateComponentProps) {
-  const { isValid, isDirty } = useFormState({ control });
+export default function MateComponent({ onPrevClick, onNextClick }: MateComponentProps) {
+  const {
+    handleSubmit,
+    formState: { isDirty, isValid },
+  } = useFeedbackContext();
 
   return (
     <main>
@@ -58,7 +60,11 @@ export default function MateComponent({ onPrevClick, onNextClick, control }: Mat
       />
       <MateCardList userList={DUMMY_USERLIST} />
       <Spacing size={100} />
-      <BottomFixedButton text="완료" onClick={onNextClick} disabled={!isValid || !isDirty} />
+      <BottomFixedButton
+        text="완료"
+        onClick={handleSubmit(onNextClick!)}
+        disabled={!isDirty || !isValid}
+      />
     </main>
   );
 }
