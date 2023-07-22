@@ -1,5 +1,6 @@
 'use client';
 
+import { postSMS } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -58,8 +59,12 @@ export default function InputForm() {
     }
   };
 
-  const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
+  const onSubmitPhoneNumber: SubmitHandler<InputType> = async (data) => {
     setJoinValue({ phoneNumber: data.phoneNumber });
+    const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
+    console.log(phoneNumberWithoutHyphen);
+
+    await postSMS({ phoneNumber: phoneNumberWithoutHyphen });
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
