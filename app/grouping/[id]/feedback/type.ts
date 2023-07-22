@@ -2,7 +2,7 @@ export type PraiseType = 'calm' | 'kind' | 'active' | 'humor';
 
 export type PraiseUser = {
   id: number;
-  type: PraiseType;
+  praiseType: PraiseType;
 };
 
 export type FeedbackRequestType = {

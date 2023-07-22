@@ -4,7 +4,7 @@ import { useFeedbackContext } from '../../FeedbackContext';
 import { Spacing } from '@/components/common/Spacing';
 import cn from '@/utils/cn';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 
 import type { PraiseType, User } from '../../type';
 
@@ -34,42 +34,39 @@ interface PraiseCardProps {
   user: User;
 }
 
-export default function PraiseCard({ user }: PraiseCardProps) {
+function PraiseCard({ user }: PraiseCardProps) {
   const { setValue, getValues } = useFeedbackContext();
 
-  const initialPraise = getValues().praiseUserList.find(
-    (praiseUser) => praiseUser.id === user.id
-  )?.type;
+  const currentSelectedPraise = getValues('praiseUserList').find((praise) => praise.id === user.id);
 
-  const [selectedPraise, setSelectedPraise] = useState<PraiseType | null>(initialPraise ?? null);
+  const [selectedPraise, setSelectedPraise] = useState<PraiseType | null>(
+    currentSelectedPraise?.praiseType ?? null
+  );
 
   const handleKickClick = () => {
     // TODO: 불참 모달 띄우기
   };
 
   const handlePraiseClick = (type: PraiseType) => {
+    const filteredPraiseUserList = getValues('praiseUserList').filter(
+      (praise) => praise.id !== user.id
+    );
+
     if (selectedPraise === type) {
       setSelectedPraise(null);
+      setValue('praiseUserList', filteredPraiseUserList);
       return;
     }
 
     setSelectedPraise(type);
+    setValue('praiseUserList', [
+      ...filteredPraiseUserList,
+      {
+        id: user.id,
+        praiseType: type,
+      },
+    ]);
   };
-
-  useEffect(() => {
-    if (selectedPraise) {
-      const { praiseUserList } = getValues();
-      const newPraiseUserList = praiseUserList.filter((praiseUser) => praiseUser.id !== user.id);
-
-      setValue('praiseUserList', [
-        ...newPraiseUserList,
-        {
-          id: user.id,
-          type: selectedPraise,
-        },
-      ]);
-    }
-  }, [selectedPraise, user.id, getValues, setValue]);
 
   return (
     <div className="rounded-8 bg-gray6 p-16">
@@ -112,3 +109,5 @@ export default function PraiseCard({ user }: PraiseCardProps) {
     </div>
   );
 }
+
+export default memo(PraiseCard);
