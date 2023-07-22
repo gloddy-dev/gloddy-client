@@ -1,7 +1,7 @@
 'use client';
 
 import cn from '@/utils/cn';
-import { type TextareaHTMLAttributes, forwardRef } from 'react';
+import { type TextareaHTMLAttributes } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -24,4 +24,4 @@ function TextArea({ placeholder, className, register, ...props }: TextAreaProps)
   );
 }
 
-export default forwardRef(TextArea);
+export default TextArea;
