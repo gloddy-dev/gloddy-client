@@ -1,6 +1,7 @@
 'use client';
 import { Spacing } from '../Spacing';
 import cn from '@/utils/cn';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 import type { InputHTMLAttributes } from 'react';
 
@@ -9,9 +10,17 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   type?: string;
   className?: string;
+  register?: UseFormRegisterReturn;
 }
 
-export default function Input({ label, placeholder, type = 'text', className, ...props }: InputProps) {
+export default function Input({
+  label,
+  placeholder,
+  register,
+  className,
+  type = 'text',
+  ...props
+}: InputProps) {
   return (
     <div className="relative flex h-52 w-full rounded-lg bg-[#f6f6f6]">
       <Spacing size={24} direction="horizontal" />
@@ -25,6 +34,7 @@ export default function Input({ label, placeholder, type = 'text', className, ..
         )}
         type={type}
         {...props}
+        {...register}
       />
     </div>
   );

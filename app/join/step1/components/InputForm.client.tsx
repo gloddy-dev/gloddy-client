@@ -74,7 +74,7 @@ export default function InputForm() {
       <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
         <Input
           placeholder="휴대폰 번호"
-          {...register('phoneNumber', {
+          register={register('phoneNumber', {
             required: true,
             pattern: {
               value: regexr.phoneNumber,
@@ -106,7 +106,7 @@ export default function InputForm() {
         <form onSubmit={handleSubmit(onSubmitCertificateNumber)}>
           <Input
             placeholder="인증 번호"
-            {...register('certificateNumber', {
+            register={register('certificateNumber', {
               required: true,
               pattern: {
                 value: regexr.certificateNumber,
