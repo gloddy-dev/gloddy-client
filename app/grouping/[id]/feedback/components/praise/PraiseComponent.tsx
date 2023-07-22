@@ -1,3 +1,4 @@
+'use client';
 import PraiseCardList from './PraiseCardList';
 import { BottomFixedButton } from '@/components/common/Button';
 import { TopNavigationBar } from '@/components/common/NavigationBar';
@@ -28,8 +29,8 @@ const DUMMY_USERLIST = [
 ];
 
 interface PraiseComponentProps {
-  onPrevClick: () => void;
-  onNextClick: () => void;
+  onPrevClick?: () => void;
+  onNextClick?: () => void;
 }
 
 export default function PraiseComponent({ onPrevClick, onNextClick }: PraiseComponentProps) {
