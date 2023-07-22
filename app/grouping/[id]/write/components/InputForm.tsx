@@ -35,7 +35,7 @@ export default function InputForm() {
       <TextArea
         placeholder="내용을 입력해주세요."
         className="flex-grow"
-        register={register('content', { required: true })}
+        {...register('content', { required: true })}
       />
       {images.length > 0 && <Spacing size={15} />}
       <div className="flex gap-14">
@@ -50,7 +50,7 @@ export default function InputForm() {
         text="위 글을 공지로 설정합니다."
         onClick={() => setValue('isNotice', !watch('isNotice'))}
         checked={watch('isNotice')}
-        register={register('isNotice')}
+        {...register('isNotice')}
       />
       <BottomFixedButton
         type="submit"
