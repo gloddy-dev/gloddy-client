@@ -14,7 +14,6 @@ export const onResponseError = (error: AxiosError<ErrorType, InternalAxiosReques
   if (error.response) {
     const data = error.response.data;
     const { success, statusCode, errorCode, reason } = data;
-    console.log(data);
     return Promise.reject(new ApiError(success, statusCode, errorCode, reason));
   }
   if (error.request) console.log(error.request);

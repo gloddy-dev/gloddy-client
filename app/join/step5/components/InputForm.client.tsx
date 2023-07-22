@@ -4,9 +4,12 @@ import PersonalityItem from '../../components/PersonalityItem.server';
 import { BottomFixedButton, Button } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
 import useJoinStore from '@/store/useJoinStore';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function InputForm() {
+  const router = useRouter();
+
   const [selectedPersonalityList, setSelectedPersonalityList] = useState<number[]>([]);
 
   const handlePersonalityClick = (id: number) => {
@@ -21,6 +24,7 @@ export default function InputForm() {
 
   const handleSubmit = () => {
     console.log(phoneNumber, school, email, name, birth, gender, selectedPersonalityList);
+    router.push('/grouping');
   };
 
   return (
