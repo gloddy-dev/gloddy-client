@@ -5,20 +5,21 @@ import { BottomFixedButton, Button } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
 import useJoinStore from '@/store/useJoinStore';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 export default function InputForm() {
   const router = useRouter();
 
   const [selectedPersonalityList, setSelectedPersonalityList] = useState<number[]>([]);
 
-  const handlePersonalityClick = (id: number) => {
-    if (selectedPersonalityList.includes(id)) {
-      setSelectedPersonalityList((prev) => prev.filter((item) => item !== id));
-      return;
-    }
-    setSelectedPersonalityList([...selectedPersonalityList, id]);
-  };
+  const handlePersonalityClick = React.useCallback((id: number) => {
+    setSelectedPersonalityList((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((item) => item !== id);
+      }
+      return [...prev, id];
+    });
+  }, []);
 
   const { phoneNumber, school, email, name, birth, gender } = useJoinStore();
 
@@ -31,16 +32,17 @@ export default function InputForm() {
     <div>
       {/* TODO : Compound Component Pattern으로 구현할 예정 (규성) */}
       <section className="flex flex-wrap gap-12">
-        {personalityList.map((personality) => (
-          <PersonalityItem
-            key={personality.id}
-            personality={personality}
-            isSelected={selectedPersonalityList.includes(+personality.id)}
-            onClick={() => {
-              handlePersonalityClick(+personality.id);
-            }}
-          />
-        ))}
+        {personalityList.map((personality) => {
+          return (
+            <PersonalityItem
+              key={personality.id}
+              personality={personality}
+              isSelected={selectedPersonalityList.includes(+personality.id)}
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              onClick={useCallback(() => handlePersonalityClick(+personality.id), [personality.id])}
+            />
+          );
+        })}
       </section>
 
       <BottomFixedButton
