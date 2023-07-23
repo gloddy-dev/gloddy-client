@@ -5,7 +5,15 @@ export type LoginResponse = {
   token: string;
 };
 
+export type SMSRequest = {
+  phoneNumber: string;
+};
+
 export type SMSVerifiyRequest = {
   phoneNumber: string;
   verifyCode: string;
+};
+
+export type EmailRequest = {
+  email: string;
 };
