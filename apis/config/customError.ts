@@ -1,13 +1,15 @@
+import { ErrorStatus } from './type';
+
 export class ApiError extends Error {
-  success: boolean;
-  statusCode: number;
-  errorCode: string;
+  message: string;
   reason: string;
-  constructor(success: boolean, statusCode: number, errorCode: string, message: string) {
+  status: ErrorStatus;
+  timestamp: Date;
+  constructor(message: string, reason: string, status: ErrorStatus, timestamp: Date) {
     super(message);
-    this.success = success;
-    this.statusCode = statusCode;
-    this.errorCode = errorCode;
-    this.reason = message;
+    this.message = message;
+    this.reason = reason;
+    this.status = status;
+    this.timestamp = timestamp;
   }
 }
