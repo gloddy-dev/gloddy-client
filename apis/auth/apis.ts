@@ -24,20 +24,20 @@ export const postSMSVerify = ({ phoneNumber, verifyCode }: SMSVerifiyRequest) =>
 export const postEmail = ({ email }: { email: string }) =>
   publicApi.post('/api/v1/auth/email', { email });
 
+// Test용 Dummy Data
+const obj = {
+  phoneNumber: '010-0000-0000',
+  imageUrl: 'string',
+  schoolInfo: {
+    school: 'string',
+    email: 'string',
+    certifiedStudent: true,
+  },
+  nickname: 'string',
+  birth: '2023-07-22',
+  gender: 'MAIL',
+  personalities: ['OUTGOING'],
+};
 export const postSignUp = () => {
-  const obj = {
-    phoneNumber: '010-0000-0000',
-    imageUrl: 'string',
-    schoolInfo: {
-      school: 'string',
-      email: 'string',
-      certifiedStudent: true,
-    },
-    nickname: 'string',
-    birth: '2023-07-22',
-    gender: 'MAIL',
-    personalities: ['OUTGOING'],
-  };
-
   return publicApi.post('/api/v1/auth/sign-up', obj);
 };
