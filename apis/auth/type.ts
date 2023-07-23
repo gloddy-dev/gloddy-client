@@ -4,3 +4,8 @@ export type LoginResponse = {
   authority: string;
   token: string;
 };
+
+export type SMSVerifiyRequest = {
+  phoneNumber: string;
+  verifyCode: string;
+};
