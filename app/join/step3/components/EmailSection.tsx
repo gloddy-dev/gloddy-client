@@ -1,5 +1,5 @@
 import { postEmail } from '@/apis/auth';
-import BomttomFixedDiv from '@/components/common/BomttomFixedDiv';
+import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -59,7 +59,7 @@ export default function EmailSection({
 
       <Spacing size={10} />
 
-      <BomttomFixedDiv>
+      <BottomFixedDiv>
         <Button
           text="인증하기"
           type="submit"
@@ -69,7 +69,7 @@ export default function EmailSection({
         <Spacing size={8} />
 
         <Button text="다음에 인증하기" color="orange" href="/join/step4" />
-      </BomttomFixedDiv>
+      </BottomFixedDiv>
     </form>
   );
 }
