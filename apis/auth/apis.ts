@@ -1,19 +1,16 @@
 import publicApi from '../config/publicApi';
 
-import type { LoginResponse, SMSVerifiyRequest } from './type';
+import type { EmailRequest, LoginResponse, SMSRequest, SMSVerifiyRequest } from './type';
 
 const TEST_ID = {
   email: 'testy54@soongsil.ac.kr',
   password: 'qwqw5533',
 };
 
-export const postLogin = () => {
-  return publicApi.post<LoginResponse>('/api/v1/auth/login', TEST_ID);
-};
+export const postLogin = () => publicApi.post<LoginResponse>('/api/v1/auth/login', TEST_ID);
 
-export const postSMS = ({ phoneNumber }: { phoneNumber: string }) => {
-  return publicApi.post('/api/v1/auth/sms', { number: phoneNumber });
-};
+export const postSMS = ({ phoneNumber }: SMSRequest) =>
+  publicApi.post('/api/v1/auth/sms', { number: phoneNumber });
 
 export const postSMSVerify = ({ phoneNumber, verifyCode }: SMSVerifiyRequest) =>
   publicApi.post('/api/v1/auth/sms/verify-code', {
@@ -21,7 +18,7 @@ export const postSMSVerify = ({ phoneNumber, verifyCode }: SMSVerifiyRequest) =>
     code: verifyCode,
   });
 
-export const postEmail = ({ email }: { email: string }) =>
+export const postEmail = ({ email }: EmailRequest) =>
   publicApi.post('/api/v1/auth/email', { email });
 
 // Test용 Dummy Data
@@ -38,6 +35,5 @@ const obj = {
   gender: 'MAIL',
   personalities: ['OUTGOING'],
 };
-export const postSignUp = () => {
-  return publicApi.post('/api/v1/auth/sign-up', obj);
-};
+
+export const postSignUp = () => publicApi.post('/api/v1/auth/sign-up', obj);
