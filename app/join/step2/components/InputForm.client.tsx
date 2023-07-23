@@ -28,6 +28,7 @@ const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
 
 export default function InputForm() {
   const router = useRouter();
+  const { setJoinValue } = useJoinStore();
 
   const {
     register,
@@ -35,8 +36,6 @@ export default function InputForm() {
     watch,
     handleSubmit,
   } = useForm<Step2InputType>();
-
-  const { setJoinValue } = useJoinStore();
 
   const onSubmit = (data: Step2InputType) => {
     setJoinValue({ school: data.school });

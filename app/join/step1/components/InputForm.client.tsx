@@ -1,6 +1,6 @@
 'use client';
 
-import { postSMS } from '@/apis/auth';
+import { postSMS, postSMSVerify, useSMSVerify } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -42,6 +42,7 @@ export default function InputForm() {
 
   const [inputStatus, setInputStatus] = useState<InputStatusType>('notReadyForSend');
   const { setJoinValue } = useJoinStore();
+  const { mutate: mutateSMSVerify } = useSMSVerify();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -62,18 +63,21 @@ export default function InputForm() {
   const onSubmitPhoneNumber: SubmitHandler<InputType> = async (data) => {
     setJoinValue({ phoneNumber: data.phoneNumber });
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
-    console.log(phoneNumberWithoutHyphen);
-
-    await postSMS({ phoneNumber: phoneNumberWithoutHyphen });
+    // await postSMS({ phoneNumber: phoneNumberWithoutHyphen });
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
 
-  const onSubmitCertificateNumber: SubmitHandler<InputType> = (data) => {
+  const onSubmitCertificateNumber: SubmitHandler<InputType> = async (data) => {
+    const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
+    mutateSMSVerify({
+      phoneNumber: phoneNumberWithoutHyphen,
+      verifyCode: '' + data.certificateNumber,
+    });
     // 인증번호 확인 API
-    router.push('/join/step2');
+    // router.push('/join/step2');
   };
-
+  // 212371
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
