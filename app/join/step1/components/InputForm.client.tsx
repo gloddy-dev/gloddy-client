@@ -61,7 +61,7 @@ export default function InputForm() {
     }
   };
 
-  const onSubmitPhoneNumber: SubmitHandler<InputType> = async (data) => {
+  const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
     setJoinValue({ phoneNumber: data.phoneNumber });
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     // mutateSMS({ phoneNumber: phoneNumberWithoutHyphen });
@@ -69,7 +69,7 @@ export default function InputForm() {
     setInputStatus('afterSend');
   };
 
-  const onSubmitCertificateNumber: SubmitHandler<InputType> = async (data) => {
+  const onSubmitCertificateNumber: SubmitHandler<InputType> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     mutateSMSVerify({
       phoneNumber: phoneNumberWithoutHyphen,
