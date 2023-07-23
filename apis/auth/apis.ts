@@ -1,6 +1,12 @@
 import publicApi from '../config/publicApi';
 
-import type { EmailRequest, LoginResponse, SMSRequest, SMSVerifiyRequest } from './type';
+import type {
+  EmailRequest,
+  EmailVerifyRequest,
+  LoginResponse,
+  SMSRequest,
+  SMSVerifiyRequest,
+} from './type';
 
 const TEST_ID = {
   email: 'testy54@soongsil.ac.kr',
@@ -20,6 +26,9 @@ export const postSMSVerify = ({ phoneNumber, verifyCode }: SMSVerifiyRequest) =>
 
 export const postEmail = ({ email }: EmailRequest) =>
   publicApi.post('/api/v1/auth/email', { email });
+
+export const postEmailVerify = ({ email, authCode }: EmailVerifyRequest) =>
+  publicApi.post('/api/v1/auth/verify-code', { email, authCode });
 
 // Test용 Dummy Data
 const obj = {

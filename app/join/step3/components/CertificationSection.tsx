@@ -1,3 +1,4 @@
+import { useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
@@ -21,12 +22,12 @@ export default function CertificationSection({
 }: BottomSheetFormProps) {
   const router = useRouter();
   const { closeModal, modalName } = useModalStore();
+  const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
   const isOpen = modalName === 'certification';
 
   const onSubmitCertificateNumber: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
-    // 인증번호 확인
-    console.log(data);
+    mutateEmailVerify({ email: data.email, authCode: '' + data.certificateNumber });
     router.push('/join/step4');
   };
 
