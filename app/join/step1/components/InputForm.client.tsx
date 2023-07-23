@@ -1,6 +1,6 @@
 'use client';
 
-import { postSMS, postSMSVerify, useSMSVerify } from '@/apis/auth';
+import { postSMS, postSMSVerify, useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -42,7 +42,8 @@ export default function InputForm() {
 
   const [inputStatus, setInputStatus] = useState<InputStatusType>('notReadyForSend');
   const { setJoinValue } = useJoinStore();
-  const { mutate: mutateSMSVerify } = useSMSVerify();
+  const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
+  const { mutate: mutateSMS } = useSMSMutation();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -63,7 +64,7 @@ export default function InputForm() {
   const onSubmitPhoneNumber: SubmitHandler<InputType> = async (data) => {
     setJoinValue({ phoneNumber: data.phoneNumber });
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
-    // await postSMS({ phoneNumber: phoneNumberWithoutHyphen });
+    mutateSMS({ phoneNumber: phoneNumberWithoutHyphen });
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
