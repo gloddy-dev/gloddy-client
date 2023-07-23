@@ -1,3 +1,4 @@
+import { usePostFiles } from '@/apis/common';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -15,9 +16,15 @@ export default forwardRef(function ImageFrame(
   { setImage, imageBlob, shape = 'circle' }: ImageFrameProps,
   imgRef: ForwardedRef<HTMLInputElement>
 ) {
+  const { mutate: mutatePostFiles } = usePostFiles();
+
   const handleImageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formData = new FormData();
     const imageFile = e.target.files?.[0];
     if (imageFile === undefined) return;
+    formData.append('fileList', imageFile);
+    mutatePostFiles(formData);
+
     const imageBlob = makeFileToBlob(imageFile);
     setImage({ imageFile, imageBlob });
   };
