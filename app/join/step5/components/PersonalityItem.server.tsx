@@ -1,6 +1,6 @@
 import { PersonalityType } from '../type';
 import clsx from 'clsx';
-import React from 'react';
+import { memo } from 'react';
 
 interface PersonalityItemProps {
   personality: PersonalityType;
@@ -8,7 +8,7 @@ interface PersonalityItemProps {
   onClick: (id: number) => void;
 }
 
-export default React.memo(function PersonalityItem({
+export default memo(function PersonalityItem({
   personality,
   isSelected,
   onClick,

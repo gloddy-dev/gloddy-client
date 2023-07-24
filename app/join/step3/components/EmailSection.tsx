@@ -9,7 +9,7 @@ import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
 import Image from 'next/image';
-import React from 'react';
+import { memo } from 'react';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 import type { Step3InputType } from '../type';
@@ -23,7 +23,7 @@ interface EmailSectionProps {
   timerStatus: TimerStatusType;
 }
 
-export default React.memo(function EmailSection({
+export default memo(function EmailSection({
   register,
   handleSubmit,
   email,
