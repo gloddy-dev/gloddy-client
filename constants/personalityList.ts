@@ -1,63 +1,74 @@
-type Personality = {
-  id: string;
-  text: string;
-};
+import type { PersonalityType } from '@/app/join/step5/type';
 
-export const personalityList: Personality[] = [
+export const personalityList: PersonalityType[] = [
   {
-    id: '1',
-    text: '외향적인',
+    id: 1,
+    keyword: '외향적인',
+    keywordInEnglish: 'OUTGOING',
   },
   {
-    id: '2',
-    text: '내향적인',
+    id: 2,
+    keyword: '내향적인',
+    keywordInEnglish: 'INTROVERTED',
   },
   {
-    id: '3',
-    text: '신중한',
+    id: 3,
+    keyword: '신중한',
+    keywordInEnglish: 'CAREFUL',
   },
   {
-    id: '4',
-    text: '친절한',
+    id: 4,
+    keyword: '친절한',
+    keywordInEnglish: 'KIND',
   },
   {
-    id: '5',
-    text: '유머러스한',
+    id: 5,
+    keyword: '유머러스한',
+    keywordInEnglish: 'HUMOROUS',
   },
   {
-    id: '6',
-    text: '낙천적인',
+    id: 6,
+    keyword: '낙천적인',
+    keywordInEnglish: 'OPTIMISTIC',
   },
   {
-    id: '7',
-    text: '사교적인',
+    id: 7,
+    keyword: '사교적인',
+    keywordInEnglish: 'SOCIAL',
   },
   {
-    id: '8',
-    text: '솔직한',
+    id: 8,
+    keyword: '솔직한',
+    keywordInEnglish: 'CANDID',
   },
   {
-    id: '9',
-    text: '책임감 있는',
+    id: 9,
+    keyword: '책임감 있는',
+    keywordInEnglish: 'RESPONSIBLE',
   },
   {
-    id: '10',
-    text: '차분한',
+    id: 10,
+    keyword: '차분한',
+    keywordInEnglish: 'TRANQUIL',
   },
   {
-    id: '11',
-    text: '활동적인',
+    id: 11,
+    keyword: '활동적인',
+    keywordInEnglish: 'ACTIVE',
   },
   {
-    id: '12',
-    text: '센스있는',
+    id: 12,
+    keyword: '센스있는',
+    keywordInEnglish: 'SENSIBLE',
   },
   {
-    id: '13',
-    text: '엉뚱한',
+    id: 13,
+    keyword: '엉뚱한',
+    keywordInEnglish: 'WACKY',
   },
   {
-    id: '14',
-    text: '리더십 있는',
+    id: 14,
+    keyword: '리더십 있는',
+    keywordInEnglish: 'LEADERSHIP',
   },
 ];

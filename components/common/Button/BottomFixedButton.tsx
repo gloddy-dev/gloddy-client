@@ -1,10 +1,10 @@
-import BomttomFixedDiv from '../BomttomFixedDiv';
 import Button, { type ButtonProps } from './Button';
+import BottomFixedDiv from '../BottomFixedDiv';
 
 export default function BottomFixedButton({ ...props }: ButtonProps) {
   return (
-    <BomttomFixedDiv>
+    <BottomFixedDiv>
       <Button {...props} />
-    </BomttomFixedDiv>
+    </BottomFixedDiv>
   );
 }

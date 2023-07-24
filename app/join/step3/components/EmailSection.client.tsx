@@ -1,5 +1,6 @@
-import { postEmail } from '@/apis/auth';
-import BomttomFixedDiv from '@/components/common/BomttomFixedDiv';
+'use client';
+import { useEmailMutation } from '@/apis/auth';
+import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -8,31 +9,43 @@ import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
 import Image from 'next/image';
+import { memo } from 'react';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 import type { Step3InputType } from '../type';
+import type { TimerStatusType } from '@/hooks/useTimer/type';
 
 interface EmailSectionProps {
   register: UseFormRegister<Step3InputType>;
   handleSubmit: UseFormHandleSubmit<Step3InputType>;
   email: string;
   isError: boolean;
+  timerStart: () => void;
+  timerStatus: TimerStatusType;
 }
 
-export default function EmailSection({
+export default memo(function EmailSection({
   register,
   handleSubmit,
   email,
   isError,
+  timerStart,
+  timerStatus,
 }: EmailSectionProps) {
-  const { openModal } = useModalStore();
+  const { openModal, modalName } = useModalStore();
   const { setJoinValue } = useJoinStore();
+  const { mutate: mutateEmail } = useEmailMutation();
+  console.log(modalName);
 
-  const onSubmitEmail: SubmitHandler<Step3InputType> = async (data: Step3InputType) => {
+  const onSubmitEmail: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
     openModal('certification');
     setJoinValue({ email: data.email });
-    await postEmail({ email: data.email });
-    // 인증번호 전송
+    if (timerStatus === 'STOPPED') {
+      timerStart();
+    } else {
+      // TODO : 인증번호 시간 끝나지 않았을 때에 대한 처리
+    }
+    // mutateEmail({ email: data.email });
   };
 
   return (
@@ -59,7 +72,7 @@ export default function EmailSection({
 
       <Spacing size={10} />
 
-      <BomttomFixedDiv>
+      <BottomFixedDiv>
         <Button
           text="인증하기"
           type="submit"
@@ -69,7 +82,7 @@ export default function EmailSection({
         <Spacing size={8} />
 
         <Button text="다음에 인증하기" color="orange" href="/join/step4" />
-      </BomttomFixedDiv>
+      </BottomFixedDiv>
     </form>
   );
-}
+});
