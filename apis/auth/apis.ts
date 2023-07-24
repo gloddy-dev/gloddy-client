@@ -17,18 +17,17 @@ const TEST_ID = {
 };
 
 export const postLogin = () =>
-  publicApi.post<Promise<AxiosResponse<LoginResponse>>>('/api/v1/auth/login', TEST_ID);
+  publicApi.post<Promise<AxiosResponse<LoginResponse>>>('/auth/login', TEST_ID);
 
-export const postSMS = (SMSData: SMSRequest) => publicApi.post('/api/v1/auth/sms', SMSData);
+export const postSMS = (SMSData: SMSRequest) => publicApi.post('/auth/sms', SMSData);
 
 export const postSMSVerify = (SMSVerifyData: SMSVerifiyRequest) =>
-  publicApi.post('/api/v1/auth/sms/verify-code', SMSVerifyData);
+  publicApi.post('/auth/sms/verify-code', SMSVerifyData);
 
-export const postEmail = (emailData: EmailRequest) =>
-  publicApi.post('/api/v1/auth/email', emailData);
+export const postEmail = (emailData: EmailRequest) => publicApi.post('/auth/email', emailData);
 
 export const postEmailVerify = (emailVerifyData: EmailVerifyRequest) =>
-  publicApi.post('/api/v1/auth/verify-code', emailVerifyData);
+  publicApi.post('/auth/verify-code', emailVerifyData);
 
 export const postSignUp = (signUpData: SignUpRequest) =>
-  publicApi.post<SignUpResponse>('/api/v1/auth/sign-up', signUpData);
+  publicApi.post<SignUpResponse>('/auth/sign-up', signUpData);
