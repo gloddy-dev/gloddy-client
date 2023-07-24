@@ -78,7 +78,7 @@ export default function InputForm() {
     // 인증번호 확인 API
     // router.push('/join/step2');
   };
-  // 212371
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
