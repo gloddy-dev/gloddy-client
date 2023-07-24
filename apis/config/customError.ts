@@ -1,4 +1,4 @@
-import { ErrorStatus } from './type';
+import type { ErrorStatus } from './type';
 
 export class ApiError extends Error {
   message: string;
