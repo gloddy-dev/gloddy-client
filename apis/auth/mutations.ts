@@ -1,11 +1,4 @@
 import { postEmail, postEmailVerify, postSMS, postSMSVerify, postSignUp } from './apis';
-import {
-  EmailRequest,
-  EmailVerifyRequest,
-  SMSRequest,
-  SMSVerifiyRequest,
-  SignUpRequest,
-} from './type';
 import { useMutation } from '@tanstack/react-query';
 
 export const useSMSMutation = () => {

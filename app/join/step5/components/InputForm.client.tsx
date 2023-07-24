@@ -32,14 +32,14 @@ export default function InputForm() {
 
   const [selectedPersonalityIdList, setSelectedPersonalityIdList] = useState<number[]>([]);
 
-  const handlePersonalityClick = (id: number) => {
+  const handlePersonalityClick = useCallback((id: number) => {
     setSelectedPersonalityIdList((prev) => {
       if (prev.includes(id)) {
         return prev.filter((item) => item !== id);
       }
       return [...prev, id];
     });
-  };
+  }, []);
 
   const { phoneNumber, school, email, name, birth, gender } = useJoinStore();
 
@@ -60,8 +60,7 @@ export default function InputForm() {
               key={personality.id}
               personality={personality}
               isSelected={selectedPersonalityIdList.includes(personality.id)}
-              // eslint-disable-next-line react-hooks/rules-of-hooks
-              onClick={useCallback(() => handlePersonalityClick(+personality.id), [personality.id])}
+              onClick={handlePersonalityClick}
             />
           );
         })}
