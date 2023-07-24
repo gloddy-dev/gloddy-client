@@ -1,4 +1,4 @@
-import { PersonalityType } from '@/app/join/step5/type';
+import type { PersonalityType } from '@/app/join/step5/type';
 
 export const personalityList: PersonalityType[] = [
   {
