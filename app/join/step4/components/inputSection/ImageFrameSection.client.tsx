@@ -1,3 +1,4 @@
+'use client';
 import ImageFrame from '@/components/common/ImageFrame';
 import useJoinStore from '@/store/useJoinStore';
 
