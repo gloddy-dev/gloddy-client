@@ -4,7 +4,7 @@ import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import { TimerStatus } from '@/hooks/useTimer/type';
+import { TimerStatusType } from '@/hooks/useTimer/type';
 import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
@@ -20,7 +20,7 @@ interface EmailSectionProps {
   email: string;
   isError: boolean;
   timerStart: () => void;
-  timerStatus: TimerStatus;
+  timerStatus: TimerStatusType;
 }
 
 export default React.memo(function EmailSection({
