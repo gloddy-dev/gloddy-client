@@ -1,16 +1,16 @@
-import { createActionType } from './helpers';
+import { createAction } from './helpers';
 
-const ADVANCE_TIME = (timeToAdd: number) => createActionType('advanceTime', { timeToAdd });
+const ADVANCE_TIME = (timeToAdd: number) => createAction('advanceTime', { timeToAdd });
 
-const PAUSE = () => createActionType('pause');
+const PAUSE = () => createAction('pause');
 
-const RESET = (initialTime: number) => createActionType('reset', { initialTime });
+const RESET = (initialTime: number) => createAction('reset', { initialTime });
 
-const SET = (newTime: number) => createActionType('set', { newTime });
+const SET = (newTime: number) => createAction('set', { newTime });
 
-const START = (initialTime: number) => createActionType('start', { initialTime });
+const START = (initialTime: number) => createAction('start', { initialTime });
 
-const STOP = () => createActionType('stop');
+const STOP = () => createAction('stop');
 
 export type TimerActionsType = ReturnType<
   typeof ADVANCE_TIME | typeof PAUSE | typeof RESET | typeof SET | typeof START | typeof STOP
