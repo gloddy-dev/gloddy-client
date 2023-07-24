@@ -1,7 +1,7 @@
 'use client';
 import { Spacing } from '../Spacing';
 import cn from '@/utils/cn';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { type UseFormRegisterReturn } from 'react-hook-form';
 
 import type { InputHTMLAttributes } from 'react';
 

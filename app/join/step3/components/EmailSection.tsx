@@ -1,3 +1,4 @@
+import { postEmail } from '@/apis/auth';
 import BomttomFixedDiv from '@/components/common/BomttomFixedDiv';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
@@ -27,9 +28,10 @@ export default function EmailSection({
   const { openModal } = useModalStore();
   const { setJoinValue } = useJoinStore();
 
-  const onSubmitEmail: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
+  const onSubmitEmail: SubmitHandler<Step3InputType> = async (data: Step3InputType) => {
     openModal('certification');
     setJoinValue({ email: data.email });
+    await postEmail({ email: data.email });
     // 인증번호 전송
   };
 
