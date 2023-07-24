@@ -19,9 +19,11 @@ export interface CustomInstance extends AxiosInstance {
   patch<T>(...params: Parameters<AxiosInstance['patch']>): Promise<T>;
 }
 
+export type ErrorStatus = 400 | 401 | 500;
+
 export type ErrorType = {
-  success: boolean;
-  statusCode: number;
-  errorCode: string;
+  message: string;
   reason: string;
+  status: ErrorStatus;
+  timestamp: Date;
 };
