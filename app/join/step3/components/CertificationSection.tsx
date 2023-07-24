@@ -5,6 +5,7 @@ import { BottomSheet } from '@/components/common/Modal';
 import { regexr } from '@/constants/regexr';
 import useModalStore from '@/store/useModalStore';
 import { useRouter } from 'next/navigation';
+import React from 'react';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 import type { Step3InputType } from '../type';
@@ -15,7 +16,7 @@ interface BottomSheetFormProps {
   certificateNumber: number;
 }
 
-export default function CertificationSection({
+export default React.memo(function CertificationSection({
   register,
   handleSubmit,
   certificateNumber,
@@ -64,4 +65,4 @@ export default function CertificationSection({
       </form>
     </BottomSheet>
   );
-}
+});
