@@ -31,6 +31,7 @@ export default React.memo(function CertificationSection({
 
   const onSubmitCertificateNumber: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
     mutateEmailVerify({ email: data.email, authCode: '' + data.certificateNumber });
+    closeModal();
     router.push('/join/step4');
   };
 
