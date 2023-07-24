@@ -1,6 +1,7 @@
 'use client';
 
-import PersonalityItem from '../../components/PersonalityItem.server';
+import PersonalityItem from './PersonalityItem.server';
+import { PersonalityType } from '../type';
 import { postSignUp, useSignUpMutation } from '@/apis/auth';
 import { BottomFixedButton, Button } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
@@ -29,10 +30,10 @@ export default function InputForm() {
 
   const { mutate: mutateSignUp } = useSignUpMutation();
 
-  const [selectedPersonalityList, setSelectedPersonalityList] = useState<number[]>([]);
+  const [selectedPersonalityIdList, setSelectedPersonalityIdList] = useState<number[]>([]);
 
   const handlePersonalityClick = (id: number) => {
-    setSelectedPersonalityList((prev) => {
+    setSelectedPersonalityIdList((prev) => {
       if (prev.includes(id)) {
         return prev.filter((item) => item !== id);
       }
@@ -43,7 +44,7 @@ export default function InputForm() {
   const { phoneNumber, school, email, name, birth, gender } = useJoinStore();
 
   const handleSubmit = async () => {
-    console.log(phoneNumber, school, email, name, birth, gender, selectedPersonalityList);
+    console.log(phoneNumber, school, email, name, birth, gender, selectedPersonalityIdList);
 
     mutateSignUp(DUMMY_SIGN_UP_DATA);
     // router.push('/grouping');
@@ -53,12 +54,12 @@ export default function InputForm() {
     <div>
       {/* TODO : Compound Component Pattern으로 구현할 예정 (규성) */}
       <section className="flex flex-wrap gap-12">
-        {personalityList.map((personality) => {
+        {personalityList.map((personality: PersonalityType) => {
           return (
             <PersonalityItem
               key={personality.id}
               personality={personality}
-              isSelected={selectedPersonalityList.includes(+personality.id)}
+              isSelected={selectedPersonalityIdList.includes(personality.id)}
               // eslint-disable-next-line react-hooks/rules-of-hooks
               onClick={useCallback(() => handlePersonalityClick(+personality.id), [personality.id])}
             />
@@ -68,7 +69,7 @@ export default function InputForm() {
 
       <BottomFixedButton
         text="완료"
-        disabled={selectedPersonalityList.length === 0}
+        disabled={selectedPersonalityIdList.length === 0}
         onClick={handleSubmit}
       />
     </div>
