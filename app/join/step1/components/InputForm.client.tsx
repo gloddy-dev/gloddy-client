@@ -64,7 +64,7 @@ export default function InputForm() {
   const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
     setJoinValue({ phoneNumber: data.phoneNumber });
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
-    // mutateSMS({ phoneNumber: phoneNumberWithoutHyphen });
+    // mutateSMS({ number: phoneNumberWithoutHyphen });
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
@@ -72,8 +72,8 @@ export default function InputForm() {
   const onSubmitCertificateNumber: SubmitHandler<InputType> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     mutateSMSVerify({
-      phoneNumber: phoneNumberWithoutHyphen,
-      verifyCode: '' + data.certificateNumber,
+      number: phoneNumberWithoutHyphen,
+      code: '' + data.certificateNumber,
     });
     // 인증번호 확인 API
     // router.push('/join/step2');
