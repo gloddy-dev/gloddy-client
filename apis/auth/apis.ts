@@ -1,5 +1,5 @@
 import publicApi from '../config/publicApi';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 import type {
   EmailRequest,
