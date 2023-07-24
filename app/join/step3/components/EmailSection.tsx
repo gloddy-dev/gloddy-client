@@ -8,6 +8,7 @@ import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
 import Image from 'next/image';
+import React from 'react';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 import type { Step3InputType } from '../type';
@@ -19,7 +20,7 @@ interface EmailSectionProps {
   isError: boolean;
 }
 
-export default function EmailSection({
+export default React.memo(function EmailSection({
   register,
   handleSubmit,
   email,
@@ -72,4 +73,4 @@ export default function EmailSection({
       </BottomFixedDiv>
     </form>
   );
-}
+});
