@@ -13,7 +13,14 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   register?: UseFormRegisterReturn;
 }
 
-export default function Input({ label, placeholder, register, type = 'text', className, ...props }: InputProps) {
+export default function Input({
+  label,
+  placeholder,
+  register,
+  className,
+  type = 'text',
+  ...props
+}: InputProps) {
   return (
     <div className="relative flex h-52 w-full rounded-lg bg-[#f6f6f6]">
       <Spacing size={24} direction="horizontal" />
