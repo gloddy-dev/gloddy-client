@@ -39,13 +39,11 @@ export default function CreateMeetingContextProvider({ children }: StrictPropsWi
   );
 }
 
-const useCreateMeetingContext = () => {
-  const ctx = useContext(CreateMeetingContext);
+export function useCreateMeetingContext() {
+  const ctx = useContext(CreateMeetingContext) as UseFormReturn<CreateMeetingRequestType> | null;
   if (!ctx)
     throw new Error(
-      'Cannot find SignupContext. It should be wrapped within SignupContextProvider.'
+      'Cannot find CreateMeetingContext. It should be wrapped within CreateMeetingContext.Provider.'
     );
   return ctx;
-};
-
-export { useCreateMeetingContext };
+}
