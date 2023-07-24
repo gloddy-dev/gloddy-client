@@ -16,8 +16,7 @@ const TEST_ID = {
   password: 'qwqw5533',
 };
 
-export const postLogin = () =>
-  publicApi.post<Promise<AxiosResponse<LoginResponse>>>('/auth/login', TEST_ID);
+export const postLogin = () => publicApi.post<LoginResponse>('/auth/login', TEST_ID);
 
 export const postSMS = (SMSData: SMSRequest) => publicApi.post('/auth/sms', SMSData);
 
