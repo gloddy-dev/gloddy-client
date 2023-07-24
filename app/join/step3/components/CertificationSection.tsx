@@ -5,7 +5,7 @@ import { BottomSheet } from '@/components/common/Modal';
 import { regexr } from '@/constants/regexr';
 import useModalStore from '@/store/useModalStore';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import { memo } from 'react';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 import type { Step3InputType } from '../type';
@@ -17,7 +17,7 @@ interface BottomSheetFormProps {
   timerTime: number;
 }
 
-export default React.memo(function CertificationSection({
+export default memo(function CertificationSection({
   register,
   handleSubmit,
   certificateNumber,
