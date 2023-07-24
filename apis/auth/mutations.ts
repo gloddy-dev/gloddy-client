@@ -9,8 +9,7 @@ import {
 import { useMutation } from '@tanstack/react-query';
 
 export const useSMSMutation = () => {
-  return useMutation({
-    mutationFn: (SMSData: SMSRequest) => postSMS(SMSData),
+  return useMutation(postSMS, {
     onError: (error) => {
       // TODO : 휴대폰 번호 에러에 대한 처리
     },
@@ -18,8 +17,7 @@ export const useSMSMutation = () => {
 };
 
 export const useSMSVerifyMutation = () => {
-  return useMutation({
-    mutationFn: (SMSVerifyData: SMSVerifiyRequest) => postSMSVerify(SMSVerifyData),
+  return useMutation(postSMSVerify, {
     onError: (error) => {
       // TODO : 인증번호 에러에 대한 처리
     },
@@ -27,8 +25,7 @@ export const useSMSVerifyMutation = () => {
 };
 
 export const useEmailMutation = () => {
-  return useMutation({
-    mutationFn: (emailData: EmailRequest) => postEmail(emailData),
+  return useMutation(postEmail, {
     onError: (error) => {
       // TODO : 이메일 에러에 대한 처리
     },
@@ -36,8 +33,7 @@ export const useEmailMutation = () => {
 };
 
 export const useEmailVerifyMutation = () => {
-  return useMutation({
-    mutationFn: (emailVerifyData: EmailVerifyRequest) => postEmailVerify(emailVerifyData),
+  return useMutation(postEmailVerify, {
     onError: (error) => {
       // TODO : 이메일 에러에 대한 처리
     },
@@ -45,8 +41,7 @@ export const useEmailVerifyMutation = () => {
 };
 
 export const useSignUpMutation = () => {
-  return useMutation({
-    mutationFn: (signUpData: SignUpRequest) => postSignUp(signUpData),
+  return useMutation(postSignUp, {
     onError: (error) => {
       // TODO : 회원가입 에러에 대한 처리
     },
