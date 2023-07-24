@@ -1,5 +1,5 @@
-import { getGroups } from './apis';
-import { Keys } from './keys';
+import { getGroups } from '.';
+import { Keys } from '.';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetGroups = (pageNum: number) =>

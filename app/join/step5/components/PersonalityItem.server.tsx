@@ -1,15 +1,14 @@
+import { PersonalityType } from '../type';
 import clsx from 'clsx';
-import React, { useCallback } from 'react';
+import { memo } from 'react';
 
 interface PersonalityItemProps {
-  personality: {
-    id: string;
-    text: string;
-  };
+  personality: PersonalityType;
   isSelected: boolean;
-  onClick: () => void;
+  onClick: (id: number) => void;
 }
-export default React.memo(function PersonalityItem({
+
+export default memo(function PersonalityItem({
   personality,
   isSelected,
   onClick,
@@ -23,9 +22,9 @@ export default React.memo(function PersonalityItem({
           'border border-gray4 bg-white text-gray4': !isSelected,
         }
       )}
-      onClick={onClick}
+      onClick={() => onClick(personality.id)}
     >
-      {personality.text}
+      {personality.keyword}
     </div>
   );
 });

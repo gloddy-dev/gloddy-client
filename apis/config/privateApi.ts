@@ -6,7 +6,7 @@ import axios from 'axios';
 import type { CustomInstance } from './type';
 
 const privateApi: CustomInstance = axios.create({
-  baseURL: BASE_API_URL,
+  baseURL: `${BASE_API_URL}/api/v1`,
   withCredentials: true,
 });
 
