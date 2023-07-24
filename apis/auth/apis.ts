@@ -9,7 +9,6 @@ import type {
   SignUpRequest,
   SignUpResponse,
 } from './type';
-import type { AxiosResponse } from 'axios';
 
 const TEST_ID = {
   email: 'testy54@soongsil.ac.kr',
