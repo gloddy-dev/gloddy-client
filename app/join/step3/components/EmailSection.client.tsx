@@ -1,10 +1,10 @@
+'use client';
 import { useEmailMutation } from '@/apis/auth';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import { TimerStatusType } from '@/hooks/useTimer/type';
 import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
@@ -13,6 +13,7 @@ import { memo } from 'react';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 import type { Step3InputType } from '../type';
+import type { TimerStatusType } from '@/hooks/useTimer/type';
 
 interface EmailSectionProps {
   register: UseFormRegister<Step3InputType>;

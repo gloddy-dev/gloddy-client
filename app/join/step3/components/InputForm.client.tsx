@@ -1,7 +1,7 @@
 'use client';
 
-import CertificationSection from './CertificationSection';
-import EmailSection from './EmailSection';
+import CertificationSection from './CertificationSection.client';
+import EmailSection from './EmailSection.client';
 import { useTimer } from '@/hooks/useTimer';
 import { useForm } from 'react-hook-form';
 
