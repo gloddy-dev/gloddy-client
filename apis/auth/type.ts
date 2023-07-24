@@ -6,14 +6,43 @@ export type LoginResponse = {
 };
 
 export type SMSRequest = {
-  phoneNumber: string;
+  number: string;
 };
 
 export type SMSVerifiyRequest = {
-  phoneNumber: string;
-  verifyCode: string;
+  number: string;
+  code: string;
 };
 
 export type EmailRequest = {
   email: string;
+};
+
+export type EmailVerifyRequest = {
+  email: string;
+  authCode: string;
+};
+
+export type SignUpRequest = {
+  phoneNumber: string;
+  imageUrl?: string;
+  schoolInfo: {
+    school: string;
+    email?: string;
+    certifiedStudent: boolean; // email이 없는 경우 false
+  };
+  nickname: string;
+  birth: string;
+  gender: string;
+  personalities: string[];
+};
+
+export type SignUpResponse = {
+  authority: string;
+  errorCode: string;
+  token: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  userId: number;
 };
