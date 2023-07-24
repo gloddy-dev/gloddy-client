@@ -1,7 +1,7 @@
 import { type TimerActionsType } from './actions';
-import { type State } from './type';
+import { type TimeState } from './type';
 
-function reducer(state: State, action: TimerActionsType): State {
+function reducer(state: TimeState, action: TimerActionsType): TimeState {
   switch (action.type) {
     case 'advanceTime': {
       const { timeToAdd } = action.payload;
