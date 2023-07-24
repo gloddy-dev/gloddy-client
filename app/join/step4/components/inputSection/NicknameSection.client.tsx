@@ -1,3 +1,4 @@
+'use client';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import useJoinStore from '@/store/useJoinStore';

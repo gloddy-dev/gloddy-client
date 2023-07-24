@@ -1,9 +1,9 @@
 'use client';
-import BirthdaySection from './inputSection/BirthdaySection';
-import GenderSection from './inputSection/GenderSection';
-import ImageFrameSection from './inputSection/ImageFrameSection';
-import NicknameSection from './inputSection/NicknameSection';
-import NextButtonSection from './NextButtonSection';
+import BirthdaySection from './inputSection/BirthdaySection.client';
+import GenderSection from './inputSection/GenderSection.client';
+import ImageFrameSection from './inputSection/ImageFrameSection.client';
+import NicknameSection from './inputSection/NicknameSection.client';
+import NextButtonSection from './NextButtonSection.client';
 import { Spacing } from '@/components/common/Spacing';
 
 export default function InputForm() {
