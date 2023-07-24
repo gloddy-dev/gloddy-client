@@ -1,10 +1,10 @@
-import { postEmail, useEmailMutation } from '@/apis/auth';
+import { useEmailMutation } from '@/apis/auth';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import { TimerStatus, TimerType } from '@/hooks/useTimer/type';
+import { TimerStatus } from '@/hooks/useTimer/type';
 import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
