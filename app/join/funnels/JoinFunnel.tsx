@@ -8,7 +8,7 @@ import Step5Component from './step5/Step5Component.server';
 import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
 import { SignUpRequest } from '@/apis/auth';
 import { useFunnel } from '@/hooks/useFunnel';
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext } from 'react';
 
 type FunnelContextType = {
   nextStep: () => void;
