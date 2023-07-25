@@ -11,11 +11,17 @@ export default function InputForm() {
     <div>
       <ImageFrameSection />
       <NicknameSection />
+
       <Spacing size={10} />
+
       <BirthdaySection />
+
       <Spacing size={10} />
+
       <GenderSection />
+
       <Spacing size={10} />
+
       <NextButtonSection />
     </div>
   );

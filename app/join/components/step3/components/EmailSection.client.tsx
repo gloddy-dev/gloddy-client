@@ -1,51 +1,45 @@
 'use client';
-import { useEmailMutation } from '@/apis/auth';
+import { useJoinContext } from '../../JoinContext';
+import { SignUpRequest, useEmailMutation } from '@/apis/auth';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo } from 'react';
 import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
-import type { Step3InputType } from '../type';
 import type { TimerStatusType } from '@/hooks/useTimer/type';
 
 interface EmailSectionProps {
-  register: UseFormRegister<Step3InputType>;
-  handleSubmit: UseFormHandleSubmit<Step3InputType>;
-  email: string;
-  isError: boolean;
   timerStart: () => void;
   timerStatus: TimerStatusType;
 }
 
-export default memo(function EmailSection({
-  register,
-  handleSubmit,
-  email,
-  isError,
-  timerStart,
-  timerStatus,
-}: EmailSectionProps) {
+export default memo(function EmailSection({ timerStart, timerStatus }: EmailSectionProps) {
   const { openModal, modalName } = useModalStore();
-  const { setJoinValue } = useJoinStore();
   const { mutate: mutateEmail } = useEmailMutation();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { isDirty, isValid },
+  } = useJoinContext();
+
   console.log(modalName);
 
-  const onSubmitEmail: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
+  const onSubmitEmail = (data: SignUpRequest) => {
     openModal('certification');
-    setJoinValue({ email: data.email });
     if (timerStatus === 'STOPPED') {
       timerStart();
     } else {
       // TODO : 인증번호 시간 끝나지 않았을 때에 대한 처리
     }
-    // mutateEmail({ email: data.email });
+    // mutateEmail({ email: watch('email') });
   };
 
   return (
@@ -53,7 +47,7 @@ export default memo(function EmailSection({
       <section>
         <Input
           label="ID"
-          register={register('email', {
+          register={register('schoolInfo.email', {
             required: true,
             pattern: regexr.email,
           })}
@@ -62,7 +56,7 @@ export default memo(function EmailSection({
 
       <section
         className={clsx('font-500 flex justify-center text-13 text-orange', {
-          invisible: !isError,
+          invisible: !isDirty || !isValid,
         })}
       >
         <Image alt="alert" src="/assets/alert.svg" width={10} height={30} />
@@ -73,11 +67,7 @@ export default memo(function EmailSection({
       <Spacing size={10} />
 
       <BottomFixedDiv>
-        <Button
-          text="인증하기"
-          type="submit"
-          disabled={!!isError || !email || email?.length === 0}
-        />
+        <Button text="인증하기" type="submit" disabled={!isDirty || !isValid} />
 
         <Spacing size={8} />
 

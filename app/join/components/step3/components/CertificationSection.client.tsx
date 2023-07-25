@@ -1,39 +1,31 @@
 'use client';
-import { useEmailVerifyMutation } from '@/apis/auth';
+import { useJoinContext } from '../../JoinContext';
+import { useFunnelContext } from '../../JoinFunnel';
+import { SignUpRequest, useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
 import { regexr } from '@/constants/regexr';
 import useModalStore from '@/store/useModalStore';
-import { useRouter } from 'next/navigation';
 import { memo } from 'react';
-import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
-
-import type { Step3InputType } from '../type';
 
 interface BottomSheetFormProps {
-  register: UseFormRegister<Step3InputType>;
-  handleSubmit: UseFormHandleSubmit<Step3InputType>;
-  certificateNumber: number;
   timerTime: number;
 }
 
-export default memo(function CertificationSection({
-  register,
-  handleSubmit,
-  certificateNumber,
-  timerTime,
-}: BottomSheetFormProps) {
-  const router = useRouter();
+export default memo(function CertificationSection({ timerTime }: BottomSheetFormProps) {
   const { closeModal, modalName } = useModalStore();
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
+  const { register, handleSubmit, watch } = useJoinContext();
+  const { nextStep } = useFunnelContext();
+
   const isOpen = modalName === 'certification';
 
-  const onSubmitCertificateNumber: SubmitHandler<Step3InputType> = (data: Step3InputType) => {
-    mutateEmailVerify({ email: data.email, authCode: '' + data.certificateNumber });
+  const onSubmit = (data: SignUpRequest) => {
+    mutateEmailVerify({ email: data.schoolInfo.email, authCode: '' + data.certificateEmailNumber });
     closeModal();
-    router.push('/join/step4');
+    nextStep();
   };
 
   return (
@@ -43,7 +35,7 @@ export default memo(function CertificationSection({
         <p>인증번호를 전송하였습니다.</p>
       </section>
 
-      <form onSubmit={handleSubmit(onSubmitCertificateNumber)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
           <Input
             label="인증번호"
@@ -65,7 +57,7 @@ export default memo(function CertificationSection({
 
         <BottomFixedButton
           text="완료"
-          disabled={('' + certificateNumber)?.length < 6 || !certificateNumber}
+          disabled={('' + watch('certificateNumber'))?.length < 6 || !watch('certificateNumber')}
           type="submit"
         />
       </form>

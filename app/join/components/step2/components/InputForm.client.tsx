@@ -2,10 +2,8 @@
 import SearchResultSection from './SearchResultSection.client';
 import { useJoinContext } from '../../JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
-import { SignUpRequest } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import { useRouter } from 'next/navigation';
 
 import type { SearchResultType } from '../type';
 
@@ -35,20 +33,20 @@ export default function InputForm() {
     formState: { errors },
     watch,
     handleSubmit,
-  } = useJoinContext<SignUpRequest>();
+  } = useJoinContext();
 
   return (
     <form onSubmit={handleSubmit(nextStep)}>
       <Input
         label="학교"
-        register={register('school', {
+        register={register('schoolInfo.school', {
           required: true,
         })}
       />
 
       <SearchResultSection searchResultList={DUMMY_SEARCH_RESULT_LIST} />
 
-      <BottomFixedButton text="완료" type="submit" disabled={!watch('school')} />
+      <BottomFixedButton text="완료" type="submit" disabled={!watch('schoolInfo.school')} />
     </form>
   );
 }
