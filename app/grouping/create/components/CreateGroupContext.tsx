@@ -1,4 +1,4 @@
-import { DevTool } from '@hookform/devtools';
+import FormDevtools from '@/components/common/FormDevTools';
 import { createContext, useContext } from 'react';
 import { UseFormReturn, useForm } from 'react-hook-form';
 
@@ -29,7 +29,7 @@ export default function CreateGroupContextProvider({ children }: StrictPropsWith
   return (
     <CreateGroupContext.Provider value={contextValue as unknown as UseFormReturn}>
       {children}
-      <DevTool control={methods.control} />
+      <FormDevtools control={methods.control} />
     </CreateGroupContext.Provider>
   );
 }
