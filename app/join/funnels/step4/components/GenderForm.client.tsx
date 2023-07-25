@@ -1,24 +1,25 @@
 'use client';
+import { useJoinContext } from '../../JoinContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
 import GenderSwipePicker from '@/components/common/SwipePicker/GenderSwipePicker';
-import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 
-export default function GenderSection() {
+export default function GenderBirthdayForm() {
   const { modalName, openModal, closeModal } = useModalStore();
-  const { gender, setJoinValue } = useJoinStore();
+  const { watch, setValue } = useJoinContext();
+  const gender = watch('gender');
 
   const isOpen = modalName === 'gender';
 
   const handleNextButtonClick = () => {
-    if (!gender) setJoinValue({ gender: '남성' });
+    if (!gender) setValue('gender', '남성');
     closeModal();
   };
 
   return (
-    <section className="flex flex-col gap-5">
+    <form className="flex flex-col gap-5">
       <p className="text-14">성별</p>
       <Input
         placeholder="성별을 선택해주세요."
@@ -36,10 +37,10 @@ export default function GenderSection() {
       >
         <GenderSwipePicker
           genderValue={gender}
-          setGenderValue={(value) => setJoinValue({ gender: value })}
+          setGenderValue={(value) => setValue('gender', value)}
         />
         <BottomFixedButton text="완료" onClick={handleNextButtonClick} />
       </BottomSheet>
-    </section>
+    </form>
   );
 }

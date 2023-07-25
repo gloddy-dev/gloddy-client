@@ -1,5 +1,5 @@
 import { useJoinContext } from '../../JoinContext';
-import { type SignUpRequest, useSMSMutation } from '@/apis/auth';
+import { type SignUpState, useSMSMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -51,7 +51,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberFormPr
     }
   };
 
-  const onSubmit: SubmitHandler<SignUpRequest> = (data) => {
+  const onSubmit: SubmitHandler<SignUpState> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     // mutateSMS({ number: phoneNumberWithoutHyphen });
     setInputStatus('afterSend');

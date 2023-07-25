@@ -2,23 +2,22 @@ import { usePostFiles } from '@/apis/common';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { ForwardedRef, forwardRef } from 'react';
-
-import type { ImageType } from '@/types';
+import { ForwardedRef, forwardRef, useState } from 'react';
 
 interface ImageFrameProps {
-  setImage: (imageData: ImageType) => void;
-  imageBlob: string;
+  setImageFile: (imageFile: File) => void;
   shape?: 'circle' | 'square';
 }
 
 export default forwardRef(function ImageFrame(
-  { setImage, imageBlob, shape = 'circle' }: ImageFrameProps,
+  { setImageFile, shape = 'circle' }: ImageFrameProps,
   imgRef: ForwardedRef<HTMLInputElement>
 ) {
   const { mutate: mutatePostFiles } = usePostFiles();
+  const [imageBlog, setImageBlob] = useState<string>('');
+  console.log(setImageFile);
 
-  const handleImageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
     const imageFile = e.target.files?.[0];
     if (imageFile === undefined) return;
@@ -26,16 +25,17 @@ export default forwardRef(function ImageFrame(
     mutatePostFiles(formData);
 
     const imageBlob = makeFileToBlob(imageFile);
-    setImage({ imageFile, imageBlob });
+    setImageFile(imageFile);
+    setImageBlob(imageBlob);
   };
 
   return (
     <section className="relative flex h-160 items-center justify-center">
       <label className="relative h-100 w-100" htmlFor="image">
-        {imageBlob ? (
+        {imageBlog ? (
           <Image
             alt="frameImage"
-            src={imageBlob}
+            src={imageBlog}
             priority
             fill
             className={clsx('h-full w-full object-cover', {
@@ -69,7 +69,7 @@ export default forwardRef(function ImageFrame(
         type="file"
         accept="image/*"
         id="image"
-        onChange={handleImageInput}
+        onChange={handleInputChange}
         ref={imgRef}
       />
     </section>

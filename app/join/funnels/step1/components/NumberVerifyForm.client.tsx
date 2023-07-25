@@ -1,7 +1,7 @@
 'use client';
 import { useJoinContext } from '../../JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
-import { type SignUpRequest, useSMSVerifyMutation } from '@/apis/auth';
+import { type SignUpState, useSMSVerifyMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { regexr } from '@/constants/regexr';
@@ -14,7 +14,7 @@ export default function NumberVerifyForm() {
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
 
-  const onSubmit: SubmitHandler<SignUpRequest> = (data) => {
+  const onSubmit: SubmitHandler<SignUpState> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     mutateSMSVerify({
       number: phoneNumberWithoutHyphen,
