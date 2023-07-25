@@ -13,7 +13,7 @@ interface BottomSheetFormProps {
   timerTime: number;
 }
 
-export default memo(function CertificationSection({ timerTime }: BottomSheetFormProps) {
+export default memo(function CertificationForm({ timerTime }: BottomSheetFormProps) {
   const { closeModal, modalName } = useModalStore();
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
