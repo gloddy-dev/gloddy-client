@@ -1,17 +1,13 @@
 'use client';
 import { useJoinContext } from '../../JoinContext';
-import { useEmailMutation } from '@/apis/auth';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo } from 'react';
 
 export default memo(function EmailForm() {
-  const { mutate: mutateEmail } = useEmailMutation();
-
   const {
     register,
     formState: { errors },
