@@ -5,6 +5,7 @@ import { SignUpRequest, useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
+import { useModalContext } from '@/components/common/Modal/ModalContext';
 import { regexr } from '@/constants/regexr';
 import useModalStore from '@/store/useModalStore';
 import { memo } from 'react';
@@ -14,7 +15,7 @@ interface BottomSheetFormProps {
 }
 
 export default memo(function CertificationForm({ timerTime }: BottomSheetFormProps) {
-  const { closeModal, modalName } = useModalStore();
+  const { closeModal, modalName } = useModalContext();
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
   const { register, handleSubmit, watch } = useJoinContext();
