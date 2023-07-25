@@ -3,18 +3,8 @@
 import CertificationSection from './CertificationSection.client';
 import EmailSection from './EmailSection.client';
 import { useTimer } from '@/hooks/useTimer';
-import { useForm } from 'react-hook-form';
-
-import type { Step3InputType } from '../type';
 
 export default function InputForm() {
-  const {
-    register,
-    formState: { errors },
-    watch,
-    handleSubmit,
-  } = useForm<Step3InputType>();
-
   const { status, time, start } = useTimer({
     initialTime: 180,
     timerType: 'DECREMENTAL',
@@ -23,21 +13,9 @@ export default function InputForm() {
 
   return (
     <div>
-      <EmailSection
-        register={register}
-        handleSubmit={handleSubmit}
-        email={watch('email')}
-        isError={!!errors.email}
-        timerStart={start}
-        timerStatus={status}
-      />
+      <EmailSection timerStart={start} timerStatus={status} />
 
-      <CertificationSection
-        register={register}
-        handleSubmit={handleSubmit}
-        certificateNumber={watch('certificateNumber')}
-        timerTime={time}
-      />
+      <CertificationSection timerTime={time} />
     </div>
   );
 }
