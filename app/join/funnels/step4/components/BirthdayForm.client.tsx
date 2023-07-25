@@ -1,4 +1,5 @@
 'use client';
+import { useJoinContext } from '../../JoinContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
@@ -9,16 +10,17 @@ import useModalStore from '@/store/useModalStore';
 
 import type { BirthdayValueType } from '@/types';
 
-export default function BirthdaySection() {
+export default function BirthdayForm() {
   const { modalName, openModal, closeModal } = useModalStore();
-  const { birth, setJoinValue } = useJoinStore();
+  const { watch, setValue } = useJoinContext();
+  const birth = watch('birth');
 
   const isOpen = modalName === 'birthday';
 
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
   return (
-    <section>
+    <form>
       <p className="text-14">생년월일</p>
       <Spacing size={5} />
       <Input
@@ -42,7 +44,7 @@ export default function BirthdaySection() {
       >
         <DateSwipePicker
           birthdayValue={birth}
-          setBirthdayValue={(birth: BirthdayValueType) => setJoinValue({ birth })}
+          setBirthdayValue={(birth: BirthdayValueType) => setValue('birth', birth)}
         />
         <BottomFixedButton
           text="다음"
@@ -50,6 +52,6 @@ export default function BirthdaySection() {
           onClick={() => openModal('gender')}
         />
       </BottomSheet>
-    </section>
+    </form>
   );
 }

@@ -1,3 +1,5 @@
+import { ImageType } from '@/types';
+
 export type LoginResponse = {
   errorCode: string;
   userId: number;
@@ -23,12 +25,7 @@ export type EmailVerifyRequest = {
   authCode: number;
 };
 
-export type VerifyType = {
-  certificateNumber: number;
-  certificateEmailNumber: number;
-};
-
-export type SignUpRequest = VerifyType & {
+export type SignUpRequest = {
   phoneNumber: string;
   imageUrl?: string;
   schoolInfo: {

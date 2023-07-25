@@ -1,9 +1,9 @@
-import InputForm from './components/InputForm.client';
+import FormSection from './components/FormSection.client';
 
 export default function Step4Component() {
   return (
     <main>
-      <InputForm />
+      <FormSection />
     </main>
   );
 }

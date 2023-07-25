@@ -19,9 +19,9 @@ export interface TimeType {
 }
 
 export interface BirthdayValueType {
-  year: string;
-  month: string;
-  date: string;
+  year: number;
+  month: number;
+  date: number;
 }
 
 export type GenderType = '남성' | '여성';

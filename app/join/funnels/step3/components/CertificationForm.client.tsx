@@ -1,7 +1,7 @@
 'use client';
 import { useJoinContext } from '../../JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
-import { SignUpRequest, useEmailVerifyMutation } from '@/apis/auth';
+import { SignUpState, useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
@@ -23,7 +23,7 @@ export default memo(function CertificationForm({ timerTime }: BottomSheetFormPro
 
   const isOpen = modalName === 'certification';
 
-  const onSubmit = (data: SignUpRequest) => {
+  const onSubmit = (data: SignUpState) => {
     mutateEmailVerify({
       email: data.schoolInfo.email,
       authCode: data.certificateEmailNumber,
