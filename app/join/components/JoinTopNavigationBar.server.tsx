@@ -3,7 +3,11 @@ import { TopNavigationBar } from '@/components/common/NavigationBar';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function JoinTopNavigationBar() {
+interface JoinTopNavigationBarProps {
+  onPrevClick?: () => void;
+}
+
+export default function JoinTopNavigationBar({ onPrevClick }: JoinTopNavigationBarProps) {
   const router = useRouter();
   return (
     <TopNavigationBar
@@ -14,9 +18,7 @@ export default function JoinTopNavigationBar() {
           src="/assets/arrow_back.svg"
           width={8}
           height={30}
-          onClick={() => {
-            router.back();
-          }}
+          onClick={onPrevClick}
         />
       }
     />
