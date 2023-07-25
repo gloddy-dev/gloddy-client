@@ -5,7 +5,7 @@ import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
 
-import type { InputStatusType } from '../type';
+import type { StatusType } from '../type';
 import type { SubmitHandler } from 'react-hook-form';
 
 const formatNumber = (phoneNumber: string): string => {
@@ -22,8 +22,8 @@ const formatNumberBackSpace = (phoneNumber: string): string => {
 };
 
 interface NumberFormProps {
-  inputStatus: InputStatusType;
-  setInputStatus: React.Dispatch<React.SetStateAction<InputStatusType>>;
+  inputStatus: StatusType;
+  setInputStatus: React.Dispatch<React.SetStateAction<StatusType>>;
 }
 
 export default function NumberForm({ inputStatus, setInputStatus }: NumberFormProps) {
