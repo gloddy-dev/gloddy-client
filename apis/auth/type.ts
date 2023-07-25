@@ -20,11 +20,12 @@ export type EmailRequest = {
 
 export type EmailVerifyRequest = {
   email: string;
-  authCode: string;
+  authCode: number;
 };
 
 export type VerifyType = {
   certificateNumber: number;
+  certificateEmailNumber: number;
 };
 
 export type SignUpRequest = VerifyType & {
