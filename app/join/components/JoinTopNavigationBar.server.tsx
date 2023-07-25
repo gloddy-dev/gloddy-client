@@ -8,7 +8,6 @@ interface JoinTopNavigationBarProps {
 }
 
 export default function JoinTopNavigationBar({ onPrevClick }: JoinTopNavigationBarProps) {
-  const router = useRouter();
   return (
     <TopNavigationBar
       text="회원가입"
