@@ -5,10 +5,10 @@ import NumberVerifyForm from './NumberVerifyForm.client';
 import { Spacing } from '@/components/common/Spacing';
 import { useState } from 'react';
 
-import type { InputStatusType } from '../type';
+import type { StatusType } from '../type';
 
 export default function FormSection() {
-  const [inputStatus, setInputStatus] = useState<InputStatusType>('notReadyForSend');
+  const [inputStatus, setInputStatus] = useState<StatusType>('notReadyForSend');
   return (
     <div>
       <NumberForm inputStatus={inputStatus} setInputStatus={setInputStatus} />

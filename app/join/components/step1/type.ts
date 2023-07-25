@@ -1,1 +1,1 @@
-export type InputStatusType = 'notReadyForSend' | 'readyForSend' | 'afterSend';
+export type StatusType = 'notReadyForSend' | 'readyForSend' | 'afterSend';
