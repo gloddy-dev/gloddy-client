@@ -23,7 +23,10 @@ export default memo(function CertificationSection({ timerTime }: BottomSheetForm
   const isOpen = modalName === 'certification';
 
   const onSubmit = (data: SignUpRequest) => {
-    mutateEmailVerify({ email: data.schoolInfo.email, authCode: '' + data.certificateEmailNumber });
+    mutateEmailVerify({
+      email: data.schoolInfo.email,
+      authCode: data.certificateEmailNumber,
+    });
     closeModal();
     nextStep();
   };
