@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../JoinContext';
+import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
 import { type SignUpState, useSMSVerifyMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';

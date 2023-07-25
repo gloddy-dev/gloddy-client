@@ -3,7 +3,7 @@ import BirthdayForm from './BirthdayForm.client';
 import GenderBirthdayForm from './GenderForm.client';
 import ImageForm from './ImageForm.client';
 import NicknameForm from './NicknameForm.client';
-import { useJoinContext } from '../../JoinContext';
+import { useJoinContext } from '../../../components/JoinContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Spacing } from '@/components/common/Spacing';
 

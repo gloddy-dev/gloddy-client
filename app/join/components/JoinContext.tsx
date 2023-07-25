@@ -1,24 +1,8 @@
 'use client';
+import { SignUpState } from '../type';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
 import type { BirthdayValueType, GenderType, StrictPropsWithChildren } from '@/types';
-
-export type SignUpState = {
-  certificateNumber: number;
-  certificateEmailNumber: number;
-
-  phoneNumber: string;
-  imageUrl?: string;
-  schoolInfo: {
-    school: string;
-    email?: string;
-    certifiedStudent: boolean; // email이 없는 경우 false
-  };
-  nickname: string;
-  birth: BirthdayValueType;
-  gender: GenderType;
-  personalities: string[];
-};
 
 const defaultValues = {
   certificateNumber: 0,

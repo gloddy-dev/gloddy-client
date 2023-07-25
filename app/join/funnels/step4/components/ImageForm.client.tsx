@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../JoinContext';
+import { useJoinContext } from '../../../components/JoinContext';
 import ImageFrame from '@/components/common/ImageFrame';
 
 export default function ImageForm() {
