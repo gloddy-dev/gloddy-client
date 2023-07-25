@@ -1,5 +1,7 @@
 'use client';
 
+import { useJoinContext } from '../../JoinContext';
+import { useFunnelContext } from '../../JoinFunnel';
 import { useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
@@ -30,11 +32,7 @@ const formatNumberBackSpace = (phoneNumber: string): string => {
   return phoneNumber;
 };
 
-interface InputFormProps {
-  onNextClick: () => void;
-}
-
-export default function InputForm({ onNextClick }: InputFormProps) {
+export default function InputForm() {
   const router = useRouter();
 
   const {
@@ -48,6 +46,7 @@ export default function InputForm({ onNextClick }: InputFormProps) {
   const { setJoinValue } = useJoinStore();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateSMS } = useSMSMutation();
+  const { nextStep } = useFunnelContext();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -80,7 +79,7 @@ export default function InputForm({ onNextClick }: InputFormProps) {
       code: '' + data.certificateNumber,
     });
     // 인증번호 확인 API
-    onNextClick();
+    nextStep();
   };
 
   return (

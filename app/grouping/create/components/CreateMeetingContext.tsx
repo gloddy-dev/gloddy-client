@@ -43,7 +43,7 @@ const useCreateMeetingContext = () => {
   const ctx = useContext(CreateMeetingContext);
   if (!ctx)
     throw new Error(
-      'Cannot find SignupContext. It should be wrapped within SignupContextProvider.'
+      'Cannot find CreateMeetingContext. It should be wrapped within CreateMeetingContextProvider.'
     );
   return ctx;
 };
