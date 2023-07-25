@@ -1,6 +1,6 @@
 import CheckboxSection from './components/CheckboxSection.server';
 import FormSection from './components/FormSection.client';
-import AuthTitleTextMessage from '../AuthTitleTextMessage.server';
+import AuthTitleTextMessage from '../JoinTitleTextMessage.server';
 import { Spacing } from '@/components/common/Spacing';
 
 export default function Step1Component() {
