@@ -17,7 +17,7 @@ type FunnelContextType = {
 const FunnelContext = createContext<FunnelContextType>({ nextStep: () => {} });
 
 export default function JoinFunnel() {
-  const { Funnel, prevStep, nextStep } = useFunnel(['step1', 'step2', 'step3', 'step4', 'step5']);
+  const { Funnel, prevStep, nextStep } = useFunnel(['1', '2', '3', '4', '5']);
 
   const handleSubmit = (data: SignUpRequest) => {
     console.log(data);
@@ -29,19 +29,19 @@ export default function JoinFunnel() {
     <FunnelContext.Provider value={contextValue}>
       <Funnel>
         <JoinTopNavigationBar onPrevClick={prevStep} />
-        <Funnel.Step name="step1">
+        <Funnel.Step name="1">
           <Step1Component />
         </Funnel.Step>
-        <Funnel.Step name="step2">
+        <Funnel.Step name="2">
           <Step2Component />
         </Funnel.Step>
-        <Funnel.Step name="step3">
+        <Funnel.Step name="3">
           <Step3Component />
         </Funnel.Step>
-        <Funnel.Step name="step4">
+        <Funnel.Step name="4">
           <Step4Component />
         </Funnel.Step>
-        <Funnel.Step name="step5">
+        <Funnel.Step name="5">
           <Step5Component />
         </Funnel.Step>
       </Funnel>

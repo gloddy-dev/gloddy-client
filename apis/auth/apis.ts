@@ -6,8 +6,8 @@ import type {
   LoginResponse,
   SMSRequest,
   SMSVerifiyRequest,
+  SignUpRequest,
   SignUpResponse,
-  SignUpState,
 } from './type';
 
 const TEST_ID = {
@@ -27,5 +27,5 @@ export const postEmail = (emailData: EmailRequest) => publicApi.post('/auth/emai
 export const postEmailVerify = (emailVerifyData: EmailVerifyRequest) =>
   publicApi.post('/auth/verify-code', emailVerifyData);
 
-export const postSignUp = (signUpData: SignUpState) =>
+export const postSignUp = (signUpData: SignUpRequest) =>
   publicApi.post<SignUpResponse>('/auth/sign-up', signUpData);

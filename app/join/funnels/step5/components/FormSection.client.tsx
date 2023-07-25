@@ -3,6 +3,7 @@
 import PersonalityItem from './PersonalityItem.server';
 import { PersonalityType } from '../type';
 import { postSignUp, useSignUpMutation } from '@/apis/auth';
+import { useJoinContext } from '@/app/join/components/JoinContext';
 import { BottomFixedButton, Button } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
 import useJoinStore from '@/store/useJoinStore';
@@ -25,7 +26,7 @@ const DUMMY_SIGN_UP_DATA = {
   personalities: ['OUTGOING'],
 };
 
-export default function InputForm() {
+export default function FormSection() {
   const router = useRouter();
 
   const { mutate: mutateSignUp } = useSignUpMutation();
@@ -41,11 +42,10 @@ export default function InputForm() {
     });
   }, []);
 
-  const { phoneNumber, school, email, name, birth, gender } = useJoinStore();
+  const { getValues } = useJoinContext();
 
   const handleSubmit = async () => {
-    console.log(phoneNumber, school, email, name, birth, gender, selectedPersonalityIdList);
-
+    console.log(getValues());
     mutateSignUp(DUMMY_SIGN_UP_DATA);
     // router.push('/grouping');
   };

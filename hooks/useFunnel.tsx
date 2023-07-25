@@ -70,6 +70,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
 
   Funnel.Step = Step;
 
+
   window.onpopstate = () => {
     const currentStep = searchParams.get(queryKey) as Steps[number];
     if (currentStep === null) {

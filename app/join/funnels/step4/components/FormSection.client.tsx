@@ -12,8 +12,6 @@ export default function FormSection() {
     formState: { isDirty, isValid },
   } = useJoinContext();
 
-  console.log(isDirty, isValid);
-
   return (
     <section>
       <ImageForm />
