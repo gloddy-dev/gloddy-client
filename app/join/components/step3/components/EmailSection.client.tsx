@@ -10,7 +10,6 @@ import useModalStore from '@/store/useModalStore';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { memo } from 'react';
-import { SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 import type { TimerStatusType } from '@/hooks/useTimer/type';
 
@@ -26,11 +25,11 @@ export default memo(function EmailSection({ timerStart, timerStatus }: EmailSect
   const {
     register,
     handleSubmit,
+    formState: { errors, isValid },
+    getValues,
     watch,
-    formState: { isDirty, isValid },
   } = useJoinContext();
-
-  console.log(modalName);
+  const email = watch('schoolInfo.email');
 
   const onSubmitEmail = (data: SignUpRequest) => {
     openModal('certification');
@@ -39,7 +38,7 @@ export default memo(function EmailSection({ timerStart, timerStatus }: EmailSect
     } else {
       // TODO : 인증번호 시간 끝나지 않았을 때에 대한 처리
     }
-    // mutateEmail({ email: watch('email') });
+    // mutateEmail({ email });
   };
 
   return (
@@ -56,7 +55,7 @@ export default memo(function EmailSection({ timerStart, timerStatus }: EmailSect
 
       <section
         className={clsx('font-500 flex justify-center text-13 text-orange', {
-          invisible: !isDirty || !isValid,
+          invisible: !errors.schoolInfo?.email,
         })}
       >
         <Image alt="alert" src="/assets/alert.svg" width={10} height={30} />
@@ -67,7 +66,7 @@ export default memo(function EmailSection({ timerStart, timerStatus }: EmailSect
       <Spacing size={10} />
 
       <BottomFixedDiv>
-        <Button text="인증하기" type="submit" disabled={!isDirty || !isValid} />
+        <Button text="인증하기" type="submit" disabled={!isValid} />
 
         <Spacing size={8} />
 
