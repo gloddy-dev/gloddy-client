@@ -1,8 +1,6 @@
 'use client';
 import SearchResultSection from './SearchResultSection.client';
 import { useJoinContext } from '../../JoinContext';
-import { useFunnelContext } from '../../JoinFunnel';
-import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 
 import type { SearchResultType } from '../type';
@@ -25,18 +23,11 @@ const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
   },
 ];
 
-export default function InputForm() {
-  const { nextStep } = useFunnelContext();
-
-  const {
-    register,
-    formState: { errors },
-    watch,
-    handleSubmit,
-  } = useJoinContext();
+export default function EmailForm() {
+  const { register } = useJoinContext();
 
   return (
-    <form onSubmit={handleSubmit(nextStep)}>
+    <form>
       <Input
         label="학교"
         register={register('schoolInfo.school', {
@@ -45,8 +36,6 @@ export default function InputForm() {
       />
 
       <SearchResultSection searchResultList={DUMMY_SEARCH_RESULT_LIST} />
-
-      <BottomFixedButton text="완료" type="submit" disabled={!watch('schoolInfo.school')} />
     </form>
   );
 }
