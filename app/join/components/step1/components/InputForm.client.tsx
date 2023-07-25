@@ -1,6 +1,5 @@
 'use client';
 
-import { useJoinContext } from '../../JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
@@ -8,7 +7,6 @@ import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
 import useJoinStore from '@/store/useJoinStore';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -33,8 +31,6 @@ const formatNumberBackSpace = (phoneNumber: string): string => {
 };
 
 export default function InputForm() {
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,

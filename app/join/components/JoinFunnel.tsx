@@ -3,6 +3,9 @@
 import JoinTopNavigationBar from './JoinTopNavigationBar.server';
 import Step1Component from './step1/Step1Component.server';
 import Step2Component from './step2/Step2Component.server';
+import Step3Component from './step3/Step3Component.server';
+import Step4Component from './step4/Step4Component.server';
+import Step5Component from './step5/Step5Component.server';
 import Step1Page from '../step1/page';
 import { SignUpRequest } from '@/apis/auth';
 import { useFunnel } from '@/hooks/useFunnel';
@@ -28,20 +31,20 @@ export default function JoinFunnel() {
       <Funnel>
         <JoinTopNavigationBar onPrevClick={prevStep} />
         <Funnel.Step name="step1">
-          <Step1Component onNextClick={nextStep} />
+          <Step1Component />
         </Funnel.Step>
         <Funnel.Step name="step2">
           <Step2Component />
         </Funnel.Step>
-        {/* <Funnel.Step name="step3">
-        <Step3Component />
-      </Funnel.Step>
-      <Funnel.Step name="step4">
-        <Step4Component />
-      </Funnel.Step>
-      <Funnel.Step name="step5">
-        <Step5Component />
-      </Funnel.Step> */}
+        <Funnel.Step name="step3">
+          <Step3Component />
+        </Funnel.Step>
+        <Funnel.Step name="step4">
+          <Step4Component />
+        </Funnel.Step>
+        <Funnel.Step name="step5">
+          <Step5Component />
+        </Funnel.Step>
       </Funnel>
     </FunnelContext.Provider>
   );
