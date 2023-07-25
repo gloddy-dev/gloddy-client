@@ -1,10 +1,12 @@
 import { useJoinContext } from '../../JoinContext';
-import { SignUpRequest, useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
+import { type SignUpRequest, useSMSMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import { SubmitHandler } from 'react-hook-form';
+
+import type { InputStatusType } from '../type';
+import type { SubmitHandler } from 'react-hook-form';
 
 const formatNumber = (phoneNumber: string): string => {
   if (phoneNumber.length > 6)
@@ -19,15 +21,19 @@ const formatNumberBackSpace = (phoneNumber: string): string => {
   return phoneNumber;
 };
 
-export default function NumberForm({ inputStatus, setInputStatus }) {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useJoinContext();
+interface NumberFormProps {
+  inputStatus: InputStatusType;
+  setInputStatus: React.Dispatch<React.SetStateAction<InputStatusType>>;
+}
 
+export default function NumberForm({ inputStatus, setInputStatus }: NumberFormProps) {
+  const { register, handleSubmit, setValue } = useJoinContext();
   const { mutate: mutateSMS } = useSMSMutation();
+  const buttonText =
+    inputStatus === 'readyForSend' || inputStatus === 'notReadyForSend'
+      ? '인증문자 전송'
+      : '인증번호 재전송';
+  const buttonColor = inputStatus === 'readyForSend' ? 'blue' : 'orange';
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -45,15 +51,14 @@ export default function NumberForm({ inputStatus, setInputStatus }) {
     }
   };
 
-  const onSubmitPhoneNumber: SubmitHandler<SignUpRequest> = (data) => {
+  const onSubmit: SubmitHandler<SignUpRequest> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     // mutateSMS({ number: phoneNumberWithoutHyphen });
-    // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitPhoneNumber)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Input
         placeholder="휴대폰 번호"
         register={register('phoneNumber', {
@@ -71,13 +76,9 @@ export default function NumberForm({ inputStatus, setInputStatus }) {
       <Spacing size={18} />
 
       <Button
-        text={
-          inputStatus === 'readyForSend' || inputStatus === 'notReadyForSend'
-            ? '인증문자 전송'
-            : '인증번호 재전송'
-        }
+        text={buttonText}
         disabled={inputStatus === 'notReadyForSend'}
-        color={inputStatus === 'readyForSend' ? 'blue' : 'orange'}
+        color={buttonColor}
         type="submit"
       />
     </form>
