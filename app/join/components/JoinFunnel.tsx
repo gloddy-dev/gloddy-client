@@ -2,9 +2,17 @@
 
 import JoinTopNavigationBar from './JoinTopNavigationBar.server';
 import Step1Component from './step1/Step1Component.server';
+import Step2Component from './step2/Step2Component.server';
 import Step1Page from '../step1/page';
 import { SignUpRequest } from '@/apis/auth';
 import { useFunnel } from '@/hooks/useFunnel';
+import { createContext, useContext, useMemo } from 'react';
+
+type FunnelContextType = {
+  nextStep: () => void;
+};
+
+const FunnelContext = createContext<FunnelContextType>({ nextStep: () => {} });
 
 export default function JoinFunnel() {
   const { Funnel, prevStep, nextStep } = useFunnel(['step1', 'step2', 'step3', 'step4', 'step5']);
@@ -13,24 +21,39 @@ export default function JoinFunnel() {
     console.log(data);
   };
 
+  const contextValue = { nextStep };
+
   return (
-    <Funnel>
-      <JoinTopNavigationBar onPrevClick={prevStep} />
-      <Funnel.Step name="step1">
-        <Step1Component onNextClick={nextStep} />
-      </Funnel.Step>
-      {/* <Funnel.Step name="step2">
-        <Step1Component />
-      </Funnel.Step>
-      <Funnel.Step name="step3">
-        <Step1Component />
+    <FunnelContext.Provider value={contextValue}>
+      <Funnel>
+        <JoinTopNavigationBar onPrevClick={prevStep} />
+        <Funnel.Step name="step1">
+          <Step1Component onNextClick={nextStep} />
+        </Funnel.Step>
+        <Funnel.Step name="step2">
+          <Step2Component />
+        </Funnel.Step>
+        {/* <Funnel.Step name="step3">
+        <Step3Component />
       </Funnel.Step>
       <Funnel.Step name="step4">
-        <Step1Component />
+        <Step4Component />
       </Funnel.Step>
       <Funnel.Step name="step5">
-        <Step1Component />
+        <Step5Component />
       </Funnel.Step> */}
-    </Funnel>
+      </Funnel>
+    </FunnelContext.Provider>
   );
 }
+
+const useFunnelContext = () => {
+  const ctx = useContext(FunnelContext);
+  if (!ctx)
+    throw new Error(
+      'Cannot find FunnelContext. It should be wrapped within FunnelContextProvider.'
+    );
+  return ctx;
+};
+
+export { useFunnelContext };
