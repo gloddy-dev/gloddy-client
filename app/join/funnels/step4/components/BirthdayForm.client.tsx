@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../JoinContext';
+import { useJoinContext } from '../../../components/JoinContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';

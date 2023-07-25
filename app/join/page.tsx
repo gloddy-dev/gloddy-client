@@ -1,4 +1,4 @@
-import JoinContextProvider from './funnels/JoinContext';
+import JoinContextProvider from './components/JoinContext';
 import JoinFunnel from './funnels/JoinFunnel';
 
 export default function JoinPage() {

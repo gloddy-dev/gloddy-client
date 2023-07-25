@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../JoinContext';
+import { useJoinContext } from '../../../components/JoinContext';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 

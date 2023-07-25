@@ -1,5 +1,5 @@
 import EmailForm from './EmailForm.client';
-import { useJoinContext } from '../../JoinContext';
+import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
 import { BottomFixedButton } from '@/components/common/Button';
 

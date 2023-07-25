@@ -1,13 +1,12 @@
 'use client';
 
-import JoinTopNavigationBar from './JoinTopNavigationBar.server';
 import Step1Component from './step1/Step1Component.server';
 import Step2Component from './step2/Step2Component.server';
 import Step3Component from './step3/Step3Component.server';
 import Step4Component from './step4/Step4Component.server';
 import Step5Component from './step5/Step5Component.server';
-import Step1Page from '../step1/page';
-import { SignUpState } from '@/apis/auth';
+import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
+import { SignUpRequest } from '@/apis/auth';
 import { useFunnel } from '@/hooks/useFunnel';
 import { createContext, useContext, useMemo } from 'react';
 
@@ -20,7 +19,7 @@ const FunnelContext = createContext<FunnelContextType>({ nextStep: () => {} });
 export default function JoinFunnel() {
   const { Funnel, prevStep, nextStep } = useFunnel(['step1', 'step2', 'step3', 'step4', 'step5']);
 
-  const handleSubmit = (data: SignUpState) => {
+  const handleSubmit = (data: SignUpRequest) => {
     console.log(data);
   };
 
