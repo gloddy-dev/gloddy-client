@@ -4,7 +4,7 @@ import CertificationForm from './CertificationForm.client';
 import EmailForm from './EmailForm.client';
 import { useJoinContext } from '../../JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
-import { SignUpRequest } from '@/apis/auth';
+import { useEmailMutation } from '@/apis/auth';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
 import { useModalContext } from '@/components/common/Modal/ModalContext';
@@ -27,8 +27,8 @@ export default function FormSection() {
     getValues,
   } = useJoinContext();
   const { nextStep } = useFunnelContext();
-
   const { openModal } = useModalContext();
+  const { mutate: mutateEmail } = useEmailMutation();
 
   const onSubmitEmail = () => {
     openModal('certification');
