@@ -1,5 +1,5 @@
 import InputForm from './components/InputForm.client';
-import AuthTitleTextMessage from '../AuthTitleTextMessage.server';
+import AuthTitleTextMessage from '../JoinTitleTextMessage.server';
 import JoinTopNavigationBar from '../JoinTopNavigationBar.server';
 import { Spacing } from '@/components/common/Spacing';
 

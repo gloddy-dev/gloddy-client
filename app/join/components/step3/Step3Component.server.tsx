@@ -1,6 +1,6 @@
 import InputForm from './components/InputForm.client';
 import NoticeSection from './components/NoticeSection';
-import AuthTitleTextMessage from '../AuthTitleTextMessage.server';
+import AuthTitleTextMessage from '../JoinTitleTextMessage.server';
 import JoinTopNavigationBar from '../JoinTopNavigationBar.server';
 
 export default function Step3Component() {
