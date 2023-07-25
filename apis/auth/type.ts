@@ -1,5 +1,3 @@
-import { ImageType } from '@/types';
-
 export interface LoginResponse {
   errorCode: string;
   userId: number;
