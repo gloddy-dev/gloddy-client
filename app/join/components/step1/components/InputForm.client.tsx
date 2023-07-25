@@ -1,14 +1,14 @@
 'use client';
 
+import { useJoinContext } from '../../JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
-import { useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
+import { SignUpRequest, useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import useJoinStore from '@/store/useJoinStore';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form';
 
 type InputType = {
   phoneNumber: string;
@@ -36,10 +36,9 @@ export default function InputForm() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<InputType>();
+  } = useJoinContext();
 
   const [inputStatus, setInputStatus] = useState<InputStatusType>('notReadyForSend');
-  const { setJoinValue } = useJoinStore();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateSMS } = useSMSMutation();
   const { nextStep } = useFunnelContext();
@@ -60,15 +59,14 @@ export default function InputForm() {
     }
   };
 
-  const onSubmitPhoneNumber: SubmitHandler<InputType> = (data) => {
-    setJoinValue({ phoneNumber: data.phoneNumber });
+  const onSubmitPhoneNumber: SubmitHandler<SignUpRequest> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     // mutateSMS({ number: phoneNumberWithoutHyphen });
     // 휴대폰 인증번호 전송 API
     setInputStatus('afterSend');
   };
 
-  const onSubmitCertificateNumber: SubmitHandler<InputType> = (data) => {
+  const onSubmitCertificateNumber: SubmitHandler<SignUpRequest> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     mutateSMSVerify({
       number: phoneNumberWithoutHyphen,

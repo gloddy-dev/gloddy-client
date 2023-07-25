@@ -23,7 +23,11 @@ export type EmailVerifyRequest = {
   authCode: string;
 };
 
-export type SignUpRequest = {
+export type VerifyType = {
+  certificateNumber: number;
+};
+
+export type SignUpRequest = VerifyType & {
   phoneNumber: string;
   imageUrl?: string;
   schoolInfo: {
