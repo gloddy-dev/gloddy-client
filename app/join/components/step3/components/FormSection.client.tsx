@@ -7,10 +7,11 @@ import { useFunnelContext } from '../../JoinFunnel';
 import { SignUpRequest } from '@/apis/auth';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
+import { useModalContext } from '@/components/common/Modal/ModalContext';
 import { Spacing } from '@/components/common/Spacing';
 import { useTimer } from '@/hooks/useTimer';
 
-export default function FormForm() {
+export default function FormSection() {
   const {
     status: timerStatus,
     time,
@@ -27,8 +28,10 @@ export default function FormForm() {
   } = useJoinContext();
   const { nextStep } = useFunnelContext();
 
+  const { openModal } = useModalContext();
+
   const onSubmitEmail = () => {
-    // openModal('certification');
+    openModal('certification');
     if (timerStatus === 'STOPPED') {
       timerStart();
     } else {

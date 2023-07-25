@@ -23,6 +23,7 @@ const inputDefaultValues = {
   // meetingLocation: '', // TODO : 지도 api 연동 후 추가
   meetingNumber: 0,
 };
+
 const CreateMeetingContext = createContext<UseFormReturn | null>(null);
 
 export default function CreateMeetingContextProvider({ children }: StrictPropsWithChildren) {

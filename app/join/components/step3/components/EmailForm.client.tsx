@@ -10,17 +10,15 @@ import Image from 'next/image';
 import { memo } from 'react';
 
 export default memo(function EmailForm() {
-  const { openModal, modalName } = useModalStore();
   const { mutate: mutateEmail } = useEmailMutation();
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useJoinContext();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <div>
         <Input
           label="ID"
