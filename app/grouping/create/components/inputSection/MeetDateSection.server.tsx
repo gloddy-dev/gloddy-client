@@ -1,11 +1,11 @@
 import InputArea from './InputArea.server';
+import { useCreateGroupContext } from '../CreateGroupContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
 import { BottomSheet } from '@/components/common/Modal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
 import useModalState from '@/store/useModalStore';
-import { useCreateMeetingContext } from '../CreateMeetingContext';
 
 import type { TimeType } from '@/types';
 
@@ -28,9 +28,9 @@ function displayDate(date: Date, time: TimeType) {
   return `${year}. ${month}. ${day} ${dayName} ${time.fromHour}:${time.fromMin} ${time.fromAmPm} ~ ${time.toHour}:${time.toMin} ${time.toAmPm}`;
 }
 
-export default function DateSection() {
+export default function MeetDateSection() {
   const { modalName, openModal, closeModal } = useModalState();
-  const { watch, setValue } = useCreateMeetingContext();
+  const { watch, setValue } = useCreateGroupContext();
 
   return (
     <>
