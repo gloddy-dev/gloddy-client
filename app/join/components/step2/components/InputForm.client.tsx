@@ -1,12 +1,13 @@
 'use client';
 import SearchResultSection from './SearchResultSection.client';
+import { useJoinContext } from '../../JoinContext';
+import { useFunnelContext } from '../../JoinFunnel';
+import { SignUpRequest } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import useJoinStore from '@/store/useJoinStore';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
 
-import type { SearchResultType, Step2InputType } from '../type';
+import type { SearchResultType } from '../type';
 
 const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
   {
@@ -27,23 +28,17 @@ const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
 ];
 
 export default function InputForm() {
-  const router = useRouter();
-  const { setJoinValue } = useJoinStore();
+  const { nextStep } = useFunnelContext();
 
   const {
     register,
     formState: { errors },
     watch,
     handleSubmit,
-  } = useForm<Step2InputType>();
-
-  const onSubmit = (data: Step2InputType) => {
-    setJoinValue({ school: data.school });
-    router.push('/join/step3');
-  };
+  } = useJoinContext<SignUpRequest>();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(nextStep)}>
       <Input
         label="학교"
         register={register('school', {
