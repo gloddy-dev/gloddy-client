@@ -27,7 +27,7 @@ export default function EmailForm() {
   const { register } = useJoinContext();
 
   return (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <Input
         label="학교"
         register={register('schoolInfo.school', {
