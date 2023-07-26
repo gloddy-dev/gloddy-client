@@ -4,7 +4,7 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-const defaultValues = {
+const defaultValues: SignUpState = {
   certificateNumber: 0,
   certificateEmailNumber: 0,
 
