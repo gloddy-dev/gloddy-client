@@ -3,8 +3,10 @@ import JoinFunnel from './funnels/JoinFunnel';
 
 export default function JoinPage() {
   return (
-    <JoinContextProvider>
-      <JoinFunnel />
-    </JoinContextProvider>
+    <main className="h-full p-20">
+      <JoinContextProvider>
+        <JoinFunnel />
+      </JoinContextProvider>
+    </main>
   );
 }
