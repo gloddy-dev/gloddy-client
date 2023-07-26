@@ -4,8 +4,6 @@ import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
 import { Spacing } from '@/components/common/Spacing';
 
 export default function Step5Component() {
-  console.log(1);
-
   return (
     <main>
       <JoinTitleTextMessage>
