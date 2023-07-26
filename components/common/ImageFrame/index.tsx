@@ -15,7 +15,6 @@ export default forwardRef(function ImageFrame(
 ) {
   const { mutate: mutatePostFiles } = usePostFiles();
   const [imageBlog, setImageBlob] = useState<string>('');
-  console.log(setImageFile);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
