@@ -1,11 +1,12 @@
 'use client';
 
+import { useTimerContext } from './TimerContext';
 import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailMutation } from '@/apis/auth';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
-import { useStep3Context } from '@/components/common/Modal/Step3Context';
+import { useModalContext } from '@/components/common/Modal/ModalContext';
 import { Spacing } from '@/components/common/Spacing';
 
 export default function SubmitSection() {
@@ -15,7 +16,8 @@ export default function SubmitSection() {
   } = useJoinContext();
   const { nextStep } = useFunnelContext();
   const { mutate: mutateEmail } = useEmailMutation();
-  const { openModal, status: timerStatus, start: timerStart } = useStep3Context();
+  const { status: timerStatus, start: timerStart } = useTimerContext();
+  const { openModal } = useModalContext();
 
   const onSubmit = () => {
     mutateEmail(

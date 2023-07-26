@@ -1,18 +1,20 @@
 'use client';
+import { useTimerContext } from './TimerContext';
 import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
-import { useStep3Context } from '@/components/common/Modal/Step3Context';
+import { useModalContext } from '@/components/common/Modal/ModalContext';
 import { regexr } from '@/constants/regexr';
 import { memo } from 'react';
 
 import type { SignUpState } from '@/app/join/type';
 
 export default memo(function CertificationForm() {
-  const { closeModal, modalName, time: timerTime } = useStep3Context();
+  const { closeModal, modalName } = useModalContext();
+  const { time: timerTime } = useTimerContext();
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
   const { register, handleSubmit, watch } = useJoinContext();
