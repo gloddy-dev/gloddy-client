@@ -23,9 +23,10 @@ export default memo(function CertificationForm() {
   const isOpen = modalName === 'certification';
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo' | 'certificateEmailNumber'>) => {
+    if (data.certificateEmailNumber === undefined || data.schoolInfo.email === undefined) return;
     mutateEmailVerify(
       {
-        email: data.schoolInfo.email || '',
+        email: data.schoolInfo.email,
         authCode: data.certificateEmailNumber,
       },
       {
@@ -48,7 +49,7 @@ export default memo(function CertificationForm() {
         <section className="my-20">
           <Input
             label="인증번호"
-            register={register('certificateNumber', {
+            register={register('certificateEmailNumber', {
               pattern: {
                 value: regexr.certificateNumber,
                 message: '인증 번호를 다시 확인해주세요.',

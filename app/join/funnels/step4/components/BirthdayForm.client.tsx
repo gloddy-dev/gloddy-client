@@ -5,14 +5,13 @@ import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
 import { Spacing } from '@/components/common/Spacing';
 import { DateSwipePicker } from '@/components/common/SwipePicker';
-import useJoinStore from '@/store/useJoinStore';
 import useModalStore from '@/store/useModalStore';
 
 import type { BirthdayValueType } from '@/types';
 
 export default function BirthdayForm() {
   const { modalName, openModal, closeModal } = useModalStore();
-  const { watch, setValue } = useJoinContext();
+  const { watch, setValue, formState } = useJoinContext();
   const birth = watch('birth');
 
   const isOpen = modalName === 'birthday';
