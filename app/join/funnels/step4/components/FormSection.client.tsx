@@ -3,7 +3,6 @@ import BirthdayForm from './BirthdayForm.client';
 import GenderForm from './GenderForm.client';
 import ImageForm from './ImageForm.client';
 import NicknameForm from './NicknameForm.client';
-import { Spacing } from '@/components/common/Spacing';
 
 export default function FormSection() {
   return (

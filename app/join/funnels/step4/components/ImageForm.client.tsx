@@ -3,8 +3,9 @@ import { useJoinContext } from '../../../components/JoinContext';
 import ImageFrame from '@/components/common/ImageFrame';
 
 export default function ImageForm() {
-  const { setValue } = useJoinContext();
-  const setImageFile = (imageFile: File) => setValue('imageFile', imageFile);
+  const { setValue, watch } = useJoinContext();
+  const setImageUrl = (imageUrl: string) => setValue('imageUrl', imageUrl);
+  console.log(watch('imageUrl'));
 
-  return <ImageFrame setImageFile={setImageFile} />;
+  return <ImageFrame setImageUrl={setImageUrl} />;
 }
