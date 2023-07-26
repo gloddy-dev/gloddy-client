@@ -1,4 +1,4 @@
-import BottomModal from './components/BottomModal.client';
+import BottomModal from './components/BottomSheetSection.client';
 import FormSection from './components/FormSection.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
 
@@ -11,7 +11,7 @@ export default function Step2Component() {
         선택해주세요
       </JoinTitleTextMessage>
       <FormSection />
-      <BottomModal />
+      <BottomSheetSection />
     </main>
   );
 }

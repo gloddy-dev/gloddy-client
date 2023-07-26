@@ -13,7 +13,7 @@ type AgreeCheckListType = {
   isAgreed: boolean;
 };
 
-export default function BottomModal() {
+export default function BottomSheetSection() {
   const { isOpen, openModal, closeModal } = useModals<'modal'>();
   const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>([
     {
