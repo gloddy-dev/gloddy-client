@@ -1,8 +1,8 @@
 import { BirthdayValueType, GenderType } from '@/types';
 
 export interface SignUpState {
-  certificateNumber: number;
-  certificateEmailNumber: number;
+  certificateNumber?: number;
+  certificateEmailNumber?: number;
 
   phoneNumber: string;
   imageUrl?: string;

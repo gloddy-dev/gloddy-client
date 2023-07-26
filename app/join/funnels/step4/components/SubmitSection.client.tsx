@@ -3,7 +3,7 @@ import { useJoinContext } from '@/app/join/components/JoinContext';
 import { BottomFixedButton } from '@/components/common/Button';
 
 export default function SubmitSection() {
-  const { watch, formState, getValues } = useJoinContext();
+  const { watch, getValues } = useJoinContext();
   const { nextStep } = useFunnelContext();
   const onSubmit = () => {
     const isAllTyped = !!(
