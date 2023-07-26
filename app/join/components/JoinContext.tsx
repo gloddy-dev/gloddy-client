@@ -22,7 +22,7 @@ const defaultValues = {
     date: 0,
   },
   gender: '',
-  personalities: [],
+  personalityIdList: [],
 };
 
 export default function JoinContextProvider({ children }: StrictPropsWithChildren) {
