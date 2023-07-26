@@ -1,5 +1,7 @@
 import { useJoinContext } from '../../../components/JoinContext';
-import { type SignUpState, useSMSMutation } from '@/apis/auth';
+import { formatNumber, formatNumberBackSpace } from '../util';
+import { useSMSMutation } from '@/apis/auth';
+import { type SignUpState } from '@/app/join/type';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -7,19 +9,6 @@ import { regexr } from '@/constants/regexr';
 
 import type { StatusType } from '../type';
 import type { SubmitHandler } from 'react-hook-form';
-
-const formatNumber = (phoneNumber: string): string => {
-  if (phoneNumber.length > 6)
-    return `${phoneNumber.slice(0, 3)} - ${phoneNumber.slice(3, 7)} - ${phoneNumber.slice(7)}`;
-  if (phoneNumber.length > 2) return `${phoneNumber.slice(0, 3)} - ${phoneNumber.slice(3)}`;
-  return phoneNumber;
-};
-
-const formatNumberBackSpace = (phoneNumber: string): string => {
-  if (phoneNumber.length === 3) return `${phoneNumber.slice(0, 3)}`;
-  if (phoneNumber.length === 7) return `${phoneNumber.slice(0, 7)}`;
-  return phoneNumber;
-};
 
 interface NumberFormProps {
   inputStatus: StatusType;
@@ -51,10 +40,12 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberFormPr
     }
   };
 
-  const onSubmit: SubmitHandler<SignUpState> = (data) => {
+  const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber'>> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
-    // mutateSMS({ number: phoneNumberWithoutHyphen });
-    setInputStatus('afterSend');
+    mutateSMS(
+      { number: phoneNumberWithoutHyphen },
+      { onSuccess: () => setInputStatus('afterSend') }
+    );
   };
 
   return (

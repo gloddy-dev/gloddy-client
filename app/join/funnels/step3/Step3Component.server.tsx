@@ -11,11 +11,9 @@ export default function Step3Component() {
         <br />
         학교 이메일을 입력해주세요
       </JoinTitleTextMessage>
-
       <ModalContextProvider>
         <FormSection />
       </ModalContextProvider>
-
       <NoticeSection />
     </main>
   );

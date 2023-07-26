@@ -9,12 +9,11 @@ import type { StatusType } from '../type';
 
 export default function FormSection() {
   const [inputStatus, setInputStatus] = useState<StatusType>('notReadyForSend');
+
   return (
     <section>
       <NumberForm inputStatus={inputStatus} setInputStatus={setInputStatus} />
-
       <Spacing size={18} />
-
       {inputStatus === 'afterSend' && <NumberVerifyForm />}
     </section>
   );
