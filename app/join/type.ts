@@ -14,5 +14,5 @@ export interface SignUpState {
   nickname: string;
   birth: BirthdayValueType;
   gender: GenderType;
-  personalities: string[];
+  personalityIdList: number[];
 }

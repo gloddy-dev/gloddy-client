@@ -1,18 +1,30 @@
 import { PersonalityType } from '../type';
+import { useJoinContext } from '@/app/join/components/JoinContext';
 import clsx from 'clsx';
 import { memo } from 'react';
 
 interface PersonalityItemProps {
   personality: PersonalityType;
-  isSelected: boolean;
-  onClick: (id: number) => void;
 }
 
 export default memo(function PersonalityItem({
-  personality,
-  isSelected,
-  onClick,
+  personality: { id, keyword },
 }: PersonalityItemProps) {
+  const { watch, setValue } = useJoinContext();
+  const personalityIdList = watch('personalityIdList');
+  const isSelected = personalityIdList.includes(id);
+
+  const onClick = () => {
+    if (personalityIdList.includes(id)) {
+      setValue(
+        'personalityIdList',
+        personalityIdList.filter((personalityId: number) => personalityId !== id)
+      );
+      return;
+    }
+    setValue('personalityIdList', [...personalityIdList, id]);
+  };
+
   return (
     <div
       className={clsx(
@@ -22,9 +34,9 @@ export default memo(function PersonalityItem({
           'border border-gray4 bg-white text-gray4': !isSelected,
         }
       )}
-      onClick={() => onClick(personality.id)}
+      onClick={onClick}
     >
-      {personality.keyword}
+      {keyword}
     </div>
   );
 });
