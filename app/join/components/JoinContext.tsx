@@ -2,11 +2,12 @@
 import { SignUpState } from '../type';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
-import type { BirthdayValueType, GenderType, StrictPropsWithChildren } from '@/types';
+import type { StrictPropsWithChildren } from '@/types';
 
 const defaultValues = {
   certificateNumber: 0,
   certificateEmailNumber: 0,
+
   phoneNumber: '',
   imageUrl: '',
   schoolInfo: {
@@ -16,9 +17,9 @@ const defaultValues = {
   },
   nickname: '',
   birth: {
-    year: 2000,
-    month: 1,
-    date: 1,
+    year: 0,
+    month: 0,
+    date: 0,
   },
   gender: '',
   personalities: [],
