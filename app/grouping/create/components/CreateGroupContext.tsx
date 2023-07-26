@@ -1,6 +1,5 @@
 import { CreateGroupContextValue } from '../type';
 import FormDevtools from '@/components/common/FormDevTools';
-import { useGetForms } from '@/hooks/useGetForms';
 import { createContext, useContext } from 'react';
 import { UseFormReturn, useForm } from 'react-hook-form';
 
@@ -30,7 +29,7 @@ export default function CreateGroupContextProvider({ children }: StrictPropsWith
   const methods = useForm<CreateGroupContextValue>({
     defaultValues: inputDefaultValues,
   });
-  const { content } = useGetForms(methods);
+
   const contextValue = { ...methods };
 
   return (
