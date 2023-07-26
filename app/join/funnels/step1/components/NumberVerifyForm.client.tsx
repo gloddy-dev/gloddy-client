@@ -1,11 +1,13 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
-import { type SignUpState, useSMSVerifyMutation } from '@/apis/auth';
+import { useSMSVerifyMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
 
+import type { SignUpState } from '@/app/join/type';
 import type { SubmitHandler } from 'react-hook-form';
 
 export default function NumberVerifyForm() {
@@ -14,15 +16,23 @@ export default function NumberVerifyForm() {
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
 
-  const onSubmit: SubmitHandler<SignUpState> = (data) => {
+  const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'certificateNumber'>> = (
+    data
+  ) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
-    mutateSMSVerify({
-      number: phoneNumberWithoutHyphen,
-      code: '' + data.certificateNumber,
-    });
-    // 인증번호 확인 API
-    nextStep();
+    mutateSMSVerify(
+      {
+        number: phoneNumberWithoutHyphen,
+        code: '' + data.certificateNumber,
+      },
+      {
+        onSuccess: () => {
+          nextStep();
+        },
+      }
+    );
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -36,7 +46,7 @@ export default function NumberVerifyForm() {
         })}
         maxLength={6}
       />
-      <div className="h-18" />
+      <Spacing size={18} />
       <Button text="인증번호 확인" type="submit" />
     </form>
   );
