@@ -36,9 +36,7 @@ export default function SubmitSection() {
   return (
     <BottomFixedDiv>
       <Button text="인증하기" disabled={!isValid} onClick={onSubmit} />
-
       <Spacing size={8} />
-
       <Button text="다음에 인증하기" color="orange" onClick={nextStep} />
     </BottomFixedDiv>
   );

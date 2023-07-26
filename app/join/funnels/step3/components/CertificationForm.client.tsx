@@ -11,12 +11,8 @@ import { memo } from 'react';
 
 import type { SignUpState } from '@/app/join/type';
 
-interface BottomSheetFormProps {
-  timerTime: number;
-}
-
-export default memo(function CertificationForm({ timerTime }: BottomSheetFormProps) {
-  const { closeModal, modalName } = useStep3Context();
+export default memo(function CertificationForm() {
+  const { closeModal, modalName, time: timerTime } = useStep3Context();
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
   const { register, handleSubmit, watch } = useJoinContext();
