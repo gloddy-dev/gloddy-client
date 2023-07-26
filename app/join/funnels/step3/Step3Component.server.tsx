@@ -1,7 +1,8 @@
 import FormSection from './components/FormSection.client';
 import NoticeSection from './components/NoticeSection';
+import SubmitSection from './components/SubmitSection.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
-import ModalContextProvider from '@/components/common/Modal/ModalContext';
+import Step3ContextProvider from '@/components/common/Modal/Step3Context';
 
 export default function Step3Component() {
   return (
@@ -11,9 +12,10 @@ export default function Step3Component() {
         <br />
         학교 이메일을 입력해주세요
       </JoinTitleTextMessage>
-      <ModalContextProvider>
+      <Step3ContextProvider>
         <FormSection />
-      </ModalContextProvider>
+        <SubmitSection />
+      </Step3ContextProvider>
       <NoticeSection />
     </main>
   );

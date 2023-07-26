@@ -14,7 +14,7 @@ export default memo(function EmailForm() {
   } = useJoinContext();
 
   return (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <div>
         <Input
           label="ID"
