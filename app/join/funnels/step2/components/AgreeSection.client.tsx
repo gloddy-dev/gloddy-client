@@ -13,7 +13,7 @@ type AgreeCheckListType = {
   isAgreed: boolean;
 };
 
-export default function BottomSheetSection() {
+export default function AgreeSection() {
   const { isOpen, openModal, closeModal } = useModals<'modal'>();
   const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>([
     {
@@ -85,13 +85,11 @@ export default function BottomSheetSection() {
 
       <Spacing size={30} />
 
-      <section>
-        <Button
-          text="완료"
-          disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
-          onClick={closeModal}
-        />
-      </section>
+      <Button
+        text="완료"
+        disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
+        onClick={closeModal}
+      />
     </BottomSheet>
   );
 }

@@ -1,5 +1,6 @@
-import BottomModal from './components/BottomSheetSection.client';
+import AgreeSection from './components/AgreeSection.client';
 import FormSection from './components/FormSection.client';
+import SubmitSection from './components/SubmitSection.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
 
 export default function Step2Component() {
@@ -11,7 +12,8 @@ export default function Step2Component() {
         선택해주세요
       </JoinTitleTextMessage>
       <FormSection />
-      <BottomSheetSection />
+      <SubmitSection />
+      <AgreeSection />
     </main>
   );
 }
