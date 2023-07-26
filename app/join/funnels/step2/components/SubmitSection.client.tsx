@@ -19,7 +19,7 @@ export default function SubmitSection() {
       text="완료"
       type="submit"
       disabled={!isDirty}
-      onSubmit={handleSubmit(onClick)}
+      onClick={handleSubmit(onClick)}
     />
   );
 }

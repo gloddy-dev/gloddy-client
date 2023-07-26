@@ -1,21 +1,22 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
-import { SignUpState, useEmailVerifyMutation } from '@/apis/auth';
+import { useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
-import { useModalContext } from '@/components/common/Modal/ModalContext';
+import { useStep3Context } from '@/components/common/Modal/Step3Context';
 import { regexr } from '@/constants/regexr';
-import useModalStore from '@/store/useModalStore';
 import { memo } from 'react';
+
+import type { SignUpState } from '@/app/join/type';
 
 interface BottomSheetFormProps {
   timerTime: number;
 }
 
 export default memo(function CertificationForm({ timerTime }: BottomSheetFormProps) {
-  const { closeModal, modalName } = useModalContext();
+  const { closeModal, modalName } = useStep3Context();
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
   const { register, handleSubmit, watch } = useJoinContext();
@@ -23,13 +24,19 @@ export default memo(function CertificationForm({ timerTime }: BottomSheetFormPro
 
   const isOpen = modalName === 'certification';
 
-  const onSubmit = (data: SignUpState) => {
-    mutateEmailVerify({
-      email: data.schoolInfo.email,
-      authCode: data.certificateEmailNumber,
-    });
-    closeModal();
-    nextStep();
+  const onSubmit = (data: Pick<SignUpState, 'schoolInfo' | 'certificateEmailNumber'>) => {
+    mutateEmailVerify(
+      {
+        email: data.schoolInfo.email || '',
+        authCode: data.certificateEmailNumber,
+      },
+      {
+        onSuccess: () => {
+          closeModal();
+          nextStep();
+        },
+      }
+    );
   };
 
   return (

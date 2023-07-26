@@ -34,7 +34,6 @@ export default function EmailForm() {
           required: true,
         })}
       />
-
       <SearchResultSection searchResultList={DUMMY_SEARCH_RESULT_LIST} />
     </form>
   );
