@@ -1,23 +1,44 @@
-import { CreateMeetingRequestType } from '../../type';
-import { useCreateMeetingContext } from '../CreateMeetingContext';
+'use client';
+import { useCreateGroupContext } from '../CreateGroupContext';
+import { type CreateGroupRequest, usePostCreateGroup } from '@/apis/groups';
 import { BottomFixedButton } from '@/components/common/Button';
+import { format } from 'date-fns';
+
+import type { CreateGroupContextValue } from '../../type';
+
+function convertTimeFormat(hour: string, minute: string, ampm: string) {
+  if (ampm === 'AM') {
+    return `${hour}:${minute}`;
+  }
+
+  return `${Number(hour) + 12}:${minute}`;
+}
 
 export default function SubmitSection() {
+  const { mutate: createGroupMutate } = usePostCreateGroup();
+
   const {
     handleSubmit,
     formState: { isDirty, isValid },
-  } = useCreateMeetingContext();
+  } = useCreateGroupContext();
+  const onCreateGroupSubmit = (data: CreateGroupContextValue) => {
+    const { date, time, ...rest } = data;
 
-  const onCreateMeetingSubmit = (data: CreateMeetingRequestType) => {
-    // TODO : 서버 api 전송
-    console.log(data);
+    const createGroupRequest: CreateGroupRequest = {
+      ...rest,
+      meetDate: format(data.date, 'yyyy-MM-dd'),
+      startTime: convertTimeFormat(data.time.fromHour, data.time.fromMin, data.time.fromAmPm),
+      endTime: convertTimeFormat(data.time.toHour, data.time.toMin, data.time.toAmPm),
+    };
+
+    createGroupMutate(createGroupRequest);
   };
 
   return (
     <BottomFixedButton
       text="완료"
       disabled={!isDirty || !isValid}
-      onClick={handleSubmit(onCreateMeetingSubmit)}
+      onClick={handleSubmit(onCreateGroupSubmit)}
     />
   );
 }
