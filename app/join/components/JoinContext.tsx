@@ -1,10 +1,10 @@
 'use client';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
-import type { SignUpState } from '../type';
+import type { SignUpStateType } from '../type';
 import type { StrictPropsWithChildren } from '@/types';
 
-const defaultValues: SignUpState = {
+const defaultValues: SignUpStateType = {
   phoneNumber: '',
   imageUrl: '',
   schoolInfo: {
@@ -23,7 +23,7 @@ const defaultValues: SignUpState = {
 };
 
 export default function JoinContextProvider({ children }: StrictPropsWithChildren) {
-  const methods = useForm<SignUpState>({
+  const methods = useForm<SignUpStateType>({
     defaultValues,
   });
 
@@ -31,5 +31,5 @@ export default function JoinContextProvider({ children }: StrictPropsWithChildre
 }
 
 export function useJoinContext() {
-  return useFormContext<SignUpState>();
+  return useFormContext<SignUpStateType>();
 }

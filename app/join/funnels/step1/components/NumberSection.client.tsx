@@ -1,7 +1,7 @@
 import { useJoinContext } from '../../../components/JoinContext';
 import { formatNumber, formatNumberBackSpace } from '../util';
 import { useSMSMutation } from '@/apis/auth';
-import { type SignUpState } from '@/app/join/type';
+import { type SignUpStateType } from '@/app/join/type';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -10,12 +10,12 @@ import { regexr } from '@/constants/regexr';
 import type { StatusType } from '../type';
 import type { SubmitHandler } from 'react-hook-form';
 
-interface NumberFormProps {
+interface NumberSectionProps {
   inputStatus: StatusType;
   setInputStatus: React.Dispatch<React.SetStateAction<StatusType>>;
 }
 
-export default function NumberForm({ inputStatus, setInputStatus }: NumberFormProps) {
+export default function NumberSection({ inputStatus, setInputStatus }: NumberSectionProps) {
   const { register, handleSubmit, setValue } = useJoinContext();
   const { mutate: mutateSMS } = useSMSMutation();
   const buttonText =
@@ -40,7 +40,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberFormPr
     }
   };
 
-  const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber'>> = (data) => {
+  const onSubmit: SubmitHandler<Pick<SignUpStateType, 'phoneNumber'>> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     mutateSMS(
       { number: phoneNumberWithoutHyphen },

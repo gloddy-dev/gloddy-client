@@ -7,16 +7,16 @@ import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
 
-import type { SignUpState } from '@/app/join/type';
+import type { SignUpStateType } from '@/app/join/type';
 import type { SubmitHandler } from 'react-hook-form';
 
-export default function NumberVerifyForm() {
+export default function NumberVerifySection() {
   const { register, handleSubmit } = useJoinContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
 
-  const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'certificateNumber'>> = (
+  const onSubmit: SubmitHandler<Pick<SignUpStateType, 'phoneNumber' | 'certificateNumber'>> = (
     data
   ) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
