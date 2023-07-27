@@ -1,7 +1,7 @@
 import CertificationForm from './CertificationForm.client';
 import EmailForm from './EmailForm.client';
 
-export default function FormSection() {
+export default function InputSection() {
   return (
     <section>
       <EmailForm />

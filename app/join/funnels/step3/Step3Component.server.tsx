@@ -17,7 +17,6 @@ export default function Step3Component() {
       <ModalContext>
         <TimerContext>
           <FormSection />
-          <SubmitSection />
         </TimerContext>
       </ModalContext>
 
