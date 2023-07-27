@@ -18,7 +18,7 @@ export interface TimeType {
   toAmPm: string;
 }
 
-export type BirthdayValueType = {
+export type DateType = {
   year: number;
   month: number;
   date: number;
