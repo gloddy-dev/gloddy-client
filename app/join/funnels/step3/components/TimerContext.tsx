@@ -1,10 +1,11 @@
 import { useTimer } from '@/hooks/useTimer';
-import { StrictPropsWithChildren } from '@/types';
 import { createContext, useContext } from 'react';
+
+import type { StrictPropsWithChildren } from '@/types';
 
 interface TimerContextProps extends ReturnType<typeof useTimer> {}
 
-const TimerContext = createContext<TimerContextProps | undefined>(undefined);
+const TimerContext = createContext<TimerContextProps | null>(null);
 
 export default function TimerContextProvider({ children }: StrictPropsWithChildren) {
   const timerValue = useTimer({
