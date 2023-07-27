@@ -20,25 +20,26 @@ function getMonthName(monthIndex: number) {
   return months[monthIndex];
 }
 
+function displayDate(date: Date, time: TimeType) {
+  const year = date.getFullYear();
+  const month = getMonthName(date.getMonth());
+  const day = date.getDate();
+  const dayName = getDayName(date.getDay());
+  return `${year}. ${month}. ${day} ${dayName} ${time.fromHour}:${time.fromMin} ${time.fromAmPm} ~ ${time.toHour}:${time.toMin} ${time.toAmPm}`;
+}
+
 export default function MeetDateSection() {
   const { modalName, openModal, closeModal } = useModalState();
   const { watch, setValue, getFieldState } = useCreateGroupContext();
 
-  function displayDate(date: Date, time: TimeType) {
-    if (!getFieldState('date').isDirty && !getFieldState('time').isDirty) return '';
-    const year = date.getFullYear();
-    const month = getMonthName(date.getMonth());
-    const day = date.getDate();
-    const dayName = getDayName(date.getDay());
-    return `${year}. ${month}. ${day} ${dayName} ${time.fromHour}:${time.fromMin} ${time.fromAmPm} ~ ${time.toHour}:${time.toMin} ${time.toAmPm}`;
-  }
+  const isMeetingDateDirty = getFieldState('date').isDirty || getFieldState('time').isDirty;
 
   return (
     <>
       <InputArea
         title="모임 일시"
         onClick={() => openModal('meetingDate')}
-        value={displayDate(watch('date'), watch('time'))}
+        value={isMeetingDateDirty ? displayDate(watch('date'), watch('time')) : ''}
         placeholder="모임 시간을 설정해주세요."
       />
 
