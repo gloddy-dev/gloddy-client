@@ -1,6 +1,5 @@
 import FormSection from './components/FormSection.server';
 import NoticeSection from './components/NoticeSection';
-import SubmitSection from './components/SubmitSection.client';
 import TimerContext from './components/TimerContext';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
 import ModalContext from '@/components/common/Modal/ModalContext';

@@ -3,6 +3,7 @@ import BirthdaySection from './BirthdaySection.client';
 import GenderSection from './GenderSection.client';
 import ImageSection from './ImageSection.client';
 import NicknameSection from './NicknameSection.client';
+import SubmitSection from './SubmitSection.client';
 
 export default function InputForm() {
   return (
@@ -11,6 +12,7 @@ export default function InputForm() {
       <NicknameSection />
       <BirthdaySection />
       <GenderSection />
+      <SubmitSection />
     </section>
   );
 }
