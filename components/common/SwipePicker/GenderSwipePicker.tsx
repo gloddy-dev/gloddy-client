@@ -9,8 +9,8 @@ interface GenderSwipePickerProps {
 }
 
 export default function GenderSwipePicker({ genderValue, setGenderValue }: GenderSwipePickerProps) {
-  const setValue = (value: string, keyType: string) => {
-    setGenderValue(genderValue);
+  const setValue = (value: GenderType) => {
+    setGenderValue(value);
   };
 
   return (
