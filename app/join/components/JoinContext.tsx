@@ -18,7 +18,6 @@ const defaultValues: SignUpState = {
     month: 0,
     date: 0,
   },
-  gender: '',
   personalityIdList: [],
 };
 
