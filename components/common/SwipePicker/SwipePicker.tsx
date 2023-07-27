@@ -4,7 +4,6 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 
 import { GenderType } from '@/types';
-import cn from '@/utils/cn';
 import clsx from 'clsx';
 import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
