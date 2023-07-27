@@ -6,7 +6,7 @@ import { BottomSheet } from '@/components/common/Modal';
 import GenderSwipePicker from '@/components/common/SwipePicker/GenderSwipePicker';
 import useModalStore from '@/store/useModalStore';
 
-export default function GenderBirthdayForm() {
+export default function GenderSection() {
   const { modalName, openModal, closeModal } = useModalStore();
   const { watch, setValue } = useJoinContext();
   const gender = watch('gender');
@@ -19,7 +19,7 @@ export default function GenderBirthdayForm() {
   };
 
   return (
-    <form className="flex flex-col gap-5">
+    <section className="flex flex-col gap-5">
       <p className="text-14">성별</p>
       <Input
         placeholder="성별을 선택해주세요."
@@ -41,6 +41,6 @@ export default function GenderBirthdayForm() {
         />
         <BottomFixedButton text="완료" onClick={handleNextButtonClick} />
       </BottomSheet>
-    </form>
+    </section>
   );
 }

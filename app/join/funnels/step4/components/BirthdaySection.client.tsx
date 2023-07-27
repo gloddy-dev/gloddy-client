@@ -9,7 +9,7 @@ import useModalStore from '@/store/useModalStore';
 
 import type { BirthdayValueType } from '@/types';
 
-export default function BirthdayForm() {
+export default function BirthdaySection() {
   const { modalName, openModal, closeModal } = useModalStore();
   const { watch, setValue, formState } = useJoinContext();
   const birth = watch('birth');
@@ -19,7 +19,7 @@ export default function BirthdayForm() {
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
   return (
-    <form>
+    <section>
       <p className="text-14">생년월일</p>
       <Spacing size={5} />
       <Input
@@ -51,6 +51,6 @@ export default function BirthdayForm() {
           onClick={() => openModal('gender')}
         />
       </BottomSheet>
-    </form>
+    </section>
   );
 }

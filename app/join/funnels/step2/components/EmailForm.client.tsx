@@ -23,11 +23,11 @@ const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
   },
 ];
 
-export default function EmailForm() {
+export default function EmailSection() {
   const { register } = useJoinContext();
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <section>
       <Input
         label="학교"
         register={register('schoolInfo.school', {
@@ -35,6 +35,6 @@ export default function EmailForm() {
         })}
       />
       <SearchResultSection searchResultList={DUMMY_SEARCH_RESULT_LIST} />
-    </form>
+    </section>
   );
 }
