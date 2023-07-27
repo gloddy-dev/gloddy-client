@@ -1,6 +1,5 @@
 'use client';
 
-import CreateGroupContextProvider from './CreateGroupContext';
 import ContentSection from './inputSection/ContentSection.client';
 import ImageSection from './inputSection/ImageSection.client';
 import LocationSection from './inputSection/LocationSection.client';
@@ -12,7 +11,7 @@ import { Spacing } from '@/components/common/Spacing';
 
 export default function InputForm() {
   return (
-    <CreateGroupContextProvider>
+    <form>
       <ImageSection />
       <TitleSection />
       <Spacing size={15} />
@@ -22,6 +21,6 @@ export default function InputForm() {
       <MaxUserSection />
       <Spacing size={100} />
       <SubmitSection />
-    </CreateGroupContextProvider>
+    </form>
   );
 }
