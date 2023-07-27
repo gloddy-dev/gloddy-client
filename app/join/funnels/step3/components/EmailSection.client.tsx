@@ -1,3 +1,4 @@
+'use client ';
 import { useJoinContext } from '@/app/join/components/JoinContext';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -10,6 +11,7 @@ export default function EmailSection() {
     register,
     formState: { errors },
   } = useJoinContext();
+
   return (
     <section>
       <Input
