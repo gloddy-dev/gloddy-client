@@ -4,7 +4,7 @@ import SubmitSection from './SubmitSection.client';
 import { useTimerContext } from './TimerContext';
 import { useEmailMutation } from '@/apis/auth';
 import { useJoinContext } from '@/app/join/components/JoinContext';
-import { SignUpStateType } from '@/app/join/type';
+import { SignUpState } from '@/app/join/type';
 import { useModalContext } from '@/components/common/Modal/ModalContext';
 import { memo } from 'react';
 
@@ -14,7 +14,7 @@ export default memo(function EmailForm() {
   const { openModal } = useModalContext();
   const { getValues, handleSubmit } = useJoinContext();
 
-  const onSubmit = (data: Pick<SignUpStateType, 'schoolInfo'>) => {
+  const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
     mutateEmail(
       { email: data.schoolInfo.email || '' },
       {

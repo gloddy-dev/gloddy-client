@@ -1,7 +1,7 @@
 import { useJoinContext } from '../../../components/JoinContext';
 import { formatNumber, formatNumberBackSpace } from '../util';
 import { useSMSMutation } from '@/apis/auth';
-import { type SignUpStateType } from '@/app/join/type';
+import { type SignUpState } from '@/app/join/type';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -40,7 +40,7 @@ export default function NumberSection({ inputStatus, setInputStatus }: NumberSec
     }
   };
 
-  const onSubmit: SubmitHandler<Pick<SignUpStateType, 'phoneNumber'>> = (data) => {
+  const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber'>> = (data) => {
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     mutateSMS(
       { number: phoneNumberWithoutHyphen },
