@@ -1,10 +1,10 @@
 import AgreeSection from './AgreeForm.client';
-import EmailSection from './EmailForm.client';
+import SchoolSection from './SchoolSection.client';
 
 export default function InputForm() {
   return (
     <form>
-      <EmailSection />
+      <SchoolSection />
       <AgreeSection />
     </form>
   );
