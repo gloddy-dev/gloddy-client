@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 
 import type { CreateGroupContextValue } from '../../type';
 
-function timeFormat(hour: string, minute: string, ampm: string) {
+function convertTimeFormat(hour: string, minute: string, ampm: string) {
   if (ampm === 'AM') {
     return `${hour}:${minute}`;
   }
@@ -27,8 +27,8 @@ export default function SubmitSection() {
     const createGroupRequest: CreateGroupRequest = {
       ...rest,
       meetDate: format(data.date, 'yyyy-MM-dd'),
-      startTime: timeFormat(data.time.fromHour, data.time.fromMin, data.time.fromAmPm),
-      endTime: timeFormat(data.time.toHour, data.time.toMin, data.time.toAmPm),
+      startTime: convertTimeFormat(data.time.fromHour, data.time.fromMin, data.time.fromAmPm),
+      endTime: convertTimeFormat(data.time.toHour, data.time.toMin, data.time.toAmPm),
     };
 
     createGroupMutate(createGroupRequest);
