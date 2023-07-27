@@ -1,3 +1,5 @@
+import { GenderType } from '@/types';
+
 export interface LoginResponse {
   errorCode: string;
   userId: number;
@@ -23,17 +25,19 @@ export interface EmailVerifyRequest {
   authCode: number;
 }
 
+type SchoolInfo = {
+  school: string;
+  email?: string;
+  certifiedStudent: boolean; // email이 없는 경우 false
+};
+
 export interface SignUpRequest {
   phoneNumber: string;
   imageUrl?: string;
-  schoolInfo: {
-    school: string;
-    email?: string;
-    certifiedStudent: boolean; // email이 없는 경우 false
-  };
+  schoolInfo: SchoolInfo;
   nickname: string;
   birth: string;
-  gender: string;
+  gender: GenderType;
   personalities: string[];
 }
 
