@@ -23,7 +23,7 @@ const DUMMY_SEARCH_RESULT_LIST: SearchResultType[] = [
   },
 ];
 
-export default function EmailSection() {
+export default function SchoolSection() {
   const { register } = useJoinContext();
 
   return (
