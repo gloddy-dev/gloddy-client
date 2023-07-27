@@ -5,11 +5,10 @@ import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
 import GenderSwipePicker from '@/components/common/SwipePicker/GenderSwipePicker';
 import useModalStore from '@/store/useModalStore';
-import { useState } from 'react';
 
 export default function GenderSection() {
   const { modalName, openModal, closeModal } = useModalStore();
-  const { watch, setValue, getFieldState } = useJoinContext();
+  const { watch, setValue } = useJoinContext();
   const gender = watch('gender');
 
   return (
@@ -18,7 +17,7 @@ export default function GenderSection() {
       <Input
         placeholder="성별을 선택해주세요."
         onClick={() => openModal('gender')}
-        value={gender === '선택없음' ? '' : gender}
+        value={gender ?? ''}
         readOnly
       />
       <BottomSheet
@@ -32,13 +31,13 @@ export default function GenderSection() {
         <div className="relative h-full">
           <GenderSwipePicker
             genderValue={gender}
-            setGenderValue={(value) => setValue('gender', value, { shouldTouch: true })}
+            setGenderValue={(value) => setValue('gender', value)}
           />
         </div>
         <BottomFixedButton
           text="완료"
           onClick={() => {
-            if (gender === '선택없음') setValue('gender', '남성');
+            if (!gender) setValue('gender', '남성');
             closeModal();
           }}
         />
