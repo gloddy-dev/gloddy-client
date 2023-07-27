@@ -1,7 +1,7 @@
 'use client';
-import { SignUpState } from '../type';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
+import type { SignUpState } from '../type';
 import type { StrictPropsWithChildren } from '@/types';
 
 const defaultValues: SignUpState = {
