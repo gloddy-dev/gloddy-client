@@ -1,10 +1,11 @@
 import { useModals } from '@/hooks/useModals';
-import { StrictPropsWithChildren } from '@/types';
 import { createContext, useContext } from 'react';
+
+import type { StrictPropsWithChildren } from '@/types';
 
 interface ModalContextProps extends ReturnType<typeof useModals> {}
 
-const ModalContext = createContext<ModalContextProps | undefined>(undefined);
+const ModalContext = createContext<ModalContextProps | null>(null);
 
 export default function ModalContextProvider({ children }: StrictPropsWithChildren) {
   const modalValue = useModals();
