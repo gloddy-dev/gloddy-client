@@ -18,7 +18,7 @@ const defaultValues: SignUpState = {
     month: '',
     date: '',
   },
-  gender: '선택없음',
+  gender: undefined,
   personalityIdList: [],
 };
 
