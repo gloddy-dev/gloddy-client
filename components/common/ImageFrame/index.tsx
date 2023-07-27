@@ -14,7 +14,7 @@ export default forwardRef(function ImageFrame(
   imgRef: ForwardedRef<HTMLInputElement>
 ) {
   const { mutate: mutatePostFiles } = usePostFiles();
-  const [imageBlog, setImageBlob] = useState<string>('');
+  const [imageBlob, setImageBlob] = useState<string>('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
@@ -34,10 +34,10 @@ export default forwardRef(function ImageFrame(
   return (
     <section className="relative flex h-160 items-center justify-center">
       <label className="relative h-100 w-100" htmlFor="image">
-        {imageBlog ? (
+        {imageBlob ? (
           <Image
             alt="frameImage"
-            src={imageBlog}
+            src={imageBlob}
             priority
             fill
             className={clsx('h-full w-full object-cover', {
