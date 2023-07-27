@@ -19,9 +19,9 @@ export interface TimeType {
 }
 
 export type DateType = {
-  year: number;
-  month: number;
-  date: number;
+  year: string;
+  month: string;
+  date: string;
 };
 
 export type GenderType = '남성' | '여성' | '';

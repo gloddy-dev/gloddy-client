@@ -9,8 +9,8 @@ import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface PickerProps {
-  selectList: string[] | number[];
-  setValue: (value: string | number | GenderType) => void;
+  selectList: string[];
+  setValue: (value: string | GenderType) => void;
 
   isFirst?: boolean;
   isLast?: boolean;
