@@ -10,7 +10,7 @@ import { useModalContext } from '@/components/common/Modal/ModalContext';
 import { regexr } from '@/constants/regexr';
 import { memo } from 'react';
 
-import type { SignUpState } from '@/app/join/type';
+import type { SignUpStateType } from '@/app/join/type';
 
 export default memo(function CertificationForm() {
   const { closeModal, modalName } = useModalContext();
@@ -22,7 +22,7 @@ export default memo(function CertificationForm() {
 
   const isOpen = modalName === 'certification';
 
-  const onSubmit = (data: Pick<SignUpState, 'schoolInfo' | 'certificateEmailNumber'>) => {
+  const onSubmit = (data: Pick<SignUpStateType, 'schoolInfo' | 'certificateEmailNumber'>) => {
     if (data.certificateEmailNumber === undefined || data.schoolInfo.email === undefined) return;
     mutateEmailVerify(
       {
