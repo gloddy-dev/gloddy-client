@@ -13,7 +13,7 @@ type AgreeCheckListType = {
   isAgreed: boolean;
 };
 
-export default function AgreeSection() {
+export default function AgreeForm() {
   const { isOpen, openModal, closeModal } = useModals<'modal'>();
   const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>([
     {

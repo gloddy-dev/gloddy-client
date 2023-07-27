@@ -1,4 +1,3 @@
-import AgreeSection from './components/AgreeSection.client';
 import FormSection from './components/FormSection.client';
 import SubmitSection from './components/SubmitSection.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
@@ -13,7 +12,6 @@ export default function Step2Component() {
       </JoinTitleTextMessage>
       <FormSection />
       <SubmitSection />
-      <AgreeSection />
     </main>
   );
 }
