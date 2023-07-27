@@ -38,7 +38,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
     if (currentIndex < steps.length - 1) {
       setStep(steps[currentIndex + 1]);
 
-      window.history.pushState(null, '', `${pathname}?${queryKey}=${steps[currentIndex + 1]}`);
+      router.push(`${pathname}?${queryKey}=${steps[currentIndex + 1]}`);
     }
   };
 
@@ -86,12 +86,8 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
   };
 
   useEffect(() => {
-    if (currentStep === initialStep) {
-      window.history.replaceState(
-        null,
-        '',
-        `${window.location.pathname}?${queryKey}=${initialStep}`
-      );
+    if (step === initialStep) {
+      router.replace(`${pathname}?${queryKey}=${initialStep}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
