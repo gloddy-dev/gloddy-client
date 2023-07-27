@@ -32,6 +32,7 @@
   },
   "packageManager": "yarn@3.6.0",
   "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
     "@types/node": "^20.3.1",
     "@types/react": "^18.2.14",
     "@types/react-datepicker": "^4.11.2",

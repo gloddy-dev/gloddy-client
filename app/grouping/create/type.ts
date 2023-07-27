@@ -1,13 +1,11 @@
-import type { ImageType, TimeType } from '@/types';
+import { CreateGroupRequest } from '@/apis/groups';
 
-export type CreateMeetingRequestType = {
-  title: string;
-  description: string;
-  image: ImageType;
+import type { TimeType } from '@/types';
+
+export interface CreateGroupContextValue
+  extends Omit<CreateGroupRequest, 'meetDate' | 'startTime' | 'endTime'> {
   date: Date;
   time: TimeType;
-  meetingLocation: string;
-  meetingNumber: number;
-};
+}
 
 export type ModalNameType = 'meetingDate' | 'meetingLocation' | 'meetingNumber';

@@ -1,5 +1,3 @@
-'use client';
-
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
@@ -31,7 +29,6 @@ export default function NumberSwipePicker({ numberValue, setNumberValue }: Picke
       }}
       modules={[FreeMode]}
       onSlideChange={(swiper) => {
-        console.log(swiper.activeIndex);
         setNumberValue(SELECT_LIST[swiper.activeIndex]);
       }}
       initialSlide={SELECT_LIST.indexOf(numberValue)}
