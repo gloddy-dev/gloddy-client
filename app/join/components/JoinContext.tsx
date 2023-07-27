@@ -14,10 +14,11 @@ const defaultValues: SignUpState = {
   },
   nickname: '',
   birth: {
-    year: 0,
-    month: 0,
-    date: 0,
+    year: '',
+    month: '',
+    date: '',
   },
+  gender: '선택없음',
   personalityIdList: [],
 };
 
