@@ -15,7 +15,7 @@ interface NumberSectionProps {
   setInputStatus: React.Dispatch<React.SetStateAction<StatusType>>;
 }
 
-export default function NumberSection({ inputStatus, setInputStatus }: NumberSectionProps) {
+export default function NumberForm({ inputStatus, setInputStatus }: NumberSectionProps) {
   const { register, handleSubmit, setValue } = useJoinContext();
   const { mutate: mutateSMS } = useSMSMutation();
   const buttonText =

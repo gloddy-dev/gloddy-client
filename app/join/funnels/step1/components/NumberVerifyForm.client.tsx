@@ -10,7 +10,7 @@ import { regexr } from '@/constants/regexr';
 import type { SignUpState } from '@/app/join/type';
 import type { SubmitHandler } from 'react-hook-form';
 
-export default function NumberVerifySection() {
+export default function NumberVerifyForm() {
   const { register, handleSubmit } = useJoinContext();
 
   const { nextStep } = useFunnelContext();
