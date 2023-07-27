@@ -24,4 +24,4 @@ export type DateType = {
   date: string;
 };
 
-export type GenderType = '남성' | '여성' | 'null';
+export type GenderType = '남성' | '여성' | '선택없음';
