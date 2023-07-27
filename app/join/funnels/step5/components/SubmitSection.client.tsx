@@ -22,20 +22,13 @@ const DUMMY_SIGN_UP_DATA = {
 };
 
 export default function SubmitSection() {
-  const router = useRouter();
   const { getValues } = useJoinContext();
-  const { mutate: mutateSignUp } = useSignUpMutation();
-
-  const handleSubmit = async () => {
-    // mutateSignUp(DUMMY_SIGN_UP_DATA);
-    // router.push('/grouping');
-  };
 
   return (
     <BottomFixedButton
       text="완료"
       disabled={getValues().personalityIdList.length === 0}
-      onClick={handleSubmit}
+      type="submit"
     />
   );
 }
