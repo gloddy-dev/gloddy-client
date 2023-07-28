@@ -1,7 +1,7 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
-import { useSMSVerifyMutation } from '@/apis/auth';
+import { LoginResponse, useLoginMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
@@ -15,6 +15,7 @@ export default function NumberVerifyForm() {
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
+  const { mutate: mutateLogin } = useLoginMutation();
 
   const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'certificateNumber'>> = (
     data
@@ -27,7 +28,18 @@ export default function NumberVerifyForm() {
       },
       {
         onSuccess: () => {
-          nextStep();
+          mutateLogin(
+            { phoneNumber: data.phoneNumber },
+            {
+              onSuccess: (response: LoginResponse) => {
+                if (response.existUser) {
+                  // TODO : 토큰 설정 & home으로 이동
+                } else {
+                  nextStep();
+                }
+              },
+            }
+          );
         },
       }
     );
