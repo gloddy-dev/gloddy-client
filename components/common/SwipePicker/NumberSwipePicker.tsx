@@ -32,6 +32,7 @@ export default function NumberSwipePicker({ numberValue, setNumberValue }: Picke
         setNumberValue(SELECT_LIST[swiper.activeIndex]);
       }}
       initialSlide={SELECT_LIST.indexOf(numberValue)}
+      disableDrag={true}
     >
       {SELECT_LIST.map((slideContent) => (
         <SwiperSlide key={slideContent} className="overflow-visible">
