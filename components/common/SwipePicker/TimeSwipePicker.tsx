@@ -12,7 +12,6 @@ interface TimeSwipePickerProps {
 }
 
 export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePickerProps) {
-  console.log(timeValue);
   return (
     <div className="relative flex h-180">
       <SwipePicker.Bar />
