@@ -3,10 +3,11 @@
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
-import { StrictPropsWithChildren } from '@/types';
 import clsx from 'clsx';
 import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import type { StrictPropsWithChildren } from '@/types';
 
 interface PickerProps<T extends string | number> {
   selectList: T[];
@@ -47,7 +48,9 @@ export default function SwipePicker<T extends string | number>({
                 'font-500 text-17 text-gray3': !isActive,
               })}
             >
-              {slideContent}
+              {typeof slideContent === 'number' && slideContent < 10
+                ? '0' + slideContent
+                : slideContent}
             </div>
           )}
         </SwiperSlide>
