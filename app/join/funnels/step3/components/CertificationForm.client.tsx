@@ -15,15 +15,15 @@ import type { SignUpState } from '@/app/join/type';
 export default memo(function CertificationForm() {
   const { closeModal, modalName } = useModalContext();
   const { time: timerTime } = useTimerContext();
-  const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
-
-  const { register, handleSubmit, watch } = useJoinContext();
+  const { register, handleSubmit, watch, setValue } = useJoinContext();
   const { nextStep } = useFunnelContext();
+
+  const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
   const isOpen = modalName === 'certification';
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo' | 'certificateEmailNumber'>) => {
-    if (data.certificateEmailNumber === undefined || data.schoolInfo.email === undefined) return;
+    if (!data.certificateEmailNumber || !data.schoolInfo.email) return;
     mutateEmailVerify(
       {
         email: data.schoolInfo.email,
@@ -31,7 +31,7 @@ export default memo(function CertificationForm() {
       },
       {
         onSuccess: () => {
-          closeModal();
+          setValue('schoolInfo.certifiedStudent', true);
           nextStep();
         },
       }
