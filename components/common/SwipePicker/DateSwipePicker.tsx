@@ -25,15 +25,18 @@ export default function DateSwipePicker({ dateValue, setDateValue }: DateSwipePi
       <SwipePicker
         selectList={yearList}
         isFirst
+        value={dateValue.year}
         setValue={(value) => setDateValue({ ...dateValue, year: value })}
       />
       <SwipePicker
         selectList={monthList}
+        value={dateValue.month}
         setValue={(value) => setDateValue({ ...dateValue, month: value })}
       />
       <SwipePicker
         selectList={dateList}
         isLast
+        value={dateValue.date}
         setValue={(value) => setDateValue({ ...dateValue, date: value })}
       />
     </div>

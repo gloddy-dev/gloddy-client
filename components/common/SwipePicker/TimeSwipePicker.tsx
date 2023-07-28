@@ -12,58 +12,43 @@ interface TimeSwipePickerProps {
 }
 
 export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePickerProps) {
-  const setValueByKeyType = (value: string | number, keyType: string) => {
-    setTimeValue({
-      ...timeValue,
-      [keyType]: value,
-    });
-  };
-
   return (
-    <div className="flex h-125 ">
+    <div className="relative flex h-180">
+      <SwipePicker.Bar />
       <SwipePicker
         selectList={hourList}
         value={timeValue.fromHour}
-        keyType="fromHour"
-        setValue={setValueByKeyType}
-        isFirst
+        setValue={(value: number) => setTimeValue({ ...timeValue, fromHour: value })}
       />
-      <SwipePicker selectList={[':']} />
+      <SwipePicker.Middle>:</SwipePicker.Middle>
       <SwipePicker
         selectList={minuteList}
-        keyType="fromMin"
         value={timeValue.fromMin}
-        setValue={setValueByKeyType}
+        setValue={(value: number) => setTimeValue({ ...timeValue, fromMin: value })}
       />
       <SwipePicker
         selectList={ampmList}
         value={timeValue.fromAmPm}
-        keyType="fromAmPm"
-        isTimeZone={true}
-        setValue={setValueByKeyType}
+        setValue={(value: number) => setTimeValue({ ...timeValue, fromAmPm: value })}
       />
-      <SwipePicker selectList={['부터']} isRangeString={true} />
+      <SwipePicker.Middle>부터</SwipePicker.Middle>
       <SwipePicker
         selectList={hourList}
-        keyType="toHour"
         value={timeValue.toHour}
-        setValue={setValueByKeyType}
+        setValue={(value: number) => setTimeValue({ ...timeValue, toHour: value })}
       />
-      <SwipePicker selectList={[':']} />
+      <SwipePicker.Middle>:</SwipePicker.Middle>
       <SwipePicker
         selectList={minuteList}
-        keyType="toMin"
         value={timeValue.toMin}
-        setValue={setValueByKeyType}
+        setValue={(value: number) => setTimeValue({ ...timeValue, toMin: value })}
       />
       <SwipePicker
         selectList={ampmList}
         value={timeValue.toAmPm}
-        keyType="toAmPm"
-        isTimeZone={true}
-        setValue={setValueByKeyType}
+        setValue={(value: number) => setTimeValue({ ...timeValue, toAmPm: value })}
       />
-      <SwipePicker selectList={['까지']} isRangeString={true} isLast />
+      <SwipePicker.Middle>까지</SwipePicker.Middle>
     </div>
   );
 }
