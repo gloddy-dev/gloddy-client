@@ -12,10 +12,10 @@ export interface ImageType {
 export interface TimeType {
   fromHour: number;
   fromMin: number;
-  fromAmPm: number;
+  fromAmPm: AMPMType;
   toHour: number;
   toMin: number;
-  toAmPm: number;
+  toAmPm: AMPMType;
 }
 
 export type DateType = {
@@ -25,3 +25,5 @@ export type DateType = {
 };
 
 export type GenderType = '남성' | '여성';
+
+export type AMPMType = 'AM' | 'PM';

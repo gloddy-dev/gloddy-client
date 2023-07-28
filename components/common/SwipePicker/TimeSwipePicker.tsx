@@ -1,10 +1,10 @@
 import SwipePicker from './SwipePicker';
 
-import type { TimeType } from '@/types';
+import type { AMPMType, TimeType } from '@/types';
 
-const hourList = Array.from({ length: 12 }, (_, i) => `${i + 1}`);
-const minuteList = Array.from({ length: 60 }, (_, i) => (i > 9 ? `${i}` : `0${i}`));
-const ampmList = ['AM', 'PM'];
+const hourList: number[] = Array.from({ length: 12 }, (_, i) => i + 1);
+const minuteList: number[] = Array.from({ length: 60 }, (_, i) => (i > 9 ? i : i));
+const ampmList: AMPMType[] = ['AM', 'PM'];
 
 interface TimeSwipePickerProps {
   timeValue: TimeType;
@@ -12,6 +12,7 @@ interface TimeSwipePickerProps {
 }
 
 export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePickerProps) {
+  console.log(timeValue);
   return (
     <div className="relative flex h-180">
       <SwipePicker.Bar />
@@ -29,7 +30,7 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
       <SwipePicker
         selectList={ampmList}
         value={timeValue.fromAmPm}
-        setValue={(value: number) => setTimeValue({ ...timeValue, fromAmPm: value })}
+        setValue={(value: AMPMType) => setTimeValue({ ...timeValue, fromAmPm: value })}
       />
       <SwipePicker.Middle>부터</SwipePicker.Middle>
       <SwipePicker
@@ -46,7 +47,7 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
       <SwipePicker
         selectList={ampmList}
         value={timeValue.toAmPm}
-        setValue={(value: number) => setTimeValue({ ...timeValue, toAmPm: value })}
+        setValue={(value: AMPMType) => setTimeValue({ ...timeValue, toAmPm: value })}
       />
       <SwipePicker.Middle>까지</SwipePicker.Middle>
     </div>
