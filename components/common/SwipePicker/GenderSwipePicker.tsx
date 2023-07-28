@@ -11,13 +11,8 @@ interface GenderSwipePickerProps {
 export default function GenderSwipePicker({ genderValue, setGenderValue }: GenderSwipePickerProps) {
   return (
     <div className="relative flex h-180">
-      <SwipePicker
-        isFirst
-        isLast
-        selectList={selectList}
-        setValue={setGenderValue}
-        value={genderValue}
-      />
+      <SwipePicker.Bar />
+      <SwipePicker selectList={selectList} setValue={setGenderValue} value={genderValue} />
     </div>
   );
 }
