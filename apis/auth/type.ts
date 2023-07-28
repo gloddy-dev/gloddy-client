@@ -33,16 +33,14 @@ export interface EmailVerifyRequest {
   authCode: number;
 }
 
-type SchoolInfo = {
-  school: string;
-  email?: string;
-  certifiedStudent: boolean; // email이 없는 경우 false
-};
-
 export interface SignUpRequest {
   phoneNumber: string;
   imageUrl?: string;
-  schoolInfo: SchoolInfo;
+  schoolInfo: {
+    school: string;
+    email?: string;
+    certifiedStudent: boolean; // email이 없는 경우 false
+  };
   nickname: string;
   birth: string;
   gender?: GenderType;
