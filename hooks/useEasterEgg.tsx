@@ -1,6 +1,5 @@
+import { useDidMount } from './common/useDidMount';
 import { IS_PRODUCTION } from '@/constants';
-
-import useDidMount from './common/useDidMount/useDidMount';
 
 export function useEasterEgg() {
   useDidMount(() => {
