@@ -10,12 +10,12 @@ export interface ImageType {
 }
 
 export interface TimeType {
-  fromHour: string;
-  fromMin: string;
-  fromAmPm: string;
-  toHour: string;
-  toMin: string;
-  toAmPm: string;
+  fromHour: number;
+  fromMin: number;
+  fromAmPm: number;
+  toHour: number;
+  toMin: number;
+  toAmPm: number;
 }
 
 export type DateType = {
