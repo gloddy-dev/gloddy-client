@@ -6,27 +6,18 @@ import Step3Component from './step3/Step3Component.server';
 import Step4Component from './step4/Step4Component.server';
 import Step5Component from './step5/Step5Component.server';
 import JoinTopNavigationBar from '../components/JoinTopNavigationBar.server';
-import { SignUpRequest } from '@/apis/auth';
 import { useFunnel } from '@/hooks/useFunnel';
 import { createContext, useContext } from 'react';
 
-type FunnelContextType = {
-  nextStep: () => void;
-};
+interface FunnelContextProps extends Pick<ReturnType<typeof useFunnel>, 'nextStep'> {}
 
-const FunnelContext = createContext<FunnelContextType>({ nextStep: () => {} });
+const FunnelContext = createContext<FunnelContextProps | null>(null);
 
 export default function JoinFunnel() {
   const { Funnel, prevStep, nextStep } = useFunnel(['1', '2', '3', '4', '5']);
 
-  const handleSubmit = (data: SignUpRequest) => {
-    console.log(data);
-  };
-
-  const contextValue = { nextStep };
-
   return (
-    <FunnelContext.Provider value={contextValue}>
+    <FunnelContext.Provider value={{ nextStep }}>
       <Funnel>
         <JoinTopNavigationBar onPrevClick={prevStep} />
         <Funnel.Step name="1">
