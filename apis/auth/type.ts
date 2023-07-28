@@ -43,7 +43,7 @@ export interface SignUpRequest {
   };
   nickname: string;
   birth: string;
-  gender?: GenderType;
+  gender: GenderType;
   personalities: string[];
 }
 
