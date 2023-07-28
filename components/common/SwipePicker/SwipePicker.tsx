@@ -63,7 +63,7 @@ function Bar() {
   return <div className="absolute inset-y-0 my-auto h-60 w-full rounded-8 bg-[#f8f8f8]" />;
 }
 
-function Middle({ children }: StrictPropsWithChildren) {
+function MiddleText({ children }: StrictPropsWithChildren) {
   return (
     <div className="z-10 flex grow items-center whitespace-nowrap text-20 font-700 text-gray">
       {children}
@@ -72,4 +72,4 @@ function Middle({ children }: StrictPropsWithChildren) {
 }
 
 SwipePicker.Bar = Bar;
-SwipePicker.Middle = Middle;
+SwipePicker.MiddleText = MiddleText;

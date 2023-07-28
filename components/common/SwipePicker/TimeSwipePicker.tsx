@@ -20,7 +20,7 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
         value={timeValue.fromHour}
         setValue={(value: number) => setTimeValue({ ...timeValue, fromHour: value })}
       />
-      <SwipePicker.Middle>:</SwipePicker.Middle>
+      <SwipePicker.MiddleText>:</SwipePicker.MiddleText>
       <SwipePicker
         selectList={minuteList}
         value={timeValue.fromMin}
@@ -31,13 +31,13 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
         value={timeValue.fromAmPm}
         setValue={(value: AMPMType) => setTimeValue({ ...timeValue, fromAmPm: value })}
       />
-      <SwipePicker.Middle>부터</SwipePicker.Middle>
+      <SwipePicker.MiddleText>부터</SwipePicker.MiddleText>
       <SwipePicker
         selectList={hourList}
         value={timeValue.toHour}
         setValue={(value: number) => setTimeValue({ ...timeValue, toHour: value })}
       />
-      <SwipePicker.Middle>:</SwipePicker.Middle>
+      <SwipePicker.MiddleText>:</SwipePicker.MiddleText>
       <SwipePicker
         selectList={minuteList}
         value={timeValue.toMin}
@@ -48,7 +48,7 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
         value={timeValue.toAmPm}
         setValue={(value: AMPMType) => setTimeValue({ ...timeValue, toAmPm: value })}
       />
-      <SwipePicker.Middle>까지</SwipePicker.Middle>
+      <SwipePicker.MiddleText>까지</SwipePicker.MiddleText>
     </div>
   );
 }
