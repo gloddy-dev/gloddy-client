@@ -1,10 +1,18 @@
 import { GenderType } from '@/types';
 
+export interface LoginRequest {
+  phoneNumber: string;
+}
+
 export interface LoginResponse {
   errorCode: string;
   userId: number;
   authority: string;
-  token: string;
+  token: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  existUser: boolean;
 }
 
 export interface SMSRequest {
