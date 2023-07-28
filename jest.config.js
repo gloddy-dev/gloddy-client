@@ -6,13 +6,10 @@ const createJestConfig = nextJest({
 
 const customJestConfig = {
   resetMocks: true,
-  moduleDirectories: ['node_modules'],
+  moduleDirectories: ['.yarn'],
   testEnvironment: 'jsdom',
   testRegex: '(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$',
   collectCoverageFrom: ['**/*.{js,ts,jsx,tsx}'],
-  moduleNameMapper: {
-    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|ico)$': 'identity-obj-proxy',
-  },
   moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
   transform: {
     '^.+\\.tsx?$': 'esbuild-jest',
