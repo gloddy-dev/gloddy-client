@@ -4,7 +4,7 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 import type { SignUpState } from '../type';
 import type { StrictPropsWithChildren } from '@/types';
 
-const defaultValues: SignUpState = {
+const defaultValues = {
   phoneNumber: '',
   imageUrl: '',
   schoolInfo: {
@@ -14,10 +14,11 @@ const defaultValues: SignUpState = {
   },
   nickname: '',
   birth: {
-    year: 0,
-    month: 0,
-    date: 0,
+    year: '',
+    month: '',
+    date: '',
   },
+  gender: undefined,
   personalityIdList: [],
 };
 

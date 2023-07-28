@@ -18,10 +18,10 @@ export interface TimeType {
   toAmPm: string;
 }
 
-export type BirthdayValueType = {
-  year: number;
-  month: number;
-  date: number;
+export type DateType = {
+  year: string;
+  month: string;
+  date: string;
 };
 
 export type GenderType = '남성' | '여성' | 'null';

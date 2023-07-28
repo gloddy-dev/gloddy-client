@@ -3,7 +3,7 @@ import { useJoinContext } from '@/app/join/components/JoinContext';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import cn from '@/utils/cn';
+import clsx from 'clsx';
 import Image from 'next/image';
 
 export default function EmailSection() {
@@ -22,7 +22,7 @@ export default function EmailSection() {
         })}
       />
       <div
-        className={cn('font-500 flex justify-center text-13 text-orange', {
+        className={clsx('font-500 flex justify-center text-13 text-orange', {
           invisible: !errors.schoolInfo?.email,
         })}
       >

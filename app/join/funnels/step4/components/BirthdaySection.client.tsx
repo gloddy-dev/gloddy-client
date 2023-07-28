@@ -7,11 +7,11 @@ import { Spacing } from '@/components/common/Spacing';
 import { DateSwipePicker } from '@/components/common/SwipePicker';
 import useModalStore from '@/store/useModalStore';
 
-import type { BirthdayValueType } from '@/types';
+import type { DateType } from '@/types';
 
 export default function BirthdaySection() {
   const { modalName, openModal, closeModal } = useModalStore();
-  const { watch, setValue, formState } = useJoinContext();
+  const { watch, setValue } = useJoinContext();
   const birth = watch('birth');
 
   const isOpen = modalName === 'birthday';
@@ -42,8 +42,8 @@ export default function BirthdaySection() {
         disableDrag
       >
         <DateSwipePicker
-          birthdayValue={birth}
-          setBirthdayValue={(birth: BirthdayValueType) => setValue('birth', birth)}
+          dateValue={birth}
+          setDateValue={(birth: DateType) => setValue('birth', birth)}
         />
         <BottomFixedButton
           text="다음"
