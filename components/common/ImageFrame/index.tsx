@@ -2,31 +2,33 @@ import { usePostFiles } from '@/apis/common';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { ForwardedRef, forwardRef } from 'react';
-
-import type { ImageType } from '@/types';
+import { ForwardedRef, forwardRef, useState } from 'react';
 
 interface ImageFrameProps {
-  setImage: (imageData: ImageType) => void;
-  imageBlob: string;
+  setImageUrl: (imageFile: string) => void;
   shape?: 'circle' | 'square';
 }
 
 export default forwardRef(function ImageFrame(
-  { setImage, imageBlob, shape = 'circle' }: ImageFrameProps,
+  { setImageUrl, shape = 'circle' }: ImageFrameProps,
   imgRef: ForwardedRef<HTMLInputElement>
 ) {
   const { mutate: mutatePostFiles } = usePostFiles();
+  const [imageBlob, setImageBlob] = useState<string>('');
 
-  const handleImageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
     const imageFile = e.target.files?.[0];
     if (imageFile === undefined) return;
     formData.append('fileList', imageFile);
-    mutatePostFiles(formData);
+    mutatePostFiles(formData, {
+      onSuccess: (data) => {
+        setImageUrl(data.fileUrlList[0]);
+      },
+    });
 
     const imageBlob = makeFileToBlob(imageFile);
-    setImage({ imageFile, imageBlob });
+    setImageBlob(imageBlob);
   };
 
   return (
@@ -69,7 +71,7 @@ export default forwardRef(function ImageFrame(
         type="file"
         accept="image/*"
         id="image"
-        onChange={handleImageInput}
+        onChange={handleInputChange}
         ref={imgRef}
       />
     </section>

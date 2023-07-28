@@ -1,1 +1,3 @@
-export type ExampleType = {};
+export interface FilesResponse {
+  fileUrlList: string[];
+}
