@@ -10,24 +10,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface PickerProps {
   selectList: string[];
-  keyType?: string;
-  isTimeZone?: boolean;
-  isRangeString?: boolean;
+  setValue: (value: string | GenderType) => void;
+
   isFirst?: boolean;
   isLast?: boolean;
-  setValue?: (value: string | GenderType, keyType: string) => void;
-  value?: string | GenderType;
 }
 
 export default function SwipePicker({
   selectList,
-  keyType = '',
+  setValue,
+
   isFirst = false,
   isLast = false,
-  isTimeZone = false,
-  isRangeString = false,
-  setValue,
-  value,
 }: PickerProps) {
   return (
     <Swiper
@@ -45,8 +39,7 @@ export default function SwipePicker({
         enabled: true,
         sticky: true,
       }}
-      onSlideChange={(swiper) => setValue && setValue(selectList[swiper.activeIndex], keyType)}
-      initialSlide={value ? selectList.indexOf(value) : 0}
+      onSlideChange={(swiper) => setValue(selectList[swiper.activeIndex])}
     >
       {selectList.map((slideContent) => (
         <SwiperSlide key={slideContent}>
@@ -55,14 +48,10 @@ export default function SwipePicker({
               <div
                 className={clsx(
                   {
-                    'text-25 text-gray': !isRangeString && !isTimeZone,
-                    'text-12 text-blue': isRangeString,
-                    'text-14': isTimeZone,
-
                     'rounded-l-10': isFirst,
                     'rounded-r-10': isLast,
                   },
-                  'flex h-full items-center justify-center bg-[#f8f8f8] font-700 opacity-100'
+                  'flex h-full items-center justify-center bg-[#f8f8f8] text-25 font-700 text-gray'
                 )}
               >
                 {slideContent}
