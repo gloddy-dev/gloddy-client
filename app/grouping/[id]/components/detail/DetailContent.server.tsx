@@ -1,7 +1,7 @@
-import { Spacing } from '@/components/common/Spacing';
+import LocationSection from './LocationSection.server';
 import MemberSection from './MemberSection.server';
 import TimeSection from './TimeSection.server';
-import LocationSection from './LocationSection.server';
+import { Spacing } from '@/components/common/Spacing';
 
 interface DetailContentProps {
   location: string;

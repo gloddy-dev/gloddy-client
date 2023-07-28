@@ -1,6 +1,5 @@
-import Image from 'next/image';
-
 import { TopNavigationBar } from '@/components/common/NavigationBar';
+import Image from 'next/image';
 
 export default function GroupingTopNavigationBar() {
   return (

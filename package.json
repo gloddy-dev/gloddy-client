@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "eslint '**/*.{js,jsx,ts,tsx}' --fix",
     "prepare": "husky install",
     "postinstall": "husky install",
     "cypress": "cypress open",
