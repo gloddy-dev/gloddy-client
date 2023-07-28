@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 export default function ImageSection() {
   const imgRef = useRef<HTMLInputElement>(null);
-  const { setValue, watch } = useCreateGroupContext();
+  const { setValue } = useCreateGroupContext();
 
   return (
     <ImageFrame
