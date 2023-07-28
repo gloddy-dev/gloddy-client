@@ -8,13 +8,17 @@ import clsx from 'clsx';
 import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-interface PickerProps {
-  selectList: string[] | number[];
-  value: any;
-  setValue: (value: any) => void;
+interface PickerProps<T extends string | number> {
+  selectList: T[];
+  value: T;
+  setValue: (value: T) => void;
 }
 
-export default function SwipePicker({ selectList, value, setValue }: PickerProps) {
+export default function SwipePicker<T extends string | number>({
+  selectList,
+  value,
+  setValue,
+}: PickerProps<T>) {
   return (
     <Swiper
       mousewheel
