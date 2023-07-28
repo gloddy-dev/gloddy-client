@@ -1,7 +1,8 @@
 import SwipePicker from './SwipePicker';
-import { GenderType } from '@/types';
 
-const selectList = ['남성', '여성'];
+import type { GenderType } from '@/types';
+
+const selectList: GenderType[] = ['남성', '여성'];
 
 interface GenderSwipePickerProps {
   setGenderValue: (value: GenderType) => void;
