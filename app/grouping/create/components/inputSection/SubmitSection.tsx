@@ -5,8 +5,9 @@ import { BottomFixedButton } from '@/components/common/Button';
 import { format } from 'date-fns';
 
 import type { CreateGroupContextValue } from '../../type';
+import type { AMPMType } from '@/types';
 
-function convertTimeFormat(hour: string, minute: string, ampm: string) {
+function convertTimeFormat(hour: number, minute: number, ampm: AMPMType) {
   if (ampm === 'AM') {
     return `${hour}:${minute}`;
   }
