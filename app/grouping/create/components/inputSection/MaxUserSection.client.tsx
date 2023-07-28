@@ -27,6 +27,7 @@ export default function MaxUserSection() {
         isRightButton
         text={<div className="text-18">모임 인원</div>}
         isTapOutsideToClose
+        disableDrag
       >
         <div className="relative h-full">
           <NumberSwipePicker
