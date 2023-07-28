@@ -1,7 +1,6 @@
 'use client';
 
 import PersonalitySection from './PersonalitySection.client';
-import SubmitSection from './SubmitSection.client';
 import { useSignUpMutation } from '@/apis/auth';
 import { useJoinContext } from '@/app/join/components/JoinContext';
 import { SignUpState } from '@/app/join/type';
