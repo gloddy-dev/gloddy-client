@@ -3,6 +3,7 @@ import publicApi from '../config/publicApi';
 import type {
   EmailRequest,
   EmailVerifyRequest,
+  LoginRequest,
   LoginResponse,
   SMSRequest,
   SMSVerifiyRequest,
@@ -15,7 +16,8 @@ const TEST_ID = {
   password: 'qwqw5533',
 };
 
-export const postLogin = () => publicApi.post<LoginResponse>('/auth/login', TEST_ID);
+export const postLogin = (loginData: LoginRequest) =>
+  publicApi.post<LoginResponse>('/auth/login', loginData);
 
 export const postSMS = (SMSData: SMSRequest) => publicApi.post('/auth/sms', SMSData);
 
