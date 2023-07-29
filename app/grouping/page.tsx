@@ -28,19 +28,12 @@ const GroupingComponent = () => {
 
 export default function Grouping() {
   return (
-    <>
-      <TopNavigationBar
-        leftNode={<p>그루핑</p>}
-        rightNode={
-          <Link href="/search">
-            <Image src="/assets/search_navbar.svg" alt="search" width={15} height={15} />
-          </Link>
-        }
-      />
+    <main className="h-full bg-white2">
+      <TopNavigationBar leftNode={<p className="font-700 text-black2">그루핑</p>} />
       <Spacing size={18} />
       <GroupingComponent />
       <FloatingBubbleSection />
       <BottomNavigationBar page="grouping" />
-    </>
+    </main>
   );
 }
