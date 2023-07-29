@@ -11,11 +11,6 @@ import type {
   SignUpResponse,
 } from './type';
 
-const TEST_ID = {
-  email: 'testy54@soongsil.ac.kr',
-  password: 'qwqw5533',
-};
-
 export const postLogin = (loginData: LoginRequest) =>
   publicApi.post<LoginResponse>('/auth/login', loginData);
 

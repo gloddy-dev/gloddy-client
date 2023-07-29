@@ -1,14 +1,6 @@
 import { useCallback, useState } from 'react';
 
-export type ModalsReturnType = {
-  isOpen: boolean;
-  modalName?: string;
-  modalProps: any;
-  openModal: (name: string, props?: any) => void;
-  closeModal: () => void;
-};
-
-export const useModals = <ModalName extends string | undefined>(): ModalsReturnType => {
+export const useModals = <ModalName extends string | undefined>() => {
   const [isOpen, setisOpen] = useState(false);
   const [modalName, setModalName] = useState<ModalName>();
   const [modalProps, setModalProps] = useState({});
