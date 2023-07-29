@@ -35,7 +35,7 @@ interface PraiseComponentProps {
 
 export default function PraiseComponent({ onPrevClick, onNextClick }: PraiseComponentProps) {
   return (
-    <main>
+    <main className="bg-white">
       <TopNavigationBar
         text="칭찬합시다"
         leftNode={

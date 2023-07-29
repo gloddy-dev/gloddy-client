@@ -14,7 +14,7 @@ export default function GroupingCard({ grouping, onClick }: GroupingCardProps) {
 
   return (
     <div
-      className="flex h-126 w-full flex-col justify-between rounded-8 bg-white px-20 py-16 pl-14"
+      className="flex h-126 w-full cursor-pointer flex-col justify-between rounded-8 bg-white px-20 py-16 pl-14"
       onClick={onClick}
     >
       <div className="flex w-full flex-row">
