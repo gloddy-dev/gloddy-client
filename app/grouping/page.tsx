@@ -1,11 +1,12 @@
 import FloatingBubbleSection from './components/FloatingBubbleSection.server';
 import GroupingCardList from './components/GroupingCardList.client';
-import GroupingTopNavigationBar from './components/GroupingTopNavigationBar.server';
-import { Keys, getGroups } from '@/apis/groups';
+import { getGroups } from '@/apis/groups';
 import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/HydrationProvider';
-import { BottomNavigationBar } from '@/components/common/NavigationBar';
+import { BottomNavigationBar, TopNavigationBar } from '@/components/common/NavigationBar';
 import { Spacing } from '@/components/common/Spacing';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 const GroupingComponent = () => {
@@ -28,14 +29,17 @@ const GroupingComponent = () => {
 export default function Grouping() {
   return (
     <>
-      <GroupingTopNavigationBar />
-
+      <TopNavigationBar
+        leftNode={<p>그루핑</p>}
+        rightNode={
+          <Link href="/search">
+            <Image src="/assets/search_navbar.svg" alt="search" width={15} height={15} />
+          </Link>
+        }
+      />
       <Spacing size={18} />
-
       <GroupingComponent />
-
       <FloatingBubbleSection />
-
       <BottomNavigationBar page="grouping" />
     </>
   );
