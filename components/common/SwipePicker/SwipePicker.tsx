@@ -48,7 +48,7 @@ export default function SwipePicker<T extends string | number>({
                 'font-500 text-17 text-gray3': !isActive,
               })}
             >
-              {typeof slideContent === 'number' && slideContent < 10
+              {typeof slideContent === 'number' && slideContent >= 0 && slideContent < 10
                 ? '0' + slideContent
                 : slideContent}
             </div>
