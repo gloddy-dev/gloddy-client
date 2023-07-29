@@ -3,26 +3,23 @@
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
-import { GenderType } from '@/types';
 import clsx from 'clsx';
 import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-interface PickerProps {
-  selectList: string[];
-  setValue: (value: string | GenderType) => void;
+import type { StrictPropsWithChildren } from '@/types';
 
-  isFirst?: boolean;
-  isLast?: boolean;
+interface PickerProps<T extends string | number> {
+  selectList: T[];
+  value: T;
+  setValue: (value: T) => void;
 }
 
-export default function SwipePicker({
+export default function SwipePicker<T extends string | number>({
   selectList,
+  value,
   setValue,
-
-  isFirst = false,
-  isLast = false,
-}: PickerProps) {
+}: PickerProps<T>) {
   return (
     <Swiper
       mousewheel
@@ -40,30 +37,39 @@ export default function SwipePicker({
         sticky: true,
       }}
       onSlideChange={(swiper) => setValue(selectList[swiper.activeIndex])}
+      initialSlide={selectList.indexOf(value)}
     >
       {selectList.map((slideContent) => (
         <SwiperSlide key={slideContent}>
-          {({ isActive }) =>
-            isActive ? (
-              <div
-                className={clsx(
-                  {
-                    'rounded-l-10': isFirst,
-                    'rounded-r-10': isLast,
-                  },
-                  'flex h-full items-center justify-center bg-[#f8f8f8] text-25 font-700 text-gray'
-                )}
-              >
-                {slideContent}
-              </div>
-            ) : (
-              <div className="font-500 flex h-full items-center justify-center text-17 text-gray3">
-                {slideContent}
-              </div>
-            )
-          }
+          {({ isActive }) => (
+            <div
+              className={clsx('flex h-full items-center justify-center', {
+                'text-25 font-700 text-gray': isActive,
+                'font-500 text-17 text-gray3': !isActive,
+              })}
+            >
+              {typeof slideContent === 'number' && slideContent >= 0 && slideContent < 10
+                ? '0' + slideContent
+                : slideContent}
+            </div>
+          )}
         </SwiperSlide>
       ))}
     </Swiper>
   );
 }
+
+function Bar() {
+  return <div className="absolute inset-y-0 my-auto h-60 w-full rounded-8 bg-[#f8f8f8]" />;
+}
+
+function MiddleText({ children }: StrictPropsWithChildren) {
+  return (
+    <div className="z-10 flex grow items-center whitespace-nowrap text-20 font-700 text-gray">
+      {children}
+    </div>
+  );
+}
+
+SwipePicker.Bar = Bar;
+SwipePicker.MiddleText = MiddleText;

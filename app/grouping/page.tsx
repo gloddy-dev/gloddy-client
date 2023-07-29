@@ -11,18 +11,17 @@ import { Suspense } from 'react';
 const GroupingComponent = () => {
   const getGroupsQuery = async () => {
     const data = await getGroups(0);
-    console.log(data);
     return data;
   };
 
   return (
-    <HydrationProvider queryKey={Keys.getGroups()} queryFn={getGroupsQuery}>
-      <RetryErrorBoundary>
-        <Suspense>
-          <GroupingCardList />
-        </Suspense>
-      </RetryErrorBoundary>
-    </HydrationProvider>
+    // <HydrationProvider queryKey={Keys.getGroups()} queryFn={getGroupsQuery}>
+    <RetryErrorBoundary>
+      <Suspense>
+        <GroupingCardList />
+      </Suspense>
+    </RetryErrorBoundary>
+    // </HydrationProvider>
   );
 };
 
