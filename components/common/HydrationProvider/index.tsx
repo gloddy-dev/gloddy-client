@@ -1,6 +1,8 @@
 import { Hydrate, QueryClient, dehydrate } from '@tanstack/react-query';
-import { type QueryFunction, QueryKey } from '@tanstack/react-query';
-import { PropsWithChildren, cache } from 'react';
+import { cache } from 'react';
+
+import type { StrictPropsWithChildren } from '@/types';
+import type { QueryFunction, QueryKey } from '@tanstack/react-query';
 
 type HydrationProviderProps = {
   queryKey: QueryKey;
@@ -11,7 +13,7 @@ export const HydrationProvider = async ({
   children,
   queryKey,
   queryFn,
-}: PropsWithChildren<HydrationProviderProps>) => {
+}: StrictPropsWithChildren<HydrationProviderProps>) => {
   const getQueryClient = cache(() => new QueryClient());
 
   const queryClient = getQueryClient();

@@ -1,49 +1,61 @@
 'use client';
 
 import GroupingCard from './GroupingCard.client';
-import { useGetGroups } from '@/apis/groups';
+import { type Grouping, useGetGroups } from '@/apis/groups';
 
-const DUMMY_GROUPING_DATA = [
+const DUMMY_GROUPING_DATA: Grouping[] = [
   {
-    id: '1',
-    image: '/assets/location.svg',
+    groupId: 1,
+    imageUrl: '/assets/location.svg',
     title: 'Let’s go for a walk!',
-    description: 'It’s a group that walks around, talks, and learns languages.',
-    current: '2',
-    total: '1',
-    location: '동대문구 회기동',
-    time: '04.27.FRI 7PM',
+    content: 'It’s a group that walks around, talks, and learns languages.',
+    memberCount: 2,
+    maxUser: 2,
+    place: '동대문구 회기동',
+    meetDate: '04.27.FRI 7PM',
+    startTime: '13:00',
+    endTime: '15:00',
+    place_latitude: 37.579,
+    place_longitude: 127.056,
   },
   {
-    id: '2',
-    image: '/assets/location.svg',
+    groupId: 2,
+    imageUrl: '/assets/location.svg',
     title: 'Let’s go for a walk!',
-    description: 'It’s a group that walks around, talks, and learns languages.',
-    current: '2',
-    total: '2',
-    location: '동대문구 회기동',
-    time: '04.27.FRI 7PM',
+    content: 'It’s a group that walks around, talks, and learns languages.',
+    memberCount: 2,
+    maxUser: 3,
+    place: '동대문구 회기동',
+    meetDate: '04.27.FRI 7PM',
+    startTime: '13:00',
+    endTime: '15:00',
+    place_latitude: 37.579,
+    place_longitude: 127.056,
   },
   {
-    id: '3',
-    image: '/assets/location.svg',
+    groupId: 3,
+    imageUrl: '/assets/location.svg',
     title: 'Let’s go for a walk!',
-    description: 'It’s a group that walks around, talks, and learns languages.',
-    current: '2',
-    total: '3',
-    location: '동대문구 회기동',
-    time: '04.27.FRI 7PM',
+    content: 'It’s a group that walks around, talks, and learns languages.',
+    memberCount: 0,
+    maxUser: 5,
+    place: '동대문구 회기동',
+    meetDate: '04.27.FRI 7PM',
+    startTime: '13:00',
+    endTime: '15:00',
+    place_latitude: 37.579,
+    place_longitude: 127.056,
   },
 ];
 
 export default function GroupingCardList() {
   return (
-    <section>
+    <section className="flex flex-col gap-18">
       {DUMMY_GROUPING_DATA.map((groupingData) => (
         <GroupingCard
           onClick={() => console.log('What the hell')}
-          {...groupingData}
-          key={groupingData.id}
+          grouping={groupingData}
+          key={groupingData.groupId}
         />
       ))}
     </section>
