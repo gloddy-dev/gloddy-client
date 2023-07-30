@@ -5,12 +5,12 @@ import React from 'react';
 import type { Grouping } from '@/apis/groups';
 
 interface GroupingCardProps {
-  grouping: Grouping;
+  groupingData: Grouping;
   onClick?: () => void;
 }
 
-export default function GroupingCard({ grouping, onClick }: GroupingCardProps) {
-  const { title, content, memberCount, maxUser, meetDate, place } = grouping;
+export default function GroupingCard({ groupingData, onClick }: GroupingCardProps) {
+  const { title, content, memberCount, maxUser, meetDate, place } = groupingData;
 
   return (
     <div

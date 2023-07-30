@@ -55,7 +55,7 @@ export default function GroupingCardList() {
       {DUMMY_GROUPING_DATA.map((groupingData) => (
         <GroupingCard
           onClick={() => router.push(`/grouping/${groupingData.groupId}`)}
-          grouping={groupingData}
+          groupingData={groupingData}
           key={groupingData.groupId}
         />
       ))}
