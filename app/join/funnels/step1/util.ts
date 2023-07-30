@@ -10,3 +10,11 @@ export const formatNumberBackSpace = (phoneNumber: string): string => {
   if (phoneNumber.length === 7) return `${phoneNumber.slice(0, 7)}`;
   return phoneNumber;
 };
+
+export const formatWithoutHyphen = (phoneNumber: string): string => {
+  return phoneNumber.replace(/[-\s]/g, '');
+};
+
+export const formatWithoutSpace = (phoneNumber: string): string => {
+  return phoneNumber.replace(/\s/g, '');
+};

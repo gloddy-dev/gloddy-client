@@ -36,9 +36,9 @@ interface BottomNavigationBarProps {
 
 export default function BottomNavigationBar({ page }: BottomNavigationBarProps) {
   return (
-    <div className="fixed inset-x-0 bottom-0 mx-auto flex max-w-[26.25rem] justify-around rounded-t-25 bg-white">
+    <div className="fixed inset-x-0 bottom-0 mx-auto flex h-80 max-w-450 justify-between gap-20 rounded-t-25 bg-white px-40 py-20">
       {tabList.map((tab: TabType) => (
-        <Link href={tab.name} key={tab.id}>
+        <Link href={tab.name} key={tab.id} className="flex flex-col items-center">
           <Image
             src={`/assets/tabIcon/${tab.name}${tab.name === page ? '_filled' : ''}.svg`}
             alt={tab.title}
@@ -46,10 +46,10 @@ export default function BottomNavigationBar({ page }: BottomNavigationBarProps) 
             height={30}
           />
           <div
-            className={clsx('text-10 font-700', {
-              'text-gray4': tab.name !== page,
-              'text-blue': tab.name === page,
-            })}
+            className={clsx(
+              'text-10',
+              tab.name === page ? 'font-700 text-blue' : 'font-400 text-gray4'
+            )}
           >
             {tab.title}
           </div>

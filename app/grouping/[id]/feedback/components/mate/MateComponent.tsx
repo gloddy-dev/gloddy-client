@@ -44,7 +44,7 @@ export default function MateComponent({ onPrevClick, onNextClick }: MateComponen
   } = useFeedbackContext();
 
   return (
-    <main>
+    <main className="bg-white">
       <TopNavigationBar
         text="최고의 짝꿍"
         leftNode={
