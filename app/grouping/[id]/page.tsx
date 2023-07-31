@@ -1,7 +1,7 @@
 import BoardContent from './components/board/BoardContent.server';
 import ContentSection from './components/ContentSection.client';
 import DetailContent from './components/detail/DetailContent.server';
-import TopNavigationBar from './components/TopNavigationBar.client';
+import GroupingTopNavigationBar from './components/GroupingTopNavigationBar.client';
 import TopSection from './components/TopSection.client';
 
 import type { GroupResponse } from '@/apis/groups';
@@ -33,7 +33,7 @@ export default function GroupingByIdPage({
 
   return (
     <main>
-      <TopNavigationBar />
+      <GroupingTopNavigationBar />
       <TopSection groupData={data} />
       <ContentSection
         groupingId={id}
