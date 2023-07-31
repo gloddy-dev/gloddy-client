@@ -2850,6 +2850,7 @@ __metadata:
     react-hook-form: ^7.45.0
     react-kakao-maps-sdk: ^1.1.9
     react-modal-sheet: ^2.0.0
+    server-only: ^0.0.1
     swiper: ^9.4.1
     tailwind-merge: ^1.14.0
     tailwindcss: ^3.3.2
@@ -4834,6 +4835,13 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 9d58db16525e9f749ad0a696a1f27deabaa51f66e91d2fa2b0db3de3e9644e8677de3b7d7a03f4c15bc81521e0c3916d7369e0572dbde250d9bedf5194e2a8a7
+  languageName: node
+  linkType: hard
+
+"server-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "server-only@npm:0.0.1"
+  checksum: c432348956641ea3f460af8dc3765f3a1bdbcf7a1e0205b0756d868e6e6fe8934cdee6bff68401a1dd49ba4a831c75916517a877446d54b334f7de36fa273e53
   languageName: node
   linkType: hard
 
