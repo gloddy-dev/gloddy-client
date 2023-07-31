@@ -5,11 +5,10 @@ import { CookieKeyType } from '@/types';
 import { cookies } from 'next/headers';
 
 export const getAccessTokenServer = async (
-  authTokens: Partial<CookieKeyType>
+  authTokens: CookieKeyType
 ): Promise<string | null | ApiError> => {
   try {
     const { accessToken, refreshToken, userId } = authTokens;
-
     if (accessToken && refreshToken) {
       const response = await postReissue({ accessToken, refreshToken });
       if (
@@ -19,7 +18,6 @@ export const getAccessTokenServer = async (
       ) {
         return null;
       }
-
       const cookieStore = cookies();
       for (const [cookieKey, cookieValue] of generateCookiesKeyValues({
         accessToken: response.token.accessToken,
@@ -28,7 +26,8 @@ export const getAccessTokenServer = async (
       })) {
         cookieStore.set(cookieKey as string, cookieValue as string);
       }
-      return accessToken;
+
+      return response.token.accessToken;
     } else {
       return null;
     }
