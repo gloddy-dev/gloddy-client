@@ -63,6 +63,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-hook-form", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.45.0"],\
             ["react-kakao-maps-sdk", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:1.1.9"],\
             ["react-modal-sheet", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:2.0.0"],\
+            ["server-only", "npm:0.0.1"],\
             ["swiper", "npm:9.4.1"],\
             ["tailwind-merge", "npm:1.14.0"],\
             ["tailwindcss", "npm:3.3.2"],\
@@ -3756,6 +3757,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-hook-form", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.45.0"],\
             ["react-kakao-maps-sdk", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:1.1.9"],\
             ["react-modal-sheet", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:2.0.0"],\
+            ["server-only", "npm:0.0.1"],\
             ["swiper", "npm:9.4.1"],\
             ["tailwind-merge", "npm:1.14.0"],\
             ["tailwindcss", "npm:3.3.2"],\
@@ -6190,6 +6192,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["semver", "npm:7.5.3"],\
             ["lru-cache", "npm:6.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["server-only", [\
+        ["npm:0.0.1", {\
+          "packageLocation": "./.yarn/cache/server-only-npm-0.0.1-24bf42bde2-c432348956.zip/node_modules/server-only/",\
+          "packageDependencies": [\
+            ["server-only", "npm:0.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\

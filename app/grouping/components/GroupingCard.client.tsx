@@ -1,22 +1,23 @@
 'use client';
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import type { Grouping } from '@/apis/groups';
 
 interface GroupingCardProps {
   groupingData: Grouping;
-  onClick?: () => void;
 }
 
-export default function GroupingCard({ groupingData, onClick }: GroupingCardProps) {
+export default function GroupingCard({ groupingData }: GroupingCardProps) {
   const { title, content, memberCount, maxUser, meetDate, place } = groupingData;
+  const router = useRouter();
 
   return (
     <div
       className="flex h-126 w-full cursor-pointer flex-col justify-between rounded-8 bg-white px-20 py-16 pl-14"
-      onClick={onClick}
+      onClick={() => router.push(`/grouping/${groupingData.groupId}`)}
     >
       <div className="flex w-full flex-row">
         <div className="h-60 w-60 rounded-8 bg-white3"></div>
