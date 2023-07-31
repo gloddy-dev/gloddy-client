@@ -15,6 +15,19 @@ export interface LoginResponse {
   existUser: boolean;
 }
 
+export interface TokenReissueRequest {
+  refreshToken: string;
+  accessToken: string;
+}
+
+export interface TokenReissueResponse {
+  errorCode: string;
+  token: {
+    accessToken: string;
+    refreshToken: string;
+  };
+}
+
 export interface SMSRequest {
   number: string;
 }
