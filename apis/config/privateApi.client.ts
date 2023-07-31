@@ -1,5 +1,5 @@
-import { onRequestError, onResponse, onResponseError } from './interceptor';
-import { onRequestClient } from './interceptor.client';
+import { onRequestError, onResponse } from './interceptor';
+import { onRequestClient, onResponseErrorClient } from './interceptor.client';
 import { BASE_API_URL } from '@/constants';
 import axios from 'axios';
 
@@ -12,6 +12,6 @@ const privateApi: CustomInstance = axios.create({
 
 privateApi.interceptors.request.use(onRequestClient, onRequestError);
 
-privateApi.interceptors.response.use(onResponse, onResponseError);
+privateApi.interceptors.response.use(onResponse, onResponseErrorClient);
 
 export default privateApi;
