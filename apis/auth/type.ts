@@ -15,12 +15,12 @@ export interface LoginResponse {
   existUser: boolean;
 }
 
-export interface TokenReissueRequest {
+export interface ReissueRequest {
   refreshToken: string;
   accessToken: string;
 }
 
-export interface TokenReissueResponse {
+export interface ReissueResponse {
   errorCode: string;
   token: {
     accessToken: string;
