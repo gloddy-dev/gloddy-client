@@ -1,6 +1,7 @@
 import { ApiError } from './customError';
 import privateApi from './privateApi.server';
 import { AUTH_COOKIE_KEYS, ErrorType } from './type';
+import { AUTH_ERROR_CODES } from '@/constants/errorCode';
 import { getAccessTokenServer } from '@/utils/auth/tokenValidator.server';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { cookies } from 'next/headers';
@@ -21,47 +22,47 @@ export const onRequestServer = async (config: InternalAxiosRequestConfig) => {
   }
 };
 
-export const onResponseErrorServer = async (
-  error: AxiosError<ErrorType, InternalAxiosRequestConfig>
-) => {
-  // 2xx 외의 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
-  // 응답 오류가 있는 작업 수행
+export const onResponseErrorServer = async (error: AxiosError<ErrorType, InternalAxiosRequestConfig>) => {
   try {
     if (error.response) {
-      // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-      if (error.response.status === 403) {
+      if (error.response.status === 412) {
         try {
-          // 토큰 만료
           const cookieStore = cookies();
           const refreshToken = cookieStore.get(AUTH_COOKIE_KEYS.refreshToken)?.value;
+          const accessToken = cookieStore.get(AUTH_COOKIE_KEYS.accessToken)?.value;
+          const userId = cookieStore.get(AUTH_COOKIE_KEYS.userId)?.value;
 
-          const validTokenResponse = await getAccessTokenServer({ refreshToken });
+          if (!refreshToken || !accessToken || userId === undefined)
+            throw new ApiError('에러 발생', '토큰이 없습니다.', 412, new Date());
+
+          const validTokenResponse = await getAccessTokenServer({
+            refreshToken,
+            accessToken,
+            userId,
+          });
+
           if (!validTokenResponse) {
             throw new ApiError(
               '에러 발생',
               'accessToken 발급중 오류가 발생했습니다.',
-              403,
+              AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
               new Date()
             );
-          } else if (validTokenResponse instanceof ApiError) {
-            throw validTokenResponse;
           } else {
             const prevRequest = error.config;
             if (!prevRequest) {
-              throw new ApiError('에러 발생', '이전 정보가 없습니다.', 403, new Date());
+              throw new ApiError('에러 발생', '이전 정보가 없습니다.', 412, new Date());
             }
-            prevRequest.headers['Authorization'] = `Bearer ${validTokenResponse}`;
+            prevRequest.headers['X-AUTH-TOKEN'] = validTokenResponse;
             return privateApi(prevRequest);
           }
         } catch (e) {
-          // server-side 로그아웃 처리
           redirect('/join');
           return Promise.reject(e);
         }
       }
       console.log(error);
     } else {
-      // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
       console.log('Error', error.message);
     }
 
