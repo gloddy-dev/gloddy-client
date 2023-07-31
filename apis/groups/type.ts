@@ -9,8 +9,8 @@ export interface Grouping {
   meetDate: string; // '2021-08-01'
   startTime: string; // '19:00'
   endTime: string; // '21:00'
-  place_latitude: number;
-  place_longitude: number;
+  placeLatitude: number;
+  placeLongitude: number;
 }
 
 export interface GroupsResponse {
