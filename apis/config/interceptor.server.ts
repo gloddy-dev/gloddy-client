@@ -22,18 +22,25 @@ export const onRequestServer = async (config: InternalAxiosRequestConfig) => {
   }
 };
 
-export const onResponseErrorServer = async (error: AxiosError<ErrorType, InternalAxiosRequestConfig>) => {
+export const onResponseErrorServer = async (
+  error: AxiosError<ErrorType, InternalAxiosRequestConfig>
+) => {
   try {
     if (error.response) {
-      if (error.response.status === 412) {
+      if (error.response.status === AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR) {
         try {
           const cookieStore = cookies();
           const refreshToken = cookieStore.get(AUTH_COOKIE_KEYS.refreshToken)?.value;
           const accessToken = cookieStore.get(AUTH_COOKIE_KEYS.accessToken)?.value;
-          const userId = cookieStore.get(AUTH_COOKIE_KEYS.userId)?.value;
+          const userId = cookieStore.get(AUTH_COOKIE_KEYS.userId)?.value as unknown as number;
 
           if (!refreshToken || !accessToken || userId === undefined)
-            throw new ApiError('에러 발생', '토큰이 없습니다.', 412, new Date());
+            throw new ApiError(
+              '에러 발생',
+              '토큰이 없습니다.',
+              AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
+              new Date()
+            );
 
           const validTokenResponse = await getAccessTokenServer({
             refreshToken,
@@ -51,7 +58,12 @@ export const onResponseErrorServer = async (error: AxiosError<ErrorType, Interna
           } else {
             const prevRequest = error.config;
             if (!prevRequest) {
-              throw new ApiError('에러 발생', '이전 정보가 없습니다.', 412, new Date());
+              throw new ApiError(
+                '에러 발생',
+                '이전 정보가 없습니다.',
+                AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
+                new Date()
+              );
             }
             prevRequest.headers['X-AUTH-TOKEN'] = validTokenResponse;
             return privateApi(prevRequest);
