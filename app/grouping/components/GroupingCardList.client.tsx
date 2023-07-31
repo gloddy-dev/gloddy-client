@@ -50,11 +50,7 @@ export default function GroupingCardList() {
   return (
     <section className="mx-20 flex flex-col gap-8">
       {DUMMY_GROUPING_DATA.map((groupingData) => (
-        <GroupingCard
-          // onClick={() => router.push(`/grouping/${groupingData.groupId}`)}
-          groupingData={groupingData}
-          key={groupingData.groupId}
-        />
+        <GroupingCard groupingData={groupingData} key={groupingData.groupId} />
       ))}
     </section>
   );
