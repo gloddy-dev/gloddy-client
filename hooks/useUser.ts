@@ -1,5 +1,6 @@
 import { replaceAccessTokenForRequestInstance } from '@/apis/config/util';
 import { localStorageUserTokenKeys } from '@/constants/localStorage';
+import { generateCookiesKeyValues } from '@/utils/auth';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
@@ -27,7 +28,15 @@ export function useUser() {
    */
 
   const userLogin = useCallback(
-    ({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) => {
+    ({
+      accessToken,
+      refreshToken,
+      userId,
+    }: {
+      accessToken: string;
+      refreshToken: string;
+      userId: number;
+    }) => {
       if (
         accessToken === undefined ||
         refreshToken === undefined ||
@@ -36,10 +45,14 @@ export function useUser() {
       ) {
         throw Error('로그인 토큰이 올바르지 않습니다.');
       }
-
       replaceAccessTokenForRequestInstance(accessToken);
-      localStorage.setItem(localStorageUserTokenKeys.accessToken, accessToken);
-      localStorage.setItem(localStorageUserTokenKeys.refreshToken, refreshToken);
+      for (const [cookieKey, cookieValue] of generateCookiesKeyValues({
+        accessToken,
+        refreshToken,
+        userId,
+      })) {
+        document.cookie = `${cookieKey}=${cookieValue}; path=/;`;
+      }
       postRefreshTokenReactNativeWebView(refreshToken);
       queryClient.clear();
     },

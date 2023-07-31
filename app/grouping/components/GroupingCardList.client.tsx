@@ -1,7 +1,5 @@
-'use client';
 import GroupingCard from './GroupingCard.client';
-import { type Grouping, useGetGroups } from '@/apis/groups';
-import { useRouter } from 'next/navigation';
+import { type Grouping } from '@/apis/groups';
 
 const DUMMY_GROUPING_DATA: Grouping[] = [
   {
@@ -49,12 +47,11 @@ const DUMMY_GROUPING_DATA: Grouping[] = [
 ];
 
 export default function GroupingCardList() {
-  const router = useRouter();
   return (
     <section className="mx-20 flex flex-col gap-8">
       {DUMMY_GROUPING_DATA.map((groupingData) => (
         <GroupingCard
-          onClick={() => router.push(`/grouping/${groupingData.groupId}`)}
+          // onClick={() => router.push(`/grouping/${groupingData.groupId}`)}
           groupingData={groupingData}
           key={groupingData.groupId}
         />
