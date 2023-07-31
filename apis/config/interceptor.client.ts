@@ -1,6 +1,7 @@
 import { ApiError } from './customError';
 import privateApi from './privateApi.client';
 import { ErrorType } from './type';
+import { AUTH_ERROR_CODES } from '@/constants/errorCode';
 import { getAuthTokensByCookie } from '@/utils/auth';
 import { getAccessTokenClient } from '@/utils/auth/tokenValidator.client';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
@@ -24,7 +25,7 @@ export const onResponseErrorClient = async (
 ) => {
   try {
     if (error.response) {
-      if (error.response.status === 403) {
+      if (error.response.status === AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR) {
         try {
           const auth = getAuthTokensByCookie(document.cookie);
           const validTokenResponse = await getAccessTokenClient(auth);
@@ -32,7 +33,7 @@ export const onResponseErrorClient = async (
             throw new ApiError(
               '에러 발생',
               'accessToken 발급중 오류가 발생했습니다.',
-              403,
+              AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
               new Date()
             );
           } else if (validTokenResponse instanceof ApiError) {
