@@ -1,17 +1,25 @@
 import BoardContent from './components/board/BoardContent.server';
 import ContentSection from './components/ContentSection.client';
 import DetailContent from './components/detail/DetailContent.server';
-import TopNavigationBar from './components/TopNavigationBar.client';
+import GroupingTopNavigationBar from './components/GroupingTopNavigationBar.client';
 import TopSection from './components/TopSection.client';
 
-const DETAIL_DUMMY_DATA = {
-  image: '/assets/main_logo.png',
+import type { GroupResponse } from '@/apis/groups';
+
+const DETAIL_DUMMY_DATA: GroupResponse = {
+  imageUrl: '/assets/main_logo.png',
   title: 'Let’s go for a walk!',
-  description: 'It’s a group that \n🏃walks around, \n🗣talks, \n🌏and learns languages.',
-  current: '2',
-  total: '4',
-  location: '동대문구 회기동',
-  time: '04.27.FRI 7PM',
+  content: 'It’s a group that \n🏃walks around, \n🗣talks, \n🌏and learns languages.',
+  memberCount: 2,
+  maxUser: 4,
+  place: '동대문구 회기동',
+  meetDate: '2021-10-10',
+  startTime: '10:00',
+  endTime: '12:00',
+  placeLatitude: 37.589039,
+  placeLongitude: 127.057761,
+  isCaptain: true,
+  myGroup: true,
 };
 
 export default function GroupingByIdPage({
@@ -21,15 +29,15 @@ export default function GroupingByIdPage({
     id: string;
   };
 }) {
-  const { image, title, description, location, time } = DETAIL_DUMMY_DATA;
+  const data = DETAIL_DUMMY_DATA;
 
   return (
     <main>
-      <TopNavigationBar />
-      <TopSection title={title} thumbnailUrl={image} description={description} />
+      <GroupingTopNavigationBar />
+      <TopSection groupData={data} />
       <ContentSection
         groupingId={id}
-        detailNode={<DetailContent location={location} time={time} />}
+        detailNode={<DetailContent groupData={data} />}
         boardNode={<BoardContent />}
       />
     </main>

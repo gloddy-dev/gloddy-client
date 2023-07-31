@@ -2,28 +2,21 @@
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 
+import type { GroupResponse } from '@/apis/groups';
+
 interface TopSectionProps {
-  thumbnailUrl: string;
-  title: string;
-  description: string;
-  bookmarked?: boolean;
-  isLeader?: boolean;
+  groupData: GroupResponse;
 }
 
-export default function TopSection({
-  title,
-  thumbnailUrl,
-  description,
-  bookmarked = false,
-  isLeader = false,
-}: TopSectionProps) {
+export default function TopSection({ groupData }: TopSectionProps) {
+  const { imageUrl, title, content, isCaptain, myGroup } = groupData;
   const handlBookmarkClick = () => {};
 
   return (
     <section>
       <div className="relative h-350">
-        <Image src={thumbnailUrl} alt="thumbnail" className="w-full rounded-b-35" fill />
-        {isLeader ? (
+        <Image src={imageUrl} alt="thumbnail" className="w-full rounded-b-35" fill />
+        {isCaptain ? (
           <Image
             src="/assets/check_mark.svg"
             alt="leader"
@@ -33,7 +26,7 @@ export default function TopSection({
           />
         ) : (
           <Image
-            src={bookmarked ? '/assets/bookmark_fill.svg' : '/assets/bookmark.svg'}
+            src={myGroup ? '/assets/bookmark_fill.svg' : '/assets/bookmark.svg'}
             alt="bookmark"
             width={50}
             height={50}
@@ -46,7 +39,7 @@ export default function TopSection({
         <Spacing size={16} />
         <h1 className="text-18 font-700 text-gray">{title}</h1>
         <Spacing size={8} />
-        <p className="text-12 font-400 text-gray2">{description}</p>
+        <p className="text-12 font-400 text-gray2">{content}</p>
       </div>
     </section>
   );
