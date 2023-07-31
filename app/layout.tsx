@@ -2,55 +2,41 @@ import Layout from '@/app/components/Layout';
 import './globals.css';
 
 import QueryProvider from './components/QueryProvider.client';
+import { BASE_WEB_URL } from '@/constants';
 
-import type { Metadata } from 'next';
+const DEFAULT_OG_TITLE = 'Gloddy';
+const DEFAULT_OG_DESC = '조금 더 믿을 만한 모임을 할 수 있도록 준비했어요!';
+const DEFAULT_OG_IMAGE = '/assets/main_logo.png';
 
-import { UserProvider } from './components/UserProvider.client';
-
-export const metadata: Metadata = {
-  title: 'Gloddy',
-  description: '조금 더 믿을 만한 모임을 할 수 있도록 준비했어요!',
-  openGraph: {
-    title: 'Gloddy',
-    description: '조금 더 믿을 만한 모임을 할 수 있도록 준비했어요!',
-    url: '', // 웹사이트 URL
-    siteName: 'Gloddy',
-    images: [
-      {
-        url: '', // 이미지 URL
-        width: 1920,
-        height: 1080,
-      },
-    ],
-    locale: 'ko-KR',
-    type: 'website',
+export const metadata = {
+  metadataBase: new URL(BASE_WEB_URL),
+  title: {
+    template: `${DEFAULT_OG_TITLE} / %s `,
+    default: DEFAULT_OG_TITLE,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+  description: DEFAULT_OG_DESC,
+  openGraph: {
+    title: DEFAULT_OG_TITLE,
+    description: DEFAULT_OG_DESC,
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
-    title: 'Gloddy',
-    card: 'summary_large_image',
+    title: DEFAULT_OG_TITLE,
+    description: DEFAULT_OG_DESC,
+    images: [DEFAULT_OG_IMAGE],
   },
-  icons: {
-    shortcut: '/favicon.ico',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <Layout>
-      <QueryProvider>
-        <UserProvider>{children}</UserProvider>
-      </QueryProvider>
+      <QueryProvider>{children}</QueryProvider>
     </Layout>
   );
 }
