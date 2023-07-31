@@ -40,8 +40,9 @@ export default function NumberVerifyForm() {
                 if (response.existUser) {
                   const {
                     token: { accessToken, refreshToken },
+                    userId,
                   } = response;
-                  userLogin({ accessToken, refreshToken });
+                  userLogin({ accessToken, refreshToken, userId });
                 } else {
                   nextStep();
                 }
