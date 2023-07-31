@@ -7,6 +7,7 @@ import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
+import { useUser } from '@/hooks/useUser';
 import { useRouter } from 'next/navigation';
 
 import type { SignUpState } from '@/app/join/type';
@@ -19,6 +20,8 @@ export default function NumberVerifyForm() {
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateLogin } = useLoginMutation();
+
+  const { userLogin } = useUser();
 
   const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'certificateNumber'>> = (
     data
@@ -35,8 +38,10 @@ export default function NumberVerifyForm() {
             {
               onSuccess: (response: LoginResponse) => {
                 if (response.existUser) {
-                  // TODO : 토큰 설정
-                  router.push('/');
+                  const {
+                    token: { accessToken, refreshToken },
+                  } = response;
+                  userLogin({ accessToken, refreshToken });
                 } else {
                   nextStep();
                 }
