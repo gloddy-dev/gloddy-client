@@ -1,11 +1,7 @@
 import { AUTH_COOKIE_KEYS } from '@/apis/config/type';
+import { CookieKeyType } from '@/types';
 
-type CokkieKeyType = {
-  accessToken: string;
-  refreshToken: string;
-  userId: number;
-};
-const generateCookiesKeyValues = ({ accessToken, refreshToken, userId }: CokkieKeyType) => {
+const generateCookiesKeyValues = ({ accessToken, refreshToken, userId }: CookieKeyType) => {
   const accessTokenExpireDate = new Date();
 
   return [
@@ -16,8 +12,8 @@ const generateCookiesKeyValues = ({ accessToken, refreshToken, userId }: CokkieK
   ];
 };
 
-const getAuthTokensByCookie = (cookieString: string): Partial<CokkieKeyType> => {
-  const auth: Partial<CokkieKeyType> = {};
+const getAuthTokensByCookie = (cookieString: string): Partial<CookieKeyType> => {
+  const auth: Partial<CookieKeyType> = {};
   for (const cookie of cookieString.split('; ')) {
     const [key, value] = cookie.split('=');
     if (key === AUTH_COOKIE_KEYS.accessToken) {
