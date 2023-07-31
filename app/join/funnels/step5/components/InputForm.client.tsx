@@ -6,6 +6,8 @@ import { useJoinContext } from '@/app/join/components/JoinContext';
 import { SignUpState } from '@/app/join/type';
 import { BottomFixedButton } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
+import { useUser } from '@/hooks/useUser';
+import { useRouter } from 'next/navigation';
 
 const DUMMY_SIGN_UP_DATA = {
   phoneNumber: '010-5728-9353',
@@ -25,17 +27,24 @@ const DUMMY_SIGN_UP_DATA = {
 export default function InputForm() {
   const { handleSubmit, getValues } = useJoinContext();
   const { mutate: mutateSignUp } = useSignUpMutation();
+  const router = useRouter();
+  const { userLogin } = useUser();
+
   const onSubmit = async (data: SignUpState) => {
-    const { certificateEmailNumber, certificateNumber, birth, gender, personalityIdList, ...rest } =
-      data;
+    const { certificateEmailNumber, certificateNumber, birth, personalityIdList, ...rest } = data;
     const signUpRequest = {
       ...rest,
       birth: `${birth.year}-${birth.month}-${birth.date}`,
-      gender: gender === '남성' ? 'MALE' : 'FEMALE',
       personalities: personalityIdList.map((id) => personalityList[id - 1].keywordInEnglish),
     };
-    // mutateSignUp(signUpRequest);
-    // router.push('/grouping');
+    // FIXME: gender타입 변환 필요
+    mutateSignUp(signUpRequest, {
+      onSuccess: (data) => {
+        const { token } = data;
+        userLogin(token);
+        router.push('/grouping');
+      },
+    });
   };
 
   return (
