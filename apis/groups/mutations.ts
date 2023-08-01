@@ -1,6 +1,6 @@
-import { postCreateGroup } from './apis.client';
+import { postCreateGroup } from './apis';
 import { useMutation } from '@tanstack/react-query';
 
 export const usePostCreateGroup = () => {
-  return useMutation(postCreateGroup, {});
+  return useMutation(postCreateGroup);
 };
