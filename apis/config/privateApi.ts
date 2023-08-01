@@ -2,7 +2,7 @@ import { ApiError } from './customError';
 import { postReissue } from '../auth';
 import { BASE_API_URL } from '@/constants';
 import { AUTH_ERROR_CODES } from '@/constants/errorCode';
-import { getToken } from '@/utils/auth/tokenController';
+import { getTokenFromCookie } from '@/utils/auth/tokenController';
 import axios, { AxiosError, AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 import { redirect } from 'next/navigation';
 
@@ -18,7 +18,7 @@ privateApi.defaults.timeout = 2500;
 privateApi.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     try {
-      const { accessToken } = await getToken();
+      const { accessToken } = await getTokenFromCookie();
       if (accessToken) {
         config.headers['X-AUTH-TOKEN'] = accessToken;
         return config;
@@ -42,7 +42,7 @@ privateApi.interceptors.response.use(
       if (error.response) {
         if (error.response.status === AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR) {
           try {
-            const { refreshToken, accessToken, userId } = await getToken();
+            const { refreshToken, accessToken, userId } = await getTokenFromCookie();
 
             if (!refreshToken || !accessToken || userId === undefined)
               throw new ApiError(
