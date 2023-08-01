@@ -1,8 +1,8 @@
 import { ApiError } from './customError';
 import privateApi from './privateApi.server';
 import { type ErrorType } from './type';
-import { AUTH_COOKIE_KEYS } from '@/constants';
 import { AUTH_ERROR_CODES } from '@/constants/errorCode';
+import { AUTH_COOKIE_KEYS } from '@/constants/token';
 import { getAccessTokenServer } from '@/utils/auth/tokenValidator.server';
 import { AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import { cookies } from 'next/headers';

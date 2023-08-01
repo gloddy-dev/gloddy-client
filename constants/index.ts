@@ -5,8 +5,3 @@ export const BASE_WEB_URL = process.env.NEXT_PUBLIC_BASE_WEB_URL ?? 'http://loca
 export const INSTAGRAM_URL = 'https://www.instagram.com/gloddykorea';
 
 export const DAY_OF_WEEK = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-export const AUTH_COOKIE_KEYS: Record<string, string> = {
-  accessToken: 'gloddy_at',
-  refreshToken: 'gloddy_rt',
-  userId: 'gloddy_uid',
-} as const;
