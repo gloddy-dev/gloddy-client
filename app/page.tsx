@@ -1,14 +1,14 @@
 'use client';
 import { LoginResponse, useLoginMutation } from '@/apis/auth';
 import { useUser } from '@/hooks/useUser';
-import { getCookie } from '@/utils/cookie';
+import { getLocalCookie } from '@/utils/cookie';
 
 export default function Home() {
   const { userLogin } = useUser();
   const { mutate: mutateLogin } = useLoginMutation();
 
   const handleGetToken = () => {
-    console.log(getCookie('gloddy_at'));
+    console.log(getLocalCookie('gloddy_at'));
     mutateLogin(
       { phoneNumber: '010-5728-9357' },
       {
