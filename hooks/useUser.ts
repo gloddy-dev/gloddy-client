@@ -1,10 +1,9 @@
-import { localStorageUserTokenKeys } from '@/constants/localStorage';
+import { GLODDY_RT } from '@/constants/token';
+import { CookieKeyType } from '@/types';
 import { generateCookiesKeyValues } from '@/utils/auth';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
-
-const GLODDY_RT = 'GLODDY_RT';
 
 export function useUser() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -27,15 +26,7 @@ export function useUser() {
    */
 
   const userLogin = useCallback(
-    ({
-      accessToken,
-      refreshToken,
-      userId,
-    }: {
-      accessToken: string;
-      refreshToken: string;
-      userId: number;
-    }) => {
+    ({ accessToken, refreshToken, userId }: CookieKeyType) => {
       if (
         accessToken === undefined ||
         refreshToken === undefined ||
@@ -57,8 +48,6 @@ export function useUser() {
     [queryClient]
   );
   const userLogout = () => {
-    localStorage.removeItem(localStorageUserTokenKeys.accessToken);
-    localStorage.removeItem(localStorageUserTokenKeys.refreshToken);
     postRefreshTokenReactNativeWebView('');
     queryClient.clear();
     router.push('/login');
