@@ -1,12 +1,12 @@
 'use client';
 import { useCreateGroupContext } from '../CreateGroupContext';
+import { usePostCreateGroup } from '@/apis/groups/mutations.client';
 import { BottomFixedButton } from '@/components/common/Button';
 import { format } from 'date-fns';
 
 import type { CreateGroupContextValue } from '../../type';
+import type { CreateGroupRequest } from '@/apis/groups/type';
 import type { AMPMType } from '@/types';
-import { CreateGroupRequest } from '@/apis/groups/type';
-import { usePostCreateGroup } from '@/apis/groups/mutations.client';
 
 function convertTimeFormat(hour: number, minute: number, ampm: AMPMType) {
   if (ampm === 'AM') {
@@ -16,7 +16,7 @@ function convertTimeFormat(hour: number, minute: number, ampm: AMPMType) {
   return `${Number(hour) + 12}:${minute}`;
 }
 
-let CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
+const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
   fileUrl: 'http://example.com/file1.jpg',
   title: 'Group 2',
   content: 'This is another example group',

@@ -1,7 +1,7 @@
-import Layout from '@/app/components/Layout';
 import './globals.css';
 
 import QueryProvider from './components/QueryProvider.client';
+import Layout from '@/app/components/Layout';
 import { BASE_WEB_URL } from '@/constants';
 
 const DEFAULT_OG_TITLE = 'Gloddy';
