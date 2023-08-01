@@ -1,4 +1,4 @@
-import { GLODDY_RT } from '@/constants/token';
+import { AUTH_KEYS } from '@/constants/token';
 import { CookieKeyType } from '@/types';
 import { generateCookiesKeyValues } from '@/utils/auth';
 import { useQueryClient } from '@tanstack/react-query';
@@ -14,7 +14,7 @@ export function useUser() {
   const postRefreshTokenReactNativeWebView = (refreshToken: string) => {
     if (window.ReactNativeWebView) {
       window.ReactNativeWebView.postMessage(
-        JSON.stringify({ type: GLODDY_RT, data: refreshToken })
+        JSON.stringify({ type: AUTH_KEYS.refreshToken, data: refreshToken })
       );
     }
   };

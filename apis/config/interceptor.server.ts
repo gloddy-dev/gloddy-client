@@ -2,7 +2,7 @@ import { ApiError } from './customError';
 import privateApi from './privateApi.server';
 import { type ErrorType } from './type';
 import { AUTH_ERROR_CODES } from '@/constants/errorCode';
-import { AUTH_COOKIE_KEYS } from '@/constants/token';
+import { AUTH_KEYS } from '@/constants/token';
 import { getAccessTokenServer } from '@/utils/auth/tokenValidator.server';
 import { AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import { cookies } from 'next/headers';
@@ -11,7 +11,7 @@ import { redirect } from 'next/navigation';
 export const onRequestServer = async (config: InternalAxiosRequestConfig) => {
   try {
     const cookieStore = cookies();
-    const accessToken = cookieStore.get(AUTH_COOKIE_KEYS.accessToken)?.value;
+    const accessToken = cookieStore.get(AUTH_KEYS.accessToken)?.value;
 
     if (accessToken) {
       config.headers['X-AUTH-TOKEN'] = accessToken;
@@ -31,9 +31,9 @@ export const onResponseErrorServer = async (
       if (error.response.status === AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR) {
         try {
           const cookieStore = cookies();
-          const refreshToken = cookieStore.get(AUTH_COOKIE_KEYS.refreshToken)?.value;
-          const accessToken = cookieStore.get(AUTH_COOKIE_KEYS.accessToken)?.value;
-          const userId = cookieStore.get(AUTH_COOKIE_KEYS.userId)?.value as unknown as number;
+          const refreshToken = cookieStore.get(AUTH_KEYS.refreshToken)?.value;
+          const accessToken = cookieStore.get(AUTH_KEYS.accessToken)?.value;
+          const userId = cookieStore.get(AUTH_KEYS.userId)?.value as unknown as number;
 
           if (!refreshToken || !accessToken || userId === undefined)
             throw new ApiError(
