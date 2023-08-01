@@ -2,7 +2,7 @@ import { ApiError } from './customError';
 import { postReissue } from '../auth';
 import { BASE_API_URL } from '@/constants';
 import { AUTH_ERROR_CODES } from '@/constants/errorCode';
-import { getTokenFromCookie } from '@/utils/auth/tokenController';
+import { getTokenFromCookie, setTokenAtCookie } from '@/utils/auth/tokenController';
 import axios, { AxiosError, AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 import { redirect } from 'next/navigation';
 
@@ -62,6 +62,11 @@ privateApi.interceptors.response.use(
               new Date()
             );
           }
+          setTokenAtCookie({
+            accessToken: reIssuedAccessToken,
+            refreshToken: reIssuedRefreshToken,
+            userId: userId || '',
+          });
 
           const prevRequest = error.config;
           if (!prevRequest) {
