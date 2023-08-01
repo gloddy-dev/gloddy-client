@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import type { CreateGroupContextValue } from '../../type';
 import type { AMPMType } from '@/types';
 import { CreateGroupRequest } from '@/apis/groups/type';
-import { usePostCreateGroup } from '@/apis/groups/mutations';
+import { usePostCreateGroup } from '@/apis/groups/mutations.client';
 
 function convertTimeFormat(hour: number, minute: number, ampm: AMPMType) {
   if (ampm === 'AM') {
@@ -15,6 +15,19 @@ function convertTimeFormat(hour: number, minute: number, ampm: AMPMType) {
 
   return `${Number(hour) + 12}:${minute}`;
 }
+
+let CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
+  fileUrl: 'http://example.com/file1.jpg',
+  title: 'Group 2',
+  content: 'This is another example group',
+  maxUser: 30,
+  place: 'Busan, South Korea',
+  meetDate: '2023-09-02',
+  startTime: '18:00',
+  endTime: '20:00',
+  place_latitude: 35.1796,
+  place_longitude: 129.0756,
+};
 
 export default function SubmitSection() {
   const { mutate: createGroupMutate } = usePostCreateGroup();
@@ -26,14 +39,14 @@ export default function SubmitSection() {
   const onCreateGroupSubmit = (data: CreateGroupContextValue) => {
     const { date, time, ...rest } = data;
 
-    const createGroupRequest: CreateGroupRequest = {
+    const createGroupRequest = {
       ...rest,
       meetDate: format(data.date, 'yyyy-MM-dd'),
       startTime: convertTimeFormat(data.time.fromHour, data.time.fromMin, data.time.fromAmPm),
       endTime: convertTimeFormat(data.time.toHour, data.time.toMin, data.time.toAmPm),
     };
 
-    createGroupMutate(createGroupRequest);
+    createGroupMutate(CREATE_GROUP_DUMMY_DATA);
   };
 
   return (
