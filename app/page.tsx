@@ -1,9 +1,8 @@
 'use client';
 import { LoginResponse, useLoginMutation } from '@/apis/auth';
-import { useUser } from '@/hooks/useUser';
+import { setTokenAtCookie } from '@/utils/auth/tokenController';
 
 export default function Home() {
-  const { userLogin } = useUser();
   const { mutate: mutateLogin } = useLoginMutation();
 
   const handlegetTokenFromCookie = () => {
@@ -16,7 +15,11 @@ export default function Home() {
               token: { accessToken, refreshToken },
               userId,
             } = response;
-            userLogin({ accessToken, refreshToken, userId });
+            setTokenAtCookie({
+              accessToken,
+              refreshToken,
+              userId,
+            });
           }
         },
       }

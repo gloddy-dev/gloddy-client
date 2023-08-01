@@ -65,7 +65,7 @@ privateApi.interceptors.response.use(
           setTokenAtCookie({
             accessToken: reIssuedAccessToken,
             refreshToken: reIssuedRefreshToken,
-            userId: userId || '',
+            userId,
           });
 
           const prevRequest = error.config;

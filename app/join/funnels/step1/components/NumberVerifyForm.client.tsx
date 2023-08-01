@@ -7,7 +7,7 @@ import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
-import { useUser } from '@/hooks/useUser';
+import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
 
 import type { SignUpState } from '@/app/join/type';
@@ -20,8 +20,6 @@ export default function NumberVerifyForm() {
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateLogin } = useLoginMutation();
-
-  const { userLogin } = useUser();
 
   const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'certificateNumber'>> = (
     data
@@ -42,7 +40,11 @@ export default function NumberVerifyForm() {
                     token: { accessToken, refreshToken },
                     userId,
                   } = response;
-                  userLogin({ accessToken, refreshToken, userId });
+                  setTokenAtCookie({
+                    accessToken,
+                    refreshToken,
+                    userId,
+                  });
                   router.push('/grouping');
                 } else {
                   nextStep();
