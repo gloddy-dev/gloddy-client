@@ -3,7 +3,7 @@ import { isServer } from '@/constants';
 import { AUTH_KEYS } from '@/constants/token';
 import { CookieKeyType } from '@/types';
 
-export const getToken = async () => {
+export const getTokenFromCookie = async () => {
   if (isServer) {
     const { cookies } = await import('next/headers');
     const cookieStore = cookies();
@@ -20,7 +20,7 @@ export const getToken = async () => {
   }
 };
 
-export const setToken = async ({ accessToken, refreshToken, userId }: CookieKeyType) => {
+export const setTokenAtCookie = async ({ accessToken, refreshToken, userId }: CookieKeyType) => {
   if (isServer) {
     const { cookies } = await import('next/headers');
     const cookieStore = cookies();

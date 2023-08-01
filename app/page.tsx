@@ -1,14 +1,12 @@
 'use client';
 import { LoginResponse, useLoginMutation } from '@/apis/auth';
 import { useUser } from '@/hooks/useUser';
-import { getLocalCookie } from '@/utils/cookie';
 
 export default function Home() {
   const { userLogin } = useUser();
   const { mutate: mutateLogin } = useLoginMutation();
 
-  const handleGetToken = () => {
-    console.log(getLocalCookie('gloddy_at'));
+  const handlegetTokenFromCookie = () => {
     mutateLogin(
       { phoneNumber: '010-5728-9357' },
       {
@@ -26,7 +24,7 @@ export default function Home() {
   };
   return (
     <main>
-      <button onClick={handleGetToken}>Token 발급받기</button>
+      <button onClick={handlegetTokenFromCookie}>Token 발급받기</button>
     </main>
   );
 }
