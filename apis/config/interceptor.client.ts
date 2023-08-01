@@ -37,7 +37,8 @@ export const onResponseErrorClient = async (
               AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
               new Date()
             );
-          } else if (validTokenResponse instanceof ApiError) {
+          }
+          if (validTokenResponse instanceof ApiError) {
             throw validTokenResponse;
           } else {
             const prevRequest = error.config;
