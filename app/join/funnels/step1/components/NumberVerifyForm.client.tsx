@@ -43,6 +43,7 @@ export default function NumberVerifyForm() {
                     userId,
                   } = response;
                   userLogin({ accessToken, refreshToken, userId });
+                  router.push('/grouping');
                 } else {
                   nextStep();
                 }
