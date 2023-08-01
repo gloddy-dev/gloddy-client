@@ -1,7 +1,8 @@
 import { getLocalCookie, setLocalCookie } from '../cookieController';
 import { isServer } from '@/constants';
 import { AUTH_KEYS } from '@/constants/token';
-import { CookieKeyType } from '@/types';
+
+import type { CookieKeyType } from '@/types';
 
 export const getTokenFromCookie = async () => {
   if (isServer) {
