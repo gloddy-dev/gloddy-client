@@ -6,14 +6,13 @@ import { useJoinContext } from '@/app/join/components/JoinContext';
 import { SignUpState } from '@/app/join/type';
 import { BottomFixedButton } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
-import { useUser } from '@/hooks/useUser';
+import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
 
 export default function InputForm() {
   const { handleSubmit, getValues } = useJoinContext();
   const { mutate: mutateSignUp } = useSignUpMutation();
   const router = useRouter();
-  const { userLogin } = useUser();
 
   const onSubmit = async (data: SignUpState) => {
     const { certificateEmailNumber, certificateNumber, birth, personalityIdList, ...rest } = data;
@@ -29,7 +28,11 @@ export default function InputForm() {
           token: { accessToken, refreshToken },
           userId,
         } = data;
-        userLogin({ accessToken, refreshToken, userId });
+        setTokenAtCookie({
+          accessToken,
+          refreshToken,
+          userId,
+        });
         router.push('/grouping');
       },
     });

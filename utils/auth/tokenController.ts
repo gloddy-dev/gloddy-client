@@ -9,12 +9,12 @@ export const getTokenFromCookie = async () => {
     const cookieStore = cookies();
     const accessToken = cookieStore.get(AUTH_KEYS.accessToken)?.value;
     const refreshToken = cookieStore.get(AUTH_KEYS.refreshToken)?.value;
-    const userId = cookieStore.get(AUTH_KEYS.userId)?.value;
+    const userId = +(cookieStore.get(AUTH_KEYS.userId)?.value || 0);
     return { accessToken, refreshToken, userId };
   } else {
     const accessToken = getLocalCookie(AUTH_KEYS.accessToken);
     const refreshToken = getLocalCookie(AUTH_KEYS.refreshToken);
-    const userId = getLocalCookie(AUTH_KEYS.userId);
+    const userId = +(getLocalCookie(AUTH_KEYS.userId) || 0);
 
     return { accessToken, refreshToken, userId };
   }
