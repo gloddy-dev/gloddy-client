@@ -9,8 +9,6 @@ import { personalityList } from '@/constants/personalityList';
 import { useUser } from '@/hooks/useUser';
 import { useRouter } from 'next/navigation';
 
-
-
 export default function InputForm() {
   const { handleSubmit, getValues } = useJoinContext();
   const { mutate: mutateSignUp } = useSignUpMutation();
