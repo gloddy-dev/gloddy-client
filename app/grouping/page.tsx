@@ -1,6 +1,6 @@
 import FloatingBubbleSection from './components/FloatingBubbleSection.server';
 import GroupingCardList from './components/GroupingCardList.client';
-import { getGroups } from '@/apis/groups/apis.server';
+import { getGroups } from '@/apis/groups/apis';
 import { Keys } from '@/apis/groups/keys';
 import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/HydrationProvider';

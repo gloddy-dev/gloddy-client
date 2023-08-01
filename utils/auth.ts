@@ -15,16 +15,18 @@ const generateCookiesKeyValues = ({ accessToken, refreshToken, userId }: CookieK
 
 const getAuthTokensByCookie = (cookieString: string): Partial<CookieKeyType> => {
   const auth: Partial<CookieKeyType> = {};
-  for (const cookie of cookieString.split('; ')) {
+  cookieString.split('; ').forEach((cookie) => {
     const [key, value] = cookie.split('=');
-    if (key === AUTH_KEYS.accessToken) {
-      auth.accessToken = value;
-    } else if (key === AUTH_KEYS.refreshToken) {
-      auth.refreshToken = value;
-    } else if (key === AUTH_KEYS.userId) {
-      auth.userId = +value;
+    if (Object.values(AUTH_KEYS).includes(key)) {
+      if (key === AUTH_KEYS.accessToken) {
+        auth.accessToken = value;
+      } else if (key === AUTH_KEYS.refreshToken) {
+        auth.refreshToken = value;
+      } else if (key === AUTH_KEYS.userId) {
+        auth.userId = +value;
+      }
     }
-  }
+  });
   return auth;
 };
 

@@ -1,4 +1,4 @@
-import privateApi from '../config/privateApi.client';
+import privateApi from '../config/privateApi';
 
 import type { CreateGroupRequest, GroupsResponse } from './type';
 
