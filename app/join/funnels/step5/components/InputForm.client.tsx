@@ -40,8 +40,11 @@ export default function InputForm() {
     // FIXME: gender타입 변환 필요
     mutateSignUp(signUpRequest, {
       onSuccess: (data) => {
-        const { token } = data;
-        userLogin(token);
+        const {
+          token: { accessToken, refreshToken },
+          userId,
+        } = data;
+        userLogin({ accessToken, refreshToken, userId });
         router.push('/grouping');
       },
     });
