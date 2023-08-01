@@ -1,4 +1,4 @@
-import { AUTH_COOKIE_KEYS } from '@/apis/config/type';
+import { AUTH_COOKIE_KEYS } from '@/constants';
 
 import type { CookieKeyType } from '@/types';
 
