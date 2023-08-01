@@ -1,4 +1,3 @@
-import { replaceAccessTokenForRequestInstance } from '@/apis/config/util';
 import { localStorageUserTokenKeys } from '@/constants/localStorage';
 import { generateCookiesKeyValues } from '@/utils/auth';
 import { useQueryClient } from '@tanstack/react-query';
@@ -45,7 +44,6 @@ export function useUser() {
       ) {
         throw Error('로그인 토큰이 올바르지 않습니다.');
       }
-      replaceAccessTokenForRequestInstance(accessToken);
       for (const [cookieKey, cookieValue] of generateCookiesKeyValues({
         accessToken,
         refreshToken,
