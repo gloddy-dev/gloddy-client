@@ -9,13 +9,8 @@ import { Spacing } from '@/components/common/Spacing';
 import { Suspense } from 'react';
 
 const GroupingComponent = () => {
-  const getGroupsQuery = async () => {
-    const data = await getGroups(0);
-    return data;
-  };
-
   return (
-    <HydrationProvider queryKey={Keys.getGroups()} queryFn={getGroupsQuery}>
+    <HydrationProvider queryKey={Keys.getGroups()} queryFn={() => getGroups(0)}>
       <RetryErrorBoundary>
         <Suspense>
           <GroupingCardList />
