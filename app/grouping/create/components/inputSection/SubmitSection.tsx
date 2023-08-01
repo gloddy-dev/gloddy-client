@@ -8,7 +8,7 @@ import type { CreateGroupContextValue } from '../../type';
 import type { CreateGroupRequest } from '@/apis/groups/type';
 import type { AMPMType } from '@/types';
 
-function convertTimeFormat(hour: number, minute: number, ampm: AMPMType) {
+function convertTimeFormat(hour: string, minute: string, ampm: AMPMType) {
   if (ampm === 'AM') {
     return `${hour}:${minute}`;
   }
@@ -45,6 +45,7 @@ export default function SubmitSection() {
       startTime: convertTimeFormat(data.time.fromHour, data.time.fromMin, data.time.fromAmPm),
       endTime: convertTimeFormat(data.time.toHour, data.time.toMin, data.time.toAmPm),
     };
+    console.log(createGroupRequest);
 
     createGroupMutate(CREATE_GROUP_DUMMY_DATA);
   };

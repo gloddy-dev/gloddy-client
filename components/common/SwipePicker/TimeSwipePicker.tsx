@@ -2,8 +2,8 @@ import SwipePicker from './SwipePicker';
 
 import type { AMPMType, TimeType } from '@/types';
 
-const hourList: number[] = Array.from({ length: 12 }, (_, i) => i + 1);
-const minuteList: number[] = Array.from({ length: 60 }, (_, i) => (i > 9 ? i : i));
+const hourList: string[] = Array.from({ length: 12 }, (_, i) => String(i + 1));
+const minuteList: string[] = Array.from({ length: 60 }, (_, i) => String(i > 9 ? i : '0' + i));
 const ampmList: AMPMType[] = ['AM', 'PM'];
 
 interface TimeSwipePickerProps {
@@ -18,13 +18,13 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
       <SwipePicker
         selectList={hourList}
         value={timeValue.fromHour}
-        setValue={(value: number) => setTimeValue({ ...timeValue, fromHour: value })}
+        setValue={(value: string) => setTimeValue({ ...timeValue, fromHour: value })}
       />
       <SwipePicker.MiddleText>:</SwipePicker.MiddleText>
       <SwipePicker
         selectList={minuteList}
         value={timeValue.fromMin}
-        setValue={(value: number) => setTimeValue({ ...timeValue, fromMin: value })}
+        setValue={(value: string) => setTimeValue({ ...timeValue, fromMin: value })}
       />
       <SwipePicker
         selectList={ampmList}
@@ -35,13 +35,13 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
       <SwipePicker
         selectList={hourList}
         value={timeValue.toHour}
-        setValue={(value: number) => setTimeValue({ ...timeValue, toHour: value })}
+        setValue={(value: string) => setTimeValue({ ...timeValue, toHour: value })}
       />
       <SwipePicker.MiddleText>:</SwipePicker.MiddleText>
       <SwipePicker
         selectList={minuteList}
         value={timeValue.toMin}
-        setValue={(value: number) => setTimeValue({ ...timeValue, toMin: value })}
+        setValue={(value: string) => setTimeValue({ ...timeValue, toMin: value })}
       />
       <SwipePicker
         selectList={ampmList}
