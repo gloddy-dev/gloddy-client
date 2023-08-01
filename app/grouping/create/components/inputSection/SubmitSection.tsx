@@ -2,10 +2,10 @@
 import { useCreateGroupContext } from '../CreateGroupContext';
 import { usePostCreateGroup } from '@/apis/groups/mutations.client';
 import { BottomFixedButton } from '@/components/common/Button';
+import { CREATE_GROUP_DUMMY_DATA } from '@/constants/dummyData';
 import { format } from 'date-fns';
 
 import type { CreateGroupContextValue } from '../../type';
-import type { CreateGroupRequest } from '@/apis/groups/type';
 import type { AMPMType } from '@/types';
 
 function convertTimeFormat(hour: string, minute: string, ampm: AMPMType) {

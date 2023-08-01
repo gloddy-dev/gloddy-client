@@ -1,4 +1,3 @@
-import { SignUpRequest } from '@/apis/auth';
 import type { CreateGroupRequest, Grouping } from '@/apis/groups/type';
 
 export const DUMMY_GROUPING_DATA: Grouping[] = [
@@ -13,8 +12,8 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     meetDate: '04.27.FRI 7PM',
     startTime: '13:00',
     endTime: '15:00',
-    place_latitude: '37.579',
-    place_longitude: '127.056',
+    placeLatitude: '37.579',
+    placeLongitude: '127.056',
   },
   {
     groupId: 2,
@@ -27,8 +26,8 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     meetDate: '04.27.FRI 7PM',
     startTime: '13:00',
     endTime: '15:00',
-    place_latitude: '37.579',
-    place_longitude: '127.056',
+    placeLatitude: '37.579',
+    placeLongitude: '127.056',
   },
   {
     groupId: 3,
@@ -41,8 +40,8 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     meetDate: '04.27.FRI 7PM',
     startTime: '13:00',
     endTime: '15:00',
-    place_latitude: '37.579',
-    place_longitude: '127.056',
+    placeLatitude: '37.579',
+    placeLongitude: '127.056',
   },
 ];
 
@@ -54,8 +53,8 @@ export const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
   startTime: '17:00',
   endTime: '21:00',
   place: '서울특별시 강남구 테헤란로 16',
-  place_latitude: '23',
-  place_longitude: '123',
+  placeLatitude: '23',
+  placeLongitude: '123',
   maxUser: 4,
 };
 
