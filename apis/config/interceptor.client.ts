@@ -41,7 +41,12 @@ export const onResponseErrorClient = async (
           } else {
             const prevRequest = error.config;
             if (!prevRequest)
-              throw new ApiError('에러 발생', '이전 정보가 없습니다.', 401, new Date());
+              throw new ApiError(
+                '에러 발생',
+                '이전 정보가 없습니다.',
+                AUTH_ERROR_CODES.UNAUTHORIZED_ERROR,
+                new Date()
+              );
 
             prevRequest.headers['X-AUTH-TOKEN'] = { validTokenResponse };
             return privateApi(prevRequest);
