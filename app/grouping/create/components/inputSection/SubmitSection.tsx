@@ -1,11 +1,12 @@
 'use client';
 import { useCreateGroupContext } from '../CreateGroupContext';
-import { type CreateGroupRequest, usePostCreateGroup } from '@/apis/groups';
 import { BottomFixedButton } from '@/components/common/Button';
 import { format } from 'date-fns';
 
 import type { CreateGroupContextValue } from '../../type';
 import type { AMPMType } from '@/types';
+import { CreateGroupRequest } from '@/apis/groups/type';
+import { usePostCreateGroup } from '@/apis/groups/mutations';
 
 function convertTimeFormat(hour: number, minute: number, ampm: AMPMType) {
   if (ampm === 'AM') {
