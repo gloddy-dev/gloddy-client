@@ -16,19 +16,6 @@ function convertTimeFormat(hour: string, minute: string, ampm: AMPMType) {
   return `${Number(hour) + 12}:${minute}`;
 }
 
-const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
-  fileUrl: '그룹 이미지 Url',
-  title: '김지환이의 그룹',
-  content: '안녕하세요',
-  meetDate: '2022-09-07',
-  startTime: '17:00',
-  endTime: '21:00',
-  place: '서울특별시 강남구 테헤란로 16',
-  place_latitude: '23',
-  place_longitude: '123',
-  maxUser: 4,
-};
-
 export default function SubmitSection() {
   const { mutate: createGroupMutate } = usePostCreateGroup();
 
