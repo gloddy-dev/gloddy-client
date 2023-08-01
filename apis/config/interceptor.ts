@@ -1,6 +1,7 @@
 import { ApiError } from './customError';
-import { ErrorType } from './type';
-import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { AxiosError, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
+
+import type { ErrorType } from './type';
 
 export const onRequestError = (error: AxiosError) => {
   Promise.reject(error);

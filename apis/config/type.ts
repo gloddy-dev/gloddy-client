@@ -1,8 +1,8 @@
 import {
   AxiosInstance,
-  AxiosInterceptorManager,
+  type AxiosInterceptorManager,
   AxiosResponse,
-  InternalAxiosRequestConfig,
+  type InternalAxiosRequestConfig,
 } from 'axios';
 
 export type CustomResponseFormat<T = any> = T;

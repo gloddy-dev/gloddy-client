@@ -1,11 +1,12 @@
 import { ApiError } from './customError';
 import privateApi from './privateApi.client';
-import { ErrorType } from './type';
 import { AUTH_ERROR_CODES } from '@/constants/errorCode';
 import { getAuthTokensByCookie } from '@/utils/auth';
 import { getAccessTokenClient } from '@/utils/auth/tokenValidator.client';
-import { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import { redirect } from 'next/navigation';
+
+import type { ErrorType } from './type';
 
 export const onRequestClient = async (config: InternalAxiosRequestConfig) => {
   try {

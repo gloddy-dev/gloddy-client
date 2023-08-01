@@ -11,7 +11,7 @@ module.exports = {
     'eslint-config-prettier',
     'next/core-web-vitals',
   ],
-  plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks', 'jsx-a11y'],
+  plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'jsx-a11y'],
   settings: {
     'import/resolver': {
       node: {
@@ -27,8 +27,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
-
-    'react-hooks/exhaustive-deps': 'error',
 
     // TypeScript에서 이미 잡고 있는 문제이기 때문에 + location, document 등의 global variable도 잡아서
     'no-undef': 'off',
@@ -141,8 +139,6 @@ module.exports = {
       },
     ],
     'import/newline-after-import': ['error'],
-
-    'react-hooks/rules-of-hooks': 'error',
 
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',

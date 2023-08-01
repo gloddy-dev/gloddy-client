@@ -1,5 +1,6 @@
 import { AUTH_COOKIE_KEYS } from '@/apis/config/type';
-import { CookieKeyType } from '@/types';
+
+import type { CookieKeyType } from '@/types';
 
 const generateCookiesKeyValues = ({ accessToken, refreshToken, userId }: CookieKeyType) => {
   const accessTokenExpireDate = new Date();
