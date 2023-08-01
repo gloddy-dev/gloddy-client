@@ -31,5 +31,5 @@ export type AMPMType = 'AM' | 'PM';
 export type CookieKeyType = {
   accessToken: string;
   refreshToken: string;
-  userId: number;
+  userId: string;
 };
