@@ -1,6 +1,6 @@
 'use client';
 import { useCreateGroupContext } from '../CreateGroupContext';
-import { usePostCreateGroup } from '@/apis/groups/mutations.client';
+import { usePostCreateGroup } from '@/apis/groups/mutations';
 import { BottomFixedButton } from '@/components/common/Button';
 import { CREATE_GROUP_DUMMY_DATA } from '@/constants/dummyData';
 import { format } from 'date-fns';
