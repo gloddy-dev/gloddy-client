@@ -1,5 +1,7 @@
+'use client';
+import { Grouping } from '@/apis/groups/type';
 import GroupingCard from './GroupingCard.client';
-import { type Grouping } from '@/apis/groups';
+import { useGetGroups } from '@/apis/groups/queries.client';
 
 const DUMMY_GROUPING_DATA: Grouping[] = [
   {
@@ -47,6 +49,9 @@ const DUMMY_GROUPING_DATA: Grouping[] = [
 ];
 
 export default function GroupingCardList() {
+  const { data } = useGetGroups(0);
+  console.log(data);
+
   return (
     <section className="mx-20 flex flex-col gap-8">
       {DUMMY_GROUPING_DATA.map((groupingData) => (
