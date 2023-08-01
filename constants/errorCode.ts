@@ -1,3 +1,4 @@
 export const AUTH_ERROR_CODES = {
+  UNAUTHORIZED_ERROR: 401,
   EXPIRED_TOKEN_ERROR: 412,
 } as const;
