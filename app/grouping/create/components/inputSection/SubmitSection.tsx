@@ -17,16 +17,16 @@ function convertTimeFormat(hour: number, minute: number, ampm: AMPMType) {
 }
 
 const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
-  fileUrl: 'http://example.com/file1.jpg',
-  title: 'Group 2',
-  content: 'This is another example group',
-  maxUser: 30,
-  place: 'Busan, South Korea',
-  meetDate: '2023-09-02',
-  startTime: '18:00',
-  endTime: '20:00',
-  place_latitude: 35.1796,
-  place_longitude: 129.0756,
+  fileUrl: '그룹 이미지 Url',
+  title: '김지환이의 그룹',
+  content: '안녕하세요',
+  meetDate: '2022-09-07',
+  startTime: '17:00',
+  endTime: '21:00',
+  place: '서울특별시 강남구 테헤란로 16',
+  place_latitude: '23',
+  place_longitude: '123',
+  maxUser: 4,
 };
 
 export default function SubmitSection() {
