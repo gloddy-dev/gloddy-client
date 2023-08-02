@@ -3,7 +3,7 @@ import GroupingCardList from './components/GroupingCardList.client';
 import { getGroups } from '@/apis/groups/apis';
 import { Keys } from '@/apis/groups/keys';
 import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
-import { HydrationProvider } from '@/components/common/HydrationProvider';
+import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import { BottomNavigationBar, TopNavigationBar } from '@/components/common/NavigationBar';
 import { Spacing } from '@/components/common/Spacing';
 import { Suspense } from 'react';
