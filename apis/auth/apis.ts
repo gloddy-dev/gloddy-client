@@ -5,6 +5,8 @@ import type {
   EmailVerifyRequest,
   LoginRequest,
   LoginResponse,
+  ReissueRequest,
+  ReissueResponse,
   SMSRequest,
   SMSVerifiyRequest,
   SignUpRequest,
@@ -13,6 +15,9 @@ import type {
 
 export const postLogin = (loginData: LoginRequest) =>
   publicApi.post<LoginResponse>('/auth/login', loginData);
+
+export const postReissue = (ReissueData: ReissueRequest) =>
+  publicApi.post<ReissueResponse>('/auth/token-reissue', ReissueData);
 
 export const postSMS = (SMSData: SMSRequest) => publicApi.post('/auth/sms', SMSData);
 
