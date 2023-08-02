@@ -7,6 +7,7 @@ import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
+import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
 
 import type { SignUpState } from '@/app/join/type';
@@ -35,8 +36,16 @@ export default function NumberVerifyForm() {
             {
               onSuccess: (response: LoginResponse) => {
                 if (response.existUser) {
-                  // TODO : 토큰 설정
-                  router.push('/');
+                  const {
+                    token: { accessToken, refreshToken },
+                    userId,
+                  } = response;
+                  setTokenAtCookie({
+                    accessToken,
+                    refreshToken,
+                    userId,
+                  });
+                  router.push('/grouping');
                 } else {
                   nextStep();
                 }

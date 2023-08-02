@@ -1,8 +1,8 @@
 import {
   AxiosInstance,
-  AxiosInterceptorManager,
+  type AxiosInterceptorManager,
   AxiosResponse,
-  InternalAxiosRequestConfig,
+  type InternalAxiosRequestConfig,
 } from 'axios';
 
 export type CustomResponseFormat<T = any> = T;
@@ -19,7 +19,7 @@ export interface CustomInstance extends AxiosInstance {
   patch<T>(...params: Parameters<AxiosInstance['patch']>): Promise<T>;
 }
 
-export type ErrorStatus = 400 | 401 | 500;
+export type ErrorStatus = 400 | 401 | 403 | 412 | 500;
 
 export type ErrorType = {
   message: string;
