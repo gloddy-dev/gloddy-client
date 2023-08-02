@@ -10,7 +10,7 @@ import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
 
 export default function InputForm() {
-  const { handleSubmit, getValues } = useJoinContext();
+  const { handleSubmit, watch } = useJoinContext();
   const { mutate: mutateSignUp } = useSignUpMutation();
   const router = useRouter();
 
@@ -43,7 +43,7 @@ export default function InputForm() {
       <PersonalitySection />
       <BottomFixedButton
         text="완료"
-        disabled={getValues().personalityIdList.length === 0}
+        disabled={watch('personalityIdList').length === 0}
         type="submit"
       />
     </form>
