@@ -13,6 +13,19 @@ export interface Grouping {
   placeLongitude: string;
 }
 
+export interface Article {
+  articleId: number;
+  userImageUrl: string;
+  name: string;
+  date: string;
+  content: string;
+  notice: boolean;
+  commentCount: number;
+  images: Array<{
+    url: string;
+  }>;
+}
+
 export interface GroupsResponse {
   totalCount: number;
   currentCount: number;
@@ -27,5 +40,13 @@ export interface GroupResponse extends Omit<Grouping, 'groupId'> {
 }
 
 export interface CreateGroupRequest extends Omit<Grouping, 'groupId' | 'memberCount' | 'imageUrl'> {
-  fileUrl: string;
+  imageUrl: string;
+}
+
+export interface ArticlesResponse {
+  totalCount: 0;
+  currentCount: 0;
+  currentPage: 0;
+  totalPage: 0;
+  contents: Article[];
 }
