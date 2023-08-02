@@ -11,9 +11,11 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
 
   queryClient.setDefaultOptions({
     queries: {
+      retry: 1,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
+      suspense: true,
     },
   });
 
