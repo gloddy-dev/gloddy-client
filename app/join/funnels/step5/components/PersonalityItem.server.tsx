@@ -1,3 +1,4 @@
+'use client';
 import { PersonalityType } from '../type';
 import { useJoinContext } from '@/app/join/components/JoinContext';
 import clsx from 'clsx';
@@ -22,6 +23,7 @@ export default memo(function PersonalityItem({
       );
       return;
     }
+    if (personalityIdList.length >= 3) return;
     setValue('personalityIdList', [...personalityIdList, id]);
   };
 
