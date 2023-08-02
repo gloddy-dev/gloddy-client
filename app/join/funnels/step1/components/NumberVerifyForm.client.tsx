@@ -26,6 +26,7 @@ export default function NumberVerifyForm() {
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateLogin } = useLoginMutation();
 
+  console.log(errors.verifyNumber);
   const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'verifyNumber'>> = (data) => {
     mutateSMSVerify(
       {
@@ -56,9 +57,10 @@ export default function NumberVerifyForm() {
             }
           );
         },
-        onError: (error) => {
-          console.log(error);
-          setError('verify');
+        onError: () => {
+          setError('verifyNumber', {
+            type: 'validate',
+          });
         },
       }
     );
@@ -76,8 +78,8 @@ export default function NumberVerifyForm() {
           },
         })}
         maxLength={6}
+        errorMessage={errors.verifyNumber && errors.verifyNumber.message}
       />
-      {}
       <Spacing size={18} />
       <Button text="인증번호 확인" type="submit" />
     </form>
