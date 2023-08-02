@@ -15,7 +15,7 @@ export default function InputForm() {
   const router = useRouter();
 
   const onSubmit = async (data: SignUpState) => {
-    const { certificateEmailNumber, certificateNumber, birth, personalityIdList, ...rest } = data;
+    const { verifyEmailNumber, verifyNumber, birth, personalityIdList, ...rest } = data;
     const signUpRequest = {
       ...rest,
       birth: `${birth.year}-${birth.month}-${birth.date}`,
