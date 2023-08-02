@@ -1,7 +1,7 @@
 import './globals.css';
 
-import Layout from '@/components/Layout';
-import QueryProvider from '@/components/QueryProvider.client';
+import type { StrictPropsWithChildren } from '@/types';
+import QueryProvider from '@/components/common/Provider/QueryProvider.client';
 import { BASE_WEB_URL } from '@/constants';
 
 const DEFAULT_OG_TITLE = 'Gloddy';
@@ -38,5 +38,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <Layout>
       <QueryProvider>{children}</QueryProvider>
     </Layout>
+  );
+}
+
+function Layout({ children }: StrictPropsWithChildren) {
+  return (
+    <html lang="ko">
+      <body className="flex h-[100dvh] w-screen justify-center bg-slate-50">
+        <div className="relative h-full w-full max-w-450 overflow-y-scroll bg-white text-black">
+          {children}
+        </div>
+      </body>
+    </html>
   );
 }
