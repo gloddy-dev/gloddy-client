@@ -78,7 +78,7 @@ export default function NumberVerifyForm() {
           },
         })}
         maxLength={6}
-        errorMessage={errors.verifyNumber && errors.verifyNumber.message}
+        errorMessage={errors.verifyNumber?.message}
       />
       <Spacing size={18} />
       <Button text="인증번호 확인" type="submit" />
