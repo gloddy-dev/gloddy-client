@@ -1,7 +1,8 @@
-import { GroupResponse } from '@/apis/groups';
 import { Spacing } from '@/components/common/Spacing';
 import { DAY_OF_WEEK } from '@/constants';
 import { format, getDay, parseISO } from 'date-fns';
+
+import type { GroupResponse } from '@/apis/groups/type';
 
 interface TimeSectionProps extends Pick<GroupResponse, 'meetDate' | 'startTime' | 'endTime'> {}
 

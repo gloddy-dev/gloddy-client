@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Member from './Member.server';
 import { Spacing } from '@/components/common/Spacing';
+import Image from 'next/image';
 
 export default function MemberSection() {
   return (
