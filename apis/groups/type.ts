@@ -9,8 +9,8 @@ export interface Grouping {
   meetDate: string; // '2021-08-01'
   startTime: string; // '19:00'
   endTime: string; // '21:00'
-  placeLatitude: string;
-  placeLongitude: string;
+  placeLatitude: number;
+  placeLongitude: number;
 }
 
 export interface Article {
@@ -21,9 +21,7 @@ export interface Article {
   content: string;
   notice: boolean;
   commentCount: number;
-  images: Array<{
-    url: string;
-  }>;
+  images: string[];
 }
 
 export interface GroupsResponse {
@@ -44,9 +42,9 @@ export interface CreateGroupRequest extends Omit<Grouping, 'groupId' | 'memberCo
 }
 
 export interface ArticlesResponse {
-  totalCount: 0;
-  currentCount: 0;
-  currentPage: 0;
-  totalPage: 0;
+  totalCount: number;
+  currentCount: number;
+  currentPage: number;
+  totalPage: number;
   contents: Article[];
 }
