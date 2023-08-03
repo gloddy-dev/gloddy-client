@@ -1,13 +1,13 @@
 'use client';
 import GroupingCard from './GroupingCard.client';
-import { useGetGroups } from '@/apis/groups/queries';
+import { useGetGroups } from '@/apis/groups';
 
 export default function GroupingCardList() {
-  const { data } = useGetGroups(0);
+  const { data } = useGetGroups();
 
   return (
     <section className="mx-20 flex flex-col gap-8">
-      {data?.contents.map((groupingData) => (
+      {data.map((groupingData) => (
         <GroupingCard groupingData={groupingData} key={groupingData.groupId} />
       ))}
     </section>
