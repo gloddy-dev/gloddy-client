@@ -9,8 +9,19 @@ export interface Grouping {
   meetDate: string; // '2021-08-01'
   startTime: string; // '19:00'
   endTime: string; // '21:00'
-  placeLatitude: string;
-  placeLongitude: string;
+  placeLatitude: number;
+  placeLongitude: number;
+}
+
+export interface Article {
+  articleId: number;
+  userImageUrl: string;
+  name: string;
+  date: string;
+  content: string;
+  notice: boolean;
+  commentCount: number;
+  images: string[];
 }
 
 export interface GroupsResponse {
@@ -21,11 +32,19 @@ export interface GroupsResponse {
   contents: Grouping[];
 }
 
-export interface GroupResponse extends Omit<Grouping, 'groupId'> {
+export interface GroupDetailResponse extends Omit<Grouping, 'groupId'> {
   myGroup: true;
   isCaptain: true;
 }
 
 export interface CreateGroupRequest extends Omit<Grouping, 'groupId' | 'memberCount' | 'imageUrl'> {
-  fileUrl: string;
+  imageUrl: string;
+}
+
+export interface ArticlesResponse {
+  totalCount: number;
+  currentCount: number;
+  currentPage: number;
+  totalPage: number;
+  contents: Article[];
 }
