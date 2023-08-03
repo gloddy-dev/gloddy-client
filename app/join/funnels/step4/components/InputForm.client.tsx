@@ -5,17 +5,24 @@ import ImageSection from './ImageSection.client';
 import NicknameSection from './NicknameSection.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useJoinContext } from '@/app/join/components/JoinContext';
+import { SignUpState } from '@/app/join/type';
 import { BottomFixedButton } from '@/components/common/Button';
 
 export default function InputForm() {
-  const { getValues, handleSubmit } = useJoinContext();
+  const {
+    watch,
+    handleSubmit,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useJoinContext();
   const { nextStep } = useFunnelContext();
   const isAllTyped = !!(
-    getValues('nickname') &&
-    getValues().birth.year &&
-    getValues().birth.month &&
-    getValues().birth.date &&
-    getValues().gender
+    watch('nickname') &&
+    watch('birth').year &&
+    watch('birth').month &&
+    watch('birth').date &&
+    watch('gender')
   );
   const onSubmit = () => {
     if (!isAllTyped) return;
@@ -28,7 +35,7 @@ export default function InputForm() {
       <NicknameSection />
       <BirthdaySection />
       <GenderSection />
-      <BottomFixedButton text={isAllTyped ? '완료' : '다음'} disabled={!isAllTyped} type="submit" />
+      <BottomFixedButton disabled={!isAllTyped} text={isAllTyped ? '완료' : '다음'} type="submit" />
     </form>
   );
 }

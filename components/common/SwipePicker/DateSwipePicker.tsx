@@ -1,16 +1,14 @@
 'use client';
 import SwipePicker from './SwipePicker';
-import getDate from '@/utils/date';
 
 import type { DateType } from '@/types';
 
-// 상수화
-const { todayYear } = getDate.today();
-const YEAR_COUNT = 100;
+const YEAR_COUNT = 31;
 const MONTH_COUNT = 12;
 const DATE_COUNT = 31;
 
-const yearList = Array.from({ length: YEAR_COUNT }, (_, i) => todayYear - i + '년');
+const yearList = Array.from({ length: YEAR_COUNT }, (_, i) => i + 1980 + '년');
+
 const monthList = Array.from({ length: MONTH_COUNT }, (_, i) => i + 1 + '월');
 const dateList = Array.from({ length: DATE_COUNT }, (_, i) => i + 1 + '일');
 
