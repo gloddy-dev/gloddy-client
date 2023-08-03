@@ -10,9 +10,9 @@ import { Suspense } from 'react';
 
 const GroupingComponent = () => {
   return (
-    <HydrationProvider queryKey={Keys.getGroups()} queryFn={() => getGroups(0)}>
+    <HydrationProvider queryKey={Keys.getGroups()} queryFn={() => getGroups(0)} isInfiniteQuery>
       <RetryErrorBoundary>
-        <Suspense>
+        <Suspense fallback={null}>
           <GroupingCardList />
         </Suspense>
       </RetryErrorBoundary>
