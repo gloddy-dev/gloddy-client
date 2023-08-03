@@ -15,19 +15,23 @@ import type { SubmitHandler } from 'react-hook-form';
 
 export default function NumberVerifyForm() {
   const router = useRouter();
-  const { register, handleSubmit } = useJoinContext();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useJoinContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateLogin } = useLoginMutation();
 
-  const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'certificateNumber'>> = (
-    data
-  ) => {
+  console.log(errors.verifyNumber);
+  const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'verifyNumber'>> = (data) => {
     mutateSMSVerify(
       {
         number: formatWithoutHyphen(data.phoneNumber),
-        code: '' + data.certificateNumber,
+        code: '' + data.verifyNumber,
       },
       {
         onSuccess: () => {
@@ -53,6 +57,11 @@ export default function NumberVerifyForm() {
             }
           );
         },
+        onError: () => {
+          setError('verifyNumber', {
+            type: 'validate',
+          });
+        },
       }
     );
   };
@@ -61,14 +70,15 @@ export default function NumberVerifyForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
         placeholder="인증 번호"
-        register={register('certificateNumber', {
+        register={register('verifyNumber', {
           required: true,
           pattern: {
-            value: regexr.certificateNumber,
+            value: regexr.verifyNumber,
             message: '인증번호 6자리를 입력해주세요.',
           },
         })}
         maxLength={6}
+        errorMessage={errors.verifyNumber?.message}
       />
       <Spacing size={18} />
       <Button text="인증번호 확인" type="submit" />
