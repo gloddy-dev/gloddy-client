@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { HTMLAttributes, memo } from 'react';
+import { type HTMLAttributes, memo } from 'react';
 
 interface SpacingProps extends HTMLAttributes<HTMLDivElement> {
   direction?: 'horizontal' | 'vertical';
