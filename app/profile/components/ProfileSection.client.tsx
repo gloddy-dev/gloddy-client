@@ -1,12 +1,13 @@
 'use client';
-import { ProfileResponse } from '@/apis/profile';
 import ImageFrame from '@/components/common/ImageFrame';
-import { Spacing } from '@/components/common/Spacing';
-import DivisionBar from '@/components/common/Spacing/DivisionBar';
+import { DivisionBar, Spacing } from '@/components/common/Spacing';
+
+import type { ProfileResponse } from '@/apis/profile';
 
 interface ProfileSectionProps {
   profileData: ProfileResponse;
 }
+
 export default function ProfileSection({ profileData }: ProfileSectionProps) {
   console.log(profileData);
   const { age, gender, imageUrl, name, praiseCount, reviewCount, school } = profileData;

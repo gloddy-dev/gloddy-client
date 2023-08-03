@@ -1,6 +1,7 @@
-import PersonalityItemServer from './PersonalityItem.server';
+import PersonalityItemServer from './PersonalityItem.client';
 import { personalityList } from '@/constants/personalityList';
-import { PersonalityType } from '@/types/profile';
+
+import type { PersonalityType } from '@/types/profile';
 
 export default function PersonalitySection() {
   return (
