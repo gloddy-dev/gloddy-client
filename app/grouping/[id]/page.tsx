@@ -1,6 +1,5 @@
 import GroupingDetail from './components/GroupingDetail.client';
-import { getGroup } from '@/apis/groups/apis';
-import { Keys } from '@/apis/groups/keys';
+import { Keys, getGroup } from '@/apis/groups';
 import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import { Suspense } from 'react';

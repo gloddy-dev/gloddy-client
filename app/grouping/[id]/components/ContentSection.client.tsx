@@ -1,7 +1,6 @@
 'use client';
-import { BottomFixedButton } from '@/components/common/Button';
 import Tabs from '@/components/common/Tabs';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 import type { TabType } from '../type';
 
@@ -12,8 +11,6 @@ interface ContentSectionProps {
 
 export default function ContentSection({ detailNode, boardNode }: ContentSectionProps) {
   const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
 
   const currentTab = (searchParams.get('tab') ?? 'detail') as TabType;
 
@@ -26,13 +23,9 @@ export default function ContentSection({ detailNode, boardNode }: ContentSection
         </Tabs.List>
         <Tabs.Panel value="detail">
           <div className="p-20">{detailNode}</div>
-          {/* {! && (
-            <BottomFixedButton text="지원하기" onClick={() => router.push(`${pathname}/apply`)} />
-          )} */}
         </Tabs.Panel>
         <Tabs.Panel value="board">
           <div className="p-20">{boardNode}</div>
-          {/* <BottomFixedButton text="글쓰기" onClick={() => router.push(`${pathname}/write`)} /> */}
         </Tabs.Panel>
       </Tabs>
     </section>
