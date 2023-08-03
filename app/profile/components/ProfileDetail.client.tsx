@@ -6,8 +6,11 @@ import { BottomNavigationBar } from '@/components/common/NavigationBar';
 
 export default function ProfileDetail() {
   const { data: profileData } = useGetProfile();
+
+  if (!profileData) return null;
+
   return (
-    <div className="h-full bg-gray9 px-20">
+    <div className="h-full bg-gray9">
       <ProfileTopNavigationBar />
       <ProfileSection profileData={profileData} />
       {/* <IntroductionSection />
