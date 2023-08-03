@@ -3,7 +3,6 @@ import { ProfileResponse } from '@/apis/profile';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import DivisionBar from '@/components/common/Spacing/DivisionBar';
-import { useState } from 'react';
 
 interface ProfileSectionProps {
   profileData: ProfileResponse;
