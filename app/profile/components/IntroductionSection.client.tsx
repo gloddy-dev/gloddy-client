@@ -2,7 +2,7 @@ import { ProfileResponse } from '@/apis/profile';
 import { Spacing } from '@/components/common/Spacing';
 import { personalityList } from '@/constants/personalityList';
 
-import type { PersonalityType } from '@/types/profile';
+import type { PersonalityType } from '@/types';
 
 interface IntroductionSectionProps {
   profileData: ProfileResponse;
