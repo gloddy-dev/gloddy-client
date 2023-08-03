@@ -1,4 +1,5 @@
 'use client';
+import IntroductionSection from './IntroductionSection.client';
 import ProfileSection from './ProfileSection.client';
 import ProfileTopNavigationBar from './ProfileTopNavigationBar.client';
 import { useGetProfile } from '@/apis/profile';
@@ -10,11 +11,10 @@ export default function ProfileDetail() {
   if (!profileData) return null;
 
   return (
-    <div className="h-full bg-gray9">
+    <div className="h-full bg-white2">
       <ProfileTopNavigationBar />
       <ProfileSection profileData={profileData} />
-      {/* <IntroductionSection />
-      <PersonlitySection /> */}
+      <IntroductionSection profileData={profileData} />
       <BottomNavigationBar page="profile" />
     </div>
   );
