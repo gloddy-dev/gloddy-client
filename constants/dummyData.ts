@@ -1,4 +1,4 @@
-import type { Article, CreateGroupRequest, Grouping } from '@/apis/groups';
+import type { Article, CreateGroupRequest, GroupDetailResponse, Grouping } from '@/apis/groups';
 
 export const DUMMY_GROUPING_DATA: Grouping[] = [
   {
@@ -12,8 +12,8 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     meetDate: '04.27.FRI 7PM',
     startTime: '13:00',
     endTime: '15:00',
-    placeLatitude: '37.579',
-    placeLongitude: '127.056',
+    placeLatitude: 37.579,
+    placeLongitude: 127.056,
   },
   {
     groupId: 2,
@@ -26,8 +26,8 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     meetDate: '04.27.FRI 7PM',
     startTime: '13:00',
     endTime: '15:00',
-    placeLatitude: '37.579',
-    placeLongitude: '127.056',
+    placeLatitude: 37.579,
+    placeLongitude: 127.056,
   },
   {
     groupId: 3,
@@ -40,8 +40,8 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     meetDate: '04.27.FRI 7PM',
     startTime: '13:00',
     endTime: '15:00',
-    placeLatitude: '37.579',
-    placeLongitude: '127.056',
+    placeLatitude: 37.579,
+    placeLongitude: 127.056,
   },
 ];
 
@@ -53,8 +53,8 @@ export const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
   startTime: '17:00',
   endTime: '21:00',
   place: '서울특별시 강남구 테헤란로 16',
-  placeLatitude: '23',
-  placeLongitude: '123',
+  placeLatitude: 23,
+  placeLongitude: 123,
   maxUser: 4,
 };
 
@@ -107,3 +107,19 @@ export const DUMMY_DATA: Article[] = [
     commentCount: 0,
   },
 ];
+
+export const DETAIL_DUMMY_DATA: GroupDetailResponse = {
+  imageUrl: '/assets/main_logo.png',
+  title: 'Let’s go for a walk!',
+  content: 'It’s a group that \n🏃walks around, \n🗣talks, \n🌏and learns languages.',
+  memberCount: 2,
+  maxUser: 4,
+  place: '동대문구 회기동',
+  meetDate: '2021-10-10',
+  startTime: '10:00',
+  endTime: '12:00',
+  placeLatitude: 37.589039,
+  placeLongitude: 127.057761,
+  isCaptain: true,
+  myGroup: true,
+};
