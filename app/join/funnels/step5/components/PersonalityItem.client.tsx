@@ -24,6 +24,7 @@ export default memo(function PersonalityItem({
       );
       return;
     }
+    if (personalityIdList.length >= 3) return;
     setValue('personalityIdList', [...personalityIdList, id]);
   };
 
