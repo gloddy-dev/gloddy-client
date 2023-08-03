@@ -1,5 +1,4 @@
-import { GenderType } from '@/types';
-import { PersonalityType } from '@/types/profile';
+import type { PersonalityType } from '@/types/profile';
 
 export interface ProfileResponse {
   age: number;
@@ -7,7 +6,7 @@ export interface ProfileResponse {
   imageUrl: string;
   introduce: string;
   name: string;
-  personlaities: PersonalityType[];
+  personalities: Array<PersonalityType['keywordInEnglish']>;
   praiseCount: number;
   reviewCount: number;
   school: string;
