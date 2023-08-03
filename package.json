@@ -11,6 +11,8 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "@suspensive/react": "^1.11.3",
+    "@suspensive/react-query": "^1.11.3",
     "@tanstack/react-query": "^4.29.19",
     "@tanstack/react-query-devtools": "^4.29.19",
     "antd-mobile": "^5.31.1",

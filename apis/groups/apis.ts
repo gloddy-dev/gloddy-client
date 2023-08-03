@@ -7,8 +7,8 @@ import type {
   GroupsResponse,
 } from './type';
 
-export const getGroups = (pageNum: number) => {
-  return privateApi.get<GroupsResponse>(`/groups?size=5&page=${pageNum}`);
+export const getGroups = (page: number) => {
+  return privateApi.get<GroupsResponse>(`/groups?size=5&page=${page}`);
 };
 
 export const getGroupDetail = (groupId: number) => {

@@ -13,8 +13,6 @@ interface GroupingDetailProps {
 export default function GroupingDetail({ groupId }: GroupingDetailProps) {
   const { data: groupDetailData } = useGetGroupDetail(groupId);
 
-  if (!groupDetailData) return null;
-
   return (
     <>
       <GroupingTopNavigationBar />
