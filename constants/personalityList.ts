@@ -1,4 +1,4 @@
-import type { PersonalityType } from '@/app/join/funnels/step5/type';
+import { PersonalityType } from '@/types/profile';
 
 export const personalityList: PersonalityType[] = [
   {
