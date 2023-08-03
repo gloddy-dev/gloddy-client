@@ -1,5 +1,5 @@
-import { PersonalityType } from '../type';
 import { useJoinContext } from '@/app/join/components/JoinContext';
+import { PersonalityType } from '@/types/profile';
 import clsx from 'clsx';
 import { memo } from 'react';
 
