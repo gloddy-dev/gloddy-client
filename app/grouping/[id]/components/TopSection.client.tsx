@@ -1,14 +1,15 @@
 'use client';
-import { GroupResponse } from '@/apis/groups/type';
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 
+import type { GroupDetailResponse } from '@/apis/groups';
+
 interface TopSectionProps {
-  groupData: GroupResponse;
+  groupDetailData: GroupDetailResponse;
 }
 
-export default function TopSection({ groupData }: TopSectionProps) {
-  const { imageUrl, title, content } = groupData;
+export default function TopSection({ groupDetailData }: TopSectionProps) {
+  const { imageUrl, title, content } = groupDetailData;
 
   return (
     <section>

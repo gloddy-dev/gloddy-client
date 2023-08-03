@@ -2,9 +2,10 @@ import { Spacing } from '@/components/common/Spacing';
 import { DAY_OF_WEEK } from '@/constants';
 import { format, getDay, parseISO } from 'date-fns';
 
-import type { GroupResponse } from '@/apis/groups/type';
+import type { GroupDetailResponse } from '@/apis/groups/type';
 
-interface TimeSectionProps extends Pick<GroupResponse, 'meetDate' | 'startTime' | 'endTime'> {}
+interface TimeSectionProps
+  extends Pick<GroupDetailResponse, 'meetDate' | 'startTime' | 'endTime'> {}
 
 const displayDate = (meetDate: string, startTime: string, endTime: string) => {
   const formattedDate = format(parseISO(meetDate), 'yyyy. MM. dd.');

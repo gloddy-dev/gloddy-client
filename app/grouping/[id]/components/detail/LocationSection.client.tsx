@@ -5,10 +5,10 @@ import { KAKAO_SDK_URL } from '@/constants';
 import Script from 'next/script';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-import type { GroupResponse } from '@/apis/groups/type';
+import type { GroupDetailResponse } from '@/apis/groups/type';
 
 interface LocationSectionProps
-  extends Pick<GroupResponse, 'place' | 'placeLatitude' | 'placeLongitude'> {}
+  extends Pick<GroupDetailResponse, 'place' | 'placeLatitude' | 'placeLongitude'> {}
 
 export default function LocationSection({
   place,

@@ -1,4 +1,4 @@
-import Member from './Member.server';
+import Member from './Member.client';
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 

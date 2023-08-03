@@ -1,5 +1,5 @@
 import GroupingDetail from './components/GroupingDetail.client';
-import { Keys, getGroup } from '@/apis/groups';
+import { Keys, getGroupDetail } from '@/apis/groups';
 import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import { Suspense } from 'react';
@@ -16,7 +16,10 @@ export default function GroupingByIdPage({
   return (
     <RetryErrorBoundary>
       <Suspense fallback={null}>
-        <HydrationProvider queryKey={Keys.getGroup(groupId)} queryFn={() => getGroup(groupId)}>
+        <HydrationProvider
+          queryKey={Keys.getGroupDetail(groupId)}
+          queryFn={() => getGroupDetail(groupId)}
+        >
           <GroupingDetail groupId={groupId} />
         </HydrationProvider>
       </Suspense>
