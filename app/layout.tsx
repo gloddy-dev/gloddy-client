@@ -1,8 +1,9 @@
 import './globals.css';
 
-import type { StrictPropsWithChildren } from '@/types';
 import QueryProvider from '@/components/common/Provider/QueryProvider.client';
 import { BASE_WEB_URL } from '@/constants';
+
+import type { StrictPropsWithChildren } from '@/types';
 
 const DEFAULT_OG_TITLE = 'Gloddy';
 const DEFAULT_OG_DESC = '조금 더 믿을 만한 모임을 할 수 있도록 준비했어요!';
@@ -44,10 +45,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 function Layout({ children }: StrictPropsWithChildren) {
   return (
     <html lang="ko">
-      <body className="flex h-[100dvh] w-screen justify-center bg-slate-50">
-        <div className="relative h-full w-full max-w-450 overflow-y-scroll bg-white text-black">
-          {children}
-        </div>
+      <body className="flex h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
+        <div className="relative h-full w-full max-w-450 bg-white text-black">{children}</div>
       </body>
     </html>
   );
