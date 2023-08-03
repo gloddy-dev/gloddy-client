@@ -35,7 +35,7 @@ export default forwardRef(function ImageFrame(
   };
 
   return (
-    <section className="relative flex h-160 items-center justify-center">
+    <section className="flex h-160 items-center justify-center">
       <label className="relative h-100 w-100" htmlFor="image">
         {imageBlob ? (
           <Image
