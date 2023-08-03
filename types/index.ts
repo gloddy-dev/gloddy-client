@@ -33,3 +33,9 @@ export type CookieKeyType = {
   refreshToken: string;
   userId: number;
 };
+
+export type PersonalityType = {
+  id: number;
+  keyword: string;
+  keywordInEnglish: string;
+};

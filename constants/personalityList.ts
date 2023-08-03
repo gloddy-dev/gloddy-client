@@ -1,4 +1,4 @@
-import type { PersonalityType } from '@/types/profile';
+import type { PersonalityType } from '@/types';
 
 export const personalityList: PersonalityType[] = [
   {
