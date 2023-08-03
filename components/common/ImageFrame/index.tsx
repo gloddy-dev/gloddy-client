@@ -5,18 +5,21 @@ import Image from 'next/image';
 import { ForwardedRef, forwardRef, useState } from 'react';
 
 interface ImageFrameProps {
-  setImageUrl: (imageFile: string) => void;
+  setImageUrl?: (imageFile: string) => void;
+  defaultImageUrl?: string;
+  canChange?: boolean;
   shape?: 'circle' | 'square';
 }
 
 export default forwardRef(function ImageFrame(
-  { setImageUrl, shape = 'circle' }: ImageFrameProps,
+  { setImageUrl, defaultImageUrl, shape = 'circle', canChange = true }: ImageFrameProps,
   imgRef: ForwardedRef<HTMLInputElement>
 ) {
   const { mutate: mutatePostFiles } = usePostFiles();
-  const [imageBlob, setImageBlob] = useState<string>('');
+  const [imageBlob, setImageBlob] = useState<string>(defaultImageUrl ?? '');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!canChange || !setImageUrl) return;
     const formData = new FormData();
     const imageFile = e.target.files?.[0];
     if (imageFile === undefined) return;
@@ -37,7 +40,7 @@ export default forwardRef(function ImageFrame(
         {imageBlob ? (
           <Image
             alt="frameImage"
-            src={imageBlob}
+            src={imageBlob ?? defaultImageUrl}
             priority
             fill
             className={clsx('h-full w-full object-cover', {
@@ -54,16 +57,18 @@ export default forwardRef(function ImageFrame(
           />
         )}
 
-        <Image
-          alt="plus"
-          src="/assets/plus.svg"
-          width={20}
-          height={30}
-          className={clsx('absolute ', {
-            'bottom-5 right-5': shape === 'circle',
-            '-right-5 -top-5': shape === 'square',
-          })}
-        />
+        {canChange && (
+          <Image
+            alt="plus"
+            src="/assets/plus.svg"
+            width={20}
+            height={30}
+            className={clsx('absolute ', {
+              'bottom-5 right-5': shape === 'circle',
+              '-right-5 -top-5': shape === 'square',
+            })}
+          />
+        )}
       </label>
 
       <input
