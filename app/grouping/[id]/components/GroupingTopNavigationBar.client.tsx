@@ -16,7 +16,7 @@ export default function TopNavigationBar() {
         className="cursor-pointer"
       />
       <Image
-        src="/assets/setting.svg"
+        src="/assets/setting_white.svg"
         alt="setting"
         width={20}
         height={20}
