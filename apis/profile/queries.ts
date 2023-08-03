@@ -1,5 +1,5 @@
 import { getProfile } from './apis';
 import { Keys } from './keys';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@suspensive/react-query';
 
-export const useGetProfile = () => useQuery(Keys.getProfile(), getProfile);
+export const useGetProfile = () => useSuspenseQuery(Keys.getProfile(), getProfile);
