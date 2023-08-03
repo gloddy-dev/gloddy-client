@@ -1,8 +1,9 @@
 'use client';
-import { PersonalityType } from '../type';
 import { useJoinContext } from '@/app/join/components/JoinContext';
 import clsx from 'clsx';
 import { memo } from 'react';
+
+import type { PersonalityType } from '@/types';
 
 interface PersonalityItemProps {
   personality: PersonalityType;
