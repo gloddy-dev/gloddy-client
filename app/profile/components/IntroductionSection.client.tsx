@@ -21,7 +21,7 @@ export default function IntroductionSection({ profileData }: IntroductionSection
         <p className="text-12 leading-36">성격</p>
         <Spacing size={5} />
         <div>
-          {personalities.map((personlity: PersonalityType['keywordInEnglish']) => (
+          {personalities.map((personlity) => (
             <span key={personlity} className="rounded-20 bg-white px-14 py-10 text-12">
               {
                 personalityList.find((it: PersonalityType) => it.keywordInEnglish === personlity)
