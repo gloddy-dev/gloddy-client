@@ -5,17 +5,10 @@ import ImageSection from './ImageSection.client';
 import NicknameSection from './NicknameSection.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useJoinContext } from '@/app/join/components/JoinContext';
-import { SignUpState } from '@/app/join/type';
 import { BottomFixedButton } from '@/components/common/Button';
 
 export default function InputForm() {
-  const {
-    watch,
-    handleSubmit,
-    setError,
-    clearErrors,
-    formState: { errors },
-  } = useJoinContext();
+  const { watch, handleSubmit } = useJoinContext();
   const { nextStep } = useFunnelContext();
   const isAllTyped = !!(
     watch('nickname') &&
