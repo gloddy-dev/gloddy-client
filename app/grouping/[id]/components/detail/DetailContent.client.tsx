@@ -5,14 +5,15 @@ import TimeSection from './TimeSection.client';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Spacing } from '@/components/common/Spacing';
 
-import type { GroupResponse } from '@/apis/groups/type';
+import type { GroupDetailResponse } from '@/apis/groups/type';
 
 interface DetailContentProps {
-  groupData: GroupResponse;
+  groupDetailData: GroupDetailResponse;
 }
 
-export default function DetailContent({ groupData }: DetailContentProps) {
-  const { place, placeLatitude, placeLongitude, meetDate, startTime, endTime, myGroup } = groupData;
+export default function DetailContent({ groupDetailData }: DetailContentProps) {
+  const { place, placeLatitude, placeLongitude, meetDate, startTime, endTime, myGroup } =
+    groupDetailData;
 
   return (
     <>

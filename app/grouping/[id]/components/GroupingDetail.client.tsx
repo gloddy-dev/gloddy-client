@@ -4,24 +4,24 @@ import ContentSection from './ContentSection.client';
 import DetailContent from './detail/DetailContent.client';
 import GroupingTopNavigationBar from './GroupingTopNavigationBar.client';
 import TopSection from './TopSection.client';
-import { useGetGroup } from '@/apis/groups/queries';
+import { useGetGroupDetail } from '@/apis/groups';
 
 interface GroupingDetailProps {
   groupId: number;
 }
 
 export default function GroupingDetail({ groupId }: GroupingDetailProps) {
-  const { data: groupData } = useGetGroup(groupId);
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
 
-  if (!groupData) return null;
+  if (!groupDetailData) return null;
 
   return (
     <>
       <GroupingTopNavigationBar />
-      <TopSection groupData={groupData} />
+      <TopSection groupDetailData={groupDetailData} />
       <ContentSection
-        detailNode={<DetailContent groupData={groupData} />}
-        boardNode={<BoardContent myGroup={groupData.myGroup} />}
+        detailNode={<DetailContent groupDetailData={groupDetailData} />}
+        boardNode={<BoardContent myGroup={groupDetailData.myGroup} />}
       />
     </>
   );

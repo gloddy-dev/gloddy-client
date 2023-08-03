@@ -34,7 +34,7 @@ export interface GroupsResponse {
   contents: Grouping[];
 }
 
-export interface GroupResponse extends Omit<Grouping, 'groupId'> {
+export interface GroupDetailResponse extends Omit<Grouping, 'groupId'> {
   myGroup: true;
   isCaptain: true;
 }
