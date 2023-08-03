@@ -8,8 +8,6 @@ import { BottomNavigationBar } from '@/components/common/NavigationBar';
 export default function ProfileDetail() {
   const { data: profileData } = useGetProfile();
 
-  if (!profileData) return null;
-
   return (
     <div className="h-full bg-white2">
       <ProfileTopNavigationBar />
