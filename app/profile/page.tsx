@@ -4,7 +4,7 @@ import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import React, { Suspense } from 'react';
 
-const Profile = () => {
+export default function Profile() {
   return (
     <RetryErrorBoundary>
       <Suspense fallback={<div>Loading...</div>}>
@@ -14,6 +14,4 @@ const Profile = () => {
       </Suspense>
     </RetryErrorBoundary>
   );
-};
-
-export default Profile;
+}
