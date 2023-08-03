@@ -1,9 +1,60 @@
+'use client';
+import { ProfileResponse } from '@/apis/profile';
 import ImageFrame from '@/components/common/ImageFrame';
+import DivisionBar from '@/components/common/Spacing/DivisionBar';
+import { useState } from 'react';
 
 interface ProfileSectionProps {
-  profileData: any;
+  profileData: ProfileResponse;
 }
-export default function ProfileSection({ profileData }) {
+export default function ProfileSection({ profileData }: ProfileSectionProps) {
   console.log(profileData);
-  return <section>{/* <ImageFrame /> */}</section>;
+  const {
+    age,
+    gender,
+    imageUrl,
+    introduce,
+    name,
+    personlaities,
+    praiseCount,
+    reviewCount,
+    school,
+  } = profileData;
+
+  return (
+    <section className="h-500 rounded-b-35 bg-white px-40">
+      <article className="flex flex-col items-center">
+        <ImageFrame canChange={false} />
+        <p>
+          <span className="text-20 font-700 leading-40">{name}</span>
+          <span className="text-14 font-400 leading-40 text-gray2">님</span>
+        </p>
+        <p className="text-14 font-400 leading-40 text-gray2">
+          {gender === 'MAIL' ? '남' : '여'} | {age}세 | {school}
+        </p>
+      </article>
+      <DivisionBar className="my-20" />
+      <article className="flex flex-col">
+        <p className="text-12 font-700">신뢰도 지표</p>
+        {/* 신뢰도 API 나오면 구현 예정 */}
+      </article>
+      <DivisionBar className="my-20" />
+      <article className="flex h-40">
+        <div className="flex flex-grow flex-col items-center justify-center">
+          <p className="text-12">최근 모임</p>
+          <p className="text-14 font-700">5회</p>
+        </div>
+        <DivisionBar direction="vertical" />
+        <div className="flex flex-grow flex-col items-center">
+          <p className="text-12">받은 칭찬</p>
+          <p className="text-14 font-700">111개</p>
+        </div>
+        <DivisionBar direction="vertical" />
+        <div className="flex flex-grow flex-col items-center">
+          <p className="text-12">모임 후기</p>
+          <p className="text-14 font-700">111개</p>
+        </div>
+      </article>
+    </section>
+  );
 }
