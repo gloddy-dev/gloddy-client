@@ -9,7 +9,7 @@ export default function ImageSection() {
 
   return (
     <ImageFrame
-      setImageUrl={(value: string) => setValue('fileUrl', value)}
+      setImageUrl={(value: string) => setValue('imageUrl', value)}
       shape="square"
       ref={imgRef}
     />
