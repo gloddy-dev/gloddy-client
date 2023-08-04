@@ -1,5 +1,5 @@
-import MemeberList from './components/MemberList';
-import MembersTopNavigationBar from './components/MembersTopNavigationBar';
+import MemeberList from './components/MemberList.client';
+import MembersTopNavigationBar from './components/MembersTopNavigationBar.client';
 import { Spacing } from '@/components/common/Spacing';
 
 export default function GroupingMembersPage() {

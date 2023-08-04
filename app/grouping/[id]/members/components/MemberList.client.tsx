@@ -1,4 +1,5 @@
-import MemberItem from './MemberItem';
+'use client';
+import MemberItem from './MemberItem.client';
 import { MEMBER_DUMMY_DATA } from '@/constants/dummyData';
 
 export default function MemeberList() {
