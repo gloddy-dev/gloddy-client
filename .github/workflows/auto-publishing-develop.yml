@@ -1,4 +1,4 @@
-name: git push into another repo to deploy to vercel
+name: 개인 Repository에 자동으로 Push - develop 브랜치
 
 on:
   push:
