@@ -1,4 +1,4 @@
-name: Check the source code
+name: Check Eslint & Prettier
 on:
   pull_request:
     branches:
