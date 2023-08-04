@@ -3,9 +3,7 @@ on:
   pull_request:
     branches:
       - develop
-  push:
-    branches:
-      - feature/*
+    types: [opened, synchronize, reopened, edited]
 jobs:
   test:
     name: Check the source code
