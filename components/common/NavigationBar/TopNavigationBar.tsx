@@ -15,7 +15,7 @@ export default function TopNavigationBar({
 }: TopNavigationBarProps) {
   return (
     <>
-      <div className="fixed inset-x-0 z-50 mx-auto max-w-450 bg-white px-20">
+      <div className="fixed inset-x-0 z-50 mx-auto max-w-450 bg-transparent px-20">
         <header className=" flex h-60 items-center justify-between">
           {leftNode ? leftNode : <div />}
           {text ? <div className="font-500">{text}</div> : <div />}

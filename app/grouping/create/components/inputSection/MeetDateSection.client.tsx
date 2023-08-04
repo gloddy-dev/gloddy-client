@@ -51,6 +51,7 @@ export default function MeetDateSection() {
         isRightButton
         text={<div className="text-18">모임 일시</div>}
         isTapOutsideToClose
+        disableDrag
       >
         <div className="relative h-full">
           <div>
@@ -58,7 +59,7 @@ export default function MeetDateSection() {
               dateValue={watch('date')}
               setDateValue={(date: Date) => setValue('date', date, { shouldDirty: true })}
             />
-            <DivisionSpacing />
+            <DivisionSpacing size={20} />
             <TimeSwipePicker
               timeValue={watch('time')}
               setTimeValue={(time: TimeType) => setValue('time', time, { shouldDirty: true })}

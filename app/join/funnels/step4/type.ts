@@ -1,8 +1,8 @@
-import type { BirthdayValueType, GenderType, ImageType } from '@/types';
+import type { DateType, GenderType, ImageType } from '@/types';
 
 export type Step4InputType = {
   nickname: string;
   profileImage: ImageType;
-  birthday: BirthdayValueType;
+  birthday: DateType;
   gender: GenderType;
 };

@@ -1,5 +1,4 @@
-import { CreateGroupRequest } from '@/apis/groups';
-
+import { CreateGroupRequest } from '@/apis/groups/type';
 import type { TimeType } from '@/types';
 
 export interface CreateGroupContextValue
