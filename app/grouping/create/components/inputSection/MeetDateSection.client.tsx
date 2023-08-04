@@ -59,7 +59,7 @@ export default function MeetDateSection() {
               dateValue={watch('date')}
               setDateValue={(date: Date) => setValue('date', date, { shouldDirty: true })}
             />
-            <DivisionSpacing />
+            <DivisionSpacing size={20} />
             <TimeSwipePicker
               timeValue={watch('time')}
               setTimeValue={(time: TimeType) => setValue('time', time, { shouldDirty: true })}
