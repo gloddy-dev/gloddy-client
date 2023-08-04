@@ -1,18 +1,8 @@
-import BoardContent from './components/board/BoardContent.server';
-import ContentSection from './components/ContentSection.client';
-import DetailContent from './components/detail/DetailContent.server';
-import TopNavigationBar from './components/TopNavigationBar.client';
-import TopSection from './components/TopSection.client';
-
-const DETAIL_DUMMY_DATA = {
-  image: '/assets/main_logo.png',
-  title: 'Let’s go for a walk!',
-  description: 'It’s a group that \n🏃walks around, \n🗣talks, \n🌏and learns languages.',
-  current: '2',
-  total: '4',
-  location: '동대문구 회기동',
-  time: '04.27.FRI 7PM',
-};
+import GroupingDetail from './components/GroupingDetail.client';
+import { Keys, getGroupDetail } from '@/apis/groups';
+import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
+import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
+import { Suspense } from 'react';
 
 export default function GroupingByIdPage({
   params: { id },
@@ -21,17 +11,18 @@ export default function GroupingByIdPage({
     id: string;
   };
 }) {
-  const { image, title, description, location, time } = DETAIL_DUMMY_DATA;
+  const groupId = Number(id);
 
   return (
-    <main>
-      <TopNavigationBar />
-      <TopSection title={title} thumbnailUrl={image} description={description} />
-      <ContentSection
-        groupingId={id}
-        detailNode={<DetailContent location={location} time={time} />}
-        boardNode={<BoardContent />}
-      />
-    </main>
+    <RetryErrorBoundary>
+      <Suspense fallback={null}>
+        <HydrationProvider
+          queryKey={Keys.getGroupDetail(groupId)}
+          queryFn={() => getGroupDetail(groupId)}
+        >
+          <GroupingDetail groupId={groupId} />
+        </HydrationProvider>
+      </Suspense>
+    </RetryErrorBoundary>
   );
 }

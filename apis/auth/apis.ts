@@ -5,19 +5,19 @@ import type {
   EmailVerifyRequest,
   LoginRequest,
   LoginResponse,
+  ReissueRequest,
+  ReissueResponse,
   SMSRequest,
   SMSVerifiyRequest,
   SignUpRequest,
   SignUpResponse,
 } from './type';
 
-const TEST_ID = {
-  email: 'testy54@soongsil.ac.kr',
-  password: 'qwqw5533',
-};
-
 export const postLogin = (loginData: LoginRequest) =>
   publicApi.post<LoginResponse>('/auth/login', loginData);
+
+export const postReissue = (ReissueData: ReissueRequest) =>
+  publicApi.post<ReissueResponse>('/auth/token-reissue', ReissueData);
 
 export const postSMS = (SMSData: SMSRequest) => publicApi.post('/auth/sms', SMSData);
 

@@ -1,10 +1,10 @@
 import SwipePicker from './SwipePicker';
 
-import type { TimeType } from '@/types';
+import type { AMPMType, TimeType } from '@/types';
 
-const hourList = Array.from({ length: 12 }, (_, i) => `${i + 1}`);
-const minuteList = Array.from({ length: 60 }, (_, i) => (i > 9 ? `${i}` : `0${i}`));
-const ampmList = ['AM', 'PM'];
+const hourList: string[] = Array.from({ length: 12 }, (_, i) => String(i + 1));
+const minuteList: string[] = Array.from({ length: 60 }, (_, i) => String(i > 9 ? i : '0' + i));
+const ampmList: AMPMType[] = ['AM', 'PM'];
 
 interface TimeSwipePickerProps {
   timeValue: TimeType;
@@ -12,58 +12,43 @@ interface TimeSwipePickerProps {
 }
 
 export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePickerProps) {
-  const setValueByKeyType = (value: string | number, keyType: string) => {
-    setTimeValue({
-      ...timeValue,
-      [keyType]: value,
-    });
-  };
-
   return (
-    <div className="flex h-125 ">
+    <div className="relative flex h-180">
+      <SwipePicker.Bar />
       <SwipePicker
         selectList={hourList}
         value={timeValue.fromHour}
-        keyType="fromHour"
-        setValue={setValueByKeyType}
-        isFirst
+        setValue={(value: string) => setTimeValue({ ...timeValue, fromHour: value })}
       />
-      <SwipePicker selectList={[':']} />
+      <SwipePicker.MiddleText>:</SwipePicker.MiddleText>
       <SwipePicker
         selectList={minuteList}
-        keyType="fromMin"
         value={timeValue.fromMin}
-        setValue={setValueByKeyType}
+        setValue={(value: string) => setTimeValue({ ...timeValue, fromMin: value })}
       />
       <SwipePicker
         selectList={ampmList}
         value={timeValue.fromAmPm}
-        keyType="fromAmPm"
-        isTimeZone={true}
-        setValue={setValueByKeyType}
+        setValue={(value: AMPMType) => setTimeValue({ ...timeValue, fromAmPm: value })}
       />
-      <SwipePicker selectList={['부터']} isRangeString={true} />
+      <SwipePicker.MiddleText>부터</SwipePicker.MiddleText>
       <SwipePicker
         selectList={hourList}
-        keyType="toHour"
         value={timeValue.toHour}
-        setValue={setValueByKeyType}
+        setValue={(value: string) => setTimeValue({ ...timeValue, toHour: value })}
       />
-      <SwipePicker selectList={[':']} />
+      <SwipePicker.MiddleText>:</SwipePicker.MiddleText>
       <SwipePicker
         selectList={minuteList}
-        keyType="toMin"
         value={timeValue.toMin}
-        setValue={setValueByKeyType}
+        setValue={(value: string) => setTimeValue({ ...timeValue, toMin: value })}
       />
       <SwipePicker
         selectList={ampmList}
         value={timeValue.toAmPm}
-        keyType="toAmPm"
-        isTimeZone={true}
-        setValue={setValueByKeyType}
+        setValue={(value: AMPMType) => setTimeValue({ ...timeValue, toAmPm: value })}
       />
-      <SwipePicker selectList={['까지']} isRangeString={true} isLast />
+      <SwipePicker.MiddleText>까지</SwipePicker.MiddleText>
     </div>
   );
 }
