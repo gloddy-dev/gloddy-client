@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
-    "postinstall": "husky install"
+    "format": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@suspensive/react": "^1.11.3",
