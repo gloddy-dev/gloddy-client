@@ -123,3 +123,27 @@ export const DETAIL_DUMMY_DATA: GroupDetailResponse = {
   isCaptain: true,
   myGroup: true,
 };
+
+export const MEMBER_DUMMY_DATA = [
+  {
+    imageUrl: '/assets/avatar.svg',
+    name: '김지환',
+    isCaptain: true,
+    isCertified: true,
+    personality: 'SOUL MATE',
+  },
+  {
+    imageUrl: '/assets/avatar.svg',
+    name: 'david',
+    isCaptain: false,
+    isCertified: true,
+    personality: 'MATE',
+  },
+  {
+    imageUrl: '/assets/avatar.svg',
+    name: 'alice',
+    isCaptain: false,
+    isCertified: false,
+    personality: 'MATE',
+  },
+];
