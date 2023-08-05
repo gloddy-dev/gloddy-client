@@ -1,9 +1,9 @@
 'use client';
-import Image from 'next/image';
 
 import { Button } from '@/components/common/Button';
 import { SquareCheckbox } from '@/components/common/Checkbox';
 import { Input } from '@/components/common/Input';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const handleLogin = () => {};
