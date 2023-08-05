@@ -8,6 +8,7 @@ export default function InputForm() {
   const { handleSubmit } = useJoinContext();
   const { nextStep } = useFunnelContext();
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
+    console.log(data);
     nextStep();
   };
 
