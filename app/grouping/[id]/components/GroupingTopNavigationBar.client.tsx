@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function TopNavigationBar() {
+export default function GroupingTopNavigationBar() {
   const router = useRouter();
 
   return (
