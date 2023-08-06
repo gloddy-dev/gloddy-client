@@ -39,4 +39,4 @@ class PrivateFetch extends PublicFetch {
 }
 const privateFetch = new PrivateFetch();
 
-export { PrivateFetch, privateFetch };
+export { privateFetch };
