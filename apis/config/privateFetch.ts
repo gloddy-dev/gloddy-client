@@ -1,20 +1,16 @@
 import { PublicFetch } from './publicFetch';
-
-import type { CookieKeyType } from '@/types';
+import { getTokenFromCookie } from '@/utils/auth/tokenController';
 
 class PrivateFetch extends PublicFetch {
-  tokens: Partial<CookieKeyType>;
-  constructor(tokens: Partial<CookieKeyType>) {
+  constructor() {
     super();
-    this.tokens = tokens;
   }
   async common<T>(route: string, requestInit?: RequestInit): Promise<{ data: T }> {
-    const { accessToken } = this.tokens;
-
+    const { accessToken } = await getTokenFromCookie();
     return super.common<T>(route, {
       ...(requestInit ?? {}),
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        'X-AUTH-TOKEN': accessToken as string,
         ...(requestInit?.headers ?? {}),
       },
     });
@@ -44,5 +40,6 @@ class PrivateFetch extends PublicFetch {
     });
   }
 }
+const privateFetch = new PrivateFetch();
 
-export { PrivateFetch };
+export { PrivateFetch, privateFetch };
