@@ -17,9 +17,11 @@ import type {
 export const postLogin = (loginData: LoginRequest) =>
   publicApi.post<LoginResponse>('/auth/login', loginData);
 
-export const postReissue = async (ReissueData: ReissueRequest) => {
-  privateFetch.post<ReissueResponse>('/auth/token-reissue', { body: JSON.stringify(ReissueData) });
-};
+export const postReissue = async (ReissueData: ReissueRequest, requestInit?: RequestInit) =>
+  privateFetch.post<ReissueResponse>('/auth/token-reissue', {
+    body: JSON.stringify(ReissueData),
+    ...requestInit,
+  });
 
 export const postSMS = (SMSData: SMSRequest) => publicApi.post('/auth/sms', SMSData);
 

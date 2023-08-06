@@ -6,11 +6,9 @@ class PrivateFetch extends PublicFetch {
     super();
   }
   async common<T>(route: string, requestInit?: RequestInit): Promise<{ data: T }> {
-    const { accessToken } = await getTokenFromCookie();
     return super.common<T>(route, {
       ...(requestInit ?? {}),
       headers: {
-        'X-AUTH-TOKEN': accessToken as string,
         ...(requestInit?.headers ?? {}),
       },
     });
