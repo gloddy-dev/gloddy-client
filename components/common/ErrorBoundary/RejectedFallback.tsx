@@ -11,8 +11,6 @@ export default function RejectedFallback({
   reset,
   resetErrorBoundary,
 }: RejectedFallbackProps) {
-  console.log('폴백');
-
   return (
     <div className="flex flex-col items-center px-24 py-40">
       <p className="text-h5 text-black">문제가 발생했습니다</p>
