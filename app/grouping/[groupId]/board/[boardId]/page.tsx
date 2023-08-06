@@ -5,11 +5,14 @@ import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { Spacing } from '@/components/common/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-export default function BoardDetailPage({
-  params,
-}: {
-  params: { groupId: string; boardId: string };
-}) {
+interface BoardDetailPageProps {
+  params: {
+    groupId: string;
+    boardId: string;
+  };
+}
+
+export default function BoardDetailPage({ params }: BoardDetailPageProps) {
   const groupId = Number(params.groupId);
   const boardId = Number(params.boardId);
 
