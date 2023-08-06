@@ -28,14 +28,17 @@ export default function Home() {
 
   const handleGetReissue = async () => {
     const { accessToken, refreshToken } = await getTokenFromCookie();
-    console.log(accessToken, refreshToken);
     if (!accessToken || !refreshToken) return;
-    const response = await postReissue({
-      accessToken,
-      refreshToken,
-    });
+    const response = await postReissue(
+      {
+        accessToken,
+        refreshToken,
+      },
+      { headers: { 'X-AUTH-TOKEN': accessToken } }
+    );
     console.log(response);
   };
+
   return (
     <main>
       <button onClick={handlegetTokenFromCookie}>Token 발급받기</button>
