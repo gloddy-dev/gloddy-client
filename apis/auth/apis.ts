@@ -1,5 +1,5 @@
+import { privateFetch } from '../config/privateFetch';
 import publicApi from '../config/publicApi';
-import { publicFetch } from '../config/publicFetch';
 
 import type {
   EmailRequest,
@@ -17,8 +17,9 @@ import type {
 export const postLogin = (loginData: LoginRequest) =>
   publicApi.post<LoginResponse>('/auth/login', loginData);
 
-export const postReissue = (ReissueData: ReissueRequest) =>
-  publicFetch.post<ReissueResponse>('/auth/token-reissue', { body: JSON.stringify(ReissueData) });
+export const postReissue = async (ReissueData: ReissueRequest) => {
+  privateFetch.post<ReissueResponse>('/auth/token-reissue', { body: JSON.stringify(ReissueData) });
+};
 
 export const postSMS = (SMSData: SMSRequest) => publicApi.post('/auth/sms', SMSData);
 
