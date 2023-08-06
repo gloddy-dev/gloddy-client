@@ -5,13 +5,13 @@ import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-export default function GroupingDetailPage({
-  params,
-}: {
+interface GroupingDetailPageProps {
   params: {
     groupId: string;
   };
-}) {
+}
+
+export default function GroupingDetailPage({ params }: GroupingDetailPageProps) {
   const groupId = Number(params.groupId);
 
   return (
