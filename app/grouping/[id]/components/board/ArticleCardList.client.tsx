@@ -1,3 +1,4 @@
+'use client';
 import ArticleCard from './ArticleCard.client';
 import { useGetArticles } from '@/apis/groups/queries';
 import { useParams } from 'next/navigation';
