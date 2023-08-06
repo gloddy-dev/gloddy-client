@@ -34,9 +34,9 @@ export default function WriteSection({ groupId, boardId }: WriteSectionProps) {
           onChange={handleChange}
         />
         <Button type="submit" className="h-50 w-50 flex-shrink-0">
-          <div className="item-center flex justify-center">
+          <span className="item-center flex justify-center">
             <Image src="/assets/comment_white.svg" alt="comment" width={20} height={20} />
-          </div>
+          </span>
         </Button>
       </form>
     </BottomFixedDiv>
