@@ -1,11 +1,11 @@
 'use client';
-import { LoginResponse, useLoginMutation } from '@/apis/auth';
-import { setTokenAtCookie } from '@/utils/auth/tokenController';
+import { LoginResponse, postReissue, useLoginMutation } from '@/apis/auth';
+import { getTokenFromCookie, setTokenAtCookie } from '@/utils/auth/tokenController';
 
 export default function Home() {
   const { mutate: mutateLogin } = useLoginMutation();
 
-  const handlegetTokenFromCookie = () => {
+  const handlegetTokenFromCookie = async () => {
     mutateLogin(
       { phoneNumber: '010-5728-9357' },
       {
@@ -25,9 +25,21 @@ export default function Home() {
       }
     );
   };
+
+  const handleGetReissue = async () => {
+    const { accessToken, refreshToken } = await getTokenFromCookie();
+    console.log(accessToken, refreshToken);
+    if (!accessToken || !refreshToken) return;
+    const response = await postReissue({
+      accessToken,
+      refreshToken,
+    });
+    console.log(response);
+  };
   return (
     <main>
       <button onClick={handlegetTokenFromCookie}>Token 발급받기</button>
+      <button onClick={handleGetReissue}>Reissue</button>
     </main>
   );
 }
