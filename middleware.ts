@@ -1,6 +1,6 @@
 import { postReissue } from './apis/auth';
 import { AUTH_KEYS } from './constants/token';
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 
 const middleware = async (request: NextRequest) => {
   const accessToken = request.cookies.get(AUTH_KEYS.accessToken)?.value;
@@ -8,6 +8,7 @@ const middleware = async (request: NextRequest) => {
 
   if (!accessToken || !refreshToken)
     return NextResponse.redirect(new URL('join', request.nextUrl.origin));
+
   try {
     const {
       token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },

@@ -1,5 +1,4 @@
 import { PublicFetch } from './publicFetch';
-import { getTokenFromCookie } from '@/utils/auth/tokenController';
 
 class PrivateFetch extends PublicFetch {
   constructor() {
