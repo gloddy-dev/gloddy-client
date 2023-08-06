@@ -1,10 +1,11 @@
 import GroupingDetail from './components/GroupingDetail.client';
+import GroupingTopNavigationBar from './components/GroupingTopNavigationBar.client';
 import { Keys, getGroupDetail } from '@/apis/groups';
-import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
+import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
-import { Suspense } from 'react';
+import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-export default function GroupingByIdPage({
+export default function GroupingDetailPage({
   params: { id },
 }: {
   params: {
@@ -14,15 +15,16 @@ export default function GroupingByIdPage({
   const groupId = Number(id);
 
   return (
-    <RetryErrorBoundary>
-      <Suspense fallback={null}>
+    <>
+      <GroupingTopNavigationBar />
+      <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={null}>
         <HydrationProvider
           queryKey={Keys.getGroupDetail(groupId)}
           queryFn={() => getGroupDetail(groupId)}
         >
           <GroupingDetail groupId={groupId} />
         </HydrationProvider>
-      </Suspense>
-    </RetryErrorBoundary>
+      </QueryAsyncBoundary>
+    </>
   );
 }
