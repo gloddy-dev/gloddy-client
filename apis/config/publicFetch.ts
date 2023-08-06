@@ -1,7 +1,7 @@
 import { BASE_API_URL } from '@/constants';
 
 class PublicFetch {
-  async common<T>(route: string, requestInit?: RequestInit): Promise<{ data: T }> {
+  async common<T>(route: string, requestInit?: RequestInit): Promise<T> {
     const response = await fetch(`${BASE_API_URL}/api/v1${route}`, {
       ...requestInit,
       credentials: 'include',
