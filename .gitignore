@@ -12,3 +12,4 @@
 /.next/
 /build
 .DS_Store
+.env
