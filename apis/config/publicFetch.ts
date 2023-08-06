@@ -41,4 +41,4 @@ class PublicFetch {
 
 const publicFetch = new PublicFetch();
 
-export { PublicFetch, publicFetch };
+export { publicFetch };
