@@ -5,8 +5,8 @@ import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
 import { useParams } from 'next/navigation';
 
 export default function ArticleList() {
-  const { groupId } = useParams() as { groupId: string };
-  const id = Number(groupId);
+  const params = useParams();
+  const groupId = Number(params.groupId);
 
   // const { data: articlesData } = useGetArticles(groupId);
 
