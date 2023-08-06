@@ -6,13 +6,13 @@ import { HydrationProvider } from '@/components/common/Provider/HydrationProvide
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 export default function GroupingDetailPage({
-  params: { id },
+  params,
 }: {
   params: {
-    id: string;
+    groupId: string;
   };
 }) {
-  const groupId = Number(id);
+  const groupId = Number(params.groupId);
 
   return (
     <>
