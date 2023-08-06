@@ -5,7 +5,7 @@ class PrivateFetch extends PublicFetch {
   constructor() {
     super();
   }
-  async common<T>(route: string, requestInit?: RequestInit): Promise<{ data: T }> {
+  async common<T>(route: string, requestInit?: RequestInit): Promise<T> {
     return super.common<T>(route, {
       ...(requestInit ?? {}),
       headers: {
