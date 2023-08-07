@@ -11,3 +11,12 @@ export interface ProfileResponse {
   reviewCount: number;
   school: string;
 }
+
+export interface PraisesResponse {
+  totalCalmCount: number;
+  totalKindCount: number;
+  totalActiveCount: number;
+  totalHumorCount: number;
+  totalAbsenceCount: number;
+  [key: string]: number;
+}
