@@ -48,7 +48,10 @@ export default function ProfileSection({ profileData }: ProfileSectionProps) {
           <p className="text-14 font-700 text-blue">{praiseCount}개</p>
         </div>
         <DivisionBar direction="vertical" />
-        <div className="flex flex-grow flex-col items-center">
+        <div
+          className="flex flex-grow flex-col items-center"
+          onClick={() => router.push(`${pathname}/mates`)}
+        >
           <p className="text-12">모임 후기</p>
           <p className="text-14 font-700 text-blue">{reviewCount}개</p>
         </div>
