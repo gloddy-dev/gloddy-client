@@ -14,10 +14,10 @@ export default function BoardDetail({ groupId, boardId }: BoardDetailProps) {
   // const { data: articleData } = useGetArticle(groupId, boardId);
 
   return (
-    <main className="px-20">
-      <ArticleItem article={DUMMY_ARTICLES_DATA[0]} />
+    <div className="px-20">
+      <ArticleItem article={DUMMY_ARTICLES_DATA[0]} isBoardDetail />
       <Spacing size={20} />
       <CommentList groupId={groupId} boardId={boardId} />
-    </main>
+    </div>
   );
 }
