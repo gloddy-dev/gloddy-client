@@ -1,4 +1,4 @@
-import { MatesResponse } from '@/apis/profile';
+import type { MatesResponse } from '@/apis/profile';
 
 import type { Article, CreateGroupRequest, GroupDetailResponse, Grouping } from '@/apis/groups';
 
