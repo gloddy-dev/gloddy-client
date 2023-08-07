@@ -1,17 +1,17 @@
 'use client';
 
-import { useGetPraises } from '@/apis/profile';
+import { PraisesResponse, useGetPraises } from '@/apis/profile';
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 
 interface Praise {
   id: number;
   title: string;
-  imagePath: string;
-  dataPath: string;
+  imagePath: 'calm' | 'kind' | 'active' | 'humor';
+  dataPath: keyof PraisesResponse;
 }
 
-const praises = [
+const praises: Praise[] = [
   {
     id: 1,
     title: '차분해요.',
@@ -36,7 +36,7 @@ const praises = [
     imagePath: 'humor',
     dataPath: 'totalHumorCount',
   },
-] as const;
+];
 
 export default function ProfilePraiseDetail() {
   const { data: praisesData } = useGetPraises();
