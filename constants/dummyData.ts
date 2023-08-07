@@ -161,5 +161,27 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
     school: 'Oxford University',
     createdAt: '2023-08-02T10:15:25Z',
     selectionReason: 'Worked on a project together.',
+
+export const MEMBER_DUMMY_DATA = [
+  {
+    imageUrl: '/assets/avatar.svg',
+    name: '김지환',
+    isCaptain: true,
+    isCertified: true,
+    personality: 'SOUL MATE',
+  },
+  {
+    imageUrl: '/assets/avatar.svg',
+    name: 'david',
+    isCaptain: false,
+    isCertified: true,
+    personality: 'MATE',
+  },
+  {
+    imageUrl: '/assets/avatar.svg',
+    name: 'alice',
+    isCaptain: false,
+    isCertified: false,
+    personality: 'MATE',
   },
 ];
