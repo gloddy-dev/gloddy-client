@@ -1,6 +1,7 @@
 import ProfileDetail from './components/ProfileDetail.client';
 import ProfileTopNavigationBar from './components/ProfileTopNavigationBar.client';
 import { Keys, getProfile } from '@/apis/profile';
+import { BottomNavigationBar } from '@/components/common/NavigationBar';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
@@ -13,6 +14,7 @@ export default function Profile() {
           <ProfileDetail />
         </HydrationProvider>
       </QueryAsyncBoundary>
+      <BottomNavigationBar page="profile" />
     </>
   );
 }
