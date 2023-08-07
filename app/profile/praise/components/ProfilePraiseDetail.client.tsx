@@ -34,7 +34,7 @@ const praises = [
 export default function ProfilePraiseDetail() {
   const { data: praisesData } = useGetPraises();
   return (
-    <main className="px-20">
+    <main className="flex flex-col gap-20 px-20">
       {praises.map((praise) => (
         <PraiseItem key={praise.id} praise={praise} count={praisesData[praise.dataPath]} />
       ))}
@@ -49,7 +49,7 @@ interface PraiseItemProps {
 
 function PraiseItem({ praise, count }: PraiseItemProps) {
   return (
-    <div className="mb-20 flex h-68 items-center justify-between rounded-8 bg-gray6 px-18 py-10">
+    <div className="flex h-68 items-center justify-between rounded-8 bg-gray6 px-18 py-10">
       <div className="flex items-center">
         <Image
           src={`/assets/${praise.imagePath}_selected.svg`}
