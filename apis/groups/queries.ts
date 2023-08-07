@@ -1,4 +1,4 @@
-import { getArticles, getGroupDetail, getGroups } from './apis';
+import { getArticle, getArticles, getGroupDetail, getGroups } from './apis';
 import { Keys } from './keys';
 import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@suspensive/react-query';
 
@@ -34,4 +34,16 @@ export const useGetArticles = (groupId: number) => {
     data: data.pages?.flatMap((page) => page.contents),
     ...rest,
   };
+};
+
+export const useGetArticle = (groupId: number, articleId: number) => {
+  return useSuspenseQuery(Keys.getArticle(groupId, articleId), () =>
+    getArticle(groupId, articleId)
+  );
+};
+
+export const useGetComments = (groupId: number, articleId: number) => {
+  return useSuspenseQuery(Keys.getComments(groupId, articleId), () =>
+    getArticle(groupId, articleId)
+  );
 };

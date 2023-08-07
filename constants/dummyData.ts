@@ -1,6 +1,13 @@
+
 import type { MatesResponse } from '@/apis/profile';
 
-import type { Article, CreateGroupRequest, GroupDetailResponse, Grouping } from '@/apis/groups';
+import type {
+  Article,
+  Comment,
+  CreateGroupRequest,
+  GroupDetailResponse,
+  Grouping,
+} from '@/apis/groups';
 
 export const DUMMY_GROUPING_DATA: Grouping[] = [
   {
@@ -75,7 +82,7 @@ export const DUMMY_SIGN_UP_DATA = {
   personalities: ['OUTGOING'],
 };
 
-export const DUMMY_DATA: Article[] = [
+export const DUMMY_ARTICLES_DATA: Article[] = [
   {
     articleId: 1,
     images: [],
@@ -183,5 +190,34 @@ export const MEMBER_DUMMY_DATA = [
     isCaptain: false,
     isCertified: false,
     personality: 'MATE',
+  },
+];
+
+export const DUMMY_COMMENTS_DATA: Comment[] = [
+  {
+    commentId: 1,
+    userImageUrl: '/assets/avatar.svg',
+    name: '김지환',
+    content:
+      '안녕하세요! 모임에 가입해주셔서 감사드립니다.\n오늘 19:00에 있을 모임 참여 전 모임에 필요한 공지 및 전달사항 확인 부탁드리겠습니다.',
+
+    date: '2021.09.01',
+    writer: true,
+  },
+  {
+    commentId: 2,
+    userImageUrl: '/assets/avatar.svg',
+    name: 'david',
+    content: 'hello',
+    date: '2021.09.01',
+    writer: false,
+  },
+  {
+    commentId: 3,
+    userImageUrl: '/assets/avatar.svg',
+    name: 'alice',
+    content: '안녕하세요',
+    date: '2021.09.01',
+    writer: false,
   },
 ];
