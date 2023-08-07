@@ -1,4 +1,4 @@
-import PraiseDetail from './components/PraiseDetail.client';
+import ProfilePraiseDetail from './components/ProfilePraiseDetail.client';
 import ProfilePraiseTopNavigationBar from './components/ProfilePraiseTopNavigationBar.client';
 import { Keys, getPraises } from '@/apis/profile';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
@@ -10,7 +10,7 @@ export default function PraisePage() {
       <ProfilePraiseTopNavigationBar />
       <QueryAsyncBoundary rejectedFallback={<div>에러</div>} pendingFallback={null}>
         <HydrationProvider queryKey={Keys.getPraises()} queryFn={getPraises}>
-          <PraiseDetail />
+          <ProfilePraiseDetail />
         </HydrationProvider>
       </QueryAsyncBoundary>
     </>

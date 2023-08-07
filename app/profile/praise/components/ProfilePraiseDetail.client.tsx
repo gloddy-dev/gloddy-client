@@ -31,16 +31,13 @@ const praises = [
   },
 ];
 
-export default function PraiseDetail() {
+export default function ProfilePraiseDetail() {
   const { data: praisesData } = useGetPraises();
-  console.log(praisesData);
   return (
     <main className="px-20">
-      <section>
-        {praises.map((praise) => (
-          <PraiseItem key={praise.id} praise={praise} count={praisesData[praise.dataPath]} />
-        ))}
-      </section>
+      {praises.map((praise) => (
+        <PraiseItem key={praise.id} praise={praise} count={praisesData[praise.dataPath]} />
+      ))}
     </main>
   );
 }
