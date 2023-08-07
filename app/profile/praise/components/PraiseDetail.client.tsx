@@ -41,7 +41,6 @@ export default function PraiseDetail() {
           <PraiseItem key={praise.id} praise={praise} count={praisesData[praise.dataPath]} />
         ))}
       </section>
-      ss
     </main>
   );
 }
