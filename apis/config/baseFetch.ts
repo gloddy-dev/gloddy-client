@@ -1,6 +1,6 @@
 import { BASE_API_URL } from '@/constants';
 
-class PublicFetch {
+class BaseFetch {
   async common<T>(route: string, requestInit?: RequestInit): Promise<T> {
     const response = await fetch(`${BASE_API_URL}/api/v1${route}`, {
       ...requestInit,
@@ -39,6 +39,6 @@ class PublicFetch {
   }
 }
 
-const publicFetch = new PublicFetch();
+const baseFetch = new BaseFetch();
 
-export { PublicFetch, publicFetch };
+export { baseFetch };
