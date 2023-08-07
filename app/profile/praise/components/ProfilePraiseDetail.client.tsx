@@ -4,6 +4,13 @@ import { useGetPraises } from '@/apis/profile';
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 
+interface Praise {
+  id: number;
+  title: string;
+  imagePath: string;
+  dataPath: string;
+}
+
 const praises = [
   {
     id: 1,
@@ -29,10 +36,11 @@ const praises = [
     imagePath: 'humor',
     dataPath: 'totalHumorCount',
   },
-];
+] as const;
 
 export default function ProfilePraiseDetail() {
   const { data: praisesData } = useGetPraises();
+
   return (
     <main className="flex flex-col gap-20 px-20">
       {praises.map((praise) => (
@@ -43,7 +51,7 @@ export default function ProfilePraiseDetail() {
 }
 
 interface PraiseItemProps {
-  praise: (typeof praises)[0];
+  praise: Praise;
   count: number;
 }
 
