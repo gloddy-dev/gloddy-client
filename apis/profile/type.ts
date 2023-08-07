@@ -18,7 +18,6 @@ export interface PraisesResponse {
   totalActiveCount: number;
   totalHumorCount: number;
   totalAbsenceCount: number;
-  [key: string]: number;
 }
 
 export interface Mate {
