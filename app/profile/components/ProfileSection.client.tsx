@@ -1,6 +1,7 @@
 'use client';
 import ImageFrame from '@/components/common/ImageFrame';
 import { DivisionBar, Spacing } from '@/components/common/Spacing';
+import { usePathname, useRouter } from 'next/navigation';
 
 import type { ProfileResponse } from '@/apis/profile';
 
@@ -9,7 +10,6 @@ interface ProfileSectionProps {
 }
 
 export default function ProfileSection({ profileData }: ProfileSectionProps) {
-  console.log(profileData);
   const { age, gender, imageUrl, name, praiseCount, reviewCount, school } = profileData;
   const router = useRouter();
   const pathname = usePathname();
@@ -40,7 +40,10 @@ export default function ProfileSection({ profileData }: ProfileSectionProps) {
           <p className="text-14 font-700">5회</p>
         </div>
         <DivisionBar direction="vertical" />
-        <div className="flex flex-grow flex-col items-center">
+        <div
+          className="flex flex-grow flex-col items-center"
+          onClick={() => router.push(`${pathname}/praise`)}
+        >
           <p className="text-12">받은 칭찬</p>
           <p className="text-14 font-700 text-blue">{praiseCount}개</p>
         </div>
