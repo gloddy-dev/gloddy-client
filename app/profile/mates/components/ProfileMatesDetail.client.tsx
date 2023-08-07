@@ -1,7 +1,7 @@
 'use client';
 
 import { formatRelativeDate } from '../util';
-import { MatesResponse, useGetMates } from '@/apis/profile';
+import { type MatesResponse, useGetMates } from '@/apis/profile';
 import { Spacing } from '@/components/common/Spacing';
 import { DUMMY_PROFILE_MATES_DATA } from '@/constants/dummyData';
 import Image from 'next/image';
