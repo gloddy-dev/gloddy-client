@@ -1,4 +1,4 @@
-import { clsx } from 'clsx';
+import cn from '@/utils/cn';
 import Link from 'next/link';
 
 import type { ButtonHTMLAttributes } from 'react';
@@ -6,13 +6,14 @@ import type { ButtonHTMLAttributes } from 'react';
 export type ButtonColor = 'blue' | 'orange' | 'gray';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
+  text?: string;
   color?: ButtonColor;
   onClick?: () => void;
   href?: string;
   disabled?: boolean;
   type?: 'button' | 'submit';
   className?: string;
+  children?: React.ReactNode;
 }
 
 export default function Button({
@@ -23,12 +24,13 @@ export default function Button({
   disabled,
   type = 'button',
   className,
+  children,
   ...rest
 }: ButtonProps) {
   return (
     <div
-      className={clsx(
-        'flex h-[3.75rem] w-full items-center justify-center rounded-xl text-center text-16',
+      className={cn(
+        'flex h-60 w-full items-center justify-center rounded-xl text-center text-16',
         {
           'bg-gray5 text-gray3': disabled,
           'text-white': !disabled,
@@ -42,7 +44,7 @@ export default function Button({
     >
       {!!href && (
         <Link href={href || ''} className="font-bold text-white">
-          {text}
+          {text || children}
         </Link>
       )}
       {!!onClick && (
@@ -53,12 +55,12 @@ export default function Button({
           disabled={disabled}
           {...rest}
         >
-          {text}
+          {text || children}
         </button>
       )}
       {!href && !onClick && (
         <button className="h-full w-full" type={type} disabled={disabled} {...rest}>
-          {text}
+          {text || children}
         </button>
       )}
     </div>
