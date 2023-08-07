@@ -53,7 +53,10 @@ privateApi.interceptors.response.use(
 
           const {
             token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },
-          } = await postReissue({ accessToken, refreshToken });
+          } = await postReissue(
+            { accessToken, refreshToken },
+            { headers: { 'X-AUTH-TOKEN': accessToken } }
+          );
 
           if (!reIssuedAccessToken || !reIssuedRefreshToken) {
             throw new ApiError(
