@@ -17,13 +17,14 @@ export default function BoardDetailPage({ params }: BoardDetailPageProps) {
   const boardId = Number(params.boardId);
 
   return (
-    <>
+    <main className="bg-white">
       <BoardTopNavigationBar />
       <Spacing size={20} />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
         <BoardDetail groupId={groupId} boardId={boardId} />
       </QueryAsyncBoundary>
+      <Spacing size={100} />
       <WriteSection groupId={groupId} boardId={boardId} />
-    </>
+    </main>
   );
 }
