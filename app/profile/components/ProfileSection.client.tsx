@@ -11,6 +11,8 @@ interface ProfileSectionProps {
 export default function ProfileSection({ profileData }: ProfileSectionProps) {
   console.log(profileData);
   const { age, gender, imageUrl, name, praiseCount, reviewCount, school } = profileData;
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <section className="h-500 rounded-b-35 bg-white px-40">
