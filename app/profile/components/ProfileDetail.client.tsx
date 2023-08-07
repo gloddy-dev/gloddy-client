@@ -9,7 +9,7 @@ export default function ProfileDetail() {
   return (
     <div className="h-full bg-white2">
       <ProfileSection profileData={profileData} />
-      <IntroductionSection profileData={profileData} />˜{' '}
+      <IntroductionSection profileData={profileData} />
     </div>
   );
 }
