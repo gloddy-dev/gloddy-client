@@ -1,7 +1,7 @@
 'use client';
 
 import { formatRelativeDate } from '../util';
-import { type MatesResponse, useGetMates } from '@/apis/profile';
+import { type Mate, useGetMates } from '@/apis/profile';
 import { Spacing } from '@/components/common/Spacing';
 import { DUMMY_PROFILE_MATES_DATA } from '@/constants/dummyData';
 import Image from 'next/image';
@@ -21,7 +21,7 @@ export default function ProfileMatesDetail() {
 }
 
 interface ProfileMateProps {
-  mateData: MatesResponse['mates'][0];
+  mateData: Mate;
 }
 
 function ProfileMate({ mateData }: ProfileMateProps) {

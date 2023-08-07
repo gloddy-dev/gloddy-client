@@ -21,7 +21,7 @@ export interface PraisesResponse {
   [key: string]: number;
 }
 
-interface Mate {
+export interface Mate {
   mateImageUrl: string;
   mateName: string;
   school: string;
