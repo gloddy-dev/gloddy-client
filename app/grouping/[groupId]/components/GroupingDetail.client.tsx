@@ -2,7 +2,6 @@
 import BoardContent from './board/BoardContent.client';
 import ContentSection from './ContentSection.client';
 import DetailContent from './detail/DetailContent.client';
-import GroupingTopNavigationBar from './GroupingTopNavigationBar.client';
 import TopSection from './TopSection.client';
 import { useGetGroupDetail } from '@/apis/groups';
 
@@ -15,7 +14,6 @@ export default function GroupingDetail({ groupId }: GroupingDetailProps) {
 
   return (
     <>
-      <GroupingTopNavigationBar />
       <TopSection groupDetailData={groupDetailData} />
       <ContentSection
         detailNode={<DetailContent groupDetailData={groupDetailData} />}
