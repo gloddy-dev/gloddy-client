@@ -15,13 +15,13 @@ export default function LocationSection({
   placeLatitude = 37.589039,
   placeLongitude = 127.057761,
 }: LocationSectionProps) {
+  console.log(KAKAO_SDK_URL);
+
   return (
     <section>
       <h2 className="text-14">모임 위치</h2>
       <Spacing size={10} />
       <div className="rounded-8 bg-gray6 p-16">
-        {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
-        <Script type="text/javascript" src={KAKAO_SDK_URL} strategy="beforeInteractive" />
         <Map
           center={{
             lat: +placeLatitude,
