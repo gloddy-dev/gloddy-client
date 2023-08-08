@@ -15,7 +15,7 @@ import type { SignUpState } from '@/app/join/type';
 export default memo(function CertificationForm() {
   const { closeModal, modalName } = useModalContext();
   const { time: timerTime } = useTimerContext();
-  const { register, handleSubmit, watch, setValue, formState } = useJoinContext();
+  const { register, handleSubmit, setValue, formState } = useJoinContext();
   const { nextStep } = useFunnelContext();
 
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
