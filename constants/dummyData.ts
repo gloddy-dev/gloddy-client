@@ -1,6 +1,3 @@
-
-import type { MatesResponse } from '@/apis/profile';
-
 import type {
   Article,
   Comment,
@@ -8,6 +5,7 @@ import type {
   GroupDetailResponse,
   Grouping,
 } from '@/apis/groups';
+import type { MatesResponse } from '@/apis/profile';
 
 export const DUMMY_GROUPING_DATA: Grouping[] = [
   {
@@ -168,6 +166,8 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
     school: 'Oxford University',
     createdAt: '2023-08-02T10:15:25Z',
     selectionReason: 'Worked on a project together.',
+  },
+];
 
 export const MEMBER_DUMMY_DATA = [
   {
