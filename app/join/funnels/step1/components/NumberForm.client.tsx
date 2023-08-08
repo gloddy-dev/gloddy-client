@@ -55,7 +55,6 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     if (timerStatus === 'RUNNING') return;
     timerStart();
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
-    setInputStatus('afterSend');
     mutateSMS(
       { number: phoneNumberWithoutHyphen },
       { onSuccess: () => setInputStatus('afterSend') }
