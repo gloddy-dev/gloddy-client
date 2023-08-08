@@ -1,14 +1,16 @@
 'use client';
 
 import PersonalitySection from './PersonalitySection.client';
+import { formatDate } from '../util';
 import { useSignUpMutation } from '@/apis/auth';
 import { useJoinContext } from '@/app/join/components/JoinContext';
-import { SignUpState } from '@/app/join/type';
 import { BottomFixedButton } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
-import { GenderType } from '@/types';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
+
+import type { SignUpState } from '@/app/join/type';
+import type { GenderType } from '@/types';
 
 export default function InputForm() {
   const { handleSubmit, watch } = useJoinContext();
@@ -19,11 +21,10 @@ export default function InputForm() {
     const { verifyEmailNumber, verifyNumber, birth, personalityIdList, gender, ...rest } = data;
     const signUpRequest = {
       ...rest,
-      birth: `${birth.year}-${birth.month}-${birth.date}`,
+      birth: formatDate(birth),
       personalities: personalityIdList.map((id) => personalityList[id - 1].keywordInEnglish),
       gender: (gender === '남성' ? 'MAIL' : 'FEMAIL') as GenderType,
     };
-
     // FIXME: gender타입 변환 필요x
     mutateSignUp(signUpRequest, {
       onSuccess: (data) => {
