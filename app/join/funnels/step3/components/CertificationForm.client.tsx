@@ -15,7 +15,7 @@ import type { SignUpState } from '@/app/join/type';
 export default memo(function CertificationForm() {
   const { closeModal, modalName } = useModalContext();
   const { time: timerTime } = useTimerContext();
-  const { register, handleSubmit, watch, setValue } = useJoinContext();
+  const { register, handleSubmit, setValue, formState } = useJoinContext();
   const { nextStep } = useFunnelContext();
 
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
@@ -65,11 +65,7 @@ export default memo(function CertificationForm() {
           </div>
         </section>
 
-        <BottomFixedButton
-          text="완료"
-          disabled={('' + watch('verifyNumber'))?.length < 6 || !watch('verifyNumber')}
-          type="submit"
-        />
+        <BottomFixedButton text="완료" disabled={!formState.isValid} type="submit" />
       </form>
     </BottomSheet>
   );

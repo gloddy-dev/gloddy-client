@@ -38,7 +38,7 @@ export default function GroupingCard({ groupingData }: GroupingCardProps) {
         <div className="flex items-center">
           <Image src="/assets/location.svg" alt="location" width={10} height={12} />
           <Spacing size={5} direction="horizontal" />
-          <div className="text-12 font-400">{place}</div>
+          <div className="w-110 truncate text-12 font-400">{place}</div>
         </div>
         <Spacing size={6} direction="horizontal" />
         <div className="text-12 font-400 text-blue3">{meetDate}</div>

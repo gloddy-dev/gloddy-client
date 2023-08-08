@@ -6,6 +6,7 @@ import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { regexr } from '@/constants/regexr';
+import { useTimer } from '@/hooks/useTimer';
 
 import type { StatusType } from '../type';
 import type { SubmitHandler } from 'react-hook-form';
@@ -18,10 +19,20 @@ interface NumberSectionProps {
 export default function NumberForm({ inputStatus, setInputStatus }: NumberSectionProps) {
   const { register, handleSubmit, setValue } = useJoinContext();
   const { mutate: mutateSMS } = useSMSMutation();
+  const {
+    status: timerStatus,
+    start: timerStart,
+    time: leftTime,
+  } = useTimer({
+    initialTime: 180,
+    timerType: 'DECREMENTAL',
+    endTime: 0,
+  });
+
   const buttonText =
     inputStatus === 'readyForSend' || inputStatus === 'notReadyForSend'
       ? '인증문자 전송'
-      : '인증번호 재전송';
+      : `${leftTime}초 후 재전송`;
   const buttonColor = inputStatus === 'readyForSend' ? 'blue' : 'orange';
 
   const handleInputChange = (
@@ -41,6 +52,8 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   };
 
   const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber'>> = (data) => {
+    if (timerStatus === 'RUNNING') return;
+    timerStart();
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     mutateSMS(
       { number: phoneNumberWithoutHyphen },
@@ -68,7 +81,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
 
       <Button
         text={buttonText}
-        disabled={inputStatus === 'notReadyForSend'}
+        disabled={inputStatus === 'notReadyForSend' || timerStatus === 'RUNNING'}
         color={buttonColor}
         type="submit"
       />
