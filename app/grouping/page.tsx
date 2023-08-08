@@ -10,13 +10,13 @@ import { Suspense } from 'react';
 
 const GroupingComponent = () => {
   return (
-    <HydrationProvider queryKey={Keys.getGroups()} queryFn={() => getGroups(0)} isInfiniteQuery>
-      <RetryErrorBoundary>
-        <Suspense fallback={null}>
+    <RetryErrorBoundary>
+      <Suspense fallback={<div>로딩 중...</div>}>
+        <HydrationProvider queryKey={Keys.getGroups()} queryFn={() => getGroups(0)} isInfiniteQuery>
           <GroupingCardList />
-        </Suspense>
-      </RetryErrorBoundary>
-    </HydrationProvider>
+        </HydrationProvider>
+      </Suspense>
+    </RetryErrorBoundary>
   );
 };
 
