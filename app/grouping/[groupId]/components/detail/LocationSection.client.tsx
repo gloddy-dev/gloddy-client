@@ -15,8 +15,6 @@ export default function LocationSection({
   placeLatitude = 37.589039,
   placeLongitude = 127.057761,
 }: LocationSectionProps) {
-  console.log(KAKAO_SDK_URL);
-
   return (
     <section>
       <h2 className="text-14">모임 위치</h2>
