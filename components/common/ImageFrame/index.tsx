@@ -67,6 +67,7 @@ export default forwardRef(function ImageFrame(
               'bottom-5 right-5': shape === 'circle',
               '-right-5 -top-5': shape === 'square',
             })}
+            priority
           />
         )}
       </label>
