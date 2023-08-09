@@ -1,6 +1,6 @@
 import useDidUpdate from './useDidUpdate';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import { cleanup as hookCleanup, renderHook } from '@testing-library/react-hooks';
+import { cleanup, fireEvent, render, renderHook, screen } from '@testing-library/react';
+import { cleanup as hookCleanup } from '@testing-library/react-hooks';
 import { useState } from 'react';
 
 const STATE_BUTTON = 'setState';
