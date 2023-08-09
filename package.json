@@ -8,10 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "eslint '**/*.{js,jsx,ts,tsx}' --fix",
-    "prepare": "husky install",
-    "postinstall": "husky install",
-    "cypress": "cypress open",
-    "cypress:headless": "cypress run",
     "test": "jest",
     "test:watch": "jest --watch",
     "format": "prettier --write --ignore-path .gitignore ."
@@ -60,7 +56,6 @@
     "@typescript-eslint/parser": "^5.60.0",
     "autoprefixer": "^10.4.14",
     "babel-jest": "^29.6.2",
-    "cypress": "^12.17.2",
     "debug": "^4.3.4",
     "esbuild": "^0.18.17",
     "esbuild-jest": "^0.5.0",
