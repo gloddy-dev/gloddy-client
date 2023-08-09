@@ -11,3 +11,23 @@ export interface ProfileResponse {
   reviewCount: number;
   school: string;
 }
+
+export interface PraisesResponse {
+  totalCalmCount: number;
+  totalKindCount: number;
+  totalActiveCount: number;
+  totalHumorCount: number;
+  totalAbsenceCount: number;
+}
+
+export interface Mate {
+  mateImageUrl: string;
+  mateName: string;
+  school: string;
+  createdAt: string; // or Date if you're going to handle this as a Date object
+  selectionReason: string;
+}
+
+export interface MatesResponse {
+  mates: Mate[];
+}

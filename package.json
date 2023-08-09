@@ -13,7 +13,8 @@
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "format": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@suspensive/react": "^1.11.3",
@@ -58,6 +59,7 @@
     "cypress": "^12.17.2",
     "esbuild": "^0.18.17",
     "esbuild-jest": "^0.5.0",
+    "debug": "^4.3.4",
     "eslint": "^8.43.0",
     "eslint-config-next": "^13.4.7",
     "eslint-config-prettier": "^8.8.0",
@@ -73,6 +75,7 @@
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
+    "supports-color": "8.1.1",
     "tailwindcss": "^3.3.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.3"

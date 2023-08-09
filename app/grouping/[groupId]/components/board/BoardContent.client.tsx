@@ -1,5 +1,5 @@
 'use client';
-import ArticleCardList from './ArticleCardList.client';
+import ArticleList from './ArticleList.client';
 import Notice from './Notice.client';
 import { GroupDetailResponse } from '@/apis/groups/type';
 import { BottomFixedButton } from '@/components/common/Button';
@@ -14,7 +14,7 @@ export default function BoardContent({ myGroup }: BoardContentProps) {
     <>
       <Notice />
       <Spacing size={15} />
-      <ArticleCardList />
+      <ArticleList />
       {myGroup && (
         <>
           <Spacing size={100} />
