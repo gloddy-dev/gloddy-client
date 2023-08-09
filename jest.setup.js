@@ -1,5 +1,3 @@
-import { matchers } from '@emotion/jest';
-
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
 import 'jest-plugin-context/setup';
@@ -16,5 +14,3 @@ window.matchMedia = (query) => ({
   removeEventListener: jest.fn(),
   dispatchEvent: jest.fn(),
 });
-
-expect.extend(matchers);
