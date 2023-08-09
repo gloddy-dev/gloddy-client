@@ -1,14 +1,13 @@
-'use client';
-import { EffectCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-export default function useDidMount(effectCallback: EffectCallback) {
+const useDidMount = (callback: VoidFunction) => {
   const didMountRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (didMountRef.current) {
-      return;
-    }
+    if (didMountRef.current) return;
     didMountRef.current = true;
-    effectCallback();
-  }, [effectCallback]);
-}
+    callback();
+  }, []);
+};
+
+export default useDidMount;

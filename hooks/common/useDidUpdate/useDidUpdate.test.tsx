@@ -1,50 +1,53 @@
 import useDidUpdate from './useDidUpdate';
-import { cleanup, fireEvent, render, renderHook, screen } from '@testing-library/react';
-import { cleanup as hookCleanup } from '@testing-library/react-hooks';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 import { useState } from 'react';
 
-const STATE_BUTTON = 'setState';
-
 describe('useDidUpdate', () => {
-  let App: () => JSX.Element;
-  const mockCallback = jest.fn();
-
-  beforeEach(() => {
-    App = function () {
-      const [state, setState] = useState(false);
-
-      useDidUpdate(() => {
-        mockCallback();
-      }, [state]);
-
-      return (
-        <div>
-          <button onClick={() => setState((prev) => !prev)}>{STATE_BUTTON}</button>
-        </div>
-      );
-    };
-  });
-
-  afterAll(() => {
-    cleanup();
-    hookCleanup();
-  });
-
-  it('should defined', () => {
+  it('default export이여야 한다', () => {
     expect(useDidUpdate).toBeDefined();
   });
 
-  it('not called callback when mounted', () => {
+  it('첫 호출 시 effectCallback이 실행되면 안된다', () => {
     const mockCallback = jest.fn();
     renderHook(() => useDidUpdate(mockCallback, []));
-    expect(mockCallback).not.toHaveBeenCalled();
+    expect(mockCallback).not.toBeCalled();
   });
 
-  it('called when dependency list update', () => {
-    render(<App />);
-    expect(mockCallback).not.toHaveBeenCalled();
-    const setStateButton = screen.getByText(STATE_BUTTON);
-    fireEvent.click(setStateButton);
-    expect(mockCallback).toHaveBeenCalledTimes(1);
+  describe('useDidUpdate Component', () => {
+    const STATE_CHANGE_BUTTON_TEXT = 'change';
+    const mockCallback = jest.fn();
+
+    const App = () => {
+      const [state, setState] = useState<number>(0);
+
+      useDidUpdate(mockCallback, [state]);
+
+      return (
+        <div>
+          <button type="button" onClick={() => setState((prev) => prev + 1)}>
+            {STATE_CHANGE_BUTTON_TEXT}
+          </button>
+        </div>
+      );
+    };
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('마운트 시 effectCallback이 실행되면 안된다', () => {
+      render(<App />);
+      expect(mockCallback).not.toBeCalled();
+    });
+
+    it('dependency list 업데이트 시 effectCallback이 실행되어야 한다', () => {
+      render(<App />);
+      const setStateButton = screen.getByText(STATE_CHANGE_BUTTON_TEXT);
+      fireEvent.click(setStateButton);
+      expect(mockCallback).toBeCalledTimes(1);
+      fireEvent.click(setStateButton);
+      expect(mockCallback).toBeCalledTimes(2);
+    });
   });
 });

@@ -1,54 +1,59 @@
 import useDidMount from './useDidMount';
-import { cleanup, fireEvent, render, renderHook, screen } from '@testing-library/react';
-import { cleanup as hookCleanup } from '@testing-library/react-hooks';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 import { useState } from 'react';
 
-const STATE_BUTTON = 'setState';
-
 describe('useDidMount', () => {
-  let App: () => JSX.Element;
-  const mockCallback = jest.fn();
-
-  beforeEach(() => {
-    App = function () {
-      const [_, setState] = useState(false);
-
-      useDidMount(mockCallback);
-      return (
-        <div>
-          <button onClick={() => setState((prev) => !prev)}>{STATE_BUTTON}</button>
-        </div>
-      );
-    };
-  });
-
-  afterAll(() => {
-    cleanup();
-    hookCleanup();
-  });
-
-  it('should defined with default', () => {
+  it('default export이여야 한다', () => {
     expect(useDidMount).toBeDefined();
   });
 
-  it('called effect callback', () => {
+  it('effectCallback이 실행되어야 한다', () => {
     const effectCallback = jest.fn();
     renderHook(() => useDidMount(effectCallback));
-    expect(effectCallback).toHaveBeenCalled();
+    expect(effectCallback).toBeCalled();
   });
 
-  it('called once when rerender', () => {
+  it('rerender 시 1번 실행되어야 한다', () => {
     const effectCallback = jest.fn();
     const { rerender } = renderHook(() => useDidMount(effectCallback));
     rerender();
-    expect(effectCallback).toHaveBeenCalledTimes(1);
+    expect(effectCallback).toBeCalledTimes(1);
   });
 
-  it('called once when state changed', () => {
-    render(<App />);
-    expect(mockCallback).toHaveBeenCalledTimes(1);
-    const setStateButton = screen.getByText(STATE_BUTTON);
-    fireEvent.click(setStateButton);
-    expect(mockCallback).toHaveBeenCalledTimes(1);
+  describe('useDidMount Component', () => {
+    const STATE_CHANGE_BUTTON_TEXT = 'change';
+    const mockCallback = jest.fn();
+
+    const App = () => {
+      const [_, setState] = useState(false);
+
+      useDidMount(mockCallback);
+
+      return (
+        <div>
+          <button type="button" onClick={() => setState((prev) => !prev)}>
+            {STATE_CHANGE_BUTTON_TEXT}
+          </button>
+        </div>
+      );
+    };
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('mockCallback이 실행되어야 한다', () => {
+      render(<App />);
+      expect(mockCallback).toBeCalledTimes(1);
+    });
+
+    it('mockCallback은 상태가 변해도 1번 실행되어야 한다', () => {
+      render(<App />);
+      expect(mockCallback).toBeCalledTimes(1);
+      const setStateButton = screen.getByText(STATE_CHANGE_BUTTON_TEXT);
+      fireEvent.click(setStateButton);
+      expect(mockCallback).toBeCalledTimes(1);
+    });
   });
 });
