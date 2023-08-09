@@ -1,5 +1,3 @@
-import { describe } from 'node:test';
-
 import useDidMount from './useDidMount';
 
 describe('hooks/common/useDidMount/useDidMount', () => {
