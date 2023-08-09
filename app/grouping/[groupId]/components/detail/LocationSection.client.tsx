@@ -20,7 +20,6 @@ export default function LocationSection({
       <h2 className="text-14">모임 위치</h2>
       <Spacing size={10} />
       <div className="rounded-8 bg-gray6 p-16">
-        <Script type="text/javascript" src={KAKAO_SDK_URL} strategy="beforeInteractive" />
         <Map
           center={{
             lat: +placeLatitude,
