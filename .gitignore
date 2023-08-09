@@ -10,11 +10,6 @@
 # testing
 /coverage
 
-# Cypress
-cypress/screenshots
-cypress/videos
-cypress/log
-
 # etc
 /node_modules
 /.pnp
