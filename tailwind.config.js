@@ -20,6 +20,6 @@ module.exports = {
       700: '700',
       900: '900',
     },
-    fontSize: fontSizes
+    fontSize: fontSizes,
   },
 };

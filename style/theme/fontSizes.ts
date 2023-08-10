@@ -36,7 +36,7 @@ export const fontSizes = {
     {
       lineHeight: '1.625rem',
       fontWeight: '500',
-      letterSpacing: '-0.0063rem',
+      letterSpacing: '-0.00625rem',
     },
   ],
   'subtitle-2': [
@@ -44,7 +44,7 @@ export const fontSizes = {
     {
       lineHeight: '1.5rem',
       fontWeight: '500',
-      letterSpacing: '-0.0063rem',
+      letterSpacing: '-0.00625rem',
     },
   ],
   'subtitle-3': [
@@ -60,7 +60,7 @@ export const fontSizes = {
     {
       lineHeight: '1.5rem',
       fontWeight: '400',
-      letterSpacing: '-0.0063rem',
+      letterSpacing: '-0.00625rem',
     },
   ],
   'paragraph-2': [
@@ -68,7 +68,7 @@ export const fontSizes = {
     {
       lineHeight: '1.375rem',
       fontWeight: '400',
-      letterSpacing: '-0.0063rem',
+      letterSpacing: '-0.00625rem',
     },
   ],
   caption: [
