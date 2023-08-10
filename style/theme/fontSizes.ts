@@ -28,7 +28,7 @@ export const fontSizes = {
     {
       lineHeight: '1.875rem',
       fontWeight: 'bold',
-      letterSpacing: '-0.0063rem',
+      letterSpacing: '-0.00625rem',
     },
   ],
   'subtitle-1': [
