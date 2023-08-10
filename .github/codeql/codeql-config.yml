@@ -1,7 +1,7 @@
 name: 'Ahmatda web CodeQL config'
 
 paths:
-  - /
+  - '*'
 paths-ignore:
   - '**/*.test.ts'
   - '**/*.test.tsx'
