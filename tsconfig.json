@@ -20,15 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/@types/*": ["./@types/*"],
-      "@/app/*": ["./app/*"],
-      "@/components/*": ["./components/*"],
-      "@/constants/*": ["./constants/*"],
-      "@/hooks/*": ["./hooks/*"],
-      "@/public/*": ["./public/*"],
-      "@/style/*": ["./style/*"],
-      "@/utils/*": ["./utils/*"]
+      "@/*": ["./src/*"]
     },
     "types": ["@types/jest"]
   },
