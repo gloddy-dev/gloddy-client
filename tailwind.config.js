@@ -1,4 +1,4 @@
-const { colors, pxToRemTailwind, animations, fontSizes } = require('./style/theme');
+const { colors, pxToRemTailwind, animations, fontSizes } = require('./src/style/theme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -11,14 +11,6 @@ module.exports = {
       animation: {
         slideUp: 'slideUp 0.5s ease-in-out',
       },
-    },
-    fontWeight: {
-      100: '100',
-      300: '300',
-      350: '350',
-      400: '400',
-      700: '700',
-      900: '900',
     },
     fontSize: fontSizes,
   },
