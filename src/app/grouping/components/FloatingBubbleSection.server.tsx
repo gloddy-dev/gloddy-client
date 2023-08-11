@@ -1,6 +1,7 @@
-import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { Spacing } from '@/components/common/Spacing';
 
 export default function FloatingBubbleSection() {
   return (
