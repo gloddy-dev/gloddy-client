@@ -49,7 +49,7 @@ export default function ButtonGroup({ position = 'bottom', children }: ButtonGro
 
   return (
     <div
-      className={cn('m-auto bg-white p-20 pt-8', {
+      className={cn('mx-auto border-t-1 border-divider bg-white p-20 pt-7', {
         'fixed inset-x-0 bottom-0 max-w-450': position === 'bottom',
       })}
     >
