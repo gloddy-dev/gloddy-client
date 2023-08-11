@@ -1,16 +1,16 @@
 import { useJoinContext } from '../../../components/JoinContext';
 import { formatNumber, formatNumberBackSpace } from '../util';
+
+import type { StatusType } from '../type';
+import type { SubmitHandler } from 'react-hook-form';
+
 import { useSMSMutation } from '@/apis/auth';
 import { type SignUpState } from '@/app/join/type';
 import { Button } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
 import { TextField } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
-
-import type { StatusType } from '../type';
-import type { SubmitHandler } from 'react-hook-form';
 
 interface NumberSectionProps {
   inputStatus: StatusType;
