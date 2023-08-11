@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function InfoMessage({ children }: StrictPropsWithChildren) {
   return (
     <div className="flex">
-      <Image src="/icons/info.svg" width={20} height={20} alt="info" />
+      <Image src="/icons/24/info.svg" width={20} height={20} alt="info" />
       <Spacing size={4} direction="horizontal" />
       <p className="text-caption">{children}</p>
     </div>

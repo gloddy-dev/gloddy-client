@@ -6,7 +6,7 @@ export default function SearchTextField() {
   return (
     <TextField
       inputLeftIcon={
-        <Image src="/icons/search.svg" width={24} height={24} alt="search" className="mr-8" />
+        <Image src="/icons/24/search.svg" width={24} height={24} alt="search" className="mr-8" />
       }
     />
   );

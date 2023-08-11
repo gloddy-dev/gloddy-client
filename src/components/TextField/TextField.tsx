@@ -79,7 +79,7 @@ export default function TextField({
             {...props}
           />
           {inputRightIcon && (
-            <Image src={`/icons/${inputRightIcon}.svg`} width={24} height={24} alt="backspace" />
+            <Image src={`/icons/24/${inputRightIcon}.svg`} width={24} height={24} alt="backspace" />
           )}
         </div>
       </section>
