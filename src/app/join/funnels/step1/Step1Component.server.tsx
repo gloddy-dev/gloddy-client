@@ -1,6 +1,7 @@
 import CheckboxSection from './components/CheckboxSection.server';
 import FormSection from './components/FormSection.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
+
 import { Spacing } from '@/components/common/Spacing';
 
 export default function Step1Component() {
