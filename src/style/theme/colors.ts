@@ -40,7 +40,10 @@ export const colors = {
     text: PALETTE.blue['600'],
   },
 
-  // deprecated
+  /**
+   * ################################
+   * @deprecated
+   */
   blue: '#1249FC',
   blue2: '#ABC1FC',
   blue3: '#3A6DFC',
@@ -65,4 +68,7 @@ export const colors = {
   white2: '#F7F7F7',
   white3: '#EAEAEA',
   white4: '#F8F8F8',
+  /**
+   * ################################
+   */
 } as const;
