@@ -5,6 +5,7 @@ import { type SignUpState } from '@/app/join/type';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
+import { TextField } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
 
@@ -17,7 +18,7 @@ interface NumberSectionProps {
 }
 
 export default function NumberForm({ inputStatus, setInputStatus }: NumberSectionProps) {
-  const { register, handleSubmit, setValue } = useJoinContext();
+  const { register, handleSubmit, setValue, formState } = useJoinContext();
   const { mutate: mutateSMS } = useSMSMutation();
   const {
     status: timerStatus,
@@ -63,8 +64,8 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        placeholder="휴대폰 번호"
+      <TextField
+        label="휴대폰 번호"
         register={register('phoneNumber', {
           required: true,
           pattern: {
@@ -75,6 +76,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         })}
         onKeyDown={handleInputChange}
         maxLength={17}
+        isSuccess={formState.isValid}
       />
 
       <Spacing size={18} />
