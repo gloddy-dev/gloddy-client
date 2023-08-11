@@ -2,8 +2,17 @@ import cn from '@/utils/cn';
 import Image from 'next/image';
 
 interface FloatButtonProps {
+  /**
+   * FloatButton의 className을 설정합니다.
+   */
   className?: string;
+  /**
+   * FloatButton의 클릭 이벤트를 설정합니다.
+   */
   onClick?: () => void;
+  /**
+   * FloatButton의 비활성화 여부를 설정합니다.
+   */
   disabled?: boolean;
 }
 

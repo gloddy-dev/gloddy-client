@@ -2,7 +2,7 @@ import cn from '@/utils/cn';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
-   * 버튼의 크기를 설정합니다. (default: medium)
+   * 버튼의 크기를 설정합니다. small: 48px, medium: 56px (default: medium)
    */
   size?: 'small' | 'medium';
   /**
