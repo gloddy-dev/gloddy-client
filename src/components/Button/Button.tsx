@@ -1,14 +1,25 @@
 import cn from '@/utils/cn';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * 버튼의 크기를 설정합니다. (default: medium)
+   */
   size?: 'small' | 'medium';
-  color?: 'solid-primary' | 'solid-default' | 'outline-warning' | 'solid-warning';
+  /**
+   * 버튼의 색상을 설정합니다. (default: solid-primary)
+   */
+  variant?:
+    | 'solid-primary'
+    | 'solid-default'
+    | 'solid-secondary'
+    | 'outline-warning'
+    | 'solid-warning';
   children: React.ReactNode;
 }
 
 export default function Button({
   size = 'medium',
-  color = 'solid-primary',
+  variant = 'solid-primary',
   className,
   disabled,
   children,
@@ -21,13 +32,14 @@ export default function Button({
         {
           'h-56': size === 'medium',
           'h-48': size === 'small',
-          'bg-primary text-sign-white disabled:bg-primary-light': color === 'solid-primary',
+          'bg-primary text-sign-white disabled:bg-primary-light': variant === 'solid-primary',
           'bg-button text-sign-secondary disabled:bg-sub disabled:text-sign-caption':
-            color === 'solid-default',
+            variant === 'solid-default',
+          'bg-brand-color text-sign-brand disabled:text-sign-white': variant === 'solid-secondary',
           'border border-warning bg-warning-color text-warning disabled:border-warning-light disabled:bg-white disabled:text-warning-light':
-            color === 'outline-warning',
+            variant === 'outline-warning',
           'bg-warning text-sign-white disabled:bg-sub disabled:text-sign-caption':
-            color === 'solid-warning',
+            variant === 'solid-warning',
         },
         className
       )}
