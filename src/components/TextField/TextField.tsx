@@ -2,7 +2,6 @@
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
-import clsx from 'clsx';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 
@@ -124,7 +123,7 @@ interface LeftCaptionProps {
 
 function LeftCaption({ children, isError }: StrictPropsWithChildren<LeftCaptionProps>) {
   if (!children) return;
-  return <span className={clsx(isError && 'text-warning')}>{children}</span>;
+  return <span className={cn(isError && 'text-warning')}>{children}</span>;
 }
 function RightCaption({ children }: StrictPropsWithChildren) {
   if (!children) return;
