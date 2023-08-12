@@ -77,7 +77,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         onKeyDown={handleInputChange}
         maxLength={17}
         hookForm={hookForm}
-        maxCount={30}
+        placeholder="010-0000-0000"
       />
 
       <Spacing size={18} />
