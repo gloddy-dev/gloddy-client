@@ -10,7 +10,7 @@ interface TextFieldProps {
   register: any;
   placeholder?: string;
   label?: string;
-  caption?: string;
+  leftCaptionText?: string;
   inputLeftIcon?: React.ReactNode;
   maxCount?: boolean;
   timer?: number;
@@ -27,7 +27,7 @@ export default function TextField({
   register,
   placeholder,
   label,
-  caption,
+  leftCaptionText,
   inputLeftIcon,
   maxCount,
   timer,
@@ -46,29 +46,36 @@ export default function TextField({
   const errorMessage = form.formState.errors[inputName]?.message;
   const isDirty = form.getFieldState(inputName).isDirty;
   const inputRightIcon = errorMessage ? 'warning' : isDirty ? 'backspace' : '';
-  console.log(errorMessage);
+
+  let rightCaptionText;
+  if (maxCount) {
+    rightCaptionText = `${form.watch(inputName).length}/${maxCount}`;
+  } else if (timer) {
+    rightCaptionText = formatTimer(timer);
+  }
 
   return (
     <section ref={textFieldRef}>
       <section
-        className={cn(
-          'w-full rounded-8 border-1 p-16',
-          isFocus && 'border-border-pressed bg-white',
-          !isFocus && 'border-transparent bg-sub',
-          isSuccess && 'border-success-cto bg-brand-color',
-          errorMessage && 'border-warning bg-warning-color'
-        )}
+        className={cn('w-full rounded-8 border-1 p-16', {
+          'border-border-pressed bg-white': isFocus,
+          'border-transparent bg-sub': !isFocus,
+          'border-success-cto bg-brand-color': isSuccess,
+          'border-warning bg-warning-color': !!errorMessage,
+        })}
       >
         {label && <label className="mb-2 text-caption text-sign-tertiary">{label}</label>}
         <div className="relative flex h-24 w-full items-center justify-around">
           {inputLeftIcon}
           <input
-            className={clsx(
+            className={cn(
               'h-full w-full text-paragraph-1 outline-none placeholder:text-paragraph-1',
-              isFocus && 'bg-white',
-              !isFocus && 'bg-sub',
-              isSuccess && 'bg-brand-color',
-              errorMessage && 'bg-warning-color'
+              {
+                'bg-white': isFocus,
+                'bg-sub': !isFocus,
+                'bg-brand-color': isSuccess,
+                'bg-warning-color': !!errorMessage,
+              }
             )}
             onFocus={(e) => {
               setIsFocus(true);
@@ -88,18 +95,25 @@ export default function TextField({
           )}
         </div>
       </section>
-      <section className={clsx('flex justify-between px-8 pt-4 text-caption')}>
-        <span className={clsx(isSuccess && 'text-success-text', errorMessage && 'text-warning')}>
-          {caption ?? errorMessage}
-        </span>
-        {maxCount && (
-          <span>
-            <span className={errorMessage && 'text-warning'}>{form.watch(inputName).length}</span>/
-            {maxCount}
-          </span>
-        )}
-        {timer && <span>{formatTimer(timer)}</span>}
+      <section className={cn('flex justify-between px-8 pt-4 text-caption')}>
+        <LeftCaption text={leftCaptionText} isError={!!errorMessage} />
+        <RightCaption text={rightCaptionText} />
       </section>
     </section>
   );
+}
+
+interface LeftCaptionProps {
+  text?: string;
+  isError?: boolean;
+}
+
+function LeftCaption({ text, isError }: LeftCaptionProps) {
+  return <span className={clsx(isError && 'text-warning')}>{text}</span>;
+}
+interface RightCaptionProps {
+  text?: string;
+}
+function RightCaption({ text }: RightCaptionProps) {
+  return <span>{text}</span>;
 }
