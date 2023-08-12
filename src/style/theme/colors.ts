@@ -4,6 +4,7 @@ export const colors = {
   // Background Colors
   white: PALETTE.white,
   sub: PALETTE.gray['050'],
+  button: PALETTE.gray['200'],
   divider: PALETTE.gray['100'],
   'card-ui': PALETTE.gray['030'],
   'brand-color': PALETTE.blue['050'],
