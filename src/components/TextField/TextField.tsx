@@ -9,7 +9,6 @@ import { UseFormReturn } from 'react-hook-form';
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   hookForm: UseFormReturn<any>;
   register: any;
-  placeholder?: string;
   label?: string;
   leftCaptionText?: string;
   inputLeftIcon?: React.ReactNode;
@@ -26,7 +25,6 @@ const formatTimer = (timer: number) => {
 export default function TextField({
   hookForm,
   register,
-  placeholder,
   label,
   leftCaptionText,
   inputLeftIcon,
@@ -79,10 +77,9 @@ export default function TextField({
                 'bg-warning-color': !!errorMessage,
               }
             )}
-            onFocus={(e) => {
+            onFocus={() => {
               setIsFocus(true);
             }}
-            placeholder={placeholder}
             {...register}
             {...props}
           />
