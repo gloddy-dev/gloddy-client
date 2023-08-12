@@ -1,5 +1,6 @@
 'use client';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
+import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -41,12 +42,15 @@ export default function TextField({
     setIsFocus(false);
   });
 
-  const { formState, getFieldState, watch, setValue } = hookForm;
+  const { formState, watch, setValue } = hookForm;
 
   const isSuccess = formState.isValid;
   const errorMessage = formState.errors[inputName]?.message;
-  const isDirty = getFieldState(inputName).isDirty;
-  const inputRightIcon = errorMessage ? 'warning' : isDirty ? 'backspace' : '';
+  const inputRightIconName = errorMessage
+    ? 'warning'
+    : watch(inputName).length > 0
+    ? 'backspace'
+    : '';
 
   let rightCaptionText;
   if (maxCount) {
@@ -65,7 +69,7 @@ export default function TextField({
           'border-warning bg-warning-color': !!errorMessage,
         })}
       >
-        {label && <label className="mb-2 text-caption text-sign-tertiary">{label}</label>}
+        <Label>{label}</Label>
         <div className="relative flex h-24 w-full items-center justify-around">
           {inputLeftIcon}
           <input
@@ -84,36 +88,45 @@ export default function TextField({
             {...register}
             {...props}
           />
-          {inputRightIcon && (
-            <Image
-              src={`/icons/24/${inputRightIcon}.svg`}
-              width={24}
-              height={24}
-              alt={inputRightIcon}
-              onClick={() => setValue(inputName, '')}
-            />
-          )}
+          <InputRightIcon
+            name={inputRightIconName}
+            onClick={() => inputRightIconName === 'backspace' && setValue(inputName, '')}
+          />
         </div>
       </section>
       <section className={cn('flex justify-between px-8 pt-4 text-caption')}>
-        <LeftCaption text={leftCaptionText} isError={!!errorMessage} />
-        <RightCaption text={rightCaptionText} />
+        <LeftCaption isError={!!errorMessage}>{leftCaptionText}</LeftCaption>
+        <RightCaption>{rightCaptionText}</RightCaption>
       </section>
     </section>
   );
 }
 
+interface InputRightIconProps {
+  name: string;
+  onClick: () => void;
+}
+
+function InputRightIcon({ name, onClick }: InputRightIconProps) {
+  if (!name) return;
+  return (
+    <Image src={`/icons/24/${name}.svg`} width={24} height={24} alt={name} onClick={onClick} />
+  );
+}
+
+function Label({ children }: StrictPropsWithChildren) {
+  if (!children) return;
+  return <label className="mb-2 text-caption text-sign-tertiary">{children}</label>;
+}
 interface LeftCaptionProps {
-  text?: string;
   isError?: boolean;
 }
 
-function LeftCaption({ text, isError }: LeftCaptionProps) {
-  return <span className={clsx(isError && 'text-warning')}>{text}</span>;
+function LeftCaption({ children, isError }: StrictPropsWithChildren<LeftCaptionProps>) {
+  if (!children) return;
+  return <span className={clsx(isError && 'text-warning')}>{children}</span>;
 }
-interface RightCaptionProps {
-  text?: string;
-}
-function RightCaption({ text }: RightCaptionProps) {
-  return <span>{text}</span>;
+function RightCaption({ children }: StrictPropsWithChildren) {
+  if (!children) return;
+  return <span>{children}</span>;
 }
