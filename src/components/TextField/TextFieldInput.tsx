@@ -1,6 +1,7 @@
-import TextField, { TextFieldProps } from './TextField';
+import TextField, { type TextFieldProps } from './TextField';
 import Image from 'next/image';
-import { UseFormReturn } from 'react-hook-form';
+
+import type { UseFormReturn } from 'react-hook-form';
 
 interface TextFieldInputProps extends TextFieldProps {
   register: any;
@@ -18,6 +19,7 @@ interface TextFieldInputProps extends TextFieldProps {
    */
   timer?: number;
 }
+
 export default function TextFieldInput({
   register,
   hookForm,
