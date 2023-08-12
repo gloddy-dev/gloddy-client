@@ -1,9 +1,5 @@
 import { useJoinContext } from '../../../components/JoinContext';
 import { formatNumber, formatNumberBackSpace } from '../util';
-
-import type { StatusType } from '../type';
-import type { SubmitHandler } from 'react-hook-form';
-
 import { useSMSMutation } from '@/apis/auth';
 import { type SignUpState } from '@/app/join/type';
 import { Button } from '@/components/common/Button';
@@ -12,13 +8,16 @@ import { TextField } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
 
+import type { StatusType } from '../type';
+import type { SubmitHandler } from 'react-hook-form';
+
 interface NumberSectionProps {
   inputStatus: StatusType;
   setInputStatus: React.Dispatch<React.SetStateAction<StatusType>>;
 }
 
 export default function NumberForm({ inputStatus, setInputStatus }: NumberSectionProps) {
-  const { register, handleSubmit, setValue, formState } = useJoinContext();
+  const form = useJoinContext();
   const { mutate: mutateSMS } = useSMSMutation();
   const {
     status: timerStatus,
@@ -46,9 +45,9 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     else setInputStatus('notReadyForSend');
 
     if ('key' in e && e.key === 'Backspace') {
-      setValue('phoneNumber', formatNumberBackSpace(phoneNumberWithoutHyphen));
+      form.setValue('phoneNumber', formatNumberBackSpace(phoneNumberWithoutHyphen));
     } else {
-      setValue('phoneNumber', formatNumber(phoneNumberWithoutHyphen));
+      form.setValue('phoneNumber', formatNumber(phoneNumberWithoutHyphen));
     }
   };
 
@@ -63,20 +62,21 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={form.handleSubmit(onSubmit)}>
       <TextField
         label="휴대폰 번호"
-        register={register('phoneNumber', {
+        register={form.register('phoneNumber', {
           required: true,
           pattern: {
             value: regexr.phoneNumber,
-            message: '올바른 휴대폰 번호를 입력해주세요.',
+            message: '* 올바른 휴대폰 번호를 입력해주세요.',
           },
           onChange: handleInputChange,
         })}
         onKeyDown={handleInputChange}
         maxLength={17}
-        isSuccess={formState.isValid}
+        form={form}
+        maxCount={30}
       />
 
       <Spacing size={18} />
