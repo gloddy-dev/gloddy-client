@@ -1,4 +1,4 @@
-name: 개인 Repository에 자동으로 Push - develop 브랜치
+name: CD-develop branch
 
 on:
   push:
