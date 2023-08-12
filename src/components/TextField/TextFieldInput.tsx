@@ -29,32 +29,35 @@ export default function TextFieldInput({
   const { formState, watch, setValue } = hookForm;
   const inputName = register.name;
   const errorMessage = formState.errors[inputName]?.message;
+  const isRightError = maxCount ? watch(inputName).length > maxCount : false;
+  const isLeftError = !!errorMessage || isRightError;
 
-  const rightInputIconName = errorMessage
-    ? 'warning'
-    : watch(inputName).length > 0
-    ? 'backspace'
-    : '';
+  const isError = isRightError || isLeftError;
+
+  const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
 
   return (
     <TextField
       isSuccess={formState.isValid}
-      isError={!!errorMessage}
-      leftCaption={caption ?? String(errorMessage)}
+      leftCaption={caption ?? String(errorMessage) ?? ''}
       rightCaption={
         maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
       }
       rightInputIcon={
-        <Image
-          src={`/icons/24/${rightInputIconName}.svg`}
-          width={24}
-          height={24}
-          alt={rightInputIconName}
-          onClick={() => rightInputIconName === 'backspace' && setValue(inputName, '')}
-        />
+        rightInputIconName && (
+          <Image
+            src={`/icons/24/${rightInputIconName}.svg`}
+            width={24}
+            height={24}
+            alt={rightInputIconName}
+            onClick={() => rightInputIconName === 'backspace' && setValue(inputName, '')}
+          />
+        )
       }
-      {...TextFieldProps}
+      isLeftError={isLeftError}
+      isRightError={isRightError}
       register={...register}
+      {...TextFieldProps}
     />
   );
 }

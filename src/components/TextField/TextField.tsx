@@ -12,7 +12,8 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
   leftInputIcon?: React.ReactNode;
   rightInputIcon?: React.ReactNode;
   isSuccess?: boolean;
-  isError?: boolean;
+  isLeftError?: boolean;
+  isRightError?: boolean;
   register?: UseFormRegister<any>;
 }
 export default function TextField({
@@ -22,7 +23,8 @@ export default function TextField({
   leftInputIcon,
   rightInputIcon,
   isSuccess = false,
-  isError = false,
+  isLeftError = false,
+  isRightError = false,
   register,
   ...props
 }: TextFieldProps) {
@@ -31,6 +33,8 @@ export default function TextField({
   useOnClickOutside(textFieldRef, () => {
     setIsFocus(false);
   });
+
+  const isError = isLeftError || isRightError;
 
   return (
     <div ref={textFieldRef}>
@@ -64,9 +68,9 @@ export default function TextField({
           {rightInputIcon}
         </div>
       </section>
-      <section className="flex justify-between px-8 pt-4 text-caption">
-        <LeftCaption>{leftCaption}</LeftCaption>
-        <RightCaption>{rightCaption}</RightCaption>
+      <section className="flex justify-between px-8 pt-4 text-caption text-sign-tertiary">
+        <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
+        <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
       </section>
     </div>
   );
@@ -80,11 +84,15 @@ interface LeftCaptionProps {
   isError?: boolean;
 }
 
-function LeftCaption({ children, isError }: StrictPropsWithChildren<LeftCaptionProps>) {
+function LeftCaption({ isError, children }: StrictPropsWithChildren<LeftCaptionProps>) {
   if (!children) return;
   return <span className={isError ? 'text-warning' : ''}>{children}</span>;
 }
-function RightCaption({ children }: StrictPropsWithChildren) {
+interface RightCaptionProps {
+  isError?: boolean;
+}
+
+function RightCaption({ isError, children }: StrictPropsWithChildren<RightCaptionProps>) {
   if (!children) return;
-  return <span>{children}</span>;
+  return <span className={isError ? 'text-warning' : ''}>{children}</span>;
 }
