@@ -17,7 +17,8 @@ interface NumberSectionProps {
 }
 
 export default function NumberForm({ inputStatus, setInputStatus }: NumberSectionProps) {
-  const form = useJoinContext();
+  const hookForm = useJoinContext();
+  const { setValue, handleSubmit, register } = hookForm;
   const { mutate: mutateSMS } = useSMSMutation();
   const {
     status: timerStatus,
@@ -45,9 +46,9 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     else setInputStatus('notReadyForSend');
 
     if ('key' in e && e.key === 'Backspace') {
-      form.setValue('phoneNumber', formatNumberBackSpace(phoneNumberWithoutHyphen));
+      setValue('phoneNumber', formatNumberBackSpace(phoneNumberWithoutHyphen));
     } else {
-      form.setValue('phoneNumber', formatNumber(phoneNumberWithoutHyphen));
+      setValue('phoneNumber', formatNumber(phoneNumberWithoutHyphen));
     }
   };
 
@@ -62,10 +63,10 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   };
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <TextField
         label="휴대폰 번호"
-        register={form.register('phoneNumber', {
+        register={register('phoneNumber', {
           required: true,
           pattern: {
             value: regexr.phoneNumber,
@@ -75,7 +76,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         })}
         onKeyDown={handleInputChange}
         maxLength={17}
-        form={form}
+        hookForm={hookForm}
         maxCount={30}
       />
 

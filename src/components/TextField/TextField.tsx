@@ -6,15 +6,15 @@ import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-interface TextFieldProps {
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  hookForm: UseFormReturn<any>;
   register: any;
   placeholder?: string;
   label?: string;
   leftCaptionText?: string;
   inputLeftIcon?: React.ReactNode;
-  maxCount?: boolean;
+  maxCount?: number;
   timer?: number;
-  form: UseFormReturn;
 }
 
 const formatTimer = (timer: number) => {
@@ -24,6 +24,7 @@ const formatTimer = (timer: number) => {
 };
 
 export default function TextField({
+  hookForm,
   register,
   placeholder,
   label,
@@ -31,7 +32,6 @@ export default function TextField({
   inputLeftIcon,
   maxCount,
   timer,
-  form,
   ...props
 }: TextFieldProps) {
   const [isFocus, setIsFocus] = useState(false);
@@ -42,14 +42,16 @@ export default function TextField({
     setIsFocus(false);
   });
 
-  const isSuccess = form.formState.isValid;
-  const errorMessage = form.formState.errors[inputName]?.message;
-  const isDirty = form.getFieldState(inputName).isDirty;
+  const { formState, getFieldState, watch, setValue } = hookForm;
+
+  const isSuccess = formState.isValid;
+  const errorMessage = formState.errors[inputName]?.message;
+  const isDirty = getFieldState(inputName).isDirty;
   const inputRightIcon = errorMessage ? 'warning' : isDirty ? 'backspace' : '';
 
   let rightCaptionText;
   if (maxCount) {
-    rightCaptionText = `${form.watch(inputName).length}/${maxCount}`;
+    rightCaptionText = `${watch(inputName).length}/${maxCount}`;
   } else if (timer) {
     rightCaptionText = formatTimer(timer);
   }
@@ -90,7 +92,7 @@ export default function TextField({
               width={24}
               height={24}
               alt={inputRightIcon}
-              onClick={() => form.setValue(inputName, '')}
+              onClick={() => setValue(inputName, '')}
             />
           )}
         </div>
