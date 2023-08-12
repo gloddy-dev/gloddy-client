@@ -1,9 +1,10 @@
 'use client';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
-import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
 import { useRef, useState } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+
+import type { StrictPropsWithChildren } from '@/types';
+import type { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -14,7 +15,7 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
   isSuccess?: boolean;
   isLeftError?: boolean;
   isRightError?: boolean;
-  register?: UseFormRegister<any>;
+  register?: UseFormRegisterReturn<string>;
 }
 export default function TextField({
   label,
