@@ -4,7 +4,8 @@ import cn from '@/utils/cn';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+
+import type { UseFormReturn } from 'react-hook-form';
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   hookForm: UseFormReturn<any>;
