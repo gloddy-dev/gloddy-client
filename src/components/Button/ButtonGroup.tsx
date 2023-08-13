@@ -1,7 +1,7 @@
+import Button from './Button';
 import cn from '@/utils/cn';
 import { Children, type ReactElement, cloneElement, isValidElement } from 'react';
 
-import type { ButtonProps } from './Button';
 import type { StrictPropsWithChildren } from '@/types';
 
 interface ButtonGroupProps {
@@ -27,7 +27,7 @@ export default function ButtonGroup({
 
   const renderElements = (elements: ReactElement[]) => {
     if (elements.length === 1) {
-      const props = elements[0].props as ButtonProps;
+      const props = elements[0].props as React.ComponentProps<typeof Button>;
       return cloneElement(elements[0], {
         className: cn('w-full', props.className),
       });
@@ -36,7 +36,7 @@ export default function ButtonGroup({
     return (
       <div className="flex gap-8">
         {elements.map((element, index) => {
-          const props = elements[index].props as ButtonProps;
+          const props = elements[index].props as React.ComponentProps<typeof Button>;
 
           if (index === 0) {
             return cloneElement(element, {
