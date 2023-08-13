@@ -1,7 +1,7 @@
 'use client';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import cn from '@/utils/cn';
-import { useRef, useState } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 import type { UseFormRegisterReturn } from 'react-hook-form';
@@ -17,18 +17,20 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
   isRightError?: boolean;
   register?: UseFormRegisterReturn<string>;
 }
-export default function TextField({
-  label,
-  leftCaption,
-  rightCaption,
-  leftInputIcon,
-  rightInputIcon,
-  isSuccess = false,
-  isLeftError = false,
-  isRightError = false,
-  register,
-  ...props
-}: TextFieldProps) {
+export default forwardRef(function TextField(
+  {
+    label,
+    leftCaption,
+    rightCaption,
+    leftInputIcon,
+    rightInputIcon,
+    isSuccess = false,
+    isLeftError = false,
+    isRightError = false,
+    ...props
+  }: TextFieldProps,
+  inputRef: React.ForwardedRef<HTMLInputElement>
+) {
   const [isFocus, setIsFocus] = useState(false);
   const textFieldRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(textFieldRef, () => {
@@ -75,7 +77,8 @@ export default function TextField({
       </section>
     </div>
   );
-}
+});
+
 function Label({ children }: StrictPropsWithChildren) {
   if (!children) return;
   return <label className="mb-2 text-caption text-sign-tertiary">{children}</label>;

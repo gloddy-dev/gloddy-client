@@ -1,5 +1,6 @@
 import TextField, { type TextFieldProps } from './TextField';
 import Image from 'next/image';
+import { forwardRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
@@ -21,14 +22,10 @@ interface TextFieldControllerProps extends TextFieldProps {
   timer?: number;
 }
 
-export default function TextFieldController({
-  register,
-  hookForm,
-  caption,
-  maxCount,
-  timer,
-  ...TextFieldProps
-}: TextFieldControllerProps) {
+export default forwardRef(function TextFieldController(
+  { register, hookForm, caption, maxCount, timer, ...TextFieldProps }: TextFieldControllerProps,
+  ref
+) {
   const { formState, watch, setValue } = hookForm;
   const inputName = register.name;
   const errorMessage = formState.errors[inputName]?.message;
@@ -59,8 +56,8 @@ export default function TextFieldController({
       }
       isLeftError={isLeftError}
       isRightError={isRightError}
-      register={register}
       {...TextFieldProps}
+      {...register}
     />
   );
-}
+});
