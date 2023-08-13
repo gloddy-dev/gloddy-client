@@ -1,5 +1,7 @@
 import cn from '@/utils/cn';
 
+import type { StrictPropsWithChildren } from '@/types';
+
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * 버튼의 크기를 설정합니다. small: 48px, medium: 56px (default: medium)
@@ -14,7 +16,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     | 'solid-secondary'
     | 'outline-warning'
     | 'solid-warning';
-  children: React.ReactNode;
 }
 
 export default function Button({
@@ -24,7 +25,7 @@ export default function Button({
   disabled,
   children,
   ...props
-}: ButtonProps) {
+}: StrictPropsWithChildren<ButtonProps>) {
   return (
     <button
       className={cn(
