@@ -12,6 +12,7 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
   rightCaption?: string;
   leftInputIcon?: React.ReactNode;
   rightInputIcon?: React.ReactNode;
+  isFocus?: boolean;
   isSuccess?: boolean;
   isLeftError?: boolean;
   isRightError?: boolean;
@@ -24,19 +25,14 @@ export default forwardRef(function TextField(
     rightCaption,
     leftInputIcon,
     rightInputIcon,
-    isSuccess = false,
+    isFocus = false,
     isLeftError = false,
     isRightError = false,
+    register,
     ...props
   }: TextFieldProps,
-  inputRef: React.ForwardedRef<HTMLInputElement>
+  textFieldRef: React.ForwardedRef<HTMLDivElement>
 ) {
-  const [isFocus, setIsFocus] = useState(false);
-  const textFieldRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(textFieldRef, () => {
-    setIsFocus(false);
-  });
-
   const isError = isLeftError || isRightError;
 
   return (
@@ -45,7 +41,6 @@ export default forwardRef(function TextField(
         className={cn('w-full rounded-8 border-1 p-16', {
           'border-border-pressed bg-white': isFocus,
           'border-transparent bg-sub': !isFocus,
-          'border-success-cto bg-brand-color': isSuccess,
           'border-warning bg-warning-color': isError,
         })}
       >
@@ -58,14 +53,13 @@ export default forwardRef(function TextField(
               {
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
-                'bg-brand-color': isSuccess,
                 'bg-warning-color': isError,
               }
             )}
-            onFocus={() => {
-              setIsFocus(true);
-            }}
-            ref={inputRef}
+            // onFocus={() => {
+            //   setIsFocus(true);
+            // }}
+            {...register}
             {...props}
           />
           {rightInputIcon}
