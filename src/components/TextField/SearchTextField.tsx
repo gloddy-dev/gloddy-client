@@ -1,4 +1,4 @@
-import TextField, { TextFieldProps } from './TextField';
+import TextField, { TextFieldProps } from './TextField.client';
 import Image from 'next/image';
 
 export default function SearchTextField({ ...props }: TextFieldProps) {
