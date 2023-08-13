@@ -1,24 +1,23 @@
 'use client';
-import { Header } from '@/components/NavigationBar';
+
+import { Header } from '@/components/Header';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function ApplyHeader() {
+export default function ProfilePraiseHeader() {
   const router = useRouter();
-
   return (
     <Header
+      text="받은 칭찬"
       leftNode={
         <Image
           alt="back"
           src="/assets/arrow_back.svg"
-          width={8}
-          height={30}
+          width={10}
+          height={10}
           onClick={() => router.back()}
-          className="cursor-pointer"
         />
       }
-      text="지원서 작성"
     />
   );
 }

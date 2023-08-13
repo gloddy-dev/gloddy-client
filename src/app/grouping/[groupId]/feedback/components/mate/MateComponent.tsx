@@ -2,7 +2,7 @@
 import MateCardList from './MateCardList';
 import { useFeedbackContext } from '../../FeedbackContext';
 import { BottomFixedButton } from '@/components/common/Button';
-import { Header } from '@/components/NavigationBar';
+import { Header } from '@/components/Header';
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 
