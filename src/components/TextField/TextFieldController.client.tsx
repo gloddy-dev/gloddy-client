@@ -1,8 +1,9 @@
-import TextField, { type TextFieldProps } from './TextField';
+'use client';
+import TextField, { type TextFieldProps } from './TextField.client';
 import { useOnClickInside } from '@/hooks/useOnClickInside';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import Image from 'next/image';
-import { forwardRef, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 

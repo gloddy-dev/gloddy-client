@@ -4,7 +4,7 @@ import { useSMSMutation } from '@/apis/auth';
 import { type SignUpState } from '@/app/join/type';
 import { Button } from '@/components/common/Button';
 import { Spacing } from '@/components/common/Spacing';
-import TextFieldController from '@/components/TextField/TextFieldController';
+import TextFieldController from '@/components/TextField/TextFieldController.client';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
 
