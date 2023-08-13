@@ -65,7 +65,7 @@ export default forwardRef(function TextField(
             onFocus={() => {
               setIsFocus(true);
             }}
-            {...register}
+            ref={inputRef}
             {...props}
           />
           {rightInputIcon}
@@ -78,7 +78,6 @@ export default forwardRef(function TextField(
     </div>
   );
 });
-
 function Label({ children }: StrictPropsWithChildren) {
   if (!children) return;
   return <label className="mb-2 text-caption text-sign-tertiary">{children}</label>;
