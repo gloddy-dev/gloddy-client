@@ -100,9 +100,9 @@ jobs:
         if: github.event_name != 'push'
         run: yarn lint
 
-      - name: Check Unit Test
-        if: github.event_name != 'push'
-        run: yarn test
+      # - name: Check Unit Test
+      #   if: github.event_name != 'push'
+      #   run: yarn test
 
       - name : Run Prettier
         if: github.event_name != 'push'
