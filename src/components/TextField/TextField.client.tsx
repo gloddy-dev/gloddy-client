@@ -1,4 +1,5 @@
 'use client';
+import { Spacing } from '../common/Spacing';
 import cn from '@/utils/cn';
 import { forwardRef } from 'react';
 
@@ -44,6 +45,7 @@ export default forwardRef(function TextField(
         })}
       >
         <Label>{label}</Label>
+        <Spacing size={2} />
         <div className="relative flex h-24 w-full items-center justify-around">
           {leftInputIcon}
           <input
@@ -70,7 +72,7 @@ export default forwardRef(function TextField(
 });
 function Label({ children }: StrictPropsWithChildren) {
   if (!children) return;
-  return <label className="mb-2 text-caption text-sign-tertiary">{children}</label>;
+  return <label className="text-caption text-sign-tertiary">{children}</label>;
 }
 
 interface LeftCaptionProps {
