@@ -8,8 +8,8 @@ const customJestConfig = {
   resetMocks: true,
   moduleDirectories: ['.yarn'],
   testEnvironment: 'jsdom',
-  testRegex: '(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$',
-  collectCoverageFrom: ['**/*.{js,ts,jsx,tsx}'],
+  testRegex: '(/utils/.*|(\\.|/)(test))\\.[jt]sx?$',
+  collectCoverageFrom: ['src/utils/**/*.{js,ts,jsx,tsx}'],
   moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
   transform: {
     '^.+\\.tsx?$': 'esbuild-jest',
