@@ -1,12 +1,13 @@
 import TextField, { type TextFieldProps } from './TextField';
 import Image from 'next/image';
 
-import type { UseFormReturn } from 'react-hook-form';
+import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
 interface TextFieldControllerProps extends TextFieldProps {
-  register: any;
+  register: UseFormRegisterReturn<string>;
   hookForm: UseFormReturn<any>;
-  /**
+  /**  
+
    * leftCaption에 문구를 표기하는 경우
    */
   caption?: string;
@@ -58,7 +59,7 @@ export default function TextFieldController({
       }
       isLeftError={isLeftError}
       isRightError={isRightError}
-      register={...register}
+      register={register}
       {...TextFieldProps}
     />
   );
