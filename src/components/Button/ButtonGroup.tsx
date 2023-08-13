@@ -2,16 +2,19 @@ import cn from '@/utils/cn';
 import { Children, type ReactElement, cloneElement, isValidElement } from 'react';
 
 import type { ButtonProps } from './Button';
+import type { StrictPropsWithChildren } from '@/types';
 
 interface ButtonGroupProps {
   /**
    * 버튼 그룹의 위치를 설정합니다. (default: bottom)
    */
   position?: 'bottom' | 'contents';
-  children: React.ReactNode;
 }
 
-export default function ButtonGroup({ position = 'bottom', children }: ButtonGroupProps) {
+export default function ButtonGroup({
+  position = 'bottom',
+  children,
+}: StrictPropsWithChildren<ButtonGroupProps>) {
   const validChildren = Children.toArray(children).filter(
     (child) =>
       isValidElement(child) &&
