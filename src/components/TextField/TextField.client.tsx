@@ -1,7 +1,6 @@
 'use client';
-import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import cn from '@/utils/cn';
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 import type { UseFormRegisterReturn } from 'react-hook-form';
@@ -56,9 +55,6 @@ export default forwardRef(function TextField(
                 'bg-warning-color': isError,
               }
             )}
-            // onFocus={() => {
-            //   setIsFocus(true);
-            // }}
             {...register}
             {...props}
           />

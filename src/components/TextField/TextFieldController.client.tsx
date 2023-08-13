@@ -40,21 +40,21 @@ export default function TextFieldController({
 
   const { formState, watch, setValue } = hookForm;
   const inputName = register.name;
+
   const errorMessage = formState.errors[inputName]?.message;
   const isRightError = maxCount ? watch(inputName).length > maxCount : false;
   const isLeftError = isUserTouchOutsideOnce && (!!errorMessage || isRightError);
-
   const isError = isRightError || isLeftError;
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
 
+  useOnClickInside(textFieldRef, () => {
+    setIsFocus(true);
+  });
+
   useOnClickOutside(textFieldRef, () => {
     setIsUserTouchOutsideOnce(true);
     setIsFocus(false);
-  });
-
-  useOnClickInside(textFieldRef, () => {
-    setIsFocus(true);
   });
 
   return (
