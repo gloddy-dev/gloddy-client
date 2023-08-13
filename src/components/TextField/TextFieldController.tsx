@@ -1,6 +1,5 @@
 import TextField, { type TextFieldProps } from './TextField';
 import Image from 'next/image';
-import { forwardRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
@@ -22,7 +21,7 @@ interface TextFieldControllerProps extends TextFieldProps {
   timer?: number;
 }
 
-export default forwardRef(function TextFieldController({
+export default function TextFieldController({
   register,
   hookForm,
   caption,
@@ -42,7 +41,6 @@ export default forwardRef(function TextFieldController({
 
   return (
     <TextField
-      isSuccess={formState.isValid}
       leftCaption={caption ?? String(errorMessage) ?? ''}
       rightCaption={
         maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
@@ -64,4 +62,4 @@ export default forwardRef(function TextFieldController({
       {...register}
     />
   );
-});
+}
