@@ -22,10 +22,14 @@ interface TextFieldControllerProps extends TextFieldProps {
   timer?: number;
 }
 
-export default forwardRef(function TextFieldController(
-  { register, hookForm, caption, maxCount, timer, ...TextFieldProps }: TextFieldControllerProps,
-  ref
-) {
+export default forwardRef(function TextFieldController({
+  register,
+  hookForm,
+  caption,
+  maxCount,
+  timer,
+  ...TextFieldProps
+}: TextFieldControllerProps) {
   const { formState, watch, setValue } = hookForm;
   const inputName = register.name;
   const errorMessage = formState.errors[inputName]?.message;
