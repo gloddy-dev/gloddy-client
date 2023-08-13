@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import type { UseFormReturn } from 'react-hook-form';
 
-interface TextFieldInputProps extends TextFieldProps {
+interface TextFieldControllerProps extends TextFieldProps {
   register: any;
   hookForm: UseFormReturn<any>;
   /**
@@ -20,14 +20,14 @@ interface TextFieldInputProps extends TextFieldProps {
   timer?: number;
 }
 
-export default function TextFieldInput({
+export default function TextFieldController({
   register,
   hookForm,
   caption,
   maxCount,
   timer,
   ...TextFieldProps
-}: TextFieldInputProps) {
+}: TextFieldControllerProps) {
   const { formState, watch, setValue } = hookForm;
   const inputName = register.name;
   const errorMessage = formState.errors[inputName]?.message;

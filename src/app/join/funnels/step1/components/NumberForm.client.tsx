@@ -4,8 +4,7 @@ import { useSMSMutation } from '@/apis/auth';
 import { type SignUpState } from '@/app/join/type';
 import { Button } from '@/components/common/Button';
 import { Spacing } from '@/components/common/Spacing';
-import { TextField } from '@/components/TextField';
-import TextFieldInput from '@/components/TextField/TextFieldInput';
+import TextFieldController from '@/components/TextField/TextFieldInput';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
 
@@ -65,7 +64,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <TextFieldInput
+      <TextFieldController
         label="휴대폰 번호"
         register={register('phoneNumber', {
           required: true,
