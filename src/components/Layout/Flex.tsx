@@ -1,5 +1,7 @@
-import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
+import { type Ref, forwardRef } from 'react';
+
+import type { StrictPropsWithChildren } from '@/types';
 
 interface FlexProps {
   direction?: 'row' | 'column';
@@ -8,15 +10,13 @@ interface FlexProps {
   wrap?: 'wrap' | 'nowrap' | 'wrap-reverse';
 }
 
-export default function Flex({
-  children,
-  direction,
-  justify,
-  align,
-  wrap,
-}: StrictPropsWithChildren<FlexProps>) {
+export default forwardRef(function Flex(
+  { children, direction, justify, align, wrap }: StrictPropsWithChildren<FlexProps>,
+  ref: Ref<HTMLDivElement>
+) {
   return (
     <div
+      ref={ref}
       className={cn(
         'flex',
         {
@@ -51,4 +51,4 @@ export default function Flex({
       {children}
     </div>
   );
-}
+});
