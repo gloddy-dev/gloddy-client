@@ -1,6 +1,6 @@
 'use client';
 import { useWriteContext } from '../WriteContext';
-import { Header } from '@/components/NavigationBar';
+import { Header } from '@/components/Header';
 import { ImageType } from '@/types';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import Image from 'next/image';

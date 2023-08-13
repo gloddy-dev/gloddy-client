@@ -3,9 +3,10 @@ import GroupingCardList from './components/GroupingCardList.client';
 import { getGroups } from '@/apis/groups/apis';
 import { Keys } from '@/apis/groups/keys';
 import { RetryErrorBoundary } from '@/components/common/ErrorBoundary';
-import { BottomNavigationBar, Header } from '@/components/common/NavigationBar';
+import { BottomNavigationBar } from '@/components/common/NavigationBar';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import { Spacing } from '@/components/common/Spacing';
+import { Header } from '@/components/Header';
 import { Suspense } from 'react';
 
 const GroupingComponent = () => {

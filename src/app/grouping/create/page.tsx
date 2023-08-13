@@ -1,6 +1,6 @@
 import CreateGroupContextProvider from './components/CreateGroupContext';
-import Header from './components/CreateHeader';
 import InputForm from './components/InputForm.client';
+import { Header } from '@/components/Header';
 
 export default function CreateGroup() {
   return (

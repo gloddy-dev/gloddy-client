@@ -1,26 +1,21 @@
 'use client';
-import { Header } from '@/components/NavigationBar';
+
+import { Header } from '@/components/Header';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-interface FeedbackHeaderProps {
-  text: string;
-}
-
-export default function FeedbackHeader({ text }: FeedbackHeaderProps) {
+export default function ProfileMatesHeader() {
   const router = useRouter();
-
   return (
     <Header
-      text={text}
+      text="모임 후기"
       leftNode={
         <Image
           alt="back"
           src="/assets/arrow_back.svg"
-          width={8}
-          height={30}
+          width={10}
+          height={10}
           onClick={() => router.back()}
-          className="cursor-pointer"
         />
       }
     />
