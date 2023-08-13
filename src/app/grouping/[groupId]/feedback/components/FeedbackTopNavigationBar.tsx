@@ -1,17 +1,17 @@
 'use client';
-import { TopNavigationBar } from '@/components/common/NavigationBar';
+import { Header } from '@/components/NavigationBar';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-interface FeedbackTopNavigationBarProps {
+interface FeedbackHeaderProps {
   text: string;
 }
 
-export default function FeedbackTopNavigationBar({ text }: FeedbackTopNavigationBarProps) {
+export default function FeedbackHeader({ text }: FeedbackHeaderProps) {
   const router = useRouter();
 
   return (
-    <TopNavigationBar
+    <Header
       text={text}
       leftNode={
         <Image

@@ -1,14 +1,14 @@
 'use client';
 
-import { TopNavigationBar } from '@/components/common/NavigationBar';
+import { Header } from '@/components/NavigationBar';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function BoardTopNavigationBar() {
+export default function BoardHeader() {
   const router = useRouter();
 
   return (
-    <TopNavigationBar
+    <Header
       leftNode={
         <Image
           alt="back"

@@ -1,13 +1,13 @@
 'use client';
 
-import { TopNavigationBar } from '@/components/common/NavigationBar';
+import { Header } from '@/components/NavigationBar';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function ProfileMatesTopNavigationBar() {
+export default function ProfileMatesHeader() {
   const router = useRouter();
   return (
-    <TopNavigationBar
+    <Header
       text="모임 후기"
       leftNode={
         <Image
