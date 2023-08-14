@@ -43,8 +43,6 @@ export default function TextFieldController({
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
 
-  console.log(formState.errors[inputName]);
-
   return (
     <TextField
       leftCaption={caption ?? (errorMessage as string) ?? ''}
