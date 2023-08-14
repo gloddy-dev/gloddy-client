@@ -1,4 +1,5 @@
 import Button from './Button';
+import { Spacing } from '../common/Spacing';
 import cn from '@/utils/cn';
 import { Children, type ReactElement, cloneElement, isValidElement } from 'react';
 
@@ -25,38 +26,54 @@ export default function ButtonGroup({
       ).name === 'Button'
   ) as ReactElement[];
 
+  const props = validChildren.map((child) => child.props as React.ComponentProps<typeof Button>);
+
+  const buttonHeight = {
+    small: 48,
+    medium: 56,
+  }[props[0].size ?? 'medium'];
+
   const renderElements = (elements: ReactElement[]) => {
     if (elements.length === 1) {
-      const props = elements[0].props as React.ComponentProps<typeof Button>;
       return cloneElement(elements[0], {
-        className: cn('w-full', props.className),
+        className: cn('w-full', props[0].className),
       });
     }
 
     return (
       <div className="flex gap-8">
         {elements.map((element, index) => {
-          const props = elements[index].props as React.ComponentProps<typeof Button>;
-
-          if (index === 0) {
-            return cloneElement(element, {
-              className: cn('flex-shrink-0', props.className),
-              variant: props.variant ?? 'solid-default',
-            });
-          }
-          return cloneElement(element, { className: cn('w-full', props.className) });
+          return cloneElement(element, {
+            className: cn(
+              {
+                'flex-shrink-0': index === 0,
+                'w-full': index !== 0,
+              },
+              props[index].className
+            ),
+            variant: cn(
+              {
+                'solid-default': index === 0,
+                'solid-primary': index !== 0,
+              },
+              props[index].variant
+            ),
+          });
         })}
       </div>
     );
   };
 
   return (
-    <div
-      className={cn('mx-auto border-t-1 border-divider bg-white p-20 pt-7', {
-        'fixed inset-x-0 bottom-0 max-w-450': position === 'bottom',
-      })}
-    >
-      {renderElements(validChildren)}
-    </div>
+    <>
+      <Spacing size={buttonHeight + 28} />
+      <div
+        className={cn('mx-auto border-t-1 border-divider bg-white p-20 pt-7', {
+          'fixed inset-x-0 bottom-0 z-50 max-w-450': position === 'bottom',
+        })}
+      >
+        {renderElements(validChildren)}
+      </div>
+    </>
   );
 }
