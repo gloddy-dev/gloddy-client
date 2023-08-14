@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [develop, feature/*]
+    branches: [develop]
     types: [opened, reopened, edited]
   push:
     branches: [develop]
@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: ${{ env.DEFAULT_NODE_VERSION }}
 
-      - name: Compute dependency cache key
+    - name: Compute dependency cache key
         id: compute_lockfile_hash
         run: echo "::set-output name=hash::${{ hashFiles('yarn.lock') }}"
 

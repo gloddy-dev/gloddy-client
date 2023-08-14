@@ -1,18 +1,13 @@
 'use client';
-import { TopNavigationBar } from '@/components/common/NavigationBar';
+import { Header } from '@/components/Header';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-interface FeedbackTopNavigationBarProps {
-  text: string;
-}
-
-export default function FeedbackTopNavigationBar({ text }: FeedbackTopNavigationBarProps) {
+export default function ApplyHeader() {
   const router = useRouter();
 
   return (
-    <TopNavigationBar
-      text={text}
+    <Header
       leftNode={
         <Image
           alt="back"
@@ -23,6 +18,7 @@ export default function FeedbackTopNavigationBar({ text }: FeedbackTopNavigation
           className="cursor-pointer"
         />
       }
+      text="지원서 작성"
     />
   );
 }
