@@ -1,11 +1,11 @@
 import CreateGroupContextProvider from './components/CreateGroupContext';
-import TopNavigationBar from './components/CreateTopNavigationBar';
 import InputForm from './components/InputForm.client';
+import { Header } from '@/components/Header';
 
 export default function CreateGroup() {
   return (
     <div className="mx-20">
-      <TopNavigationBar />
+      <Header />
       <CreateGroupContextProvider>
         <InputForm />
       </CreateGroupContextProvider>
