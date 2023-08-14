@@ -1,17 +1,57 @@
+import Button from './Button';
+import { Spacing } from '../common/Spacing';
 import cn from '@/utils/cn';
 import { Children, type ReactElement, cloneElement, isValidElement } from 'react';
 
-import type { ButtonProps } from './Button';
+import type { StrictPropsWithChildren } from '@/types';
+
+const renderElements = (
+  elements: ReactElement[],
+  props: Array<React.ComponentProps<typeof Button>>
+) => {
+  if (elements.length === 1) {
+    return elements[0];
+  }
+
+  return (
+    <div className="flex gap-8">
+      {elements.map((element, index) => {
+        return cloneElement(element, {
+          className: cn(
+            {
+              'flex-shrink-0 w-auto': index === 0,
+            },
+            props[index].className
+          ),
+          variant: cn(
+            {
+              'solid-default': index === 0,
+              'solid-primary': index !== 0,
+            },
+            props[index].variant
+          ),
+        });
+      })}
+    </div>
+  );
+};
 
 interface ButtonGroupProps {
   /**
    * 버튼 그룹의 위치를 설정합니다. (default: bottom)
    */
   position?: 'bottom' | 'contents';
-  children: React.ReactNode;
+  /**
+   * 공백 여부를 설정합니다. (default: true)
+   */
+  isSpacing?: boolean;
 }
 
-export default function ButtonGroup({ position = 'bottom', children }: ButtonGroupProps) {
+export default function ButtonGroup({
+  position = 'bottom',
+  isSpacing = true,
+  children,
+}: StrictPropsWithChildren<ButtonGroupProps>) {
   const validChildren = Children.toArray(children).filter(
     (child) =>
       isValidElement(child) &&
@@ -22,38 +62,31 @@ export default function ButtonGroup({ position = 'bottom', children }: ButtonGro
       ).name === 'Button'
   ) as ReactElement[];
 
-  const renderElements = (elements: ReactElement[]) => {
-    if (elements.length === 1) {
-      const props = elements[0].props as ButtonProps;
-      return cloneElement(elements[0], {
-        className: cn('w-full', props.className),
-      });
-    }
+  if (validChildren.length === 0) {
+    throw new Error('ButtonGroup 컴포넌트는 Button 컴포넌트를 포함해야 합니다.');
+  }
 
-    return (
-      <div className="flex gap-8">
-        {elements.map((element, index) => {
-          const props = elements[index].props as ButtonProps;
+  if (validChildren.length > 2) {
+    throw new Error('ButtonGroup 컴포넌트는 2개 이하의 Button 컴포넌트를 포함해야 합니다.');
+  }
 
-          if (index === 0) {
-            return cloneElement(element, {
-              className: cn('flex-shrink-0', props.className),
-              variant: props.variant ?? 'solid-default',
-            });
-          }
-          return cloneElement(element, { className: cn('w-full', props.className) });
-        })}
-      </div>
-    );
-  };
+  const props = validChildren.map((child) => child.props as React.ComponentProps<typeof Button>);
+
+  const buttonHeight = {
+    small: 48,
+    medium: 56,
+  }[props[0].size ?? 'medium'];
 
   return (
-    <div
-      className={cn('mx-auto border-t-1 border-divider bg-white p-20 pt-7', {
-        'fixed inset-x-0 bottom-0 max-w-450': position === 'bottom',
-      })}
-    >
-      {renderElements(validChildren)}
-    </div>
+    <>
+      {isSpacing && <Spacing size={buttonHeight + 28} />}
+      <div
+        className={cn('mx-auto border-t-1 border-divider bg-white p-20 pt-7', {
+          'fixed inset-x-0 bottom-0 z-50 max-w-450': position === 'bottom',
+        })}
+      >
+        {renderElements(validChildren, props)}
+      </div>
+    </>
   );
 }

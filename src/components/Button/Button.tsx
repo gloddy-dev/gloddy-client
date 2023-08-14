@@ -1,6 +1,9 @@
 import cn from '@/utils/cn';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+import type { StrictPropsWithChildren } from '@/types';
+
+interface ButtonProps<T extends React.ElementType> extends React.HTMLAttributes<T> {
+  as?: T;
   /**
    * 버튼의 크기를 설정합니다. small: 48px, medium: 56px (default: medium)
    */
@@ -14,19 +17,26 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     | 'solid-secondary'
     | 'outline-warning'
     | 'solid-warning';
-  children: React.ReactNode;
+  /**
+   * 전체 너비를 설정합니다. (default: true)
+   */
+  fullWidth?: boolean;
 }
 
-export default function Button({
-  size = 'medium',
-  variant = 'solid-primary',
+export default function Button<T extends React.ElementType>({
+  as,
   className,
   disabled,
   children,
+  size = 'medium',
+  variant = 'solid-primary',
+  fullWidth = true,
   ...props
-}: ButtonProps) {
+}: StrictPropsWithChildren<ButtonProps<T> & React.ComponentPropsWithoutRef<T>>) {
+  const Element = as ?? 'button';
+
   return (
-    <button
+    <Element
       className={cn(
         'flex items-center justify-center rounded-8 px-24 py-16 text-subtitle-2',
         {
@@ -40,6 +50,7 @@ export default function Button({
             variant === 'outline-warning',
           'bg-warning text-sign-white disabled:bg-sub disabled:text-sign-caption':
             variant === 'solid-warning',
+          'w-full': fullWidth,
         },
         className
       )}
@@ -47,6 +58,6 @@ export default function Button({
       {...props}
     >
       {children}
-    </button>
+    </Element>
   );
 }
