@@ -22,18 +22,20 @@ const variantAttribute: VariantAttributeType = {
   info: {
     prefix: <Image src="/icons/4/dot.svg" width={4} height={4} alt="dot" />,
     margin: 8,
-    typography: 'text-paragraph-2',
+    typography: 'text-paragraph-2 text-sign-secondary',
   },
   caption: {
     prefix: <Image src="/icons/16/info.svg" width={16} height={16} alt="info" />,
     margin: 4,
-    typography: 'text-caption',
+    typography: 'text-caption text-sign-tertiary',
   },
   subtitle: {
-    typography: 'text-subtitle-3',
+    typography: 'text-subtitle-3 text-sign-secondary',
   },
   grade: {
-    typography: 'text-caption',
+    prefix: <Image src="/icons/16/gloddy.svg" width={16} height={16} alt="grade" />,
+    margin: 2,
+    typography: 'text-caption text-sign-tertiary',
   },
 };
 
