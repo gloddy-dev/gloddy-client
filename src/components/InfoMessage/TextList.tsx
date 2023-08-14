@@ -1,5 +1,6 @@
 import { Spacing } from '../common/Spacing';
 import { StrictPropsWithChildren } from '@/types';
+import cn from '@/utils/cn';
 import Image from 'next/image';
 
 type VariantKeys = 'info' | 'caption' | 'subtitle' | 'grade';
@@ -11,19 +12,28 @@ interface TextListProps {
   variant?: VariantKeys;
 }
 
-type VariantPrefix = Record<Partial<VariantKeys>, { prefix?: React.ReactNode; margin?: number }>;
+type VariantAttributeType = Record<
+  Partial<VariantKeys>,
+  { prefix?: React.ReactNode; margin?: number; typography: string }
+>;
 
-const variantPrefix: VariantPrefix = {
+const variantAttribute: VariantAttributeType = {
   info: {
     prefix: <Image src="/icons/4/dot.svg" width={4} height={4} alt="dot" />,
     margin: 8,
+    typography: 'text-paragraph-2',
   },
   caption: {
     prefix: <Image src="/icons/16/info.svg" width={16} height={16} alt="info" />,
     margin: 4,
+    typography: 'text-caption',
   },
-  subtitle: {},
-  grade: {},
+  subtitle: {
+    typography: 'text-subtitle-3',
+  },
+  grade: {
+    typography: 'text-caption',
+  },
 };
 
 export default function TextList({
@@ -31,10 +41,10 @@ export default function TextList({
   variant = 'info',
 }: StrictPropsWithChildren<TextListProps>) {
   return (
-    <div className="flex">
-      {variantPrefix[variant].prefix}
-      <Spacing size={variantPrefix[variant].margin || 0} direction="horizontal" />
-      <p className="text-caption">{children}</p>
+    <div className="flex items-start">
+      <div className="flex h-24 items-center">{variantAttribute[variant].prefix}</div>
+      <Spacing size={variantAttribute[variant].margin || 0} direction="horizontal" />
+      <p className={variantAttribute[variant].typography}>{children}</p>
     </div>
   );
 }
