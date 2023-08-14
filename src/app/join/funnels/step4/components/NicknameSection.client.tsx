@@ -1,7 +1,7 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext';
 import { Spacing } from '@/components/common/Spacing';
-import TextFieldController from '@/components/TextField/TextFieldController.client';
+import { TextFieldController } from '@/components/TextField';
 
 export default function NicknameSection() {
   const hookForm = useJoinContext();
