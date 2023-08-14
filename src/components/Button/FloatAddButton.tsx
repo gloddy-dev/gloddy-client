@@ -16,7 +16,7 @@ interface FloatButtonProps {
   disabled?: boolean;
 }
 
-export default function FloatButton({ className, onClick, disabled }: FloatButtonProps) {
+export default function FloatAddButton({ className, onClick, disabled }: FloatButtonProps) {
   return (
     <button
       className={cn(
