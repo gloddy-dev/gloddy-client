@@ -98,7 +98,7 @@ interface SegmentProps<T extends ValueType> {
    */
   value: T;
   /**
-   * 클래스를 
+   * 클래스를 추가할 수 있습니다.
    */
   className?: string;
 }
