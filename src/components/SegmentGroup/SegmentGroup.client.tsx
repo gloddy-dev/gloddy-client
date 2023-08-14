@@ -1,4 +1,5 @@
 'use client';
+
 import cn from '@/utils/cn';
 import {
   Children,
@@ -37,7 +38,8 @@ type SegmentContextValue<T = any> = {
 
 const SegmentContext = createContext<SegmentContextValue | null>(null);
 
-interface SegmentGroupProps<T extends ValueType> {
+interface SegmentGroupProps<T extends ValueType>
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   selectedValue?: T;
   onChange: (selectedValue: T) => void;
 }
@@ -45,7 +47,9 @@ interface SegmentGroupProps<T extends ValueType> {
 function SegmentGroup<T extends ValueType>({
   selectedValue,
   onChange,
+  className,
   children,
+  ...props
 }: StrictPropsWithChildren<SegmentGroupProps<T>>) {
   const validChildren = Children.toArray(children).filter(
     (child) =>
@@ -68,7 +72,10 @@ function SegmentGroup<T extends ValueType>({
         onChange,
       }}
     >
-      <div className="flex overflow-hidden rounded-8 border border-border-default">
+      <div
+        className={cn('flex overflow-hidden rounded-8 border border-border-default', className)}
+        {...props}
+      >
         {renderElements(validChildren, selectedValue)}
       </div>
     </SegmentContext.Provider>
