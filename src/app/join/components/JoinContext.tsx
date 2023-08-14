@@ -25,7 +25,7 @@ const defaultValues = {
 export default function JoinContextProvider({ children }: StrictPropsWithChildren) {
   const methods = useForm<SignUpState>({
     defaultValues,
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   return <FormProvider {...methods}>{children}</FormProvider>;
