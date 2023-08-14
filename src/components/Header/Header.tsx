@@ -4,9 +4,10 @@ interface HeaderProps {
   leftNode?: React.ReactNode;
   rightNode?: React.ReactNode;
   isSpacing?: boolean;
+  text?: string;
 }
 
-export default function Header({ leftNode, rightNode, isSpacing = true }: HeaderProps) {
+export default function Header({ leftNode, rightNode, isSpacing = true, text }: HeaderProps) {
   return (
     <>
       <div className="fixed inset-x-0 z-50 mx-auto max-w-450 bg-transparent px-20">

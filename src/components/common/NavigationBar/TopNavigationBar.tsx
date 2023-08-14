@@ -6,7 +6,11 @@ interface TopNavigationBarProps {
   isSpacing?: boolean;
 }
 
-export default function TopNavigationBar({ leftNode, rightNode, isSpacing = true }: TopNavigationBarProps) {
+export default function TopNavigationBar({
+  leftNode,
+  rightNode,
+  isSpacing = true,
+}: TopNavigationBarProps) {
   return (
     <>
       <div className="fixed inset-x-0 z-50 mx-auto max-w-450 bg-transparent px-20">
