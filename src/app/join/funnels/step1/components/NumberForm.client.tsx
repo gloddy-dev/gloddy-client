@@ -70,7 +70,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
           required: true,
           pattern: {
             value: regexr.phoneNumber,
-            message: '* 올바른 휴대폰 번호를 입력해주세요.',
+            message: '* 휴대폰 번호를 다시 확인해주세요.',
           },
           onChange: handleInputChange,
         })}
@@ -78,6 +78,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         maxLength={17}
         hookForm={hookForm}
         placeholder="010-0000-0000"
+        isSpacing={false}
       />
 
       <Spacing size={18} />

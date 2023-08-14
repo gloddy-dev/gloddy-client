@@ -16,6 +16,7 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
   isLeftError?: boolean;
   isRightError?: boolean;
   register?: UseFormRegisterReturn<string>;
+  isSpacing?: boolean;
 }
 export default forwardRef(function TextField(
   {
@@ -27,6 +28,7 @@ export default forwardRef(function TextField(
     isLeftError = false,
     isRightError = false,
     register,
+    isSpacing = true,
     ...props
   }: TextFieldProps,
   textFieldRef: React.ForwardedRef<HTMLLabelElement>
@@ -35,7 +37,7 @@ export default forwardRef(function TextField(
   const [isFocus, setIsFocus] = useState(false);
 
   return (
-    <label ref={textFieldRef} htmlFor="textField">
+    <label ref={textFieldRef} htmlFor="textField" className="relative">
       <section
         className={cn('w-full rounded-8 border-1 p-16', {
           'border-border-pressed bg-white': isFocus,
@@ -69,7 +71,12 @@ export default forwardRef(function TextField(
           {rightInputIcon}
         </div>
       </section>
-      <section className="absolute flex h-18 justify-between px-8 pt-4 text-caption text-sign-tertiary">
+      <section
+        className={cn(
+          'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
+          { absolute: !isSpacing }
+        )}
+      >
         <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
         <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
       </section>
