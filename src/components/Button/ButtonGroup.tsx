@@ -10,10 +10,15 @@ interface ButtonGroupProps {
    * 버튼 그룹의 위치를 설정합니다. (default: bottom)
    */
   position?: 'bottom' | 'contents';
+  /**
+   * 공백 여부를 설정합니다. (default: true)
+   */
+  isSpacing?: boolean;
 }
 
 export default function ButtonGroup({
   position = 'bottom',
+  isSpacing = true,
   children,
 }: StrictPropsWithChildren<ButtonGroupProps>) {
   const validChildren = Children.toArray(children).filter(
@@ -35,9 +40,7 @@ export default function ButtonGroup({
 
   const renderElements = (elements: ReactElement[]) => {
     if (elements.length === 1) {
-      return cloneElement(elements[0], {
-        className: cn('w-full', props[0].className),
-      });
+      return elements[0];
     }
 
     return (
@@ -46,8 +49,7 @@ export default function ButtonGroup({
           return cloneElement(element, {
             className: cn(
               {
-                'flex-shrink-0': index === 0,
-                'w-full': index !== 0,
+                'flex-shrink-0 w-auto': index === 0,
               },
               props[index].className
             ),
@@ -66,7 +68,7 @@ export default function ButtonGroup({
 
   return (
     <>
-      <Spacing size={buttonHeight + 28} />
+      {isSpacing && <Spacing size={buttonHeight + 28} />}
       <div
         className={cn('mx-auto border-t-1 border-divider bg-white p-20 pt-7', {
           'fixed inset-x-0 bottom-0 z-50 max-w-450': position === 'bottom',
