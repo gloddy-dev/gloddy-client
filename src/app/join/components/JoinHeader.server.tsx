@@ -1,4 +1,5 @@
 'use client';
+import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import Image from 'next/image';
 
@@ -10,7 +11,7 @@ export default function JoinHeader({ onPrevClick }: JoinHeaderProps) {
   return (
     <Header
       leftNode={
-        <div className="flex items-center">
+        <IconButton size="large">
           <Image
             alt="back"
             src="/icons/24/arrow_back.svg"
@@ -18,9 +19,10 @@ export default function JoinHeader({ onPrevClick }: JoinHeaderProps) {
             height={24}
             onClick={onPrevClick}
           />
-          <p>회원가입</p>
-        </div>
+        </IconButton>
       }
+      text="회원가입"
+      className="px-4"
     />
   );
 }
