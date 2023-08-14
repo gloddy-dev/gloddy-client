@@ -43,9 +43,11 @@ export default function TextFieldController({
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
 
+  console.log(formState.errors[inputName]);
+
   return (
     <TextField
-      leftCaption={caption ?? String(errorMessage) ?? ''}
+      leftCaption={caption ?? (errorMessage as string) ?? ''}
       rightCaption={
         maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
       }
