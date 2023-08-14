@@ -17,15 +17,20 @@ interface ButtonProps<T extends React.ElementType> extends React.HTMLAttributes<
     | 'solid-secondary'
     | 'outline-warning'
     | 'solid-warning';
+  /**
+   * 전체 너비를 설정합니다. (default: true)
+   */
+  fullWidth?: boolean;
 }
 
 export default function Button<T extends React.ElementType>({
   as,
-  size = 'medium',
-  variant = 'solid-primary',
   className,
   disabled,
   children,
+  size = 'medium',
+  variant = 'solid-primary',
+  fullWidth = true,
   ...props
 }: StrictPropsWithChildren<ButtonProps<T> & React.ComponentPropsWithoutRef<T>>) {
   const Element = as ?? 'button';
@@ -45,6 +50,7 @@ export default function Button<T extends React.ElementType>({
             variant === 'outline-warning',
           'bg-warning text-sign-white disabled:bg-sub disabled:text-sign-caption':
             variant === 'solid-warning',
+          'w-full': fullWidth,
         },
         className
       )}
