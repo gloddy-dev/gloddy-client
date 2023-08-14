@@ -1,9 +1,9 @@
 import cn from '@/utils/cn';
-import { type Ref, forwardRef } from 'react';
+import { type HTMLAttributes, type Ref, forwardRef } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-interface FlexProps {
+interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   direction?: 'row' | 'column';
   justify?: 'center' | 'start' | 'end' | 'between' | 'around' | 'evenly' | 'stretch';
   align?: 'center' | 'start' | 'end' | 'between' | 'around' | 'evenly' | 'stretch';
