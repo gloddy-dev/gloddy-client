@@ -17,23 +17,28 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
   isRightError?: boolean;
   register?: UseFormRegisterReturn<string>;
 }
-export default forwardRef(function TextField({
-  label,
-  leftCaption,
-  rightCaption,
-  leftInputIcon,
-  rightInputIcon,
-  isLeftError = false,
-  isRightError = false,
-  register,
-  ...props
-}: TextFieldProps) {
+export default forwardRef(function TextField(
+  {
+    label,
+    leftCaption,
+    rightCaption,
+    leftInputIcon,
+    rightInputIcon,
+    isLeftError = false,
+    isRightError = false,
+    register,
+    ...props
+  }: TextFieldProps,
+  textFieldRef: React.ForwardedRef<HTMLDivElement>
+) {
   const isError = isLeftError || isRightError;
 
   const [isFocus, setIsFocus] = useState(false);
 
+  console.log(isFocus);
+
   return (
-    <div>
+    <label ref={textFieldRef} htmlFor="textField">
       <section
         className={cn('w-full rounded-8 border-1 p-16', {
           'border-border-pressed bg-white': isFocus,
@@ -54,10 +59,15 @@ export default forwardRef(function TextField({
                 'bg-warning-color': isError,
               }
             )}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => {
-              setIsFocus(false);
+            onFocusCapture={() => {
+              setIsFocus(true);
+              console.log('focus');
             }}
+            onBlurCapture={() => {
+              setIsFocus(false);
+              console.log('blur');
+            }}
+            id="textField"
             {...register}
             {...props}
           />
@@ -68,7 +78,7 @@ export default forwardRef(function TextField({
         <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
         <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
       </section>
-    </div>
+    </label>
   );
 });
 function Label({ children }: StrictPropsWithChildren) {
