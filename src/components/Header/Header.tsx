@@ -22,7 +22,7 @@ export default function Header({
     <>
       <header
         className={cn(
-          'fixed inset-x-0 z-50 mx-auto flex h-48 max-w-450 items-center justify-between bg-white text-subtitle-1 text-sign-primary',
+          'fixed inset-x-0 top-0 z-50 mx-auto flex h-48 max-w-450 items-center justify-between bg-white text-subtitle-1 text-sign-primary',
           className
         )}
         {...props}
