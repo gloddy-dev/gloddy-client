@@ -85,7 +85,11 @@ export default forwardRef(function TextField(
 });
 function Label({ children }: StrictPropsWithChildren) {
   if (!children) return;
-  return <label className="text-caption text-sign-tertiary">{children}</label>;
+  return (
+    <label htmlFor="textField" className="block text-caption text-sign-tertiary">
+      {children}
+    </label>
+  );
 }
 
 interface LeftCaptionProps {
