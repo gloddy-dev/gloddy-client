@@ -1,13 +1,13 @@
 'use client';
 import { useWriteContext } from '../WriteContext';
-import { TopNavigationBar } from '@/components/common/NavigationBar';
+import { Header } from '@/components/Header';
 import { ImageType } from '@/types';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 
-export default function WriteTopNavigationBar() {
+export default function WriteHeader() {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const { setImages } = useWriteContext();
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function WriteTopNavigationBar() {
   };
 
   return (
-    <TopNavigationBar
+    <Header
       text="게시글 작성"
       leftNode={
         <Image
