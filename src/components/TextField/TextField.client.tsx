@@ -69,7 +69,7 @@ export default forwardRef(function TextField(
           {rightInputIcon}
         </div>
       </section>
-      <section className="flex justify-between px-8 pt-4 text-caption text-sign-tertiary">
+      <section className="absolute flex h-18 justify-between px-8 pt-4 text-caption text-sign-tertiary">
         <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
         <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
       </section>
