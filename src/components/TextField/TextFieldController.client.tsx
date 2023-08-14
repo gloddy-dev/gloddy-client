@@ -35,27 +35,15 @@ export default function TextFieldController({
 }: TextFieldControllerProps) {
   const textFieldRef = useRef<HTMLDivElement>(null);
 
-  const [isFocus, setIsFocus] = useState(false);
-  const [isUserTouchOutsideOnce, setIsUserTouchOutsideOnce] = useState(false);
-
   const { formState, watch, setValue } = hookForm;
   const inputName = register.name;
 
   const errorMessage = formState.errors[inputName]?.message;
   const isRightError = maxCount ? watch(inputName).length > maxCount : false;
-  const isLeftError = isUserTouchOutsideOnce && (!!errorMessage || isRightError);
+  const isLeftError = !!errorMessage || isRightError;
   const isError = isRightError || isLeftError;
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
-
-  useOnClickInside(textFieldRef, () => {
-    setIsFocus(true);
-  });
-
-  useOnClickOutside(textFieldRef, () => {
-    setIsUserTouchOutsideOnce(true);
-    setIsFocus(false);
-  });
 
   return (
     <TextField
@@ -74,7 +62,6 @@ export default function TextFieldController({
           />
         )
       }
-      isFocus={isFocus}
       isLeftError={isLeftError}
       isRightError={isRightError}
       register={register}
