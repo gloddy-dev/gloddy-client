@@ -49,16 +49,9 @@ export default function TextList({
     <div className="flex items-start">
       <div className="flex h-24 items-center">{variantAttribute[variant].prefix}</div>
       <Spacing size={variantAttribute[variant].margin || 0} direction="horizontal" />
-      <p
-        className={cn(
-          variantAttribute[variant].typography,
-          'flex flex-col justify-center',
-          className
-        )}
-        {...props}
-      >
+      <div className={cn(variantAttribute[variant].typography, className)} {...props}>
         {children}
-      </p>
+      </div>
     </div>
   );
 }

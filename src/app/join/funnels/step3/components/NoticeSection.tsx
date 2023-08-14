@@ -8,17 +8,15 @@ export default function NoticeSection() {
   return (
     <section>
       <TextList variant="info">
-        <p className="flex items-center">
-          재학생 인증을 진행하면 <span className="text-sign-brand">인증마크</span>
-          <Image
-            src="/icons/24/education.svg"
-            width={24}
-            height={24}
-            alt="education"
-            className="inline"
-          />
-          를 받을 수 있어요
-        </p>
+        재학생 인증을 진행하면 <span className="text-sign-brand">인증마크</span>
+        <Image
+          src="/icons/24/education.svg"
+          width={24}
+          height={24}
+          alt="education"
+          className="inline"
+        />
+        를 받을 수 있어요
       </TextList>
       <Spacing size={8} />
       <TextList variant="info">신뢰있는 모임을 위해 재학생 인증을 꼭 진행해주세요</TextList>
