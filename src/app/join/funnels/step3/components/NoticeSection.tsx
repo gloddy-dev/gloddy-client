@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function NoticeSection() {
   return (
     <section>
-      <TextList variant="info">
+      <TextList variant="info" className="flex items-center">
         재학생 인증을 진행하면 <span className="text-sign-brand">인증마크</span>
         <Image
           src="/icons/24/education.svg"
