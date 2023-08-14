@@ -3,7 +3,9 @@ import { type HTMLAttributes, type Ref, forwardRef } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-interface FlexProps extends HTMLAttributes<HTMLDivElement> {
+interface FlexProps<T extends React.ElementType> extends React.HTMLAttributes<T> {
+  as?: T;
+  children?: React.ReactNode;
   direction?: 'row' | 'column';
   justify?: 'center' | 'start' | 'end' | 'between' | 'around' | 'evenly' | 'stretch';
   align?: 'center' | 'start' | 'end' | 'between' | 'around' | 'evenly' | 'stretch';
@@ -11,8 +13,9 @@ interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-export default forwardRef(function Flex(
+export default forwardRef(function Flex<T extends React.ElementType>(
   {
+    as,
     children,
     direction,
     justify,
@@ -20,11 +23,13 @@ export default forwardRef(function Flex(
     wrap,
     className,
     ...props
-  }: StrictPropsWithChildren<FlexProps>,
+  }: StrictPropsWithChildren<FlexProps<T> & React.ComponentPropsWithoutRef<T>>,
   ref: Ref<HTMLDivElement>
 ) {
+  const Element = as ?? 'div';
+
   return (
-    <div
+    <Element
       ref={ref}
       className={
         (cn(
@@ -62,6 +67,6 @@ export default forwardRef(function Flex(
       {...props}
     >
       {children}
-    </div>
+    </Element>
   );
 });
