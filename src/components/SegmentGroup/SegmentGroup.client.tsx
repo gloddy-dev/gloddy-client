@@ -40,7 +40,13 @@ const SegmentContext = createContext<SegmentContextValue | null>(null);
 
 interface SegmentGroupProps<T extends ValueType>
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  /**
+   * 선택된 Segment의 value입니다.
+   */
   selectedValue?: T;
+  /**
+   * Segment를 선택했을 때 호출되는 함수입니다.
+   */
   onChange: (selectedValue: T) => void;
 }
 
@@ -83,8 +89,17 @@ function SegmentGroup<T extends ValueType>({
 }
 
 interface SegmentProps<T extends ValueType> {
+  /**
+   * 세그먼트에 보여질 라벨입니다.
+   */
   label: string;
+  /**
+   * 세그먼트의 value입니다.
+   */
   value: T;
+  /**
+   * 클래스를 
+   */
   className?: string;
 }
 
