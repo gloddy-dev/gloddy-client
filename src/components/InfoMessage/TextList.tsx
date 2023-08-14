@@ -5,17 +5,18 @@ import Image from 'next/image';
 
 type VariantKeys = 'info' | 'caption' | 'subtitle' | 'grade';
 
-interface TextListProps {
-  /**
-   * 텍스트의 유형을 설정합니다. (default: info)
-   */
-  variant?: VariantKeys;
-}
-
 type VariantAttributeType = Record<
   Partial<VariantKeys>,
   { prefix?: React.ReactNode; margin?: number; typography: string }
 >;
+
+interface TextListProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  /**
+   * 텍스트의 유형을 설정합니다. (default: info)
+   */
+  variant?: VariantKeys;
+  className?: string;
+}
 
 const variantAttribute: VariantAttributeType = {
   info: {
@@ -39,12 +40,16 @@ const variantAttribute: VariantAttributeType = {
 export default function TextList({
   children,
   variant = 'info',
+  className,
+  ...props
 }: StrictPropsWithChildren<TextListProps>) {
   return (
     <div className="flex items-start">
       <div className="flex h-24 items-center">{variantAttribute[variant].prefix}</div>
       <Spacing size={variantAttribute[variant].margin || 0} direction="horizontal" />
-      <p className={variantAttribute[variant].typography}>{children}</p>
+      <p className={cn(variantAttribute[variant].typography, className)} {...props}>
+        {children}
+      </p>
     </div>
   );
 }
