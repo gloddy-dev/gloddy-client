@@ -24,7 +24,7 @@ export default forwardRef(function Flex<T extends React.ElementType>(
     className,
     ...props
   }: StrictPropsWithChildren<FlexProps<T> & React.ComponentPropsWithoutRef<T>>,
-  ref: Ref<HTMLDivElement>
+  ref: React.ComponentPropsWithRef<T>['ref']
 ) {
   const Element = as ?? 'div';
 
