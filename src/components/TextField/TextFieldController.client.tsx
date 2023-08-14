@@ -1,9 +1,7 @@
 'use client';
 import TextField, { type TextFieldProps } from './TextField.client';
-import { useOnClickInside } from '@/hooks/useOnClickInside';
-import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
@@ -33,7 +31,7 @@ export default function TextFieldController({
   timer,
   ...TextFieldProps
 }: TextFieldControllerProps) {
-  const textFieldRef = useRef<HTMLDivElement>(null);
+  const textFieldRef = useRef<HTMLLabelElement>(null);
 
   const { formState, watch, setValue } = hookForm;
   const inputName = register.name;
