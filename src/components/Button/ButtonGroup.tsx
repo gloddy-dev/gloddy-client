@@ -1,17 +1,20 @@
+import Button from './Button';
 import cn from '@/utils/cn';
 import { Children, type ReactElement, cloneElement, isValidElement } from 'react';
 
-import type { ButtonProps } from './Button';
+import type { StrictPropsWithChildren } from '@/types';
 
 interface ButtonGroupProps {
   /**
    * 버튼 그룹의 위치를 설정합니다. (default: bottom)
    */
   position?: 'bottom' | 'contents';
-  children: React.ReactNode;
 }
 
-export default function ButtonGroup({ position = 'bottom', children }: ButtonGroupProps) {
+export default function ButtonGroup({
+  position = 'bottom',
+  children,
+}: StrictPropsWithChildren<ButtonGroupProps>) {
   const validChildren = Children.toArray(children).filter(
     (child) =>
       isValidElement(child) &&
@@ -24,7 +27,7 @@ export default function ButtonGroup({ position = 'bottom', children }: ButtonGro
 
   const renderElements = (elements: ReactElement[]) => {
     if (elements.length === 1) {
-      const props = elements[0].props as ButtonProps;
+      const props = elements[0].props as React.ComponentProps<typeof Button>;
       return cloneElement(elements[0], {
         className: cn('w-full', props.className),
       });
@@ -33,7 +36,7 @@ export default function ButtonGroup({ position = 'bottom', children }: ButtonGro
     return (
       <div className="flex gap-8">
         {elements.map((element, index) => {
-          const props = elements[index].props as ButtonProps;
+          const props = elements[index].props as React.ComponentProps<typeof Button>;
 
           if (index === 0) {
             return cloneElement(element, {
