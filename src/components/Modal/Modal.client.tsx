@@ -1,11 +1,10 @@
 'use client';
-import ModalWrapper from './ModalWrapper.server';
+import ModalWrapper from './ModalWrapper.client';
 import { Button } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { StrictPropsWithChildren } from '@/types';
 
 interface ModalProps {
-  children?: React.ReactNode;
   isOpen: boolean;
   onOkClick?: () => void;
   okText?: string;
@@ -32,7 +31,7 @@ export default function Modal({
   okText = '네',
   onCancelClick,
   cancelText = '아니요',
-  variant = 'warning',
+  variant,
 }: StrictPropsWithChildren<ModalProps>) {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onCancelClick}>
