@@ -8,6 +8,7 @@ import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 interface TextFieldControllerProps extends TextFieldProps {
   register: UseFormRegisterReturn<string>;
   hookForm: UseFormReturn<any>;
+  as?: 'input' | 'textarea';
   /**  
 
    * leftCaption에 문구를 표기하는 경우
@@ -26,6 +27,7 @@ interface TextFieldControllerProps extends TextFieldProps {
 export default function TextFieldController({
   register,
   hookForm,
+  as = 'input',
   caption,
   maxCount,
   timer,
@@ -49,8 +51,9 @@ export default function TextFieldController({
       rightCaption={
         maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
       }
-      rightInputIcon={
-        rightInputIconName && (
+      rightIcon={
+        rightInputIconName &&
+        as === 'input' && (
           <Image
             src={`/icons/24/${rightInputIconName}.svg`}
             width={24}
@@ -64,6 +67,7 @@ export default function TextFieldController({
       isRightError={isRightError}
       register={register}
       ref={textFieldRef}
+      as={as}
       {...TextFieldProps}
     />
   );
