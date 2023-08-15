@@ -3,8 +3,7 @@ import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen, formatWithoutSpace } from '../util';
 import { LoginResponse, useLoginMutation, useSMSVerifyMutation } from '@/apis/auth';
-import { ButtonGroup } from '@/components/Button';
-import { Button } from '@/components/common/Button';
+import { Button, ButtonGroup } from '@/components/Button';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
@@ -15,7 +14,7 @@ import type { SignUpState } from '@/app/join/type';
 
 export default function NumberVerifyForm() {
   const router = useRouter();
-  const { handleSubmit, setError, control, setValue } = useJoinContext();
+  const { handleSubmit, setError, control, setValue, formState } = useJoinContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
@@ -54,6 +53,7 @@ export default function NumberVerifyForm() {
         onError: () => {
           setError('verifyNumber', {
             type: 'validate',
+            message: '인증번호가 잘못되었습니다.',
           });
         },
       }
@@ -77,7 +77,7 @@ export default function NumberVerifyForm() {
         maxLength={6}
       />
       <ButtonGroup isSpacing={false}>
-        <Button>재전송</Button>
+        <Button type="button">재전송</Button>
         <Button type="submit">확인</Button>
       </ButtonGroup>
     </form>

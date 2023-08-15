@@ -14,7 +14,6 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
   isSuccess?: boolean;
   isLeftError?: boolean;
   isRightError?: boolean;
-  isSpacing?: boolean;
 }
 export default forwardRef(function TextField(
   {
@@ -25,7 +24,6 @@ export default forwardRef(function TextField(
     rightInputIcon,
     isLeftError = false,
     isRightError = false,
-    isSpacing = true,
     value,
     ...props
   }: TextFieldProps,
@@ -69,12 +67,7 @@ export default forwardRef(function TextField(
           {rightInputIcon}
         </div>
       </section>
-      <section
-        className={cn(
-          'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
-          { absolute: !isSpacing }
-        )}
-      >
+      <section className="flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary">
         <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
         <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
       </section>

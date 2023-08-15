@@ -25,6 +25,7 @@ interface TextFieldControllerProps<
     'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
   >;
   setValue: UseFormSetValue<TFieldValues>;
+  readOnly?: boolean;
   /**
    * leftCaption에 문구를 표기하는 경우
    */
@@ -44,6 +45,7 @@ export default function TextFieldController<TFieldValues extends FieldValues>({
   name,
   rules,
   setValue,
+  readOnly = false,
   caption,
   maxCount,
   timer,
@@ -72,7 +74,8 @@ export default function TextFieldController<TFieldValues extends FieldValues>({
       leftCaption={caption ?? (errorMessage as string) ?? ''}
       rightCaption={maxCount ? `${value?.length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''}
       rightInputIcon={
-        rightInputIconName && (
+        rightInputIconName &&
+        !readOnly && (
           <Image
             src={`/icons/24/${rightInputIconName}.svg`}
             width={24}
@@ -85,6 +88,7 @@ export default function TextFieldController<TFieldValues extends FieldValues>({
           />
         )
       }
+      readOnly={readOnly}
       isLeftError={isLeftError}
       isRightError={isRightError}
       ref={textFieldRef}

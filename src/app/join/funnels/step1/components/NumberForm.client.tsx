@@ -71,7 +71,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         setValue={setValue}
         maxLength={17}
         placeholder="010-0000-0000"
-        isSpacing={false}
+        readOnly={inputStatus === 'afterSend'}
       />
       <Spacing size={8} />
       {inputStatus === 'beforeSend' && (
