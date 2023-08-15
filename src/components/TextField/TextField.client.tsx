@@ -27,6 +27,7 @@ export default forwardRef(function TextField(
     isLeftError = false,
     isRightError = false,
     isSpacing = true,
+    value,
     ...props
   }: TextFieldProps,
   textFieldRef: React.ForwardedRef<HTMLLabelElement>
@@ -63,6 +64,7 @@ export default forwardRef(function TextField(
               setIsFocus(false);
             }}
             id="textField"
+            value={value === 0 ? '' : value}
             {...props}
           />
           {rightInputIcon}
