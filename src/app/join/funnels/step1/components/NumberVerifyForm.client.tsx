@@ -15,7 +15,7 @@ import type { SignUpState } from '@/app/join/type';
 
 export default function NumberVerifyForm() {
   const router = useRouter();
-  const { handleSubmit, setError, control, watch } = useJoinContext();
+  const { handleSubmit, setError, control, setValue } = useJoinContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
@@ -66,6 +66,7 @@ export default function NumberVerifyForm() {
         label="인증 번호"
         control={control}
         name="verifyNumber"
+        setValue={setValue}
         rules={{
           required: true,
           pattern: {
