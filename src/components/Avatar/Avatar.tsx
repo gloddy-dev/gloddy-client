@@ -30,14 +30,8 @@ export default function Avatar({
   children,
 }: PropsWithChildren<AvatarProps>) {
   return (
-    <div
-      className={cn('inline-flex flex-col items-center gap-1', {
-        'w-40': size === 'small',
-        'w-56': size === 'medium',
-        'w-96': size === 'large',
-      })}
-    >
-      <span
+    <span className="flex flex-col items-center gap-1">
+      <div
         className={cn('relative inline-block', {
           'h-40 w-40': size === 'small',
           'h-56 w-56': size === 'medium',
@@ -50,7 +44,6 @@ export default function Avatar({
           alt="avatar"
           className="cursor-pointer rounded-full bg-sub object-cover"
           fill
-          sizes="100%"
         />
         {isCertified && (
           <Image
@@ -65,9 +58,9 @@ export default function Avatar({
             })}
           />
         )}
-      </span>
+      </div>
       {children}
-    </div>
+    </span>
   );
 }
 
