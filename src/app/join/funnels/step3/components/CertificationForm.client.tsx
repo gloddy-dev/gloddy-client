@@ -6,7 +6,7 @@ import { useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet } from '@/components/common/Modal';
-import { useModalContext } from '@/components/common/Modal/ModalContext';
+import { useModalContext } from '@/components/common/Modal/ModalContext.client';
 import { regexr } from '@/constants/regexr';
 import { memo } from 'react';
 

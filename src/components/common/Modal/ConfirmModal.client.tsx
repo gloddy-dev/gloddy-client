@@ -1,3 +1,4 @@
+'use client';
 import ModalWrapper from './ModalWrapper';
 import { Button } from '@/components/common/Button';
 
