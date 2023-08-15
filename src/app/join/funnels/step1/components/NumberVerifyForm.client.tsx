@@ -9,7 +9,7 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
-import { type SubmitHandler, useController } from 'react-hook-form';
+import { type SubmitHandler } from 'react-hook-form';
 
 import type { SignUpState } from '@/app/join/type';
 
@@ -74,6 +74,7 @@ export default function NumberVerifyForm() {
             message: '인증번호 6자리를 입력해주세요.',
           },
         }}
+        maxLength={6}
       />
       <ButtonGroup isSpacing={false}>
         <Button>재전송</Button>

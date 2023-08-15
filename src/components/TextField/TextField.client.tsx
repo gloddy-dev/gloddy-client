@@ -1,6 +1,5 @@
 'use client';
 import { Spacing } from '../common/Spacing';
-import { regexr } from '@/constants/regexr';
 import cn from '@/utils/cn';
 import { forwardRef, useState } from 'react';
 
