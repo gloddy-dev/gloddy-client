@@ -1,13 +1,13 @@
 'use client';
 
 import { Spacing } from '@/components/common/Spacing';
-import { Popup } from '@/components/Modal';
+import { Modal } from '@/components/Modal';
 import Image from 'next/image';
 
-export default function GroupingPopup() {
+export default function GroupingModal() {
   return (
     <div>
-      <Popup isOpen variant="warning">
+      <Modal isOpen variant="warning">
         <Spacing size={32} />
         <Image src="/icons/48/warning.svg" width={48} height={48} alt="warning" />
         <Spacing size={12} />
@@ -17,7 +17,7 @@ export default function GroupingPopup() {
           계속하시겠어요?
         </div>
         <Spacing size={16} />
-      </Popup>
+      </Modal>
     </div>
   );
 }
