@@ -7,7 +7,7 @@ import { useState } from 'react';
 import type { StatusType } from '../type';
 
 export default function InputForm() {
-  const [inputStatus, setInputStatus] = useState<StatusType>('afterSend');
+  const [inputStatus, setInputStatus] = useState<StatusType>('beforeSend');
 
   return (
     <section>
