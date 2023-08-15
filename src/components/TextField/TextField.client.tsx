@@ -21,6 +21,7 @@ export interface TextFieldProps extends ExtendedElementProps {
   register?: UseFormRegisterReturn<string>;
   isSpacing?: boolean;
 }
+
 export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
   {
     as,
