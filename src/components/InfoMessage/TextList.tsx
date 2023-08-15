@@ -3,7 +3,7 @@ import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
 import Image from 'next/image';
 
-type VariantKeys = 'info' | 'caption' | 'subtitle' | 'grade';
+type VariantKeys = 'info' | 'info-no-icon' | 'caption' | 'subtitle' | 'grade';
 
 type VariantAttributeType = Record<
   Partial<VariantKeys>,
@@ -22,6 +22,10 @@ const variantAttribute: VariantAttributeType = {
   info: {
     prefix: <Image src="/icons/4/dot.svg" width={4} height={4} alt="dot" />,
     margin: 8,
+    typography: 'text-paragraph-2 text-sign-secondary',
+  },
+  'info-no-icon': {
+    margin: 12,
     typography: 'text-paragraph-2 text-sign-secondary',
   },
   caption: {
@@ -46,7 +50,7 @@ export default function TextList({
   ...props
 }: StrictPropsWithChildren<TextListProps>) {
   return (
-    <div className="flex items-start">
+    <div className="flex items-center">
       <div className="flex h-24 items-center">{variantAttribute[variant].prefix}</div>
       <Spacing size={variantAttribute[variant].margin || 0} direction="horizontal" />
       <div className={cn(variantAttribute[variant].typography, className)} {...props}>
