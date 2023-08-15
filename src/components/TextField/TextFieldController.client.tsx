@@ -6,6 +6,8 @@ import {
   Control,
   FieldPath,
   FieldValues,
+  Path,
+  PathValue,
   RegisterOptions,
   UseFormSetValue,
   useController,
@@ -13,9 +15,10 @@ import {
 
 interface TextFieldControllerProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+  TContext = any
 > extends TextFieldProps {
-  control: Control<TFieldValues>;
+  control: Control<TFieldValues, TContext>;
   name: TName;
   rules?: Omit<
     RegisterOptions<TFieldValues, TName>,
@@ -50,8 +53,7 @@ export default function TextFieldController<TFieldValues extends FieldValues>({
 
   const {
     field: { value, onChange, onBlur },
-    fieldState: { invalid, isTouched, isDirty },
-    formState: { errors, touchedFields, dirtyFields },
+    formState: { errors },
   } = useController<TFieldValues>({
     name,
     control,
@@ -63,7 +65,7 @@ export default function TextFieldController<TFieldValues extends FieldValues>({
   const isLeftError = !!errorMessage || isRightError;
   const isError = isRightError || isLeftError;
 
-  const rightInputIconName = isError ? 'warning' : value?.length > 0 ? 'backspace' : '';
+  const rightInputIconName = value?.length > 0 ? 'backspace' : isError ? 'warning' : '';
 
   return (
     <TextField
@@ -76,7 +78,10 @@ export default function TextFieldController<TFieldValues extends FieldValues>({
             width={24}
             height={24}
             alt={rightInputIconName}
-            onClick={() => rightInputIconName === 'backspace' && setValue(name, 0)}
+            onClick={() =>
+              rightInputIconName === 'backspace' &&
+              setValue(name, 0 as PathValue<TFieldValues, Path<TFieldValues>>)
+            }
           />
         )
       }
