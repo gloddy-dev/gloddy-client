@@ -1,9 +1,7 @@
 name: Auto Label
 on:
   pull_request:
-    types: [opened, reopened, edited]
-  issues:
-    types: [opened, reopened, edited]
+    types: [opened]
 
 jobs:
   labeler:
