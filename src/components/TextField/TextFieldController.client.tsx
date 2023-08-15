@@ -12,7 +12,7 @@ interface TextFieldControllerProps extends TextFieldProps {
   /**
    * leftCaption에 문구를 표기하는 경우
    */
-  caption?: string;
+  leftCaption?: string;
   /**
    * rightCaption에 글자수를 표기하는 경우
    */
@@ -27,7 +27,7 @@ export default function TextFieldController({
   register,
   hookForm,
   as = 'input',
-  caption,
+  leftCaption,
   maxCount,
   timer,
   ...props
@@ -38,15 +38,18 @@ export default function TextFieldController({
   const inputName = register.name;
 
   const errorMessage = formState.errors[inputName]?.message;
-  const isRightError = maxCount ? watch(inputName).length > maxCount : false;
-  const isLeftError = !!errorMessage || isRightError;
+  const isRightError =
+    (maxCount ? watch(inputName).length > maxCount : false) && !formState.isValid;
+  const isLeftError = (!!errorMessage || isRightError) && !formState.isValid;
   const isError = isRightError || isLeftError;
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
 
+  console.log(errorMessage as string, leftCaption);
+
   return (
     <TextField
-      leftCaption={caption ?? (errorMessage as string) ?? ''}
+      leftCaption={(errorMessage as string) ?? leftCaption ?? ''}
       rightCaption={
         maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
       }
