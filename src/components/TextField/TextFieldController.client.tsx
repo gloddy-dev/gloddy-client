@@ -1,15 +1,15 @@
 'use client';
 import TextField, { type TextFieldProps } from './TextField.client';
+import { regexr } from '@/constants/regexr';
 import Image from 'next/image';
 import { useRef } from 'react';
-
-import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
+import { Control, useController } from 'react-hook-form';
 
 interface TextFieldControllerProps extends TextFieldProps {
-  register: UseFormRegisterReturn<string>;
-  hookForm: UseFormReturn<any>;
-  /**  
-
+  control: Control<any>;
+  name: string;
+  rules?: any;
+  /**
    * leftCaption에 문구를 표기하는 경우
    */
   caption?: string;
@@ -24,8 +24,9 @@ interface TextFieldControllerProps extends TextFieldProps {
 }
 
 export default function TextFieldController({
-  register,
-  hookForm,
+  control,
+  name,
+  rules,
   caption,
   maxCount,
   timer,
@@ -33,22 +34,34 @@ export default function TextFieldController({
 }: TextFieldControllerProps) {
   const textFieldRef = useRef<HTMLLabelElement>(null);
 
-  const { formState, watch, setValue } = hookForm;
-  const inputName = register.name;
+  const {
+    field: { value, onChange },
+    fieldState: { invalid, isTouched, isDirty },
+    formState: { errors, touchedFields, dirtyFields },
+  } = useController({
+    name,
+    control,
+    defaultValue: '',
+    rules: {
+      required: true,
+      pattern: {
+        value: regexr.verifyNumber,
+        message: '인증번호 6자리를 입력해주세요.',
+      },
+    },
+  });
 
-  const errorMessage = formState.errors[inputName]?.message;
-  const isRightError = maxCount ? watch(inputName).length > maxCount : false;
+  const errorMessage = errors[name]?.message;
+  const isRightError = maxCount ? value.length > maxCount : false;
   const isLeftError = !!errorMessage || isRightError;
   const isError = isRightError || isLeftError;
 
-  const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
+  const rightInputIconName = isError ? 'warning' : isDirty ? 'backspace' : '';
 
   return (
     <TextField
       leftCaption={caption ?? (errorMessage as string) ?? ''}
-      rightCaption={
-        maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
-      }
+      rightCaption={maxCount ? `${value.length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''}
       rightInputIcon={
         rightInputIconName && (
           <Image
@@ -56,14 +69,15 @@ export default function TextFieldController({
             width={24}
             height={24}
             alt={rightInputIconName}
-            onClick={() => rightInputIconName === 'backspace' && setValue(inputName, '')}
+            // onClick={() => rightInputIconName === 'backspace' && setValue(name, '')}
           />
         )
       }
       isLeftError={isLeftError}
       isRightError={isRightError}
-      register={register}
       ref={textFieldRef}
+      value={value}
+      onChange={onChange}
       {...TextFieldProps}
     />
   );

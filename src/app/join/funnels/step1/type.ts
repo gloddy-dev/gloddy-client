@@ -1,1 +1,1 @@
-export type StatusType = 'notReadyForSend' | 'readyForSend' | 'afterSend';
+export type StatusType = 'beforeSend' | 'afterSend';
