@@ -6,35 +6,41 @@ import { forwardRef, useState } from 'react';
 import type { StrictPropsWithChildren } from '@/types';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+type ExtendedElementProps = React.InputHTMLAttributes<HTMLInputElement> &
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+export interface TextFieldProps extends ExtendedElementProps {
+  as?: 'input' | 'textarea';
   label?: string;
   leftCaption?: string;
   rightCaption?: string;
-  leftInputIcon?: React.ReactNode;
-  rightInputIcon?: React.ReactNode;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
   isSuccess?: boolean;
   isLeftError?: boolean;
   isRightError?: boolean;
   register?: UseFormRegisterReturn<string>;
   isSpacing?: boolean;
 }
-export default forwardRef(function TextField(
+export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
   {
+    as,
     label,
     leftCaption,
     rightCaption,
-    leftInputIcon,
-    rightInputIcon,
+    leftIcon,
+    rightIcon,
     isLeftError = false,
     isRightError = false,
     register,
     isSpacing = true,
     ...props
-  }: TextFieldProps,
-  textFieldRef: React.ForwardedRef<HTMLLabelElement>
+  },
+  textFieldRef
 ) {
   const isError = isLeftError || isRightError;
   const [isFocus, setIsFocus] = useState(false);
+  const Element = as || 'input';
 
   return (
     <label ref={textFieldRef} htmlFor="textField" className="relative">
@@ -47,28 +53,29 @@ export default forwardRef(function TextField(
       >
         <Label>{label}</Label>
         <Spacing size={2} />
-        <div className="relative flex h-24 w-full items-center justify-around">
-          {leftInputIcon}
-          <input
+        <div
+          className={cn('relative flex h-142 w-full items-center justify-around', {
+            'h-142': as === 'textarea',
+            'h-24': as === 'input',
+          })}
+        >
+          {leftIcon}
+          <Element
             className={cn(
-              'h-full w-full text-paragraph-1 outline-none placeholder:text-paragraph-1',
+              'h-full w-full resize-none text-paragraph-1 outline-none placeholder:text-paragraph-1',
               {
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
               }
             )}
-            onFocusCapture={() => {
-              setIsFocus(true);
-            }}
-            onBlurCapture={() => {
-              setIsFocus(false);
-            }}
+            onFocusCapture={() => setIsFocus(true)}
+            onBlurCapture={() => setIsFocus(false)}
             id="textField"
             {...register}
             {...props}
           />
-          {rightInputIcon}
+          {rightIcon}
         </div>
       </section>
       <section
@@ -93,7 +100,7 @@ interface LeftCaptionProps {
 }
 
 function LeftCaption({ isError, children }: StrictPropsWithChildren<LeftCaptionProps>) {
-  if (!children) return;
+  if (!children) return <div />;
   return <span className={isError ? 'text-warning' : ''}>{children}</span>;
 }
 interface RightCaptionProps {
@@ -101,6 +108,6 @@ interface RightCaptionProps {
 }
 
 function RightCaption({ isError, children }: StrictPropsWithChildren<RightCaptionProps>) {
-  if (!children) return;
+  if (!children) return <div />;
   return <span className={isError ? 'text-warning' : ''}>{children}</span>;
 }
