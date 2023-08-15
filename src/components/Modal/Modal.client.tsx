@@ -1,10 +1,10 @@
 'use client';
-import ModalWrapper from './ModalWrapper';
+import ModalWrapper from './ModalWrapper.server';
 import { Button } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { StrictPropsWithChildren } from '@/types';
 
-interface PopupProps {
+interface ModalProps {
   children?: React.ReactNode;
   isOpen: boolean;
   onOkClick?: () => void;
@@ -25,7 +25,7 @@ const variantMap = {
   },
 } as const;
 
-export default function Popup({
+export default function Modal({
   children,
   isOpen,
   onOkClick,
@@ -33,7 +33,7 @@ export default function Popup({
   onCancelClick,
   cancelText = '아니요',
   variant = 'warning',
-}: StrictPropsWithChildren<PopupProps>) {
+}: StrictPropsWithChildren<ModalProps>) {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onCancelClick}>
       <div className="flex w-300 flex-col items-center rounded-16 bg-white px-16 text-center">

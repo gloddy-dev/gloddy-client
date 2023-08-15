@@ -1,3 +1,3 @@
-export { default as ModalWrapper } from './ModalWrapper';
+export { default as ModalWrapper } from './ModalWrapper.server';
 export { default as BottomSheet } from './BottomSheet';
-export { default as Popup } from './Popup.client';
+export { default as Modal } from './Modal.client';
