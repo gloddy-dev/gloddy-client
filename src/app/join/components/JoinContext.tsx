@@ -6,6 +6,7 @@ import type { StrictPropsWithChildren } from '@/types';
 
 const defaultValues = {
   phoneNumber: '',
+  verifyNumber: 0,
   imageUrl: '',
   schoolInfo: {
     school: '',
