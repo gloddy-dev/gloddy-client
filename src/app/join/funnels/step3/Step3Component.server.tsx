@@ -2,7 +2,7 @@ import FormSection from './components/FormSection.server';
 import NoticeSection from './components/NoticeSection';
 import TimerContext from './components/TimerContext';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
-import ModalContext from '@/components/common/Modal/ModalContext';
+import ModalContext from '@/components/common/Modal/ModalContext.client';
 
 export default function Step3Component() {
   return (
