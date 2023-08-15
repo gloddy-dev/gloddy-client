@@ -34,6 +34,7 @@ export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
     isRightError = false,
     register,
     isSpacing = true,
+    readOnly = false,
     ...props
   },
   textFieldRef
@@ -41,6 +42,7 @@ export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
   const isError = isLeftError || isRightError;
   const [isFocus, setIsFocus] = useState(false);
   const Element = as || 'input';
+  console.log(readOnly);
 
   return (
     <label ref={textFieldRef} htmlFor="textField" className="relative">
@@ -49,6 +51,7 @@ export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
           'border-border-pressed bg-white': isFocus,
           'border-transparent bg-sub': !isFocus,
           'border-warning bg-warning-color': isError,
+          'border-transparent bg-divider': readOnly,
         })}
       >
         <Label>{label}</Label>
@@ -67,11 +70,13 @@ export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
+                'bg-divider': readOnly,
               }
             )}
-            onFocusCapture={() => setIsFocus(true)}
+            onFocusCapture={() => !readOnly && setIsFocus(true)}
             onBlurCapture={() => setIsFocus(false)}
             id="textField"
+            readOnly={readOnly}
             {...register}
             {...props}
           />
