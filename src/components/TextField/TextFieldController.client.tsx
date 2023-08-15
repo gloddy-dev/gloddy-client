@@ -9,8 +9,7 @@ interface TextFieldControllerProps extends TextFieldProps {
   register: UseFormRegisterReturn<string>;
   hookForm: UseFormReturn<any>;
   as?: 'input' | 'textarea';
-  /**  
-
+  /**
    * leftCaption에 문구를 표기하는 경우
    */
   caption?: string;

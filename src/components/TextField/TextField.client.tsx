@@ -3,7 +3,6 @@ import { Spacing } from '../common/Spacing';
 import cn from '@/utils/cn';
 import { forwardRef, useState } from 'react';
 
-import type { StrictPropsWithChildren } from '@/types';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
 type ExtendedElementProps = React.InputHTMLAttributes<HTMLInputElement> &
@@ -42,7 +41,6 @@ export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
   const isError = isLeftError || isRightError;
   const [isFocus, setIsFocus] = useState(false);
   const Element = as || 'input';
-  console.log(readOnly);
 
   return (
     <label ref={textFieldRef} htmlFor="textField" className="relative">
@@ -95,24 +93,31 @@ export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
     </label>
   );
 });
-function Label({ children }: StrictPropsWithChildren) {
+
+interface LabelProps {
+  children?: string;
+}
+
+function Label({ children }: LabelProps) {
   if (!children) return;
   return <p className="block text-caption text-sign-tertiary">{children}</p>;
 }
 
 interface LeftCaptionProps {
   isError?: boolean;
+  children?: string;
 }
 
-function LeftCaption({ isError, children }: StrictPropsWithChildren<LeftCaptionProps>) {
+function LeftCaption({ isError, children }: LeftCaptionProps) {
   if (!children) return <div />;
   return <span className={isError ? 'text-warning' : ''}>{children}</span>;
 }
 interface RightCaptionProps {
   isError?: boolean;
+  children?: string;
 }
 
-function RightCaption({ isError, children }: StrictPropsWithChildren<RightCaptionProps>) {
+function RightCaption({ isError, children }: RightCaptionProps) {
   if (!children) return <div />;
   return <span className={isError ? 'text-warning' : ''}>{children}</span>;
 }
