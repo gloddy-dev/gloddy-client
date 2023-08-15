@@ -50,6 +50,7 @@ export default function Avatar({
           alt="avatar"
           className="cursor-pointer rounded-full bg-sub object-cover"
           fill
+          sizes="100%"
         />
         {isCertified && (
           <Image
