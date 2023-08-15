@@ -57,26 +57,18 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
       <Spacing size={8} />
       <TextFieldController
         label="휴대폰 번호"
-        // register={register('phoneNumber', {
-        //   required: true,
-        //   pattern: {
-        //     value: regexr.phoneNumber,
-        //     message: '* 휴대폰 번호를 다시 확인해주세요.',
-        //   },
-        //   onChange: handleInputChange,
-        // })}
         rules={{
           required: true,
           pattern: {
             value: regexr.phoneNumber,
             message: '* 휴대폰 번호를 다시 확인해주세요.',
           },
-          onChange: handleInputChange,
         }}
         control={control}
         name="phoneNumber"
         onChange={handleInputChange}
         onKeyDown={handleInputChange}
+        setValue={setValue}
         maxLength={17}
         placeholder="010-0000-0000"
         isSpacing={false}
