@@ -3,24 +3,19 @@ import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen, formatWithoutSpace } from '../util';
 import { LoginResponse, useLoginMutation, useSMSVerifyMutation } from '@/apis/auth';
+import { ButtonGroup } from '@/components/Button';
 import { Button } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
-import { Spacing } from '@/components/common/Spacing';
+import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
+import { type SubmitHandler, useController } from 'react-hook-form';
 
 import type { SignUpState } from '@/app/join/type';
-import type { SubmitHandler } from 'react-hook-form';
 
 export default function NumberVerifyForm() {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors },
-  } = useJoinContext();
+  const { handleSubmit, setError, control, watch } = useJoinContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
@@ -67,20 +62,22 @@ export default function NumberVerifyForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        placeholder="인증 번호"
-        register={register('verifyNumber', {
+      <TextFieldController
+        label="인증 번호"
+        control={control}
+        name="verifyNumber"
+        rules={{
           required: true,
           pattern: {
             value: regexr.verifyNumber,
             message: '인증번호 6자리를 입력해주세요.',
           },
-        })}
-        maxLength={6}
-        errorMessage={errors.verifyNumber?.message}
+        }}
       />
-      <Spacing size={18} />
-      <Button text="인증번호 확인" type="submit" />
+      <ButtonGroup isSpacing={false}>
+        <Button>재전송</Button>
+        <Button type="submit">확인</Button>
+      </ButtonGroup>
     </form>
   );
 }

@@ -1,10 +1,10 @@
 'use client';
 import { Spacing } from '../common/Spacing';
+import { regexr } from '@/constants/regexr';
 import cn from '@/utils/cn';
 import { forwardRef, useState } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
-import type { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -15,7 +15,6 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
   isSuccess?: boolean;
   isLeftError?: boolean;
   isRightError?: boolean;
-  register?: UseFormRegisterReturn<string>;
   isSpacing?: boolean;
 }
 export default forwardRef(function TextField(
@@ -27,7 +26,6 @@ export default forwardRef(function TextField(
     rightInputIcon,
     isLeftError = false,
     isRightError = false,
-    register,
     isSpacing = true,
     ...props
   }: TextFieldProps,
@@ -65,7 +63,6 @@ export default forwardRef(function TextField(
               setIsFocus(false);
             }}
             id="textField"
-            {...register}
             {...props}
           />
           {rightInputIcon}
