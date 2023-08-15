@@ -1,3 +1,4 @@
+'use client';
 import ModalWrapper from './ModalWrapper';
 import { Button } from '../Button';
 import { Spacing } from '../common/Spacing';
@@ -35,10 +36,10 @@ export default function Popup({
 }: StrictPropsWithChildren<PopupProps>) {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onCancelClick}>
-      <div className="flex w-300 flex-col items-center rounded-16 bg-white px-16 py-12">
+      <div className="flex w-300 flex-col items-center rounded-16 bg-white px-16 text-center">
         {children}
-        {onCancelClick && (
-          <div className="w-full">
+        {variant && (
+          <div className="w-full py-12">
             <Button
               variant={variantMap[variant].ok}
               className="w-full"
