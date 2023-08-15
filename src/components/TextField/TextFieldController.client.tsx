@@ -31,7 +31,7 @@ export default function TextFieldController({
   caption,
   maxCount,
   timer,
-  ...TextFieldProps
+  ...props
 }: TextFieldControllerProps) {
   const textFieldRef = useRef<HTMLLabelElement>(null);
 
@@ -68,7 +68,7 @@ export default function TextFieldController({
       register={register}
       ref={textFieldRef}
       as={as}
-      {...TextFieldProps}
+      {...props}
     />
   );
 }
