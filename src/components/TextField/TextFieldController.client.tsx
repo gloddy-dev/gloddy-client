@@ -5,10 +5,10 @@ import { useRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
-interface TextFieldControllerProps extends TextFieldProps {
+interface TextFieldControllerProps<T extends React.ElementType> extends TextFieldProps<T> {
+  as?: T;
   register: UseFormRegisterReturn<string>;
   hookForm: UseFormReturn<any>;
-  as?: 'input' | 'textarea';
   /**
    * leftCaption에 문구를 표기하는 경우
    */
@@ -23,15 +23,15 @@ interface TextFieldControllerProps extends TextFieldProps {
   timer?: number;
 }
 
-export default function TextFieldController({
+export default function TextFieldController<T extends React.ElementType>({
+  as,
   register,
   hookForm,
-  as = 'input',
   leftCaption,
   maxCount,
   timer,
   ...props
-}: TextFieldControllerProps) {
+}: TextFieldControllerProps<T> & React.ComponentPropsWithoutRef<T>) {
   const textFieldRef = useRef<HTMLLabelElement>(null);
 
   const { formState, watch, setValue } = hookForm;
@@ -55,7 +55,7 @@ export default function TextFieldController({
       }
       rightIcon={
         rightInputIconName &&
-        as === 'input' && (
+        (as === 'input' || as === undefined) && (
           <Image
             src={`/icons/24/${rightInputIconName}.svg`}
             width={24}
