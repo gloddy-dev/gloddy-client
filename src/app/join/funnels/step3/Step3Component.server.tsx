@@ -2,7 +2,7 @@ import FormSection from './components/FormSection.server';
 import NoticeSection from './components/NoticeSection';
 import TimerContext from './components/TimerContext';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
-import ModalContext from '@/components/common/Modal/ModalContext';
+import ModalContextProvider from '@/components/Modal/ModalContext.client';
 
 export default function Step3Component() {
   return (
@@ -13,11 +13,11 @@ export default function Step3Component() {
         학교 이메일을 입력해주세요
       </JoinTitleTextMessage>
 
-      <ModalContext>
+      <ModalContextProvider>
         <TimerContext>
           <FormSection />
         </TimerContext>
-      </ModalContext>
+      </ModalContextProvider>
 
       <NoticeSection />
     </main>
