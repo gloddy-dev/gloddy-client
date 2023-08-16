@@ -3,9 +3,9 @@ import { useCreateGroupContext } from '../CreateGroupContext';
 import InputArea from '../InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
-import { BottomSheet } from '@/components/common/Modal';
 import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
+import { BottomSheet } from '@/components/Modal';
 import useModalState from '@/store/useModalStore';
 
 import type { TimeType } from '@/types';
