@@ -4,8 +4,7 @@ on:
   push:
     branches: [develop]
   pull_request:
-    branches: [develop, feature/*]
-    types: [opened, reopened, edited]
+    branches: [*]
 
 jobs:
   analyze:
