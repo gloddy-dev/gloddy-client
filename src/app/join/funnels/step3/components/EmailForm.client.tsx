@@ -7,8 +7,8 @@ import { useJoinContext } from '@/app/join/components/JoinContext';
 import { SignUpState } from '@/app/join/type';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Button } from '@/components/common/Button';
-import { useModalContext } from '@/components/common/Modal/ModalContext.client';
 import { Spacing } from '@/components/common/Spacing';
+import { useModalContext } from '@/components/Modal';
 import { memo } from 'react';
 
 export default memo(function EmailForm() {

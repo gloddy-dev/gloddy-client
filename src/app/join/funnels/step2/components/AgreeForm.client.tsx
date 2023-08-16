@@ -2,8 +2,8 @@
 
 import { Button } from '@/components/common/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
-import { BottomSheet } from '@/components/common/Modal';
 import { Spacing } from '@/components/common/Spacing';
+import { BottomSheet } from '@/components/Modal';
 import { useModals } from '@/hooks/useModals';
 import { useEffect, useState } from 'react';
 
