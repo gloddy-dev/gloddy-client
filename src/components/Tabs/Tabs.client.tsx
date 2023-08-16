@@ -71,9 +71,7 @@ function Tab({ value, text, queryString, className }: TabProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentTab = searchParams.get('tab');
-
-  const isActive = currentTab === value;
+  const isActive = searchParams.get('tab') === value;
 
   return (
     <Link
@@ -96,12 +94,8 @@ function Tab({ value, text, queryString, className }: TabProps) {
 }
 
 function Panel({ value, children }: PropsWithChildren<Pick<TabProps, 'value'>>) {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  const currentTab = searchParams.get('tab');
-
-  const isActive = currentTab === value;
+  const isActive = searchParams.get('tab') === value;
 
   return <div className={isActive ? 'block' : 'hidden'}>{children}</div>;
 }
