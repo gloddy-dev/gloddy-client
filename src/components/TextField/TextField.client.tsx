@@ -51,7 +51,7 @@ function TextField<T extends React.ElementType = 'input'>(
           'border-transparent bg-divider': readOnly,
         })}
       >
-        <Label>{label}</Label>
+        <Label text={label} />
         <Spacing size={2} />
         <div
           className={cn('relative flex h-142 w-full items-center justify-around', {
@@ -86,39 +86,39 @@ function TextField<T extends React.ElementType = 'input'>(
           { absolute: !isSpacing }
         )}
       >
-        <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
-        <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
+        <LeftCaption isError={isLeftError} text={leftCaption}></LeftCaption>
+        <RightCaption isError={isRightError} text={rightCaption}></RightCaption>
       </section>
     </label>
   );
 }
 
 interface LabelProps {
-  children?: string;
+  text?: string;
 }
 
-function Label({ children }: LabelProps) {
-  if (!children) return;
-  return <p className="block text-caption text-sign-tertiary">{children}</p>;
+function Label({ text }: LabelProps) {
+  if (!text) return;
+  return <p className="block text-caption text-sign-tertiary">{text}</p>;
 }
 
 interface LeftCaptionProps {
   isError?: boolean;
-  children?: string;
+  text?: string;
 }
 
-function LeftCaption({ isError, children }: LeftCaptionProps) {
-  if (!children) return <div />;
-  return <span className={isError ? 'text-warning' : ''}>{children}</span>;
+function LeftCaption({ isError, text }: LeftCaptionProps) {
+  if (!text) return <div />;
+  return <span className={isError ? 'text-warning' : ''}>{text}</span>;
 }
 interface RightCaptionProps {
   isError?: boolean;
-  children?: string;
+  text?: string;
 }
 
-function RightCaption({ isError, children }: RightCaptionProps) {
-  if (!children) return <div />;
-  return <span className={isError ? 'text-warning' : ''}>{children}</span>;
+function RightCaption({ isError, text }: RightCaptionProps) {
+  if (!text) return <div />;
+  return <span className={isError ? 'text-warning' : ''}>{text}</span>;
 }
 
 export default forwardRef(TextField);
