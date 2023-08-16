@@ -5,8 +5,7 @@ import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import { BottomSheet } from '@/components/common/Modal';
-import { useModalContext } from '@/components/common/Modal/ModalContext';
+import { BottomSheet, useModalContext } from '@/components/Modal';
 import { regexr } from '@/constants/regexr';
 import { memo } from 'react';
 

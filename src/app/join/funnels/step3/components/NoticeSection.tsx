@@ -1,5 +1,5 @@
 import { Spacing } from '@/components/common/Spacing';
-import TextList from '@/components/InfoMessage/TextList';
+import { TextList } from '@/components/TextList';
 import { INSTAGRAM_URL } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';

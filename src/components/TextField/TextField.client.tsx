@@ -3,38 +3,43 @@ import { Spacing } from '../common/Spacing';
 import cn from '@/utils/cn';
 import { forwardRef, useState } from 'react';
 
-import type { StrictPropsWithChildren } from '@/types';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps<T extends React.ElementType> {
+  as?: T;
   label?: string;
   leftCaption?: string;
   rightCaption?: string;
-  leftInputIcon?: React.ReactNode;
-  rightInputIcon?: React.ReactNode;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
   isSuccess?: boolean;
   isLeftError?: boolean;
   isRightError?: boolean;
   register?: UseFormRegisterReturn<string>;
   isSpacing?: boolean;
+  readOnly?: boolean;
 }
-export default forwardRef(function TextField(
+
+function TextField<T extends React.ElementType = 'input'>(
   {
+    as,
     label,
     leftCaption,
     rightCaption,
-    leftInputIcon,
-    rightInputIcon,
+    leftIcon,
+    rightIcon,
     isLeftError = false,
     isRightError = false,
     register,
     isSpacing = true,
+    readOnly = false,
     ...props
-  }: TextFieldProps,
+  }: TextFieldProps<T> & React.ComponentPropsWithoutRef<T>,
   textFieldRef: React.ForwardedRef<HTMLLabelElement>
 ) {
   const isError = isLeftError || isRightError;
   const [isFocus, setIsFocus] = useState(false);
+  const Element = as || 'input';
 
   return (
     <label ref={textFieldRef} htmlFor="textField" className="relative">
@@ -43,32 +48,36 @@ export default forwardRef(function TextField(
           'border-border-pressed bg-white': isFocus,
           'border-transparent bg-sub': !isFocus,
           'border-warning bg-warning-color': isError,
+          'border-transparent bg-divider': readOnly,
         })}
       >
-        <Label>{label}</Label>
+        <Label text={label} />
         <Spacing size={2} />
-        <div className="relative flex h-24 w-full items-center justify-around">
-          {leftInputIcon}
-          <input
+        <div
+          className={cn('relative flex h-142 w-full items-center justify-around', {
+            'h-142': Element === 'textarea',
+            'h-24': Element === 'input',
+          })}
+        >
+          {leftIcon}
+          <Element
             className={cn(
-              'h-full w-full text-paragraph-1 outline-none placeholder:text-paragraph-1',
+              'h-full w-full resize-none text-paragraph-1 outline-none placeholder:text-paragraph-1',
               {
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
+                'bg-divider': readOnly,
               }
             )}
-            onFocusCapture={() => {
-              setIsFocus(true);
-            }}
-            onBlurCapture={() => {
-              setIsFocus(false);
-            }}
+            onFocusCapture={() => !readOnly && setIsFocus(true)}
+            onBlurCapture={() => setIsFocus(false)}
             id="textField"
+            readOnly={readOnly}
             {...register}
             {...props}
           />
-          {rightInputIcon}
+          {rightIcon}
         </div>
       </section>
       <section
@@ -77,30 +86,39 @@ export default forwardRef(function TextField(
           { absolute: !isSpacing }
         )}
       >
-        <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
-        <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
+        <LeftCaption isError={isLeftError} text={leftCaption}></LeftCaption>
+        <RightCaption isError={isRightError} text={rightCaption}></RightCaption>
       </section>
     </label>
   );
-});
-function Label({ children }: StrictPropsWithChildren) {
-  if (!children) return;
-  return <p className="block text-caption text-sign-tertiary">{children}</p>;
+}
+
+interface LabelProps {
+  text?: string;
+}
+
+function Label({ text }: LabelProps) {
+  if (!text) return;
+  return <p className="block text-caption text-sign-tertiary">{text}</p>;
 }
 
 interface LeftCaptionProps {
   isError?: boolean;
+  text?: string;
 }
 
-function LeftCaption({ isError, children }: StrictPropsWithChildren<LeftCaptionProps>) {
-  if (!children) return;
-  return <span className={isError ? 'text-warning' : ''}>{children}</span>;
+function LeftCaption({ isError, text }: LeftCaptionProps) {
+  if (!text) return <div />;
+  return <span className={isError ? 'text-warning' : ''}>{text}</span>;
 }
 interface RightCaptionProps {
   isError?: boolean;
+  text?: string;
 }
 
-function RightCaption({ isError, children }: StrictPropsWithChildren<RightCaptionProps>) {
-  if (!children) return;
-  return <span className={isError ? 'text-warning' : ''}>{children}</span>;
+function RightCaption({ isError, text }: RightCaptionProps) {
+  if (!text) return <div />;
+  return <span className={isError ? 'text-warning' : ''}>{text}</span>;
 }
+
+export default forwardRef(TextField);

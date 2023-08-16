@@ -5,14 +5,14 @@ import { useRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
-interface TextFieldControllerProps extends TextFieldProps {
+interface TextFieldControllerProps<T extends React.ElementType> extends TextFieldProps<T> {
+  as?: T;
   register: UseFormRegisterReturn<string>;
   hookForm: UseFormReturn<any>;
-  /**  
-
+  /**
    * leftCaption에 문구를 표기하는 경우
    */
-  caption?: string;
+  leftCaption?: string;
   /**
    * rightCaption에 글자수를 표기하는 경우
    */
@@ -23,40 +23,43 @@ interface TextFieldControllerProps extends TextFieldProps {
   timer?: number;
 }
 
-export default function TextFieldController({
+export default function TextFieldController<T extends React.ElementType>({
+  as,
   register,
   hookForm,
-  caption,
+  leftCaption,
   maxCount,
   timer,
-  ...TextFieldProps
-}: TextFieldControllerProps) {
+  ...props
+}: TextFieldControllerProps<T> & React.ComponentPropsWithoutRef<T>) {
   const textFieldRef = useRef<HTMLLabelElement>(null);
 
-  const { formState, watch, setValue } = hookForm;
+  const { formState, watch, resetField } = hookForm;
   const inputName = register.name;
 
   const errorMessage = formState.errors[inputName]?.message;
-  const isRightError = maxCount ? watch(inputName).length > maxCount : false;
-  const isLeftError = !!errorMessage || isRightError;
+  const isRightError =
+    (maxCount ? watch(inputName).length > maxCount : false) && !formState.isValid;
+  const isLeftError = (!!errorMessage || isRightError) && !formState.isValid;
   const isError = isRightError || isLeftError;
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
 
   return (
     <TextField
-      leftCaption={caption ?? (errorMessage as string) ?? ''}
+      leftCaption={(errorMessage as string) ?? leftCaption ?? ''}
       rightCaption={
         maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
       }
-      rightInputIcon={
-        rightInputIconName && (
+      rightIcon={
+        rightInputIconName &&
+        (as === 'input' || as === undefined) && (
           <Image
             src={`/icons/24/${rightInputIconName}.svg`}
             width={24}
             height={24}
             alt={rightInputIconName}
-            onClick={() => rightInputIconName === 'backspace' && setValue(inputName, '')}
+            onClick={() => rightInputIconName === 'backspace' && resetField(inputName)}
           />
         )
       }
@@ -64,7 +67,8 @@ export default function TextFieldController({
       isRightError={isRightError}
       register={register}
       ref={textFieldRef}
-      {...TextFieldProps}
+      as={as}
+      {...props}
     />
   );
 }
