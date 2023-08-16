@@ -1,7 +1,7 @@
 'use client';
 import InputArea from '../InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
-import BottomSheet from '@/components/common/Modal/BottomSheet';
+import { BottomSheet } from '@/components/Modal';
 import useModalState from '@/store/useModalStore';
 
 export default function LocationSection() {

@@ -2,7 +2,7 @@
 import MateCardList from './MateCardList';
 import { useFeedbackContext } from '../../FeedbackContext';
 import { BottomFixedButton } from '@/components/common/Button';
-import { TopNavigationBar } from '@/components/common/NavigationBar';
+import { Header } from '@/components/Header';
 import { Spacing } from '@/components/common/Spacing';
 import Image from 'next/image';
 
@@ -45,7 +45,7 @@ export default function MateComponent({ onPrevClick, onNextClick }: MateComponen
 
   return (
     <main className="bg-white">
-      <TopNavigationBar
+      <Header
         text="최고의 짝꿍"
         leftNode={
           <Image

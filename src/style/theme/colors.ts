@@ -26,7 +26,7 @@ export const colors = {
   sign: {
     cto: PALETTE.black,
     brand: PALETTE.blue['500'],
-    primary: PALETTE.blue['900'],
+    primary: PALETTE.gray['900'],
     secondary: PALETTE.gray['700'],
     tertiary: PALETTE.gray['600'],
     sub: PALETTE.gray['500'],

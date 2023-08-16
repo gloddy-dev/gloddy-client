@@ -1,5 +1,5 @@
 import BoardDetail from './components/BoardDetail.client';
-import BoardTopNavigationBar from './components/BoardTopNavigationBar.client';
+import BoardHeader from './components/BoardHeader.client';
 import WriteSection from './components/WriteSection.client';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { Spacing } from '@/components/common/Spacing';
@@ -18,7 +18,7 @@ export default function BoardDetailPage({ params }: BoardDetailPageProps) {
 
   return (
     <main className="bg-white">
-      <BoardTopNavigationBar />
+      <BoardHeader />
       <Spacing size={20} />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
         <BoardDetail groupId={groupId} boardId={boardId} />
