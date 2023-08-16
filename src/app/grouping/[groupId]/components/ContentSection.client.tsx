@@ -1,8 +1,5 @@
 'use client';
 import { Tabs } from '@/components/Tabs';
-import { useSearchParams } from 'next/navigation';
-
-import type { TabType } from '../type';
 
 interface ContentSectionProps {
   detailNode: React.ReactNode;
@@ -10,13 +7,9 @@ interface ContentSectionProps {
 }
 
 export default function ContentSection({ detailNode, boardNode }: ContentSectionProps) {
-  const searchParams = useSearchParams();
-
-  const currentTab = (searchParams.get('tab') ?? 'detail') as TabType;
-
   return (
     <section>
-      <Tabs defaultActiveTab={currentTab}>
+      <Tabs>
         <Tabs.List>
           <Tabs.Tab value="detail" text="상세정보" />
           <Tabs.Tab value="board" text="게시판" />
