@@ -34,7 +34,7 @@ export default function TextFieldController<T extends React.ElementType>({
 }: TextFieldControllerProps<T> & React.ComponentPropsWithoutRef<T>) {
   const textFieldRef = useRef<HTMLLabelElement>(null);
 
-  const { formState, watch, setValue } = hookForm;
+  const { formState, watch, resetField } = hookForm;
   const inputName = register.name;
 
   const errorMessage = formState.errors[inputName]?.message;
@@ -44,8 +44,6 @@ export default function TextFieldController<T extends React.ElementType>({
   const isError = isRightError || isLeftError;
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
-
-  console.log(errorMessage as string, leftCaption);
 
   return (
     <TextField
@@ -61,7 +59,7 @@ export default function TextFieldController<T extends React.ElementType>({
             width={24}
             height={24}
             alt={rightInputIconName}
-            onClick={() => rightInputIconName === 'backspace' && setValue(inputName, '')}
+            onClick={() => rightInputIconName === 'backspace' && resetField(inputName)}
           />
         )
       }
