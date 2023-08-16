@@ -12,6 +12,7 @@ export default function NicknameSection() {
       <p className="text-14">닉네임</p>
       <Spacing size={5} />
       <TextFieldController
+        as="input"
         placeholder="닉네임을 입력해주세요."
         hookForm={hookForm}
         register={register('nickname', {
