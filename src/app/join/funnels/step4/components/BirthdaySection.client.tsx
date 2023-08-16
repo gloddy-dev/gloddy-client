@@ -2,7 +2,7 @@
 import { useJoinContext } from '../../../components/JoinContext';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import { BottomSheet } from '@/components/common/Modal';
+import { BottomSheet } from '@/components/Modal';
 import { Spacing } from '@/components/common/Spacing';
 import { DateSwipePicker } from '@/components/common/SwipePicker';
 import useModalStore from '@/store/useModalStore';

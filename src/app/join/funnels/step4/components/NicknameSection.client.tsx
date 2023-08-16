@@ -17,6 +17,7 @@ export default function NicknameSection() {
           value: /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{3,15}$/,
           message: '* 최소 3글자 이상 15자 이하로 작성해주세요.',
         }}
+        as="input"
         placeholder="닉네임을 입력해주세요."
         leftCaption="* 최소 3글자 이상 15자 이하로 작성해주세요."
         maxCount={15}
