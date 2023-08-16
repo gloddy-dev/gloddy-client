@@ -55,8 +55,8 @@ function TextField<T extends React.ElementType = 'input'>(
         <Spacing size={2} />
         <div
           className={cn('relative flex h-142 w-full items-center justify-around', {
-            'h-142': as === 'textarea',
-            'h-24': as === 'input',
+            'h-142': Element === 'textarea',
+            'h-24': Element === 'input',
           })}
         >
           {leftIcon}
