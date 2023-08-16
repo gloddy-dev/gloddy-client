@@ -5,11 +5,10 @@ import { forwardRef, useState } from 'react';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-type ExtendedElementProps = React.InputHTMLAttributes<HTMLInputElement> &
-  React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+type ElementType = 'input' | 'textarea';
 
-export interface TextFieldProps extends ExtendedElementProps {
-  as?: 'input' | 'textarea';
+export interface TextFieldProps<T extends ElementType> {
+  as?: T;
   label?: string;
   leftCaption?: string;
   rightCaption?: string;
@@ -20,80 +19,83 @@ export interface TextFieldProps extends ExtendedElementProps {
   isRightError?: boolean;
   register?: UseFormRegisterReturn<string>;
   isSpacing?: boolean;
+  readOnly?: boolean;
 }
 
-export default forwardRef<HTMLLabelElement, TextFieldProps>(function TextField(
-  {
-    as,
-    label,
-    leftCaption,
-    rightCaption,
-    leftIcon,
-    rightIcon,
-    isLeftError = false,
-    isRightError = false,
-    register,
-    isSpacing = true,
-    readOnly = false,
-    ...props
-  },
-  textFieldRef
-) {
-  const isError = isLeftError || isRightError;
-  const [isFocus, setIsFocus] = useState(false);
-  const Element = as || 'input';
+export const TextField = forwardRef(
+  <T extends ElementType = 'input'>(
+    {
+      as,
+      label,
+      leftCaption,
+      rightCaption,
+      leftIcon,
+      rightIcon,
+      isLeftError = false,
+      isRightError = false,
+      register,
+      isSpacing = true,
+      readOnly = false,
+      ...props
+    }: TextFieldProps<T>,
+    textFieldRef: React.ForwardedRef<HTMLLabelElement>
+  ) => {
+    const isError = isLeftError || isRightError;
+    const [isFocus, setIsFocus] = useState(false);
+    const Element = as || 'input';
 
-  return (
-    <label ref={textFieldRef} htmlFor="textField" className="relative">
-      <section
-        className={cn('w-full rounded-8 border-1 p-16', {
-          'border-border-pressed bg-white': isFocus,
-          'border-transparent bg-sub': !isFocus,
-          'border-warning bg-warning-color': isError,
-          'border-transparent bg-divider': readOnly,
-        })}
-      >
-        <Label>{label}</Label>
-        <Spacing size={2} />
-        <div
-          className={cn('relative flex h-142 w-full items-center justify-around', {
-            'h-142': as === 'textarea',
-            'h-24': as === 'input',
+    return (
+      <label ref={textFieldRef} htmlFor="textField" className="relative">
+        <section
+          className={cn('w-full rounded-8 border-1 p-16', {
+            'border-border-pressed bg-white': isFocus,
+            'border-transparent bg-sub': !isFocus,
+            'border-warning bg-warning-color': isError,
+            'border-transparent bg-divider': readOnly,
           })}
         >
-          {leftIcon}
-          <Element
-            className={cn(
-              'h-full w-full resize-none text-paragraph-1 outline-none placeholder:text-paragraph-1',
-              {
-                'bg-white': isFocus,
-                'bg-sub': !isFocus,
-                'bg-warning-color': isError,
-                'bg-divider': readOnly,
-              }
-            )}
-            onFocusCapture={() => !readOnly && setIsFocus(true)}
-            onBlurCapture={() => setIsFocus(false)}
-            id="textField"
-            readOnly={readOnly}
-            {...register}
-            {...props}
-          />
-          {rightIcon}
-        </div>
-      </section>
-      <section
-        className={cn(
-          'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
-          { absolute: !isSpacing }
-        )}
-      >
-        <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
-        <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
-      </section>
-    </label>
-  );
-});
+          <Label>{label}</Label>
+          <Spacing size={2} />
+          <div
+            className={cn('relative flex h-142 w-full items-center justify-around', {
+              'h-142': as === 'textarea',
+              'h-24': as === 'input',
+            })}
+          >
+            {leftIcon}
+            <Element
+              className={cn(
+                'h-full w-full resize-none text-paragraph-1 outline-none placeholder:text-paragraph-1',
+                {
+                  'bg-white': isFocus,
+                  'bg-sub': !isFocus,
+                  'bg-warning-color': isError,
+                  'bg-divider': readOnly,
+                }
+              )}
+              onFocusCapture={() => !readOnly && setIsFocus(true)}
+              onBlurCapture={() => setIsFocus(false)}
+              id="textField"
+              readOnly={readOnly}
+              {...register}
+              {...props}
+            />
+            {rightIcon}
+          </div>
+        </section>
+        <section
+          className={cn(
+            'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
+            { absolute: !isSpacing }
+          )}
+        >
+          <LeftCaption isError={isLeftError}>{leftCaption}</LeftCaption>
+          <RightCaption isError={isRightError}>{rightCaption}</RightCaption>
+        </section>
+      </label>
+    );
+  }
+);
 
 interface LabelProps {
   children?: string;
