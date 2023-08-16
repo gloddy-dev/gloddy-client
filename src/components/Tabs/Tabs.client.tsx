@@ -1,46 +1,19 @@
 'use client';
 import cn from '@/utils/cn';
-import clsx from 'clsx';
-import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { usePathname, useSearchParams } from 'next/navigation';
 import {
   Children,
   type PropsWithChildren,
   ReactElement,
   cloneElement,
-  createContext,
   isValidElement,
-  useContext,
-  useEffect,
-  useState,
 } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-const TabsContext = createContext<{
-  activeTab: string | number;
-  setActiveTab: (value: string | number) => void;
-} | null>(null);
-
-const useTabsContext = () => {
-  const ctx = useContext(TabsContext);
-
-  if (!ctx) {
-    throw new Error('Tabs 컴포넌트 내부에서만 사용할 수 있습니다.');
-  }
-
-  return ctx;
-};
-
-interface TabsProps {
-  defaultActiveTab: string | number;
-}
-
-export default function Tabs({ defaultActiveTab, children }: StrictPropsWithChildren<TabsProps>) {
-  const [activeTab, setActiveTab] = useState(defaultActiveTab);
-
-  return (
-    <TabsContext.Provider value={{ activeTab, setActiveTab }}>{children}</TabsContext.Provider>
-  );
+export default function Tabs({ children }: StrictPropsWithChildren) {
+  return <>{children}</>;
 }
 
 const renderTabElement = (
@@ -95,20 +68,15 @@ interface TabProps {
 }
 
 function Tab({ value, text, queryString, className }: TabProps) {
-  const { activeTab, setActiveTab } = useTabsContext();
-  const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const isActive = activeTab === value;
+  const currentTab = searchParams.get('tab');
 
-  useEffect(() => {
-    if (isActive) {
-      router.replace(`${pathname}?tab=${queryString ?? value}`);
-    }
-  }, [isActive, pathname, queryString, router, value]);
+  const isActive = currentTab === value;
 
   return (
-    <div
+    <Link
       className={cn(
         'flex cursor-pointer items-center',
         {
@@ -116,17 +84,26 @@ function Tab({ value, text, queryString, className }: TabProps) {
         },
         className
       )}
-      onClick={() => setActiveTab(value)}
+      href={{
+        pathname,
+        query: { tab: queryString ?? value },
+      }}
+      replace
     >
       {text}
-    </div>
+    </Link>
   );
 }
 
 function Panel({ value, children }: PropsWithChildren<Pick<TabProps, 'value'>>) {
-  const { activeTab } = useTabsContext();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  return <div className={activeTab === value ? 'block' : 'hidden'}>{children}</div>;
+  const currentTab = searchParams.get('tab');
+
+  const isActive = currentTab === value;
+
+  return <div className={isActive ? 'block' : 'hidden'}>{children}</div>;
 }
 
 Tabs.List = List;
