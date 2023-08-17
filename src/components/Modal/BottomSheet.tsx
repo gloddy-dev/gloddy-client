@@ -48,7 +48,7 @@ export default function BottomSheet({
         className="fixed inset-x-0 m-auto max-w-450 !bg-[rgba(0,0,0,0.6)]"
         onTap={isTapOutsideToClose ? onClose : () => {}}
       />
-      <Sheet.Container className="!rounded-t-30 bg-white p-25">
+      <Sheet.Container className="!rounded-t-30 bg-white px-20 pt-27">
         <Sheet.Header className="relative h-50 items-center justify-center">
           {isLeftButton && (
             <Image
@@ -60,11 +60,11 @@ export default function BottomSheet({
               onClick={() => (handleLeftButtonClick ? handleLeftButtonClick() : snapTo(1))}
             />
           )}
-          <div className="flex h-full items-center justify-center">{text}</div>
+          <div className="flex h-full">{text}</div>
           {isRightButton && (
             <Image
               alt="close"
-              src="/assets/close.svg"
+              src="/icons/24/close.svg"
               width={30}
               height={30}
               onClick={onClose}

@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../../components/JoinContext';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { Spacing } from '@/components/common/Spacing';
 import { TextFieldController } from '@/components/TextField';
 
