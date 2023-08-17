@@ -61,3 +61,16 @@ export interface ArticlesResponse {
 export interface CommentsReponse {
   comments: Comment[];
 }
+
+export interface GroupMember {
+  isCaptain: boolean;
+  isCertifiedStudent: boolean;
+  userId: number;
+  nickName: string;
+  imageUrl: string;
+  reliabilityLevel: string; // TODO: 리터럴로 변경
+}
+
+export interface GroupMembersResponse {
+  groupMembers: GroupMember[];
+}
