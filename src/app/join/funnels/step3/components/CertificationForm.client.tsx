@@ -6,6 +6,7 @@ import { useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet, useModalContext } from '@/components/Modal';
+import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { memo } from 'react';
 
@@ -14,7 +15,8 @@ import type { SignUpState } from '@/app/join/type';
 export default memo(function CertificationForm() {
   const { closeModal, modalName } = useModalContext();
   const { time: timerTime } = useTimerContext();
-  const { register, handleSubmit, setValue, formState } = useJoinContext();
+  const hookForm = useJoinContext();
+  const { register, handleSubmit, setValue, formState } = hookForm;
   const { nextStep } = useFunnelContext();
 
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
@@ -46,8 +48,9 @@ export default memo(function CertificationForm() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
-          <Input
+          <TextFieldController
             label="인증번호"
+            hookForm={hookForm}
             register={register('verifyEmailNumber', {
               pattern: {
                 value: regexr.verifyNumber,
