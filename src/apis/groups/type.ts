@@ -21,6 +21,8 @@ export interface Article {
   content: string;
   notice: boolean;
   commentCount: number;
+  isCertifiedStudent: boolean;
+  isCaptain: boolean;
   images: string[];
 }
 
@@ -73,4 +75,9 @@ export interface GroupMember {
 
 export interface GroupMembersResponse {
   groupMembers: GroupMember[];
+}
+
+export interface Notice {
+  noticeId: number;
+  content: string;
 }
