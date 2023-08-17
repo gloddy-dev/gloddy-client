@@ -2,14 +2,16 @@
 
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { Flex } from '@/components/Layout';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 interface GroupingHeaderProps {
   title: string;
+  isCaptain: boolean;
 }
 
-export default function GroupingHeader({ title }: GroupingHeaderProps) {
+export default function GroupingHeader({ title, isCaptain }: GroupingHeaderProps) {
   const router = useRouter();
 
   return (
@@ -21,9 +23,16 @@ export default function GroupingHeader({ title }: GroupingHeaderProps) {
       }
       text={title}
       rightNode={
-        <IconButton size="large" onClick={() => console.log('더보기')}>
-          <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
-        </IconButton>
+        <Flex align="center">
+          {isCaptain && (
+            <IconButton size="large" onClick={() => console.log('수정')}>
+              <Image src="/icons/24/application.svg" alt="application" width={24} height={24} />
+            </IconButton>
+          )}
+          <IconButton size="large" onClick={() => console.log('더보기')}>
+            <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
+          </IconButton>
+        </Flex>
       }
       className="px-4"
     />
