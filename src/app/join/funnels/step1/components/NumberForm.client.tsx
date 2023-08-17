@@ -1,8 +1,10 @@
-import { useJoinContext } from '../../../components/JoinContext';
+'use client';
+
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { formatNumber, formatNumberBackSpace } from '../util';
 import { useSMSMutation } from '@/apis/auth';
 import { type SignUpState } from '@/app/join/type';
-import { Button } from '@/components/common/Button';
+import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
@@ -18,7 +20,7 @@ interface NumberSectionProps {
 
 export default function NumberForm({ inputStatus, setInputStatus }: NumberSectionProps) {
   const hookForm = useJoinContext();
-  const { setValue, handleSubmit, register } = hookForm;
+  const { setValue, handleSubmit, register, formState } = hookForm;
   const { mutate: mutateSMS } = useSMSMutation();
   const {
     status: timerStatus,
@@ -30,20 +32,11 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     endTime: 0,
   });
 
-  const buttonText =
-    inputStatus === 'readyForSend' || inputStatus === 'notReadyForSend'
-      ? '인증문자 전송'
-      : `${leftTime}초 후 재전송`;
-  const buttonColor = inputStatus === 'readyForSend' ? 'blue' : 'orange';
-
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
   ) => {
     const phoneNumber = e.currentTarget.value.replace(/[^0-9-]/g, '');
     const phoneNumberWithoutHyphen = phoneNumber.replace(/-/g, '');
-
-    if (phoneNumberWithoutHyphen.length === 11) setInputStatus('readyForSend');
-    else setInputStatus('notReadyForSend');
 
     if ('key' in e && e.key === 'Backspace') {
       setValue('phoneNumber', formatNumberBackSpace(phoneNumberWithoutHyphen));
@@ -64,6 +57,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <Spacing size={8} />
       <TextFieldController
         label="휴대폰 번호"
         register={register('phoneNumber', {
@@ -79,16 +73,17 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         hookForm={hookForm}
         placeholder="010-0000-0000"
         isSpacing={false}
+        readOnly={inputStatus === 'afterSend'}
       />
 
-      <Spacing size={18} />
-
-      <Button
-        text={buttonText}
-        disabled={inputStatus === 'notReadyForSend' || timerStatus === 'RUNNING'}
-        color={buttonColor}
-        type="submit"
-      />
+      <Spacing size={8} />
+      {inputStatus === 'beforeSend' && (
+        <ButtonGroup isSpacing={false}>
+          <Button disabled={!formState.isValid || timerStatus === 'RUNNING'} type="submit">
+            인증번호 전송
+          </Button>
+        </ButtonGroup>
+      )}
     </form>
   );
 }
