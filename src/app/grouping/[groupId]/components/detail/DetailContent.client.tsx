@@ -2,7 +2,7 @@
 import LocationSection from './LocationSection.client';
 import MemberSection from './MemberSection.client';
 import TimeSection from './TimeSection.client';
-import { Button, ButtonGroup } from '@/components/Button';
+
 import { Spacing } from '@/components/common/Spacing';
 
 import type { GroupDetailResponse } from '@/apis/groups/type';
@@ -19,7 +19,6 @@ export default function DetailContent({ groupDetailData }: DetailContentProps) {
     meetDate,
     startTime,
     endTime,
-    myGroup,
     maxUser,
     memberCount,
   } = groupDetailData;
@@ -36,12 +35,6 @@ export default function DetailContent({ groupDetailData }: DetailContentProps) {
         placeLatitude={placeLatitude}
         placeLongitude={placeLongitude}
       />
-      <Spacing size={100} />
-      {myGroup && (
-        <ButtonGroup>
-          <Button>모임 가입하기</Button>
-        </ButtonGroup>
-      )}
     </>
   );
 }
