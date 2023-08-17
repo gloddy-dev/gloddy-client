@@ -12,7 +12,14 @@ import { QueryAsyncBoundary } from '@suspensive/react-query';
 export default function Grouping() {
   return (
     <>
-      <Header leftNode={<p className="font-700 text-black2">그루핑</p>} />
+      <Header>
+        <Header.Left>
+          <div className="flex gap-16 px-20">
+            <p>참여 모임</p>
+            <p className="text-sign-sub">찜한 그룹</p>
+          </div>
+        </Header.Left>
+      </Header>
       <Spacing size={18} />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={null}>
         <HydrationProvider queryKey={Keys.getGroups()} queryFn={() => getGroups(0)} isInfiniteQuery>
