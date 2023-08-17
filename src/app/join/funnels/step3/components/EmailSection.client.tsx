@@ -1,36 +1,23 @@
 'use client ';
 
 import { useJoinContext } from '@/app/join/components/JoinContext';
-import { Input } from '@/components/common/Input';
-import { Spacing } from '@/components/common/Spacing';
+import { TextField } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import clsx from 'clsx';
-import Image from 'next/image';
 
 export default function EmailSection() {
-  const {
-    register,
-    formState: { errors },
-  } = useJoinContext();
+  const hookForm = useJoinContext();
+  const { register } = hookForm;
 
   return (
     <section>
-      <Input
-        label="ID"
+      <TextField
+        label="학교 이메일"
+        hookForm={hookForm}
         register={register('schoolInfo.email', {
           required: true,
           pattern: regexr.email,
         })}
       />
-      <div
-        className={clsx('font-500 flex justify-center text-13 text-orange', {
-          invisible: !errors.schoolInfo?.email,
-        })}
-      >
-        <Image alt="alert" src="/assets/alert.svg" width={10} height={30} />
-        <Spacing size={5} direction="horizontal" />
-        <span>학교 이메일을 다시 확인해주세요.</span>
-      </div>
     </section>
   );
 }
