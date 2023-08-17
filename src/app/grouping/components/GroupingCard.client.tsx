@@ -1,4 +1,5 @@
 'use client';
+import { formatDate } from '../util';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import clsx from 'clsx';
@@ -14,6 +15,8 @@ interface GroupingCardProps {
 export default function GroupingCard({ groupingData }: GroupingCardProps) {
   const { title, content, imageUrl, memberCount, maxUser, meetDate, place } = groupingData;
   const router = useRouter();
+
+  // console.log();
 
   return (
     <Flex
@@ -41,7 +44,7 @@ export default function GroupingCard({ groupingData }: GroupingCardProps) {
         </p>
         <p className="flex text-caption text-sign-tertiary">
           <Image src="/icons/16/date_range.svg" width={16} height={16} alt="location" />
-          {meetDate}
+          {formatDate(meetDate)}
         </p>
       </section>
     </Flex>
