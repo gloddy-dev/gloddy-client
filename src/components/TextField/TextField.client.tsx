@@ -18,9 +18,10 @@ export interface TextFieldProps<T extends React.ElementType> {
   isRightError?: boolean;
   isSpacing?: boolean;
   readOnly?: boolean;
+  className?: string;
 }
 
-function TextField<T extends React.ElementType = 'input'>(
+function TextField<T extends React.ElementType>(
   {
     as,
     register,
@@ -33,6 +34,7 @@ function TextField<T extends React.ElementType = 'input'>(
     isRightError = false,
     isSpacing = true,
     readOnly,
+    className,
     ...props
   }: TextFieldProps<T> & React.ComponentPropsWithoutRef<T>,
   textFieldRef: React.ForwardedRef<HTMLLabelElement>
@@ -58,7 +60,7 @@ function TextField<T extends React.ElementType = 'input'>(
           </>
         )}
         <div
-          className={cn('relative flex h-142 w-full items-center justify-around', {
+          className={cn('relative flex w-full items-center justify-around', {
             'h-142': Element === 'textarea',
           })}
         >
@@ -71,7 +73,8 @@ function TextField<T extends React.ElementType = 'input'>(
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
                 'bg-divider': readOnly,
-              }
+              },
+              className
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
             onBlurCapture={() => setIsFocus(false)}
@@ -83,15 +86,17 @@ function TextField<T extends React.ElementType = 'input'>(
           {rightIcon}
         </div>
       </section>
-      <section
-        className={cn(
-          'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
-          { absolute: !isSpacing }
-        )}
-      >
-        <LeftCaption isError={isLeftError} text={leftCaption}></LeftCaption>
-        <RightCaption isError={isRightError} text={rightCaption}></RightCaption>
-      </section>
+      {(!!leftCaption || !!rightCaption) && (
+        <section
+          className={cn(
+            'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
+            { absolute: !isSpacing }
+          )}
+        >
+          <LeftCaption isError={isLeftError} text={leftCaption}></LeftCaption>
+          <RightCaption isError={isRightError} text={rightCaption}></RightCaption>
+        </section>
+      )}
     </label>
   );
 }
@@ -124,4 +129,6 @@ function RightCaption({ isError, text }: RightCaptionProps) {
   return <span className={isError ? 'text-warning' : ''}>{text}</span>;
 }
 
-export default forwardRef(TextField);
+export default forwardRef(TextField) as <T extends React.ElementType = 'input' | 'textarea'>(
+  props: TextFieldProps<T> & { ref?: React.ForwardedRef<HTMLLabelElement> }
+) => React.ReactElement;
