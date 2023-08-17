@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/common/Button';
+import { Button } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
 import { BottomSheet } from '@/components/Modal';
@@ -13,20 +13,22 @@ type AgreeCheckListType = {
   isAgreed: boolean;
 };
 
+const defaultAgreeCheckList = [
+  {
+    name: '서비스 이용약관 동의',
+    required: true,
+    isAgreed: false,
+  },
+  {
+    name: '개인정보 수집 및 이용 동의',
+    required: true,
+    isAgreed: false,
+  },
+];
+
 export default function AgreeSection() {
   const { isOpen, openModal, closeModal } = useModals<'modal'>();
-  const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>([
-    {
-      name: '서비스 이용약관 동의',
-      required: true,
-      isAgreed: false,
-    },
-    {
-      name: '개인정보 수집 및 이용 동의',
-      required: true,
-      isAgreed: false,
-    },
-  ]);
+  const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>(defaultAgreeCheckList);
 
   useEffect(() => {
     openModal('modal');
@@ -55,41 +57,41 @@ export default function AgreeSection() {
       isOpen={isOpen}
       onClose={closeModal}
       disableDrag
-      text={<div className="font-700 text-center">약관 동의</div>}
+      text={<div className="text-subtitle-1">약관 동의</div>}
+      isRightButton
     >
-      <section>
-        <CircleCheckbox
-          text="전체 동의"
-          checked={agreeCheckList.every((agree) => agree.isAgreed)}
+      <section className="rounded-12 border-1 border-border-default">
+        <div
+          className="flex h-48 items-center gap-8 px-8"
           onClick={() => handleAgreeAllCheckList()}
-        />
-        <Spacing size={15} />
-        <div className="border-[0.5px] border-white3" />
-        <Spacing size={15} />
-        <div className="flex flex-col gap-5">
-          {agreeCheckList.map((agree) => (
-            <CircleCheckbox
-              key={agree.name}
-              text={
-                <p className="text-12">
-                  <span className="text-gray3">{agree.required && '(필수)'}</span>
-                  {agree.name}
-                </p>
-              }
-              checked={agree.isAgreed}
-              onClick={() => handleAgreeCheckList(agree.name)}
-            />
-          ))}
+        >
+          <CircleCheckbox checked={agreeCheckList.every((agree) => agree.isAgreed)} />
+          <p className="text-subtitle-2 text-sign-secondary">전체동의</p>
         </div>
+
+        {agreeCheckList.map((agree) => (
+          <div
+            key={agree.name}
+            className="flex h-40 items-center gap-8 bg-sub px-8 text-paragraph-2 text-sign-secondary"
+            onClick={() => handleAgreeCheckList(agree.name)}
+          >
+            <CircleCheckbox key={agree.name} checked={agree.isAgreed} variant="outline" />
+            <p className="">
+              <span className="text-sign-tertiary">{agree.required && '(필수) '}</span>
+              {agree.name}
+            </p>
+          </div>
+        ))}
       </section>
 
       <Spacing size={30} />
 
       <Button
-        text="완료"
         disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
         onClick={closeModal}
-      />
+      >
+        완료
+      </Button>
     </BottomSheet>
   );
 }
