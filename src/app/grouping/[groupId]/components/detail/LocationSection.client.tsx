@@ -1,8 +1,7 @@
 'use client';
 
 import { Spacing } from '@/components/common/Spacing';
-import { KAKAO_SDK_URL } from '@/constants';
-import Script from 'next/script';
+import Image from 'next/image';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 import type { GroupDetailResponse } from '@/apis/groups/type';
@@ -17,19 +16,25 @@ export default function LocationSection({
 }: LocationSectionProps) {
   return (
     <section>
-      <h2 className="text-14">모임 위치</h2>
-      <Spacing size={10} />
-      <div className="rounded-8 bg-gray6 p-16">
+      <h2 className="pl-4 text-subtitle-3 text-sign-secondary">모임 위치</h2>
+      <Spacing size={4} />
+      <div className="relative rounded-8 bg-gray6">
+        <Image
+          src="/icons/24/copy.svg"
+          alt="copy"
+          width={24}
+          height={24}
+          className="absolute right-12 top-12 z-10"
+          onClick={() => console.log('복사')}
+        />
         <Map
           center={{
             lat: +placeLatitude,
             lng: +placeLongitude,
           }}
-          style={{
-            width: '100%',
-            height: '200px',
-          }}
+          className="aspect-video rounded-t-8"
           level={4}
+          draggable={false}
         >
           <MapMarker
             position={{
@@ -38,8 +43,14 @@ export default function LocationSection({
             }}
           />
         </Map>
-        <Spacing size={8} />
-        <p className="text-14">{place}</p>
+        <div className="p-16">
+          <p>
+            <span className="text-subtitle-2 text-sign-primary">경희회관</span>{' '}
+            <span className="text-caption text-sign-sub">호프, 요리주점</span>
+          </p>
+          <Spacing size={2} />
+          <p className="text-paragraph-2 text-sign-secondary">{place}</p>
+        </div>
       </div>
     </section>
   );

@@ -20,12 +20,12 @@ interface AvatarProps {
   /**
    * 아바타를 클릭했을 때 실행할 함수를 지정합니다.
    */
-  onclick?: () => void;
+  onClick?: () => void;
 }
 export default function Avatar({
   imageUrl,
   isCertified,
-  onclick,
+  onClick,
   size = 'medium',
   children,
 }: PropsWithChildren<AvatarProps>) {
@@ -37,7 +37,7 @@ export default function Avatar({
           'h-56 w-56': size === 'medium',
           'h-96 w-96': size === 'large',
         })}
-        onClick={onclick}
+        onClick={onClick}
       >
         <Image
           src={imageUrl}

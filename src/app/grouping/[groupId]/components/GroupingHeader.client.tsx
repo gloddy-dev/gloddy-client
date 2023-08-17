@@ -1,28 +1,31 @@
 'use client';
+
+import { IconButton } from '@/components/Button';
+import { Header } from '@/components/Header';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function GroupingHeader() {
+interface GroupingHeaderProps {
+  title: string;
+}
+
+export default function GroupingHeader({ title }: GroupingHeaderProps) {
   const router = useRouter();
 
   return (
-    <header className="fixed z-10 flex h-60 w-full max-w-450 items-center justify-between px-20">
-      <Image
-        src="/assets/arrow_left_white.svg"
-        alt="left"
-        width={7.5}
-        height={15}
-        onClick={() => router.back()}
-        className="cursor-pointer"
-      />
-      <Image
-        src="/assets/setting_white.svg"
-        alt="setting"
-        width={20}
-        height={20}
-        onClick={() => router.push('/setting')}
-        className="cursor-pointer"
-      />
-    </header>
+    <Header
+      leftNode={
+        <IconButton size="large" onClick={() => router.back()}>
+          <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
+        </IconButton>
+      }
+      text={title}
+      rightNode={
+        <IconButton size="large" onClick={() => console.log('더보기')}>
+          <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
+        </IconButton>
+      }
+      className="px-4"
+    />
   );
 }
