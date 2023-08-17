@@ -51,12 +51,15 @@ function TextField<T extends React.ElementType = 'input'>(
           'border-transparent bg-divider': readOnly,
         })}
       >
-        <Label text={label} />
-        <Spacing size={2} />
+        {label && (
+          <>
+            <Label text={label} />
+            <Spacing size={2} />
+          </>
+        )}
         <div
           className={cn('relative flex h-142 w-full items-center justify-around', {
             'h-142': Element === 'textarea',
-            'h-22': Element === 'input',
           })}
         >
           {leftIcon}
