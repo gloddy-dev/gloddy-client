@@ -29,24 +29,23 @@ export default function Header({
         )}
         {...props}
       >
-        <div className="flex items-center">
-          {children}
-          {leftNode ? leftNode : <div />}
-          {text && <div>{text}</div>}
-        </div>
-        {rightNode ? rightNode : <div />}
+        {children}
       </header>
       {isSpacing && <Spacing size={48} />}
     </>
   );
 }
 
-function Left({ children }: StrictPropsWithChildren) {
-  return <div>{children}</div>;
+interface SideProps {
+  className?: string;
 }
 
-function Right({ children }: StrictPropsWithChildren) {
-  return <div>{children}</div>;
+function Left({ children, className }: StrictPropsWithChildren<SideProps>) {
+  return <div className={className}>{children}</div>;
+}
+
+function Right({ children, className }: StrictPropsWithChildren<SideProps>) {
+  return <div className={className}>{children}</div>;
 }
 
 Header.Left = Left;

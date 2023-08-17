@@ -8,19 +8,19 @@ import { HydrationProvider } from '@/components/common/Provider/HydrationProvide
 import { Spacing } from '@/components/common/Spacing';
 import { Header } from '@/components/Header';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
+import Image from 'next/image';
 
 export default function Grouping() {
   return (
     <>
-      <Header>
-        <Header.Left>
-          <div className="flex gap-16 px-20">
-            <p>참여 모임</p>
-            <p className="text-sign-sub">찜한 그룹</p>
-          </div>
-        </Header.Left>
+      <Header className="px-20">
+        <Header.Left>매칭</Header.Left>
+        <Header.Right>
+          <Image src="icons/24/search.svg" width={24} height={24} alt="search" />
+        </Header.Right>
       </Header>
       <Spacing size={18} />
+
       <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={null}>
         <HydrationProvider queryKey={Keys.getGroups()} queryFn={() => getGroups(0)} isInfiniteQuery>
           <GroupingCardList />
