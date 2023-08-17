@@ -1,5 +1,5 @@
 import { Spacing } from '@/components/common/Spacing';
-import TextList from '@/components/InfoMessage/TextList';
+import { TextList } from '@/components/TextList';
 
 export default function NoticeSection() {
   return (
