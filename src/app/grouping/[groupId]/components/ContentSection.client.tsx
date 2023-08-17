@@ -15,10 +15,10 @@ export default function ContentSection({ detailNode, boardNode }: ContentSection
           <Tabs.Tab value="board" text="게시판" />
         </Tabs.List>
         <Tabs.Panel value="detail">
-          <div className="p-20">{detailNode}</div>
+          <div className="px-20">{detailNode}</div>
         </Tabs.Panel>
         <Tabs.Panel value="board">
-          <div className="p-20">{boardNode}</div>
+          <div className="px-20">{boardNode}</div>
         </Tabs.Panel>
       </Tabs>
     </section>

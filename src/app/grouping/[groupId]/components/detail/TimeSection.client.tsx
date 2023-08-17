@@ -1,4 +1,5 @@
 import { Spacing } from '@/components/common/Spacing';
+import { TextField } from '@/components/TextField';
 import { DAY_OF_WEEK } from '@/constants';
 import { format, getDay, parseISO } from 'date-fns';
 
@@ -22,11 +23,13 @@ const displayDate = (meetDate: string, startTime: string, endTime: string) => {
 export default function TimeSection({ meetDate, startTime, endTime }: TimeSectionProps) {
   return (
     <section>
-      <h2 className="text-14">모임 일시</h2>
-      <Spacing size={10} />
-      <div className="rounded-8 bg-gray6 p-16">
-        <p className="text-14">{displayDate(meetDate, startTime, endTime)}</p>
-      </div>
+      <p className="pl-4 text-subtitle-3 text-sign-secondary">모임 일시</p>
+      <Spacing size={4} />
+      <TextField
+        disabled
+        value={displayDate(meetDate, startTime, endTime)}
+        className="text-paragraph-2"
+      />
     </section>
   );
 }
