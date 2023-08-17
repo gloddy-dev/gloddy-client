@@ -14,7 +14,8 @@ import type { SignUpState } from '@/app/join/type';
 
 export default function NumberVerifyForm() {
   const router = useRouter();
-  const { handleSubmit, setError, control, setValue, formState } = useJoinContext();
+  const hookForm = useJoinContext();
+  const { handleSubmit, setError, register } = hookForm;
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
@@ -64,16 +65,14 @@ export default function NumberVerifyForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextFieldController
         label="인증 번호"
-        control={control}
-        name="verifyNumber"
-        setValue={setValue}
-        rules={{
+        hookForm={hookForm}
+        register={register('verifyNumber', {
           required: true,
           pattern: {
             value: regexr.verifyNumber,
             message: '인증번호 6자리를 입력해주세요.',
           },
-        }}
+        })}
         maxLength={6}
       />
       <ButtonGroup isSpacing={false}>
