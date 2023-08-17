@@ -1,9 +1,9 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext';
 import { BottomFixedButton } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
-import { BottomSheet } from '@/components/Modal';
 import GenderSwipePicker from '@/components/common/SwipePicker/GenderSwipePicker';
+import { BottomSheet } from '@/components/Modal';
+import { TextField } from '@/components/TextField';
 import useModalStore from '@/store/useModalStore';
 
 export default function GenderSection() {
@@ -14,7 +14,7 @@ export default function GenderSection() {
   return (
     <section className="flex flex-col gap-5">
       <p className="text-14">성별</p>
-      <Input
+      <TextField
         placeholder="성별을 선택해주세요."
         onClick={() => openModal('gender')}
         value={gender ?? ''}
