@@ -1,9 +1,9 @@
 'use client';
 import EmailSection from './EmailSection.client';
-import { useTimerContext } from './TimerContext';
+import { useTimerContext } from './TimerContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailMutation } from '@/apis/auth';
-import { useJoinContext } from '@/app/join/components/JoinContext';
+import { useJoinContext } from '@/app/join/components/JoinContext.client';
 import { SignUpState } from '@/app/join/type';
 import { Button, ButtonGroup } from '@/components/Button';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';

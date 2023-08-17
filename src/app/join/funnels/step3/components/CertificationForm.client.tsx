@@ -1,6 +1,6 @@
 'use client';
-import { useTimerContext } from './TimerContext';
-import { useJoinContext } from '../../../components/JoinContext';
+import { useTimerContext } from './TimerContext.client';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';

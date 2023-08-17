@@ -1,3 +1,4 @@
+'use client';
 import { Spacing } from '@/components/common/Spacing';
 import { TextList } from '@/components/TextList';
 

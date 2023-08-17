@@ -5,7 +5,7 @@ import Step2Component from './step2/Step2Component.client';
 import Step3Component from './step3/Step3Component.client';
 import Step4Component from './step4/Step4Component.client';
 import Step5Component from './step5/Step5Component.client';
-import JoinHeader from '../components/JoinHeader.server';
+import JoinHeader from '../components/JoinHeader.client';
 import { useFunnel } from '@/hooks/useFunnel';
 import { createContext, useContext } from 'react';
 

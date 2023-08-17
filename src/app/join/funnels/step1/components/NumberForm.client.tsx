@@ -1,4 +1,6 @@
-import { useJoinContext } from '../../../components/JoinContext';
+'use client';
+
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { formatNumber, formatNumberBackSpace } from '../util';
 import { useSMSMutation } from '@/apis/auth';
 import { type SignUpState } from '@/app/join/type';

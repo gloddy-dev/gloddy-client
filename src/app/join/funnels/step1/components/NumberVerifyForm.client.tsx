@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../../components/JoinContext';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen, formatWithoutSpace } from '../util';
 import { LoginResponse, useLoginMutation, useSMSVerifyMutation } from '@/apis/auth';

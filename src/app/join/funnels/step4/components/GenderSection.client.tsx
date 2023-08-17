@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../../components/JoinContext';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { BottomFixedButton } from '@/components/common/Button';
 import GenderSwipePicker from '@/components/common/SwipePicker/GenderSwipePicker';
 import { BottomSheet } from '@/components/Modal';

@@ -1,7 +1,6 @@
 'use client';
 import SearchResultSection from './SearchResultSection.client';
-import { useJoinContext } from '../../../components/JoinContext';
-import { Input } from '@/components/common/Input';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { TextField } from '@/components/TextField';
 
 import type { SearchResultType } from '../type';
