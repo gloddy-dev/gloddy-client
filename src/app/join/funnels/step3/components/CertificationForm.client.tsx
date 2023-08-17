@@ -26,7 +26,7 @@ export default memo(function CertificationForm() {
     mutateEmailVerify(
       {
         email: data.schoolInfo.email,
-        authCode: data.verifyEmailNumber,
+        authCode: +data.verifyEmailNumber,
       },
       {
         onSuccess: () => {

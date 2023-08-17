@@ -5,8 +5,8 @@ import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailMutation } from '@/apis/auth';
 import { useJoinContext } from '@/app/join/components/JoinContext';
 import { SignUpState } from '@/app/join/type';
+import { Button, ButtonGroup } from '@/components/Button';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
-import { Button } from '@/components/common/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { useModalContext } from '@/components/Modal';
 import { memo } from 'react';
@@ -42,11 +42,13 @@ export default memo(function EmailForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <EmailSection />
-      <BottomFixedDiv>
-        <Button text="인증하기" disabled={!isDirty} type="submit" />
+      <ButtonGroup isSpacing={false}>
+        <Button onClick={nextStep}>건너뛰기</Button>
         <Spacing size={8} />
-        <Button text="다음에 인증하기" color="orange" onClick={nextStep} />
-      </BottomFixedDiv>
+        <Button disabled={!isDirty} type="submit">
+          확인
+        </Button>
+      </ButtonGroup>
     </form>
   );
 });
