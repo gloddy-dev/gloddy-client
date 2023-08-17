@@ -1,27 +1,20 @@
 import Image from 'next/image';
-import { UseFormRegisterReturn } from 'react-hook-form';
 
-interface CircleCheckboxProps {
-  text?: React.ReactNode;
+interface CircleCheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
   checked?: boolean;
-  onClick?: () => void;
-  register?: UseFormRegisterReturn;
+  variant?: 'solid' | 'outline';
 }
 
-function CircleCheckbox({
-  text,
+export default function CircleCheckbox({
   checked = false,
-  onClick,
-  register,
+  variant = 'solid',
   ...props
 }: CircleCheckboxProps) {
-  const checkboxImageAsset = `/assets/checkbox_circle${checked ? '_checked' : ''}.svg`;
+  const checkboxIcon = `/icons/24/checkbox_${variant}_${checked ? 'checked' : 'default'}.svg`;
+
   return (
-    <div className="flex items-center" onClick={onClick} {...register} {...props}>
-      <Image alt="checkbox" src={checkboxImageAsset} width={15} height={30} className="mx-10" />
-      {text}
+    <div className="flex items-center" {...props}>
+      <Image alt="checkbox" src={checkboxIcon} width={24} height={24} />
     </div>
   );
 }
-
-export default CircleCheckbox;
