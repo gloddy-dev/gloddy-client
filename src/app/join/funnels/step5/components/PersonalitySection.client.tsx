@@ -1,3 +1,5 @@
+'use client';
+
 import PersonalityItemServer from './PersonalityItem.client';
 import { personalityList } from '@/constants/personalityList';
 

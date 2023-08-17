@@ -1,3 +1,4 @@
+'use client';
 import type { StrictPropsWithChildren } from '@/types';
 
 export default function JoinTitleTextMessage({ children }: StrictPropsWithChildren) {
