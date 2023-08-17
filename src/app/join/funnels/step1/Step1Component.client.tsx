@@ -1,5 +1,5 @@
 import FormSection from './components/FormSection.client';
-import NoticeSection from './components/NoticeSection.server';
+import NoticeSection from './components/NoticeSection.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
 import { Spacing } from '@/components/common/Spacing';
 

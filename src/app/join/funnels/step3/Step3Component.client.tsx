@@ -1,4 +1,4 @@
-import FormSection from './components/FormSection.server';
+import FormSection from './components/FormSection.client';
 import NoticeSection from './components/NoticeSection';
 import TimerContext from './components/TimerContext';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
