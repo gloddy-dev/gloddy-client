@@ -86,11 +86,13 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
     images: [],
     notice: true,
     userImageUrl: '/dummy_avatar.png',
-    name: 'Kim',
+    name: 'Ahn Ki Hyeon',
     date: '2021.09.01',
     content:
       '안녕하세요! 모임에 가입해주셔서 감사드립니다.\n오늘 19:00에 있을 모임 참여 전 모임에 필요한 공지 및 전달사항 확인 부탁드리겠습니다.',
     commentCount: 0,
+    isCaptain: true,
+    isCertifiedStudent: true,
   },
   {
     articleId: 2,
@@ -101,6 +103,8 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
     date: '2021.09.01',
     content: '안녕하세요! 모임에 가입해주셔서 감사드립니다.',
     commentCount: 100,
+    isCaptain: false,
+    isCertifiedStudent: false,
   },
   {
     articleId: 3,
@@ -112,6 +116,8 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
     content:
       '안녕하세요! 모임에 가입해주셔서 감사드립니다.\n오늘 19:00에 있을 모임 참여 전 모임에 필요한 공지 및 전달사항 확인 부탁드리겠습니다.',
     commentCount: 0,
+    isCaptain: false,
+    isCertifiedStudent: false,
   },
 ];
 

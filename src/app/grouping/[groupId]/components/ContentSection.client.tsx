@@ -17,9 +17,7 @@ export default function ContentSection({ detailNode, boardNode }: ContentSection
         <Tabs.Panel value="detail">
           <div className="px-20">{detailNode}</div>
         </Tabs.Panel>
-        <Tabs.Panel value="board">
-          <div className="px-20">{boardNode}</div>
-        </Tabs.Panel>
+        <Tabs.Panel value="board">{boardNode}</Tabs.Panel>
       </Tabs>
     </section>
   );
