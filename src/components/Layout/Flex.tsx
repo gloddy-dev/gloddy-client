@@ -1,5 +1,5 @@
 import cn from '@/utils/cn';
-import { type HTMLAttributes, type Ref, forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 
