@@ -5,7 +5,6 @@ import DetailContent from './detail/DetailContent.client';
 import GroupingHeader from './GroupingHeader.client';
 import TopSection from './TopSection.client';
 import { useGetGroupDetail } from '@/apis/groups';
-import { Spacing } from '@/components/common/Spacing';
 
 interface GroupingDetailProps {
   groupId: number;
@@ -16,7 +15,7 @@ export default function GroupingDetail({ groupId }: GroupingDetailProps) {
 
   return (
     <main className="bg-white">
-      <GroupingHeader title={groupDetailData.title} />
+      <GroupingHeader title={groupDetailData.title} isCaptain={groupDetailData.isCaptain} />
       <TopSection groupDetailData={groupDetailData} />
       <ContentSection
         detailNode={<DetailContent groupDetailData={groupDetailData} />}
