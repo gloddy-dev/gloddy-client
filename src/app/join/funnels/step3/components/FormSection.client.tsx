@@ -1,3 +1,5 @@
+'use client';
+
 import CertificationForm from './CertificationForm.client';
 import EmailForm from './EmailForm.client';
 

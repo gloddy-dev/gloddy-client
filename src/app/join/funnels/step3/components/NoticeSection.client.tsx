@@ -1,3 +1,5 @@
+'use client';
+
 import { Spacing } from '@/components/common/Spacing';
 import { TextList } from '@/components/TextList';
 import { INSTAGRAM_URL } from '@/constants';
@@ -21,9 +23,8 @@ export default function NoticeSection() {
       <Spacing size={8} />
       <TextList variant="info">신뢰있는 모임을 위해 재학생 인증을 꼭 진행해주세요</TextList>
       <Spacing size={8} />
-      <TextList variant="info">
-        재학생 이메일 발급
-        <br />
+      <TextList variant="info">재학생 이메일 발급</TextList>
+      <TextList variant="info-no-icon">
         <Link href={INSTAGRAM_URL}>{INSTAGRAM_URL}</Link>
       </TextList>
     </section>
