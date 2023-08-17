@@ -17,7 +17,8 @@ interface NumberSectionProps {
 }
 
 export default function NumberForm({ inputStatus, setInputStatus }: NumberSectionProps) {
-  const { setValue, handleSubmit, formState, control } = useJoinContext();
+  const hookForm = useJoinContext();
+  const { setValue, handleSubmit, register, formState } = hookForm;
   const { mutate: mutateSMS } = useSMSMutation();
   const {
     status: timerStatus,
@@ -57,22 +58,22 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
       <Spacing size={8} />
       <TextFieldController
         label="휴대폰 번호"
-        rules={{
+        register={register('phoneNumber', {
           required: true,
           pattern: {
             value: regexr.phoneNumber,
             message: '* 휴대폰 번호를 다시 확인해주세요.',
           },
-        }}
-        control={control}
-        name="phoneNumber"
-        onChange={handleInputChange}
+          onChange: handleInputChange,
+        })}
         onKeyDown={handleInputChange}
-        setValue={setValue}
         maxLength={17}
+        hookForm={hookForm}
         placeholder="010-0000-0000"
+        isSpacing={false}
         readOnly={inputStatus === 'afterSend'}
       />
+
       <Spacing size={8} />
       {inputStatus === 'beforeSend' && (
         <ButtonGroup isSpacing={false}>
