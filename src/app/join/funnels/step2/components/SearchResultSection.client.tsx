@@ -1,3 +1,5 @@
+'use client';
+
 import type { SearchResultType } from '../type';
 
 interface SearchResultSectionProps {

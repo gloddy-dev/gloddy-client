@@ -1,10 +1,11 @@
 'use client';
-import { useJoinContext } from '../../../components/JoinContext';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import { BottomSheet } from '@/components/Modal';
 import { Spacing } from '@/components/common/Spacing';
 import { DateSwipePicker } from '@/components/common/SwipePicker';
+import { BottomSheet } from '@/components/Modal';
+import { TextField } from '@/components/TextField';
 import useModalStore from '@/store/useModalStore';
 
 import type { DateType } from '@/types';
@@ -22,7 +23,7 @@ export default function BirthdaySection() {
     <section>
       <p className="text-14">생년월일</p>
       <Spacing size={5} />
-      <Input
+      <TextField
         placeholder="생년월일을 선택해주세요."
         onClick={() => openModal('birthday')}
         value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
