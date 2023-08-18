@@ -4,13 +4,12 @@ import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { BottomFixedButton } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
 import { BottomSheet, useModalContext } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { memo } from 'react';
 
-import type { SignUpState } from '@/app/(sub)/join/type';
+import type { SignUpState } from '../../../type';
 
 export default memo(function CertificationForm() {
   const { closeModal, modalName } = useModalContext();

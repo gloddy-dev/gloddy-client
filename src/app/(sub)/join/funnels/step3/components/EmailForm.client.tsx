@@ -1,15 +1,15 @@
 'use client';
 import EmailSection from './EmailSection.client';
 import { useTimerContext } from './TimerContext.client';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailMutation } from '@/apis/auth';
-import { useJoinContext } from '@/app/(sub)/join/components/JoinContext.client';
-import { SignUpState } from '@/app/(sub)/join/type';
 import { Button, ButtonGroup } from '@/components/Button';
-import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Spacing } from '@/components/common/Spacing';
 import { useModalContext } from '@/components/Modal';
 import { memo } from 'react';
+
+import type { SignUpState } from '../../../type';
 
 export default memo(function EmailForm() {
   const {

@@ -1,7 +1,7 @@
 'use client ';
 
-import { useJoinContext } from '@/app/(sub)/join/components/JoinContext.client';
-import { TextField } from '@/components/TextField';
+import { useJoinContext } from '../../../components/JoinContext.client';
+import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 
 export default function EmailSection() {
@@ -10,7 +10,7 @@ export default function EmailSection() {
 
   return (
     <section>
-      <TextField
+      <TextFieldController
         label="학교 이메일"
         hookForm={hookForm}
         register={register('schoolInfo.email', {

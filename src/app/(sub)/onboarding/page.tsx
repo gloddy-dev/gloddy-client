@@ -1,9 +1,8 @@
 'use client';
+import OnboardingSpeechBubble from './components/OnboardingSpeechBubble';
 import { Button } from '@/components/common/Button';
 import { PageIndicator, Swiper } from 'antd-mobile';
 import Image from 'next/image';
-
-import OnboardingSpeechBubble from '@/app/onboarding/components/OnboardingSpeechBubble';
 
 interface OnboardingMessage {
   id: number;

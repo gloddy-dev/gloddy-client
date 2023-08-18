@@ -1,6 +1,6 @@
 'use client';
 
-import { type Comment, useGetComments } from '@/apis/groups';
+import { type Comment } from '@/apis/groups';
 import { Spacing } from '@/components/common/Spacing';
 import { DUMMY_COMMENTS_DATA } from '@/constants/dummyData';
 import clsx from 'clsx';

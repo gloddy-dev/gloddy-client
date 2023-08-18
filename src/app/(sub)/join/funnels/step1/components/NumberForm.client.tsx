@@ -3,13 +3,14 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { formatNumber, formatNumberBackSpace } from '../util';
 import { useSMSMutation } from '@/apis/auth';
-import { type SignUpState } from '@/app/(sub)/join/type';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
+import { ElementType, KeyboardEventHandler } from 'react';
 
+import type { SignUpState } from '../../../type';
 import type { StatusType } from '../type';
 import type { SubmitHandler } from 'react-hook-form';
 
@@ -34,7 +35,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
-  ) => {
+  ): any => {
     const phoneNumber = e.currentTarget.value.replace(/[^0-9-]/g, '');
     const phoneNumberWithoutHyphen = phoneNumber.replace(/-/g, '');
 
@@ -68,7 +69,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
           },
           onChange: handleInputChange,
         })}
-        onKeyDown={handleInputChange}
+        onKeyDown={handleInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
         maxLength={17}
         hookForm={hookForm}
         placeholder="010-0000-0000"
