@@ -1,8 +1,17 @@
 import ContentSection from './components/ContentSection.client';
 import { Header } from '@/components/Header';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
-const Meeting = () => {
+interface MeetingPageProps {
+  searchParams: {
+    tab?: string;
+  };
+}
+
+export default function MeetingPage({ searchParams }: MeetingPageProps) {
+  if (!searchParams?.tab) redirect(`/meeting?tab=participating`);
+
   return (
     <div>
       <Header>
@@ -16,6 +25,4 @@ const Meeting = () => {
       <ContentSection />
     </div>
   );
-};
-
-export default Meeting;
+}
