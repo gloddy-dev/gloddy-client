@@ -3,6 +3,7 @@ import type {
   Comment,
   CreateGroupRequest,
   GroupDetailResponse,
+  GroupMember,
   Grouping,
 } from '@/apis/groups';
 import type { MatesResponse } from '@/apis/profile';
@@ -175,27 +176,38 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
   },
 ];
 
-export const MEMBER_DUMMY_DATA = [
+export const MEMBER_DUMMY_DATA: GroupMember[] = [
   {
+    userId: 1,
     imageUrl: '/images/dummy_avatar.png',
-    name: '김지환',
+    isCertifiedStudent: true,
+    nickName: '김지환',
     isCaptain: true,
-    isCertified: true,
-    personality: 'SOUL MATE',
+    reliabilityLevel: 'HOOD',
+  },
+  {
+    userId: 2,
+    imageUrl: '/images/dummy_avatar.png',
+    isCertifiedStudent: true,
+    nickName: 'John Doe',
+    reliabilityLevel: 'HOOD',
+    isCaptain: false,
   },
   {
     imageUrl: '/images/dummy_avatar.png',
-    name: 'david',
+    isCertifiedStudent: false,
+    nickName: 'Jane Smith',
+    reliabilityLevel: 'HOOD',
+    userId: 3,
     isCaptain: false,
-    isCertified: true,
-    personality: 'MATE',
   },
   {
     imageUrl: '/images/dummy_avatar.png',
-    name: 'alice',
+    isCertifiedStudent: true,
+    nickName: 'Alice Johnson',
+    reliabilityLevel: 'HOOD',
+    userId: 4,
     isCaptain: false,
-    isCertified: false,
-    personality: 'MATE',
   },
 ];
 
