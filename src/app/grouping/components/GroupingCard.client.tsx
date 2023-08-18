@@ -16,8 +16,6 @@ export default function GroupingCard({ groupingData }: GroupingCardProps) {
   const { title, content, imageUrl, memberCount, maxUser, meetDate, place } = groupingData;
   const router = useRouter();
 
-  // console.log();
-
   return (
     <Flex
       className="h-128 bg-white py-16"
