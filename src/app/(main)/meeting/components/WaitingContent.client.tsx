@@ -7,7 +7,7 @@ import { DUMMY_GROUPING_DATA } from '@/constants/dummyData';
 
 export default function WaitingContent() {
   return (
-    <div className="px-20">
+    <>
       <Spacing size={20} />
       <SubtitleSection text="승인 대기중인 모임" />
 
@@ -24,6 +24,6 @@ export default function WaitingContent() {
       {DUMMY_GROUPING_DATA.map((groupingData) => (
         <GroupingCard groupingData={groupingData} key={groupingData.groupId} />
       ))}
-    </div>
+    </>
   );
 }

@@ -7,7 +7,7 @@ import { DUMMY_GROUPING_DATA } from '@/constants/dummyData';
 
 export default function ParticipatingContent() {
   return (
-    <div className="px-20">
+    <>
       <Spacing size={20} />
       <SubtitleSection text="멤버로 참여중인 모임" />
 
@@ -24,6 +24,6 @@ export default function ParticipatingContent() {
       {DUMMY_GROUPING_DATA.map((groupingData) => (
         <GroupingCard groupingData={groupingData} key={groupingData.groupId} />
       ))}
-    </div>
+    </>
   );
 }
