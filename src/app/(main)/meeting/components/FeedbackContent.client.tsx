@@ -6,7 +6,6 @@ import { Spacing } from '@/components/common/Spacing';
 import { DUMMY_GROUPING_DATA } from '@/constants/dummyData';
 import { useRouter } from 'next/navigation';
 
-interface FeedbackContentProps {}
 export default function FeedbackContent() {
   const router = useRouter();
 
