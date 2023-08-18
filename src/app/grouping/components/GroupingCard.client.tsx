@@ -29,14 +29,14 @@ export default function GroupingCard({ groupingData }: GroupingCardProps) {
         ) : (
           <div className="h-full rounded-8 bg-white3" />
         )}
-        <Badge maxUser={maxUser} memberCount={memberCount} />
+        <MemberCountBadge maxUser={maxUser} memberCount={memberCount} />
       </section>
 
       <Spacing size={12} direction="horizontal" />
 
       <section>
         <p className="w-250 truncate text-subtitle-1">{title}</p>
-        {/* <p className="w-250 truncate text-paragraph-2 text-sign-secondary">{content}</p> */}
+        <p className="w-250 truncate text-paragraph-2 text-sign-secondary">{content}</p>
         <Spacing size={8} />
         <p className="flex text-caption text-sign-tertiary">
           <Image src="/icons/16/location.svg" width={16} height={16} alt="location" />
@@ -52,12 +52,12 @@ export default function GroupingCard({ groupingData }: GroupingCardProps) {
   );
 }
 
-interface BadgeProps {
+interface MemberCountBadgeProps {
   maxUser: number;
   memberCount: number;
 }
 
-function Badge({ maxUser, memberCount }: BadgeProps) {
+function MemberCountBadge({ maxUser, memberCount }: MemberCountBadgeProps) {
   const leftUser = maxUser - memberCount;
 
   return (
