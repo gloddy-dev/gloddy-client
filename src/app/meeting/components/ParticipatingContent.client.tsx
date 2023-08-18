@@ -1,6 +1,7 @@
 'use client';
+import SubtitleSection from './SubtitleSection';
 import { GroupingCard } from '@/components/Card';
-import { DivisionSpacing, Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { DUMMY_GROUPING_DATA } from '@/constants/dummyData';
 
@@ -9,10 +10,8 @@ export default function ParticipatingContent() {
   return (
     <div className="px-20">
       <Spacing size={20} />
-      <div>
-        <Spacing size={4} direction="horizontal" />
-        <span className="text-subtitle-3 text-sign-secondary">멤버로 참여중인 모임</span>
-      </div>
+      <SubtitleSection text="멤버로 참여중인 모임" />
+
       {DUMMY_GROUPING_DATA.map((groupingData) => (
         <GroupingCard groupingData={groupingData} key={groupingData.groupId} />
       ))}
@@ -20,10 +19,9 @@ export default function ParticipatingContent() {
       <Spacing size={8} />
       <Divider thickness="thick" />
       <Spacing size={20} />
-      <div>
-        <Spacing size={4} direction="horizontal" />
-        <span className="text-subtitle-3 text-sign-secondary">멤버로 참여중인 모임</span>
-      </div>
+
+      <SubtitleSection text="내가 호스팅한 모임" />
+
       {DUMMY_GROUPING_DATA.map((groupingData) => (
         <GroupingCard groupingData={groupingData} key={groupingData.groupId} />
       ))}
