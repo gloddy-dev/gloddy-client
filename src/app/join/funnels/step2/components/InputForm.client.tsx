@@ -1,23 +1,28 @@
 'use client';
 
-import AgreeSection from './AgreeForm.client';
-import SchoolSection from './SchoolSection.client';
+import SchoolSearchSection from './SchoolSearchSection.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useJoinContext } from '@/app/join/components/JoinContext.client';
 import { SignUpState } from '@/app/join/type';
+import { Button, ButtonGroup } from '@/components/Button';
 
 export default function InputForm() {
-  const { handleSubmit } = useJoinContext();
+  const {
+    handleSubmit,
+    formState: { isValid },
+  } = useJoinContext();
   const { nextStep } = useFunnelContext();
+
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
-    console.log(data);
     nextStep();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <SchoolSection />
-      <AgreeSection />
+      <SchoolSearchSection />
+      <ButtonGroup>
+        <Button disabled={!isValid}>확인</Button>
+      </ButtonGroup>
     </form>
   );
 }
