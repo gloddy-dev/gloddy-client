@@ -62,6 +62,8 @@ export default function ButtonGroup({
       ).name === 'Button'
   ) as ReactElement[];
 
+  console.log(validChildren);
+
   if (validChildren.length === 0) {
     throw new Error('ButtonGroup 컴포넌트는 Button 컴포넌트를 포함해야 합니다.');
   }
