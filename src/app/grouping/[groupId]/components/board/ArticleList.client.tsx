@@ -1,18 +1,17 @@
 'use client';
 
-import { useGetArticles } from '@/apis/groups/queries';
+import { useGetArticles, useGetGroupDetail } from '@/apis/groups/queries';
 import ArticleItem from '@/app/grouping/components/ArticleItem.client';
+import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
 import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
-import { useParams } from 'next/navigation';
+import { useNumberParams } from '@/hooks/useNumberParams';
 
-interface ArticleListProps {
-  isCaptain: boolean;
-}
+export default function ArticleList() {
+  const { groupId } = useNumberParams<['groupId']>();
 
-export default function ArticleList({ isCaptain }: ArticleListProps) {
-  const params = useParams();
-  const groupId = Number(params.groupId);
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
+  const { isCaptain } = groupDetailData;
 
   const { data: articlesData } = useGetArticles(groupId);
 
@@ -21,12 +20,15 @@ export default function ArticleList({ isCaptain }: ArticleListProps) {
   return (
     <Flex direction="column">
       {DUMMY_ARTICLES_DATA.map((article) => (
-        <ArticleItem
-          key={article.articleId}
-          article={article}
-          isCaptain={isCaptain}
-          isBoardDetail
-        />
+        <>
+          <ArticleItem
+            key={article.articleId}
+            article={article}
+            isCaptain={isCaptain}
+            isBoardDetail
+          />
+          <Divider />
+        </>
       ))}
     </Flex>
   );

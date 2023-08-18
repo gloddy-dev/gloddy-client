@@ -1,21 +1,19 @@
 'use client';
 
-import { useGetGroupMembers } from '@/apis/groups';
+import { useGetGroupDetail, useGetGroupMembers } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
-interface MemberSectionProps {
-  maxUser: number;
-  memberCount: number;
-}
-
-export default function MemberSection({ maxUser, memberCount }: MemberSectionProps) {
+export default function MemberSection() {
+  const { groupId } = useNumberParams<['groupId']>();
   const router = useRouter();
   const pathname = usePathname();
-  const params = useParams() as { groupId: string };
-  const groupId = Number(params.groupId);
+
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
+  const { maxUser, memberCount } = groupDetailData;
 
   const { data: groupMembersData } = useGetGroupMembers(groupId);
   const { groupMembers } = groupMembersData;
