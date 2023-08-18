@@ -83,7 +83,7 @@ export const DUMMY_SIGN_UP_DATA = {
 export const DUMMY_ARTICLES_DATA: Article[] = [
   {
     articleId: 1,
-    images: [],
+    images: ['/images/dummy_avatar.png', '/images/dummy_image.png'],
     notice: true,
     userImageUrl: '/images/dummy_avatar.png',
     name: 'Ahn Ki Hyeon',
@@ -96,7 +96,7 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
   },
   {
     articleId: 2,
-    images: [],
+    images: ['/images/dummy_image.png'],
     notice: false,
     userImageUrl: '/images/dummy_avatar.png',
     name: 'Kim',
@@ -108,7 +108,7 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
   },
   {
     articleId: 3,
-    images: [],
+    images: ['/images/dummy_image.png', '/images/dummy_image.png', '/images/dummy_image.png'],
     notice: false,
     userImageUrl: '/images/dummy_avatar.png',
     name: 'Kim',
