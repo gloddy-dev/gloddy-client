@@ -1,4 +1,5 @@
 import ContentSection from './components/ContentSection.client';
+import { BottomNavigationBar } from '@/components/common/NavigationBar';
 import { Header } from '@/components/Header';
 import { redirect } from 'next/navigation';
 import React from 'react';
@@ -23,6 +24,7 @@ export default function MeetingPage({ searchParams }: MeetingPageProps) {
         </Header.Left>
       </Header>
       <ContentSection />
+      <BottomNavigationBar page="meeting" />
     </div>
   );
 }

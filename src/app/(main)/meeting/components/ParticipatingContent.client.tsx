@@ -5,7 +5,6 @@ import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { DUMMY_GROUPING_DATA } from '@/constants/dummyData';
 
-interface ParticipatingContentProps {}
 export default function ParticipatingContent() {
   return (
     <div className="px-20">
