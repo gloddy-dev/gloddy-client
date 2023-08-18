@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../../components/JoinContext';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import ImageFrame from '@/components/common/ImageFrame';
 
 export default function ImageSection() {
