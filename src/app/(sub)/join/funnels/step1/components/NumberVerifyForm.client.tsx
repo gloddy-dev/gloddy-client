@@ -8,9 +8,9 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
-import { type SubmitHandler } from 'react-hook-form';
 
-import type { SignUpState } from '@/app/(sub)/join/type';
+import type { SignUpState } from '../../../type';
+import type { SubmitHandler } from 'react-hook-form';
 
 export default function NumberVerifyForm() {
   const router = useRouter();

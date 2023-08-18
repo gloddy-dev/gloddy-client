@@ -1,7 +1,6 @@
 'use client';
 
 import CommentList from './CommentList.client';
-import { useGetArticle } from '@/apis/groups';
 import ArticleItem from '@/app/(main)/grouping/components/ArticleItem.client';
 import { Spacing } from '@/components/common/Spacing';
 import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
@@ -15,7 +14,7 @@ export default function BoardDetail({ groupId, boardId }: BoardDetailProps) {
 
   return (
     <div className="px-20">
-      <ArticleItem article={DUMMY_ARTICLES_DATA[0]} isBoardDetail />
+      <ArticleItem article={DUMMY_ARTICLES_DATA[0]} isBoardDetail isCaptain={true} />
       <Spacing size={20} />
       <CommentList groupId={groupId} boardId={boardId} />
     </div>

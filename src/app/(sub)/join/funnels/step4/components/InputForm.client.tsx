@@ -3,8 +3,8 @@ import BirthdaySection from './BirthdaySection.client';
 import GenderSection from './GenderSection.client';
 import ImageSection from './ImageSection.client';
 import NicknameSection from './NicknameSection.client';
+import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
-import { useJoinContext } from '@/app/(sub)/join/components/JoinContext.client';
 import { BottomFixedButton } from '@/components/common/Button';
 
 export default function InputForm() {
