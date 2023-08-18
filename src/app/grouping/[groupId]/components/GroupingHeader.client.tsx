@@ -15,14 +15,14 @@ export default function GroupingHeader({ title, isCaptain }: GroupingHeaderProps
   const router = useRouter();
 
   return (
-    <Header
-      leftNode={
+    <Header className="px-4">
+      <Header.Left className="flex items-center">
         <IconButton size="large" onClick={() => router.back()}>
           <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
         </IconButton>
-      }
-      text={title}
-      rightNode={
+        <p>{title}</p>
+      </Header.Left>
+      <Header.Right>
         <Flex align="center">
           {isCaptain && (
             <IconButton size="large" onClick={() => console.log('수정')}>
@@ -33,8 +33,7 @@ export default function GroupingHeader({ title, isCaptain }: GroupingHeaderProps
             <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
           </IconButton>
         </Flex>
-      }
-      className="px-4"
-    />
+      </Header.Right>
+    </Header>
   );
 }
