@@ -2,8 +2,8 @@
 import { useCreateGroupContext } from '../CreateGroupContext';
 import InputArea from '../InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
-import { BottomSheet } from '@/components/Modal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
+import { BottomSheet } from '@/components/Modal';
 import useModalState from '@/store/useModalStore';
 
 export default function MaxUserSection() {
