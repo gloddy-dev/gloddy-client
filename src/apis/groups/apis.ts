@@ -6,7 +6,9 @@ import type {
   CommentsReponse,
   CreateGroupRequest,
   GroupDetailResponse,
+  GroupMembersResponse,
   GroupsResponse,
+  Notice,
 } from './type';
 
 export const getGroups = (page: number) => {
@@ -31,4 +33,12 @@ export const getArticle = (groupId: number, articleId: number) => {
 
 export const getComments = (groupId: number, articleId: number) => {
   return privateApi.get<CommentsReponse>(`/groups/${groupId}/articles/${articleId}/comments`);
+};
+
+export const getGroupMembers = (groupId: number) => {
+  return privateApi.get<GroupMembersResponse>(`/groups/${groupId}/members`);
+};
+
+export const getNotice = (groupId: number) => {
+  return privateApi.get<Notice[]>(`/groups/${groupId}/articles/notice`);
 };

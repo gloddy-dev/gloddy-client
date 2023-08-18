@@ -5,7 +5,8 @@ import { forwardRef, useState } from 'react';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface TextFieldProps<T extends React.ElementType> {
+export interface TextFieldProps<T extends React.ElementType = 'input'>
+  extends React.HTMLAttributes<T> {
   as?: T;
   register?: UseFormRegisterReturn<string>;
   label?: string;
@@ -18,6 +19,7 @@ export interface TextFieldProps<T extends React.ElementType> {
   isRightError?: boolean;
   isSpacing?: boolean;
   readOnly?: boolean;
+  className?: string;
 }
 
 function TextField<T extends React.ElementType = 'input'>(
@@ -33,16 +35,17 @@ function TextField<T extends React.ElementType = 'input'>(
     isRightError = false,
     isSpacing = true,
     readOnly,
+    className,
     ...props
   }: TextFieldProps<T> & React.ComponentPropsWithoutRef<T>,
-  textFieldRef: React.ForwardedRef<HTMLLabelElement>
+  ref: React.ForwardedRef<HTMLLabelElement>
 ) {
   const isError = isLeftError || isRightError;
   const [isFocus, setIsFocus] = useState(false);
   const Element = as || 'input';
 
   return (
-    <label ref={textFieldRef} htmlFor="textField" className="relative">
+    <label ref={ref} htmlFor="textField" className="relative">
       <section
         className={cn('w-full rounded-8 border-1 p-16', {
           'border-border-pressed bg-white': isFocus,
@@ -51,12 +54,15 @@ function TextField<T extends React.ElementType = 'input'>(
           'border-transparent bg-divider': readOnly,
         })}
       >
-        <Label text={label} />
-        <Spacing size={2} />
+        {label && (
+          <>
+            <Label text={label} />
+            <Spacing size={2} />
+          </>
+        )}
         <div
-          className={cn('relative flex h-142 w-full items-center justify-around', {
+          className={cn('relative flex w-full items-center justify-around', {
             'h-142': Element === 'textarea',
-            'h-22': Element === 'input',
           })}
         >
           {leftIcon}
@@ -68,7 +74,8 @@ function TextField<T extends React.ElementType = 'input'>(
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
                 'bg-divider': readOnly,
-              }
+              },
+              className
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
             onBlurCapture={() => setIsFocus(false)}
@@ -80,15 +87,17 @@ function TextField<T extends React.ElementType = 'input'>(
           {rightIcon}
         </div>
       </section>
-      <section
-        className={cn(
-          'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
-          { absolute: !isSpacing }
-        )}
-      >
-        <LeftCaption isError={isLeftError} text={leftCaption}></LeftCaption>
-        <RightCaption isError={isRightError} text={rightCaption}></RightCaption>
-      </section>
+      {(!!leftCaption || !!rightCaption) && (
+        <section
+          className={cn(
+            'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
+            { absolute: !isSpacing }
+          )}
+        >
+          <LeftCaption isError={isLeftError} text={leftCaption}></LeftCaption>
+          <RightCaption isError={isRightError} text={rightCaption}></RightCaption>
+        </section>
+      )}
     </label>
   );
 }
@@ -121,4 +130,7 @@ function RightCaption({ isError, text }: RightCaptionProps) {
   return <span className={isError ? 'text-warning' : ''}>{text}</span>;
 }
 
-export default forwardRef(TextField);
+export default forwardRef(TextField) as <T extends React.ElementType = 'input'>(
+  props: TextFieldProps<T> &
+    React.ComponentPropsWithoutRef<T> & { ref?: React.ForwardedRef<HTMLLabelElement> }
+) => React.ReactElement;
