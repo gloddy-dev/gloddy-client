@@ -3,8 +3,8 @@
 import AgreeSection from './AgreeForm.client';
 import SchoolSection from './SchoolSection.client';
 import { useFunnelContext } from '../../JoinFunnel';
-import { useJoinContext } from '@/app/join/components/JoinContext.client';
-import { SignUpState } from '@/app/join/type';
+import { useJoinContext } from '@/app/(sub)/join/components/JoinContext.client';
+import { SignUpState } from '@/app/(sub)/join/type';
 
 export default function InputForm() {
   const { handleSubmit } = useJoinContext();

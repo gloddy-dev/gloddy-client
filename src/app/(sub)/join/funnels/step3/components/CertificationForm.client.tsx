@@ -10,7 +10,7 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { memo } from 'react';
 
-import type { SignUpState } from '@/app/join/type';
+import type { SignUpState } from '@/app/(sub)/join/type';
 
 export default memo(function CertificationForm() {
   const { closeModal, modalName } = useModalContext();
