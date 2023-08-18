@@ -3,6 +3,7 @@ import type {
   Comment,
   CreateGroupRequest,
   GroupDetailResponse,
+  GroupMember,
   Grouping,
 } from '@/apis/groups';
 import type { MatesResponse } from '@/apis/profile';
@@ -83,35 +84,41 @@ export const DUMMY_SIGN_UP_DATA = {
 export const DUMMY_ARTICLES_DATA: Article[] = [
   {
     articleId: 1,
-    images: [],
+    images: ['/images/dummy_avatar.png', '/images/dummy_image.png'],
     notice: true,
-    userImageUrl: '/dummy_avatar.png',
-    name: 'Kim',
+    userImageUrl: '/images/dummy_avatar.png',
+    name: 'Ahn Ki Hyeon',
     date: '2021.09.01',
     content:
       '안녕하세요! 모임에 가입해주셔서 감사드립니다.\n오늘 19:00에 있을 모임 참여 전 모임에 필요한 공지 및 전달사항 확인 부탁드리겠습니다.',
     commentCount: 0,
+    isCaptain: true,
+    isCertifiedStudent: true,
   },
   {
     articleId: 2,
-    images: [],
+    images: ['/images/dummy_image.png'],
     notice: false,
-    userImageUrl: '/dummy_avatar.png',
+    userImageUrl: '/images/dummy_avatar.png',
     name: 'Kim',
     date: '2021.09.01',
     content: '안녕하세요! 모임에 가입해주셔서 감사드립니다.',
     commentCount: 100,
+    isCaptain: false,
+    isCertifiedStudent: false,
   },
   {
     articleId: 3,
-    images: [],
+    images: ['/images/dummy_image.png', '/images/dummy_image.png', '/images/dummy_image.png'],
     notice: false,
-    userImageUrl: '/dummy_avatar.png',
+    userImageUrl: '/images/dummy_avatar.png',
     name: 'Kim',
     date: '2021.09.01',
     content:
       '안녕하세요! 모임에 가입해주셔서 감사드립니다.\n오늘 19:00에 있을 모임 참여 전 모임에 필요한 공지 및 전달사항 확인 부탁드리겠습니다.',
     commentCount: 0,
+    isCaptain: false,
+    isCertifiedStudent: false,
   },
 ];
 
@@ -133,35 +140,35 @@ export const DETAIL_DUMMY_DATA: GroupDetailResponse = {
 
 export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
   {
-    mateImageUrl: '/dummy_avatar.png',
+    mateImageUrl: '/images/dummy_avatar.png',
     mateName: 'John Doe',
     school: 'Harvard University',
     createdAt: '2023-08-06T12:34:56Z',
     selectionReason: `글로디 어플을 사용하면서 첫 모임을 해보았던 건데 어색함 없이 모임을 잘 이끌어주시고 너무 친절하셔서 덕분에 거리낌 없이 즐거운 모임을 한 것 같습니다.좋은 추억 만들어 주셔서 감사합니다~`,
   },
   {
-    mateImageUrl: '/dummy_avatar.png',
+    mateImageUrl: '/images/dummy_avatar.png',
     mateName: 'Jane Smith',
     school: 'Stanford University',
     createdAt: '2023-08-05T11:22:33Z',
     selectionReason: 'Both love hiking and nature.',
   },
   {
-    mateImageUrl: '/dummy_avatar.png',
+    mateImageUrl: '/images/dummy_avatar.png',
     mateName: 'Alice Johnson',
     school: 'MIT',
     createdAt: '2023-08-04T09:45:12Z',
     selectionReason: 'Connected through mutual friends.',
   },
   {
-    mateImageUrl: '/dummy_avatar.png',
+    mateImageUrl: '/images/dummy_avatar.png',
     mateName: 'Bob Brown',
     school: 'UCLA',
     createdAt: '2023-08-03T14:56:22Z',
     selectionReason: 'Met at a conference.',
   },
   {
-    mateImageUrl: '/dummy_avatar.png',
+    mateImageUrl: '/images/dummy_avatar.png',
     mateName: 'Charlie Green',
     school: 'Oxford University',
     createdAt: '2023-08-02T10:15:25Z',
@@ -169,34 +176,45 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
   },
 ];
 
-export const MEMBER_DUMMY_DATA = [
+export const MEMBER_DUMMY_DATA: GroupMember[] = [
   {
-    imageUrl: '/dummy_avatar.png',
-    name: '김지환',
+    userId: 1,
+    imageUrl: '/images/dummy_avatar.png',
+    isCertifiedStudent: true,
+    nickName: '김지환',
     isCaptain: true,
-    isCertified: true,
-    personality: 'SOUL MATE',
+    reliabilityLevel: 'HOOD',
   },
   {
-    imageUrl: '/dummy_avatar.png',
-    name: 'david',
+    userId: 2,
+    imageUrl: '/images/dummy_avatar.png',
+    isCertifiedStudent: true,
+    nickName: 'John Doe',
+    reliabilityLevel: 'HOOD',
     isCaptain: false,
-    isCertified: true,
-    personality: 'MATE',
   },
   {
-    imageUrl: '/dummy_avatar.png',
-    name: 'alice',
+    imageUrl: '/images/dummy_avatar.png',
+    isCertifiedStudent: false,
+    nickName: 'Jane Smith',
+    reliabilityLevel: 'HOOD',
+    userId: 3,
     isCaptain: false,
-    isCertified: false,
-    personality: 'MATE',
+  },
+  {
+    imageUrl: '/images/dummy_avatar.png',
+    isCertifiedStudent: true,
+    nickName: 'Alice Johnson',
+    reliabilityLevel: 'HOOD',
+    userId: 4,
+    isCaptain: false,
   },
 ];
 
 export const DUMMY_COMMENTS_DATA: Comment[] = [
   {
     commentId: 1,
-    userImageUrl: '/dummy_avatar.png',
+    userImageUrl: '/images/dummy_avatar.png',
     name: '김지환',
     content:
       '안녕하세요! 모임에 가입해주셔서 감사드립니다.\n오늘 19:00에 있을 모임 참여 전 모임에 필요한 공지 및 전달사항 확인 부탁드리겠습니다.',
@@ -206,7 +224,7 @@ export const DUMMY_COMMENTS_DATA: Comment[] = [
   },
   {
     commentId: 2,
-    userImageUrl: '/dummy_avatar.png',
+    userImageUrl: '/images/dummy_avatar.png',
     name: 'david',
     content: 'hello',
     date: '2021.09.01',
@@ -214,7 +232,7 @@ export const DUMMY_COMMENTS_DATA: Comment[] = [
   },
   {
     commentId: 3,
-    userImageUrl: '/dummy_avatar.png',
+    userImageUrl: '/images/dummy_avatar.png',
     name: 'alice',
     content: '안녕하세요',
     date: '2021.09.01',

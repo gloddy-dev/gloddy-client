@@ -21,6 +21,8 @@ export interface Article {
   content: string;
   notice: boolean;
   commentCount: number;
+  isCertifiedStudent: boolean;
+  isCaptain: boolean;
   images: string[];
 }
 
@@ -60,4 +62,22 @@ export interface ArticlesResponse {
 
 export interface CommentsReponse {
   comments: Comment[];
+}
+
+export interface GroupMember {
+  isCaptain: boolean;
+  isCertifiedStudent: boolean;
+  userId: number;
+  nickName: string;
+  imageUrl: string;
+  reliabilityLevel: string; // TODO: 리터럴로 변경
+}
+
+export interface GroupMembersResponse {
+  groupMembers: GroupMember[];
+}
+
+export interface Notice {
+  noticeId: number;
+  content: string;
 }

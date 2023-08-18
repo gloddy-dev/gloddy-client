@@ -1,65 +1,119 @@
 'use client';
+import { Avatar } from '@/components/Avatar';
+import { Button } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
+import { Flex } from '@/components/Layout';
+import { Modal } from '@/components/Modal';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 import type { Article } from '@/apis/groups/type';
 
 interface ArticleItemProps {
   article: Article;
+  isCaptain: boolean;
   isBoardDetail?: boolean;
 }
 
-export default function ArticleItem({ article, isBoardDetail = false }: ArticleItemProps) {
-  const { name, date, content, commentCount } = article;
-
-  const router = useRouter();
+export default function ArticleItem({
+  article,
+  isCaptain,
+  isBoardDetail = false,
+}: ArticleItemProps) {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const pathname = usePathname();
 
-  const handleMoreClick = () => {};
-  const handleUserClick = () => {};
+  const {
+    userImageUrl,
+    name,
+    date,
+    content,
+    articleId,
+    commentCount,
+    images,
+    isCertifiedStudent,
+    isCaptain: isArticleCaptain,
+  } = article;
+
+  const handleOkClick = () => {};
 
   return (
-    <div className="rounded-8 bg-white2">
-      <div className="p-16">
-        <div className="flex">
-          <div
-            className="relative h-38 w-38 overflow-hidden rounded-full"
-            onClick={handleUserClick}
-          >
-            <Image src="/assets/avatar.svg" alt="avatar" className="object-cover" fill />
-          </div>
-          <Spacing size={12} direction="horizontal" />
-          <div className="flex-grow">
-            <div className="flex items-center gap-6">
-              <h2 className="font-700 text-14 text-gray">{name}</h2>
+    <>
+      <div className="px-20 pb-24 pt-16">
+        <div className="px-4">
+          <Flex align="center" className="gap-12 pb-4 pt-6">
+            <Avatar
+              imageUrl={userImageUrl ?? '/images/dummy_avatar.png'}
+              size="small"
+              isCertified={isCertifiedStudent}
+            />
+            <div className="grow">
+              <Flex align="center">
+                <p className="text-paragraph-2 text-sign-secondary">{name}</p>
+                <Spacing size={2} direction="horizontal" />
+                {isArticleCaptain && (
+                  <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />
+                )}
+                {/* TODO: 등급 아이콘 추가 */}
+              </Flex>
+              <p className="text-caption text-sign-tertiary">{date}</p>
             </div>
-            <p className="font-400 text-10 text-gray4">{date}</p>
-          </div>
-          <Image
-            src="/assets/more.svg"
-            alt="more"
-            width={3}
-            height={13}
-            className="cursor-pointer"
-            onClick={handleMoreClick}
-          />
+            {/* TODO: 내 게시글 여부 api 추가 시 변경 */}
+            {isCaptain && (
+              <Image
+                src="/icons/24/more_secondary.svg"
+                alt="more"
+                width={24}
+                height={24}
+                onClick={() => setIsDeleteModalOpen(true)}
+              />
+            )}
+          </Flex>
+          <Spacing size={16} />
+          <div className="text-paragraph-2 text-sign-primary">{content}</div>
+          {images.length > 0 && (
+            <>
+              <Spacing size={16} />
+              <Flex className="h-160 gap-4 overflow-x-scroll">
+                {images.map((imageUrl, index) => (
+                  <div key={imageUrl + index} className="relative h-160 w-160 shrink-0">
+                    <Image src={imageUrl} alt="article_image" className="object-cover" fill />
+                  </div>
+                ))}
+              </Flex>
+              <Spacing size={16} />
+            </>
+          )}
+          {isBoardDetail && (
+            <>
+              <Spacing size={16} />
+              <Button
+                variant="solid-secondary"
+                as="a"
+                href={`
+                ${pathname}/board/${articleId}
+              `}
+              >
+                댓글 {commentCount}개
+              </Button>
+              <Spacing size={24} />
+            </>
+          )}
         </div>
+      </div>
+      <Modal
+        variant="warning"
+        isOpen={isDeleteModalOpen}
+        onCancelClick={() => setIsDeleteModalOpen(false)}
+        onOkClick={handleOkClick}
+      >
+        <Spacing size={32} />
+        <Image src="/icons/48/warning.svg" alt="warning" width={48} height={48} />
         <Spacing size={12} />
-        <div className="whitespace-pre-line text-12 leading-20 text-gray">{content}</div>
-      </div>
-
-      <div className="border-t-1 border-white">
-        <div className="flex items-center justify-center gap-8 p-16">
-          <Image src="/assets/comment.svg" alt="comment" width={15} height={15} />
-          <p
-            className="cursor-pointer text-12 text-gray2"
-            onClick={() => !isBoardDetail && router.push(`${pathname}/board/${article.articleId}`)}
-          >
-            {commentCount ? `${commentCount}개` : '댓글쓰기'}
-          </p>
-        </div>
-      </div>
-    </div>
+        <p>해당 게시글을 삭제하시겠습니까?</p>
+        <Spacing size={16} />
+      </Modal>
+    </>
   );
 }
