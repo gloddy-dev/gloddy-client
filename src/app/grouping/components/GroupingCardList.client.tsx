@@ -1,5 +1,5 @@
 'use client';
-import GroupingCard from './GroupingCard.client';
+import GroupingCard from '../../../components/Card/GroupingCard.client';
 import { useGetGroups } from '@/apis/groups';
 
 export default function GroupingCardList() {
