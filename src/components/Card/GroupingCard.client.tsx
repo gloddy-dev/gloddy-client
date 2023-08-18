@@ -1,5 +1,5 @@
 'use client';
-import { formatDate } from '../../app/grouping/util';
+import { formatDate } from '../../app/(main)/grouping/util';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import clsx from 'clsx';
