@@ -34,7 +34,7 @@ export default function GroupingCard({ groupingData }: GroupingCardProps) {
 
       <Spacing size={12} direction="horizontal" />
 
-      <section className="relative">
+      <section className="relative grow">
         <p className="w-250 truncate text-subtitle-1">{title}</p>
         <p className="w-250 truncate text-paragraph-2 text-sign-secondary">{content}</p>
         <Spacing size={8} />
