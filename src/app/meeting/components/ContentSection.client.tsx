@@ -1,4 +1,7 @@
 'use client';
+import EvaluationContent from './EvaluationContent.client';
+import ParticipatingContent from './ParticipatingContent.client';
+import WaitingContent from './WaitingContent.client';
 import { Tabs } from '@/components/Tabs';
 
 export default function ContentSection() {
@@ -10,14 +13,14 @@ export default function ContentSection() {
           <Tabs.Tab value="waiting" text="대기중" />
           <Tabs.Tab value="evaluation" text="평가" />
         </Tabs.List>
-        <Tabs.Panel value="participation">
-          <div>참여중</div>
+        <Tabs.Panel value="participating">
+          <ParticipatingContent />
         </Tabs.Panel>
         <Tabs.Panel value="waiting">
-          <div>대기중</div>
+          <WaitingContent />
         </Tabs.Panel>
         <Tabs.Panel value="evaluation">
-          <div>평가</div>
+          <EvaluationContent />
         </Tabs.Panel>
       </Tabs>
     </section>
