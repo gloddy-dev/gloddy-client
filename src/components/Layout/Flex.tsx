@@ -68,5 +68,7 @@ export default forwardRef(function Flex<T extends React.ElementType>(
     </Element>
   );
 }) as <T extends React.ElementType>(
-  props: StrictPropsWithChildren<FlexProps<T> & React.ComponentPropsWithoutRef<T>>
+  props: StrictPropsWithChildren<FlexProps<T> & React.ComponentPropsWithoutRef<T>> & {
+    ref?: React.ComponentPropsWithRef<T>['ref'];
+  }
 ) => JSX.Element;
