@@ -1,5 +1,5 @@
 'use client';
-import EvaluationContent from './EvaluationContent.client';
+import FeedbackContent from './FeedbackContent.client';
 import ParticipatingContent from './ParticipatingContent.client';
 import WaitingContent from './WaitingContent.client';
 import { Tabs } from '@/components/Tabs';
@@ -19,8 +19,8 @@ export default function ContentSection() {
         <Tabs.Panel value="waiting">
           <WaitingContent />
         </Tabs.Panel>
-        <Tabs.Panel value="evaluation">
-          <EvaluationContent />
+        <Tabs.Panel value="feedback">
+          <FeedbackContent />
         </Tabs.Panel>
       </Tabs>
     </section>
