@@ -20,25 +20,24 @@ interface AvatarProps {
   /**
    * 아바타를 클릭했을 때 실행할 함수를 지정합니다.
    */
-  onclick?: () => void;
+  onClick?: () => void;
 }
 export default function Avatar({
   imageUrl,
   isCertified,
-  onclick,
+  onClick,
   size = 'medium',
   children,
 }: PropsWithChildren<AvatarProps>) {
   return (
-    <span className="flex flex-col items-center gap-1">
-      <div
-        className={cn('relative inline-block', {
-          'h-40 w-40': size === 'small',
-          'h-56 w-56': size === 'medium',
-          'h-96 w-96': size === 'large',
-        })}
-        onClick={onclick}
-      >
+    <span
+      className={cn('flex flex-col items-center gap-1', {
+        'w-40': size === 'small',
+        'w-56': size === 'medium',
+        'w-96': size === 'large',
+      })}
+    >
+      <div className="relative inline-block w-full before:block before:pb-[100%]" onClick={onClick}>
         <Image
           src={imageUrl}
           alt="avatar"
@@ -73,7 +72,7 @@ interface NameProps {
 
 function Name({ children, isCaptain = false }: StrictPropsWithChildren<NameProps>) {
   return (
-    <div className="flex items-center">
+    <div className="flex w-full items-center">
       {isCaptain && <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />}
       <p className="truncate text-caption text-sign-tertiary">{children}</p>
     </div>

@@ -53,7 +53,7 @@ export default forwardRef(function Flex<T extends React.ElementType>(
         },
         {
           'flex-row': direction === 'row',
-          'flex-column': direction === 'column',
+          'flex-col': direction === 'column',
         },
         {
           'flex-wrap': wrap === 'wrap',
@@ -68,5 +68,7 @@ export default forwardRef(function Flex<T extends React.ElementType>(
     </Element>
   );
 }) as <T extends React.ElementType>(
-  props: StrictPropsWithChildren<FlexProps<T> & React.ComponentPropsWithoutRef<T>>
+  props: StrictPropsWithChildren<FlexProps<T> & React.ComponentPropsWithoutRef<T>> & {
+    ref?: React.ComponentPropsWithRef<T>['ref'];
+  }
 ) => JSX.Element;

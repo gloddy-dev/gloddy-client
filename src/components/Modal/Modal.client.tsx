@@ -30,7 +30,7 @@ export default function Modal({
   onOkClick,
   okText = '네',
   onCancelClick,
-  cancelText = '아니요',
+  cancelText = '아니오',
   variant,
 }: StrictPropsWithChildren<ModalProps>) {
   return (
