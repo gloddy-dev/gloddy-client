@@ -4,25 +4,18 @@ import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 import type { Grouping } from '@/apis/groups/type';
 
-interface GroupingCardProps {
+interface GroupingCardProps extends React.HTMLAttributes<React.ElementType> {
   groupingData: Grouping;
 }
 
-export default function GroupingCard({ groupingData }: GroupingCardProps) {
+export default function GroupingCard({ groupingData, ...props }: GroupingCardProps) {
   const { title, content, imageUrl, memberCount, maxUser, meetDate, place } = groupingData;
-  const router = useRouter();
 
   return (
-    <Flex
-      className="h-128 bg-white py-16"
-      onClick={() => router.push(`/grouping/${groupingData.groupId}`)}
-      direction="column"
-      align="center"
-    >
+    <Flex className="h-128 bg-white py-16" direction="column" align="center" {...props}>
       <section className="relative h-96 w-96">
         {imageUrl ? (
           <Image fill src={imageUrl} alt="group" className="rounded-8" />
