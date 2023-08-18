@@ -42,6 +42,7 @@ export default function GroupingCard({ groupingData }: GroupingCardProps) {
           <Image src="/icons/16/location.svg" width={16} height={16} alt="location" />
           {place}
         </p>
+        <Spacing size={4} />
         <p className="flex text-caption text-sign-tertiary">
           <Image src="/icons/16/date_range.svg" width={16} height={16} alt="location" />
           {formatDate(meetDate)}
