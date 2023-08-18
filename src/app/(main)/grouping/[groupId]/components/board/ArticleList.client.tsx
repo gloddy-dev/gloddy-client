@@ -1,7 +1,7 @@
 'use client';
 
 import { useGetArticles, useGetGroupDetail } from '@/apis/groups/queries';
-import ArticleItem from '@/app/grouping/components/ArticleItem.client';
+import ArticleItem from '@/app/(main)/grouping/components/ArticleItem.client';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
 import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';

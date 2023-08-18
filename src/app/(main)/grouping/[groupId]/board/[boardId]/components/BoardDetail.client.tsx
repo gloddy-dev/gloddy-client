@@ -2,7 +2,7 @@
 
 import CommentList from './CommentList.client';
 import { useGetArticle } from '@/apis/groups';
-import ArticleItem from '@/app/grouping/components/ArticleItem.client';
+import ArticleItem from '@/app/(main)/grouping/components/ArticleItem.client';
 import { Spacing } from '@/components/common/Spacing';
 import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
 
