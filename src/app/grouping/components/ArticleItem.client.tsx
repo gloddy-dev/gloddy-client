@@ -75,9 +75,9 @@ export default function ArticleItem({
           {images.length > 0 && (
             <>
               <Spacing size={16} />
-              <Flex className="h-160 gap-4">
+              <Flex className="h-160 gap-4 overflow-x-scroll">
                 {images.map((imageUrl, index) => (
-                  <div key={imageUrl + index} className="relative h-160 grow">
+                  <div key={imageUrl + index} className="relative h-160 w-160 shrink-0">
                     <Image src={imageUrl} alt="article_image" className="object-cover" fill />
                   </div>
                 ))}
