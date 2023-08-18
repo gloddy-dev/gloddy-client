@@ -1,7 +1,8 @@
 import { Spacing } from '../common/Spacing';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
-import { HtmlHTMLAttributes, PropsWithChildren } from 'react';
+
+import type { HtmlHTMLAttributes, PropsWithChildren } from 'react';
 
 interface HeaderProps extends HtmlHTMLAttributes<HTMLHeadElement> {
   leftNode?: React.ReactNode;
