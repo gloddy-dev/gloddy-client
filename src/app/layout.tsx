@@ -49,7 +49,9 @@ function Layout({ children }: StrictPropsWithChildren) {
   return (
     <html lang="ko">
       <body className="flex h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
-        <div className="relative h-full w-full max-w-450 bg-white text-black">{children}</div>
+        <div className="relative h-full w-full max-w-450 bg-white text-sign-primary">
+          {children}
+        </div>
       </body>
     </html>
   );

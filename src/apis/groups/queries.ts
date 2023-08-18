@@ -1,4 +1,11 @@
-import { getArticle, getArticles, getGroupDetail, getGroups } from './apis';
+import {
+  getArticle,
+  getArticles,
+  getGroupDetail,
+  getGroupMembers,
+  getGroups,
+  getNotice,
+} from './apis';
 import { Keys } from './keys';
 import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@suspensive/react-query';
 
@@ -46,4 +53,12 @@ export const useGetComments = (groupId: number, articleId: number) => {
   return useSuspenseQuery(Keys.getComments(groupId, articleId), () =>
     getArticle(groupId, articleId)
   );
+};
+
+export const useGetGroupMembers = (groupId: number) => {
+  return useSuspenseQuery(Keys.getGroupMembers(groupId), () => getGroupMembers(groupId));
+};
+
+export const useGetNotice = (groupId: number) => {
+  return useSuspenseQuery(Keys.getNotice(groupId), () => getNotice(groupId));
 };

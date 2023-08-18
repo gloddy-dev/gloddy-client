@@ -49,6 +49,8 @@ export default function TextFieldController<T extends React.ElementType>({
 
   return (
     <TextField
+      ref={textFieldRef}
+      as={as || 'input'}
       register={register}
       leftCaption={(errorMessage as string) ?? leftCaption ?? ''}
       rightCaption={
@@ -67,11 +69,9 @@ export default function TextFieldController<T extends React.ElementType>({
           />
         )
       }
-      readOnly={readOnly}
       isLeftError={isLeftError}
       isRightError={isRightError}
-      ref={textFieldRef}
-      as={as}
+      readOnly={readOnly}
       {...props}
     />
   );

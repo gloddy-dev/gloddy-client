@@ -1,5 +1,5 @@
 'use client';
-import { formatDate } from '../../app/grouping/util';
+import { formatDate } from '../../app/(main)/grouping/util';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import clsx from 'clsx';
@@ -38,10 +38,11 @@ export default function GroupingCard({
           <p className="w-250 truncate text-subtitle-1">{title}</p>
           <p className="w-250 truncate text-paragraph-2 text-sign-secondary">{content}</p>
           <Spacing size={8} />
-          <p className="flex text-caption text-sign-tertiary">
+          <div className="flex text-caption text-sign-tertiary">
             <Image src="/icons/16/location.svg" width={16} height={16} alt="location" />
+            <Spacing size={4} direction="horizontal" />
             {place}
-          </p>
+          </div>
           <Spacing size={4} />
           <p className="flex text-caption text-sign-tertiary">
             <Image src="/icons/16/date_range.svg" width={16} height={16} alt="location" />
