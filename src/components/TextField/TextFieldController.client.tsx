@@ -7,8 +7,9 @@ import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
 interface TextFieldControllerProps<T extends React.ElementType> extends TextFieldProps<T> {
   as?: T;
-  register: UseFormRegisterReturn<string>;
   hookForm: UseFormReturn<any>;
+  register: UseFormRegisterReturn<string>;
+  readOnly?: boolean;
   /**
    * leftCaption에 문구를 표기하는 경우
    */
@@ -25,8 +26,9 @@ interface TextFieldControllerProps<T extends React.ElementType> extends TextFiel
 
 export default function TextFieldController<T extends React.ElementType>({
   as,
-  register,
   hookForm,
+  register,
+  readOnly = false,
   leftCaption,
   maxCount,
   timer,
@@ -47,12 +49,14 @@ export default function TextFieldController<T extends React.ElementType>({
 
   return (
     <TextField
+      register={register}
       leftCaption={(errorMessage as string) ?? leftCaption ?? ''}
       rightCaption={
         maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
       }
       rightIcon={
         rightInputIconName &&
+        !readOnly &&
         (as === 'input' || as === undefined) && (
           <Image
             src={`/icons/24/${rightInputIconName}.svg`}
@@ -63,9 +67,9 @@ export default function TextFieldController<T extends React.ElementType>({
           />
         )
       }
+      readOnly={readOnly}
       isLeftError={isLeftError}
       isRightError={isRightError}
-      register={register}
       ref={textFieldRef}
       as={as}
       {...props}

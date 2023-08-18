@@ -1,6 +1,8 @@
-import CheckboxSection from './components/CheckboxSection.server';
+'use client';
+
 import FormSection from './components/FormSection.client';
-import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.server';
+import NoticeSection from './components/NoticeSection.client';
+import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.client';
 import { Spacing } from '@/components/common/Spacing';
 
 export default function Step1Component() {
@@ -12,8 +14,8 @@ export default function Step1Component() {
         인증해주세요
       </JoinTitleTextMessage>
       <FormSection />
-      <Spacing size={18} />
-      <CheckboxSection />
+      <Spacing size={16} />
+      <NoticeSection />
     </main>
   );
 }

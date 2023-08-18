@@ -3,7 +3,7 @@
 import PersonalitySection from './PersonalitySection.client';
 import { formatDate } from '../util';
 import { useSignUpMutation } from '@/apis/auth';
-import { useJoinContext } from '@/app/join/components/JoinContext';
+import { useJoinContext } from '@/app/join/components/JoinContext.client';
 import { BottomFixedButton } from '@/components/common/Button';
 import { personalityList } from '@/constants/personalityList';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';

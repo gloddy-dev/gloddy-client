@@ -47,10 +47,10 @@ export default function InputForm() {
       </div>
       <Spacing size={20} />
       <CircleCheckbox
-        text="위 글을 공지로 설정합니다."
+        // text="위 글을 공지로 설정합니다."
         onClick={() => setValue('isNotice', !watch('isNotice'))}
         checked={watch('isNotice')}
-        register={register('isNotice')}
+        // register={register('isNotice')}
       />
       <BottomFixedButton
         type="submit"
