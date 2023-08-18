@@ -33,7 +33,7 @@ export default function ArticleItem({
         <div className="px-4">
           <Flex align="center" className="gap-12 pb-4 pt-6">
             <Avatar
-              imageUrl={article.userImageUrl ?? '/dummy_avatar.png'}
+              imageUrl={article.userImageUrl ?? '/images/dummy_avatar.png'}
               size="small"
               isCertified={article.isCertifiedStudent}
             />

@@ -14,7 +14,7 @@ export default function TopSection({ groupDetailData }: TopSectionProps) {
   return (
     <section>
       <div className="relative aspect-[8/5]">
-        <Image src={imageUrl ?? '/dummy_image.png'} alt="thumbnail" fill />
+        <Image src={imageUrl ?? '/public/dummy_image.png'} alt="thumbnail" fill />
       </div>
       <Spacing size={24} />
       <div className="px-20">
