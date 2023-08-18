@@ -16,11 +16,13 @@ export default function GroupingHeader({ title, isCaptain }: GroupingHeaderProps
 
   return (
     <Header className="px-4">
-      <Header.Left className="flex items-center">
-        <IconButton size="large" onClick={() => router.back()}>
-          <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
-        </IconButton>
-        <p>{title}</p>
+      <Header.Left>
+        <Flex align="center">
+          <IconButton size="large" onClick={() => router.back()}>
+            <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
+          </IconButton>
+          <p>{title}</p>
+        </Flex>
       </Header.Left>
       <Header.Right>
         <Flex align="center">
