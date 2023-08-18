@@ -2,8 +2,8 @@
 import MateCardList from './MateCardList';
 import { useFeedbackContext } from '../../FeedbackContext';
 import { BottomFixedButton } from '@/components/common/Button';
-import { Header } from '@/components/Header';
 import { Spacing } from '@/components/common/Spacing';
+import { Header } from '@/components/Header';
 import Image from 'next/image';
 
 import type { FeedbackRequestType } from '../../type';

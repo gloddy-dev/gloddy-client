@@ -1,8 +1,8 @@
 'use client';
 import PraiseCardList from './PraiseCardList';
 import { BottomFixedButton } from '@/components/common/Button';
-import { Header } from '@/components/Header';
 import { Spacing } from '@/components/common/Spacing';
+import { Header } from '@/components/Header';
 import Image from 'next/image';
 
 const DUMMY_USERLIST = [
