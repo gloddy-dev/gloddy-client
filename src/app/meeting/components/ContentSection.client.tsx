@@ -11,7 +11,7 @@ export default function ContentSection() {
         <Tabs.List isStretch={false}>
           <Tabs.Tab value="participating" text="참여중" />
           <Tabs.Tab value="waiting" text="대기중" />
-          <Tabs.Tab value="evaluation" text="평가" />
+          <Tabs.Tab value="feedback" text="평가" />
         </Tabs.List>
         <Tabs.Panel value="participating">
           <ParticipatingContent />

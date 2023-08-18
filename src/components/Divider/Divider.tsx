@@ -37,7 +37,7 @@ export default memo(function Divider<T extends React.ElementType>({
   return (
     <Element
       className={cn(
-        'h-auto w-auto flex-none bg-divider',
+        'absolute inset-x-0 h-auto w-auto flex-none bg-divider',
         {
           'h-1': direction === 'horizontal' && thickness === 'thin',
           'h-8': direction === 'horizontal' && thickness === 'thick',
