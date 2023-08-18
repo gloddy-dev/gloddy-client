@@ -10,7 +10,7 @@ export default function FeedbackContent() {
   const router = useRouter();
 
   return (
-    <div className="px-20">
+    <>
       <Spacing size={20} />
       <SubtitleSection text="상호 평가가 필요한 모임" />
 
@@ -26,6 +26,6 @@ export default function FeedbackContent() {
           </Button>
         </GroupingCard>
       ))}
-    </div>
+    </>
   );
 }

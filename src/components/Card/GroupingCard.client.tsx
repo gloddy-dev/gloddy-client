@@ -21,7 +21,7 @@ export default function GroupingCard({
   const router = useRouter();
 
   return (
-    <Flex className="bg-white py-16" direction="column">
+    <Flex className="bg-white px-20 py-16" direction="column">
       <Flex onClick={() => router.push(`/grouping/${groupingData.groupId}`)} align="center">
         <section className="relative h-96 w-96">
           {imageUrl ? (
