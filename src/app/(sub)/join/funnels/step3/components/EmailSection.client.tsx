@@ -1,6 +1,6 @@
 'use client ';
 
-import { useJoinContext } from '@/app/join/components/JoinContext.client';
+import { useJoinContext } from '@/app/(sub)/join/components/JoinContext.client';
 import { TextField } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 

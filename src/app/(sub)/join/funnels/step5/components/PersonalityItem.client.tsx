@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '@/app/join/components/JoinContext.client';
+import { useJoinContext } from '@/app/(sub)/join/components/JoinContext.client';
 import clsx from 'clsx';
 import { memo } from 'react';
 
