@@ -1,6 +1,6 @@
 'use client';
-import GroupingCard from './GroupingCard.client';
 import { useGetGroups } from '@/apis/groups';
+import { GroupingCard } from '@/components/Card';
 
 export default function GroupingCardList() {
   const { data } = useGetGroups();
