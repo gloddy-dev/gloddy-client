@@ -6,7 +6,9 @@ export default function SearchTextField<T extends React.ElementType>({
 }: TextFieldProps<T>) {
   return (
     <TextField
-      leftInputIcon={<Image src="/icons/24/search.svg" width={24} height={24} alt="search" />}
+      leftIcon={
+        <Image src="/icons/24/search.svg" width={24} height={24} alt="search" className="mr-8" />
+      }
       {...props}
     />
   );

@@ -10,6 +10,7 @@ import type {
   ReissueResponse,
   SMSRequest,
   SMSVerifiyRequest,
+  SchoolSearchResponse,
   SignUpRequest,
   SignUpResponse,
 } from './type';
@@ -27,6 +28,9 @@ export const postSMS = (SMSData: SMSRequest) => publicApi.post('/auth/sms', SMSD
 
 export const postSMSVerify = (SMSVerifyData: SMSVerifiyRequest) =>
   publicApi.post('/auth/sms/verify-code', SMSVerifyData);
+
+export const getSchoolSearch = (searchWord: string) =>
+  publicApi.get<SchoolSearchResponse>(`search/schools?keyword=${searchWord}`);
 
 export const postEmail = (emailData: EmailRequest) => publicApi.post('/auth/email', emailData);
 
