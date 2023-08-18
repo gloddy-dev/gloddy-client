@@ -1,6 +1,5 @@
 import ContentSection from './components/ContentSection.client';
 import { Header } from '@/components/Header';
-import { Tabs } from '@/components/Tabs';
 import React from 'react';
 
 const Meeting = () => {
