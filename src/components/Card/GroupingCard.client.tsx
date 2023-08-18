@@ -7,48 +7,49 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import type { Grouping } from '@/apis/groups/type';
+import type { PropsWithChildren } from 'react';
 
 interface GroupingCardProps {
   groupingData: Grouping;
 }
 
-export default function GroupingCard({ groupingData }: GroupingCardProps) {
+export default function GroupingCard({
+  groupingData,
+  children,
+}: PropsWithChildren<GroupingCardProps>) {
   const { title, content, imageUrl, memberCount, maxUser, meetDate, place } = groupingData;
   const router = useRouter();
 
   return (
-    <Flex
-      className="h-128 bg-white py-16"
-      onClick={() => router.push(`/grouping/${groupingData.groupId}`)}
-      direction="column"
-      align="center"
-    >
-      <section className="relative h-96 w-96">
-        {imageUrl ? (
-          <Image fill src={imageUrl} alt="group" className="rounded-8" />
-        ) : (
-          <div className="h-full rounded-8 bg-white3" />
-        )}
-        <MemberCountBadge maxUser={maxUser} memberCount={memberCount} />
-      </section>
+    <Flex className="bg-white py-16" direction="column">
+      <Flex onClick={() => router.push(`/grouping/${groupingData.groupId}`)} align="center">
+        <section className="relative h-96 w-96">
+          {imageUrl ? (
+            <Image fill src={imageUrl} alt="group" className="rounded-8" />
+          ) : (
+            <div className="h-full rounded-8 bg-white3" />
+          )}
+          <MemberCountBadge maxUser={maxUser} memberCount={memberCount} />
+        </section>
 
-      <Spacing size={12} direction="horizontal" />
+        <Spacing size={12} direction="horizontal" />
 
-      <section className="relative grow">
-        <p className="w-250 truncate text-subtitle-1">{title}</p>
-        <p className="w-250 truncate text-paragraph-2 text-sign-secondary">{content}</p>
-        <Spacing size={8} />
-        <p className="flex text-caption text-sign-tertiary">
-          <Image src="/icons/16/location.svg" width={16} height={16} alt="location" />
-          {place}
-        </p>
-        <Spacing size={4} />
-        <p className="flex text-caption text-sign-tertiary">
-          <Image src="/icons/16/date_range.svg" width={16} height={16} alt="location" />
-          {formatDate(meetDate)}
-        </p>
-        <StatusBadge status="NEW" />
-      </section>
+        <section className="relative grow">
+          <p className="w-250 truncate text-subtitle-1">{title}</p>
+          <p className="w-250 truncate text-paragraph-2 text-sign-secondary">{content}</p>
+          <Spacing size={8} />
+          <p className="flex text-caption text-sign-tertiary">
+            <Image src="/icons/16/location.svg" width={16} height={16} alt="location" />
+            {place}
+          </p>
+          <Spacing size={4} />
+          <p className="flex text-caption text-sign-tertiary">
+            <Image src="/icons/16/date_range.svg" width={16} height={16} alt="location" />
+            {formatDate(meetDate)}
+          </p>
+        </section>
+      </Flex>
+      {children}
     </Flex>
   );
 }
