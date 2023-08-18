@@ -36,7 +36,7 @@ export default function GroupingCard({ groupingData }: GroupingCardProps) {
 
       <section>
         <p className="w-250 truncate text-subtitle-1">{title}</p>
-        <p className="w-250 truncate text-paragraph-2">{content}</p>
+        <p className="w-250 truncate text-paragraph-2 text-sign-secondary">{content}</p>
         <Spacing size={8} />
         <p className="flex text-caption text-sign-tertiary">
           <Image src="/icons/16/location.svg" width={16} height={16} alt="location" />
