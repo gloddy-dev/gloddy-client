@@ -1,20 +1,19 @@
 'use client';
+import { useGetGroupDetail } from '@/apis/groups';
 import { Spacing } from '@/components/common/Spacing';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 
-import type { GroupDetailResponse } from '@/apis/groups';
+export default function TopSection() {
+  const { groupId } = useNumberParams<['groupId']>();
 
-interface TopSectionProps {
-  groupDetailData: GroupDetailResponse;
-}
-
-export default function TopSection({ groupDetailData }: TopSectionProps) {
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { imageUrl, title, content } = groupDetailData;
 
   return (
     <section>
       <div className="relative aspect-[8/5]">
-        <Image src={imageUrl ?? '/public/dummy_image.png'} alt="thumbnail" fill />
+        <Image src={imageUrl ?? '/images/dummy_image.png'} alt="thumbnail" fill />
       </div>
       <Spacing size={24} />
       <div className="px-20">

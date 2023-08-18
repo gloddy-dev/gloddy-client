@@ -1,19 +1,16 @@
 'use client';
 
+import { useGetGroupDetail } from '@/apis/groups';
 import { Spacing } from '@/components/common/Spacing';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-import type { GroupDetailResponse } from '@/apis/groups/type';
+export default function LocationSection() {
+  const { groupId } = useNumberParams<['groupId']>();
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
+  const { place, placeLatitude, placeLongitude } = groupDetailData;
 
-interface LocationSectionProps
-  extends Pick<GroupDetailResponse, 'place' | 'placeLatitude' | 'placeLongitude'> {}
-
-export default function LocationSection({
-  place,
-  placeLatitude = 37.589039,
-  placeLongitude = 127.057761,
-}: LocationSectionProps) {
   return (
     <section>
       <h2 className="pl-4 text-subtitle-3 text-sign-secondary">모임 위치</h2>

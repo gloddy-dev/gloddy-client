@@ -1,18 +1,16 @@
 'use client';
-import { type Notice, useGetNotice } from '@/apis/groups';
+import { type Notice, useGetGroupDetail, useGetNotice } from '@/apis/groups';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 
-interface NoticeProps {
-  isCaptain: boolean;
-}
+export default function NoticeList() {
+  const { groupId } = useNumberParams<['groupId']>();
 
-export default function NoticeList({ isCaptain }: NoticeProps) {
-  const params = useParams() as { groupId: string };
-  const groupId = Number(params.groupId);
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
+  const { isCaptain } = groupDetailData;
 
   const { data: noticeData } = useGetNotice(groupId);
 
