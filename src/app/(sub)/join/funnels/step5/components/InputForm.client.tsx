@@ -3,6 +3,7 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { formatDate } from '../util';
 import { useSignUpMutation } from '@/apis/auth';
+import { Button, ButtonGroup } from '@/components/Button';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
@@ -46,11 +47,11 @@ export default function InputForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <PersonalitySection />
-      <BottomFixedButton
-        text="완료"
-        disabled={watch('personalityIdList').length === 0}
-        type="submit"
-      />
+      <ButtonGroup>
+        <Button disabled={watch('personalityIdList').length === 0} type="submit">
+          완료
+        </Button>
+      </ButtonGroup>
     </form>
   );
 }
