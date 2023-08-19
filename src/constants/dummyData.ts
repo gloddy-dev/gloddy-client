@@ -69,16 +69,14 @@ export const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
 };
 
 export const DUMMY_SIGN_UP_DATA = {
-  phoneNumber: '010-5728-9353',
-  imageUrl:
-    'https://gloddy.s3.ap-northeast-2.amazonaws.com/file/87d8b6c4-fcda-4588-8334-b3ca96e635a0.png',
+  phoneNumber: '010-5728-9310',
   schoolInfo: {
-    school: '가천대학교',
-    email: 'gueit214@gachon.ac.kr',
+    school: '경희대학교',
+    email: 'gueit201@gachon.ac.kr',
     certifiedStudent: true,
   },
-  nickname: 'string',
-  birth: '2023-07-22',
+  nickname: '박규리',
+  birth: '2000-02-14',
   gender: 'MAIL',
   personalities: ['OUTGOING'],
 };
