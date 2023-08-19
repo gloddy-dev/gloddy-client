@@ -19,18 +19,5 @@ export default function ApplyHeader() {
         </Flex>
       </Header.Left>
     </Header>
-    // <Header
-    //   leftNode={
-    //     <Image
-    //       alt="back"
-    //       src="/assets/arrow_back.svg"
-    //       width={8}
-    //       height={30}
-    //       onClick={() => router.back()}
-    //       className="cursor-pointer"
-    //     />
-    //   }
-    //   text="지원서 작성"
-    // />
   );
 }
