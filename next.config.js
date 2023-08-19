@@ -1,6 +1,15 @@
 const { withSentryConfig } = require('@sentry/nextjs');
 
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*',
+      },
+    ],
+  },
+};
 
 const sentryWebpackPluginOptions = {
   silent: true,
