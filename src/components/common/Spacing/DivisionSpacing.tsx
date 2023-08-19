@@ -1,5 +1,5 @@
 import Spacing from './Spacing';
-import clsx from 'clsx';
+import cn from '@/utils/cn';
 
 interface DivisionSpacing {
   className?: string;
@@ -10,7 +10,7 @@ export default function DivisionSpacing({ className, size }: DivisionSpacing) {
   return (
     <Spacing
       size={size}
-      className={clsx('fixed inset-x-0 mx-auto max-w-450 bg-white2', className)}
+      className={cn('fixed inset-x-0 mx-auto max-w-450 bg-divider', className)}
     />
   );
 }
