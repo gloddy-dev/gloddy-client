@@ -79,7 +79,6 @@ export default memo(function EmailForm() {
       />
       <ButtonGroup isSpacing={false}>
         <Button onClick={handlePassClick}>건너뛰기</Button>
-        <Spacing size={8} />
         <Button disabled={!isDirty} type="submit">
           확인
         </Button>
