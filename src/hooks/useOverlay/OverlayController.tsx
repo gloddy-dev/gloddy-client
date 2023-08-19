@@ -1,3 +1,4 @@
+'use client';
 /** @tossdocs-ignore */
 import { Ref, forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
@@ -12,7 +13,7 @@ export interface OverlayControlRef {
   close: () => void;
 }
 
-export const OverlayController = forwardRef(function OverlayController(
+export default forwardRef(function OverlayController(
   { overlayElement: OverlayElement, onExit }: Props,
   ref: Ref<OverlayControlRef>
 ) {
