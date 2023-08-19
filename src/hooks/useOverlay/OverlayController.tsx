@@ -1,5 +1,4 @@
 'use client';
-/** @tossdocs-ignore */
 import { Ref, forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
 import type { CreateOverlayElement } from './type';
