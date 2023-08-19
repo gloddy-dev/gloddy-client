@@ -52,15 +52,15 @@ export default function ButtonGroup({
   isSpacing = true,
   children,
 }: StrictPropsWithChildren<ButtonGroupProps>) {
-  const validChildren = Children.toArray(children).filter(
-    (child) =>
-      isValidElement(child) &&
-      (
-        child.type as {
-          name: string;
-        }
-      ).name === 'Button'
-  ) as ReactElement[];
+  const validChildren = Children.toArray(children).filter((child) => {
+    console.log(child);
+    console.log(isValidElement(child));
+    // (
+    //   child.type as {
+    //     name: string;
+    //   }
+    // ).name === 'Button'
+  }) as ReactElement[];
 
   console.log(validChildren);
 
