@@ -13,18 +13,6 @@ import {
 import type { StrictPropsWithChildren } from '@/types';
 
 export default function Tabs({ children }: StrictPropsWithChildren) {
-  const validListChildren = Children.toArray(children).filter((child) =>
-    isValidElement(child)
-  ) as ReactElement[];
-  const validPanelChildren = Children.toArray(children).filter((child) =>
-    isValidElement(child)
-  ) as ReactElement[];
-
-  if (validListChildren.length !== 1) throw new Error('List 컴포넌트는 1개이어야 합니다.');
-
-  if (validListChildren[0].props.children.length !== validPanelChildren.length)
-    throw new Error('Panel 컴포넌트는 Tab개수와 동일해야 합니다. ');
-
   return <>{children}</>;
 }
 
