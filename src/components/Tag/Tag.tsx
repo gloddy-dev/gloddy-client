@@ -26,6 +26,7 @@ export default memo(function Tag<T>({
           variant === 'outline' && isSelected,
       })}
       onClick={() => onSelected?.(id)}
+      type="button"
     >
       {children}
     </button>

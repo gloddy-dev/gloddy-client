@@ -13,8 +13,8 @@ export default function Step5Component() {
         <br />
         선택해주세요!
       </JoinTitleTextMessage>
-      <JoinContentTextMessage>3개를 선택해주세요.</JoinContentTextMessage>
-      <Spacing size={30} />
+      <JoinContentTextMessage>3개 이상 선택해주세요.</JoinContentTextMessage>
+      <Spacing size={16} />
       <InputForm />
     </main>
   );
