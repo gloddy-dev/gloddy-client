@@ -48,7 +48,7 @@ export default function BottomSheet({
         className="fixed inset-x-0 m-auto max-w-450 !bg-[rgba(0,0,0,0.6)]"
         onTap={isTapOutsideToClose ? onClose : () => {}}
       />
-      <Sheet.Container className="!rounded-t-30 bg-white px-20 pt-27">
+      <Sheet.Container className="!rounded-t-30 bg-white px-20 pt-16">
         <Sheet.Header className="relative h-50 items-center justify-center">
           {isLeftButton && (
             <Image
