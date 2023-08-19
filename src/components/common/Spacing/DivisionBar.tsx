@@ -1,9 +1,11 @@
+import cn from '@/utils/cn';
 import clsx from 'clsx';
 import { type HTMLAttributes, memo } from 'react';
 
 interface SpacingProps extends HTMLAttributes<HTMLDivElement> {
   direction?: 'horizontal' | 'vertical';
   className?: string;
+  size?: number;
 }
 
 export default memo(function Spacing({
@@ -13,10 +15,10 @@ export default memo(function Spacing({
 }: SpacingProps) {
   return (
     <div
-      className={clsx(
-        'flex-none bg-gray9',
-        className,
-        direction === 'vertical' ? 'h-full w-1' : 'h-1 w-full'
+      className={cn(
+        'flex-none bg-divider',
+        { 'h-full w-1': direction === 'vertical', 'h-1 w-full': direction === 'horizontal' },
+        className
       )}
       {...props}
     />
