@@ -4,7 +4,6 @@ import { useJoinContext } from '../../../components/JoinContext.client';
 import { formatDate } from '../util';
 import { useSignUpMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
-import { BottomFixedButton } from '@/components/common/Button';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
