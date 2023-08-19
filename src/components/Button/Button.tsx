@@ -2,7 +2,7 @@ import cn from '@/utils/cn';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-interface ButtonProps<T extends React.ElementType> extends React.HTMLAttributes<T> {
+interface ButtonProps<T extends React.ElementType> extends React.ButtonHTMLAttributes<T> {
   as?: T;
   /**
    * 버튼의 크기를 설정합니다. small: 48px, medium: 56px (default: medium)
