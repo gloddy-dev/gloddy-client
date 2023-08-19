@@ -1,3 +1,5 @@
+import { SchoolSearchResponse } from '@/apis/auth';
+
 import type {
   Article,
   Comment,
@@ -237,5 +239,23 @@ export const DUMMY_COMMENTS_DATA: Comment[] = [
     content: '안녕하세요',
     date: '2021.09.01',
     writer: false,
+  },
+];
+
+export const DUMMY_SEARCH_RESULT_LIST = [
+  {
+    id: 1,
+    name: '경희대학교 서울캠퍼스',
+    address: '서울특별시 동대문구 경희대로 26',
+  },
+  {
+    id: 2,
+    name: '경희주유소',
+    address: '서울특별시 동대문구 경희대로 26',
+  },
+  {
+    id: 3,
+    name: '경희주유소',
+    address: '서울특별시 동대문구 경희대로 26',
   },
 ];

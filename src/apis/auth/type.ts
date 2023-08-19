@@ -36,6 +36,12 @@ export interface SMSVerifiyRequest {
   number: string;
   code: string;
 }
+export interface SchoolSearchResponse {
+  schools: Array<{
+    name: string;
+    address: string;
+  }>;
+}
 
 export interface EmailRequest {
   email: string;
