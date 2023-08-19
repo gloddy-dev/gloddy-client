@@ -1,20 +1,25 @@
 'use client';
+
 import { useJoinContext } from '../../../components/JoinContext.client';
+import { useFunnelContext } from '../../JoinFunnel';
 import { formatAddress } from '../utils';
 import { SchoolSearchResponse, useGetSearchSchool } from '@/apis/auth';
+import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { SearchTextField } from '@/components/TextField';
 import Image from 'next/image';
 
-export default function SchoolSearchSection() {
-  const { register, watch, setValue } = useJoinContext();
+export default function SchoolForm() {
+  const { handleSubmit, getFieldState, register, watch, setValue } = useJoinContext();
+  const { nextStep } = useFunnelContext();
+
   const searchWord = watch('schoolInfo.school');
 
   const { data } = useGetSearchSchool(searchWord);
 
   return (
-    <section>
+    <form onSubmit={handleSubmit(nextStep)}>
       <SearchTextField
         register={register('schoolInfo.school', {
           required: true,
@@ -32,7 +37,10 @@ export default function SchoolSearchSection() {
             }}
           />
         ))}
-    </section>
+      <ButtonGroup>
+        <Button disabled={!getFieldState('schoolInfo.school').invalid}>확인</Button>
+      </ButtonGroup>
+    </form>
   );
 }
 
