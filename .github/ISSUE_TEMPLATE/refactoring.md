@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: Refactoring
 about: Suggest an idea for this project
 title: '[Refactoring] '
 labels: Refactoring
