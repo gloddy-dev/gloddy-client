@@ -5,6 +5,12 @@ import { useRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
+function formatTimer(timer: number) {
+  const minutes = Math.floor(timer / 60);
+  const seconds = timer % 60;
+  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+}
+
 interface TextFieldControllerProps<T extends React.ElementType> extends TextFieldProps<T> {
   as?: T;
   hookForm: UseFormReturn<any>;
@@ -62,7 +68,7 @@ export default function TextFieldController<T extends React.ElementType>({
       register={register}
       leftCaption={(errorMessage as string) ?? leftCaption ?? ''}
       rightCaption={
-        maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
+        maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${formatTimer(timer)}` : ''
       }
       rightIcon={
         rightInputIconName &&
