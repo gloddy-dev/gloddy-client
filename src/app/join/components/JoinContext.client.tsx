@@ -13,6 +13,7 @@ const defaultValues = {
     email: '',
     certifiedStudent: false,
   },
+  verifyEmailNumber: '',
   nickname: '',
   birth: {
     year: '',

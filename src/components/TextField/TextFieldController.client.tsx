@@ -24,6 +24,14 @@ interface TextFieldControllerProps<T extends React.ElementType> extends TextFiel
   timer?: number;
 }
 
+function getErrorMessage(error: any, name: string) {
+  if (name.includes('.')) {
+    const [parentName, childName] = name.split('.');
+    return error[parentName]?.[childName]?.message;
+  }
+  return error[name]?.message;
+}
+
 export default function TextFieldController<T extends React.ElementType>({
   as,
   hookForm,
@@ -39,13 +47,16 @@ export default function TextFieldController<T extends React.ElementType>({
   const { formState, watch, resetField } = hookForm;
   const inputName = register.name;
 
-  const errorMessage = formState.errors[inputName]?.message;
+  const errorMessage = getErrorMessage(formState.errors, inputName);
   const isRightError =
     (maxCount ? watch(inputName).length > maxCount : false) && !formState.isValid;
   const isLeftError = (!!errorMessage || isRightError) && !formState.isValid;
   const isError = isRightError || isLeftError;
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
+
+  console.log(formState.errors);
+  console.log(inputName);
 
   return (
     <TextField
