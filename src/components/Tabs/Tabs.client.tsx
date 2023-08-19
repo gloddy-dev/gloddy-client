@@ -13,23 +13,11 @@ import {
 import type { StrictPropsWithChildren } from '@/types';
 
 export default function Tabs({ children }: StrictPropsWithChildren) {
-  const validListChildren = Children.toArray(children).filter(
-    (child) =>
-      isValidElement(child) &&
-      (
-        child.type as {
-          name: string;
-        }
-      ).name === 'List'
+  const validListChildren = Children.toArray(children).filter((child) =>
+    isValidElement(child)
   ) as ReactElement[];
-  const validPanelChildren = Children.toArray(children).filter(
-    (child) =>
-      isValidElement(child) &&
-      (
-        child.type as {
-          name: string;
-        }
-      ).name === 'Panel'
+  const validPanelChildren = Children.toArray(children).filter((child) =>
+    isValidElement(child)
   ) as ReactElement[];
 
   if (validListChildren.length !== 1) throw new Error('List 컴포넌트는 1개이어야 합니다.');
@@ -65,14 +53,8 @@ interface ListProps {
 }
 
 function List({ isStretch = true, children }: StrictPropsWithChildren<ListProps>) {
-  const validChildren = Children.toArray(children).filter(
-    (child) =>
-      isValidElement(child) &&
-      (
-        child.type as {
-          name: string;
-        }
-      ).name === 'Tab'
+  const validChildren = Children.toArray(children).filter((child) =>
+    isValidElement(child)
   ) as ReactElement[];
 
   if (validChildren.length === 0) {
