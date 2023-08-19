@@ -83,6 +83,12 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
           <Button disabled={!formState.isValid || timerStatus === 'RUNNING'} type="submit">
             인증번호 전송
           </Button>
+          <Button disabled={!formState.isValid || timerStatus === 'RUNNING'} type="submit">
+            인증번호 전송
+          </Button>
+          <Button disabled={!formState.isValid || timerStatus === 'RUNNING'} type="submit">
+            인증번호 전송
+          </Button>
         </ButtonGroup>
       )}
     </form>
