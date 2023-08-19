@@ -21,7 +21,7 @@ export default function GroupingCard({
   const router = useRouter();
 
   return (
-    <Flex className="bg-white py-16" direction="column">
+    <Flex className="bg-white px-20 py-16" direction="column">
       <Flex onClick={() => router.push(`/grouping/${groupingData.groupId}`)} align="center">
         <section className="relative h-96 w-96">
           {imageUrl ? (
@@ -46,6 +46,7 @@ export default function GroupingCard({
           <Spacing size={4} />
           <p className="flex text-caption text-sign-tertiary">
             <Image src="/icons/16/date_range.svg" width={16} height={16} alt="location" />
+            <Spacing size={4} direction="horizontal" />
             {formatDate(meetDate)}
           </p>
         </section>
