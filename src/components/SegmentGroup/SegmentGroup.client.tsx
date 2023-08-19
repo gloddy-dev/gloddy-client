@@ -114,6 +114,7 @@ function Segment<T extends ValueType>({ label, value, className }: SegmentProps<
         className
       )}
       onClick={() => onChange(value)}
+      type="button"
     >
       {label}
     </button>
