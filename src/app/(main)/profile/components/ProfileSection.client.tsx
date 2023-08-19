@@ -10,24 +10,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function ProfileDetail() {
+export default function ProfileSection() {
   const { data: profileData } = useGetProfile();
-  const {
-    age,
-    gender,
-    imageUrl,
-    name,
-    praiseCount,
-    reviewCount,
-    school,
-    personalities,
-    introduce,
-  } = profileData;
+  const { age, gender, imageUrl, name, praiseCount, reviewCount, school, personalities } =
+    profileData;
   const pathname = usePathname();
 
   return (
-    <section className="h-500">
-      <Spacing size={30} />
+    <section className="h-500 rounded-b-24 bg-white shadow-float">
       <Flex direction="column" align="center">
         <ImageFrame canChange={false} />
         <h4 className="text-h4">{name}</h4>
