@@ -53,7 +53,7 @@ export default forwardRef(function Flex<T extends React.ElementType>(
         },
         {
           'flex-row': direction === 'row',
-          'flex-column': direction === 'column',
+          'flex-col': direction === 'column',
         },
         {
           'flex-wrap': wrap === 'wrap',
