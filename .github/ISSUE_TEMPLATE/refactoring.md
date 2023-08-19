@@ -1,8 +1,8 @@
 ---
-name: Feature request
+name: Refactoring
 about: Suggest an idea for this project
-title: '[Feature]'
-labels: Feature
+title: '[Refactoring] '
+labels: Refactoring
 assignees: ''
 ---
 
