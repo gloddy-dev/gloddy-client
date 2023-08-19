@@ -19,7 +19,7 @@ export default memo(function EmailForm() {
   const {
     register,
     handleSubmit,
-    formState: { isDirty, errors },
+    formState: { isDirty },
   } = hookForm;
 
   const { nextStep } = useFunnelContext();
@@ -78,9 +78,7 @@ export default memo(function EmailForm() {
         })}
       />
       <ButtonGroup isSpacing={false}>
-        <Button onClick={nextStep} onClick={handlePassClick}>
-          건너뛰기
-        </Button>
+        <Button onClick={handlePassClick}>건너뛰기</Button>
         <Spacing size={8} />
         <Button disabled={!isDirty} type="submit">
           확인
