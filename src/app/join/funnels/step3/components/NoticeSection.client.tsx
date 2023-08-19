@@ -1,6 +1,6 @@
 'use client';
 
-import { Spacing } from '@/components/common/Spacing';
+import { Flex } from '@/components/Layout';
 import { TextList } from '@/components/TextList';
 import { INSTAGRAM_URL } from '@/constants';
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export default function NoticeSection() {
   return (
-    <section>
+    <Flex direction="column" className="gap-8 py-16">
       <TextList variant="info" className="flex items-center">
         재학생 인증을 진행하면 <span className="text-sign-brand">인증마크</span>
         <Image
@@ -20,13 +20,11 @@ export default function NoticeSection() {
         />
         를 받을 수 있어요
       </TextList>
-      <Spacing size={8} />
       <TextList variant="info">신뢰있는 모임을 위해 재학생 인증을 꼭 진행해주세요</TextList>
-      <Spacing size={8} />
       <TextList variant="info">재학생 이메일 발급</TextList>
       <TextList variant="info-no-icon">
         <Link href={INSTAGRAM_URL}>{INSTAGRAM_URL}</Link>
       </TextList>
-    </section>
+    </Flex>
   );
 }

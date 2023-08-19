@@ -1,21 +1,25 @@
 'use client';
-import EmailSection from './EmailSection.client';
 import { useTimerContext } from './TimerContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailMutation } from '@/apis/auth';
 import { useJoinContext } from '@/app/join/components/JoinContext.client';
-import { SignUpState } from '@/app/join/type';
 import { Button, ButtonGroup } from '@/components/Button';
-import BottomFixedDiv from '@/components/common/BottomFixedDiv';
 import { Spacing } from '@/components/common/Spacing';
 import { useModalContext } from '@/components/Modal';
+import { TextFieldController } from '@/components/TextField';
+import { regexr } from '@/constants/regexr';
 import { memo } from 'react';
 
+import type { SignUpState } from '@/app/join/type';
+
 export default memo(function EmailForm() {
+  const hookForm = useJoinContext();
   const {
+    register,
     handleSubmit,
-    formState: { isDirty },
-  } = useJoinContext();
+    formState: { isDirty, errors },
+  } = hookForm;
+
   const { nextStep } = useFunnelContext();
   const { openModal } = useModalContext();
   const { status: timerStatus, start: timerStart } = useTimerContext();
@@ -39,9 +43,21 @@ export default memo(function EmailForm() {
     );
   };
 
+  console.log(errors, 'errors');
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <EmailSection />
+      <TextFieldController
+        label="학교 이메일"
+        hookForm={hookForm}
+        register={register('schoolInfo.email', {
+          required: true,
+          pattern: {
+            value: regexr.email,
+            message: '* 학교 이메일을 다시 확인해주세요.',
+          },
+        })}
+      />
       <ButtonGroup isSpacing={false}>
         <Button onClick={nextStep}>건너뛰기</Button>
         <Spacing size={8} />
