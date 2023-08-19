@@ -74,6 +74,7 @@ function TextField<T extends React.ElementType = 'input'>(
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
                 'bg-divider': readOnly,
+                'indent-8': !!leftIcon,
               },
               className
             )}
