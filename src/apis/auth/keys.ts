@@ -1,1 +1,3 @@
-export const Keys = {} as const;
+export const Keys = {
+  getSchoolSearch: (searchWord: string) => ['getSchoolSearch', searchWord],
+} as const;
