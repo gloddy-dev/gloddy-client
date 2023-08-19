@@ -8,7 +8,7 @@ interface BottomSheetProps {
   children: React.ReactNode;
   onClose: () => void;
   disableDrag?: boolean;
-  text?: React.ReactNode;
+  title?: React.ReactNode;
   isLeftButton?: boolean;
   isRightButton?: boolean;
   isTapOutsideToClose?: boolean;
@@ -21,7 +21,7 @@ export default function BottomSheet({
   handleLeftButtonClick,
   onClose,
   snap,
-  text,
+  title,
   disableDrag = false,
   isLeftButton = false,
   isRightButton = false,
@@ -60,7 +60,7 @@ export default function BottomSheet({
               onClick={() => (handleLeftButtonClick ? handleLeftButtonClick() : snapTo(1))}
             />
           )}
-          <div className="flex h-full">{text}</div>
+          <div className="flex h-full items-center text-subtitle-1">{title}</div>
           {isRightButton && (
             <Image
               alt="close"

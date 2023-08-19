@@ -3,6 +3,7 @@ import { useTimerContext } from './TimerContext.client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailVerifyMutation } from '@/apis/auth';
+import { Button, ButtonGroup } from '@/components/Button';
 import { BottomFixedButton } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { BottomSheet, useModalContext } from '@/components/Modal';
@@ -40,12 +41,7 @@ export default memo(function CertificationForm() {
   };
 
   return (
-    <BottomSheet isOpen={isOpen} onClose={closeModal} snap={400} isRightButton>
-      <section className="font-700 text-20">
-        <p>회원님의 이메일로 </p>
-        <p>인증번호를 전송하였습니다.</p>
-      </section>
-
+    <BottomSheet isOpen={true} onClose={closeModal} snap={330} isRightButton title="인증번호 입력">
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
           <TextFieldController
@@ -59,15 +55,14 @@ export default memo(function CertificationForm() {
             })}
             maxLength={6}
           />
-          <div className="flex justify-between p-10">
-            <p className="text-14 text-gray3 underline ">재전송하기</p>
-            <p className="text-orange">
-              {Math.floor(timerTime / 60)} : {timerTime % 60}
-            </p>
-          </div>
         </section>
 
-        <BottomFixedButton text="완료" disabled={!formState.isValid} type="submit" />
+        <ButtonGroup>
+          <Button type="button">재전송</Button>
+          <Button type="submit" disabled={!formState.isValid}>
+            확인
+          </Button>
+        </ButtonGroup>
       </form>
     </BottomSheet>
   );

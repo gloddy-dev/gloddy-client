@@ -2,8 +2,8 @@
 import { useCreateGroupContext } from '../CreateGroupContext';
 import InputArea from '../InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
-import { BottomSheet } from '@/components/Modal';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
+import { BottomSheet } from '@/components/Modal';
 import useModalState from '@/store/useModalStore';
 
 export default function MaxUserSection() {
@@ -25,7 +25,7 @@ export default function MaxUserSection() {
         handleLeftButtonClick={() => openModal('maxUser')}
         onClose={closeModal}
         isRightButton
-        text={<div className="text-18">모임 인원</div>}
+        title="모임 인원"
         isTapOutsideToClose
         disableDrag
       >
