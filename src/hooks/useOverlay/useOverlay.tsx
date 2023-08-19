@@ -7,11 +7,12 @@ import type { CreateOverlayElement } from './type';
 
 let elementId = 1;
 
-interface Options {
+interface UseOverlayProps {
   exitOnUnmount?: boolean;
+  delay?: number;
 }
 
-export default function useOverlay({ exitOnUnmount = true }: Options = {}) {
+export default function useOverlay({ exitOnUnmount = true, delay }: UseOverlayProps = {}) {
   const context = useContext(OverlayContext);
 
   if (context == null) {
@@ -45,6 +46,12 @@ export default function useOverlay({ exitOnUnmount = true }: Options = {}) {
             }}
           />
         );
+        if (delay) {
+          setTimeout(() => {
+            unmount(id);
+            console.log(1);
+          }, delay);
+        }
       },
       close: () => {
         overlayRef.current?.close();
