@@ -26,7 +26,6 @@ export default function InputForm() {
       personalities: personalityIdList.map((id) => personalityList[id].keywordInEnglish),
       gender: (gender === '남성' ? 'MAIL' : 'FEMAIL') as GenderType,
     };
-    // FIXME: gender타입 변환 필요x
     mutateSignUp(signUpRequest, {
       onSuccess: (data) => {
         const {
@@ -47,7 +46,7 @@ export default function InputForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <PersonalitySection />
       <ButtonGroup>
-        <Button disabled={watch('personalityIdList').length === 0} type="submit">
+        <Button disabled={watch('personalityIdList').length < 3} type="submit">
           완료
         </Button>
       </ButtonGroup>
