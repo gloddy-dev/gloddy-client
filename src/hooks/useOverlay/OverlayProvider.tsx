@@ -13,9 +13,6 @@ export const OverlayContext = createContext<{
   mount(id: string, element: ReactNode): void;
   unmount(id: string): void;
 } | null>(null);
-if (process.env.NODE_ENV !== 'production') {
-  OverlayContext.displayName = 'OverlayContext';
-}
 
 export default function OverlayProvider({ children }: PropsWithChildren) {
   const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(new Map());

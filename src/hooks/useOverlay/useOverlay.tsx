@@ -1,4 +1,5 @@
-import { OverlayControlRef, OverlayController } from './OverlayController';
+'use client';
+import OverlayController, { OverlayControlRef } from './OverlayController';
 import { OverlayContext } from './OverlayProvider';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 

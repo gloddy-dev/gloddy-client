@@ -2,6 +2,7 @@ import './globals.css';
 
 import QueryProvider from '@/components/common/Provider/QueryProvider.client';
 import { BASE_WEB_URL, KAKAO_SDK_URL } from '@/constants';
+import { OverlayProvider } from '@/hooks/useOverlay';
 import Script from 'next/script';
 
 import type { StrictPropsWithChildren } from '@/types';
@@ -38,7 +39,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <Layout>
-      <QueryProvider>{children}</QueryProvider>
+      <OverlayProvider>
+        <QueryProvider>{children}</QueryProvider>
+      </OverlayProvider>
       {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
       <Script type="text/javascript" src={KAKAO_SDK_URL} strategy="beforeInteractive" />
     </Layout>
