@@ -56,14 +56,6 @@ export default function ButtonGroup({
     isValidElement(child)
   ) as ReactElement[];
 
-  if (validChildren.length === 0) {
-    throw new Error('ButtonGroup 컴포넌트는 Button 컴포넌트를 포함해야 합니다.');
-  }
-
-  if (validChildren.length > 2) {
-    throw new Error('ButtonGroup 컴포넌트는 2개 이하의 Button 컴포넌트를 포함해야 합니다.');
-  }
-
   const props = validChildren.map((child) => child.props as React.ComponentProps<typeof Button>);
 
   const buttonHeight = {
