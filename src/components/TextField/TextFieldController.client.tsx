@@ -5,6 +5,12 @@ import { useRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
+function formatTimer(timer: number) {
+  const minutes = Math.floor(timer / 60);
+  const seconds = timer % 60;
+  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+}
+
 interface TextFieldControllerProps<T extends React.ElementType> extends TextFieldProps<T> {
   as?: T;
   hookForm: UseFormReturn<any>;
@@ -24,6 +30,14 @@ interface TextFieldControllerProps<T extends React.ElementType> extends TextFiel
   timer?: number;
 }
 
+function getErrorMessage(error: any, name: string) {
+  if (name.includes('.')) {
+    const [parentName, childName] = name.split('.');
+    return error[parentName]?.[childName]?.message;
+  }
+  return error[name]?.message;
+}
+
 export default function TextFieldController<T extends React.ElementType>({
   as,
   hookForm,
@@ -39,7 +53,7 @@ export default function TextFieldController<T extends React.ElementType>({
   const { formState, watch, resetField } = hookForm;
   const inputName = register.name;
 
-  const errorMessage = formState.errors[inputName]?.message;
+  const errorMessage = getErrorMessage(formState.errors, inputName);
   const isRightError =
     (maxCount ? watch(inputName).length > maxCount : false) && !formState.isValid;
   const isLeftError = (!!errorMessage || isRightError) && !formState.isValid;
@@ -54,7 +68,7 @@ export default function TextFieldController<T extends React.ElementType>({
       register={register}
       leftCaption={(errorMessage as string) ?? leftCaption ?? ''}
       rightCaption={
-        maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${timer}초 후 재전송` : ''
+        maxCount ? `${watch(inputName).length}/${maxCount}` : timer ? `${formatTimer(timer)}` : ''
       }
       rightIcon={
         rightInputIconName &&

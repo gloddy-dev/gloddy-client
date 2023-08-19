@@ -1,4 +1,5 @@
 import { Spacing } from '../common/Spacing';
+import { Flex } from '../Layout';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
 
@@ -42,11 +43,19 @@ interface SideProps {
 }
 
 function Left({ children, className }: StrictPropsWithChildren<SideProps>) {
-  return <div className={className}>{children}</div>;
+  return (
+    <Flex align="center" className={cn('text-subtitle-1', className)}>
+      {children}
+    </Flex>
+  );
 }
 
 function Right({ children, className }: StrictPropsWithChildren<SideProps>) {
-  return <div className={className}>{children}</div>;
+  return (
+    <Flex align="center" className={cn('text-subtitle-1', className)}>
+      {children}
+    </Flex>
+  );
 }
 
 Header.Left = Left;

@@ -25,7 +25,7 @@ export default function MaxUserSection() {
         handleLeftButtonClick={() => openModal('maxUser')}
         onClose={closeModal}
         isRightButton
-        text={<div className="text-18">모임 인원</div>}
+        title="모임 인원"
         isTapOutsideToClose
         disableDrag
       >

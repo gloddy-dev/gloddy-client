@@ -57,7 +57,7 @@ export default function AgreeSection() {
       isOpen={isOpen}
       onClose={closeModal}
       disableDrag
-      text={<div className="text-subtitle-1">약관 동의</div>}
+      title="약관 동의"
       isRightButton
     >
       <section className="rounded-12 border-1 border-border-default">
