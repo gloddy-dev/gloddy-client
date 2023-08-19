@@ -55,9 +55,6 @@ export default function TextFieldController<T extends React.ElementType>({
 
   const rightInputIconName = isError ? 'warning' : watch(inputName).length > 0 ? 'backspace' : '';
 
-  console.log(formState.errors);
-  console.log(inputName);
-
   return (
     <TextField
       register={register}
