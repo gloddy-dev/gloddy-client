@@ -38,7 +38,7 @@ export default function OverlayProvider({ children }: PropsWithChildren) {
   return (
     <OverlayContext.Provider value={context}>
       {children}
-      {[...overlayById.entries()].map(([id, element]) => (
+      {Array.from(overlayById.entries()).map(([id, element]) => (
         <React.Fragment key={id}>{element}</React.Fragment>
       ))}
     </OverlayContext.Provider>
