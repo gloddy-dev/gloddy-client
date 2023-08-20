@@ -4,11 +4,11 @@ import { Spacing } from '@/components/common/Spacing';
 import { Modal } from '@/components/Modal';
 
 interface MatesModalProps {
-  mateDate: Mate;
+  mateData: Mate;
   close: () => void;
 }
-export default function MatesModal({ mateDate, close }: MatesModalProps) {
-  const { mateName, mateImageUrl } = mateDate;
+export default function MatesModal({ mateData, close }: MatesModalProps) {
+  const { mateName, mateImageUrl } = mateData;
 
   const handleDelete = () => {};
 

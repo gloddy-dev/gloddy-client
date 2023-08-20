@@ -34,7 +34,7 @@ function Mates({ mateData }: MatesProps) {
   const { open } = useOverlay();
 
   const handleMateDelete = () => {
-    open(({ exit }) => <MatesModal mateDate={mateData} close={exit} />);
+    open(({ exit }) => <MatesModal mateData={mateData} close={exit} />);
   };
 
   return (
