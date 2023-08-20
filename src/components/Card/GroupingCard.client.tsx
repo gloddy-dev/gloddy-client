@@ -44,11 +44,11 @@ export default function GroupingCard({
             {place}
           </div>
           <Spacing size={4} />
-          <p className="flex text-caption text-sign-tertiary">
+          <div className="flex text-caption text-sign-tertiary">
             <Image src="/icons/16/date_range.svg" width={16} height={16} alt="location" />
             <Spacing size={4} direction="horizontal" />
             {formatDate(meetDate)}
-          </p>
+          </div>
         </section>
       </Flex>
       {children}

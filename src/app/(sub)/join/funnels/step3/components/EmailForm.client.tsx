@@ -19,6 +19,7 @@ export default memo(function EmailForm() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { isDirty },
   } = hookForm;
 
@@ -48,7 +49,15 @@ export default memo(function EmailForm() {
 
   const handlePassClick = () => {
     open(({ exit }) => (
-      <Modal isOpen={true} variant="warning" onOkClick={nextStep} onCancelClick={exit}>
+      <Modal
+        isOpen={true}
+        variant="warning"
+        onOkClick={() => {
+          setValue('schoolInfo.email', '');
+          nextStep();
+        }}
+        onCancelClick={exit}
+      >
         <Spacing size={32} />
         <Image src="/icons/48/warning.svg" width={48} height={48} alt="warning" />
         <Spacing size={12} />
