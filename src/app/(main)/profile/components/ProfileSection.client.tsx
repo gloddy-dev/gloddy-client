@@ -1,7 +1,7 @@
 'use client';
 import { useGetProfile } from '@/apis/profile';
 import ImageFrame from '@/components/common/ImageFrame';
-import { DivisionBar, Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
 import { Tag } from '@/components/Tag';
@@ -25,23 +25,23 @@ export default function ProfileSection() {
         <Flex className="h-18 text-caption text-sign-tertiary" align="center">
           <Image src="/icons/16/school.svg" width={16} height={16} alt="school" />
           <span>{school}</span>
-          <DivisionBar direction="vertical" className="mx-4" />
+          <Divider direction="vertical" className="mx-4" />
           <Image src="/icons/16/male.svg" width={16} height={16} alt="male" />
           <span>{gender === 'MAIL' ? '남' : '여'}</span>
-          <DivisionBar direction="vertical" className="mx-4" />
+          <Divider direction="vertical" className="mx-4" />
           <Image src="/icons/16/birth.svg" width={16} height={16} alt="birth" />
           <span>{age}세</span>
         </Flex>
         <Spacing size={16} />
         <Flex className="gap-4">
-          {personalities.map((personlity) => (
-            <Tag key={personlity} className="border-none bg-brand-color text-primary-dark">
-              {personalityList.find((it) => it.keywordInEnglish === personlity)?.keyword}
+          {personalities.map((personality) => (
+            <Tag key={personality} className="border-none bg-brand-color text-primary-dark">
+              {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
             </Tag>
           ))}
         </Flex>
         <Spacing size={20} />
-        <DivisionBar />
+        <Divider />
         <Spacing size={24} />
       </Flex>
 
