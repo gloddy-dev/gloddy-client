@@ -37,12 +37,12 @@ export default memo(function Divider<T extends React.ElementType>({
   return (
     <Element
       className={cn(
-        'h-auto w-auto flex-none bg-divider',
+        'flex-none bg-divider',
         {
-          'h-1': direction === 'horizontal' && thickness === 'thin',
-          'h-8': direction === 'horizontal' && thickness === 'thick',
-          'w-1': direction === 'vertical' && thickness === 'thin',
-          'w-8': direction === 'vertical' && thickness === 'thick',
+          'h-1 w-full': direction === 'horizontal' && thickness === 'thin',
+          'h-8 w-full': direction === 'horizontal' && thickness === 'thick',
+          'h-full w-1': direction === 'vertical' && thickness === 'thin',
+          'h-full w-8': direction === 'vertical' && thickness === 'thick',
           'self-stretch': flexItem,
         },
         className
