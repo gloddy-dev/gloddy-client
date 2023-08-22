@@ -1,10 +1,10 @@
 'use client';
 import { Ref, forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
-import type { CreateOverlayElement } from './type';
+import type { OverlayElementType } from './type';
 
-interface Props {
-  overlayElement: CreateOverlayElement;
+interface OverlayControllerProps {
+  overlayElement: OverlayElementType;
   onExit: () => void;
 }
 
@@ -13,7 +13,7 @@ export interface OverlayControlRef {
 }
 
 export default forwardRef(function OverlayController(
-  { overlayElement: OverlayElement, onExit }: Props,
+  { overlayElement: OverlayElement, onExit }: OverlayControllerProps,
   ref: Ref<OverlayControlRef>
 ) {
   const [isOpen, setIsOpen] = useState(false);
