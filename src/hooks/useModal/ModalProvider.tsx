@@ -9,25 +9,25 @@ import React, {
   useState,
 } from 'react';
 
-export const OverlayContext = createContext<{
+export const ModalContext = createContext<{
   mount(id: string, element: ReactNode): void;
   unmount(id: string): void;
 } | null>(null);
 
-export default function OverlayProvider({ children }: PropsWithChildren) {
-  const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(new Map());
+export default function ModalProvider({ children }: PropsWithChildren) {
+  const [modalById, setModalById] = useState<Map<string, ReactNode>>(new Map());
 
   const mount = useCallback((id: string, element: ReactNode) => {
-    setOverlayById((overlayById) => {
-      const cloned = new Map(overlayById);
+    setModalById((modalById) => {
+      const cloned = new Map(modalById);
       cloned.set(id, element);
       return cloned;
     });
   }, []);
 
   const unmount = useCallback((id: string) => {
-    setOverlayById((overlayById) => {
-      const cloned = new Map(overlayById);
+    setModalById((modalById) => {
+      const cloned = new Map(modalById);
       cloned.delete(id);
       return cloned;
     });
@@ -36,11 +36,11 @@ export default function OverlayProvider({ children }: PropsWithChildren) {
   const context = useMemo(() => ({ mount, unmount }), [mount, unmount]);
 
   return (
-    <OverlayContext.Provider value={context}>
+    <ModalContext.Provider value={context}>
       {children}
-      {Array.from(overlayById.entries()).map(([id, element]) => (
+      {Array.from(modalById.entries()).map(([id, element]) => (
         <React.Fragment key={id}>{element}</React.Fragment>
       ))}
-    </OverlayContext.Provider>
+    </ModalContext.Provider>
   );
 }
