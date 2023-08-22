@@ -7,12 +7,10 @@ import { useRef } from 'react';
 import type { StrictPropsWithChildren } from '@/types';
 
 interface ModalWrapperProps {
-  isOpen: boolean;
   onClose?: () => void;
 }
 
 export default function ModalWrapper({
-  isOpen,
   onClose = () => {},
   children,
 }: StrictPropsWithChildren<ModalWrapperProps>) {
@@ -21,7 +19,7 @@ export default function ModalWrapper({
   useOnClickOutside(modalRef, onClose);
 
   return (
-    <PortalWrapper isShow={isOpen}>
+    <PortalWrapper>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
