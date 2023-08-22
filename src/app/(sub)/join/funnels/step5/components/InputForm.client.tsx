@@ -45,7 +45,11 @@ function PersonalitySection() {
     (id: number) => {
       const list = watch('personalityIdList');
       if (list.includes(id)) {
-        list.filter((personalityId: number) => personalityId !== id);
+        setValue(
+          'personalityIdList',
+          list.filter((personalityId: number) => personalityId !== id)
+        );
+        return;
       }
       setValue('personalityIdList', [...list, id]);
     },
