@@ -3,7 +3,7 @@ import OverlayController, { OverlayControlRef } from './OverlayController';
 import { OverlayContext } from './OverlayProvider';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 
-import type { CreateOverlayElement } from './type';
+import type { OverlayElementType } from './type';
 
 let elementId = 1;
 
@@ -34,7 +34,7 @@ export default function useOverlay({ exitOnUnmount = true, delay }: UseOverlayPr
 
   return useMemo(
     () => ({
-      open: (overlayElement: CreateOverlayElement) => {
+      open: (overlayElement: OverlayElementType) => {
         mount(
           id,
           <OverlayController
@@ -49,7 +49,6 @@ export default function useOverlay({ exitOnUnmount = true, delay }: UseOverlayPr
         if (delay) {
           setTimeout(() => {
             unmount(id);
-            console.log(1);
           }, delay);
         }
       },
@@ -60,6 +59,6 @@ export default function useOverlay({ exitOnUnmount = true, delay }: UseOverlayPr
         unmount(id);
       },
     }),
-    [id, mount, unmount]
+    [delay, id, mount, unmount]
   );
 }

@@ -1,5 +1,4 @@
-/** @tossdocs-ignore */
-export type CreateOverlayElement = (props: {
+export type OverlayElementType = (props: {
   isOpen: boolean;
   close: () => void;
   exit: () => void;
