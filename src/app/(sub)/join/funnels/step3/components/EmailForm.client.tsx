@@ -8,7 +8,7 @@ import { Spacing } from '@/components/common/Spacing';
 import { Modal, useModalContext } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import { useOverlay } from '@/hooks/useOverlay';
+import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 import { memo } from 'react';
 
@@ -26,7 +26,7 @@ export default memo(function EmailForm() {
   const { nextStep } = useFunnelContext();
   const { openModal } = useModalContext();
   const { status: timerStatus, start: timerStart } = useTimerContext();
-  const { open } = useOverlay();
+  const { open } = useModal();
 
   const { mutate: mutateEmail } = useEmailMutation();
 

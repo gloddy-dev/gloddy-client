@@ -1,4 +1,4 @@
-export type OverlayElementType = (props: {
+export type ModalElementType = (props: {
   isOpen: boolean;
   close: () => void;
   exit: () => void;

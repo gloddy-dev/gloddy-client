@@ -1,28 +1,28 @@
 'use client';
-import OverlayController, { OverlayControlRef } from './OverlayController';
-import { OverlayContext } from './OverlayProvider';
+import ModalController, { ModalControlRef } from './ModalController';
+import { ModalContext } from './ModalProvider';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 
-import type { OverlayElementType } from './type';
+import type { ModalElementType } from './type';
 
 let elementId = 1;
 
-interface UseOverlayProps {
+interface UseModalProps {
   exitOnUnmount?: boolean;
   delay?: number;
 }
 
-export default function useOverlay({ exitOnUnmount = true, delay }: UseOverlayProps = {}) {
-  const context = useContext(OverlayContext);
+export default function useModal({ exitOnUnmount = true, delay }: UseModalProps = {}) {
+  const context = useContext(ModalContext);
 
   if (context == null) {
-    throw new Error('useOverlay is only available within OverlayProvider.');
+    throw new Error('useModal is only available within ModalProvider.');
   }
 
   const { mount, unmount } = context;
   const [id] = useState(() => String(elementId++));
 
-  const overlayRef = useRef<OverlayControlRef | null>(null);
+  const modalRef = useRef<ModalControlRef | null>(null);
 
   useEffect(() => {
     return () => {
@@ -34,13 +34,13 @@ export default function useOverlay({ exitOnUnmount = true, delay }: UseOverlayPr
 
   return useMemo(
     () => ({
-      open: (overlayElement: OverlayElementType) => {
+      open: (modalElement: ModalElementType) => {
         mount(
           id,
-          <OverlayController
+          <ModalController
             key={Date.now()}
-            ref={overlayRef}
-            overlayElement={overlayElement}
+            ref={modalRef}
+            modalElement={modalElement}
             onExit={() => {
               unmount(id);
             }}
@@ -53,7 +53,7 @@ export default function useOverlay({ exitOnUnmount = true, delay }: UseOverlayPr
         }
       },
       close: () => {
-        overlayRef.current?.close();
+        modalRef.current?.close();
       },
       exit: () => {
         unmount(id);

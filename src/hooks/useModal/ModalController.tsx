@@ -1,20 +1,20 @@
 'use client';
 import { Ref, forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
-import type { OverlayElementType } from './type';
+import type { ModalElementType } from './type';
 
-interface OverlayControllerProps {
-  overlayElement: OverlayElementType;
+interface ModalControllerProps {
+  modalElement: ModalElementType;
   onExit: () => void;
 }
 
-export interface OverlayControlRef {
+export interface ModalControlRef {
   close: () => void;
 }
 
-export default forwardRef(function OverlayController(
-  { overlayElement: OverlayElement, onExit }: OverlayControllerProps,
-  ref: Ref<OverlayControlRef>
+export default forwardRef(function ModalController(
+  { modalElement: ModalElement, onExit }: ModalControllerProps,
+  ref: Ref<ModalControlRef>
 ) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,5 +34,5 @@ export default forwardRef(function OverlayController(
     });
   }, []);
 
-  return <OverlayElement isOpen={isOpen} close={handleClose} exit={onExit} />;
+  return <ModalElement isOpen={isOpen} close={handleClose} exit={onExit} />;
 });
