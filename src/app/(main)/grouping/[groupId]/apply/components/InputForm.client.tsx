@@ -22,7 +22,7 @@ export default function InputForm() {
     },
   });
   const { register, handleSubmit, formState } = hookForm;
-  const { open } = useModal();
+  const { open, close } = useModal();
 
   const onSubmit = (data: ApplyFormType) => {
     console.log(data);
@@ -53,8 +53,8 @@ export default function InputForm() {
       <ButtonGroup>
         <Button
           onClick={() =>
-            open(({ exit }) => (
-              <Modal onOkClick={handleSubmit(onSubmit)} onCancelClick={exit} variant="success">
+            open(() => (
+              <Modal onOkClick={handleSubmit(onSubmit)} onCancelClick={close} variant="success">
                 <Spacing size={32} />
                 <Image src="/icons/48/check.svg" alt="check" width={48} height={48} />
                 <Spacing size={12} />

@@ -3,14 +3,15 @@
 import AgreeBottomSheet from './components/AgreeBottomSheet.client';
 import SchoolForm from './components/SchoolForm.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.client';
+import { useDidMount } from '@/hooks/common/useDidMount';
 import { useModal } from '@/hooks/useModal';
-import { useEffect } from 'react';
 
 export default function Step2Component() {
-  const { open } = useModal();
-  useEffect(() => {
-    open(({ exit }) => <AgreeBottomSheet close={exit} />);
-  }, [open]);
+  const { open, close } = useModal();
+
+  useDidMount(() => {
+    open(() => <AgreeBottomSheet close={close} />);
+  });
 
   return (
     <main>
