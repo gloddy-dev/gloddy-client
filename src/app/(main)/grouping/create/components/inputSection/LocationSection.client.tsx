@@ -17,7 +17,6 @@ export default function LocationSection() {
       />
 
       <BottomSheet
-        isOpen={modalName === 'meetingLocation'}
         snap={500}
         handleLeftButtonClick={() => openModal('meetingLocation')}
         onClose={closeModal}

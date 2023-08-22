@@ -28,17 +28,14 @@ export default memo(function EmailForm() {
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
     if (!data.schoolInfo.email) return;
-    // mutateEmail(
-    //   { email: data.schoolInfo.email },
-    //   {
-    //     onSuccess: () => {
-    //       open(({ exit }) => (
-    //         <VerifyBottomSheet close={exit} hookForm={hookForm} onOkClick={nextStep} />
-    //       ));
-    //     },
-    //   }
-    // );
-    open(() => <VerifyBottomSheet close={close} hookForm={hookForm} onOkClick={nextStep} />);
+    mutateEmail(
+      { email: data.schoolInfo.email },
+      {
+        onSuccess: () => {
+          open(() => <VerifyBottomSheet close={close} hookForm={hookForm} onOkClick={nextStep} />);
+        },
+      }
+    );
   };
 
   const handlePassClick = () => {

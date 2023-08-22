@@ -7,10 +7,6 @@ import type { ModalElementType } from './type';
 
 let elementId = 1;
 
-interface ModalControllerProps {
-  modalElement: ModalElementType;
-}
-
 interface UseModalProps {
   exitOnUnmount?: boolean;
   delay?: number;
@@ -30,22 +26,23 @@ export default function useModal({ exitOnUnmount = true, delay }: UseModalProps 
     };
   }, [exitOnUnmount, id, unmount]);
 
-  return useMemo(
-    () => ({
-      open: (modalElement: ModalElementType) => {
-        mount(id, <ModalController modalElement={modalElement} />);
-        if (delay) {
-          setTimeout(() => {
-            unmount(id);
-          }, delay);
-        }
-      },
-      close: () => {
-        unmount(id);
-      },
-    }),
-    [delay, id, mount, unmount]
-  );
+  return {
+    open: (modalElement: ModalElementType) => {
+      mount(id, <ModalController modalElement={modalElement} />);
+      if (delay) {
+        setTimeout(() => {
+          unmount(id);
+        }, delay);
+      }
+    },
+    close: () => {
+      unmount(id);
+    },
+  };
+}
+
+interface ModalControllerProps {
+  modalElement: ModalElementType;
 }
 
 function ModalController({ modalElement: ModalElement }: ModalControllerProps) {
