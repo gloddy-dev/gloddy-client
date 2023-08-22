@@ -1,5 +1,6 @@
 'use client';
 import { LoginResponse, postReissue, useLoginMutation } from '@/apis/auth';
+import { useDidUnMount } from '@/hooks/common/useDidUnMount';
 import { getTokenFromCookie, setTokenAtCookie } from '@/utils/auth/tokenController';
 
 export default function Home() {
@@ -38,6 +39,10 @@ export default function Home() {
     );
     console.log(response);
   };
+
+  useDidUnMount(() => {
+    alert('aa');
+  });
 
   return (
     <main>
