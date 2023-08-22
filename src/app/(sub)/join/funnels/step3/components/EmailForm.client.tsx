@@ -1,20 +1,32 @@
 'use client';
-import { useTimerContext } from './TimerContext.client';
+import CertificateSkipModal from './CertificateSkipModal.client';
+import VerifyBottomSheet from './VerifyBottomSheet.client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
-import { Modal, useModalContext } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useModal } from '@/hooks/useModal';
-import Image from 'next/image';
+import { useTimer } from '@/hooks/useTimer';
 import { memo } from 'react';
 
 import type { SignUpState } from '../../../type';
 
 export default memo(function EmailForm() {
+  const { nextStep } = useFunnelContext();
+  const {
+    status: timerStatus,
+    start: timerStart,
+    time: verifyTime,
+  } = useTimer({
+    initialTime: 180,
+    timerType: 'DECREMENTAL',
+    endTime: 0,
+  });
+
+  const { open } = useModal();
+  const { mutate: mutateEmail } = useEmailMutation();
   const hookForm = useJoinContext();
   const {
     register,
@@ -23,12 +35,7 @@ export default memo(function EmailForm() {
     formState: { isDirty },
   } = hookForm;
 
-  const { nextStep } = useFunnelContext();
-  const { openModal } = useModalContext();
-  const { status: timerStatus, start: timerStart } = useTimerContext();
-  const { open } = useModal();
-
-  const { mutate: mutateEmail } = useEmailMutation();
+  console.log(verifyTime);
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
     if (!data.schoolInfo.email) return;
@@ -36,7 +43,14 @@ export default memo(function EmailForm() {
       { email: data.schoolInfo.email },
       {
         onSuccess: () => {
-          openModal('certification');
+          open(({ exit }) => (
+            <VerifyBottomSheet
+              close={exit}
+              verifyTime={verifyTime}
+              hookForm={hookForm}
+              onOkClick={nextStep}
+            />
+          ));
           if (timerStatus === 'STOPPED') {
             timerStart();
           } else {
@@ -49,26 +63,13 @@ export default memo(function EmailForm() {
 
   const handlePassClick = () => {
     open(({ exit }) => (
-      <Modal
-        variant="warning"
+      <CertificateSkipModal
         onOkClick={() => {
           setValue('schoolInfo.email', '');
           nextStep();
         }}
         onCancelClick={exit}
-      >
-        <Spacing size={32} />
-        <Image src="/icons/48/warning.svg" width={48} height={48} alt="warning" />
-        <Spacing size={12} />
-        <p className="text-subtitle-1">재학생 인증을 건너뛰시겠습니까?</p>
-        <Spacing size={4} />
-        <p className="text-sign-tertiary">
-          회원가입 후 개인 프로필에서
-          <br />
-          재학생 인증을 진행할 수 있어요.
-        </p>
-        <Spacing size={16} />
-      </Modal>
+      />
     ));
   };
 
