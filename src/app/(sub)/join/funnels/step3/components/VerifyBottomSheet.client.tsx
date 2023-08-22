@@ -1,27 +1,24 @@
 'use client';
-import { useTimerContext } from './TimerContext.client';
 import { useJoinContext } from '../../../components/JoinContext.client';
-import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
 import { BottomSheet } from '@/components/Modal';
 import { ModalProps } from '@/components/Modal/Modal.client';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
+import { useTimer } from '@/hooks/useTimer';
 import { memo } from 'react';
 
 import type { SignUpState } from '../../../type';
 
 interface VerifyBottomSheetProps extends ModalProps {
   close: () => void;
-  verifyTime: number;
   hookForm: ReturnType<typeof useJoinContext>;
   onOkClick: () => void;
 }
 
 export default memo(function VerifyBottomSheet({
   close,
-  verifyTime,
   hookForm,
   onOkClick,
 }: VerifyBottomSheetProps) {
@@ -32,6 +29,16 @@ export default memo(function VerifyBottomSheet({
     formState: { isValid },
     setError,
   } = hookForm;
+  const {
+    status: timerStatus,
+    start: timerStart,
+    time: verifyTime,
+  } = useTimer({
+    initialTime: 180,
+    timerType: 'DECREMENTAL',
+    endTime: 0,
+  });
+  console.log(verifyTime);
 
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 

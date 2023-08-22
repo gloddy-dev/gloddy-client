@@ -1,5 +1,1 @@
-export type ModalElementType = (props: {
-  isOpen: boolean;
-  close: () => void;
-  exit: () => void;
-}) => JSX.Element;
+export type ModalElementType = (props: { isOpen: boolean }) => JSX.Element;
