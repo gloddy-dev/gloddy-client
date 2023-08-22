@@ -39,7 +39,7 @@ export default memo(function EmailForm() {
   };
 
   const handlePassClick = () => {
-    openSkipModal(() => (
+    openSkipModal(
       <CertificateSkipModal
         onOkClick={() => {
           setValue('schoolInfo.email', '');
@@ -47,7 +47,7 @@ export default memo(function EmailForm() {
         }}
         onCancelClick={closeSkipModal}
       />
-    ));
+    );
   };
 
   return (
