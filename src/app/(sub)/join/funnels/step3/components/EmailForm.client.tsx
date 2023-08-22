@@ -8,24 +8,15 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useModal } from '@/hooks/useModal';
-import { useTimer } from '@/hooks/useTimer';
 import { memo } from 'react';
 
 import type { SignUpState } from '../../../type';
 
 export default memo(function EmailForm() {
   const { nextStep } = useFunnelContext();
-  const {
-    status: timerStatus,
-    start: timerStart,
-    time: verifyTime,
-  } = useTimer({
-    initialTime: 180,
-    timerType: 'DECREMENTAL',
-    endTime: 0,
-  });
 
-  const { open } = useModal();
+  const { open: openSkipModal, close: closeSkipModal } = useModal();
+  const { open, close } = useModal();
   const { mutate: mutateEmail } = useEmailMutation();
   const hookForm = useJoinContext();
   const {
@@ -35,40 +26,29 @@ export default memo(function EmailForm() {
     formState: { isDirty },
   } = hookForm;
 
-  console.log(verifyTime);
-
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
     if (!data.schoolInfo.email) return;
-    mutateEmail(
-      { email: data.schoolInfo.email },
-      {
-        onSuccess: () => {
-          open(({ exit }) => (
-            <VerifyBottomSheet
-              close={exit}
-              verifyTime={verifyTime}
-              hookForm={hookForm}
-              onOkClick={nextStep}
-            />
-          ));
-          if (timerStatus === 'STOPPED') {
-            timerStart();
-          } else {
-            // TODO : 인증번호 시간 끝나지 않았을 때에 대한 처리
-          }
-        },
-      }
-    );
+    // mutateEmail(
+    //   { email: data.schoolInfo.email },
+    //   {
+    //     onSuccess: () => {
+    //       open(({ exit }) => (
+    //         <VerifyBottomSheet close={exit} hookForm={hookForm} onOkClick={nextStep} />
+    //       ));
+    //     },
+    //   }
+    // );
+    open(() => <VerifyBottomSheet close={close} hookForm={hookForm} onOkClick={nextStep} />);
   };
 
   const handlePassClick = () => {
-    open(({ exit }) => (
+    openSkipModal(() => (
       <CertificateSkipModal
         onOkClick={() => {
           setValue('schoolInfo.email', '');
           nextStep();
         }}
-        onCancelClick={exit}
+        onCancelClick={closeSkipModal}
       />
     ));
   };
@@ -87,8 +67,10 @@ export default memo(function EmailForm() {
         })}
       />
       <ButtonGroup isSpacing={false}>
-        <Button onClick={handlePassClick}>건너뛰기</Button>
-        <Button disabled={!isDirty} type="submit">
+        <Button type="button" onClick={handlePassClick}>
+          건너뛰기
+        </Button>
+        <Button type="submit" disabled={!isDirty}>
           확인
         </Button>
       </ButtonGroup>
