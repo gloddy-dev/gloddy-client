@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { StrictPropsWithChildren } from '@/types';
 
-interface ModalProps {
+export interface ModalProps {
   onOkClick?: () => void;
   okText?: string;
   onCancelClick?: () => void;

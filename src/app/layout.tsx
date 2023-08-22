@@ -39,9 +39,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <Layout>
-      <ModalProvider>
-        <QueryProvider>{children}</QueryProvider>
-      </ModalProvider>
+      <QueryProvider>
+        <ModalProvider>{children}</ModalProvider>
+      </QueryProvider>
       {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
       <Script type="text/javascript" src={KAKAO_SDK_URL} strategy="beforeInteractive" />
     </Layout>

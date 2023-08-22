@@ -1,7 +1,7 @@
 'use client';
 import ModalController, { ModalControlRef } from './ModalController';
-import { ModalContext } from './ModalProvider';
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useModalContext } from './ModalProvider';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import type { ModalElementType } from './type';
 
@@ -13,11 +13,7 @@ interface UseModalProps {
 }
 
 export default function useModal({ exitOnUnmount = true, delay }: UseModalProps = {}) {
-  const context = useContext(ModalContext);
-
-  if (context == null) {
-    throw new Error('useModal is only available within ModalProvider.');
-  }
+  const context = useModalContext();
 
   const { mount, unmount } = context;
   const [id] = useState(() => String(elementId++));
