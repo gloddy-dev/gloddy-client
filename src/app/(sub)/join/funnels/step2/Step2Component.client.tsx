@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 export default function Step2Component() {
   const { open } = useModal();
   useEffect(() => {
-    open(({ close }) => <AgreeBottomSheet close={close} />);
+    open(({ exit }) => <AgreeBottomSheet close={exit} />);
   }, [open]);
 
   return (
