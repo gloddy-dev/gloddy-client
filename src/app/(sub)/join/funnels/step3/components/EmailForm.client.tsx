@@ -50,7 +50,6 @@ export default memo(function EmailForm() {
   const handlePassClick = () => {
     open(({ exit }) => (
       <Modal
-        isOpen={true}
         variant="warning"
         onOkClick={() => {
           setValue('schoolInfo.email', '');

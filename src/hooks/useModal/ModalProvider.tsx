@@ -32,7 +32,6 @@ export default function ModalProvider({ children }: PropsWithChildren) {
       return cloned;
     });
   }, []);
-
   const context = useMemo(() => ({ mount, unmount }), [mount, unmount]);
 
   return (

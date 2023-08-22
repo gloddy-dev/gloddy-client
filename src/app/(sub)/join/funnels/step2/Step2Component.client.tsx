@@ -1,10 +1,17 @@
 'use client';
 
-import AgreeSection from './components/AgreeForm.client';
+import AgreeBottomSheet from './components/AgreeBottomSheet.client';
 import SchoolForm from './components/SchoolForm.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.client';
+import { useModal } from '@/hooks/useModal';
+import { useEffect } from 'react';
 
 export default function Step2Component() {
+  const { open } = useModal();
+  useEffect(() => {
+    open(({ close }) => <AgreeBottomSheet close={close} />);
+  }, [open]);
+
   return (
     <main>
       <JoinTitleTextMessage>
@@ -13,7 +20,6 @@ export default function Step2Component() {
         선택해주세요
       </JoinTitleTextMessage>
       <SchoolForm />
-      <AgreeSection />
     </main>
   );
 }

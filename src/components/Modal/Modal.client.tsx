@@ -5,7 +5,6 @@ import { Spacing } from '../common/Spacing';
 import { StrictPropsWithChildren } from '@/types';
 
 interface ModalProps {
-  isOpen: boolean;
   onOkClick?: () => void;
   okText?: string;
   onCancelClick?: () => void;
@@ -26,7 +25,6 @@ const variantMap = {
 
 export default function Modal({
   children,
-  isOpen,
   onOkClick,
   okText = '네',
   onCancelClick,
@@ -34,7 +32,7 @@ export default function Modal({
   variant,
 }: StrictPropsWithChildren<ModalProps>) {
   return (
-    <ModalWrapper isOpen={isOpen} onClose={onCancelClick}>
+    <ModalWrapper onClose={onCancelClick}>
       <div className="flex w-300 flex-col items-center rounded-16 bg-white px-16 text-center">
         {children}
         {variant && (
