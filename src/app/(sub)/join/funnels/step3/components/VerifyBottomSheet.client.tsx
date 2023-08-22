@@ -3,7 +3,7 @@ import { useJoinContext } from '../../../components/JoinContext.client';
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
 import { BottomSheet } from '@/components/Modal';
-import { ModalProps } from '@/components/Modal/Modal.client';
+import { ModalProps } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
@@ -65,7 +65,7 @@ export default memo(function VerifyBottomSheet({
   };
 
   return (
-    <BottomSheet isOpen={true} onClose={close} snap={300} isRightButton title="인증번호 입력">
+    <BottomSheet onClose={close} snap={300} isRightButton title="인증번호 입력">
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
           <TextFieldController

@@ -20,7 +20,6 @@ export default function MaxUserSection() {
       />
 
       <BottomSheet
-        isOpen={modalName === 'maxUser'}
         snap={500}
         handleLeftButtonClick={() => openModal('maxUser')}
         onClose={closeModal}

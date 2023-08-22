@@ -45,7 +45,7 @@ function TextField<T extends React.ElementType = 'input'>(
   const Element = as || 'input';
 
   return (
-    <label ref={ref} htmlFor="textField" className="relative">
+    <label ref={ref} htmlFor="textField" className="relative py-8">
       <section
         className={cn('w-full rounded-8 border-1 p-16', {
           'border-border-pressed bg-white': isFocus,

@@ -1,10 +1,9 @@
 'use client';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Sheet, { type SheetRef } from 'react-modal-sheet';
 
 interface BottomSheetProps {
-  isOpen: boolean;
   snap: number;
   children: React.ReactNode;
   onClose: () => void;
@@ -18,7 +17,6 @@ interface BottomSheetProps {
 
 export default function BottomSheet({
   children,
-  isOpen,
   handleLeftButtonClick,
   onClose,
   snap,
@@ -30,6 +28,10 @@ export default function BottomSheet({
 }: BottomSheetProps) {
   const ref = useRef<SheetRef>();
   const snapTo = (i: number) => ref.current?.snapTo(i);
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
 
   return (
     <Sheet

@@ -44,7 +44,6 @@ export default function MeetDateSection() {
       />
 
       <BottomSheet
-        isOpen={modalName === 'meetingDate'}
         snap={650}
         handleLeftButtonClick={() => openModal('meetingDate')}
         onClose={closeModal}

@@ -50,7 +50,7 @@ export default function AgreeBottomSheet({ close }: AgreeBottomSheetProps) {
   };
 
   return (
-    <BottomSheet snap={300} onClose={close} disableDrag title="약관 동의" isRightButton isOpen>
+    <BottomSheet snap={300} onClose={close} disableDrag title="약관 동의" isRightButton>
       <section className="rounded-12 border-1 border-border-default">
         <div
           className="flex h-48 items-center gap-8 px-8"
