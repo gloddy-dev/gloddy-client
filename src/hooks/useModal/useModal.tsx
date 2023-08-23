@@ -9,24 +9,24 @@ interface UseModalProps {
   delay?: number;
 }
 
-export default function useModal({ delay }: UseModalProps = {}) {
-  const { mount, unmount } = useModalContext();
+export default function useModal({ delay = 0 }: UseModalProps = {}) {
+  const { addModal, removeModal } = useModalContext();
 
   const [id] = useState(() => String(elementId++));
 
-  useDidUnMount(() => unmount(id));
+  useDidUnMount(() => removeModal(id));
 
   return {
     open: (modalElement: ReactElement) => {
-      mount(id, modalElement);
+      addModal(id, modalElement);
       if (delay) {
         setTimeout(() => {
-          unmount(id);
+          removeModal(id);
         }, delay);
       }
     },
     close: () => {
-      unmount(id);
+      removeModal(id);
     },
   };
 }
