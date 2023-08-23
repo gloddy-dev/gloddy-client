@@ -1,11 +1,8 @@
-'use client';
-
 import { Button } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
 import { BottomSheet } from '@/components/Modal';
-import { useModals } from '@/hooks/useModals';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type AgreeCheckListType = {
   name: string;
@@ -26,13 +23,12 @@ const defaultAgreeCheckList = [
   },
 ];
 
-export default function AgreeSection() {
-  const { isOpen, openModal, closeModal } = useModals<'modal'>();
-  const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>(defaultAgreeCheckList);
+interface AgreeBottomSheetProps {
+  onClose: () => void;
+}
 
-  useEffect(() => {
-    openModal('modal');
-  }, [openModal]);
+export default function AgreeBottomSheet({ onClose }: AgreeBottomSheetProps) {
+  const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>(defaultAgreeCheckList);
 
   const handleAgreeAllCheckList = () => {
     setAgreeCheckList((agreeCheckList) =>
@@ -52,14 +48,7 @@ export default function AgreeSection() {
   };
 
   return (
-    <BottomSheet
-      snap={300}
-      isOpen={isOpen}
-      onClose={closeModal}
-      disableDrag
-      title="약관 동의"
-      isRightButton
-    >
+    <BottomSheet snap={300} onClose={onClose} disableDrag title="약관 동의" isRightButton>
       <section className="rounded-12 border-1 border-border-default">
         <div
           className="flex h-48 items-center gap-8 px-8"
@@ -73,7 +62,10 @@ export default function AgreeSection() {
           <div
             key={agree.name}
             className="flex h-40 items-center gap-8 bg-sub px-8 text-paragraph-2 text-sign-secondary"
-            onClick={() => handleAgreeCheckList(agree.name)}
+            onClick={() => {
+              console.log(1, agree.name, agree.isAgreed);
+              handleAgreeCheckList(agree.name);
+            }}
           >
             <CircleCheckbox key={agree.name} checked={agree.isAgreed} variant="outline" />
             <p className="">
@@ -88,7 +80,7 @@ export default function AgreeSection() {
 
       <Button
         disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
-        onClick={closeModal}
+        onClick={close}
       >
         완료
       </Button>

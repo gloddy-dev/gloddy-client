@@ -7,7 +7,7 @@ import Image from 'next/image';
 export default function GroupingModal() {
   return (
     <div>
-      <Modal isOpen variant="warning">
+      <Modal variant="warning">
         <Spacing size={32} />
         <Image src="/icons/48/warning.svg" width={48} height={48} alt="warning" />
         <Spacing size={12} />

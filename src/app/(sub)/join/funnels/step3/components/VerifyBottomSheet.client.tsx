@@ -1,20 +1,25 @@
-'use client';
-import { useTimerContext } from './TimerContext.client';
 import { useJoinContext } from '../../../components/JoinContext.client';
-import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
-import { BottomSheet, useModalContext } from '@/components/Modal';
+import { BottomSheet, type ModalProps } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
+import { useTimer } from '@/hooks/useTimer';
 import { memo } from 'react';
 
 import type { SignUpState } from '../../../type';
 
-export default memo(function CertificationForm() {
-  const { closeModal, modalName } = useModalContext();
-  const { time: timerTime } = useTimerContext();
-  const hookForm = useJoinContext();
+interface VerifyBottomSheetProps extends ModalProps {
+  onClose: () => void;
+  hookForm: ReturnType<typeof useJoinContext>;
+  onOkClick: () => void;
+}
+
+export default memo(function VerifyBottomSheet({
+  onClose,
+  hookForm,
+  onOkClick,
+}: VerifyBottomSheetProps) {
   const {
     register,
     handleSubmit,
@@ -22,11 +27,14 @@ export default memo(function CertificationForm() {
     formState: { isValid },
     setError,
   } = hookForm;
-  const { nextStep } = useFunnelContext();
+  const { status: timerStatus, time: verifyTime } = useTimer({
+    initialTime: 180,
+    timerType: 'DECREMENTAL',
+    endTime: 0,
+    autostart: true,
+  });
 
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
-
-  const isOpen = modalName === 'certification';
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo' | 'verifyEmailNumber'>) => {
     if (!data.verifyEmailNumber || !data.schoolInfo.email) return;
@@ -38,7 +46,7 @@ export default memo(function CertificationForm() {
       {
         onSuccess: () => {
           setValue('schoolInfo.certifiedStudent', true);
-          nextStep();
+          onOkClick();
         },
         onError: () => {
           setError('verifyEmailNumber', {
@@ -51,13 +59,7 @@ export default memo(function CertificationForm() {
   };
 
   return (
-    <BottomSheet
-      isOpen={isOpen}
-      onClose={closeModal}
-      snap={300}
-      isRightButton
-      title="인증번호 입력"
-    >
+    <BottomSheet onClose={onClose} snap={300} isRightButton title="인증번호 입력">
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
           <TextFieldController
@@ -70,7 +72,7 @@ export default memo(function CertificationForm() {
               },
             })}
             maxLength={6}
-            timer={timerTime}
+            timer={verifyTime}
           />
         </section>
 

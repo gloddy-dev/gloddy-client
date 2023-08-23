@@ -13,7 +13,7 @@ export default function MatesModal({ mateData, close }: MatesModalProps) {
   const handleDelete = () => {};
 
   return (
-    <Modal isOpen variant="warning" onCancelClick={close} onOkClick={handleDelete}>
+    <Modal variant="warning" onCancelClick={close} onOkClick={handleDelete}>
       <Spacing size={32} />
       <Avatar imageUrl={mateImageUrl} size="large" />
       <Spacing size={8} />

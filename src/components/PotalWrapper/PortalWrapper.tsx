@@ -3,17 +3,8 @@ import { createPortal } from 'react-dom';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-interface PortalWrapperProps {
-  isShow: boolean;
-}
-
-export default function PortalWrapper({
-  isShow,
-  children,
-}: StrictPropsWithChildren<PortalWrapperProps>) {
+export default function PortalWrapper({ children }: StrictPropsWithChildren) {
   const container = typeof window !== 'undefined' && document.body;
 
-  return container
-    ? createPortal(<AnimatePresence>{isShow && children}</AnimatePresence>, container)
-    : null;
+  return container ? createPortal(<AnimatePresence>{children}</AnimatePresence>, container) : null;
 }
