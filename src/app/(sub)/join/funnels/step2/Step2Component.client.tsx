@@ -10,7 +10,7 @@ export default function Step2Component() {
   const { open, close } = useModal();
 
   useDidMount(() => {
-    open(() => <AgreeBottomSheet close={close} />);
+    open(<AgreeBottomSheet close={close} />);
   });
 
   return (

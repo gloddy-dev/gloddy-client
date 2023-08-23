@@ -1,5 +1,4 @@
 import CreateGroupContextProvider from './components/CreateGroupContext';
-import GroupingModal from './components/GroupingModal.client';
 import InputForm from './components/InputForm.client';
 import { Header } from '@/components/Header';
 
