@@ -6,6 +6,7 @@ import SubmitSection from './inputSection/SubmitSection';
 import LocationBottomSheet from './LocationBottomSheet.client';
 import MaxUserBottomSheet from './MaxUserBottomSheet.client';
 import MeetingDateBottomSheet from './MeetingDateBottomSheet.client';
+import { displayDate } from '../util';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { TextFieldController } from '@/components/TextField';
@@ -13,24 +14,6 @@ import useBottomSheet from '@/hooks/useBottomSheet';
 import { useRef } from 'react';
 
 import type { TimeType } from '@/types';
-
-function getDayName(dayIndex: number) {
-  const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-  return days[dayIndex];
-}
-
-function getMonthName(monthIndex: number) {
-  const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-  return months[monthIndex];
-}
-
-function displayDate(date: Date, time: TimeType) {
-  const year = date.getFullYear();
-  const month = getMonthName(date.getMonth());
-  const day = date.getDate();
-  const dayName = getDayName(date.getDay());
-  return `${year}. ${month}. ${day} ${dayName} ${time.fromHour}:${time.fromMin} ${time.fromAmPm} ~ ${time.toHour}:${time.toMin} ${time.toAmPm}`;
-}
 
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
@@ -109,12 +92,21 @@ export default function InputForm() {
           dateValue={watch('date')}
           timeValue={watch('time')}
           setValue={setValue}
-          openNext={closeMeetDate}
+          openNext={() => {
+            closeMeetDate();
+            openLocation();
+          }}
           closeCurrent={closeMeetDate}
         />
       )}
       {isOpenLocation && (
-        <LocationBottomSheet openNext={closeLocation} closeCurrent={closeLocation} />
+        <LocationBottomSheet
+          openNext={() => {
+            closeLocation();
+            openMaxUser();
+          }}
+          closeCurrent={closeLocation}
+        />
       )}
       {isOpenMaxUser && (
         <MaxUserBottomSheet
