@@ -2,7 +2,7 @@
 import BirthdayBottomSheet from './BirthdayBottomSheet.client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
-import { BottomFixedButton } from '@/components/common/Button';
+import { Button, ButtonGroup } from '@/components/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
@@ -12,7 +12,7 @@ import useBottomSheet from '@/hooks/useBottomSheet';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
-  const { watch, handleSubmit, setValue, register } = hookForm;
+  const { watch, handleSubmit, setValue, register, formState } = hookForm;
   const { nextStep } = useFunnelContext();
   const {
     isOpen,
@@ -20,7 +20,7 @@ export default function InputForm() {
     close: closeBirthdayBottomSheet,
   } = useBottomSheet();
   const isAllTyped = !!(
-    watch('nickname') &&
+    formState.isValid &&
     watch('birth').year &&
     watch('birth').month &&
     watch('birth').date &&
@@ -32,6 +32,8 @@ export default function InputForm() {
   };
 
   const birth = watch('birth');
+
+  console.log(formState.isValid);
 
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
@@ -82,8 +84,6 @@ export default function InputForm() {
         </SegmentGroup>
       </section>
 
-      <BottomFixedButton disabled={!isAllTyped} text={isAllTyped ? '완료' : '다음'} type="submit" />
-
       {isOpen && (
         <BirthdayBottomSheet
           onClose={closeBirthdayBottomSheet}
@@ -92,6 +92,12 @@ export default function InputForm() {
           isBirthDayEntered={isBirthDayEntered}
         />
       )}
+
+      <ButtonGroup>
+        <Button type="submit" disabled={!isAllTyped}>
+          {isAllTyped ? '완료' : '다음'}
+        </Button>
+      </ButtonGroup>
     </Flex>
   );
 }
