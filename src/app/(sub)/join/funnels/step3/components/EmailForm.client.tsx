@@ -27,18 +27,20 @@ export default memo(function EmailForm() {
   } = hookForm;
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
+    open(<VerifyBottomSheet close={close} hookForm={hookForm} onOkClick={nextStep} />);
+
     if (!data.schoolInfo.email) return;
     mutateEmail(
       { email: data.schoolInfo.email },
       {
         onSuccess: () => {
-          open(() => <VerifyBottomSheet close={close} hookForm={hookForm} onOkClick={nextStep} />);
+          open(<VerifyBottomSheet close={close} hookForm={hookForm} onOkClick={nextStep} />);
         },
       }
     );
   };
 
-  const handlePassClick = () => {
+  const handleSkipClick = () => {
     openSkipModal(
       <CertificateSkipModal
         onOkClick={() => {
@@ -64,7 +66,7 @@ export default memo(function EmailForm() {
         })}
       />
       <ButtonGroup isSpacing={false}>
-        <Button type="button" onClick={handlePassClick}>
+        <Button type="button" onClick={handleSkipClick}>
           건너뛰기
         </Button>
         <Button type="submit" disabled={!isDirty}>

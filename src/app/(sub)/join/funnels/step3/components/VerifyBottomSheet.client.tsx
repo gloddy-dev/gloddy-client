@@ -29,16 +29,12 @@ export default memo(function VerifyBottomSheet({
     formState: { isValid },
     setError,
   } = hookForm;
-  const {
-    status: timerStatus,
-    start: timerStart,
-    time: verifyTime,
-  } = useTimer({
+  const { status: timerStatus, time: verifyTime } = useTimer({
     initialTime: 180,
     timerType: 'DECREMENTAL',
     endTime: 0,
+    autostart: true,
   });
-  console.log(verifyTime);
 
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
