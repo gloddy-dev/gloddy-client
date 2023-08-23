@@ -11,8 +11,8 @@ import React, {
 } from 'react';
 
 export const ModalContext = createContext<{
-  mount(id: string, element: ReactNode): void;
-  unmount(id: string): void;
+  addModal(id: string, element: ReactNode): void;
+  removeModal(id: string): void;
 } | null>(null);
 
 export const useModalContext = () => {
@@ -26,29 +26,30 @@ export const useModalContext = () => {
 };
 
 export default function ModalProvider({ children }: PropsWithChildren) {
-  const [modalById, setModalById] = useState<Map<string, ReactNode>>(new Map());
+  const [modalMap, setModalMap] = useState<Map<string, ReactNode>>(new Map());
 
-  const mount = useCallback((id: string, element: ReactNode) => {
-    setModalById((modalById) => {
-      const cloned = new Map(modalById);
+  const addModal = useCallback((id: string, element: ReactNode) => {
+    setModalMap((prev) => {
+      const cloned = new Map(prev);
       cloned.set(id, element);
       return cloned;
     });
   }, []);
 
-  const unmount = useCallback((id: string) => {
-    setModalById((modalById) => {
-      const cloned = new Map(modalById);
+  const removeModal = useCallback((id: string) => {
+    setModalMap((prev) => {
+      const cloned = new Map(prev);
       cloned.delete(id);
       return cloned;
     });
   }, []);
-  const context = { mount, unmount };
+
+  const context = { addModal, removeModal };
 
   return (
     <ModalContext.Provider value={context}>
       {children}
-      {Array.from(modalById.entries()).map(([id, element]) => (
+      {Array.from(modalMap.entries()).map(([id, element]) => (
         <React.Fragment key={id}>{element}</React.Fragment>
       ))}
     </ModalContext.Provider>
