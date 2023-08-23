@@ -23,7 +23,7 @@ const variantMap = {
   },
 } as const;
 
-export default function Modal({
+export function Modal({
   children,
   onOkClick,
   okText = '네',
