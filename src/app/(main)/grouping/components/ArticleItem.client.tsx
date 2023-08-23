@@ -1,9 +1,9 @@
 'use client';
+import ArticleItemModal from './ArticleItemModal.client';
 import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
-import { Modal } from '@/components/Modal';
 import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -66,15 +66,7 @@ export default function ArticleItem({
               width={24}
               height={24}
               onClick={() =>
-                open(
-                  <Modal variant="warning" onCancelClick={close} onOkClick={handleOkClick}>
-                    <Spacing size={32} />
-                    <Image src="/icons/48/warning.svg" alt="warning" width={48} height={48} />
-                    <Spacing size={12} />
-                    <p>해당 게시글을 삭제하시겠습니까?</p>
-                    <Spacing size={16} />
-                  </Modal>
-                )
+                open(<ArticleItemModal onOkClick={handleOkClick} onCancelClick={close} />)
               }
             />
           )}
