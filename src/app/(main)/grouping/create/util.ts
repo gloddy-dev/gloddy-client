@@ -1,4 +1,4 @@
-import { TimeType } from '@/types';
+import type { TimeType } from '@/types';
 
 export function getDayName(dayIndex: number) {
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
