@@ -6,8 +6,9 @@ import Image from 'next/image';
 
 interface ApplyModalProps {
   onOkClick: () => void;
+  onCancelClick: () => void;
 }
-export default function ApplyModal({ onOkClick }: ApplyModalProps) {
+export default function ApplyModal({ onOkClick, onCancelClick }: ApplyModalProps) {
   return (
     <Modal onOkClick={onOkClick} onCancelClick={close} variant="success">
       <Spacing size={32} />
