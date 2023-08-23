@@ -21,7 +21,7 @@ export default function Step2Component() {
         선택해주세요
       </JoinTitleTextMessage>
       <SchoolForm />
-      {isOpen && <AgreeBottomSheet close={close} />}
+      {isOpen && <AgreeBottomSheet onClose={close} />}
     </main>
   );
 }

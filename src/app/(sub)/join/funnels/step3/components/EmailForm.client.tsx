@@ -81,7 +81,7 @@ export default memo(function EmailForm() {
 
       {isOpenVerifyBottomSheet && (
         <VerifyBottomSheet
-          close={closeVerifyBottomSheet}
+          onClose={closeVerifyBottomSheet}
           hookForm={hookForm}
           onOkClick={nextStep}
         />
