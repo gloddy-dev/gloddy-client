@@ -7,7 +7,6 @@ import { Modal } from '@/components/Modal';
 import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
 
 import type { Article } from '@/apis/groups/type';
 
@@ -23,7 +22,7 @@ export default function ArticleItem({
   isBoardDetail = false,
 }: ArticleItemProps) {
   const pathname = usePathname();
-  const { open } = useModal();
+  const { open, close } = useModal();
 
   const {
     userImageUrl,
@@ -67,7 +66,7 @@ export default function ArticleItem({
               width={24}
               height={24}
               onClick={() =>
-                open(({ close }) => (
+                open(
                   <Modal variant="warning" onCancelClick={close} onOkClick={handleOkClick}>
                     <Spacing size={32} />
                     <Image src="/icons/48/warning.svg" alt="warning" width={48} height={48} />
@@ -75,7 +74,7 @@ export default function ArticleItem({
                     <p>해당 게시글을 삭제하시겠습니까?</p>
                     <Spacing size={16} />
                   </Modal>
-                ))
+                )
               }
             />
           )}
