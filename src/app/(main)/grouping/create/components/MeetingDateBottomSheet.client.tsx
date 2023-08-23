@@ -3,8 +3,8 @@
 import { CreateGroupContextValue } from '../type';
 import { BottomFixedButton } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
-import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
+import { Divider } from '@/components/Divider';
 import { BottomSheet } from '@/components/Modal';
 import { TimeType } from '@/types';
 import { UseFormSetValue } from 'react-hook-form';
@@ -39,7 +39,7 @@ export default function MeetingDateBottomSheet({
             dateValue={dateValue}
             setDateValue={(date: Date) => setValue('date', date, { shouldDirty: true })}
           />
-          <DivisionSpacing size={20} />
+          <Divider size={20} />
           <TimeSwipePicker
             timeValue={timeValue}
             setTimeValue={(time: TimeType) => setValue('time', time, { shouldDirty: true })}
