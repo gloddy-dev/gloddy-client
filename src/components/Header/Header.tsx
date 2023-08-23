@@ -44,7 +44,7 @@ interface SideProps {
 
 function Left({ children, className }: StrictPropsWithChildren<SideProps>) {
   return (
-    <Flex align="center" className={cn('text-subtitle-1', className)}>
+    <Flex align="center" className={cn('mr-auto text-subtitle-1', className)}>
       {children}
     </Flex>
   );
@@ -52,7 +52,7 @@ function Left({ children, className }: StrictPropsWithChildren<SideProps>) {
 
 function Right({ children, className }: StrictPropsWithChildren<SideProps>) {
   return (
-    <Flex align="center" className={cn('text-subtitle-1', className)}>
+    <Flex align="center" className={cn('ml-auto justify-self-end text-subtitle-1', className)}>
       {children}
     </Flex>
   );

@@ -3,8 +3,8 @@ import { useCreateGroupContext } from '../CreateGroupContext';
 import InputArea from '../InputArea.server';
 import { BottomFixedButton } from '@/components/common/Button';
 import Calendar from '@/components/common/Calendar';
-import { DivisionSpacing } from '@/components/common/Spacing';
 import { TimeSwipePicker } from '@/components/common/SwipePicker';
+import { Divider } from '@/components/Divider';
 import { BottomSheet } from '@/components/Modal';
 import useModalState from '@/store/useModalStore';
 
@@ -59,7 +59,7 @@ export default function MeetDateSection() {
               dateValue={watch('date')}
               setDateValue={(date: Date) => setValue('date', date, { shouldDirty: true })}
             />
-            <DivisionSpacing size={20} />
+            <Divider thickness="thick" />
             <TimeSwipePicker
               timeValue={watch('time')}
               setTimeValue={(time: TimeType) => setValue('time', time, { shouldDirty: true })}

@@ -1,19 +1,19 @@
-'use client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function ProfileHeader() {
+export default function PraiseHeader() {
   return (
     <Header>
-      <Header.Right>
-        <Link href="/profile/setting">
+      <Header.Left className="px-4">
+        <Link href="/profile">
           <IconButton size="large">
-            <Image src="/icons/24/settings.svg" width={24} height={24} alt="action" />
+            <Image src="/icons/24/arrow_back.svg" width={24} height={24} alt="back" />
           </IconButton>
         </Link>
-      </Header.Right>
+        <p className="text-subtitle-1">받은 칭찬</p>
+      </Header.Left>
     </Header>
   );
 }
