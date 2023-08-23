@@ -3,17 +3,14 @@
 import { useCreateGroupContext } from './CreateGroupContext';
 import InputArea from './InputArea.server';
 import SubmitSection from './inputSection/SubmitSection';
-import { CreateGroupContextValue } from '../type';
-import { BottomFixedButton } from '@/components/common/Button';
-import Calendar from '@/components/common/Calendar';
+import LocationBottomSheet from './LocationBottomSheet.client';
+import MaxUserBottomSheet from './MaxUserBottomSheet.client';
+import MeetingDateBottomSheet from './MeetingDateBottomSheet.client';
 import ImageFrame from '@/components/common/ImageFrame';
-import { DivisionSpacing, Spacing } from '@/components/common/Spacing';
-import { NumberSwipePicker, TimeSwipePicker } from '@/components/common/SwipePicker';
-import { BottomSheet } from '@/components/Modal';
+import { Spacing } from '@/components/common/Spacing';
 import { TextFieldController } from '@/components/TextField';
-import { useModal } from '@/hooks/useModal';
+import useBottomSheet from '@/hooks/useBottomSheet';
 import { useRef } from 'react';
-import { UseFormSetValue } from 'react-hook-form';
 
 import type { TimeType } from '@/types';
 
@@ -38,9 +35,9 @@ function displayDate(date: Date, time: TimeType) {
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
 
-  const { open: openMeetDateBottomSheet, close: closeMeetDateBottomSheet } = useModal();
-  const { open: openLocationBottomSheet, close: closeLocationBottomSheet } = useModal();
-  const { open: openMaxUserBottomSheet, close: closeMaxUserBottomSheet } = useModal();
+  const { isOpen: isOpenMeetDate, open: openMeetDate, close: closeMeetDate } = useBottomSheet();
+  const { isOpen: isOpenLocation, open: openLocation, close: closeLocation } = useBottomSheet();
+  const { isOpen: isOpenMaxUser, open: openMaxUser, close: closeMaxUser } = useBottomSheet();
 
   const hookForm = useCreateGroupContext();
   const { watch, setValue, getFieldState, register } = hookForm;
@@ -85,156 +82,47 @@ export default function InputForm() {
 
       <InputArea
         title="모임 일시"
-        onClick={() =>
-          openMeetDateBottomSheet(() => (
-            <MeetingDateBottomSheet
-              dateValue={watch('date')}
-              timeValue={watch('time')}
-              setValue={setValue}
-              openNextBottomSheet={closeMeetDateBottomSheet}
-              closeCurrentBottomSheet={closeMeetDateBottomSheet}
-            />
-          ))
-        }
+        onClick={() => openMeetDate()}
         value={isMeetingDateDirty ? displayDate(watch('date'), watch('time')) : ''}
         placeholder="모임 시간을 설정해주세요."
       />
 
       <InputArea
         title="모임 장소"
-        onClick={() =>
-          openLocationBottomSheet(() => (
-            <LocationBottomSheet
-              openNextBottomSheet={closeLocationBottomSheet}
-              closeCurrentBottomSheet={closeLocationBottomSheet}
-            />
-          ))
-        }
+        onClick={() => openLocation()}
         value={''} // TODO : 지도 api 연동 후 추가
         placeholder="모임 장소를 설정해주세요."
       />
 
       <InputArea
         title="모임 인원"
-        onClick={() =>
-          openMaxUserBottomSheet(() => (
-            <MaxUserBottomSheet
-              maxUserValue={watch('maxUser')}
-              setValue={setValue}
-              closeCurrentBottomSheet={closeMaxUserBottomSheet}
-            />
-          ))
-        }
+        onClick={() => openMaxUser()}
         value={getFieldState('maxUser').isDirty ? `최대 ${watch('maxUser')}명` : ''}
         placeholder="모임 인원을 설정해주세요."
       />
 
       <Spacing size={100} />
       <SubmitSection />
-    </form>
-  );
-}
 
-interface MeetingDateBottomSheetProps {
-  dateValue: Date;
-  timeValue: TimeType;
-  setValue: UseFormSetValue<CreateGroupContextValue>;
-  openNextBottomSheet: () => void;
-  closeCurrentBottomSheet: () => void;
-}
-
-function MeetingDateBottomSheet({
-  dateValue,
-  timeValue,
-  setValue,
-  openNextBottomSheet,
-  closeCurrentBottomSheet,
-}: MeetingDateBottomSheetProps) {
-  return (
-    <BottomSheet
-      snap={650}
-      onClose={closeCurrentBottomSheet}
-      isRightButton
-      title="모임 일시"
-      isTapOutsideToClose
-      disableDrag
-    >
-      <div className="relative h-full">
-        <div>
-          <Calendar
-            dateValue={dateValue}
-            setDateValue={(date: Date) => setValue('date', date, { shouldDirty: true })}
-          />
-          <DivisionSpacing size={20} />
-          <TimeSwipePicker
-            timeValue={timeValue}
-            setTimeValue={(time: TimeType) => setValue('time', time, { shouldDirty: true })}
-          />
-        </div>
-      </div>
-      <BottomFixedButton text="다음" onClick={openNextBottomSheet} />
-    </BottomSheet>
-  );
-}
-
-interface LocationBottomSheetProps {
-  openNextBottomSheet: () => void;
-  closeCurrentBottomSheet: () => void;
-}
-
-function LocationBottomSheet({
-  closeCurrentBottomSheet,
-  openNextBottomSheet,
-}: LocationBottomSheetProps) {
-  return (
-    <BottomSheet
-      snap={500}
-      onClose={closeCurrentBottomSheet}
-      isRightButton
-      title="모임 장소"
-      isTapOutsideToClose
-    >
-      <div className="relative h-full">
-        <div></div>
-      </div>
-      <BottomFixedButton text="다음" onClick={openNextBottomSheet} />
-    </BottomSheet>
-  );
-}
-
-interface MaxUserBottomSheetProps {
-  maxUserValue: number;
-  setValue: UseFormSetValue<CreateGroupContextValue>;
-  closeCurrentBottomSheet: () => void;
-}
-
-function MaxUserBottomSheet({
-  maxUserValue,
-  setValue,
-  closeCurrentBottomSheet,
-}: MaxUserBottomSheetProps) {
-  return (
-    <BottomSheet
-      snap={500}
-      onClose={closeCurrentBottomSheet}
-      isRightButton
-      title="모임 인원"
-      isTapOutsideToClose
-      disableDrag
-    >
-      <div className="relative h-full">
-        <NumberSwipePicker
-          setNumberValue={(value: number) => setValue('maxUser', value, { shouldDirty: true })}
-          numberValue={maxUserValue}
+      {isOpenMeetDate && (
+        <MeetingDateBottomSheet
+          dateValue={watch('date')}
+          timeValue={watch('time')}
+          setValue={setValue}
+          openNext={closeMeetDate}
+          closeCurrent={closeMeetDate}
         />
-      </div>
-      <BottomFixedButton
-        text="완료"
-        onClick={() => {
-          if (!maxUserValue) setValue('maxUser', 1);
-          closeCurrentBottomSheet();
-        }}
-      />
-    </BottomSheet>
+      )}
+      {isOpenLocation && (
+        <LocationBottomSheet openNext={closeLocation} closeCurrent={closeLocation} />
+      )}
+      {isOpenMaxUser && (
+        <MaxUserBottomSheet
+          maxUserValue={watch('maxUser')}
+          setValue={setValue}
+          closeCurrent={closeMaxUser}
+        />
+      )}
+    </form>
   );
 }
