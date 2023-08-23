@@ -1,61 +1,83 @@
 'use client';
+import { useGetProfile } from '@/apis/profile';
 import ImageFrame from '@/components/common/ImageFrame';
-import { DivisionBar, Spacing } from '@/components/common/Spacing';
-import { usePathname, useRouter } from 'next/navigation';
+import { Spacing } from '@/components/common/Spacing';
+import { Divider } from '@/components/Divider';
+import { Flex } from '@/components/Layout';
+import { Tag } from '@/components/Tag';
+import { personalityList } from '@/constants/personalityList';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import type { ProfileResponse } from '@/apis/profile';
-
-interface ProfileSectionProps {
-  profileData: ProfileResponse;
-}
-
-export default function ProfileSection({ profileData }: ProfileSectionProps) {
-  const { age, gender, imageUrl, name, praiseCount, reviewCount, school } = profileData;
-  const router = useRouter();
+export default function ProfileSection() {
+  const { data: profileData } = useGetProfile();
+  const { age, gender, imageUrl, name, praiseCount, reviewCount, school, personalities } =
+    profileData;
   const pathname = usePathname();
 
   return (
-    <section className="h-500 rounded-b-35 bg-white px-40">
-      <Spacing size={30} />
-      <article className="flex flex-col items-center">
+    <section className="h-500 rounded-b-24 bg-white shadow-float">
+      <Flex direction="column" align="center">
         <ImageFrame canChange={false} />
-        {/* TODO : 서버 측 이미지 에러로 defaultImageUrl 빼둔 상태 */}
-        <p>
-          <span className="font-700 text-20 leading-40">{name}</span>
-          <span className="font-400 text-14 leading-40 text-gray2">님</span>
-        </p>
-        <p className="font-400 text-14 leading-40 text-gray2">
-          {gender === 'MAIL' ? '남' : '여'} | {age}세 | {school}
-        </p>
-      </article>
-      <DivisionBar className="my-20" />
-      <article className="flex flex-col">
-        <p className="font-700 text-12">신뢰도 지표</p>
-        {/* TODO : 신뢰도 API 나오면 구현 예정 */}
-      </article>
-      <DivisionBar className="my-20" />
-      <article className="flex h-40">
-        <div className="flex flex-grow flex-col items-center justify-center">
-          <p className="text-12">최근 모임</p>
-          <p className="font-700 text-14">5회</p>
-        </div>
-        <DivisionBar direction="vertical" />
-        <div
-          className="flex flex-grow flex-col items-center"
-          onClick={() => router.push(`${pathname}/praise`)}
-        >
-          <p className="text-12">받은 칭찬</p>
-          <p className="font-700 text-14 text-blue">{praiseCount}개</p>
-        </div>
-        <DivisionBar direction="vertical" />
-        <div
-          className="flex flex-grow flex-col items-center"
-          onClick={() => router.push(`${pathname}/mates`)}
-        >
-          <p className="text-12">모임 후기</p>
-          <p className="font-700 text-14 text-blue">{reviewCount}개</p>
-        </div>
-      </article>
+        <h4 className="text-h4">{name}</h4>
+        <Spacing size={4} />
+        <Flex className="h-18 text-caption text-sign-tertiary" align="center">
+          <Image src="/icons/16/school.svg" width={16} height={16} alt="school" />
+          <span>{school}</span>
+          <Divider direction="vertical" className="mx-4" />
+          <Image src="/icons/16/male.svg" width={16} height={16} alt="male" />
+          <span>{gender === 'MAIL' ? '남' : '여'}</span>
+          <Divider direction="vertical" className="mx-4" />
+          <Image src="/icons/16/birth.svg" width={16} height={16} alt="birth" />
+          <span>{age}세</span>
+        </Flex>
+        <Spacing size={16} />
+        <Flex className="gap-4">
+          {personalities.map((personality) => (
+            <Tag key={personality} className="border-none bg-brand-color text-primary-dark">
+              {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
+            </Tag>
+          ))}
+        </Flex>
+        <Spacing size={20} />
+        <Divider />
+        <Spacing size={24} />
+      </Flex>
+
+      <Flex className="px-20" direction="column">
+        <Flex className="w-full px-4" align="center" justify="start">
+          <span className="text-secondary text-subtitle-3">신뢰도 지표 </span>
+          <span className="text-caption text-sign-caption">(22.01.01 가입)</span>
+        </Flex>
+        <Spacing size={8} />
+        <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
+          <Spacing size={16} />
+          {/* Bar */}
+          <Spacing size={8} />
+          {/* Badge */}
+          <Spacing size={12} />
+        </Flex>
+
+        <Spacing size={16} />
+
+        <Flex align="center">
+          <div className="flex flex-grow flex-col items-center justify-center">
+            <p className="text-tertiary text-caption">누적 모임</p>
+            <h4 className="text-secondary text-h4">5회</h4>
+          </div>
+          <Divider direction="vertical" className="h-12" />
+          <Link className="flex flex-grow flex-col items-center" href={`${pathname}/praise`}>
+            <p className="text-tertiary text-caption">받은 칭찬</p>
+            <h4 className="text-secondary text-h4 text-sign-brand">{praiseCount}회</h4>
+          </Link>
+          <Divider direction="vertical" className="h-12" />
+          <Link className="flex flex-grow flex-col items-center" href={`${pathname}/mates`}>
+            <p className="text-tertiary text-caption">모임 후기</p>
+            <h4 className="text-secondary text-h4 text-sign-brand">{reviewCount}회</h4>
+          </Link>
+        </Flex>
+      </Flex>
     </section>
   );
 }

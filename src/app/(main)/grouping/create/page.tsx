@@ -6,7 +6,7 @@ import { Header } from '@/components/Header';
 export default function CreateGroup() {
   return (
     <div className="mx-20">
-      <GroupingModal />
+      {/* <GroupingModal /> */}
       <Header />
       <CreateGroupContextProvider>
         <InputForm />
