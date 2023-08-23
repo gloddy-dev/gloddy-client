@@ -1,22 +1,24 @@
 'use client';
+import BirthdayBottomSheet from './BirthdayBottomSheet.client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { BottomFixedButton } from '@/components/common/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
-import { DateSwipePicker } from '@/components/common/SwipePicker';
 import { Flex } from '@/components/Layout';
-import { BottomSheet } from '@/components/Modal';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { TextField, TextFieldController } from '@/components/TextField';
-import { useModal } from '@/hooks/useModal';
-import { DateType } from '@/types';
+import useBottomSheet from '@/hooks/useBottomSheet';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
   const { watch, handleSubmit, setValue, register } = hookForm;
   const { nextStep } = useFunnelContext();
-  const { open: openBirthdayBottomSheet, close: closeBirthdayBottomSheet } = useModal();
+  const {
+    isOpen,
+    open: openBirthdayBottomSheet,
+    close: closeBirthdayBottomSheet,
+  } = useBottomSheet();
   const isAllTyped = !!(
     watch('nickname') &&
     watch('birth').year &&
@@ -61,23 +63,7 @@ export default function InputForm() {
       <Spacing size={4} />
       <TextField
         placeholder="생년월일을 선택해주세요."
-        onClick={() =>
-          openBirthdayBottomSheet(() => (
-            <BottomSheet
-              snap={400}
-              onClose={closeBirthdayBottomSheet}
-              isRightButton
-              title="생년월일"
-              disableDrag
-            >
-              <DateSwipePicker
-                dateValue={birth}
-                setDateValue={(birth: DateType) => setValue('birth', birth)}
-              />
-              <BottomFixedButton text="다음" disabled={!isBirthDayEntered} />
-            </BottomSheet>
-          ))
-        }
+        onClick={() => openBirthdayBottomSheet()}
         value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
         readOnly
       />
@@ -97,6 +83,15 @@ export default function InputForm() {
       </section>
 
       <BottomFixedButton disabled={!isAllTyped} text={isAllTyped ? '완료' : '다음'} type="submit" />
+
+      {isOpen && (
+        <BirthdayBottomSheet
+          onClose={closeBirthdayBottomSheet}
+          dateValue={birth}
+          setValue={setValue}
+          isBirthDayEntered={isBirthDayEntered}
+        />
+      )}
     </Flex>
   );
 }
