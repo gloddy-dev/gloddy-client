@@ -12,7 +12,6 @@ import { NumberSwipePicker, TimeSwipePicker } from '@/components/common/SwipePic
 import { BottomSheet } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
-import clsx from 'clsx';
 import { useRef } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 
