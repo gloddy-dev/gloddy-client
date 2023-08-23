@@ -6,9 +6,8 @@ import { type Mate, useGetMates } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
-import { Modal } from '@/components/Modal';
 import { DUMMY_PROFILE_MATES_DATA } from '@/constants/dummyData';
-import { useOverlay } from '@/hooks/useOverlay';
+import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 
 export default function MatesDetail() {
@@ -31,10 +30,10 @@ interface MatesProps {
 
 function Mates({ mateData }: MatesProps) {
   const { mateImageUrl, mateName, school, createdAt, selectionReason } = mateData;
-  const { open } = useOverlay();
+  const { open, close } = useModal();
 
   const handleMateDelete = () => {
-    open(({ exit }) => <MatesModal mateData={mateData} close={exit} />);
+    open(<MatesModal mateData={mateData} close={close} />);
   };
 
   return (
