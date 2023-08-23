@@ -8,7 +8,7 @@ export default function Toast({ children }: StrictPropsWithChildren) {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <PortalWrapper isShow={true}>
+    <PortalWrapper>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

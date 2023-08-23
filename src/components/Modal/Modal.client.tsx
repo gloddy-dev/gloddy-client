@@ -4,8 +4,7 @@ import { Button } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { StrictPropsWithChildren } from '@/types';
 
-interface ModalProps {
-  isOpen: boolean;
+export interface ModalProps {
   onOkClick?: () => void;
   okText?: string;
   onCancelClick?: () => void;
@@ -24,9 +23,8 @@ const variantMap = {
   },
 } as const;
 
-export default function Modal({
+export function Modal({
   children,
-  isOpen,
   onOkClick,
   okText = '네',
   onCancelClick,
@@ -34,7 +32,7 @@ export default function Modal({
   variant,
 }: StrictPropsWithChildren<ModalProps>) {
   return (
-    <ModalWrapper isOpen={isOpen} onClose={onCancelClick}>
+    <ModalWrapper onClose={onCancelClick}>
       <div className="flex w-300 flex-col items-center rounded-16 bg-white px-16 text-center">
         {children}
         {variant && (
