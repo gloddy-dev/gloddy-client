@@ -1,11 +1,10 @@
 'use client';
 
+import ApplyModal from './ApplyModal.client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
-import { Modal } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
-import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 
 type ApplyFormType = {
@@ -52,23 +51,7 @@ export default function InputForm() {
       />
       <ButtonGroup>
         <Button
-          onClick={() =>
-            open(() => (
-              <Modal onOkClick={handleSubmit(onSubmit)} onCancelClick={close} variant="success">
-                <Spacing size={32} />
-                <Image src="/icons/48/check.svg" alt="check" width={48} height={48} />
-                <Spacing size={12} />
-                <p>지원서를 제출하시겠습니까?</p>
-                <Spacing size={4} />
-                <p className="text-paragraph-1 text-sign-tertiary">
-                  지원서를 제출하면
-                  <br />
-                  다시 수정할 수 없어요.
-                </p>
-                <Spacing size={16} />
-              </Modal>
-            ))
-          }
+          onClick={() => open(<ApplyModal onOkClick={handleSubmit(onSubmit)} />)}
           disabled={!formState.isValid}
         >
           지원하기
