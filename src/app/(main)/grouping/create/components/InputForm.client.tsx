@@ -13,8 +13,6 @@ import { TextFieldController } from '@/components/TextField';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { useRef } from 'react';
 
-import type { TimeType } from '@/types';
-
 export default function InputForm() {
   const imgRef = useRef<HTMLInputElement>(null);
 
