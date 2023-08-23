@@ -7,6 +7,7 @@ import { useEmailMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
+import useBottomSheet from '@/hooks/useBottomSheet';
 import { useModal } from '@/hooks/useModal';
 import { memo } from 'react';
 
@@ -16,7 +17,11 @@ export default memo(function EmailForm() {
   const { nextStep } = useFunnelContext();
 
   const { open: openSkipModal, close: closeSkipModal } = useModal();
-  const { open, close } = useModal();
+  const {
+    isOpen: isOpenVerifyBottomSheet,
+    open: openVerifyBottomSheet,
+    close: closeVerifyBottomSheet,
+  } = useBottomSheet();
   const { mutate: mutateEmail } = useEmailMutation();
   const hookForm = useJoinContext();
   const {
@@ -27,14 +32,14 @@ export default memo(function EmailForm() {
   } = hookForm;
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
-    open(<VerifyBottomSheet close={close} hookForm={hookForm} onOkClick={nextStep} />);
+    openVerifyBottomSheet();
 
     if (!data.schoolInfo.email) return;
     mutateEmail(
       { email: data.schoolInfo.email },
       {
         onSuccess: () => {
-          open(<VerifyBottomSheet close={close} hookForm={hookForm} onOkClick={nextStep} />);
+          openVerifyBottomSheet();
         },
       }
     );
@@ -73,6 +78,14 @@ export default memo(function EmailForm() {
           확인
         </Button>
       </ButtonGroup>
+
+      {isOpenVerifyBottomSheet && (
+        <VerifyBottomSheet
+          close={closeVerifyBottomSheet}
+          hookForm={hookForm}
+          onOkClick={nextStep}
+        />
+      )}
     </form>
   );
 });

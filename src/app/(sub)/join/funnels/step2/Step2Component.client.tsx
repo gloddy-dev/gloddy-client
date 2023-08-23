@@ -4,13 +4,13 @@ import AgreeBottomSheet from './components/AgreeBottomSheet.client';
 import SchoolForm from './components/SchoolForm.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.client';
 import { useDidMount } from '@/hooks/common/useDidMount';
-import { useModal } from '@/hooks/useModal';
+import useBottomSheet from '@/hooks/useBottomSheet';
 
 export default function Step2Component() {
-  const { open, close } = useModal();
+  const { isOpen, open, close } = useBottomSheet();
 
   useDidMount(() => {
-    open(<AgreeBottomSheet close={close} />);
+    open();
   });
 
   return (
@@ -21,6 +21,7 @@ export default function Step2Component() {
         선택해주세요
       </JoinTitleTextMessage>
       <SchoolForm />
+      {isOpen && <AgreeBottomSheet close={close} />}
     </main>
   );
 }
