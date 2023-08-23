@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
@@ -26,10 +24,10 @@ const defaultAgreeCheckList = [
 ];
 
 interface AgreeBottomSheetProps {
-  close: () => void;
+  onClose: () => void;
 }
 
-export default function AgreeBottomSheet({ close }: AgreeBottomSheetProps) {
+export default function AgreeBottomSheet({ onClose }: AgreeBottomSheetProps) {
   const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>(defaultAgreeCheckList);
 
   const handleAgreeAllCheckList = () => {
@@ -50,7 +48,7 @@ export default function AgreeBottomSheet({ close }: AgreeBottomSheetProps) {
   };
 
   return (
-    <BottomSheet snap={300} onClose={close} disableDrag title="약관 동의" isRightButton>
+    <BottomSheet snap={300} onClose={onClose} disableDrag title="약관 동의" isRightButton>
       <section className="rounded-12 border-1 border-border-default">
         <div
           className="flex h-48 items-center gap-8 px-8"
