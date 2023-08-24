@@ -1,10 +1,12 @@
 'use client';
+
+import ImageSection from './ImageSection';
 import { useWriteContext } from '../WriteContext';
-import { BottomFixedButton } from '@/components/common/Button';
+import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
-import { TextArea } from '@/components/common/Input';
 import { Spacing } from '@/components/common/Spacing';
-import Image from 'next/image';
+import { Flex } from '@/components/Layout';
+import { TextFieldController } from '@/components/TextField';
 import { useForm } from 'react-hook-form';
 
 type WriteFormType = {
@@ -15,13 +17,15 @@ type WriteFormType = {
 export default function InputForm() {
   const { images } = useWriteContext();
 
-  const { register, handleSubmit, formState, setValue, watch } = useForm({
+  const hookform = useForm({
     mode: 'onChange',
     defaultValues: {
       content: '',
       isNotice: false,
     },
   });
+
+  const { register, handleSubmit, watch, setValue, formState } = hookform;
 
   const onSubmit = (data: WriteFormType) => {
     console.log({
@@ -31,32 +35,28 @@ export default function InputForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex h-[calc(100%-160px)] flex-col text-14">
-      <TextArea
-        placeholder="내용을 입력해주세요."
-        className="flex-grow"
+    <form onSubmit={handleSubmit(onSubmit)} className="px-20">
+      <ImageSection />
+      <Spacing size={8} />
+      <TextFieldController
+        as="textarea"
+        hookForm={hookform}
         register={register('content', { required: true })}
+        placeholder="최소 20글자 이상의 게시글을 작성해보세요."
+        maxCount={300}
       />
-      {images.length > 0 && <Spacing size={15} />}
-      <div className="flex gap-14">
-        {images.map(({ imageBlob }) => (
-          <div key={imageBlob} className="relative grow before:block before:pb-[100%]">
-            <Image src={imageBlob} alt="select-img" className="rounded-10 object-cover" fill />
-          </div>
-        ))}
-      </div>
-      <Spacing size={20} />
-      <CircleCheckbox
-        // text="위 글을 공지로 설정합니다."
-        onClick={() => setValue('isNotice', !watch('isNotice'))}
-        checked={watch('isNotice')}
-        // register={register('isNotice')}
-      />
-      <BottomFixedButton
-        type="submit"
-        text="글쓰기"
-        disabled={!formState.isValid || !formState.isDirty}
-      />
+      <Spacing size={8} />
+      <ButtonGroup>
+        <Button disabled={!formState.isValid || !formState.isDirty}>글쓰기</Button>
+      </ButtonGroup>
+      <Flex className="gap-8">
+        <CircleCheckbox
+          onClick={() => setValue('isNotice', !watch('isNotice'))}
+          checked={watch('isNotice')}
+        />
+        <p className="py-12 text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
+      </Flex>
+      <Spacing size={16} />
     </form>
   );
 }

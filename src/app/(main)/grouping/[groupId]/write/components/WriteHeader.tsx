@@ -1,6 +1,8 @@
 'use client';
 import { useWriteContext } from '../WriteContext';
+import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { Flex } from '@/components/Layout';
 import { ImageType } from '@/types';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import Image from 'next/image';
@@ -24,38 +26,15 @@ export default function WriteHeader() {
   };
 
   return (
-    <Header
-      text="게시글 작성"
-      leftNode={
-        <Image
-          alt="back"
-          src="/assets/arrow_back.svg"
-          width={8}
-          height={15}
-          onClick={() => router.back()}
-          className="cursor-pointer"
-        />
-      }
-      rightNode={
-        <>
-          <Image
-            src="/assets/image.svg"
-            alt="add_image"
-            width={24}
-            height={24}
-            onClick={() => inputFileRef.current?.click()}
-            className="cursor-pointer"
-          />
-          <input
-            ref={inputFileRef}
-            type="file"
-            onChange={handleAddImageChange}
-            accept="image/*"
-            multiple
-            hidden
-          />
-        </>
-      }
-    />
+    <Header className="px-4">
+      <Header.Left>
+        <Flex align="center">
+          <IconButton size="large">
+            <Image src="/icons/24/arrow_back.svg" alt="arrow_back" width={24} height={24} />
+          </IconButton>
+          <p className="text-subtitle-1">게시글 작성</p>
+        </Flex>
+      </Header.Left>
+    </Header>
   );
 }
