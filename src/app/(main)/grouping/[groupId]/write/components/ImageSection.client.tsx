@@ -2,41 +2,51 @@ import { Flex } from '@/components/Layout';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import Image from 'next/image';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
+import { Control, useController } from 'react-hook-form';
+
+import type { WriteFormValues } from '../type';
 
 interface ImageSectionProps {
-  images: File[];
-  setImages: React.Dispatch<React.SetStateAction<File[]>>;
+  control: Control<WriteFormValues>;
 }
 
-export default memo(function ImageSection({ images, setImages }: ImageSectionProps) {
-  const { handleFileUpload } = useFileUpload(
-    (files) => {
-      setImages((prev) => [...prev, ...files]);
-    },
-    { multiple: true }
+export default function ImageSection({ control }: ImageSectionProps) {
+  const {
+    field: { value, onChange },
+  } = useController({
+    name: 'images',
+    control,
+  });
+
+  const { handleFileUpload } = useFileUpload((files) => onChange([...value, ...files]), {
+    multiple: true,
+  });
+
+  const handleDeleteClick = useCallback(
+    (imageBlob: File) => onChange(value.filter((blob) => blob !== imageBlob)),
+    [onChange, value]
   );
 
   return (
     <section className="pb-8 pt-16">
       <Flex className="gap-8">
-        {images.map((imageBlob) => {
-          const imageUrl = makeFileToBlob(imageBlob);
+        {value.map((imageBlob, index) => {
           return (
             <ImageThumbnail
-              key={imageUrl}
-              imageUrl={imageUrl}
-              onClick={() => setImages((prev) => prev.filter((image) => image !== imageBlob))}
+              key={imageBlob.name + index}
+              imageBlob={imageBlob}
+              onClick={handleDeleteClick}
             />
           );
         })}
-        {images.length < 3 && (
-          <AddImageButton imageCount={images.length} onClick={handleFileUpload} />
+        {value.length < 3 && (
+          <AddImageButton imageCount={value.length} onClick={handleFileUpload} />
         )}
       </Flex>
     </section>
   );
-});
+}
 
 interface AddImageSectionProps {
   imageCount: number;
@@ -59,11 +69,13 @@ function AddImageButton({ imageCount, onClick }: AddImageSectionProps) {
 }
 
 interface ImageThumbnailProps {
-  imageUrl: string;
-  onClick: () => void;
+  imageBlob: File;
+  onClick: (imageBlob: File) => void;
 }
 
-function ImageThumbnail({ imageUrl, onClick }: ImageThumbnailProps) {
+const ImageThumbnail = memo(({ imageBlob, onClick }: ImageThumbnailProps) => {
+  const imageUrl = makeFileToBlob(imageBlob);
+
   return (
     <div className="relative h-96 w-96">
       <Image src={imageUrl} alt="select-img" className="rounded-8 object-cover" fill />
@@ -73,8 +85,8 @@ function ImageThumbnail({ imageUrl, onClick }: ImageThumbnailProps) {
         width={32}
         height={32}
         className="absolute right-0 top-0 cursor-pointer"
-        onClick={onClick}
+        onClick={() => onClick(imageBlob)}
       />
     </div>
   );
-}
+});
