@@ -1,4 +1,4 @@
-import { PersonalityType } from '@/types';
+import { DateType, GenderType, PersonalityType } from '@/types';
 
 export interface ProfileResponse {
   age: number;
@@ -10,6 +10,15 @@ export interface ProfileResponse {
   praiseCount: number;
   reviewCount: number;
   school: string;
+}
+
+export interface ProfileRequest {
+  imageUrl: string;
+  name: string;
+  birth: DateType;
+  gender: GenderType;
+  introduce: string;
+  personalities: PersonalityType;
 }
 
 export interface PraisesResponse {
