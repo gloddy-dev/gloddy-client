@@ -19,7 +19,7 @@ export default function ImageSection({ control }: ImageSectionProps) {
     control,
   });
 
-  const { handleFileUpload } = useFileUpload((files) => onChange([...value, ...files]), {
+  const { handleFileUploadClick } = useFileUpload((files) => onChange([...value, ...files]), {
     multiple: true,
   });
 
@@ -41,7 +41,7 @@ export default function ImageSection({ control }: ImageSectionProps) {
           );
         })}
         {value.length < 3 && (
-          <AddImageButton imageCount={value.length} onClick={handleFileUpload} />
+          <AddImageButton imageCount={value.length} onClick={handleFileUploadClick} />
         )}
       </Flex>
     </section>
