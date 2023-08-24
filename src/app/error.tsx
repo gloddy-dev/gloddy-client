@@ -1,5 +1,6 @@
 'use client';
 
+import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import Image from 'next/image';
 import { useEffect } from 'react';
@@ -14,8 +15,11 @@ export default function Error({ error }: ErrorProps) {
   }, [error]);
 
   return (
-    <Flex align="center" justify="center">
-      <Image src="icons/48/cancel.svg" alt="에러" width={48} height={48} />
+    <Flex align="center" justify="center" className="h-full" direction="column">
+      <p className="flex h-48 w-48 items-center justify-center rounded-full bg-sign-caption text-30 text-white">
+        X
+      </p>
+      <Spacing size={20} />
       <p className="text-subtitle-1 text-sign-tertiary">
         오류가 발생했습니다.
         <br />
