@@ -33,7 +33,7 @@ export function useFileUpload(
 
       handleFileChange(Array.from(files));
     };
-  }, []);
+  }, [handleFileChange, options]);
 
   return {
     handleFileUpload,

@@ -1,41 +1,58 @@
 'use client';
 
-import ImageSection from './ImageSection';
+import ImageSection from './ImageSection.client';
+import { usePostFiles } from '@/apis/common';
+import { usePostArticle } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { TextFieldController } from '@/components/TextField';
-import { useState } from 'react';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import { useForm } from 'react-hook-form';
 
+import type { WriteFormValues } from '../type';
+
 export default function InputForm() {
-  const [images, setImages] = useState<File[]>([]);
-  const hookform = useForm({
-    mode: 'onChange',
+  const { groupId } = useNumberParams<['groupId']>();
+  const hookForm = useForm<WriteFormValues>({
     defaultValues: {
       content: '',
       notice: false,
       images: [],
     },
   });
+  const { register, handleSubmit, watch, setValue, control } = hookForm;
 
-  const { register, handleSubmit, watch, setValue } = hookform;
+  const { mutateAsync: mutateFilesAsync } = usePostFiles();
+  const { mutate: mutateArticle } = usePostArticle(groupId);
 
-  const onSubmit = (data: (typeof hookform)['formState']['defaultValues']) => {
-    console.log({
-      ...data,
-      images,
+  const onSubmit = async (data: WriteFormValues) => {
+    const { fileUrlList } = await mutateFilesAsync({
+      fileList: data.images,
     });
+
+    mutateArticle(
+      {
+        groupId,
+        article: {
+          ...data,
+          images: fileUrlList,
+        },
+      },
+      {
+        onSuccess: () => {},
+      }
+    );
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="px-20">
-      <ImageSection images={images} setImages={setImages} />
+      <ImageSection control={control} />
       <Spacing size={8} />
       <TextFieldController
         as="textarea"
-        hookForm={hookform}
+        hookForm={hookForm}
         register={register('content', { required: true })}
         placeholder="최소 20글자 이상의 게시글을 작성해보세요."
         maxCount={300}

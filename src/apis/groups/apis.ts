@@ -2,6 +2,7 @@ import privateApi from '../config/privateApi';
 
 import type {
   Article,
+  ArticleRequest,
   ArticlesResponse,
   CommentsReponse,
   CreateGroupRequest,
@@ -29,6 +30,10 @@ export const getArticles = (groupId: number, page: number) => {
 
 export const getArticle = (groupId: number, articleId: number) => {
   return privateApi.get<Article>(`/groups/${groupId}/articles/${articleId}`);
+};
+
+export const postArticle = ({ groupId, article }: ArticleRequest) => {
+  return privateApi.post(`/groups/${groupId}/article`, article);
 };
 
 export const getComments = (groupId: number, articleId: number) => {
