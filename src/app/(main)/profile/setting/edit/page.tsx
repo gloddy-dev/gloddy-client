@@ -1,4 +1,5 @@
 import EditHeader from './components/EditHeader';
+import EditProvider from './components/EditProvider.client';
 import InputForm from './components/InputForm.client';
 import { Keys, getProfile } from '@/apis/profile';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
@@ -11,7 +12,9 @@ export default function page() {
       <EditHeader />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={null}>
         <HydrationProvider queryKey={Keys.getProfile()} queryFn={getProfile}>
-          <InputForm />
+          <EditProvider>
+            <InputForm />
+          </EditProvider>
         </HydrationProvider>
       </QueryAsyncBoundary>
     </>

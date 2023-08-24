@@ -1,4 +1,5 @@
 'use client';
+import { useEditContext } from './EditProvider.client';
 import { useGetProfile, usePatchProfile } from '@/apis/profile';
 import { Button, ButtonGroup } from '@/components/Button';
 import ImageFrame from '@/components/common/ImageFrame';
@@ -14,27 +15,16 @@ import useBottomSheet from '@/hooks/useBottomSheet';
 import { formatDateDTO } from '@/utils/formatDateDTO';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
 
-const formDefaultValue = {
-  name: '',
-  birth: {
-    year: '',
-    month: '',
-    date: '',
-  },
-  gender: 'MAIL',
-  imageUrl: '',
-  introduce: '',
-};
+import type { ProfileEditState } from '../type';
 
 export default function InputForm() {
+  const hookForm = useEditContext();
   const {
     data: { imageUrl, introduce, name, personalities, gender },
   } = useGetProfile();
 
-  const hookForm = useForm({ defaultValues: formDefaultValue, mode: 'onBlur' });
-  const { watch, handleSubmit, setValue, register, formState } = hookForm;
+  const { watch, handleSubmit, setValue, register, formState, getValues } = hookForm;
   const {
     isOpen,
     open: openBirthdayBottomSheet,
@@ -50,8 +40,9 @@ export default function InputForm() {
     setValue('gender', gender || 'MAIL');
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: ProfileEditState) => {
     if (!isAllTyped) return;
+    console.log(data);
     const { birth, ...rest } = data;
 
     const profileData = {
