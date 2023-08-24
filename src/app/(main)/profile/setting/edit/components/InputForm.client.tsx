@@ -49,9 +49,7 @@ export default function InputForm() {
       ...rest,
       birth: formatDateDTO(birth),
       personalities: ['OUTGOING'],
-      // personalities: personalityIdList.map((id) => personalityList[id].keywordInEnglish),
     };
-    // console.log(profileData);
 
     mutate(profileData);
   };
@@ -143,7 +141,7 @@ export default function InputForm() {
           </Tag>
         ))}
         <div className="rounded-full bg-sign-brand">
-          <Link href="/profile/setting/edit/personlity">
+          <Link href="/profile/setting/edit/personality">
             <Image src="/icons/24/add.svg" width={24} height={24} alt="plus" />
           </Link>
         </div>
