@@ -32,9 +32,6 @@ export default function InputForm() {
   };
 
   const birth = watch('birth');
-
-  console.log(formState.isValid);
-
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
   return (
@@ -79,8 +76,8 @@ export default function InputForm() {
           selectedValue={watch('gender')}
           onChange={(value) => setValue('gender', value)}
         >
-          <SegmentGroup.Segment value={'MALE'} label="남성" />
-          <SegmentGroup.Segment value={'FEMALE'} label="여성" />
+          <SegmentGroup.Segment value="MAIL" label="남성" />
+          <SegmentGroup.Segment value="FEMAIL" label="여성" />
         </SegmentGroup>
       </section>
 

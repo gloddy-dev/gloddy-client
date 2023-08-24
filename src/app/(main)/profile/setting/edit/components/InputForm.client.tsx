@@ -42,7 +42,6 @@ export default function InputForm() {
 
   const onSubmit = (data: ProfileEditState) => {
     if (!isAllTyped) return;
-    console.log(data);
     const { birth, ...rest } = data;
 
     const profileData = {

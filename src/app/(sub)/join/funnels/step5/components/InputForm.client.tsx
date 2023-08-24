@@ -9,19 +9,17 @@ import { formatDateDTO } from '@/utils/formatDateDTO';
 import { useCallback } from 'react';
 
 import type { SignUpState } from '../../../type';
-import type { GenderType } from '@/types';
 
 export default function InputForm() {
   const { handleSubmit, watch } = useJoinContext();
   const { mutate: mutateSignUp } = useSignUpMutation();
 
   const onSubmit = async (data: SignUpState) => {
-    const { verifyEmailNumber, verifyNumber, birth, personalityIdList, gender, ...rest } = data;
+    const { verifyEmailNumber, verifyNumber, birth, personalityIdList, ...rest } = data;
     const signUpRequest = {
       ...rest,
       birth: formatDateDTO(birth),
       personalities: personalityIdList.map((id) => personalityList[id].keywordInEnglish),
-      gender: (gender === '남성' ? 'MAIL' : 'FEMAIL') as GenderType,
     };
     mutateSignUp(signUpRequest);
   };
