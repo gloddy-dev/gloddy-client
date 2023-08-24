@@ -21,7 +21,7 @@ export function useFileUpload(
   handleFileChange: UseImageUploadProps['handleFileChange'],
   options?: UseImageUploadProps['options']
 ) {
-  const handleFileUpload = useCallback(() => {
+  const handleFileUploadClick = useCallback(() => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = options?.accept || 'image/*';
@@ -36,6 +36,6 @@ export function useFileUpload(
   }, [handleFileChange, options]);
 
   return {
-    handleFileUpload,
+    handleFileUploadClick,
   };
 }
