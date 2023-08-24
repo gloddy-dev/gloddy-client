@@ -1,6 +1,7 @@
 'use client';
 
 import ImageSection from './ImageSection.client';
+import WriteModal from './WriteModal';
 import { usePostFiles } from '@/apis/common';
 import { usePostArticle } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -8,12 +9,14 @@ import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { TextFieldController } from '@/components/TextField';
+import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useForm } from 'react-hook-form';
 
 import type { WriteFormValues } from '../type';
 
 export default function InputForm() {
+  const { open, close } = useModal();
   const { groupId } = useNumberParams<['groupId']>();
   const hookForm = useForm<WriteFormValues>({
     defaultValues: {
@@ -32,22 +35,17 @@ export default function InputForm() {
       fileList: data.images,
     });
 
-    mutateArticle(
-      {
-        groupId,
-        article: {
-          ...data,
-          images: fileUrlList,
-        },
+    mutateArticle({
+      groupId,
+      article: {
+        ...data,
+        images: fileUrlList,
       },
-      {
-        onSuccess: () => {},
-      }
-    );
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="px-20">
+    <div className="px-20">
       <ImageSection control={control} />
       <Spacing size={8} />
       <TextFieldController
@@ -59,7 +57,16 @@ export default function InputForm() {
       />
       <Spacing size={8} />
       <ButtonGroup>
-        <Button disabled={watch('content').length < 20}>글쓰기</Button>
+        <Button
+          onClick={() =>
+            open(
+              <WriteModal type="write" onCancelClick={close} onOkClick={handleSubmit(onSubmit)} />
+            )
+          }
+          disabled={watch('content').length < 20}
+        >
+          글쓰기
+        </Button>
       </ButtonGroup>
       <Flex className="gap-8">
         <CircleCheckbox
@@ -69,6 +76,6 @@ export default function InputForm() {
         <p className="py-12 text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
       </Flex>
       <Spacing size={16} />
-    </form>
+    </div>
   );
 }

@@ -3,9 +3,9 @@ import WriteHeader from './components/WriteHeader.client';
 
 export default function WritePage() {
   return (
-    <>
+    <main>
       <WriteHeader />
       <InputForm />
-    </>
+    </main>
   );
 }
