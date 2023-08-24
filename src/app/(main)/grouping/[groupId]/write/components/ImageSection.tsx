@@ -2,10 +2,14 @@ import { Flex } from '@/components/Layout';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { memo } from 'react';
 
-export default function ImageSection() {
-  const [images, setImages] = useState<File[]>([]);
+interface ImageSectionProps {
+  images: File[];
+  setImages: React.Dispatch<React.SetStateAction<File[]>>;
+}
+
+export default memo(function ImageSection({ images, setImages }: ImageSectionProps) {
   const { handleFileUpload } = useFileUpload(
     (files) => {
       setImages((prev) => [...prev, ...files]);
@@ -32,7 +36,7 @@ export default function ImageSection() {
       </Flex>
     </section>
   );
-}
+});
 
 interface AddImageSectionProps {
   imageCount: number;

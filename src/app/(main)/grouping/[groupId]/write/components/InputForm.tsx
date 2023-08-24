@@ -1,33 +1,28 @@
 'use client';
 
 import ImageSection from './ImageSection';
-import { useWriteContext } from '../WriteContext';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { TextFieldController } from '@/components/TextField';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-type WriteFormType = {
-  content: string;
-  isNotice: boolean;
-};
-
 export default function InputForm() {
-  const { images } = useWriteContext();
-
+  const [images, setImages] = useState<File[]>([]);
   const hookform = useForm({
     mode: 'onChange',
     defaultValues: {
       content: '',
-      isNotice: false,
+      notice: false,
+      images: [],
     },
   });
 
-  const { register, handleSubmit, watch, setValue, formState } = hookform;
+  const { register, handleSubmit, watch, setValue } = hookform;
 
-  const onSubmit = (data: WriteFormType) => {
+  const onSubmit = (data: (typeof hookform)['formState']['defaultValues']) => {
     console.log({
       ...data,
       images,
@@ -36,7 +31,7 @@ export default function InputForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="px-20">
-      <ImageSection />
+      <ImageSection images={images} setImages={setImages} />
       <Spacing size={8} />
       <TextFieldController
         as="textarea"
@@ -47,12 +42,12 @@ export default function InputForm() {
       />
       <Spacing size={8} />
       <ButtonGroup>
-        <Button disabled={!formState.isValid || !formState.isDirty}>글쓰기</Button>
+        <Button disabled={watch('content').length < 20}>글쓰기</Button>
       </ButtonGroup>
       <Flex className="gap-8">
         <CircleCheckbox
-          onClick={() => setValue('isNotice', !watch('isNotice'))}
-          checked={watch('isNotice')}
+          onClick={() => setValue('notice', !watch('notice'))}
+          checked={watch('notice')}
         />
         <p className="py-12 text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
       </Flex>
