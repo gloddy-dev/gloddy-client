@@ -1,11 +1,11 @@
 'use client';
 
 import { useJoinContext } from '../../../components/JoinContext.client';
-import { formatDate } from '../util';
 import { useSignUpMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
+import { formatDateDTO } from '@/utils/formatDateDTO';
 import { useCallback } from 'react';
 
 import type { SignUpState } from '../../../type';
@@ -19,7 +19,7 @@ export default function InputForm() {
     const { verifyEmailNumber, verifyNumber, birth, personalityIdList, gender, ...rest } = data;
     const signUpRequest = {
       ...rest,
-      birth: formatDate(birth),
+      birth: formatDateDTO(birth),
       personalities: personalityIdList.map((id) => personalityList[id].keywordInEnglish),
       gender: (gender === '남성' ? 'MAIL' : 'FEMAIL') as GenderType,
     };
