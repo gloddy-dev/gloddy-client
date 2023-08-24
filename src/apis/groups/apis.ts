@@ -33,7 +33,7 @@ export const getArticle = (groupId: number, articleId: number) => {
 };
 
 export const postArticle = ({ groupId, article }: ArticleRequest) => {
-  return privateApi.post(`/groups/${groupId}/article`, article);
+  return privateApi.post<{ articleId: number }>(`/groups/${groupId}/article`, article);
 };
 
 export const getComments = (groupId: number, articleId: number) => {
