@@ -32,6 +32,7 @@ export default memo(function Tag<T>({
             variant === 'outline' && !isSelected,
           'border border-primary-dark bg-brand-color text-primary-dark':
             variant === 'outline' && isSelected,
+          'bg-brand-color text-primary-dark': variant === 'solid' && isSelected,
         },
         className
       )}
