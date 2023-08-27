@@ -135,7 +135,7 @@ export default function InputForm() {
       <Spacing size={4} />
       <Flex className="gap-4" align="center">
         {personalities.map((personality, index) => (
-          <Tag isSelected size="small" key={index}>
+          <Tag isSelected size="small" variant="solid" key={index}>
             {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
           </Tag>
         ))}
