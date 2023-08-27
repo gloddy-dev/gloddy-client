@@ -6,6 +6,7 @@ interface TagProps<T> {
   id?: T;
   isSelected?: boolean;
   variant?: 'solid' | 'outline';
+  size?: 'small' | 'medium';
   onSelected?: (id: T) => void;
   className?: string;
 }
@@ -13,21 +14,25 @@ interface TagProps<T> {
 export default memo(function Tag<T>({
   id,
   isSelected,
+  variant = 'outline',
+  size = 'medium',
   children,
   onSelected,
-  variant = 'outline',
   className,
 }: StrictPropsWithChildren<TagProps<T>>) {
   return (
     <button
       // TODO: solid 디자인 추가 시 적용
       className={cn(
-        'h-40 rounded-full px-16 py-8 text-subtitle-2',
+        'rounded-full',
         {
+          'px-16 py-8 text-subtitle-2': size === 'medium',
+          'px-8 py-4 text-subtitle-3': size === 'small',
           'border border-border-default bg-white text-sign-tertiary':
             variant === 'outline' && !isSelected,
           'border border-primary-dark bg-brand-color text-primary-dark':
             variant === 'outline' && isSelected,
+          'bg-brand-color text-primary-dark': variant === 'solid' && isSelected,
         },
         className
       )}
