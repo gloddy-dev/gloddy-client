@@ -4,10 +4,10 @@ import SettingHeader from './components/SettingHeader';
 
 export default function page() {
   return (
-    <div>
+    <>
       <SettingHeader />
       <ProfileSection />
       <LinkSection />
-    </div>
+    </>
   );
 }

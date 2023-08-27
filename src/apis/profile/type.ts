@@ -12,6 +12,15 @@ export interface ProfileResponse {
   school: string;
 }
 
+export interface ProfileRequest {
+  imageUrl: string;
+  name: string;
+  birth: string;
+  gender: 'MAIL' | 'FEMAIL';
+  introduce: string;
+  personalities: string[];
+}
+
 export interface PraisesResponse {
   totalCalmCount: number;
   totalKindCount: number;
