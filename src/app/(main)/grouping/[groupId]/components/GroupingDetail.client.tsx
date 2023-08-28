@@ -1,6 +1,6 @@
 'use client';
 
-import { ArticleList, NoticeList } from './board';
+import { ArticleList, NoticeList } from './articles';
 import { LocationSection, MemberSection, TimeSection } from './detail';
 import GroupingHeader from './GroupingHeader.client';
 import TopSection from './TopSection.client';
@@ -27,7 +27,7 @@ export default function GroupingDetail({ groupId }: GroupingDetailProps) {
       <Tabs>
         <Tabs.List>
           <Tabs.Tab value="detail" text="상세정보" />
-          <Tabs.Tab value="board" text="게시판" />
+          <Tabs.Tab value="articles" text="게시판" />
         </Tabs.List>
         <Tabs.Panel value="detail">
           <div className="px-20">
@@ -39,7 +39,7 @@ export default function GroupingDetail({ groupId }: GroupingDetailProps) {
             <LocationSection />
           </div>
         </Tabs.Panel>
-        <Tabs.Panel value="board">
+        <Tabs.Panel value="articles">
           <NoticeList />
           <ArticleList />
           {myGroup && (
