@@ -20,15 +20,18 @@ export default forwardRef(function ImageFrame(
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!canChange || !setImageUrl) return;
-    const formData = new FormData();
     const imageFile = e.target.files?.[0];
     if (imageFile === undefined) return;
-    formData.append('fileList', imageFile);
-    mutatePostFiles(formData, {
-      onSuccess: (data) => {
-        setImageUrl(data.fileUrlList[0]);
+    mutatePostFiles(
+      {
+        fileList: [imageFile],
       },
-    });
+      {
+        onSuccess: (data) => {
+          setImageUrl(data.fileUrlList[0]);
+        },
+      }
+    );
 
     const imageBlob = makeFileToBlob(imageFile);
     setImageBlob(imageBlob);

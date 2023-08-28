@@ -59,7 +59,7 @@ export default function ArticleItem({
             <p className="text-caption text-sign-tertiary">{date}</p>
           </div>
           {/* TODO: 내 게시글 여부 api 추가 시 변경 */}
-          {isCaptain && (
+          {isCaptain && !isBoardDetail && (
             <Image
               src="/icons/24/more_secondary.svg"
               alt="more"
@@ -86,7 +86,7 @@ export default function ArticleItem({
             <Spacing size={16} />
           </>
         )}
-        {isBoardDetail && (
+        {!isBoardDetail && (
           <>
             <Spacing size={16} />
             <Button
