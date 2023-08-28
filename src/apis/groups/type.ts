@@ -9,6 +9,8 @@ export interface Grouping {
   meetDate: string; // '2021-08-01'
   startTime: string; // '19:00'
   endTime: string; // '21:00'
+  placeName: string;
+  placeAddress: string;
   placeLatitude: number;
   placeLongitude: number;
 }
@@ -23,10 +25,6 @@ export interface Article {
   commentCount: number;
   isCertifiedStudent: boolean;
   isCaptain: boolean;
-  isWriter: boolean;
-  isWriterCaptain: boolean;
-  isWriterCertifiedStudent: boolean;
-  writerReliabilityLevel: string;
   images: string[];
 }
 
@@ -52,8 +50,18 @@ export interface GroupDetailResponse extends Omit<Grouping, 'groupId'> {
   isCaptain: true;
 }
 
-export interface CreateGroupRequest extends Omit<Grouping, 'groupId' | 'memberCount' | 'imageUrl'> {
+export interface CreateGroupRequest {
   imageUrl: string;
+  title: string;
+  content: string;
+  meetDate: string;
+  startTime: string;
+  endTime: string;
+  placeName: string;
+  placeAddress: string;
+  placeLatitude: string;
+  placeLongitude: string;
+  maxUser: number;
 }
 
 export interface ArticleRequest {
