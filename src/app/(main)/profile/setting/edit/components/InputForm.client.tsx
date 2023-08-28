@@ -76,7 +76,7 @@ export default function InputForm() {
         <Avatar
           imageUrl={imageUrl}
           size="large"
-          thumbnailVariant="education"
+          iconVariant="education"
           onClick={handleFileUploadClick}
         />
       </Flex>

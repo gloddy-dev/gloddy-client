@@ -14,22 +14,17 @@ interface AvatarProps {
    */
   size?: 'small' | 'medium' | 'large';
   /**
-   * 인증된 사용자면 우측 상단에 인증 아이콘이 표시됩니다.
+   * 우측 상단 아이콘에 대한 변수를 지정합니다. (기본값: none)
    */
-  isCertified?: boolean;
-  /**
-   * 아바타를 클릭했을 때 실행할 함수를 지정합니다.
-   */
+  iconVariant?: 'none' | 'add' | 'draft_orders' | 'education';
   onClick?: () => void;
-  thumbnailVariant?: 'none' | 'default' | 'filled' | 'education';
 }
 export default function Avatar({
   imageUrl,
-  isCertified,
   onClick,
   size = 'medium',
   children,
-  thumbnailVariant = 'none',
+  iconVariant = 'none',
 }: PropsWithChildren<AvatarProps>) {
   return (
     <span
@@ -46,10 +41,10 @@ export default function Avatar({
           className="cursor-pointer rounded-full bg-sub object-cover"
           fill
         />
-        {isCertified && (
+        {iconVariant !== 'none' && (
           <Image
-            src="/icons/24/education.svg"
-            alt="education"
+            src={`/icons/32/${iconVariant}.svg`}
+            alt={iconVariant}
             width={size === 'large' ? 32 : 24}
             height={size === 'large' ? 32 : 24}
             className={cn('absolute', {
@@ -61,19 +56,6 @@ export default function Avatar({
         )}
       </div>
       {children}
-      {thumbnailVariant !== 'none' && (
-        <div className="absolute right-0 top-0">
-          {thumbnailVariant === 'default' && (
-            <Image src="/icons/24/add.svg" alt="add" width={24} height={24} />
-          )}
-          {thumbnailVariant === 'filled' && (
-            <Image src="/icons/32/draft_orders.svg" alt="education" width={32} height={32} />
-          )}
-          {thumbnailVariant === 'education' && (
-            <Image src="/icons/32/education.svg" alt="education" width={32} height={32} />
-          )}
-        </div>
-      )}
     </span>
   );
 }
