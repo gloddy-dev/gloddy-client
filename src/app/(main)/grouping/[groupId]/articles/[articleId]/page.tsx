@@ -1,5 +1,5 @@
-import BoardDetail from './components/BoardDetail.client';
-import BoardHeader from './components/BoardHeader.client';
+import ArticleDetail from './components/ArticleDetail.client';
+import ArticleHeader from './components/ArticleHeader.client';
 import CommentForm from './components/CommentForm';
 import { Keys, getArticle } from '@/apis/groups';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
@@ -7,26 +7,26 @@ import { HydrationProvider } from '@/components/common/Provider/HydrationProvide
 import { Spacing } from '@/components/common/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-interface BoardDetailPageProps {
+interface ArticleDetailPageProps {
   params: {
     groupId: string;
     articleId: string;
   };
 }
 
-export default function BoardDetailPage({ params }: BoardDetailPageProps) {
+export default function ArticlePage({ params }: ArticleDetailPageProps) {
   const groupId = Number(params.groupId);
   const articleId = Number(params.articleId);
 
   return (
     <>
-      <BoardHeader groupId={groupId} />
+      <ArticleHeader groupId={groupId} />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
         <HydrationProvider
           queryFn={() => getArticle(groupId, articleId)}
           queryKey={Keys.getArticle(groupId, articleId)}
         >
-          <BoardDetail />
+          <ArticleDetail />
         </HydrationProvider>
       </QueryAsyncBoundary>
       <Spacing size={100} />
