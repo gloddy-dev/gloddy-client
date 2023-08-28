@@ -10,6 +10,7 @@ export interface ProfileResponse {
   praiseCount: number;
   reviewCount: number;
   school: string;
+  birth: string;
 }
 
 export interface ProfileRequest {
