@@ -18,7 +18,7 @@ export default function IconButton({
   size = 'small',
 }: StrictPropsWithChildren<IconButtonProps>) {
   return (
-    <button
+    <div
       className={cn('flex items-center justify-center', {
         'h-24 w-24': size === 'small',
         'h-40 w-40': size === 'medium',
@@ -27,6 +27,6 @@ export default function IconButton({
       onClick={onClick}
     >
       {children}
-    </button>
+    </div>
   );
 }

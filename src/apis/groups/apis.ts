@@ -4,6 +4,7 @@ import type {
   Article,
   ArticleRequest,
   ArticlesResponse,
+  CommentRequest,
   CommentsReponse,
   CreateGroupRequest,
   GroupDetailResponse,
@@ -38,6 +39,10 @@ export const postArticle = ({ groupId, article }: ArticleRequest) => {
 
 export const getComments = (groupId: number, articleId: number) => {
   return privateApi.get<CommentsReponse>(`/groups/${groupId}/articles/${articleId}/comments`);
+};
+
+export const postComment = ({ groupId, articleId, content }: CommentRequest) => {
+  return privateApi.post(`/groups/${groupId}/articles/${articleId}/comment`, { content });
 };
 
 export const getGroupMembers = (groupId: number) => {
