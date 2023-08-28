@@ -13,7 +13,7 @@ export const usePostArticle = (groupId: number) => {
   return useMutation(postArticle, {
     onSuccess: (data) => {
       queryClient.invalidateQueries(['getArticles', groupId]);
-      router.push(`/grouping/${groupId}/board/${data.articleId}`);
+      router.push(`/grouping/${groupId}/articles/${data.articleId}`);
     },
   });
 };
