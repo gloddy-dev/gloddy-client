@@ -1,30 +1,36 @@
 import BoardDetail from './components/BoardDetail.client';
 import BoardHeader from './components/BoardHeader.client';
-import WriteSection from './components/WriteSection.client';
+import CommentForm from './components/CommentForm';
+import { Keys, getArticle } from '@/apis/groups';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
+import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import { Spacing } from '@/components/common/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 interface BoardDetailPageProps {
   params: {
     groupId: string;
-    boardId: string;
+    articleId: string;
   };
 }
 
 export default function BoardDetailPage({ params }: BoardDetailPageProps) {
   const groupId = Number(params.groupId);
-  const boardId = Number(params.boardId);
+  const articleId = Number(params.articleId);
 
   return (
-    <main className="bg-white">
-      <BoardHeader />
-      <Spacing size={20} />
+    <>
+      <BoardHeader groupId={groupId} />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
-        <BoardDetail groupId={groupId} boardId={boardId} />
+        <HydrationProvider
+          queryFn={() => getArticle(groupId, articleId)}
+          queryKey={Keys.getArticle(groupId, articleId)}
+        >
+          <BoardDetail />
+        </HydrationProvider>
       </QueryAsyncBoundary>
       <Spacing size={100} />
-      <WriteSection groupId={groupId} boardId={boardId} />
-    </main>
+      <CommentForm />
+    </>
   );
 }
