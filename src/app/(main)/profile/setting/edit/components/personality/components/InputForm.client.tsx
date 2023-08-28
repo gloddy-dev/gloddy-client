@@ -16,15 +16,6 @@ interface InputFormProps {
 export default function InputForm({ onClose }: InputFormProps) {
   const { watch, setValue } = useEditContext();
 
-  const {
-    data: { personalities: defaultPersonalites },
-  } = useGetProfile();
-
-  useDidMount(() => {
-    if (watch('personalities')) return;
-    setValue('personalities', defaultPersonalites || []);
-  });
-
   const handleSelectedClick = useCallback(
     (personality: PersonalityType['keywordInEnglish']) => {
       const list = watch('personalities');

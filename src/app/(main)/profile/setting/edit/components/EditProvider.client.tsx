@@ -2,23 +2,17 @@
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
 import type { ProfileEditState } from '../type';
-import type { PersonalityType, StrictPropsWithChildren } from '@/types';
+import type { StrictPropsWithChildren } from '@/types';
 
-const formDefaultValue: ProfileEditState = {
-  name: '',
-  birth: {
-    year: '',
-    month: '',
-    date: '',
-  },
-  gender: 'MAIL',
-  imageUrl: '',
-  introduce: '',
-  personalities: [],
-};
+interface EditProviderProps {
+  defaultValues?: ProfileEditState;
+}
 
-export default function EditProvider({ children }: StrictPropsWithChildren) {
-  const hookForm = useForm<ProfileEditState>({ defaultValues: formDefaultValue, mode: 'onBlur' });
+export default function EditProvider({
+  defaultValues,
+  children,
+}: StrictPropsWithChildren<EditProviderProps>) {
+  const hookForm = useForm<ProfileEditState>({ defaultValues, mode: 'onBlur' });
 
   return <FormProvider {...hookForm}>{children}</FormProvider>;
 }
