@@ -1,6 +1,5 @@
-'use client';
-import { useEditContext } from './EditProvider.client';
-import { useGetProfile, usePatchProfile } from '@/apis/profile';
+import { useEditContext } from '../EditProvider.client';
+import { usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
@@ -10,22 +9,27 @@ import { SegmentGroup } from '@/components/SegmentGroup';
 import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
-import { useDidMount } from '@/hooks/common/useDidMount';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { formatDateDTO } from '@/utils/formatDateDTO';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useController } from 'react-hook-form';
 
-import type { ProfileEditState } from '../type';
+import type { ProfileEditState } from '../../type';
 
-export default function InputForm() {
+interface Step1InputFormProps {
+  onNext: () => void;
+}
+export default function Step1InputForm({ onNext }: Step1InputFormProps) {
+  const router = useRouter();
+  const { mutate } = usePatchProfile();
+
   const hookForm = useEditContext();
-  const { control } = hookForm;
-  const {
-    data: { imageUrl, introduce, name, personalities, gender, birth },
-  } = useGetProfile();
+  const { control, watch, handleSubmit, setValue, register, formState } = hookForm;
+  const birth = watch('birth');
+  const personalities = watch('personalities');
+  const imageUrl = watch('imageUrl');
 
   const {
     field: { value, onChange },
@@ -33,25 +37,13 @@ export default function InputForm() {
     name: 'imageUrl',
     control,
   });
-
   const { handleFileUploadClick } = useFileUpload((files) => onChange(files[0]));
 
-  const { watch, handleSubmit, setValue, register, formState } = hookForm;
   const {
     isOpen: isOpenBirthdayBottomSheet,
     open: openBirthdayBottomSheet,
     close: closeBirthdayBottomSheet,
   } = useBottomSheet();
-
-  const { mutate } = usePatchProfile();
-
-  useDidMount(() => {
-    setValue('imageUrl', imageUrl || '');
-    setValue('name', name || '');
-    setValue('introduce', introduce || '');
-    setValue('gender', gender || 'MAIL');
-    setValue('birth', birth || {});
-  });
 
   const onSubmit = (data: ProfileEditState) => {
     if (!isAllTyped) return;
@@ -60,18 +52,16 @@ export default function InputForm() {
     const profileData = {
       ...rest,
       birth: formatDateDTO(birth),
-      personalities: ['OUTGOING'],
     };
 
-    mutate(profileData);
+    mutate(profileData, { onSuccess: () => router.push('/profile/setting') });
   };
 
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
   const isAllTyped = formState.isValid && isBirthDayEntered && !!watch('gender');
 
   return (
-    <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)} className="px-20">
-      <Spacing size={20} />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-20">
       <Flex justify="center">
         <Avatar
           imageUrl={imageUrl}
@@ -145,7 +135,7 @@ export default function InputForm() {
         register={register('introduce', {
           required: true,
           pattern: {
-            value: /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{0,100}$/,
+            value: /^[\s\S]{0,100}$/,
             message: '* 최대 100자 이하로 작성해주세요.',
           },
         })}
@@ -154,16 +144,15 @@ export default function InputForm() {
 
       <p className="text-subtitle-3">성격</p>
       <Spacing size={4} />
-      <Flex className="gap-4" align="center">
+      <Flex className="flex-wrap gap-4" align="center">
         {personalities.map((personality, index) => (
           <Tag isSelected size="small" variant="solid" key={index}>
             {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
           </Tag>
         ))}
-        <div className="rounded-full bg-sign-brand">
-          <Link href="/profile/setting/edit/personality">
-            <Image src="/icons/24/add.svg" width={24} height={24} alt="plus" />
-          </Link>
+
+        <div className="rounded-full bg-sign-brand" onClick={onNext}>
+          <Image src="/icons/24/add.svg" width={24} height={24} alt="plus" />
         </div>
       </Flex>
 
@@ -171,9 +160,9 @@ export default function InputForm() {
 
       <ButtonGroup>
         <Button type="submit" disabled={!isAllTyped}>
-          완료
+          확인
         </Button>
       </ButtonGroup>
-    </Flex>
+    </form>
   );
 }
