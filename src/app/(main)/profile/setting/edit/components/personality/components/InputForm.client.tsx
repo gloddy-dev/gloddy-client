@@ -1,8 +1,6 @@
 'use client';
 
-import { ProfileEditState } from '../../../type';
 import { useEditContext } from '../../EditProvider.client';
-import { useSignUpMutation } from '@/apis/auth';
 import { useGetProfile } from '@/apis/profile';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Tag } from '@/components/Tag';
@@ -11,15 +9,20 @@ import { useDidMount } from '@/hooks/common/useDidMount';
 import { PersonalityType } from '@/types';
 import { useCallback } from 'react';
 
-export default function InputForm() {
-  const { handleSubmit, watch, setValue } = useEditContext();
-  const { mutate: mutateSignUp } = useSignUpMutation();
+interface InputFormProps {
+  onClose: () => void;
+}
+
+export default function InputForm({ onClose }: InputFormProps) {
+  const { watch, setValue } = useEditContext();
 
   const {
-    data: { personalities },
+    data: { personalities: defaultPersonalites },
   } = useGetProfile();
+
   useDidMount(() => {
-    setValue('personalities', personalities || []);
+    if (watch('personalities')) return;
+    setValue('personalities', defaultPersonalites || []);
   });
 
   const handleSelectedClick = useCallback(
@@ -37,16 +40,6 @@ export default function InputForm() {
     [setValue, watch]
   );
 
-  const onSubmit = async (data: ProfileEditState) => {
-    // const { verifyEmailNumber, verifyNumber, birth, personalities, ...rest } = data;
-    // const signUpRequest = {
-    //   ...rest,
-    //   birth: formatDateDTO(birth),
-    //   personalities: personalities.map((id) => personalityList[id].keywordInEnglish),
-    // };
-    // mutateSignUp(signUpRequest);
-  };
-
   return (
     <form className="px-20">
       <section className="flex flex-wrap gap-12">
@@ -62,8 +55,9 @@ export default function InputForm() {
         ))}
       </section>
       <ButtonGroup>
-        {/* <Button disabled={watch('personalities').length < 3} type="submit"> */}
-        <Button type="submit">완료</Button>
+        <Button disabled={watch('personalities').length < 3} type="button" onClick={onClose}>
+          완료
+        </Button>
       </ButtonGroup>
     </form>
   );

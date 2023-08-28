@@ -6,19 +6,12 @@ import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-interface PageProps {
-  searchParams: {
-    step: string;
-  };
-}
-
-export default function page({ searchParams }: PageProps) {
+export default function page() {
   return (
     <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={null}>
       <HydrationProvider queryKey={Keys.getProfile()} queryFn={getProfile}>
         <EditProvider>
-          {searchParams.step !== 'personality' && <InputForm />}
-          {searchParams.step === 'personality' && <PersonalityEditPage />}
+          <InputForm />
         </EditProvider>
       </HydrationProvider>
     </QueryAsyncBoundary>

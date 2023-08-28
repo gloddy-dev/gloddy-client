@@ -1,5 +1,6 @@
 'use client';
 import { useEditContext } from './EditProvider.client';
+import PersonalityEditPage from './personality/PersonalityEdit';
 import ProfileEditHeader from './ProfileEditHeader';
 import { useGetProfile, usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
@@ -16,16 +17,24 @@ import useBottomSheet from '@/hooks/useBottomSheet';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { formatDateDTO } from '@/utils/formatDateDTO';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useState } from 'react';
 import { useController } from 'react-hook-form';
 
 import type { ProfileEditState } from '../type';
 
 export default function InputForm() {
   const hookForm = useEditContext();
-  const { control } = hookForm;
+  const { control, getValues } = hookForm;
+  const { birth, gender, imageUrl, introduce, name, personalities } = getValues();
   const {
-    data: { imageUrl, introduce, name, personalities, gender, birth },
+    data: {
+      imageUrl: defaultImageUrl,
+      introduce: defaultIntroduce,
+      name: defaultName,
+      personalities: defaultPersonalities,
+      gender: defaultGender,
+      birth: defaultBirth,
+    },
   } = useGetProfile();
 
   const {
@@ -34,6 +43,7 @@ export default function InputForm() {
     name: 'imageUrl',
     control,
   });
+  const [status, setStatus] = useState<'personalities' | 'profile'>('profile');
 
   const { handleFileUploadClick } = useFileUpload((files) => onChange(files[0]));
 
@@ -47,11 +57,13 @@ export default function InputForm() {
   const { mutate } = usePatchProfile();
 
   useDidMount(() => {
-    setValue('imageUrl', imageUrl || '');
-    setValue('name', name || '');
-    setValue('introduce', introduce || '');
-    setValue('gender', gender || 'MAIL');
-    setValue('birth', birth || {});
+    console.log(formState.dirtyFields);
+    setValue('imageUrl', defaultImageUrl || '');
+    setValue('name', defaultName || '');
+    setValue('introduce', defaultIntroduce || '');
+    setValue('gender', defaultGender || 'MAIL');
+    setValue('birth', defaultBirth || {});
+    setValue('personalities', defaultPersonalities || []);
   });
 
   const onSubmit = (data: ProfileEditState) => {
@@ -61,7 +73,6 @@ export default function InputForm() {
     const profileData = {
       ...rest,
       birth: formatDateDTO(birth),
-      personalities: ['OUTGOING'],
     };
 
     mutate(profileData);
@@ -70,13 +81,15 @@ export default function InputForm() {
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
   const isAllTyped = formState.isValid && isBirthDayEntered && !!watch('gender');
 
+  if (status === 'personalities')
+    return <PersonalityEditPage onClose={() => setStatus('profile')} />;
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)} className="px-20">
       <ProfileEditHeader />
       <Spacing size={20} />
       <Flex justify="center">
         <Avatar
-          imageUrl={imageUrl}
+          imageUrl={defaultImageUrl}
           size="large"
           iconVariant="education"
           onClick={handleFileUploadClick}
@@ -147,7 +160,7 @@ export default function InputForm() {
         register={register('introduce', {
           required: true,
           pattern: {
-            value: /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{0,100}$/,
+            value: /^[\s\S]{0,100}$/,
             message: '* 최대 100자 이하로 작성해주세요.',
           },
         })}
@@ -162,10 +175,9 @@ export default function InputForm() {
             {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
           </Tag>
         ))}
-        <div className="rounded-full bg-sign-brand">
-          <Link href="/profile/setting/edit?step=personality">
-            <Image src="/icons/24/add.svg" width={24} height={24} alt="plus" />
-          </Link>
+
+        <div className="rounded-full bg-sign-brand" onClick={() => setStatus('personalities')}>
+          <Image src="/icons/24/add.svg" width={24} height={24} alt="plus" />
         </div>
       </Flex>
 
