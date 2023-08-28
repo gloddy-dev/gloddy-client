@@ -1,14 +1,12 @@
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
-interface PersonalityEditHeaderProps {
+interface Step2HeaderProps {
   onClose: () => void;
 }
 
-export default function PersonalityEditHeader({ onClose }: PersonalityEditHeaderProps) {
+export default function Step2Header({ onClose }: Step2HeaderProps) {
   return (
     <Header>
       <Header.Left className="px-4">

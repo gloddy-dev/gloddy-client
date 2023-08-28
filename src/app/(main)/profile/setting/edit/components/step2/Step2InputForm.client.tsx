@@ -1,11 +1,9 @@
 'use client';
 
-import { useEditContext } from '../../EditProvider.client';
-import { useGetProfile } from '@/apis/profile';
+import { useEditContext } from '../EditProvider.client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
-import { useDidMount } from '@/hooks/common/useDidMount';
 import { PersonalityType } from '@/types';
 import { useCallback } from 'react';
 
@@ -13,7 +11,7 @@ interface InputFormProps {
   onClose: () => void;
 }
 
-export default function InputForm({ onClose }: InputFormProps) {
+export default function Step2InputForm({ onClose }: InputFormProps) {
   const { watch, setValue } = useEditContext();
 
   const handleSelectedClick = useCallback(

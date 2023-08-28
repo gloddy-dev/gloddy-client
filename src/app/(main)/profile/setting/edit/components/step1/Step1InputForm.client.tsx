@@ -1,7 +1,5 @@
-'use client';
-import { useEditContext } from './EditProvider.client';
-import ProfileEditHeader from './ProfileEditHeader';
-import { useGetProfile, usePatchProfile } from '@/apis/profile';
+import { useEditContext } from '../EditProvider.client';
+import { usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
@@ -11,7 +9,6 @@ import { SegmentGroup } from '@/components/SegmentGroup';
 import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
-import { useDidMount } from '@/hooks/common/useDidMount';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { formatDateDTO } from '@/utils/formatDateDTO';
@@ -19,13 +16,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useController } from 'react-hook-form';
 
-import type { ProfileEditState } from '../type';
+import type { ProfileEditState } from '../../type';
 
-interface Step1Props {
+interface Step1InputFormProps {
   onNext: () => void;
 }
-
-export default function Step1({ onNext }: Step1Props) {
+export default function Step1InputForm({ onNext }: Step1InputFormProps) {
   const router = useRouter();
   const { mutate } = usePatchProfile();
 
@@ -66,8 +62,6 @@ export default function Step1({ onNext }: Step1Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-20">
-      <ProfileEditHeader />
-      <Spacing size={20} />
       <Flex justify="center">
         <Avatar
           imageUrl={imageUrl}

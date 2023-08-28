@@ -1,7 +1,7 @@
 'use client';
 import EditProvider from './EditProvider.client';
-import Step2 from './personality/Step2.client';
-import Step1 from './Step1.client';
+import Step1 from './step1/Step1.client';
+import Step2 from './step2/Step2.client';
 import { useGetProfile } from '@/apis/profile';
 import { useState } from 'react';
 
