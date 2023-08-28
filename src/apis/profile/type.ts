@@ -10,6 +10,7 @@ export interface ProfileResponse {
   praiseCount: number;
   reviewCount: number;
   school: string;
+  birth: string;
 }
 
 export interface ProfileRequest {
@@ -30,10 +31,11 @@ export interface PraisesResponse {
 }
 
 export interface Mate {
+  mateId: number;
   mateImageUrl: string;
   mateName: string;
   school: string;
-  createdAt: string; // or Date if you're going to handle this as a Date object
+  createdAt: string;
   selectionReason: string;
 }
 

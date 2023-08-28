@@ -145,6 +145,7 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
     school: 'Harvard University',
     createdAt: '2023-08-06T12:34:56Z',
     selectionReason: `글로디 어플을 사용하면서 첫 모임을 해보았던 건데 어색함 없이 모임을 잘 이끌어주시고 너무 친절하셔서 덕분에 거리낌 없이 즐거운 모임을 한 것 같습니다.좋은 추억 만들어 주셔서 감사합니다~`,
+    mateId: 1,
   },
   {
     mateImageUrl: '/images/dummy_avatar.png',
@@ -152,6 +153,7 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
     school: 'Stanford University',
     createdAt: '2023-08-05T11:22:33Z',
     selectionReason: 'Both love hiking and nature.',
+    mateId: 2,
   },
   {
     mateImageUrl: '/images/dummy_avatar.png',
@@ -159,6 +161,7 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
     school: 'MIT',
     createdAt: '2023-08-04T09:45:12Z',
     selectionReason: 'Connected through mutual friends.',
+    mateId: 3,
   },
   {
     mateImageUrl: '/images/dummy_avatar.png',
@@ -166,6 +169,7 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
     school: 'UCLA',
     createdAt: '2023-08-03T14:56:22Z',
     selectionReason: 'Met at a conference.',
+    mateId: 4,
   },
   {
     mateImageUrl: '/images/dummy_avatar.png',
@@ -173,6 +177,7 @@ export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
     school: 'Oxford University',
     createdAt: '2023-08-02T10:15:25Z',
     selectionReason: 'Worked on a project together.',
+    mateId: 5,
   },
 ];
 
