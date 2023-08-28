@@ -21,6 +21,7 @@ interface AvatarProps {
    * 아바타를 클릭했을 때 실행할 함수를 지정합니다.
    */
   onClick?: () => void;
+  thumbnailVariant?: 'none' | 'default' | 'filled' | 'education';
 }
 export default function Avatar({
   imageUrl,
@@ -28,10 +29,11 @@ export default function Avatar({
   onClick,
   size = 'medium',
   children,
+  thumbnailVariant = 'none',
 }: PropsWithChildren<AvatarProps>) {
   return (
     <span
-      className={cn('flex flex-col items-center gap-1', {
+      className={cn('relative flex flex-col items-center gap-1', {
         'w-40': size === 'small',
         'w-56': size === 'medium',
         'w-96': size === 'large',
@@ -59,6 +61,19 @@ export default function Avatar({
         )}
       </div>
       {children}
+      {thumbnailVariant !== 'none' && (
+        <div className="absolute right-0 top-0">
+          {thumbnailVariant === 'default' && (
+            <Image src="/icons/24/add.svg" alt="add" width={24} height={24} />
+          )}
+          {thumbnailVariant === 'filled' && (
+            <Image src="/icons/32/draft_orders.svg" alt="education" width={32} height={32} />
+          )}
+          {thumbnailVariant === 'education' && (
+            <Image src="/icons/32/education.svg" alt="education" width={32} height={32} />
+          )}
+        </div>
+      )}
     </span>
   );
 }
