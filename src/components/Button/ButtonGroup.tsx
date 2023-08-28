@@ -23,13 +23,12 @@ const renderElements = (
             },
             props[index].className
           ),
-          variant: cn(
-            {
+          variant:
+            props[index].variant ||
+            cn({
               'solid-default': index === 0,
               'solid-primary': index !== 0,
-            },
-            props[index].variant
-          ),
+            }),
         });
       })}
     </div>
@@ -45,11 +44,16 @@ interface ButtonGroupProps {
    * 공백 여부를 설정합니다. (default: true)
    */
   isSpacing?: boolean;
+  /**
+   * 버튼 사이에 구분선을 추가합니다. (default: true)
+   */
+  hasDivider?: boolean;
 }
 
 export default function ButtonGroup({
   position = 'bottom',
   isSpacing = true,
+  hasDivider = true,
   children,
 }: StrictPropsWithChildren<ButtonGroupProps>) {
   const validChildren = Children.toArray(children).filter((child) =>
@@ -73,10 +77,12 @@ export default function ButtonGroup({
 
   return (
     <>
-      {isSpacing && <Spacing size={buttonHeight + 28} />}
+      {position === 'bottom' && isSpacing && <Spacing size={buttonHeight + 28} />}
       <div
-        className={cn('mx-auto border-t-1 border-divider bg-white p-20 pt-7', {
-          'fixed inset-x-0 bottom-0 z-50 max-w-450': position === 'bottom',
+        className={cn({
+          'fixed inset-x-0 bottom-0 z-50 mx-auto max-w-450 bg-white p-20 pt-7':
+            position === 'bottom',
+          'border-t-1 border-divider': hasDivider,
         })}
       >
         {renderElements(validChildren, props)}
