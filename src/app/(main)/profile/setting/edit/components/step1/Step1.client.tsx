@@ -8,10 +8,10 @@ interface Step1Props {
 
 export default function Step1({ onNext }: Step1Props) {
   return (
-    <form>
+    <>
       <Step1Header />
       <Spacing size={20} />
       <Step1InputForm onNext={onNext} />
-    </form>
+    </>
   );
 }
