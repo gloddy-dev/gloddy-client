@@ -6,6 +6,7 @@ import { Header } from '@/components/Header';
 import { Flex } from '@/components/Layout';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function GroupingHeader() {
@@ -28,9 +29,11 @@ export default function GroupingHeader() {
       <Header.Right>
         <Flex align="center">
           {isCaptain && (
-            <IconButton size="large" onClick={() => router.push(`/grouping/${groupId}/manage`)}>
-              <Image src="/icons/24/application.svg" alt="application" width={24} height={24} />
-            </IconButton>
+            <Link href={`/grouping/${groupId}/manage`}>
+              <IconButton size="large">
+                <Image src="/icons/24/application.svg" alt="application" width={24} height={24} />
+              </IconButton>
+            </Link>
           )}
           <IconButton size="large" onClick={() => console.log('더보기')}>
             <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
