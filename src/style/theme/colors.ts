@@ -37,6 +37,7 @@ export const colors = {
   // Status Colors
   'warning-light': PALETTE.red['200'],
   warning: PALETTE.red['500'],
+  'warning-dark': PALETTE.red['600'],
   success: {
     cto: PALETTE.blue['500'],
     text: PALETTE.blue['600'],
