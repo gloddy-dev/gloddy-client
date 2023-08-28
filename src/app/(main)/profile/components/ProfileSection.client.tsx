@@ -1,6 +1,6 @@
 'use client';
 import { useGetProfile } from '@/apis/profile';
-import ImageFrame from '@/components/common/ImageFrame';
+import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
@@ -16,10 +16,14 @@ export default function ProfileSection() {
     profileData;
   const pathname = usePathname();
 
+  console.log(imageUrl);
+
   return (
     <section className="h-500 rounded-b-24 bg-white shadow-float">
       <Flex direction="column" align="center">
-        <ImageFrame canChange={false} />
+        <Spacing size={7} />
+        <Avatar imageUrl={imageUrl} size="large" />
+        <Spacing size={16} />
         <h4 className="text-h4">{name}</h4>
         <Spacing size={4} />
         <Flex className="h-18 text-caption text-sign-tertiary" align="center">
