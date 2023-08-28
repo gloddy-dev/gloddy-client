@@ -1,44 +1,52 @@
 'use client';
 
+import { usePostComment } from '@/apis/groups';
 import BottomFixedDiv from '@/components/common/BottomFixedDiv';
-import { Button } from '@/components/common/Button';
-import { Input } from '@/components/common/Input';
+import { TextFieldController } from '@/components/TextField';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-interface WriteSectionProps {
-  groupId: number;
-  boardId: number;
-}
+type CommentFormType = {
+  content: string;
+};
 
-export default function WriteSection({ groupId, boardId }: WriteSectionProps) {
-  const [comment, setComment] = useState('');
+export default function WriteSection() {
+  const { boardId, groupId } = useNumberParams<['boardId', 'groupId']>();
+  const { mutate: mutateComment } = usePostComment(groupId, boardId);
+  const hookForm = useForm<CommentFormType>({
+    mode: 'onChange',
+    defaultValues: {
+      content: '',
+    },
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setComment(e.target.value);
-  };
+  const { register, handleSubmit } = hookForm;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(comment);
-
-    setComment('');
+  const onSubmit = ({ content }: CommentFormType) => {
+    mutateComment({ content, groupId, articleId: boardId });
+    hookForm.reset();
   };
 
   return (
     <BottomFixedDiv>
-      <form onSubmit={handleSubmit} className="flex items-center gap-10">
-        <Input
-          placeholder="댓글 쓰기"
-          className="h-50 text-12"
-          value={comment}
-          onChange={handleChange}
-        />
-        <Button type="submit" className="h-50 w-50 flex-shrink-0">
-          <span className="item-center flex justify-center">
-            <Image src="/assets/comment_white.svg" alt="comment" width={20} height={20} />
-          </span>
-        </Button>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex items-center gap-8">
+        <div className="grow">
+          <TextFieldController
+            as="input"
+            hookForm={hookForm}
+            register={register('content', {
+              required: true,
+            })}
+            placeholder="댓글 쓰기"
+          />
+        </div>
+        <button
+          type="submit"
+          className="flex h-48 w-48 items-center justify-center rounded-full bg-primary"
+        >
+          <Image src="/icons/24/send.svg" alt="send" width={24} height={24} />
+        </button>
       </form>
     </BottomFixedDiv>
   );

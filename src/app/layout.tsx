@@ -36,7 +36,7 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: StrictPropsWithChildren) {
   return (
     <Layout>
       <QueryProvider>
@@ -51,8 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 function Layout({ children }: StrictPropsWithChildren) {
   return (
     <html lang="ko">
-      <body className="flex h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
-        <div className="relative h-full w-full max-w-450 bg-white text-sign-primary">
+      <body className="flex h-full min-h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
+        <div className="relative min-h-[100dvh] w-full max-w-450 bg-white text-sign-primary">
           {children}
         </div>
       </body>
