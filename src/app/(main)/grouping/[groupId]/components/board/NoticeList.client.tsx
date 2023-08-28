@@ -19,14 +19,21 @@ export default function NoticeList() {
       <div className="rounded-8 bg-card-ui p-16 text-subtitle-3 text-sign-secondary">
         <p className="pl-4">공지사항</p>
         <Spacing size={6} />
-        {noticeData.map((notice) => (
-          <NoticeItem
-            key={notice.noticeId}
-            notice={notice}
-            groupId={groupId}
-            isCaptain={isCaptain}
-          />
-        ))}
+        {noticeData.length === 0 ? (
+          <Flex align="center" className="gap-4 py-4">
+            <Image src="/icons/24/info.svg" alt="info" width={24} height={24} />
+            <p>등록된 공지사항이 없어요.</p>
+          </Flex>
+        ) : (
+          noticeData.map((notice) => (
+            <NoticeItem
+              key={notice.noticeId}
+              notice={notice}
+              groupId={groupId}
+              isCaptain={isCaptain}
+            />
+          ))
+        )}
       </div>
     </div>
   );
