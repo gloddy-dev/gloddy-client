@@ -1,6 +1,5 @@
 'use client';
 import { useEditContext } from './EditProvider.client';
-import PersonalityEditPage from './personality/PersonalityEdit';
 import ProfileEditHeader from './ProfileEditHeader';
 import { useGetProfile, usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
@@ -18,31 +17,23 @@ import { useFileUpload } from '@/hooks/useFileUpload';
 import { formatDateDTO } from '@/utils/formatDateDTO';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useController } from 'react-hook-form';
 
 import type { ProfileEditState } from '../type';
 
-export default function InputForm() {
+interface Step1Props {
+  onNext: () => void;
+}
+
+export default function Step1({ onNext }: Step1Props) {
   const router = useRouter();
-  const {
-    data: {
-      imageUrl: defaultImageUrl,
-      introduce: defaultIntroduce,
-      name: defaultName,
-      personalities: defaultPersonalities,
-      gender: defaultGender,
-      birth: defaultBirth,
-    },
-  } = useGetProfile();
   const { mutate } = usePatchProfile();
 
   const hookForm = useEditContext();
   const { control, watch, handleSubmit, setValue, register, formState } = hookForm;
   const birth = watch('birth');
   const personalities = watch('personalities');
-
-  const [status, setStatus] = useState<'personalities' | 'profile'>('profile');
+  const imageUrl = watch('imageUrl');
 
   const {
     field: { value, onChange },
@@ -57,15 +48,6 @@ export default function InputForm() {
     open: openBirthdayBottomSheet,
     close: closeBirthdayBottomSheet,
   } = useBottomSheet();
-
-  useDidMount(() => {
-    setValue('imageUrl', defaultImageUrl || '');
-    setValue('name', defaultName || '');
-    setValue('introduce', defaultIntroduce || '');
-    setValue('gender', defaultGender || 'MAIL');
-    setValue('birth', defaultBirth || {});
-    setValue('personalities', defaultPersonalities || []);
-  });
 
   const onSubmit = (data: ProfileEditState) => {
     if (!isAllTyped) return;
@@ -82,15 +64,13 @@ export default function InputForm() {
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
   const isAllTyped = formState.isValid && isBirthDayEntered && !!watch('gender');
 
-  if (status === 'personalities')
-    return <PersonalityEditPage onClose={() => setStatus('profile')} />;
   return (
-    <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)} className="px-20">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-20">
       <ProfileEditHeader />
       <Spacing size={20} />
       <Flex justify="center">
         <Avatar
-          imageUrl={defaultImageUrl}
+          imageUrl={imageUrl}
           size="large"
           iconVariant="education"
           onClick={handleFileUploadClick}
@@ -177,7 +157,7 @@ export default function InputForm() {
           </Tag>
         ))}
 
-        <div className="rounded-full bg-sign-brand" onClick={() => setStatus('personalities')}>
+        <div className="rounded-full bg-sign-brand" onClick={onNext}>
           <Image src="/icons/24/add.svg" width={24} height={24} alt="plus" />
         </div>
       </Flex>
@@ -189,6 +169,6 @@ export default function InputForm() {
           확인
         </Button>
       </ButtonGroup>
-    </Flex>
+    </form>
   );
 }
