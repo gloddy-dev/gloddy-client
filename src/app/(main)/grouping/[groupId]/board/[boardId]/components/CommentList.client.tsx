@@ -1,62 +1,94 @@
 'use client';
 
-import { type Comment } from '@/apis/groups';
+import { type Comment, useDeleteComment, useGetComments } from '@/apis/groups';
+import DeleteModal from '@/app/(main)/grouping/components/DeleteModal.client';
+import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
-import { DUMMY_COMMENTS_DATA } from '@/constants/dummyData';
-import clsx from 'clsx';
+import { Divider } from '@/components/Divider';
+import { Flex } from '@/components/Layout';
+import { useModal } from '@/hooks/useModal';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import { Fragment } from 'react';
 
-interface CommentItemProps {
-  comment: Comment;
-}
+export default function CommentList() {
+  const { boardId, groupId } = useNumberParams<['boardId', 'groupId']>();
+  const { data: commentsData } = useGetComments(groupId, boardId);
 
-function CommentItem({ comment }: CommentItemProps) {
-  const { name, date, content, userImageUrl, writer } = comment;
+  if (commentsData.comments.length === 0)
+    return (
+      <Flex direction="column" justify="center" align="center" className="my-80">
+        <Image src="/icons/48/cancel.svg" alt="cancel" width={48} height={48} />
+        <Spacing size={8} />
+        <p className="text-sign-tertiary">첫 댓글을 남겨보세요!</p>
+      </Flex>
+    );
 
   return (
-    <div className="p-16">
-      <div className="flex">
-        <div className="relative h-32 w-32 overflow-hidden rounded-full">
-          <Image src={userImageUrl} alt="avatar" className="object-cover" fill />
-        </div>
-        <Spacing size={12} direction="horizontal" />
-        <div className="flex-grow">
-          <div className="flex items-center gap-6">
-            <h2 className={clsx('font-700 text-14', writer ? 'text-blue' : 'text-gray')}>{name}</h2>
-          </div>
-          <p className="font-400 text-10 text-gray4">{date}</p>
-        </div>
-        <Image src="/assets/more.svg" alt="more" width={3} height={13} className="cursor-pointer" />
-      </div>
-      <Spacing size={12} />
-      <div className="whitespace-pre-line text-12 leading-20 text-gray">{content}</div>
+    <div>
+      {commentsData.comments.map((comment) => (
+        <Fragment key={comment.commentId}>
+          <CommentItem comment={comment} groupId={groupId} boardId={boardId} />
+          <Divider thickness="thin" />
+        </Fragment>
+      ))}
     </div>
   );
 }
-
-interface CommentListProps {
+interface CommentItemProps {
+  comment: Comment;
   groupId: number;
   boardId: number;
 }
 
-export default function CommentList({ groupId, boardId }: CommentListProps) {
-  // const { data: commentsData } = useGetComments(groupId, boardId);
+function CommentItem({ comment, boardId, groupId }: CommentItemProps) {
+  const { name, date, content, userImageUrl, writer, commentId } = comment;
+
+  const { open, close } = useModal();
+  const { mutate: mutateDeleteComment } = useDeleteComment(groupId, boardId, commentId);
+
+  const handleDeleteClick = () => {
+    mutateDeleteComment();
+    close();
+  };
 
   return (
-    <div>
-      {DUMMY_COMMENTS_DATA.map((comment, index) => (
-        <Fragment key={comment.commentId}>
-          <CommentItem comment={comment} />
-          {index !== DUMMY_COMMENTS_DATA.length - 1 && (
-            <>
-              <Spacing size={20} />
-              <div className="h-1 bg-white3" />
-              <Spacing size={20} />
-            </>
-          )}
-        </Fragment>
-      ))}
-    </div>
+    <Flex direction="column" className="m-20 mb-20 px-4">
+      <Flex align="center" className="gap-12 pb-4 pt-6">
+        <Avatar
+          imageUrl={userImageUrl ?? '/images/dummy_avatar.png'}
+          size="small"
+          // isCertified={isCertifiedStudent}
+        />
+        <div className="grow">
+          <Flex align="center">
+            <p className="text-paragraph-2 text-sign-secondary">{name}</p>
+            <Spacing size={2} direction="horizontal" />
+            {/* {isArticleCaptain && (
+              <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />
+            )} */}
+            {/* TODO: 등급 아이콘 추가 */}
+          </Flex>
+          <p className="text-caption text-sign-tertiary">{date}</p>
+        </div>
+        <Image
+          src="/icons/24/more_secondary.svg"
+          alt="more"
+          width={24}
+          height={24}
+          onClick={() =>
+            open(
+              <DeleteModal
+                content="해당 댓글을 삭제하시겠습니까?"
+                onOkClick={handleDeleteClick}
+                onCancelClick={close}
+              />
+            )
+          }
+        />
+      </Flex>
+      <Spacing size={8} />
+      <div className="text-paragraph-2 text-sign-primary">{content}</div>
+    </Flex>
   );
 }
