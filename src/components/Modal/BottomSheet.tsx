@@ -1,34 +1,37 @@
-'use client';
+import { IconButton } from '../Button';
+import { Spacing } from '../common/Spacing';
+import { Header } from '../Header';
+import { useDidUnMount } from '@/hooks/common/useDidUnMount';
+import { useUnmountEffect } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import Sheet, { type SheetRef } from 'react-modal-sheet';
 
-interface BottomSheetProps {
-  snap: number;
-  children: React.ReactNode;
+import type { StrictPropsWithChildren } from '@/types';
+import type { SheetProps } from 'react-modal-sheet/dist/types';
+
+interface BottomSheetProps extends Partial<SheetProps> {
+  snapPoints: number[];
   onClose: () => void;
+  title?: string;
   disableDrag?: boolean;
-  title?: React.ReactNode;
-  isLeftButton?: boolean;
-  isRightButton?: boolean;
   isTapOutsideToClose?: boolean;
-  handleLeftButtonClick?: () => void;
 }
 
-export default function BottomSheet({
-  children,
-  handleLeftButtonClick,
-  onClose,
-  snap,
-  title,
-  disableDrag = false,
-  isLeftButton = false,
-  isRightButton = false,
-  isTapOutsideToClose = false,
-}: BottomSheetProps) {
-  const ref = useRef<SheetRef>();
-  const snapTo = (i: number) => ref.current?.snapTo(i);
+export default forwardRef(function BottomSheet(
+  {
+    snapPoints,
+    onClose,
+    title,
+    disableDrag = false,
+    isTapOutsideToClose = false,
+    children,
+    ...props
+  }: StrictPropsWithChildren<BottomSheetProps>,
+  ref?: React.ForwardedRef<SheetRef>
+) {
   const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     setIsOpen(true);
   }, []);
@@ -38,45 +41,41 @@ export default function BottomSheet({
       ref={ref}
       isOpen={isOpen}
       onClose={onClose}
-      snapPoints={[snap, 0]}
+      snapPoints={snapPoints}
       initialSnap={0}
       disableDrag={disableDrag}
-      className="fixed inset-x-0 m-auto max-w-450"
       tweenConfig={{
         ease: 'easeInOut',
         duration: 0.5,
       }}
+      className="fixed inset-x-0 m-auto max-w-450"
+      {...props}
     >
       <Sheet.Backdrop
-        className="fixed inset-x-0 m-auto max-w-450 !bg-[rgba(0,0,0,0.6)]"
+        className="fixed inset-x-0 mx-auto max-w-450 !bg-sign-cto/[.38]"
         onTap={isTapOutsideToClose ? onClose : () => {}}
       />
-      <Sheet.Container className="!rounded-t-30 bg-white px-20 pt-16">
-        <Sheet.Header className="relative h-50 items-center justify-center">
-          {isLeftButton && (
-            <Image
-              alt="close"
-              src="/assets/arrow_back.svg"
-              width={10}
-              height={10}
-              className="absolute inset-y-0 left-0 m-auto"
-              onClick={() => (handleLeftButtonClick ? handleLeftButtonClick() : snapTo(1))}
-            />
-          )}
-          <div className="flex h-full items-center text-subtitle-1">{title}</div>
-          {isRightButton && (
-            <Image
-              alt="close"
-              src="/icons/24/close.svg"
-              width={30}
-              height={30}
-              onClick={onClose}
-              className="absolute inset-y-0 right-0 m-auto"
-            />
-          )}
+      <Sheet.Container className="bg-dimmed-38 !rounded-t-24">
+        <Sheet.Header>
+          <div className="absolute inset-x-0 top-4 mx-auto h-4 w-80 rounded-8 bg-sign-caption" />
+          <Spacing size={20} />
+          <Header className="static bg-inherit" isSpacing={false}>
+            <Header.Left className="pl-20">{title}</Header.Left>
+            <Header.Right className="pr-4">
+              <IconButton size="large" onClick={onClose}>
+                <Image
+                  src="/icons/24/close.svg"
+                  alt="close"
+                  width={24}
+                  height={24}
+                  className="cursor-pointer"
+                />
+              </IconButton>
+            </Header.Right>
+          </Header>
         </Sheet.Header>
-        <Sheet.Content>{children}</Sheet.Content>
+        <Sheet.Content className="px-20">{children}</Sheet.Content>
       </Sheet.Container>
     </Sheet>
   );
-}
+});
