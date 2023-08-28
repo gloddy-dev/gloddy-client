@@ -16,10 +16,8 @@ export default function ProfileSection() {
     profileData;
   const pathname = usePathname();
 
-  console.log(imageUrl);
-
   return (
-    <section className="h-500 rounded-b-24 bg-white shadow-float">
+    <section className="rounded-b-24 bg-white shadow-float">
       <Flex direction="column" align="center">
         <Spacing size={7} />
         <Avatar imageUrl={imageUrl} size="large" />
@@ -37,7 +35,7 @@ export default function ProfileSection() {
           <span>{age}세</span>
         </Flex>
         <Spacing size={16} />
-        <Flex className="gap-4">
+        <Flex className="gap-4" wrap="wrap" justify="center">
           {personalities.map((personality) => (
             <Tag key={personality} className="border-none bg-brand-color text-primary-dark">
               {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
@@ -81,6 +79,7 @@ export default function ProfileSection() {
             <h4 className="text-secondary text-h4 text-sign-brand">{reviewCount}회</h4>
           </Link>
         </Flex>
+        <Spacing size={32} />
       </Flex>
     </section>
   );
