@@ -1,6 +1,6 @@
 'use client';
 
-import { type Comment, useGetComments } from '@/apis/groups';
+import { type Comment, useDeleteComment, useGetComments } from '@/apis/groups';
 import DeleteModal from '@/app/(main)/grouping/components/DeleteModal.client';
 import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
@@ -28,7 +28,7 @@ export default function CommentList() {
     <div>
       {commentsData.comments.map((comment) => (
         <Fragment key={comment.commentId}>
-          <CommentItem comment={comment} />
+          <CommentItem comment={comment} groupId={groupId} boardId={boardId} />
           <Divider thickness="thin" />
         </Fragment>
       ))}
@@ -37,13 +37,20 @@ export default function CommentList() {
 }
 interface CommentItemProps {
   comment: Comment;
+  groupId: number;
+  boardId: number;
 }
 
-function CommentItem({ comment }: CommentItemProps) {
-  const { open, close } = useModal();
+function CommentItem({ comment, boardId, groupId }: CommentItemProps) {
   const { name, date, content, userImageUrl, writer, commentId } = comment;
 
-  const handleDeleteClick = () => {};
+  const { open, close } = useModal();
+  const { mutate: mutateDeleteComment } = useDeleteComment(groupId, boardId, commentId);
+
+  const handleDeleteClick = () => {
+    mutateDeleteComment();
+    close();
+  };
 
   return (
     <Flex direction="column" className="m-20 mb-20 px-4">

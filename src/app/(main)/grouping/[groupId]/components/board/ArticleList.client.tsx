@@ -17,7 +17,12 @@ export default function ArticleList() {
     <Flex direction="column">
       {articlesData.map((article) => (
         <>
-          <ArticleItem key={article.articleId} article={article} isCaptain={isCaptain} />
+          <ArticleItem
+            key={article.articleId}
+            article={article}
+            isCaptain={isCaptain}
+            groupId={groupId}
+          />
           <Divider />
         </>
       ))}

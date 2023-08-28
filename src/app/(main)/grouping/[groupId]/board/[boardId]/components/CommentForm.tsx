@@ -11,7 +11,7 @@ type CommentFormType = {
   content: string;
 };
 
-export default function WriteSection() {
+export default function CommentForm() {
   const { boardId, groupId } = useNumberParams<['boardId', 'groupId']>();
   const { mutate: mutateComment } = usePostComment(groupId, boardId);
   const hookForm = useForm<CommentFormType>({

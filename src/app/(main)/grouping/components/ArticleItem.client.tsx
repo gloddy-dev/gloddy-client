@@ -1,5 +1,6 @@
 'use client';
 import ArticleItemModal from './DeleteModal.client';
+import { useDeleteArticle } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
@@ -13,17 +14,16 @@ import type { Article } from '@/apis/groups/type';
 interface ArticleItemProps {
   article: Article;
   isCaptain: boolean;
+  groupId: number;
   isBoardDetail?: boolean;
 }
 
 export default function ArticleItem({
   article,
   isCaptain,
+  groupId,
   isBoardDetail = false,
 }: ArticleItemProps) {
-  const pathname = usePathname();
-  const { open, close } = useModal();
-
   const {
     userImageUrl,
     name,
@@ -36,7 +36,14 @@ export default function ArticleItem({
     isCaptain: isArticleCaptain,
   } = article;
 
-  const handleDeleteClick = () => {};
+  const pathname = usePathname();
+  const { open, close } = useModal();
+  const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId, articleId);
+
+  const handleDeleteClick = () => {
+    mutateDeleteArticle();
+    close();
+  };
 
   return (
     <div className="mx-20 mb-24 mt-16 px-4">

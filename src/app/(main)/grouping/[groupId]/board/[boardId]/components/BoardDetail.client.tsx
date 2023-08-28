@@ -11,12 +11,13 @@ export default function BoardDetail() {
   const { boardId, groupId } = useNumberParams<['boardId', 'groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { data: articleData } = useGetArticle(groupId, boardId);
+
   const { isCaptain } = groupDetailData;
   const { commentCount } = articleData;
 
   return (
     <>
-      <ArticleItem article={articleData} isCaptain={isCaptain} isBoardDetail />
+      <ArticleItem article={articleData} isCaptain={isCaptain} groupId={groupId} isBoardDetail />
       <Divider thickness="thick" />
       <Spacing size={20} />
       <p className="px-24">댓글 {commentCount}개</p>
