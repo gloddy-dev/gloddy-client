@@ -1,5 +1,6 @@
 'use client';
 import { useEditContext } from './EditProvider.client';
+import ProfileEditHeader from './ProfileEditHeader';
 import { useGetProfile, usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -71,6 +72,7 @@ export default function InputForm() {
 
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)} className="px-20">
+      <ProfileEditHeader />
       <Spacing size={20} />
       <Flex justify="center">
         <Avatar
@@ -161,7 +163,7 @@ export default function InputForm() {
           </Tag>
         ))}
         <div className="rounded-full bg-sign-brand">
-          <Link href="/profile/setting/edit/personality">
+          <Link href="/profile/setting/edit?step=personality">
             <Image src="/icons/24/add.svg" width={24} height={24} alt="plus" />
           </Link>
         </div>
@@ -171,7 +173,7 @@ export default function InputForm() {
 
       <ButtonGroup>
         <Button type="submit" disabled={!isAllTyped}>
-          완료
+          확인
         </Button>
       </ButtonGroup>
     </Flex>
