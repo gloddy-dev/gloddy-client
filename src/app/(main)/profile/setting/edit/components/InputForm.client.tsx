@@ -17,15 +17,14 @@ import useBottomSheet from '@/hooks/useBottomSheet';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { formatDateDTO } from '@/utils/formatDateDTO';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useController } from 'react-hook-form';
 
 import type { ProfileEditState } from '../type';
 
 export default function InputForm() {
-  const hookForm = useEditContext();
-  const { control, getValues } = hookForm;
-  const { birth, gender, imageUrl, introduce, name, personalities } = getValues();
+  const router = useRouter();
   const {
     data: {
       imageUrl: defaultImageUrl,
@@ -36,6 +35,14 @@ export default function InputForm() {
       birth: defaultBirth,
     },
   } = useGetProfile();
+  const { mutate } = usePatchProfile();
+
+  const hookForm = useEditContext();
+  const { control, watch, handleSubmit, setValue, register, formState } = hookForm;
+  const birth = watch('birth');
+  const personalities = watch('personalities');
+
+  const [status, setStatus] = useState<'personalities' | 'profile'>('profile');
 
   const {
     field: { value, onChange },
@@ -43,21 +50,15 @@ export default function InputForm() {
     name: 'imageUrl',
     control,
   });
-  const [status, setStatus] = useState<'personalities' | 'profile'>('profile');
-
   const { handleFileUploadClick } = useFileUpload((files) => onChange(files[0]));
 
-  const { watch, handleSubmit, setValue, register, formState } = hookForm;
   const {
     isOpen: isOpenBirthdayBottomSheet,
     open: openBirthdayBottomSheet,
     close: closeBirthdayBottomSheet,
   } = useBottomSheet();
 
-  const { mutate } = usePatchProfile();
-
   useDidMount(() => {
-    console.log(formState.dirtyFields);
     setValue('imageUrl', defaultImageUrl || '');
     setValue('name', defaultName || '');
     setValue('introduce', defaultIntroduce || '');
@@ -75,7 +76,7 @@ export default function InputForm() {
       birth: formatDateDTO(birth),
     };
 
-    mutate(profileData);
+    mutate(profileData, { onSuccess: () => router.push('/profile/setting') });
   };
 
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
@@ -169,7 +170,7 @@ export default function InputForm() {
 
       <p className="text-subtitle-3">성격</p>
       <Spacing size={4} />
-      <Flex className="gap-4" align="center">
+      <Flex className="flex-wrap gap-4" align="center">
         {personalities.map((personality, index) => (
           <Tag isSelected size="small" variant="solid" key={index}>
             {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
