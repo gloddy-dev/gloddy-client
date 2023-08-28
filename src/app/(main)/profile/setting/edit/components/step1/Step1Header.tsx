@@ -3,7 +3,7 @@ import { Header } from '@/components/Header';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function EditHeader() {
+export default function Step1Header() {
   return (
     <Header>
       <Header.Left className="px-4">
