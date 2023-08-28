@@ -38,7 +38,7 @@ export default function InputForm() {
 
   const { watch, handleSubmit, setValue, register, formState } = hookForm;
   const {
-    isOpen,
+    isOpen: isOpenBirthdayBottomSheet,
     open: openBirthdayBottomSheet,
     close: closeBirthdayBottomSheet,
   } = useBottomSheet();
@@ -125,7 +125,7 @@ export default function InputForm() {
         </SegmentGroup>
       </section>
 
-      {isOpen && (
+      {isOpenBirthdayBottomSheet && (
         <BirthdayBottomSheet
           onClose={closeBirthdayBottomSheet}
           dateValue={birth}
@@ -167,7 +167,7 @@ export default function InputForm() {
         </div>
       </Flex>
 
-      <Spacing size={50} />
+      <Spacing size={100} />
 
       <ButtonGroup>
         <Button type="submit" disabled={!isAllTyped}>
