@@ -3,7 +3,6 @@ import { useEditContext } from './EditProvider.client';
 import { useGetProfile, usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
-import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import BirthdayBottomSheet from '@/components/Modal/BirthdayBottomSheet.client';
@@ -51,6 +50,7 @@ export default function InputForm() {
     setValue('name', name || '');
     setValue('introduce', introduce || '');
     setValue('gender', gender || 'MAIL');
+    setValue('birth', birth || {});
   });
 
   const onSubmit = (data: ProfileEditState) => {
@@ -71,6 +71,7 @@ export default function InputForm() {
 
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)} className="px-20">
+      <Spacing size={20} />
       <Flex justify="center">
         <Avatar
           imageUrl={imageUrl}
@@ -79,6 +80,7 @@ export default function InputForm() {
           onClick={handleFileUploadClick}
         />
       </Flex>
+      <Spacing size={16} />
 
       <p className="text-subtitle-3">닉네임</p>
       <Spacing size={4} />
