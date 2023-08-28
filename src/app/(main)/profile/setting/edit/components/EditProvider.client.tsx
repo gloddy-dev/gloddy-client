@@ -2,7 +2,7 @@
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
 import type { ProfileEditState } from '../type';
-import type { StrictPropsWithChildren } from '@/types';
+import type { PersonalityType, StrictPropsWithChildren } from '@/types';
 
 const formDefaultValue: ProfileEditState = {
   name: '',
