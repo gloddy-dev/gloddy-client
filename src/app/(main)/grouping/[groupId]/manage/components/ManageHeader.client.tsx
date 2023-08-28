@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export default function ManageHeader() {
   const router = useRouter();
+
   return (
     <Header className="px-4">
       <Header.Left>
