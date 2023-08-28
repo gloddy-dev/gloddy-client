@@ -51,7 +51,7 @@ export default function ArticleItem({
         <Avatar
           imageUrl={userImageUrl ?? '/images/dummy_avatar.png'}
           size="small"
-          isCertified={isCertifiedStudent}
+          iconVariant={isCertifiedStudent ? 'education' : 'none'}
         />
         <div className="grow">
           <Flex align="center">

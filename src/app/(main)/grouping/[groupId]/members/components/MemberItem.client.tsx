@@ -21,7 +21,7 @@ export default function MemberItem({
 }: MemberItemProps) {
   return (
     <div className="flex items-center rounded-8 bg-gray6 p-16">
-      <Avatar imageUrl={imageUrl} isCertified={isCertified} />
+      <Avatar imageUrl={imageUrl} iconVariant={isCertified ? 'education' : 'none'} />
       <Spacing size={13} direction="horizontal" />
       <p className={clsx('font-700', isCaptain ? 'text-blue' : 'text-gray')}>{name}</p>
       <div className="flex-grow" />
