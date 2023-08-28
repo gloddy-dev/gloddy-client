@@ -68,7 +68,7 @@ function TextField<T extends React.ElementType = 'input'>(
           {leftIcon}
           <Element
             className={cn(
-              'h-full w-full resize-none text-paragraph-2 outline-none placeholder:text-paragraph-2 placeholder:text-sign-caption',
+              'h-24 w-full resize-none text-paragraph-2 outline-none placeholder:text-paragraph-2 placeholder:text-sign-caption',
               {
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
