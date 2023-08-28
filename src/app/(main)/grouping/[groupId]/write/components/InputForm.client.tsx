@@ -63,7 +63,7 @@ export default function InputForm() {
               <WriteModal type="write" onCancelClick={close} onOkClick={handleSubmit(onSubmit)} />
             )
           }
-          disabled={watch('content').length < 20}
+          disabled={watch('content').length < 20 || watch('images').length === 0}
         >
           글쓰기
         </Button>
