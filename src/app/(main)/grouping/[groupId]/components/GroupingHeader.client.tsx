@@ -28,7 +28,7 @@ export default function GroupingHeader() {
       <Header.Right>
         <Flex align="center">
           {isCaptain && (
-            <IconButton size="large" onClick={() => console.log('수정')}>
+            <IconButton size="large" onClick={() => router.push(`/grouping/${groupId}/manage`)}>
               <Image src="/icons/24/application.svg" alt="application" width={24} height={24} />
             </IconButton>
           )}
