@@ -80,7 +80,7 @@ export default function AgreeBottomSheet({ onClose }: AgreeBottomSheetProps) {
 
       <Button
         disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
-        onClick={close}
+        onClick={onClose}
       >
         완료
       </Button>
