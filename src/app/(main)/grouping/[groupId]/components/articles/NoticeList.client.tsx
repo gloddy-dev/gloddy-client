@@ -63,7 +63,7 @@ function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
           />
         )}
       </Flex>
-      <Link href={`/grouping/${groupId}/board/${notice.noticeId}`}>
+      <Link href={`/grouping/${groupId}/articles/${notice.noticeId}`}>
         <Image src="/icons/24/navigate-next.svg" alt="navigate_next" width={24} height={24} />
       </Link>
     </Flex>

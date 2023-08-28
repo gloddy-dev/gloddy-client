@@ -12,8 +12,8 @@ type CommentFormType = {
 };
 
 export default function CommentForm() {
-  const { boardId, groupId } = useNumberParams<['boardId', 'groupId']>();
-  const { mutate: mutateComment } = usePostComment(groupId, boardId);
+  const { articleId, groupId } = useNumberParams<['articleId', 'groupId']>();
+  const { mutate: mutateComment } = usePostComment(groupId, articleId);
   const hookForm = useForm<CommentFormType>({
     mode: 'onChange',
     defaultValues: {
@@ -24,7 +24,7 @@ export default function CommentForm() {
   const { register, handleSubmit } = hookForm;
 
   const onSubmit = ({ content }: CommentFormType) => {
-    mutateComment({ content, groupId, articleId: boardId });
+    mutateComment({ content, groupId, articleId });
     hookForm.reset();
   };
 
