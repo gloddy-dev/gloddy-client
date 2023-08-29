@@ -1,25 +1,25 @@
 'use client';
+import { type GroupMember, useGetGroupMembers } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { IconButton } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
-import type { GroupMember } from '@/apis/groups';
+export default function MemeberList() {
+  const { groupId } = useNumberParams<['groupId']>();
+  const { data: groupMemberData } = useGetGroupMembers(groupId);
+  const { groupMembers } = groupMemberData;
 
-interface MemberListProps {
-  members: GroupMember[];
-}
-
-export default function MemeberList({ members }: MemberListProps) {
   return (
     <div>
-      {members.map((member, index) => (
+      {groupMembers.map((member, index) => (
         <Fragment key={member.userId}>
           <MemberItem member={member} />
-          {members.length - 1 !== index && <Divider />}
+          {groupMembers.length - 1 !== index && <Divider />}
         </Fragment>
       ))}
     </div>
