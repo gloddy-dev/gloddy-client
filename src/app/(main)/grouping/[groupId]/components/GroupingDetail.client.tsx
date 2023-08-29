@@ -21,7 +21,7 @@ export default function GroupingDetail({ groupId }: GroupingDetailProps) {
   const { myGroup } = groupDetailData;
 
   return (
-    <main className="bg-white">
+    <>
       <GroupingHeader />
       <TopSection />
       <Tabs>
@@ -60,6 +60,6 @@ export default function GroupingDetail({ groupId }: GroupingDetailProps) {
           </Button>
         </ButtonGroup>
       )}
-    </main>
+    </>
   );
 }
