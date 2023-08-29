@@ -1,7 +1,7 @@
 import ManageDetail from './components/ManageDetail.client';
 import ManageHeader from './components/ManageHeader.client';
 import { Keys, getApplies } from '@/apis/groups';
-import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
+import { HydrationProvider } from '@/components/common/Provider';
 import { Suspense } from 'react';
 
 interface GroupingManagePageProps {

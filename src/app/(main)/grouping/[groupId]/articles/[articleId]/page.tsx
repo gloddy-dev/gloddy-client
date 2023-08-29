@@ -3,7 +3,7 @@ import ArticleHeader from './components/ArticleHeader.client';
 import CommentForm from './components/CommentForm';
 import { Keys, getArticle } from '@/apis/groups';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
-import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
+import { HydrationProvider } from '@/components/common/Provider';
 import { Spacing } from '@/components/common/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
