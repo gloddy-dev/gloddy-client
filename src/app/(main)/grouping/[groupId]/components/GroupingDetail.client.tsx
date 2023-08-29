@@ -8,6 +8,7 @@ import { useGetGroupDetail } from '@/apis/groups';
 import { BottomFixedDiv } from '@/components/BottomFixedDiv';
 import { Button, ButtonGroup, FloatAddButton } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
+import { Divider } from '@/components/Divider';
 import { Tabs } from '@/components/Tabs';
 import Link from 'next/link';
 
@@ -24,6 +25,7 @@ export default function GroupingDetail({ groupId }: GroupingDetailProps) {
     <>
       <GroupingHeader />
       <TopSection />
+      <Divider />
       <Tabs>
         <Tabs.List>
           <Tabs.Tab value="detail" text="상세정보" />
