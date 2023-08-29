@@ -1,10 +1,13 @@
+import type { ReliabilityType } from '@/types';
+
 export interface Grouping {
   groupId: number;
   imageUrl: string;
   title: string;
   content: string;
   memberCount: number;
-  maxUser: number;
+  maxMemberCount: number;
+  maxUser: number; // 삭제 예정
   place: string;
   meetDate: string; // '2021-08-01'
   startTime: string; // '19:00'
@@ -97,7 +100,7 @@ export interface GroupMember {
   userId: number;
   nickName: string;
   imageUrl: string;
-  reliabilityLevel: string; // TODO: 리터럴로 변경
+  reliabilityLevel: ReliabilityType;
 }
 
 export interface GroupMembersResponse {
@@ -113,7 +116,7 @@ export interface Apply {
   userId: number;
   userNickname: string;
   userImageUrl: string;
-  reliabilityLevel: string;
+  reliabilityLevel: ReliabilityType;
   introduce: string;
   reason: string;
 }

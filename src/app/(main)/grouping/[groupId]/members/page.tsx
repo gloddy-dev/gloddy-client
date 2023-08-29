@@ -1,13 +1,29 @@
 import MemeberList from './components/MemberList.client';
-import MembersHeader from './components/MembersHeader.client';
-import { Spacing } from '@/components/common/Spacing';
+import MembersHeader from './components/MembersHeader';
+import { Keys, getGroupMembers } from '@/apis/groups';
+import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
+import { Suspense } from 'react';
 
-export default function GroupingMembersPage() {
+interface GroupingMembersPageProps {
+  params: {
+    groupId: string;
+  };
+}
+
+export default function GroupingMembersPage({ params }: GroupingMembersPageProps) {
+  const groupId = Number(params.groupId);
+
   return (
-    <main>
-      <MembersHeader />
-      <Spacing size={20} />
-      <MemeberList />
-    </main>
+    <>
+      <MembersHeader groupId={groupId} />
+      <Suspense fallback={null}>
+        <HydrationProvider
+          queryFn={() => getGroupMembers(groupId)}
+          queryKey={Keys.getGroupMembers(groupId)}
+        >
+          <MemeberList />
+        </HydrationProvider>
+      </Suspense>
+    </>
   );
 }
