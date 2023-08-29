@@ -16,6 +16,7 @@ import { TextField, TextFieldController } from '@/components/TextField';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
 import { makeFileToBlob } from '@/utils/makeFileToBlob';
+import { format } from 'date-fns';
 import Image from 'next/image';
 import { SubmitHandler } from 'react-hook-form';
 
@@ -41,16 +42,26 @@ export default function InputForm() {
 
   const onSubmit: SubmitHandler<CreateGroupContextValue> = (data) => {
     console.log(data);
+
     openCreateModal(
       <CreateModal
         onCancelClick={closeCreateModal}
         onOkClick={async () => {
-          // const { fileUrlList } = await mutateAsyncPostFiles({ fileList: [data.imageFile] });
-          // mutateCreateGroup({
-          //   ...data,
+          const { fileUrlList } = await mutateAsyncPostFiles({ fileList: [data.imageFile] });
+          mutateCreateGroup({
+            placeName: '스타벅스 동대문공원점',
+            placeAddress: '서울 중구 장충단로 229',
+            place_latitude: '37.565289',
+            place_longitude: '127.001285',
+            content: data.content,
+            maxUser: data.maxUser,
+            meetDate: format(new Date(data.meetDate), 'yyyy-MM-dd'),
+            startTime: data.time.fromHour + ':' + data.time.fromMin,
+            endTime: data.time.toHour + ':' + data.time.toMin,
+            title: data.title,
 
-          //   imageUrl: fileUrlList[0],
-          // });
+            imageUrl: fileUrlList[0],
+          });
 
           closeCreateModal();
         }}
