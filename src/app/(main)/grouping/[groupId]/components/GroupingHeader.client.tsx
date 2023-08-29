@@ -35,9 +35,6 @@ export default function GroupingHeader() {
               </IconButton>
             </Link>
           )}
-          <IconButton size="large" onClick={() => console.log('더보기')}>
-            <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
-          </IconButton>
         </Flex>
       </Header.Right>
     </Header>

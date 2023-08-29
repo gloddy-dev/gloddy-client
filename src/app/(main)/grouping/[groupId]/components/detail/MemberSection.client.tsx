@@ -35,7 +35,11 @@ export default function MemberSection() {
       <Spacing size={20} />
       <div className="flex items-center gap-16 overflow-x-scroll">
         {groupMembers.map((member) => (
-          <Avatar key={member.userId} imageUrl={member.imageUrl} iconVariant="education">
+          <Avatar
+            key={member.userId}
+            imageUrl={member.imageUrl ?? '/dummy_avatar.png'}
+            iconVariant="education"
+          >
             <Avatar.Name isCaptain={member.isCaptain}>{member.nickName}</Avatar.Name>
           </Avatar>
         ))}

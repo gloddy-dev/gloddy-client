@@ -59,9 +59,13 @@ export interface CreateGroupRequest {
   endTime: string;
   placeName: string;
   placeAddress: string;
-  placeLatitude: string;
-  placeLongitude: string;
+  place_latitude: string;
+  place_longitude: string;
   maxUser: number;
+}
+
+export interface CreateGroupResponse {
+  groupId: number;
 }
 
 export interface ArticleRequest {
@@ -103,4 +107,20 @@ export interface GroupMembersResponse {
 export interface Notice {
   noticeId: number;
   content: string;
+}
+
+export interface Apply {
+  userId: number;
+  userNickname: string;
+  userImageUrl: string;
+  reliabilityLevel: string;
+  introduce: string;
+  reason: string;
+}
+
+export interface ApplyRequest extends Pick<Apply, 'introduce' | 'reason'> {}
+
+export interface AppliesResponse {
+  totalCount: number;
+  applies: Apply[];
 }
