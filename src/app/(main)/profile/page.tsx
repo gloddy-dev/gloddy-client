@@ -3,7 +3,7 @@ import ProfileHeader from './components/ProfileHeader.client';
 import ProfileSection from './components/ProfileSection.client';
 import { Keys, getProfile } from '@/apis/profile';
 import { BottomNavigationBar } from '@/components/common/NavigationBar';
-import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
+import { HydrationProvider } from '@/components/common/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 export default function Profile() {
