@@ -43,7 +43,16 @@ export default function ManageDetail() {
   const { data: appliesData } = useGetApplies(groupId);
   const { applies, totalCount } = appliesData;
 
-  const [currentApplication, setCurrentApplication] = useState(!!totalCount ? 1 : 0);
+  const [currentApplication, setCurrentApplication] = useState(1);
+
+  if (!totalCount) {
+    return (
+      <Flex direction="column" justify="center" align="center" className="my-80 gap-8">
+        <Image src="/icons/48/cancel.svg" alt="cancel" width={48} height={48} />
+        <p className="text-sign-tertiary">아직 지원서가 없어요.</p>
+      </Flex>
+    );
+  }
 
   return (
     <div>
