@@ -1,4 +1,4 @@
-import { Button } from '@/components/Button';
+import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
 import { BottomSheet } from '@/components/Modal';
@@ -48,7 +48,7 @@ export default function AgreeBottomSheet({ onClose }: AgreeBottomSheetProps) {
   };
 
   return (
-    <BottomSheet snap={300} onClose={onClose} disableDrag title="약관 동의" isRightButton>
+    <BottomSheet snapPoints={[300, 0]} onClose={onClose} title="약관 동의" disableDrag>
       <section className="rounded-12 border-1 border-border-default">
         <div
           className="flex h-48 items-center gap-8 px-8"
@@ -78,12 +78,14 @@ export default function AgreeBottomSheet({ onClose }: AgreeBottomSheetProps) {
 
       <Spacing size={30} />
 
-      <Button
-        disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
-        onClick={onClose}
-      >
-        완료
-      </Button>
+      <ButtonGroup>
+        <Button
+          disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
+          onClick={onClose}
+        >
+          완료
+        </Button>
+      </ButtonGroup>
     </BottomSheet>
   );
 }

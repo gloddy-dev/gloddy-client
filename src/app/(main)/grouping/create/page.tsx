@@ -1,14 +1,17 @@
 import CreateGroupContextProvider from './components/CreateGroupContext';
+import CreateHeader from './components/CreateHeader';
 import InputForm from './components/InputForm.client';
-import { Header } from '@/components/Header';
+import { ModalProvider } from '@/hooks/useModal';
 
 export default function CreateGroup() {
   return (
-    <div className="mx-20">
-      <Header />
+    <>
+      <CreateHeader />
       <CreateGroupContextProvider>
-        <InputForm />
+        <ModalProvider>
+          <InputForm />
+        </ModalProvider>
       </CreateGroupContextProvider>
-    </div>
+    </>
   );
 }

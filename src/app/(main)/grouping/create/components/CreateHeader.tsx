@@ -1,24 +1,19 @@
-'use client';
+import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function CreateHeader() {
-  const router = useRouter();
   return (
-    <Header
-      leftNode={
-        <Image
-          alt="back"
-          src="/assets/arrow_back.svg"
-          width={8}
-          height={30}
-          onClick={() => {
-            router.back();
-          }}
-        />
-      }
-      text="모임 개설하기"
-    />
+    <Header className="px-4">
+      <Header.Left>
+        <Link href="/grouping">
+          <IconButton size="large">
+            <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
+          </IconButton>
+        </Link>
+        <p>모임 개설하기</p>
+      </Header.Left>
+    </Header>
   );
 }

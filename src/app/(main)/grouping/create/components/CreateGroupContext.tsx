@@ -6,29 +6,29 @@ import { UseFormReturn, useForm } from 'react-hook-form';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-const inputDefaultValues: CreateGroupContextValue = {
-  imageUrl: '',
-  title: '',
-  content: '',
-  date: new Date(),
-  time: {
-    fromHour: '1',
-    fromMin: '0',
-    fromAmPm: 'AM',
-    toHour: '1',
-    toMin: '0',
-    toAmPm: 'AM',
-  },
-  place: '',
-  placeLatitude: 0,
-  placeLongitude: 0,
-  maxUser: 0,
-};
 const CreateGroupContext = createContext<UseFormReturn | null>(null);
 
 export default function CreateGroupContextProvider({ children }: StrictPropsWithChildren) {
   const methods = useForm<CreateGroupContextValue>({
-    defaultValues: inputDefaultValues,
+    defaultValues: {
+      imageFile: undefined,
+      title: '',
+      content: '',
+      meetDate: undefined,
+      time: {
+        fromHour: '1',
+        fromMin: '0',
+        fromAmPm: 'AM',
+        toHour: '1',
+        toMin: '0',
+        toAmPm: 'AM',
+      },
+      placeName: '',
+      placeAddress: '',
+      placeLatitude: undefined,
+      placeLongitude: undefined,
+      maxUser: undefined,
+    },
   });
 
   const contextValue = { ...methods };
