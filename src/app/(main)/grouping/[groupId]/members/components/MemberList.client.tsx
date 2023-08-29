@@ -3,20 +3,23 @@ import { Avatar } from '@/components/Avatar';
 import { IconButton } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
-import { MEMBER_DUMMY_DATA } from '@/constants/dummyData';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
 import type { GroupMember } from '@/apis/groups';
 
-export default function MemeberList() {
+interface MemberListProps {
+  members: GroupMember[];
+}
+
+export default function MemeberList({ members }: MemberListProps) {
   return (
     <div>
-      {MEMBER_DUMMY_DATA.map((member, index) => (
+      {members.map((member, index) => (
         <Fragment key={member.userId}>
           <MemberItem member={member} />
-          {MEMBER_DUMMY_DATA.length - 1 !== index && <Divider />}
+          {members.length - 1 !== index && <Divider />}
         </Fragment>
       ))}
     </div>
