@@ -59,7 +59,7 @@ export default memo(function VerifyBottomSheet({
   };
 
   return (
-    <BottomSheet onClose={onClose} snap={300} isRightButton title="인증번호 입력">
+    <BottomSheet onClose={onClose} snapPoints={[300, 0]} title="인증번호 입력">
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
           <TextFieldController

@@ -9,8 +9,8 @@ import { SegmentGroup } from '@/components/SegmentGroup';
 import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
-import useBottomSheet from '@/hooks/useBottomSheet';
 import { useFileUpload } from '@/hooks/useFileUpload';
+import { useModal } from '@/hooks/useModal';
 import { formatDateDTO } from '@/utils/formatDateDTO';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -39,11 +39,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
   });
   const { handleFileUploadClick } = useFileUpload((files) => onChange(files[0]));
 
-  const {
-    isOpen: isOpenBirthdayBottomSheet,
-    open: openBirthdayBottomSheet,
-    close: closeBirthdayBottomSheet,
-  } = useBottomSheet();
+  const { open: openBirthdayBottomSheet, close: closeBirthdayBottomSheet } = useModal();
 
   const onSubmit = (data: ProfileEditState) => {
     if (!isAllTyped) return;
@@ -96,7 +92,16 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
       <Spacing size={4} />
       <TextField
         placeholder="생년월일을 선택해주세요."
-        onClick={() => openBirthdayBottomSheet()}
+        onClick={() =>
+          openBirthdayBottomSheet(
+            <BirthdayBottomSheet
+              onClose={closeBirthdayBottomSheet}
+              dateValue={birth}
+              setValue={setValue}
+              isBirthDayEntered={isBirthDayEntered}
+            />
+          )
+        }
         value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
         readOnly
       />
@@ -114,15 +119,6 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
           <SegmentGroup.Segment value={'FEMAIL'} label="여성" />
         </SegmentGroup>
       </section>
-
-      {isOpenBirthdayBottomSheet && (
-        <BirthdayBottomSheet
-          onClose={closeBirthdayBottomSheet}
-          dateValue={birth}
-          setValue={setValue}
-          isBirthDayEntered={isBirthDayEntered}
-        />
-      )}
 
       <Spacing size={8} />
 

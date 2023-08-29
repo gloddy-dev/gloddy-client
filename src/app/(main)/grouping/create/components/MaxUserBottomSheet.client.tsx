@@ -1,27 +1,19 @@
-'use client';
-
-import { CreateGroupContextValue } from '../type';
-import { BottomFixedButton } from '@/components/common/Button';
+import { useCreateGroupContext } from './CreateGroupContext';
+import { Button, ButtonGroup } from '@/components/Button';
 import { NumberSwipePicker } from '@/components/common/SwipePicker';
 import { BottomSheet } from '@/components/Modal';
-import { UseFormSetValue } from 'react-hook-form';
 
 interface MaxUserBottomSheetProps {
-  maxUserValue: number;
-  setValue: UseFormSetValue<CreateGroupContextValue>;
-  closeCurrent: () => void;
+  onClose: () => void;
 }
 
-export default function MaxUserBottomSheet({
-  maxUserValue,
-  setValue,
-  closeCurrent,
-}: MaxUserBottomSheetProps) {
+export default function MaxUserBottomSheet({ onClose }: MaxUserBottomSheetProps) {
+  const { watch, setValue } = useCreateGroupContext();
+
   return (
     <BottomSheet
-      snap={500}
-      onClose={closeCurrent}
-      isRightButton
+      snapPoints={[300, 0]}
+      onClose={onClose}
       title="모임 인원"
       isTapOutsideToClose
       disableDrag
@@ -29,16 +21,19 @@ export default function MaxUserBottomSheet({
       <div className="relative h-full">
         <NumberSwipePicker
           setNumberValue={(value: number) => setValue('maxUser', value, { shouldDirty: true })}
-          numberValue={maxUserValue}
+          numberValue={watch('maxUser')}
         />
       </div>
-      <BottomFixedButton
-        text="완료"
-        onClick={() => {
-          if (!maxUserValue) setValue('maxUser', 1);
-          closeCurrent();
-        }}
-      />
+      <ButtonGroup>
+        <Button
+          onClick={() => {
+            if (!watch('maxUser')) setValue('maxUser', 1);
+            onClose();
+          }}
+        >
+          완료
+        </Button>
+      </ButtonGroup>
     </BottomSheet>
   );
 }

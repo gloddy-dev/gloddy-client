@@ -18,7 +18,7 @@ export default function BirthdayBottomSheet({
   isBirthDayEntered,
 }: BirthdayBottomSheetProps) {
   return (
-    <BottomSheet snap={400} onClose={onClose} isRightButton title="생년월일" disableDrag>
+    <BottomSheet snapPoints={[400, 0]} onClose={onClose} title="생년월일" disableDrag>
       <DateSwipePicker
         dateValue={dateValue}
         setDateValue={(birth: DateType) => setValue('birth', birth)}

@@ -12,7 +12,7 @@ export default function MoreBottomSheet({ mateData, onCloseBottomSheet }: MoreBo
   const { open, close } = useModal();
 
   return (
-    <BottomSheet snap={150} onClose={onCloseBottomSheet} isTapOutsideToClose>
+    <BottomSheet snapPoints={[130, 0]} onClose={onCloseBottomSheet} isTapOutsideToClose>
       <p
         className="py-12 text-subtitle-2 text-sign-secondary"
         onClick={() => {

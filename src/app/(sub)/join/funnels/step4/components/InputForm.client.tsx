@@ -8,17 +8,14 @@ import { Flex } from '@/components/Layout';
 import BirthdayBottomSheet from '@/components/Modal/BirthdayBottomSheet.client';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { TextField, TextFieldController } from '@/components/TextField';
-import useBottomSheet from '@/hooks/useBottomSheet';
+import { useModal } from '@/hooks/useModal';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
   const { watch, handleSubmit, setValue, register, formState } = hookForm;
   const { nextStep } = useFunnelContext();
-  const {
-    isOpen,
-    open: openBirthdayBottomSheet,
-    close: closeBirthdayBottomSheet,
-  } = useBottomSheet();
+  const { open: openBirthdayBottomSheet, close: closeBirthdayBottomSheet } = useModal();
+
   const isAllTyped = !!(
     formState.isValid &&
     watch('birth').year &&
@@ -62,7 +59,16 @@ export default function InputForm() {
       <Spacing size={4} />
       <TextField
         placeholder="생년월일을 선택해주세요."
-        onClick={() => openBirthdayBottomSheet()}
+        onClick={() =>
+          openBirthdayBottomSheet(
+            <BirthdayBottomSheet
+              onClose={closeBirthdayBottomSheet}
+              dateValue={birth}
+              setValue={setValue}
+              isBirthDayEntered={isBirthDayEntered}
+            />
+          )
+        }
         value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
         readOnly
       />
@@ -80,15 +86,6 @@ export default function InputForm() {
           <SegmentGroup.Segment value="FEMAIL" label="여성" />
         </SegmentGroup>
       </section>
-
-      {isOpen && (
-        <BirthdayBottomSheet
-          onClose={closeBirthdayBottomSheet}
-          dateValue={birth}
-          setValue={setValue}
-          isBirthDayEntered={isBirthDayEntered}
-        />
-      )}
 
       <ButtonGroup>
         <Button type="submit" disabled={!isAllTyped}>
