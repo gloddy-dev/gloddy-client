@@ -26,8 +26,8 @@ export default function LocationSection() {
         />
         <Map
           center={{
-            lat: +placeLatitude,
-            lng: +placeLongitude,
+            lat: +placeLatitude || 37.595706,
+            lng: +placeLongitude || 127.052574,
           }}
           className="aspect-video rounded-t-8"
           level={4}
@@ -35,8 +35,8 @@ export default function LocationSection() {
         >
           <MapMarker
             position={{
-              lat: +placeLatitude,
-              lng: +placeLongitude,
+              lat: +placeLatitude || 37.595706,
+              lng: +placeLongitude || 127.052574,
             }}
           />
         </Map>

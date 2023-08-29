@@ -19,7 +19,7 @@ export default function IconButton({
 }: StrictPropsWithChildren<IconButtonProps>) {
   return (
     <div
-      className={cn('flex cursor-pointer items-center justify-center', {
+      className={cn('flex shrink-0 cursor-pointer items-center justify-center', {
         'h-24 w-24': size === 'small',
         'h-40 w-40': size === 'medium',
         'h-48 w-48': size === 'large',
