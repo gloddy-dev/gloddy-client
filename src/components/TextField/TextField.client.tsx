@@ -34,7 +34,7 @@ function TextField<T extends React.ElementType = 'input'>(
     isLeftError = false,
     isRightError = false,
     isSpacing = true,
-    readOnly,
+    readOnly = false,
     className,
     ...props
   }: TextFieldProps<T> & React.ComponentPropsWithoutRef<T>,
