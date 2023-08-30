@@ -5,7 +5,8 @@ import { forwardRef, useState } from 'react';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface TextFieldProps<T extends React.ElementType = 'input'> extends React.HTMLAttributes<T> {
+export interface TextFieldProps<T extends React.ElementType = 'input'>
+  extends React.HTMLAttributes<T> {
   as?: T;
   register?: UseFormRegisterReturn<string>;
   label?: string;
@@ -69,13 +70,15 @@ function TextField<T extends React.ElementType = 'input'>(
           {leftIcon}
           <Element
             className={cn(
-              'h-24 w-full resize-none text-paragraph-2 outline-none placeholder:text-paragraph-2 placeholder:text-sign-caption',
+              'w-full resize-none text-paragraph-2 outline-none placeholder:text-paragraph-2 placeholder:text-sign-caption',
               {
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
                 'bg-divider placeholder:text-sign-tertiary': readOnly,
                 'indent-8': !!leftIcon,
+                'h-24': as === 'input',
+                'h-142': as === 'textarea',
               },
               elementClassName
             )}
