@@ -4,6 +4,7 @@ import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen } from '../util';
 import { LoginResponse, useLoginMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
+import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
@@ -16,6 +17,7 @@ export default function NumberVerifyForm() {
   const router = useRouter();
   const hookForm = useJoinContext();
   const { handleSubmit, setError, register } = hookForm;
+  const { time } = useTimerContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
@@ -74,6 +76,7 @@ export default function NumberVerifyForm() {
           },
         })}
         maxLength={6}
+        timer={time}
       />
       <ButtonGroup isSpacing={false}>
         <Button type="button">재전송</Button>
