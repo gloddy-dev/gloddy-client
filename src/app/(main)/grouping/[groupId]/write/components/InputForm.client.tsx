@@ -57,11 +57,8 @@ export default function InputForm() {
           className="h-full"
         />
       </div>
-      <Flex className="gap-8 px-20 py-12">
-        <CircleCheckbox
-          onClick={() => setValue('notice', !watch('notice'))}
-          checked={watch('notice')}
-        />
+      <Flex className="gap-8 px-20 py-12" onClick={() => setValue('notice', !watch('notice'))}>
+        <CircleCheckbox checked={watch('notice')} />
         <p className="text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
       </Flex>
       <Spacing size={16} />
