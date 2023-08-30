@@ -7,11 +7,13 @@ import { SchoolSearchResponse, useGetSearchSchool } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
-import { SearchTextField } from '@/components/TextField';
+import { TextFieldController } from '@/components/TextField';
+import { regexr } from '@/constants/regexr';
 import Image from 'next/image';
 
 export default function SchoolForm() {
-  const { handleSubmit, getFieldState, register, watch, setValue } = useJoinContext();
+  const hookForm = useJoinContext();
+  const { handleSubmit, register, watch, setValue } = hookForm;
   const { nextStep } = useFunnelContext();
 
   const searchWord = watch('schoolInfo.school');
@@ -20,25 +22,24 @@ export default function SchoolForm() {
 
   return (
     <form onSubmit={handleSubmit(nextStep)}>
-      <SearchTextField
+      <TextFieldController
+        hookForm={hookForm}
         register={register('schoolInfo.school', {
           required: true,
-          pattern: /[가-힣]+대학교/,
+          pattern: regexr.school,
         })}
+        leftIcon={<Image src="/icons/24/search.svg" width={24} height={24} alt="search" />}
       />
       {data &&
         data?.schools.map((school) => (
           <SearchResult
             school={school}
             key={school.address}
-            onClick={() => {
-              console.log(school.address);
-              setValue('schoolInfo.school', school.name);
-            }}
+            onClick={() => setValue('schoolInfo.school', school.name)}
           />
         ))}
       <ButtonGroup>
-        <Button disabled={!getFieldState('schoolInfo.school').invalid}>확인</Button>
+        <Button disabled={!searchWord.match(regexr.school)}>확인</Button>
       </ButtonGroup>
     </form>
   );
