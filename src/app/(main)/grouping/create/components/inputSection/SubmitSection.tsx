@@ -28,7 +28,7 @@ export default function SubmitSection() {
 
     const createGroupRequest = {
       ...rest,
-      meetDate: format(data.date, 'yyyy-MM-dd'),
+      meetDate: format(date, 'yyyy-MM-dd'),
       startTime: convertTimeFormat(data.time.fromHour, data.time.fromMin, data.time.fromAmPm),
       endTime: convertTimeFormat(data.time.toHour, data.time.toMin, data.time.toAmPm),
     };
