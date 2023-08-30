@@ -1,1 +1,1 @@
-export { default as TimerProvider } from './TimerProvider.client';
+export * from './TimerProvider.client';
