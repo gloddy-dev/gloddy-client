@@ -1,4 +1,5 @@
 import privateApi from '../config/privateApi';
+import type { ApplyStatusType } from '@/types';
 
 import type {
   AppliesResponse,
@@ -71,6 +72,10 @@ export const getApplies = (groupId: number) => {
 
 export const postApply = ({ groupId, apply }: ApplyRequest) => {
   return privateApi.post<ApplyResponse>(`/groups/${groupId}/apply`, apply);
+};
+
+export const patchApply = (groupId: number, applyId: number, status: ApplyStatusType) => {
+  return privateApi.patch(`/groups/${groupId}/applies/${applyId}?status=${status}`);
 };
 
 export const postScrap = (groupId: number) => {
