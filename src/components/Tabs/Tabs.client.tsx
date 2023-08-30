@@ -80,6 +80,7 @@ function Tab({ value, text, queryString, className }: TabProps) {
         pathname,
         query: { tab: queryString ?? value },
       }}
+      scroll={false}
       replace
     >
       {text}
