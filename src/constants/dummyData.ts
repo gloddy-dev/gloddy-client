@@ -10,7 +10,7 @@ import type {
 } from '@/apis/groups';
 import type { MatesResponse } from '@/apis/profile';
 
-export const DUMMY_GROUPING_DATA: Grouping[] = [
+export const DUMMY_GROUPING_DATA = [
   {
     groupId: 1,
     imageUrl: '/assets/location.svg',
@@ -55,16 +55,16 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
   },
 ];
 
-export const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
+export const CREATE_GROUP_DUMMY_DATA = {
   imageUrl: '그룹 이미지 Url',
   title: '김지환이의 그룹',
   content: '안녕하세요',
   meetDate: '2022-09-07',
   startTime: '17:00',
   endTime: '21:00',
-  place: '서울특별시 강남구 테헤란로 16',
-  placeLatitude: 23,
-  placeLongitude: 123,
+  placeName: '서울특별시 강남구 테헤란로 16',
+  place_latitude: '23',
+  place_longitude: '123',
   maxUser: 4,
 };
 
@@ -122,7 +122,7 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
   },
 ];
 
-export const DETAIL_DUMMY_DATA: GroupDetailResponse = {
+export const DETAIL_DUMMY_DATA = {
   imageUrl: '/assets/main_logo.png',
   title: 'Let’s go for a walk!',
   content: 'It’s a group that \n🏃walks around, \n🗣talks, \n🌏and learns languages.',
