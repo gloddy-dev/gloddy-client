@@ -5,8 +5,7 @@ import { forwardRef, useState } from 'react';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface TextFieldProps<T extends React.ElementType = 'input'>
-  extends React.HTMLAttributes<T> {
+export interface TextFieldProps<T extends React.ElementType = 'input'> extends React.HTMLAttributes<T> {
   as?: T;
   register?: UseFormRegisterReturn<string>;
   label?: string;
@@ -20,7 +19,6 @@ export interface TextFieldProps<T extends React.ElementType = 'input'>
   isSpacing?: boolean;
   readOnly?: boolean;
   className?: string;
-  elementClassName?: string;
 }
 
 function TextField<T extends React.ElementType = 'input'>(
@@ -37,7 +35,6 @@ function TextField<T extends React.ElementType = 'input'>(
     isSpacing = true,
     readOnly = false,
     className,
-    elementClassName,
     ...props
   }: TextFieldProps<T> & React.ComponentPropsWithoutRef<T>,
   ref: React.ForwardedRef<HTMLLabelElement>
@@ -56,6 +53,7 @@ function TextField<T extends React.ElementType = 'input'>(
             'border-transparent bg-sub': !isFocus,
             'border-warning bg-warning-color': isError,
             'border-transparent bg-divider': readOnly,
+            'h-142': as === 'textarea',
           },
           className
         )}
@@ -66,7 +64,7 @@ function TextField<T extends React.ElementType = 'input'>(
             <Spacing size={2} />
           </>
         )}
-        <div className="relative flex w-full items-center justify-around">
+        <div className="relative flex h-full w-full items-center justify-around">
           {leftIcon}
           <Element
             className={cn(
@@ -78,9 +76,8 @@ function TextField<T extends React.ElementType = 'input'>(
                 'bg-divider placeholder:text-sign-tertiary': readOnly,
                 'indent-8': !!leftIcon,
                 'h-24': as === 'input',
-                'h-142': as === 'textarea',
-              },
-              elementClassName
+                'h-full': as === 'textarea',
+              }
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
             onBlurCapture={() => setIsFocus(false)}
