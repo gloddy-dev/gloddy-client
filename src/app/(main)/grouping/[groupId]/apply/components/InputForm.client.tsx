@@ -1,11 +1,13 @@
 'use client';
 
 import ApplyModal from './ApplyModal.client';
+import { usePostApply } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
-import { useForm } from 'react-hook-form';
+import { useNumberParams } from '@/hooks/useNumberParams';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 type ApplyFormType = {
   introduce: string;
@@ -20,11 +22,17 @@ export default function InputForm() {
       reason: '',
     },
   });
-  const { register, handleSubmit, formState } = hookForm;
   const { open, close } = useModal();
+  const { groupId } = useNumberParams<['groupId']>();
+  const { mutate: mutatePostApply } = usePostApply();
 
-  const onSubmit = (data: ApplyFormType) => {
-    console.log(data);
+  const { register, handleSubmit, formState } = hookForm;
+
+  const onSubmit: SubmitHandler<ApplyFormType> = (apply) => {
+    mutatePostApply({
+      apply,
+      groupId,
+    });
   };
 
   return (

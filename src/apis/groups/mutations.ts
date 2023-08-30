@@ -1,4 +1,13 @@
-import { deleteArticle, deleteComment, postArticle, postComment, postCreateGroup } from './apis';
+import {
+  deleteArticle,
+  deleteComment,
+  deleteScrap,
+  postApply,
+  postArticle,
+  postComment,
+  postCreateGroup,
+  postScrap,
+} from './apis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -51,6 +60,36 @@ export const useDeleteComment = (groupId: number, articleId: number, commentId: 
     onSuccess: () => {
       queryClient.invalidateQueries(['getComments', groupId, articleId]);
       queryClient.invalidateQueries(['getArticle', groupId, articleId]);
+    },
+  });
+};
+
+export const usePostApply = () => {
+  const router = useRouter();
+
+  return useMutation(postApply, {
+    onSuccess: () => {
+      router.push('/meeting?tab=waiting');
+    },
+  });
+};
+
+export const usePostScrap = (groupId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation(() => postScrap(groupId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getGroupDetail', groupId]);
+    },
+  });
+};
+
+export const useDeleteScrap = (groupId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation(() => deleteScrap(groupId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getGroupDetail', groupId]);
     },
   });
 };
