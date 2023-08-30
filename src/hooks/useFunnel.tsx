@@ -2,7 +2,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Children, isValidElement, useEffect, useState } from 'react';
+import { Children, isValidElement, useEffect } from 'react';
 
 type NonEmptyArray<T> = [T, ...T[]];
 
@@ -30,24 +30,19 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
     currentStep = initialStep;
   }
 
-  const [step, setStep] = useState<Steps[number]>(currentStep);
-
   const nextStep = () => {
-    const currentIndex = steps.indexOf(step);
+    const currentIndex = steps.indexOf(currentStep);
 
     if (currentIndex < steps.length - 1) {
-      setStep(steps[currentIndex + 1]);
-
       router.push(`${pathname}?${queryKey}=${steps[currentIndex + 1]}`);
     }
   };
 
   const prevStep = () => {
-    const currentIndex = steps.indexOf(step);
+    const currentIndex = steps.indexOf(currentStep);
     if (currentIndex > 0) {
-      setStep(steps[currentIndex - 1]);
+      router.push(`${pathname}?${queryKey}=${steps[currentIndex - 1]}`);
     }
-    router.back();
   };
 
   const Funnel = ({ children }: FunnelProps) => {
@@ -65,31 +60,17 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
   };
 
   const Step = ({ name, children }: StepProps<Steps>) => {
-    return step === name ? <>{children}</> : null;
-  };
-
-  Funnel.Step = Step;
-
-  window.onpopstate = () => {
-    const currentStep = searchParams.get(queryKey) as Steps[number];
-    if (currentStep === null) {
-      return;
-    }
-
-    if (steps.includes(currentStep)) {
-      setStep(currentStep);
-      return;
-    }
-
-    setStep(initialStep);
+    return currentStep === name ? <>{children}</> : null;
   };
 
   useEffect(() => {
-    if (step === initialStep) {
+    if (currentStep === initialStep) {
       router.replace(`${pathname}?${queryKey}=${initialStep}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { currentStep: step, Funnel, nextStep, prevStep };
+  Funnel.Step = Step;
+
+  return { currentStep, Funnel, nextStep, prevStep };
 }
