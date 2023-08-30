@@ -2,7 +2,7 @@
 
 import NumberForm from './NumberForm.client';
 import NumberVerifyForm from './NumberVerifyForm.client';
-import { TimerProvider } from '@/components/Provider';
+import TimerProvider from '@/components/Provider/TimerProvider.client';
 import { useState } from 'react';
 
 import type { StatusType } from '../type';
