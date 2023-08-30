@@ -39,3 +39,5 @@ export type PersonalityType = {
   keyword: string;
   keywordInEnglish: string;
 };
+
+export type ReliabilityType = 'HOOD' | 'MATE' | 'SOULMATE' | 'GLODDY';

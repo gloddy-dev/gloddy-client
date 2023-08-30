@@ -13,7 +13,7 @@ export default function MemberSection() {
   const pathname = usePathname();
 
   const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { maxUser, memberCount } = groupDetailData;
+  const { memberCount, maxMemberCount } = groupDetailData;
 
   const { data: groupMembersData } = useGetGroupMembers(groupId);
   const { groupMembers } = groupMembersData;
@@ -22,7 +22,7 @@ export default function MemberSection() {
     <section>
       <div className="flex items-center justify-between">
         <p className="pl-4 text-subtitle-3 text-sign-secondary">
-          모임 멤버 ({memberCount}/{maxUser})
+          모임 멤버 ({memberCount}/{maxMemberCount})
         </p>
         <div
           className="flex cursor-pointer items-center text-caption text-sign-caption"
@@ -35,7 +35,12 @@ export default function MemberSection() {
       <Spacing size={20} />
       <div className="flex items-center gap-16 overflow-x-scroll">
         {groupMembers.map((member) => (
-          <Avatar key={member.userId} imageUrl={member.imageUrl} iconVariant="education">
+          <Avatar
+            key={member.userId}
+            imageUrl={member.imageUrl ?? '/dummy_avatar.png'}
+            iconVariant="education"
+            onClick={() => router.push(`${pathname}/members`)}
+          >
             <Avatar.Name isCaptain={member.isCaptain}>{member.nickName}</Avatar.Name>
           </Avatar>
         ))}

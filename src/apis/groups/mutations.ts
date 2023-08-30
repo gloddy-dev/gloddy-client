@@ -3,7 +3,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 export const usePostCreateGroup = () => {
-  return useMutation(postCreateGroup);
+  const router = useRouter();
+  return useMutation(postCreateGroup, {
+    onSuccess: (data) => {
+      router.push(`/grouping/${data.groupId}`);
+    },
+  });
 };
 
 export const usePostArticle = (groupId: number) => {

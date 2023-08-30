@@ -4,7 +4,7 @@ import { Keys } from '@/apis/groups/keys';
 import { FloatAddButton } from '@/components/Button';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { BottomNavigationBar } from '@/components/common/NavigationBar';
-import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
+import { HydrationProvider } from '@/components/common/Provider';
 import { Spacing } from '@/components/common/Spacing';
 import { Header } from '@/components/Header';
 import { QueryAsyncBoundary } from '@suspensive/react-query';

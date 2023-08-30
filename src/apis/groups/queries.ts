@@ -1,4 +1,5 @@
 import {
+  getApplies,
   getArticle,
   getArticles,
   getComments,
@@ -62,4 +63,8 @@ export const useGetGroupMembers = (groupId: number) => {
 
 export const useGetNotice = (groupId: number) => {
   return useSuspenseQuery(Keys.getNotice(groupId), () => getNotice(groupId));
+};
+
+export const useGetApplies = (groupId: number) => {
+  return useSuspenseQuery(Keys.getApplies(groupId), () => getApplies(groupId));
 };
