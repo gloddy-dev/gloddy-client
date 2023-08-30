@@ -15,6 +15,7 @@ interface TextFieldControllerProps<T extends React.ElementType> extends TextFiel
   as?: T;
   hookForm: UseFormReturn<any>;
   register: UseFormRegisterReturn<string>;
+  className?: string;
   readOnly?: boolean;
   /**
    * leftCaption에 문구를 표기하는 경우
@@ -42,6 +43,7 @@ export default function TextFieldController<T extends React.ElementType>({
   as,
   hookForm,
   register,
+  className,
   readOnly = false,
   leftCaption,
   maxCount,
@@ -86,6 +88,7 @@ export default function TextFieldController<T extends React.ElementType>({
       isLeftError={isLeftError}
       isRightError={isRightError}
       readOnly={readOnly}
+      className={className}
       {...props}
     />
   );

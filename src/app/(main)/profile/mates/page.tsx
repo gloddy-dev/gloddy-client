@@ -1,7 +1,7 @@
 import ProfileMatesDetail from './components/MatesDetail.client';
 import MatesHeader from './components/MatesHeader';
 import { Keys, getMates } from '@/apis/profile';
-import { HydrationProvider } from '@/components/common/Provider/HydrationProvider';
+import { HydrationProvider } from '@/components/common/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 export default function MatesPage() {

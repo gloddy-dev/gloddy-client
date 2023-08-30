@@ -1,6 +1,7 @@
 'use client';
 
 import ManageModal from './ManageModal';
+import { Apply } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup, IconButton } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
@@ -9,18 +10,12 @@ import { TextField } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 
-const DUMMY_DATA = {
-  userImageUrl: '/images/dummy_avatar.png',
-  isCertifiedStudent: true,
-  name: 'Glow',
-  reliabilityLevel: 'GLODDY',
-  introduce: '안녕하세요! 저는 글로우입니다. 잘 부탁드립니다.',
-  reason: '저는 이 모임에 가입하고 싶습니다.',
-};
+interface ApplyCardProps {
+  apply: Apply;
+}
 
-export default function ApplyCard() {
-  const { userImageUrl, isCertifiedStudent, name, reliabilityLevel, introduce, reason } =
-    DUMMY_DATA;
+export default function ApplyCard({ apply }: ApplyCardProps) {
+  const { userImageUrl, userNickname, reliabilityLevel, introduce, reason } = apply;
 
   const { open, close } = useModal();
 
@@ -28,15 +23,15 @@ export default function ApplyCard() {
   const handleRejectClick = () => {};
 
   return (
-    <div className="w-[90%] shrink-0 rounded-8 bg-white p-16 shadow-card-ui">
+    <div className="w-full shrink-0 rounded-8 bg-white p-16 shadow-card-ui">
       <Flex justify="between" align="center" className="my-4 gap-12">
         <Avatar
           imageUrl={userImageUrl}
           size="small"
-          iconVariant={isCertifiedStudent ? 'education' : 'none'}
+          // iconVariant={isCertifiedStudent ? 'education' : 'none'}
         />
         <div className="grow">
-          <p className="text-paragraph-1">{name}</p>
+          <p className="text-paragraph-1">{userNickname}</p>
           <Flex align="center" className="gap-2">
             <Image
               src={`/icons/16/${reliabilityLevel.toLowerCase()}.svg`}

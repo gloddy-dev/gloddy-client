@@ -28,7 +28,7 @@ export default function Avatar({
 }: PropsWithChildren<AvatarProps>) {
   return (
     <span
-      className={cn('relative flex flex-col items-center gap-1', {
+      className={cn('relative flex shrink-0 flex-col items-center gap-1', {
         'w-40': size === 'small',
         'w-56': size === 'medium',
         'w-96': size === 'large',

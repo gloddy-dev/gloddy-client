@@ -1,10 +1,13 @@
+import type { ReliabilityType } from '@/types';
+
 export interface Grouping {
   groupId: number;
   imageUrl: string;
   title: string;
   content: string;
   memberCount: number;
-  maxUser: number;
+  maxMemberCount: number;
+  maxUser: number; // 삭제 예정
   place: string;
   meetDate: string; // '2021-08-01'
   startTime: string; // '19:00'
@@ -59,9 +62,13 @@ export interface CreateGroupRequest {
   endTime: string;
   placeName: string;
   placeAddress: string;
-  placeLatitude: string;
-  placeLongitude: string;
+  place_latitude: string;
+  place_longitude: string;
   maxUser: number;
+}
+
+export interface CreateGroupResponse {
+  groupId: number;
 }
 
 export interface ArticleRequest {
@@ -93,7 +100,7 @@ export interface GroupMember {
   userId: number;
   nickName: string;
   imageUrl: string;
-  reliabilityLevel: string; // TODO: 리터럴로 변경
+  reliabilityLevel: ReliabilityType;
 }
 
 export interface GroupMembersResponse {
@@ -103,4 +110,20 @@ export interface GroupMembersResponse {
 export interface Notice {
   noticeId: number;
   content: string;
+}
+
+export interface Apply {
+  userId: number;
+  userNickname: string;
+  userImageUrl: string;
+  reliabilityLevel: ReliabilityType;
+  introduce: string;
+  reason: string;
+}
+
+export interface ApplyRequest extends Pick<Apply, 'introduce' | 'reason'> {}
+
+export interface AppliesResponse {
+  totalCount: number;
+  applies: Apply[];
 }

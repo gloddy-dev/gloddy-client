@@ -47,12 +47,16 @@ function TextField<T extends React.ElementType = 'input'>(
   return (
     <label ref={ref} htmlFor="textField" className="relative py-8">
       <section
-        className={cn('w-full rounded-8 border-1 p-16', {
-          'border-border-pressed bg-white': isFocus,
-          'border-transparent bg-sub': !isFocus,
-          'border-warning bg-warning-color': isError,
-          'border-transparent bg-divider': readOnly,
-        })}
+        className={cn(
+          'w-full rounded-8 border-1 p-16',
+          {
+            'border-border-pressed bg-white': isFocus,
+            'border-transparent bg-sub': !isFocus,
+            'border-warning bg-warning-color': isError,
+            'border-transparent bg-divider': readOnly,
+          },
+          className
+        )}
       >
         {label && (
           <>
@@ -68,15 +72,14 @@ function TextField<T extends React.ElementType = 'input'>(
           {leftIcon}
           <Element
             className={cn(
-              'h-full w-full resize-none text-paragraph-2 outline-none placeholder:text-paragraph-2 placeholder:text-sign-caption',
+              'h-24 w-full resize-none text-paragraph-2 outline-none placeholder:text-paragraph-2 placeholder:text-sign-caption',
               {
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
                 'bg-divider placeholder:text-sign-tertiary': readOnly,
                 'indent-8': !!leftIcon,
-              },
-              className
+              }
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
             onBlurCapture={() => setIsFocus(false)}
