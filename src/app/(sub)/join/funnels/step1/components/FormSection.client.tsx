@@ -2,6 +2,7 @@
 
 import NumberForm from './NumberForm.client';
 import NumberVerifyForm from './NumberVerifyForm.client';
+import { TimerProvider } from '@/components/Provider';
 import { useState } from 'react';
 
 import type { StatusType } from '../type';
@@ -10,9 +11,9 @@ export default function InputForm() {
   const [inputStatus, setInputStatus] = useState<StatusType>('beforeSend');
 
   return (
-    <section>
+    <TimerProvider>
       <NumberForm inputStatus={inputStatus} setInputStatus={setInputStatus} />
       {inputStatus === 'afterSend' && <NumberVerifyForm />}
-    </section>
+    </TimerProvider>
   );
 }
