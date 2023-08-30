@@ -38,6 +38,7 @@ export default function InputForm() {
         register={register('introduce', { required: true })}
         placeholder="내용을 입력해주세요."
         maxCount={150}
+        elementClassName="h-142"
       />
       <Spacing size={18} />
       <p className="pl-4 text-subtitle-3 text-sign-secondary">모임에 함께 하고 싶은 이유</p>
@@ -48,6 +49,7 @@ export default function InputForm() {
         register={register('reason', { required: true })}
         placeholder="내용을 입력해주세요."
         maxCount={150}
+        elementClassName="h-142"
       />
       <ButtonGroup>
         <Button
