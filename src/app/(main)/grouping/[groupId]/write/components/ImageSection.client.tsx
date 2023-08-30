@@ -29,7 +29,7 @@ export default function ImageSection({ control }: ImageSectionProps) {
   );
 
   return (
-    <section className="pb-8 pt-16">
+    <section className="px-20 pb-8 pt-16">
       <Flex className="gap-8">
         {value.map((imageBlob, index) => {
           return (
