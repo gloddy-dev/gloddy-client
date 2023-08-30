@@ -60,14 +60,7 @@ export default function InputForm() {
       <TextField
         placeholder="생년월일을 선택해주세요."
         onClick={() =>
-          openBirthdayBottomSheet(
-            <BirthdayBottomSheet
-              onClose={closeBirthdayBottomSheet}
-              dateValue={birth}
-              setValue={setValue}
-              isBirthDayEntered={isBirthDayEntered}
-            />
-          )
+          openBirthdayBottomSheet(<BirthdayBottomSheet onClose={closeBirthdayBottomSheet} />)
         }
         value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
         readOnly
