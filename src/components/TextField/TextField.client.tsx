@@ -64,7 +64,7 @@ function TextField<T extends React.ElementType = 'input'>(
             <Spacing size={2} />
           </>
         )}
-        <div className={cn('relative flex w-full items-center justify-around')}>
+        <div className="relative flex w-full items-center justify-around">
           {leftIcon}
           <Element
             className={cn(
