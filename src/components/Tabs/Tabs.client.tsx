@@ -59,9 +59,10 @@ interface TabProps {
   text: string;
   queryString?: string;
   className?: string;
+  disabled?: boolean;
 }
 
-function Tab({ value, text, queryString, className }: TabProps) {
+function Tab({ value, text, queryString, className, disabled = false }: TabProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -73,6 +74,7 @@ function Tab({ value, text, queryString, className }: TabProps) {
         'flex cursor-pointer items-center',
         {
           'border-b-1 border-primary text-subtitle-2 text-primary': isActive,
+          'text-sign-caption': disabled,
         },
         className
       )}
@@ -80,6 +82,7 @@ function Tab({ value, text, queryString, className }: TabProps) {
         pathname,
         query: { tab: queryString ?? value },
       }}
+      onClick={disabled ? (e) => e.preventDefault() : undefined}
       scroll={false}
       replace
     >
