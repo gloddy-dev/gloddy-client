@@ -38,7 +38,7 @@ export default function Footer({ page }: FooterProps) {
   const isSelected = (tab: TabType) => tab.name === page;
 
   return (
-    <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 rounded-t-24 bg-white pb-8 pt-12 drop-shadow-2xl">
+    <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 rounded-t-24 bg-white pb-8 pt-12 shadow-navigation">
       {tabList.map((tab: TabType) => (
         <Link
           href={tab.name}
