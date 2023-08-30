@@ -5,9 +5,9 @@ import { formatNumber, formatNumberBackSpace } from '../util';
 import { useSMSMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
+import { useTimerContext } from '@/components/Provider/TimerProvider.client';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import { useTimer } from '@/hooks/useTimer';
 import { ElementType, KeyboardEventHandler } from 'react';
 
 import type { SignUpState } from '../../../type';
@@ -23,15 +23,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   const hookForm = useJoinContext();
   const { setValue, handleSubmit, register, formState } = hookForm;
   const { mutate: mutateSMS } = useSMSMutation();
-  const {
-    status: timerStatus,
-    start: timerStart,
-    time: leftTime,
-  } = useTimer({
-    initialTime: 180,
-    timerType: 'DECREMENTAL',
-    endTime: 0,
-  });
+  const { start: timerStart, status: timerStatus } = useTimerContext();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
