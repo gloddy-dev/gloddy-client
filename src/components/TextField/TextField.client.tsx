@@ -43,9 +43,10 @@ function TextField<T extends React.ElementType = 'input'>(
   const isError = isLeftError || isRightError;
   const [isFocus, setIsFocus] = useState(false);
   const Element = as || 'input';
+  const id = '' + Math.random();
 
   return (
-    <label ref={ref} htmlFor="textField" className="relative py-8">
+    <label ref={ref} htmlFor={id} className="relative py-8">
       <section
         className={cn(
           'w-full rounded-8 border-1 p-16',
@@ -54,6 +55,7 @@ function TextField<T extends React.ElementType = 'input'>(
             'border-transparent bg-sub': !isFocus,
             'border-warning bg-warning-color': isError,
             'border-transparent bg-divider': readOnly,
+            'h-142': as === 'textarea',
           },
           className
         )}
@@ -64,26 +66,24 @@ function TextField<T extends React.ElementType = 'input'>(
             <Spacing size={2} />
           </>
         )}
-        <div
-          className={cn('relative flex w-full items-center justify-around', {
-            'h-142': Element === 'textarea',
-          })}
-        >
+        <div className="relative flex h-full w-full items-center justify-around">
           {leftIcon}
           <Element
             className={cn(
-              'h-24 w-full resize-none text-paragraph-2 outline-none placeholder:text-paragraph-2 placeholder:text-sign-caption',
+              'w-full resize-none text-paragraph-2 outline-none placeholder:text-paragraph-2 placeholder:text-sign-caption',
               {
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
                 'bg-warning-color': isError,
                 'bg-divider placeholder:text-sign-tertiary': readOnly,
                 'indent-8': !!leftIcon,
+                'h-24': as === 'input',
+                'h-full': as === 'textarea',
               }
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
             onBlurCapture={() => setIsFocus(false)}
-            id="textField"
+            id={id}
             readOnly={readOnly}
             {...register}
             {...props}
