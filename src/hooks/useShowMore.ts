@@ -6,8 +6,12 @@ interface UseShowMoreProps {
 
 export function useShowMore({ maxLines }: UseShowMoreProps) {
   const [showFullText, setShowFullText] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
   const [shouldShowButton, setShouldShowButton] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const toggleShowFullText = () => {
+    setShowFullText((prev) => !prev);
+  };
 
   useEffect(() => {
     if (contentRef.current) {
@@ -31,6 +35,6 @@ export function useShowMore({ maxLines }: UseShowMoreProps) {
     contentRef,
     showFullText,
     shouldShowButton,
-    setShowFullText,
+    toggleShowFullText,
   };
 }

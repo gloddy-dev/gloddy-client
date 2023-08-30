@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export default function TopSection() {
   const { groupId } = useNumberParams<['groupId']>();
-  const { contentRef, setShowFullText, shouldShowButton, showFullText } = useShowMore({
+  const { contentRef, toggleShowFullText, shouldShowButton, showFullText } = useShowMore({
     maxLines: 6,
   });
 
@@ -30,7 +30,7 @@ export default function TopSection() {
         {shouldShowButton && (
           <button
             className="p-2 text-subtitle-2 text-sign-sub"
-            onClick={() => setShowFullText((prev) => !prev)}
+            onClick={() => toggleShowFullText()}
           >
             {showFullText ? '접기' : '더보기'}
           </button>
