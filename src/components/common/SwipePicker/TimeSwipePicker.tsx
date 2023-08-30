@@ -18,13 +18,17 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
       <SwipePicker
         selectList={hourList}
         value={timeValue.fromHour}
-        setValue={(value: string) => setTimeValue({ ...timeValue, fromHour: value })}
+        setValue={(value: string) =>
+          setTimeValue({ ...timeValue, fromHour: value.padStart(2, '0') })
+        }
       />
       <SwipePicker.MiddleText>:</SwipePicker.MiddleText>
       <SwipePicker
         selectList={minuteList}
         value={timeValue.fromMin}
-        setValue={(value: string) => setTimeValue({ ...timeValue, fromMin: value })}
+        setValue={(value: string) =>
+          setTimeValue({ ...timeValue, fromMin: value.padStart(2, '0') })
+        }
       />
       <SwipePicker
         selectList={ampmList}
@@ -35,13 +39,13 @@ export default function TimeSwipePicker({ timeValue, setTimeValue }: TimeSwipePi
       <SwipePicker
         selectList={hourList}
         value={timeValue.toHour}
-        setValue={(value: string) => setTimeValue({ ...timeValue, toHour: value })}
+        setValue={(value: string) => setTimeValue({ ...timeValue, toHour: value.padStart(2, '0') })}
       />
       <SwipePicker.MiddleText>:</SwipePicker.MiddleText>
       <SwipePicker
         selectList={minuteList}
         value={timeValue.toMin}
-        setValue={(value: string) => setTimeValue({ ...timeValue, toMin: value })}
+        setValue={(value: string) => setTimeValue({ ...timeValue, toMin: value.padStart(2, '0') })}
       />
       <SwipePicker
         selectList={ampmList}

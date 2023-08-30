@@ -1,12 +1,14 @@
 import privateApi from '../config/privateApi';
 
 import type {
+  AppliesResponse,
   Article,
   ArticleRequest,
   ArticlesResponse,
   CommentRequest,
   CommentsReponse,
   CreateGroupRequest,
+  CreateGroupResponse,
   GroupDetailResponse,
   GroupMembersResponse,
   GroupsResponse,
@@ -22,7 +24,7 @@ export const getGroupDetail = (groupId: number) => {
 };
 
 export const postCreateGroup = (CreateGroupData: CreateGroupRequest) => {
-  return privateApi.post('/group-create', CreateGroupData);
+  return privateApi.post<CreateGroupResponse>('/group-create', CreateGroupData);
 };
 
 export const getArticles = (groupId: number, page: number) => {
@@ -59,4 +61,8 @@ export const getGroupMembers = (groupId: number) => {
 
 export const getNotice = (groupId: number) => {
   return privateApi.get<Notice[]>(`/groups/${groupId}/articles/notice`);
+};
+
+export const getApplies = (groupId: number) => {
+  return privateApi.get<AppliesResponse>(`/groups/${groupId}/applies`);
 };
