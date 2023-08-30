@@ -47,12 +47,16 @@ function TextField<T extends React.ElementType = 'input'>(
   return (
     <label ref={ref} htmlFor="textField" className="relative py-8">
       <section
-        className={cn('w-full rounded-8 border-1 p-16', {
-          'border-border-pressed bg-white': isFocus,
-          'border-transparent bg-sub': !isFocus,
-          'border-warning bg-warning-color': isError,
-          'border-transparent bg-divider': readOnly,
-        })}
+        className={cn(
+          'w-full rounded-8 border-1 p-16',
+          {
+            'border-border-pressed bg-white': isFocus,
+            'border-transparent bg-sub': !isFocus,
+            'border-warning bg-warning-color': isError,
+            'border-transparent bg-divider': readOnly,
+          },
+          className
+        )}
       >
         {label && (
           <>
@@ -75,8 +79,7 @@ function TextField<T extends React.ElementType = 'input'>(
                 'bg-warning-color': isError,
                 'bg-divider placeholder:text-sign-tertiary': readOnly,
                 'indent-8': !!leftIcon,
-              },
-              className
+              }
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
             onBlurCapture={() => setIsFocus(false)}
