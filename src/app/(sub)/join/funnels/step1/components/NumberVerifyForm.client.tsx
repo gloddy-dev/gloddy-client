@@ -4,7 +4,7 @@ import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen } from '../util';
 import { LoginResponse, useLoginMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
-import { useTimerContext } from '@/components/Provider/TimerProvider.client';
+import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
