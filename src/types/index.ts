@@ -41,3 +41,5 @@ export type PersonalityType = {
 };
 
 export type ReliabilityType = 'HOOD' | 'MATE' | 'SOULMATE' | 'GLODDY';
+
+export type ApplyStatusType = 'APPROVE' | 'REFUSE';

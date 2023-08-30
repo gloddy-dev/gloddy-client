@@ -113,6 +113,7 @@ export interface Notice {
 }
 
 export interface Apply {
+  applyId: number;
   userId: number;
   userNickname: string;
   userImageUrl: string;

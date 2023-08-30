@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 const DUMMY_DATA: Apply[] = [
   {
+    applyId: 1,
     userId: 1,
     userImageUrl: '/images/dummy_avatar.png',
     userNickname: 'Glow',
@@ -20,6 +21,7 @@ const DUMMY_DATA: Apply[] = [
     reason: '저는 이 모임에 가입하고 싶습니다.',
   },
   {
+    applyId: 2,
     userId: 2,
     userImageUrl: '/images/dummy_avatar.png',
     userNickname: 'Glow',
@@ -28,6 +30,7 @@ const DUMMY_DATA: Apply[] = [
     reason: '저는 이 모임에 가입하고 싶습니다.',
   },
   {
+    applyId: 3,
     userId: 3,
     userImageUrl: '/images/dummy_avatar.png',
     userNickname: 'Glow',
@@ -80,7 +83,7 @@ export default function ManageDetail() {
       >
         {applies.map((apply) => (
           <SwiperSlide key={apply.userId}>
-            <ApplyCard apply={apply} />
+            <ApplyCard apply={apply} groupId={groupId} />
           </SwiperSlide>
         ))}
       </Swiper>
