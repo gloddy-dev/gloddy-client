@@ -1,5 +1,3 @@
-'use client';
-
 import { Spacing } from '@/components/common/Spacing';
 import { Modal } from '@/components/Modal';
 import Image from 'next/image';
@@ -10,7 +8,7 @@ interface ApplyModalProps {
 }
 export default function ApplyModal({ onOkClick, onCancelClick }: ApplyModalProps) {
   return (
-    <Modal onOkClick={onOkClick} onCancelClick={close} variant="success">
+    <Modal onOkClick={onOkClick} onCancelClick={onCancelClick} variant="success">
       <Spacing size={32} />
       <Image src="/icons/48/check.svg" alt="check" width={48} height={48} />
       <Spacing size={12} />
