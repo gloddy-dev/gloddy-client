@@ -35,7 +35,7 @@ export default function TopSection() {
         <Image src={imageUrl ?? '/images/dummy_image.png'} alt="thumbnail" fill />
         <IconButton
           size="medium"
-          className="absolute bottom-20 right-20 z-10 rounded-full bg-white bg-opacity-[.58]"
+          className="absolute bottom-20 right-20 z-10 rounded-full bg-white bg-opacity-[.38]"
           onClick={handleScrapClick}
         >
           <Image
