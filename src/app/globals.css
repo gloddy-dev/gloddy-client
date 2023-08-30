@@ -5,8 +5,8 @@
 
 * {
   box-sizing: border-box;
-  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   white-space: pre-wrap;
   
@@ -22,6 +22,17 @@ input:-webkit-autofill:focus {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+textarea::-webkit-scrollbar {
+  display:block;
+  width:0.4rem
+}
+textarea::-webkit-scrollbar-thumb{
+  background-color: #E1E1E8;
+  border-radius: 1rem;
+  height: 1rem;
+
 }
 
 html {
