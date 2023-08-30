@@ -13,14 +13,14 @@ import type { MatesResponse } from '@/apis/profile';
 export const DUMMY_GROUPING_DATA: Grouping[] = [
   {
     groupId: 12345,
-    imageUrl: 'https://example.com/image.jpg',
-    title: 'Sample Group Title',
+    imageUrl: '/assets/location.svg',
+    title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
     maxMemberCount: 50,
     maxUser: 20, // Note: This field is marked for deletion
     place: 'Sample Place',
-    meetDate: '2021-08-01',
+    meetDate: '04.27.FRI 7PM',
     startTime: '19:00',
     endTime: '21:00',
     placeName: 'Sample Place Name',
@@ -30,14 +30,14 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
   },
   {
     groupId: 12346,
-    imageUrl: 'https://example.com/image.jpg',
-    title: 'Sample Group Title',
+    imageUrl: '/assets/location.svg',
+    title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
     maxMemberCount: 50,
     maxUser: 20, // Note: This field is marked for deletion
     place: 'Sample Place',
-    meetDate: '2021-08-01',
+    meetDate: '04.27.FRI 7PM',
     startTime: '19:00',
     endTime: '21:00',
     placeName: 'Sample Place Name',
@@ -47,14 +47,14 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
   },
   {
     groupId: 12346,
-    imageUrl: 'https://example.com/image.jpg',
-    title: 'Sample Group Title',
+    imageUrl: '/assets/location.svg',
+    title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
     maxMemberCount: 50,
     maxUser: 20, // Note: This field is marked for deletion
     place: 'Sample Place',
-    meetDate: '2021-08-01',
+    meetDate: '04.27.FRI 7PM',
     startTime: '19:00',
     endTime: '21:00',
     placeName: 'Sample Place Name',
@@ -64,7 +64,7 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
   },
 ];
 
-export const CREATE_GROUP_DUMMY_DATA = {
+export const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
   imageUrl: '그룹 이미지 Url',
   title: '김지환이의 그룹',
   content: '안녕하세요',
@@ -72,6 +72,7 @@ export const CREATE_GROUP_DUMMY_DATA = {
   startTime: '17:00',
   endTime: '21:00',
   placeName: '서울특별시 강남구 테헤란로 16',
+  placeAddress: '123 Sample Street, Sample City, 12345',
   place_latitude: '23',
   place_longitude: '123',
   maxUser: 4,

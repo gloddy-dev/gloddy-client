@@ -34,7 +34,7 @@ export default function SubmitSection() {
     };
     console.log(createGroupRequest);
 
-    // createGroupMutate(CREATE_GROUP_DUMMY_DATA);
+    createGroupMutate(CREATE_GROUP_DUMMY_DATA);
   };
 
   return (
