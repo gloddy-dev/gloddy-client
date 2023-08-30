@@ -22,6 +22,8 @@ export interface TextFieldProps<T extends React.ElementType = 'input'>
   className?: string;
 }
 
+let elementId = 1;
+
 function TextField<T extends React.ElementType = 'input'>(
   {
     as,
@@ -43,7 +45,8 @@ function TextField<T extends React.ElementType = 'input'>(
   const isError = isLeftError || isRightError;
   const [isFocus, setIsFocus] = useState(false);
   const Element = as || 'input';
-  const id = '' + Math.random();
+
+  const [id] = useState(() => String(elementId++));
 
   return (
     <label ref={ref} htmlFor={id} className="relative py-8">
