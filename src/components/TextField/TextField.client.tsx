@@ -5,8 +5,7 @@ import { forwardRef, useState } from 'react';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface TextFieldProps<T extends React.ElementType = 'input'>
-  extends React.HTMLAttributes<T> {
+export interface TextFieldProps<T extends React.ElementType = 'input'> extends React.HTMLAttributes<T> {
   as?: T;
   register?: UseFormRegisterReturn<string>;
   label?: string;
@@ -20,6 +19,7 @@ export interface TextFieldProps<T extends React.ElementType = 'input'>
   isSpacing?: boolean;
   readOnly?: boolean;
   className?: string;
+  elementClassName?: string;
 }
 
 function TextField<T extends React.ElementType = 'input'>(
@@ -36,6 +36,7 @@ function TextField<T extends React.ElementType = 'input'>(
     isSpacing = true,
     readOnly = false,
     className,
+    elementClassName,
     ...props
   }: TextFieldProps<T> & React.ComponentPropsWithoutRef<T>,
   ref: React.ForwardedRef<HTMLLabelElement>
@@ -75,8 +76,8 @@ function TextField<T extends React.ElementType = 'input'>(
                 'bg-warning-color': isError,
                 'bg-divider placeholder:text-sign-tertiary': readOnly,
                 'indent-8': !!leftIcon,
-                'h-142': Element === 'textarea',
-              }
+              },
+              elementClassName
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
             onBlurCapture={() => setIsFocus(false)}
