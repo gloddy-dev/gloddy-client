@@ -10,7 +10,7 @@ import type {
 } from '@/apis/groups';
 import type { MatesResponse } from '@/apis/profile';
 
-export const DUMMY_GROUPING_DATA = [
+export const DUMMY_GROUPING_DATA: any = [
   {
     groupId: 1,
     imageUrl: '/assets/location.svg',
