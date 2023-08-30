@@ -78,7 +78,7 @@ function TextField<T extends React.ElementType = 'input'>(
                 'bg-divider placeholder:text-sign-tertiary': readOnly,
                 'indent-8': !!leftIcon,
                 'h-24': as === 'input',
-                'h-full': as === 'textarea',
+                'h-full scroll-my-100 overflow-y-scroll ': as === 'textarea',
               }
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
