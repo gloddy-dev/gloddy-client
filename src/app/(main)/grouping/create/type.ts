@@ -11,6 +11,7 @@ export interface CreateGroupContextValue {
   placeLatitude: number;
   placeLongitude: number;
   maxUser: number;
+  date: Date;
 }
 
 export type ModalNameType = 'meetingDate' | 'meetingLocation' | 'meetingNumber';
