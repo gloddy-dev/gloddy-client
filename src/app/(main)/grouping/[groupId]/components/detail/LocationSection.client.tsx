@@ -26,13 +26,14 @@ export default function LocationSection() {
     <section>
       <h2 className="pl-4 text-subtitle-3 text-sign-secondary">모임 위치</h2>
       <Spacing size={4} />
-      <div className="relative rounded-8 bg-gray6" onClick={handleClipboardClick}>
+      <div className="relative rounded-8 bg-gray6">
         <Image
           src="/icons/24/copy.svg"
           alt="copy"
           width={24}
           height={24}
           className="absolute right-12 top-12 z-10"
+          onClick={handleClipboardClick}
         />
         <Map
           center={{
