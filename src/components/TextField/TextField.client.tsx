@@ -5,7 +5,8 @@ import { forwardRef, useState } from 'react';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface TextFieldProps<T extends React.ElementType = 'input'> extends React.HTMLAttributes<T> {
+export interface TextFieldProps<T extends React.ElementType = 'input'>
+  extends React.HTMLAttributes<T> {
   as?: T;
   register?: UseFormRegisterReturn<string>;
   label?: string;
