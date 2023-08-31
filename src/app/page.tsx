@@ -1,53 +1,36 @@
-'use client';
-import { LoginResponse, postReissue, useLoginMutation } from '@/apis/auth';
-import { useDidUnMount } from '@/hooks/common/useDidUnMount';
-import { getTokenFromCookie, setTokenAtCookie } from '@/utils/auth/tokenController';
+import { postReissue } from '@/apis/auth';
+import { AUTH_KEYS } from '@/constants/token';
+import { getTokenFromCookie } from '@/utils/auth/tokenController';
+import { redirect } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
-export default function Home() {
-  const { mutate: mutateLogin } = useLoginMutation();
-
-  const handlegetTokenFromCookie = async () => {
-    mutateLogin(
-      { phoneNumber: '010-5728-9357' },
-      {
-        onSuccess: (response: LoginResponse) => {
-          if (response.existUser) {
-            const {
-              token: { accessToken, refreshToken },
-              userId,
-            } = response;
-            setTokenAtCookie({
-              accessToken,
-              refreshToken,
-              userId,
-            });
-          }
-        },
-      }
-    );
+export default async function Home() {
+  const { accessToken, refreshToken } = (await getTokenFromCookie()) as {
+    accessToken: string;
+    refreshToken: string;
   };
 
-  const handleGetReissue = async () => {
-    const { accessToken, refreshToken } = await getTokenFromCookie();
-    if (!accessToken || !refreshToken) return;
-    const response = await postReissue(
-      {
-        accessToken,
-        refreshToken,
-      },
+  if (accessToken && refreshToken) return redirect('/grouping');
+
+  try {
+    const {
+      token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },
+    } = await postReissue(
+      { accessToken, refreshToken },
       { headers: { 'X-AUTH-TOKEN': accessToken } }
     );
-    console.log(response);
-  };
 
-  useDidUnMount(() => {
-    alert('aa');
-  });
+    const response = NextResponse.next();
+    response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken, {
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
+    });
+    response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
+    });
 
-  return (
-    <main>
-      <button onClick={handlegetTokenFromCookie}>Token 발급받기</button>
-      <button onClick={handleGetReissue}>Reissue</button>
-    </main>
-  );
+    redirect('/grouping');
+  } catch (e) {
+    console.log(e);
+    return redirect('/join');
+  }
 }
