@@ -2,6 +2,7 @@
 
 import ApplyCard from './ApplyCard.client';
 import { useGetApplies } from '@/apis/groups';
+import { useGetMeetingParticipating } from '@/apis/meeting';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { useNumberParams } from '@/hooks/useNumberParams';
@@ -12,6 +13,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function ManageDetail() {
   const { groupId } = useNumberParams<['groupId']>();
+  const { data } = useGetMeetingParticipating();
+  console.log(data);
 
   const { data: appliesData } = useGetApplies(groupId);
   const { applies, totalCount } = appliesData;
