@@ -6,7 +6,7 @@ import { Flex } from '@/components/Layout';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function NoticeList() {
   const { groupId } = useNumberParams<['groupId']>();
@@ -49,7 +49,7 @@ interface NoticeItemProps {
 
 function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
   const { content, noticeId } = notice;
-
+  const router = useRouter();
   const { open, close } = useModal();
   const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId, noticeId);
 
@@ -59,7 +59,7 @@ function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
 
   return (
     <Flex align="center" className="gap-12 py-4">
-      <Flex align="center" className="grow gap-4">
+      <Flex align="center" className="gap-4 overflow-hidden">
         <Image src="/icons/24/announcement.svg" alt="announcement" width={24} height={24} />
         <p className="truncate">{content}</p>
         {isCaptain && (
@@ -80,9 +80,13 @@ function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
           />
         )}
       </Flex>
-      <Link href={`/grouping/${groupId}/articles/${noticeId}`}>
-        <Image src="/icons/24/navigate-next.svg" alt="navigate_next" width={24} height={24} />
-      </Link>
+      <Image
+        src="/icons/24/navigate-next.svg"
+        alt="navigate_next"
+        width={24}
+        height={24}
+        onClick={() => router.push(`/grouping/${groupId}/articles/${noticeId}`)}
+      />
     </Flex>
   );
 }
