@@ -77,6 +77,7 @@ export default function NumberVerifyForm() {
         })}
         maxLength={6}
         timer={time}
+        type="number"
       />
       <ButtonGroup isSpacing={false}>
         <Button type="button">재전송</Button>
