@@ -16,7 +16,7 @@ const tabList: TabType[] = [
   {
     id: '1',
     name: 'grouping',
-    title: '그루핑',
+    title: '매칭',
   },
   {
     id: '2',
@@ -47,7 +47,7 @@ export default function Footer({ page, isSpacing = true }: FooterProps) {
           className="flex w-full flex-col items-center text-caption"
         >
           <Image
-            src={`/icons/32/footer/${tab.name}${tab.name === page ? '_selected' : '_default'}.png`}
+            src={`/icons/32/footer/${tab.name}${tab.name === page ? '_selected' : '_default'}.svg`}
             alt={tab.title}
             width={32}
             height={32}

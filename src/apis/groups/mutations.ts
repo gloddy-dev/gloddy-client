@@ -32,6 +32,7 @@ export const usePostArticle = (groupId: number) => {
   return useMutation(postArticle, {
     onSuccess: (data) => {
       queryClient.invalidateQueries(['getArticles', groupId]);
+      queryClient.invalidateQueries([Keys.getNotice, groupId]);
       router.push(`/grouping/${groupId}/articles/${data.articleId}`);
     },
   });
@@ -81,12 +82,14 @@ export const usePostApply = (groupId: number) => {
   });
 };
 
-export const usePatchApply = (groupId: number, applyId: number, status: ApplyStatusType) => {
+export const usePatchApply = (groupId: number) => {
   const queryClient = useQueryClient();
 
-  return useMutation(() => patchApply(groupId, applyId, status), {
+  return useMutation(patchApply, {
     onSuccess: () => {
       queryClient.invalidateQueries(['getApplies', groupId]);
+      queryClient.invalidateQueries([Keys.getGroupDetail, groupId]);
+      queryClient.invalidateQueries([Keys.getGroupMembers, groupId]);
     },
   });
 };

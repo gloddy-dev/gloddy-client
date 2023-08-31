@@ -24,11 +24,13 @@ export default function InputForm() {
   });
   const { open, close } = useModal();
   const { groupId } = useNumberParams<['groupId']>();
-  const { mutate: mutatePostApply } = usePostApply();
+  const { mutate: mutatePostApply, isLoading } = usePostApply(groupId);
 
   const { register, handleSubmit, formState } = hookForm;
 
   const onSubmit: SubmitHandler<ApplyFormType> = (apply) => {
+    if (isLoading) return;
+
     mutatePostApply({
       apply,
       groupId,
