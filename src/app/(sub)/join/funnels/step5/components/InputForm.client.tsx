@@ -28,7 +28,7 @@ export default function InputForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <PersonalitySection />
       <ButtonGroup>
-        <Button disabled={watch('personalityIdList').length < 3} type="submit">
+        <Button disabled={watch('personalityIdList').length !== 3} type="submit">
           완료
         </Button>
       </ButtonGroup>
@@ -49,6 +49,7 @@ function PersonalitySection() {
         );
         return;
       }
+      if (list.length === 3) return;
       setValue('personalityIdList', [...list, id]);
     },
     [setValue, watch]

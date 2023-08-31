@@ -13,7 +13,7 @@ export default function InputForm() {
   return (
     <TimerProvider>
       <NumberForm inputStatus={inputStatus} setInputStatus={setInputStatus} />
-      {inputStatus === 'afterSend' && <NumberVerifyForm />}
+      {inputStatus === 'afterSend' && <NumberVerifyForm setInputStatus={setInputStatus} />}
     </TimerProvider>
   );
 }

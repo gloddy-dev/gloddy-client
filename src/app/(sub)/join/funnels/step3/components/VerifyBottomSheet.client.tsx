@@ -11,22 +11,20 @@ import type { SignUpState } from '../../../type';
 
 interface VerifyBottomSheetProps extends ModalProps {
   onClose: () => void;
-  hookForm: ReturnType<typeof useJoinContext>;
   onOkClick: () => void;
 }
 
-export default memo(function VerifyBottomSheet({
-  onClose,
-  hookForm,
-  onOkClick,
-}: VerifyBottomSheetProps) {
+export default memo(function VerifyBottomSheet({ onClose, onOkClick }: VerifyBottomSheetProps) {
+  const hookForm = useJoinContext();
   const {
     register,
     handleSubmit,
     setValue,
     formState: { isValid },
     setError,
+    resetField,
   } = hookForm;
+
   const { status: timerStatus, time: verifyTime } = useTimer({
     initialTime: 180,
     timerType: 'DECREMENTAL',
@@ -58,8 +56,25 @@ export default memo(function VerifyBottomSheet({
     );
   };
 
+  const handleResend = () => {
+    if (verifyTime > 120) {
+      setError('verifyEmailNumber', {
+        type: 'manual',
+        message: '인증번호는 1분에 한번만 전송 가능합니다.',
+      });
+      return;
+    }
+    onClose();
+    resetField('verifyEmailNumber');
+  };
+
   return (
-    <BottomSheet onClose={onClose} snapPoints={[300, 0]} title="인증번호 입력">
+    <BottomSheet
+      onClose={onClose}
+      snapPoints={[300, 0]}
+      title="인증번호 입력"
+      isRightCloseIcon={false}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
           <TextFieldController
@@ -77,7 +92,9 @@ export default memo(function VerifyBottomSheet({
         </section>
 
         <ButtonGroup>
-          <Button type="button">재전송</Button>
+          <Button type="button" onClick={handleResend}>
+            재전송
+          </Button>
           <Button type="submit" disabled={!isValid}>
             확인
           </Button>
