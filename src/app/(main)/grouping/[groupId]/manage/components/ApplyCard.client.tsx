@@ -17,8 +17,16 @@ interface ApplyCardProps {
 }
 
 export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
-  const { userId, applyId, userImageUrl, userNickname, reliabilityLevel, introduce, reason } =
-    apply;
+  const {
+    userId,
+    applyId,
+    isCertifiedStudent,
+    userImageUrl,
+    userNickname,
+    reliabilityLevel,
+    introduce,
+    reason,
+  } = apply;
 
   const router = useRouter();
   const { open, close } = useModal();
@@ -39,7 +47,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
           imageUrl={userImageUrl}
           size="small"
           onClick={() => router.push(`/profile/${userId}`)}
-          // iconVariant={isCertifiedStudent ? 'education' : 'none'}
+          iconVariant={isCertifiedStudent ? 'education' : 'none'}
         />
         <div className="grow">
           <p className="text-paragraph-1">{userNickname}</p>
