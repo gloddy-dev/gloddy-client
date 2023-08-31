@@ -1,11 +1,11 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
+import BirthdayBottomSheet from '@/app/(sub)/join/funnels/step4/components/BirthdayBottomSheet.client';
 import { Button, ButtonGroup } from '@/components/Button';
 import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
-import BirthdayBottomSheet from '@/components/Modal/BirthdayBottomSheet.client';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
