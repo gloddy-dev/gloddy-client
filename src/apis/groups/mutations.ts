@@ -9,6 +9,7 @@ import {
   postCreateGroup,
   postScrap,
 } from './apis';
+import { Keys } from './keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -68,11 +69,13 @@ export const useDeleteComment = (groupId: number, articleId: number, commentId: 
   });
 };
 
-export const usePostApply = () => {
+export const usePostApply = (groupId: number) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(postApply, {
     onSuccess: () => {
+      queryClient.invalidateQueries([Keys.getGroupDetail, groupId]);
       router.push('/meeting?tab=waiting');
     },
   });
