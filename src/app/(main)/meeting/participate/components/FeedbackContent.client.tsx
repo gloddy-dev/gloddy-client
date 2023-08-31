@@ -1,22 +1,32 @@
 'use client';
 import SubtitleSection from './SubtitleSection';
-import { Grouping } from '@/apis/groups';
+import NoMeeting from '../../components/NoMeeting';
+import { useGetMeetingNotEstimated } from '@/apis/meeting';
 import { Button } from '@/components/Button';
 import { GroupingCard } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
-import { DUMMY_GROUPING_DATA } from '@/constants/dummyData';
 import { useRouter } from 'next/navigation';
 
 export default function FeedbackContent() {
   const router = useRouter();
+  const {
+    data: { groups: meetingNotEstimatedData },
+  } = useGetMeetingNotEstimated();
 
   return (
     <>
       <Spacing size={20} />
       <SubtitleSection text="상호 평가가 필요한 모임" />
 
-      {DUMMY_GROUPING_DATA.map((groupingData: Grouping) => (
-        <GroupingCard groupingData={groupingData} key={groupingData.groupId}>
+      {meetingNotEstimatedData.length === 0 && (
+        <NoMeeting message="상호평가가 필요한 모임이 없어요." />
+      )}
+      {meetingNotEstimatedData.map((groupingData) => (
+        <GroupingCard
+          groupingData={groupingData.group}
+          key={groupingData.group.groupId}
+          isCaptain={groupingData.isCaptain}
+        >
           <Spacing size={8} />
           <Button
             size="small"
