@@ -1,7 +1,7 @@
 import type { TimeType } from '@/types';
 
 export interface CreateGroupContextValue {
-  imageFile: File;
+  imageUrl: string;
   title: string;
   content: string;
   meetDate: Date;

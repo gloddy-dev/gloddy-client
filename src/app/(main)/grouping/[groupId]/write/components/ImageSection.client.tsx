@@ -1,6 +1,6 @@
+import { usePostFiles } from '@/apis/common';
 import { Flex } from '@/components/Layout';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import { makeFileToBlob } from '@/utils/makeFileToBlob';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';
 import { Control, useController } from 'react-hook-form';
@@ -12,6 +12,8 @@ interface ImageSectionProps {
 }
 
 export default function ImageSection({ control }: ImageSectionProps) {
+  const { mutate: mutateFiles } = usePostFiles();
+
   const {
     field: { value, onChange },
   } = useController({
@@ -19,23 +21,30 @@ export default function ImageSection({ control }: ImageSectionProps) {
     control,
   });
 
-  const { handleFileUploadClick } = useFileUpload((files) => onChange([...value, ...files]), {
-    multiple: true,
+  const { handleFileUploadClick } = useFileUpload((files) => {
+    mutateFiles(
+      { fileList: files },
+      {
+        onSuccess: ({ fileUrlList }) => {
+          onChange([...value, ...fileUrlList]);
+        },
+      }
+    );
   });
 
   const handleDeleteClick = useCallback(
-    (imageBlob: File) => onChange(value.filter((blob) => blob !== imageBlob)),
+    (imageUrl: string) => onChange(value.filter((v) => v !== imageUrl)),
     [onChange, value]
   );
 
   return (
     <section className="px-20 pb-8 pt-16">
       <Flex className="gap-8">
-        {value.map((imageBlob, index) => {
+        {value.map((imageUrl, index) => {
           return (
             <ImageThumbnail
-              key={imageBlob.name + index}
-              imageBlob={imageBlob}
+              key={imageUrl + index}
+              imageUrl={imageUrl}
               onClick={handleDeleteClick}
             />
           );
@@ -69,13 +78,11 @@ function AddImageButton({ imageCount, onClick }: AddImageSectionProps) {
 }
 
 interface ImageThumbnailProps {
-  imageBlob: File;
-  onClick: (imageBlob: File) => void;
+  imageUrl: string;
+  onClick: (imageUrl: string) => void;
 }
 
-const ImageThumbnail = memo(({ imageBlob, onClick }: ImageThumbnailProps) => {
-  const imageUrl = makeFileToBlob(imageBlob);
-
+const ImageThumbnail = memo(({ imageUrl, onClick }: ImageThumbnailProps) => {
   return (
     <div className="relative h-96 w-96">
       <Image src={imageUrl} alt="select-img" className="rounded-8 object-cover" fill />
@@ -85,7 +92,7 @@ const ImageThumbnail = memo(({ imageBlob, onClick }: ImageThumbnailProps) => {
         width={32}
         height={32}
         className="absolute right-0 top-0 cursor-pointer"
-        onClick={() => onClick(imageBlob)}
+        onClick={() => onClick(imageUrl)}
       />
     </div>
   );
