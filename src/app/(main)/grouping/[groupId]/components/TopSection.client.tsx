@@ -32,7 +32,12 @@ export default function TopSection() {
   return (
     <section>
       <div className="relative aspect-[8/5]">
-        <Image src={fileUrl || imageUrl || '/images/dummy_image.png'} alt="thumbnail" fill />
+        <Image
+          src={fileUrl || imageUrl || '/images/dummy_image.png'}
+          alt="thumbnail"
+          className="object-cover"
+          fill
+        />
         <IconButton
           size="medium"
           className="absolute bottom-20 right-20 z-10 rounded-full bg-white bg-opacity-[.38]"

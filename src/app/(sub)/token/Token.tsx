@@ -8,7 +8,7 @@ export default function Token() {
 
   const handlegetTokenFromCookie = async () => {
     mutateLogin(
-      { phoneNumber: '010 - 2018 - 0262' },
+      { phoneNumber: '010-2018-0262' },
       {
         onSuccess: (response: LoginResponse) => {
           if (response.existUser) {
