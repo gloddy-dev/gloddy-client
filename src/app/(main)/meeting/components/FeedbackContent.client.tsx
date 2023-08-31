@@ -1,5 +1,6 @@
 'use client';
 import SubtitleSection from './SubtitleSection';
+import { Grouping } from '@/apis/groups';
 import { Button } from '@/components/Button';
 import { GroupingCard } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
@@ -14,7 +15,7 @@ export default function FeedbackContent() {
       <Spacing size={20} />
       <SubtitleSection text="상호 평가가 필요한 모임" />
 
-      {DUMMY_GROUPING_DATA.map((groupingData) => (
+      {DUMMY_GROUPING_DATA.map((groupingData: Grouping) => (
         <GroupingCard groupingData={groupingData} key={groupingData.groupId}>
           <Spacing size={8} />
           <Button

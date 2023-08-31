@@ -45,17 +45,23 @@ export default function InputForm() {
   };
 
   return (
-    <div className="px-20">
+    <>
       <ImageSection control={control} />
-      <Spacing size={8} />
-      <TextFieldController
-        as="textarea"
-        hookForm={hookForm}
-        register={register('content', { required: true })}
-        placeholder="최소 20글자 이상의 게시글을 작성해보세요."
-        maxCount={300}
-      />
-      <Spacing size={8} />
+      <div className="grow px-20 py-8">
+        <TextFieldController
+          as="textarea"
+          hookForm={hookForm}
+          register={register('content', { required: true })}
+          placeholder="최소 20글자 이상의 게시글을 작성해보세요."
+          maxCount={300}
+          className="h-full"
+        />
+      </div>
+      <Flex className="gap-8 px-20 py-12" onClick={() => setValue('notice', !watch('notice'))}>
+        <CircleCheckbox checked={watch('notice')} />
+        <p className="text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
+      </Flex>
+      <Spacing size={16} />
       <ButtonGroup>
         <Button
           onClick={() =>
@@ -68,14 +74,6 @@ export default function InputForm() {
           글쓰기
         </Button>
       </ButtonGroup>
-      <Flex className="gap-8">
-        <CircleCheckbox
-          onClick={() => setValue('notice', !watch('notice'))}
-          checked={watch('notice')}
-        />
-        <p className="py-12 text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
-      </Flex>
-      <Spacing size={16} />
-    </div>
+    </>
   );
 }

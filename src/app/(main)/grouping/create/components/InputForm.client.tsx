@@ -51,8 +51,8 @@ export default function InputForm() {
           mutateCreateGroup({
             placeName: '스타벅스 동대문공원점',
             placeAddress: '서울 중구 장충단로 229',
-            place_latitude: '37.565289',
-            place_longitude: '127.001285',
+            placeLatitude: '37.565289',
+            placeLongitude: '127.001285',
             content: data.content,
             maxUser: data.maxUser,
             meetDate: format(new Date(data.meetDate), 'yyyy-MM-dd'),

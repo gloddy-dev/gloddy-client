@@ -11,19 +11,28 @@ interface IconButtonProps {
    * 버튼의 클릭 이벤트를 설정합니다.
    */
   onClick?: () => void;
+  /**
+   * 버튼의 스타일을 설정합니다.
+   */
+  className?: string;
 }
 export default function IconButton({
   onClick,
   children,
+  className,
   size = 'small',
 }: StrictPropsWithChildren<IconButtonProps>) {
   return (
     <div
-      className={cn('flex shrink-0 cursor-pointer items-center justify-center', {
-        'h-24 w-24': size === 'small',
-        'h-40 w-40': size === 'medium',
-        'h-48 w-48': size === 'large',
-      })}
+      className={cn(
+        'flex shrink-0 cursor-pointer items-center justify-center',
+        {
+          'h-24 w-24': size === 'small',
+          'h-40 w-40': size === 'medium',
+          'h-48 w-48': size === 'large',
+        },
+        className
+      )}
       onClick={onClick}
     >
       {children}

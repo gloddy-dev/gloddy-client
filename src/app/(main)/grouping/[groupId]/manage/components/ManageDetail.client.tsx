@@ -1,7 +1,7 @@
 'use client';
 
 import ApplyCard from './ApplyCard.client';
-import { type Apply, useGetApplies } from '@/apis/groups';
+import { useGetApplies } from '@/apis/groups';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { useNumberParams } from '@/hooks/useNumberParams';
@@ -9,33 +9,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-const DUMMY_DATA: Apply[] = [
-  {
-    userId: 1,
-    userImageUrl: '/images/dummy_avatar.png',
-    userNickname: 'Glow',
-    reliabilityLevel: 'GLODDY',
-    introduce: '안녕하세요! 저는 글로우입니다. 잘 부탁드립니다.',
-    reason: '저는 이 모임에 가입하고 싶습니다.',
-  },
-  {
-    userId: 2,
-    userImageUrl: '/images/dummy_avatar.png',
-    userNickname: 'Glow',
-    reliabilityLevel: 'GLODDY',
-    introduce: '안녕하세요! 저는 글로우입니다. 잘 부탁드립니다.',
-    reason: '저는 이 모임에 가입하고 싶습니다.',
-  },
-  {
-    userId: 3,
-    userImageUrl: '/images/dummy_avatar.png',
-    userNickname: 'Glow',
-    reliabilityLevel: 'GLODDY',
-    introduce: '안녕하세요! 저는 글로우입니다. 잘 부탁드립니다.',
-    reason: '저는 이 모임에 가입하고 싶습니다.',
-  },
-];
 
 export default function ManageDetail() {
   const { groupId } = useNumberParams<['groupId']>();
@@ -80,7 +53,7 @@ export default function ManageDetail() {
       >
         {applies.map((apply) => (
           <SwiperSlide key={apply.userId}>
-            <ApplyCard apply={apply} />
+            <ApplyCard apply={apply} groupId={groupId} />
           </SwiperSlide>
         ))}
       </Swiper>

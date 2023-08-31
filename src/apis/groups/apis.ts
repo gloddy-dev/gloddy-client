@@ -2,6 +2,8 @@ import privateApi from '../config/privateApi';
 
 import type {
   AppliesResponse,
+  ApplyRequest,
+  ApplyResponse,
   Article,
   ArticleRequest,
   ArticlesResponse,
@@ -14,6 +16,7 @@ import type {
   GroupsResponse,
   Notice,
 } from './type';
+import type { ApplyStatusType } from '@/types';
 
 export const getGroups = (page: number) => {
   return privateApi.get<GroupsResponse>(`/groups?size=5&page=${page}`);
@@ -65,4 +68,20 @@ export const getNotice = (groupId: number) => {
 
 export const getApplies = (groupId: number) => {
   return privateApi.get<AppliesResponse>(`/groups/${groupId}/applies`);
+};
+
+export const postApply = ({ groupId, apply }: ApplyRequest) => {
+  return privateApi.post<ApplyResponse>(`/groups/${groupId}/apply`, apply);
+};
+
+export const patchApply = (groupId: number, applyId: number, status: ApplyStatusType) => {
+  return privateApi.patch(`/groups/${groupId}/applies/${applyId}?status=${status}`);
+};
+
+export const postScrap = (groupId: number) => {
+  return privateApi.post(`/groups/${groupId}/scrap`);
+};
+
+export const deleteScrap = (groupId: number) => {
+  return privateApi.delete(`/groups/${groupId}/scrap`);
 };
