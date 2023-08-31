@@ -22,6 +22,7 @@ export default memo(function VerifyBottomSheet({ onClose, onOkClick }: VerifyBot
     setValue,
     formState: { isValid },
     setError,
+    resetField,
   } = hookForm;
 
   const { status: timerStatus, time: verifyTime } = useTimer({
@@ -64,6 +65,7 @@ export default memo(function VerifyBottomSheet({ onClose, onOkClick }: VerifyBot
       return;
     }
     onClose();
+    resetField('verifyEmailNumber');
   };
 
   return (
