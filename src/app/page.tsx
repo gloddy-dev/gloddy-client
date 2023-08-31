@@ -1,53 +1,27 @@
-'use client';
-import { LoginResponse, postReissue, useLoginMutation } from '@/apis/auth';
-import { useDidUnMount } from '@/hooks/common/useDidUnMount';
-import { getTokenFromCookie, setTokenAtCookie } from '@/utils/auth/tokenController';
+import { postReissue } from '@/apis/auth';
+import { AUTH_KEYS } from '@/constants/token';
+import { getTokenFromCookie } from '@/utils/auth/tokenController';
+import { redirect } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
-export default function Home() {
-  const { mutate: mutateLogin } = useLoginMutation();
+export default async function Home() {
+  const { accessToken, refreshToken } = await getTokenFromCookie();
 
-  const handlegetTokenFromCookie = async () => {
-    mutateLogin(
-      { phoneNumber: '010-5728-9357' },
-      {
-        onSuccess: (response: LoginResponse) => {
-          if (response.existUser) {
-            const {
-              token: { accessToken, refreshToken },
-              userId,
-            } = response;
-            setTokenAtCookie({
-              accessToken,
-              refreshToken,
-              userId,
-            });
-          }
-        },
-      }
-    );
-  };
+  if (!accessToken || !refreshToken) redirect('/join');
 
-  const handleGetReissue = async () => {
-    const { accessToken, refreshToken } = await getTokenFromCookie();
-    if (!accessToken || !refreshToken) return;
-    const response = await postReissue(
-      {
-        accessToken,
-        refreshToken,
-      },
+  try {
+    const {
+      token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },
+    } = await postReissue(
+      { accessToken, refreshToken },
       { headers: { 'X-AUTH-TOKEN': accessToken } }
     );
-    console.log(response);
-  };
-
-  useDidUnMount(() => {
-    alert('aa');
-  });
-
-  return (
-    <main>
-      <button onClick={handlegetTokenFromCookie}>Token 발급받기</button>
-      <button onClick={handleGetReissue}>Reissue</button>
-    </main>
-  );
+    const response = NextResponse.next();
+    response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken);
+    response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken);
+    redirect('/grouping');
+  } catch (e) {
+    console.log(e);
+    return redirect('/join');
+  }
 }
