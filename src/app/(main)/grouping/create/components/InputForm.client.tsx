@@ -56,8 +56,11 @@ export default function InputForm() {
             content: data.content,
             maxUser: data.maxUser,
             meetDate: format(new Date(data.meetDate), 'yyyy-MM-dd'),
-            startTime: data.time.fromHour + ':' + data.time.fromMin,
-            endTime: data.time.toHour + ':' + data.time.toMin,
+            startTime: '14:00',
+            endTime: '16:00',
+            // startTime:
+            //   data.time.fromHour.padStart(2, '0') + ':' + data.time.fromMin.padStart(2, '0'),
+            // endTime: data.time.toHour.padStart(2, '0') + ':' + data.time.toMin.padStart(2, '0'),
             title: data.title,
 
             imageUrl: fileUrlList[0],
