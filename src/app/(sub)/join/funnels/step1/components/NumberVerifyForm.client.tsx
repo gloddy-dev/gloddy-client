@@ -20,14 +20,13 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
   const router = useRouter();
   const hookForm = useJoinContext();
   const { handleSubmit, setError, register } = hookForm;
-  const { time, status } = useTimerContext();
+  const { time } = useTimerContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateLogin } = useLoginMutation();
 
   const handleResend = () => {
-    console.log(time);
     if (time > 120) {
       setError('verifyNumber', {
         type: 'validate',

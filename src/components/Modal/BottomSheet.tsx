@@ -16,6 +16,7 @@ interface BottomSheetProps extends Partial<SheetProps> {
   title?: string;
   disableDrag?: boolean;
   isTapOutsideToClose?: boolean;
+  isRightCloseIcon?: boolean;
 }
 
 export default forwardRef(function BottomSheet(
@@ -26,6 +27,7 @@ export default forwardRef(function BottomSheet(
     disableDrag = false,
     isTapOutsideToClose = false,
     children,
+    isRightCloseIcon = true,
     ...props
   }: StrictPropsWithChildren<BottomSheetProps>,
   ref?: React.ForwardedRef<SheetRef>
@@ -61,17 +63,19 @@ export default forwardRef(function BottomSheet(
           <Spacing size={20} />
           <Header className="static bg-inherit" isSpacing={false}>
             <Header.Left className="pl-20">{title}</Header.Left>
-            <Header.Right className="pr-4">
-              <IconButton size="large" onClick={onClose}>
-                <Image
-                  src="/icons/24/close.svg"
-                  alt="close"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer"
-                />
-              </IconButton>
-            </Header.Right>
+            {isRightCloseIcon && (
+              <Header.Right className="pr-4">
+                <IconButton size="large" onClick={onClose}>
+                  <Image
+                    src="/icons/24/close.svg"
+                    alt="close"
+                    width={24}
+                    height={24}
+                    className="cursor-pointer"
+                  />
+                </IconButton>
+              </Header.Right>
+            )}
           </Header>
         </Sheet.Header>
         <Sheet.Content className="px-20">{children}</Sheet.Content>
