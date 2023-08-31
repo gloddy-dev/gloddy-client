@@ -20,12 +20,12 @@ export default function ArticlePage({ params }: ArticleDetailPageProps) {
 
   return (
     <>
-      <ArticleHeader groupId={groupId} />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
         <HydrationProvider
           queryFn={() => getArticle(groupId, articleId)}
           queryKey={Keys.getArticle(groupId, articleId)}
         >
+          <ArticleHeader />
           <ArticleDetail />
         </HydrationProvider>
       </QueryAsyncBoundary>

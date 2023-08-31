@@ -31,6 +31,9 @@ export default function InputForm() {
   const hookForm = useCreateGroupContext();
   const { watch, setValue, getFieldState, register, handleSubmit, formState } = hookForm;
 
+  const { mutate: mutatePostFiles } = usePostFiles();
+  const { mutate: mutateCreateGroup } = usePostCreateGroup();
+
   const { handleFileUploadClick } = useFileUpload((files: File[]) => {
     mutatePostFiles(
       { fileList: files },
@@ -41,9 +44,6 @@ export default function InputForm() {
       }
     );
   });
-
-  const { mutate: mutatePostFiles } = usePostFiles();
-  const { mutate: mutateCreateGroup } = usePostCreateGroup();
 
   const isMeetingDateDirty = getFieldState('meetDate').isDirty || getFieldState('time').isDirty;
 
@@ -83,7 +83,7 @@ export default function InputForm() {
       <Flex
         justify="center"
         align="center"
-        className="relative mx-20 h-180 overflow-hidden rounded-8 bg-sub"
+        className="relative mx-20 aspect-[8/5] overflow-hidden rounded-8 bg-sub"
         onClick={handleFileUploadClick}
       >
         {!!watch('imageUrl') ? (
@@ -97,13 +97,13 @@ export default function InputForm() {
         <p className="px-4 text-subtitle-3 text-sign-secondary">방제목</p>
         <Spacing size={4} />
         <TextFieldController
-          placeholder="제목을 입력해주세요"
+          placeholder="제목을 입력해주세요."
           hookForm={hookForm}
           register={register('title', {
             required: true,
-            maxLength: 20,
+            maxLength: 30,
           })}
-          maxCount={20}
+          maxCount={30}
         />
         <Spacing size={8} />
       </section>
