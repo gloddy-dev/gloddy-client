@@ -20,14 +20,11 @@ export default function Grouping() {
       <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={null}>
         <HydrationProvider queryKey={Keys.getGroups()} queryFn={() => getGroups(0)} isInfiniteQuery>
           <GroupingCardList />
-          <GroupingCardList />
         </HydrationProvider>
       </QueryAsyncBoundary>
-      {/* <Link href="/grouping/create"> */}
-      {/* <div className="fixed inset-0 bottom-90 mx-auto max-w-450">
-        <FloatAddButton className="absolute bottom-20 right-20 ml-auto" />
-      </div> */}
-      {/* </Link> */}
+      <Link href="/grouping/create" className="absolute bottom-110 right-20 ml-auto">
+        <FloatAddButton />
+      </Link>
       <Footer page="grouping" />
     </>
   );
