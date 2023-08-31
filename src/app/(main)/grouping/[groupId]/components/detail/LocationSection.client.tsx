@@ -5,6 +5,7 @@ import { Spacing } from '@/components/common/Spacing';
 import { Toast } from '@/components/Modal';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
+import { copyToClipboard } from '@/utils/copyToClipboard';
 import Image from 'next/image';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
@@ -16,8 +17,7 @@ export default function LocationSection() {
   const { open } = useModal({ delay: 2000 });
 
   const handleClipboardClick = () => {
-    navigator.clipboard
-      .writeText(placeAddress)
+    copyToClipboard(placeAddress)
       .then(() => open(<Toast>주소가 복사되었습니다.</Toast>))
       .catch(() => open(<Toast>주소 복사에 실패했습니다.</Toast>));
   };
