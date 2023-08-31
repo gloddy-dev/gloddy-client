@@ -1,5 +1,3 @@
-import { SchoolSearchResponse } from '@/apis/auth';
-
 import type {
   Article,
   Comment,
@@ -18,8 +16,6 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     content: 'This is a sample content for the group.',
     memberCount: 10,
     maxMemberCount: 50,
-    maxUser: 20, // Note: This field is marked for deletion
-    place: 'Sample Place',
     meetDate: '04.27.FRI 7PM',
     startTime: '19:00',
     endTime: '21:00',
@@ -35,8 +31,6 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     content: 'This is a sample content for the group.',
     memberCount: 10,
     maxMemberCount: 50,
-    maxUser: 20, // Note: This field is marked for deletion
-    place: 'Sample Place',
     meetDate: '04.27.FRI 7PM',
     startTime: '19:00',
     endTime: '21:00',
@@ -52,8 +46,6 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     content: 'This is a sample content for the group.',
     memberCount: 10,
     maxMemberCount: 50,
-    maxUser: 20, // Note: This field is marked for deletion
-    place: 'Sample Place',
     meetDate: '04.27.FRI 7PM',
     startTime: '19:00',
     endTime: '21:00',
@@ -73,8 +65,8 @@ export const CREATE_GROUP_DUMMY_DATA: CreateGroupRequest = {
   endTime: '21:00',
   placeName: '서울특별시 강남구 테헤란로 16',
   placeAddress: '123 Sample Street, Sample City, 12345',
-  place_latitude: '23',
-  place_longitude: '123',
+  placeLatitude: '23',
+  placeLongitude: '123',
   maxUser: 4,
 };
 
@@ -132,16 +124,19 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
   },
 ];
 
-export const DETAIL_DUMMY_DATA = {
+export const DETAIL_DUMMY_DATA: GroupDetailResponse = {
+  groupId: 1,
   imageUrl: '/assets/main_logo.png',
+  fileUrl: '/assets/main_logo.png',
   title: 'Let’s go for a walk!',
   content: 'It’s a group that \n🏃walks around, \n🗣talks, \n🌏and learns languages.',
   memberCount: 2,
-  maxUser: 4,
-  place: '동대문구 회기동',
+  maxMemberCount: 4,
   meetDate: '2021-10-10',
   startTime: '10:00',
   endTime: '12:00',
+  placeName: '경희대학교 서울캠퍼스',
+  placeAddress: '서울특별시 동대문구 회기동',
   placeLatitude: 37.589039,
   placeLongitude: 127.057761,
   isCaptain: true,
