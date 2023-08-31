@@ -45,7 +45,7 @@ export default function GroupingCard({
       <Flex onClick={() => router.push(`/grouping/${groupingData.groupId}`)} align="center">
         <section className="relative h-96 w-96">
           {imageUrl ? (
-            <Image fill src={imageUrl} alt="group" className="rounded-8" />
+            <Image fill src={imageUrl} alt="group" className="rounded-8 object-cover" />
           ) : (
             <div className="h-full rounded-8 bg-white3" />
           )}
