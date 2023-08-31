@@ -8,7 +8,7 @@ import type { PageType } from '@/types';
 
 interface TabType {
   id: string;
-  name: string;
+  name: PageType;
   title: string;
 }
 
@@ -32,9 +32,10 @@ const tabList: TabType[] = [
 
 interface FooterProps {
   page: PageType;
+  isSpacing?: boolean;
 }
 
-export default function Footer({ page }: FooterProps) {
+export default function Footer({ page, isSpacing = true }: FooterProps) {
   const isSelected = (tab: TabType) => tab.name === page;
 
   return (
@@ -61,6 +62,7 @@ export default function Footer({ page }: FooterProps) {
           </div>
         </Link>
       ))}
+      {isSpacing && <div className="h-70" />}
     </footer>
   );
 }
