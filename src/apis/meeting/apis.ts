@@ -12,7 +12,7 @@ export const getMeetingParticipating = () =>
   privateApi.get<MeetingParticipatingResponse>('/users/groups/participating');
 
 export const getMeetingHosting = () =>
-  privateApi.get<MeetingHostingResponse>('/users/groups/hoisting');
+  privateApi.get<MeetingHostingResponse>('/users/groups/hosting');
 
 /* 대기 중 */
 

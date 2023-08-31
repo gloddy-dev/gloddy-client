@@ -3,7 +3,6 @@ import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 import clsx from 'clsx';
-import { format, getDay, parseISO } from 'date-fns';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -12,6 +11,11 @@ import type { PropsWithChildren } from 'react';
 
 interface GroupingCardProps {
   groupingData: Grouping;
+
+  isNew?: boolean;
+  isExistNewApply?: boolean;
+  applyId?: number;
+  isCaptain?: boolean;
 }
 
 export default function GroupingCard({
