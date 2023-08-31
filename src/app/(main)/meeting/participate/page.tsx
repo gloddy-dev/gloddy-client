@@ -1,6 +1,6 @@
 import ContentSection from './components/ContentSection.client';
+import MeetingHeader from './components/MeetingHeader';
 import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
@@ -15,15 +15,7 @@ export default function MeetingPage({ searchParams }: MeetingPageProps) {
 
   return (
     <div>
-      {/* TODO : Header 뺴기 */}
-      <Header>
-        <Header.Left>
-          <div className="flex gap-16 px-20">
-            <p>참여 모임</p>
-            <p className="text-sign-sub">찜한 그룹</p>
-          </div>
-        </Header.Left>
-      </Header>
+      <MeetingHeader />
       <ContentSection />
       <Footer page="meeting" />
     </div>
