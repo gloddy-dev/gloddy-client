@@ -2,72 +2,72 @@ import type { PersonalityType } from '@/types';
 
 export const personalityList: PersonalityType[] = [
   {
-    id: 0,
+    id: 1,
     keyword: '🎉 외향적인',
     keywordInEnglish: 'OUTGOING',
   },
   {
-    id: 1,
+    id: 2,
     keyword: '🏠 내향적인',
     keywordInEnglish: 'INTROVERTED',
   },
   {
-    id: 2,
+    id: 3,
     keyword: '🧐 신중한',
     keywordInEnglish: 'CAREFUL',
   },
   {
-    id: 3,
+    id: 4,
     keyword: '☺️ 친절한',
     keywordInEnglish: 'KIND',
   },
   {
-    id: 4,
+    id: 5,
     keyword: '🥰 낙천적인',
     keywordInEnglish: 'OPTIMISTIC',
   },
   {
-    id: 5,
+    id: 6,
     keyword: '🤼‍♀️ 사교적인',
     keywordInEnglish: 'SOCIAL',
   },
   {
-    id: 6,
+    id: 7,
     keyword: '💬 솔직한',
     keywordInEnglish: 'CANDID',
   },
   {
-    id: 7,
+    id: 8,
     keyword: '👩🏻‍💼 책임감 있는',
     keywordInEnglish: 'RESPONSIBLE',
   },
   {
-    id: 8,
+    id: 9,
     keyword: '😌 차분한',
     keywordInEnglish: 'TRANQUIL',
   },
   {
-    id: 9,
+    id: 10,
     keyword: '💃 활동적인',
     keywordInEnglish: 'ACTIVE',
   },
   {
-    id: 10,
+    id: 11,
     keyword: '👀 엉뚱한',
     keywordInEnglish: 'WACKY',
   },
   {
-    id: 11,
+    id: 12,
     keyword: '💫 센스있는',
     keywordInEnglish: 'SENSIBLE',
   },
   {
-    id: 12,
+    id: 13,
     keyword: '💼 리더십 있는',
     keywordInEnglish: 'LEADERSHIP',
   },
   {
-    id: 13,
+    id: 14,
     keyword: '🤣 유머러스한',
     keywordInEnglish: 'HUMOROUS',
   },
