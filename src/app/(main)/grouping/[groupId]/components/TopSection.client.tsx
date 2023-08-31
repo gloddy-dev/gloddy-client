@@ -17,7 +17,7 @@ export default function TopSection() {
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { mutate: mutatePostScrap } = usePostScrap(groupId);
   const { mutate: mutateDeleteScrap } = useDeleteScrap(groupId);
-  const { imageUrl, title, content } = groupDetailData;
+  const { imageUrl, fileUrl, title, content } = groupDetailData;
 
   const handleScrapClick = () => {
     if (isScrap) {
@@ -32,7 +32,7 @@ export default function TopSection() {
   return (
     <section>
       <div className="relative aspect-[8/5]">
-        <Image src={imageUrl ?? '/images/dummy_image.png'} alt="thumbnail" fill />
+        <Image src={fileUrl || imageUrl || '/images/dummy_image.png'} alt="thumbnail" fill />
         <IconButton
           size="medium"
           className="absolute bottom-20 right-20 z-10 rounded-full bg-white bg-opacity-[.38]"
