@@ -45,17 +45,8 @@ export default function Footer({ page, isSpacing = true }: FooterProps) {
           <Link
             href={'/' + tab.name}
             key={tab.id}
-            className="flex w-full flex-col items-center text-caption"
+            className="flex w-full flex-col items-center text-center text-caption"
           >
-            <Image
-              src={`/icons/32/footer/${tab.name}${
-                tab.name === page ? '_selected' : '_default'
-              }.svg`}
-              alt={tab.title}
-              width={32}
-              height={32}
-            />
-
             <div
               className={cn('text-10', {
                 'text-sign-brand': isSelected(tab),
@@ -70,14 +61,14 @@ export default function Footer({ page, isSpacing = true }: FooterProps) {
                 width={32}
                 height={32}
               />
-              <div
+              <p
                 className={cn('text-10', {
                   'text-sign-brand': isSelected(tab),
                   'text-sign-tertiary': !isSelected(tab),
                 })}
               >
                 {tab.title}
-              </div>
+              </p>
             </div>
           </Link>
         ))}
