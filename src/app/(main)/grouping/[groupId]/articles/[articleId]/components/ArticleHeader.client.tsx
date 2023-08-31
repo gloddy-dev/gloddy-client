@@ -1,18 +1,35 @@
 'use client';
-import { useGetGroupDetail } from '@/apis/groups';
+import { useDeleteArticle, useGetArticle, useGetGroupDetail } from '@/apis/groups';
+import DeleteModal from '@/app/(main)/grouping/components/DeleteModal.client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { useModal } from '@/hooks/useModal';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface ArticleHeaderProps {
-  groupId: number;
-}
+export default function ArticleHeader() {
+  const { groupId, articleId } = useNumberParams<['groupId', 'articleId']>();
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
+  const { data: articleData } = useGetArticle(groupId, articleId);
+  const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId, articleId);
 
-export default function ArticleHeader({ groupId }: ArticleHeaderProps) {
-  // const { data } = useGetGroupDetail(groupId);
+  const { open, close } = useModal();
+
+  const { isCaptain } = groupDetailData;
+  const { isWriter, notice } = articleData;
+
   const handleMoreClick = () => {
-    console.log('more');
+    open(
+      <DeleteModal
+        onCancelClick={close}
+        onOkClick={() => {
+          mutateDeleteArticle();
+          close();
+        }}
+        content={`해당 ${notice ? '공지글' : '게시글'}을 삭제하시겠습니까?`}
+      />
+    );
   };
 
   return (
@@ -25,11 +42,13 @@ export default function ArticleHeader({ groupId }: ArticleHeaderProps) {
         </Link>
         <p>게시글</p>
       </Header.Left>
-      <Header.Right>
-        <IconButton size="large" onClick={handleMoreClick}>
-          <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
-        </IconButton>
-      </Header.Right>
+      {(isWriter || isCaptain) && (
+        <Header.Right>
+          <IconButton size="large" onClick={handleMoreClick}>
+            <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
+          </IconButton>
+        </Header.Right>
+      )}
     </Header>
   );
 }

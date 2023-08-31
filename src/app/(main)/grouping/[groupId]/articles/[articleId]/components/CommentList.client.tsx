@@ -42,7 +42,17 @@ interface CommentItemProps {
 }
 
 function CommentItem({ comment, articleId, groupId }: CommentItemProps) {
-  const { name, date, content, userImageUrl, writer, commentId } = comment;
+  const {
+    name,
+    date,
+    content,
+    userImageUrl,
+    isWriter,
+    isWriterCaptain,
+    isWriterCertifiedStudent,
+    writerReliabilityLevel,
+    commentId,
+  } = comment;
 
   const { open, close } = useModal();
   const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId, commentId);
@@ -58,34 +68,41 @@ function CommentItem({ comment, articleId, groupId }: CommentItemProps) {
         <Avatar
           imageUrl={userImageUrl ?? '/images/dummy_avatar.png'}
           size="small"
-          // isCertified={isCertifiedStudent}
+          iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
         />
         <div className="grow">
           <Flex align="center">
             <p className="text-paragraph-2 text-sign-secondary">{name}</p>
             <Spacing size={2} direction="horizontal" />
-            {/* {isArticleCaptain && (
+            {isWriterCaptain && (
               <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />
-            )} */}
-            {/* TODO: 등급 아이콘 추가 */}
+            )}
+            <Image
+              src={`/icons/16/${writerReliabilityLevel.toLowerCase()}.svg`}
+              alt="writerReliabilityLevel"
+              width={16}
+              height={16}
+            />
           </Flex>
           <p className="text-caption text-sign-tertiary">{date}</p>
         </div>
-        <Image
-          src="/icons/24/more_secondary.svg"
-          alt="more"
-          width={24}
-          height={24}
-          onClick={() =>
-            open(
-              <DeleteModal
-                content="해당 댓글을 삭제하시겠습니까?"
-                onOkClick={handleDeleteClick}
-                onCancelClick={close}
-              />
-            )
-          }
-        />
+        {isWriter && (
+          <Image
+            src="/icons/24/more_secondary.svg"
+            alt="more"
+            width={24}
+            height={24}
+            onClick={() =>
+              open(
+                <DeleteModal
+                  content="해당 댓글을 삭제하시겠습니까?"
+                  onOkClick={handleDeleteClick}
+                  onCancelClick={close}
+                />
+              )
+            }
+          />
+        )}
       </Flex>
       <Spacing size={8} />
       <div className="text-paragraph-2 text-sign-primary">{content}</div>

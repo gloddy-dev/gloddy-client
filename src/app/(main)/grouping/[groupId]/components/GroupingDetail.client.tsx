@@ -19,7 +19,7 @@ interface GroupingDetailProps {
 export default function GroupingDetail({ groupId }: GroupingDetailProps) {
   const { data: groupDetailData } = useGetGroupDetail(groupId);
 
-  const { myGroup } = groupDetailData;
+  const { myGroup, isApplyWaited } = groupDetailData;
 
   return (
     <>
@@ -55,8 +55,8 @@ export default function GroupingDetail({ groupId }: GroupingDetailProps) {
       <Spacing size={100} />
       {!myGroup && (
         <ButtonGroup>
-          <Button as="a" href={`/grouping/${groupId}/apply`}>
-            모임 가입하기
+          <Button as="a" href={`/grouping/${groupId}/apply`} disabled={isApplyWaited}>
+            {isApplyWaited ? '승인 대기 중' : '모임 가입하기'}
           </Button>
         </ButtonGroup>
       )}
