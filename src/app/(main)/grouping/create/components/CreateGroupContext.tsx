@@ -11,16 +11,16 @@ const CreateGroupContext = createContext<UseFormReturn | null>(null);
 export default function CreateGroupContextProvider({ children }: StrictPropsWithChildren) {
   const methods = useForm<CreateGroupContextValue>({
     defaultValues: {
-      imageFile: undefined,
+      imageUrl: '',
       title: '',
       content: '',
       meetDate: undefined,
       time: {
-        fromHour: '1',
-        fromMin: '0',
+        fromHour: '01',
+        fromMin: '00',
         fromAmPm: 'AM',
-        toHour: '1',
-        toMin: '0',
+        toHour: '01',
+        toMin: '00',
         toAmPm: 'AM',
       },
       placeName: '',
