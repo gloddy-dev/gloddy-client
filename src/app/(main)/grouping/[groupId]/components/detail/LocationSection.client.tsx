@@ -5,19 +5,19 @@ import { Spacing } from '@/components/common/Spacing';
 import { Toast } from '@/components/Modal';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
+import { copyToClipboard } from '@/utils/copyToClipboard';
 import Image from 'next/image';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 export default function LocationSection() {
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { place, placeLatitude, placeLongitude, placeAddress } = groupDetailData;
+  const { placeName, placeLatitude, placeLongitude, placeAddress } = groupDetailData;
 
   const { open } = useModal({ delay: 2000 });
 
   const handleClipboardClick = () => {
-    navigator.clipboard
-      .writeText(placeAddress)
+    copyToClipboard(placeAddress)
       .then(() => open(<Toast>주소가 복사되었습니다.</Toast>))
       .catch(() => open(<Toast>주소 복사에 실패했습니다.</Toast>));
   };
@@ -36,8 +36,8 @@ export default function LocationSection() {
         />
         <Map
           center={{
-            lat: +placeLatitude || 37.595706,
-            lng: +placeLongitude || 127.052574,
+            lat: +placeLatitude,
+            lng: +placeLongitude,
           }}
           className="aspect-video rounded-t-8"
           level={4}
@@ -45,14 +45,14 @@ export default function LocationSection() {
         >
           <MapMarker
             position={{
-              lat: +placeLatitude || 37.595706,
-              lng: +placeLongitude || 127.052574,
+              lat: +placeLatitude,
+              lng: +placeLongitude,
             }}
           />
         </Map>
         <div className="p-16">
           <p>
-            <span className="text-subtitle-2">{place || '경희회관'}</span>
+            <span className="text-subtitle-2">{placeName}</span>
             {/* <span className="pl-4 text-caption text-sign-sub">호프, 요리주점</span> */}
           </p>
           <Spacing size={2} />
