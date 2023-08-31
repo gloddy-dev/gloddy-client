@@ -1,4 +1,4 @@
-import type { ReliabilityType } from '@/types';
+import type { ApplyStatusType, ReliabilityType } from '@/types';
 
 export interface Grouping {
   groupId: number;
@@ -125,6 +125,12 @@ export interface Apply {
 export interface ApplyRequest {
   groupId: number;
   apply: Pick<Apply, 'introduce' | 'reason'>;
+}
+
+export interface ApplyPatchRequest {
+  groupId: number;
+  applyId: number;
+  status: ApplyStatusType;
 }
 
 export interface ApplyResponse {

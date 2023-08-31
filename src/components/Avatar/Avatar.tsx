@@ -1,3 +1,4 @@
+import { Flex } from '../Layout';
 import cn from '@/utils/cn';
 import Image from 'next/image';
 
@@ -69,10 +70,10 @@ interface NameProps {
 
 function Name({ children, isCaptain = false }: StrictPropsWithChildren<NameProps>) {
   return (
-    <div className="flex w-full items-center">
+    <Flex justify="center" align="center">
       {isCaptain && <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />}
       <p className="truncate text-caption text-sign-tertiary">{children}</p>
-    </div>
+    </Flex>
   );
 }
 

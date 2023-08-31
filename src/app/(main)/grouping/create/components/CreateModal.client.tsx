@@ -13,7 +13,11 @@ export default function CreateModal({ onOkClick, onCancelClick }: CreateModalPro
       <Spacing size={32} />
       <Image src="/icons/48/warning.svg" width={48} height={48} alt="warning" />
       <Spacing size={12} />
-      <p>계속하시겠어요?</p>
+      <div>
+        모임 개설 후 수정 및 삭제가 불가합니다.
+        <br />
+        계속하시겠어요?
+      </div>
       <Spacing size={16} />
     </Modal>
   );

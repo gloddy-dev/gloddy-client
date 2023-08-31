@@ -36,6 +36,7 @@ export const useGetArticles = (groupId: number) => {
     ({ pageParam = 0 }) => getArticles(groupId, pageParam),
     {
       getNextPageParam: (lastPage) => lastPage.currentPage + 1,
+      cacheTime: 0,
     }
   );
 
@@ -46,8 +47,12 @@ export const useGetArticles = (groupId: number) => {
 };
 
 export const useGetArticle = (groupId: number, articleId: number) => {
-  return useSuspenseQuery(Keys.getArticle(groupId, articleId), () =>
-    getArticle(groupId, articleId)
+  return useSuspenseQuery(
+    Keys.getArticle(groupId, articleId),
+    () => getArticle(groupId, articleId),
+    {
+      cacheTime: 0,
+    }
   );
 };
 
