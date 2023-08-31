@@ -69,7 +69,12 @@ export default memo(function VerifyBottomSheet({ onClose, onOkClick }: VerifyBot
   };
 
   return (
-    <BottomSheet onClose={onClose} snapPoints={[300, 0]} title="인증번호 입력">
+    <BottomSheet
+      onClose={onClose}
+      snapPoints={[300, 0]}
+      title="인증번호 입력"
+      isRightCloseIcon={false}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
           <TextFieldController
