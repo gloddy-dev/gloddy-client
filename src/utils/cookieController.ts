@@ -4,6 +4,8 @@ export const getLocalCookie = (key: string) => {
   if (parts.length === 2) return parts.pop()?.split(';').shift();
 };
 
-export const setLocalCookie = (key: string, value: string) => {
-  document.cookie = `${key}=${value}; path=/;`;
+export const setLocalCookie = (key: string, value: string, options?: { expires?: Date }) => {
+  document.cookie = `${key}=${value}; path=/; ${
+    options?.expires ? `expires=${options.expires.toUTCString()}` : ''
+  }`;
 };
