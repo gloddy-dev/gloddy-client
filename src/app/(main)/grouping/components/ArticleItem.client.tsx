@@ -32,8 +32,10 @@ export default function ArticleItem({
     articleId,
     commentCount,
     images,
-    isCertifiedStudent,
-    isCaptain: isArticleCaptain,
+    isWriter,
+    isWriterCaptain,
+    isWriterCertifiedStudent,
+    writerReliabilityLevel,
   } = article;
 
   const pathname = usePathname();
@@ -51,21 +53,27 @@ export default function ArticleItem({
         <Avatar
           imageUrl={userImageUrl ?? '/images/dummy_avatar.png'}
           size="small"
-          iconVariant={isCertifiedStudent ? 'education' : 'none'}
+          iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
         />
         <div className="grow">
           <Flex align="center">
             <p className="text-paragraph-2 text-sign-secondary">{name}</p>
             <Spacing size={2} direction="horizontal" />
-            {isArticleCaptain && (
+            {isWriterCaptain && (
               <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />
             )}
-            {/* TODO: 등급 아이콘 추가 */}
+
+            <Image
+              src={`/icons/16/${writerReliabilityLevel.toLowerCase()}.svg`}
+              alt="writerReliabilityLevel"
+              width={16}
+              height={16}
+            />
           </Flex>
           <p className="text-caption text-sign-tertiary">{date}</p>
         </div>
         {/* TODO: 내 게시글 여부 api 추가 시 변경 */}
-        {isCaptain && !isArticleDetailPage && (
+        {(isWriter || isCaptain) && !isArticleDetailPage && (
           <Image
             src="/icons/24/more_secondary.svg"
             alt="more"
