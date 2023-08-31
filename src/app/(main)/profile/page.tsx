@@ -2,8 +2,8 @@ import IntroduceSection from './components/IntroduceSection.client';
 import ProfileHeader from './components/ProfileHeader.client';
 import ProfileSection from './components/ProfileSection.client';
 import { Keys, getProfile } from '@/apis/profile';
-import { BottomNavigationBar } from '@/components/common/NavigationBar';
 import { HydrationProvider } from '@/components/common/Provider';
+import { Footer } from '@/components/Footer';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 export default function Profile() {
@@ -16,7 +16,7 @@ export default function Profile() {
           <IntroduceSection />
         </HydrationProvider>
       </QueryAsyncBoundary>
-      <BottomNavigationBar page="profile" />
+      <Footer page="profile" />
     </div>
   );
 }
