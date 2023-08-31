@@ -48,7 +48,13 @@ export default function AgreeBottomSheet({ onClose }: AgreeBottomSheetProps) {
   };
 
   return (
-    <BottomSheet snapPoints={[300, 0]} onClose={onClose} title="약관 동의" disableDrag>
+    <BottomSheet
+      snapPoints={[300, 0]}
+      onClose={onClose}
+      title="약관 동의"
+      disableDrag
+      isRightCloseIcon={false}
+    >
       <section className="rounded-12 border-1 border-border-default">
         <div
           className="flex h-48 items-center gap-8 px-8"

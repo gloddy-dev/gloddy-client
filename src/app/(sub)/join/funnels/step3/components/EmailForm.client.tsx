@@ -28,11 +28,7 @@ export default memo(function EmailForm() {
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
     openVerifyBottomSheet(
-      <VerifyBottomSheet
-        onClose={closeVerifyBottomSheet}
-        hookForm={hookForm}
-        onOkClick={nextStep}
-      />
+      <VerifyBottomSheet onClose={closeVerifyBottomSheet} onOkClick={nextStep} />
     );
 
     if (!data.schoolInfo.email) return;
