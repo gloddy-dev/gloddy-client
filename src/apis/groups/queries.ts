@@ -36,7 +36,6 @@ export const useGetArticles = (groupId: number) => {
     ({ pageParam = 0 }) => getArticles(groupId, pageParam),
     {
       getNextPageParam: (lastPage) => lastPage.currentPage + 1,
-      cacheTime: 0,
     }
   );
 
