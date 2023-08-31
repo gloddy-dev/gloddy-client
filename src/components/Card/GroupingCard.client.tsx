@@ -2,6 +2,7 @@
 import { formatDate } from '../../app/(main)/grouping/util';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
+import { formatMeetingDate } from '@/utils/formatMeetingDate';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
