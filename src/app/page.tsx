@@ -5,9 +5,12 @@ import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
 export default async function Home() {
-  const { accessToken, refreshToken } = await getTokenFromCookie();
+  const { accessToken, refreshToken } = (await getTokenFromCookie()) as {
+    accessToken: string;
+    refreshToken: string;
+  };
 
-  if (!accessToken || !refreshToken) redirect('/join');
+  if (accessToken && refreshToken) return redirect('/grouping');
 
   try {
     const {
@@ -16,9 +19,10 @@ export default async function Home() {
       { accessToken, refreshToken },
       { headers: { 'X-AUTH-TOKEN': accessToken } }
     );
+
     const response = NextResponse.next();
     response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken, {
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 + 9 * 60 * 60 * 1000),
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
     });
     response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),

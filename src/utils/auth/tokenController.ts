@@ -25,7 +25,7 @@ export const setTokenAtCookie = async ({ accessToken, refreshToken, userId }: Co
     const { cookies } = await import('next/headers');
     const cookieStore = cookies();
     cookieStore.set(AUTH_KEYS.accessToken, accessToken, {
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 + 9 * 60 * 60 * 1000),
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
     });
     cookieStore.set(AUTH_KEYS.refreshToken, refreshToken, {
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
@@ -33,7 +33,7 @@ export const setTokenAtCookie = async ({ accessToken, refreshToken, userId }: Co
     cookieStore.set(AUTH_KEYS.userId, '' + userId);
   } else {
     setLocalCookie(AUTH_KEYS.accessToken, accessToken, {
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 + 9 * 60 * 60 * 1000),
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
     });
     setLocalCookie(AUTH_KEYS.refreshToken, refreshToken, {
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
