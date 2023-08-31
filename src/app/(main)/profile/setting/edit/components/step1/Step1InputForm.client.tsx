@@ -1,10 +1,10 @@
+import BirthdayBottomSheet from './BirthdayBottomSheet.client';
 import { useEditContext } from '../EditProvider.client';
 import { usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
-import BirthdayBottomSheet from '@/components/Modal/BirthdayBottomSheet.client';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
