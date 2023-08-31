@@ -1,4 +1,3 @@
-'use client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen } from '../util';
@@ -13,15 +12,31 @@ import { useRouter } from 'next/navigation';
 import type { SignUpState } from '../../../type';
 import type { SubmitHandler } from 'react-hook-form';
 
-export default function NumberVerifyForm() {
+interface NumberVerifyFormProps {
+  setInputStatus: React.Dispatch<React.SetStateAction<'beforeSend' | 'afterSend'>>;
+}
+
+export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormProps) {
   const router = useRouter();
   const hookForm = useJoinContext();
   const { handleSubmit, setError, register } = hookForm;
-  const { time } = useTimerContext();
+  const { time, status } = useTimerContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateLogin } = useLoginMutation();
+
+  const handleResend = () => {
+    console.log(time);
+    if (time > 120) {
+      setError('verifyNumber', {
+        type: 'validate',
+        message: '인증 번호 재전송은 1분에 한 번만 가능합니다.',
+      });
+      return;
+    }
+    setInputStatus('beforeSend');
+  };
 
   const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'verifyNumber'>> = (data) => {
     mutateSMSVerify(
@@ -79,7 +94,9 @@ export default function NumberVerifyForm() {
         timer={time}
       />
       <ButtonGroup isSpacing={false}>
-        <Button type="button">재전송</Button>
+        <Button type="button" onClick={handleResend}>
+          재전송
+        </Button>
         <Button type="submit">확인</Button>
       </ButtonGroup>
     </form>
