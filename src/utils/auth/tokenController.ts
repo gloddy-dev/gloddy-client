@@ -10,6 +10,7 @@ export const getTokenFromCookie = async () => {
     const accessToken = cookieStore.get(AUTH_KEYS.accessToken)?.value;
     const refreshToken = cookieStore.get(AUTH_KEYS.refreshToken)?.value;
     const userId = +(cookieStore.get(AUTH_KEYS.userId)?.value || 0);
+
     return { accessToken, refreshToken, userId };
   } else {
     const accessToken = getLocalCookie(AUTH_KEYS.accessToken);
