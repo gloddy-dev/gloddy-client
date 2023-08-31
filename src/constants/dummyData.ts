@@ -20,7 +20,7 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     maxMemberCount: 50,
     maxUser: 20, // Note: This field is marked for deletion
     place: 'Sample Place',
-    meetDate: '04.27.FRI 7PM',
+    meetDate: '2022-09-07',
     startTime: '19:00',
     endTime: '21:00',
     placeName: 'Sample Place Name',
@@ -37,7 +37,7 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     maxMemberCount: 50,
     maxUser: 20, // Note: This field is marked for deletion
     place: 'Sample Place',
-    meetDate: '04.27.FRI 7PM',
+    meetDate: '2022-09-07',
     startTime: '19:00',
     endTime: '21:00',
     placeName: 'Sample Place Name',
@@ -54,7 +54,7 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
     maxMemberCount: 50,
     maxUser: 20, // Note: This field is marked for deletion
     place: 'Sample Place',
-    meetDate: '04.27.FRI 7PM',
+    meetDate: '2022-09-07',
     startTime: '19:00',
     endTime: '21:00',
     placeName: 'Sample Place Name',
