@@ -67,7 +67,6 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         placeholder="010-0000-0000"
         isSpacing={false}
         readOnly={inputStatus === 'afterSend'}
-        type="number"
       />
 
       <Spacing size={8} />
