@@ -1,4 +1,5 @@
 import type {
+  Apply,
   Article,
   Comment,
   CreateGroupRequest,
@@ -265,5 +266,38 @@ export const DUMMY_SEARCH_RESULT_LIST = [
     id: 3,
     name: '경희주유소',
     address: '서울특별시 동대문구 경희대로 26',
+  },
+];
+
+export const DUMMY_APPLY_DATA: Apply[] = [
+  {
+    applyId: 1,
+    userId: 1,
+    isCertifiedStudent: true,
+    userImageUrl: '/images/dummy_avatar.png',
+    userNickname: 'Glow',
+    reliabilityLevel: 'GLODDY',
+    introduce: '안녕하세요! 저는 글로우입니다. 잘 부탁드립니다.',
+    reason: '저는 이 모임에 가입하고 싶습니다.',
+  },
+  {
+    applyId: 2,
+    userId: 2,
+    isCertifiedStudent: true,
+    userImageUrl: '/images/dummy_avatar.png',
+    userNickname: 'Glow',
+    reliabilityLevel: 'GLODDY',
+    introduce: '안녕하세요! 저는 글로우입니다. 잘 부탁드립니다.',
+    reason: '저는 이 모임에 가입하고 싶습니다.',
+  },
+  {
+    applyId: 3,
+    userId: 3,
+    isCertifiedStudent: false,
+    userImageUrl: '/images/dummy_avatar.png',
+    userNickname: 'Glow',
+    reliabilityLevel: 'GLODDY',
+    introduce: '안녕하세요! 저는 글로우입니다. 잘 부탁드립니다.',
+    reason: '저는 이 모임에 가입하고 싶습니다.',
   },
 ];
