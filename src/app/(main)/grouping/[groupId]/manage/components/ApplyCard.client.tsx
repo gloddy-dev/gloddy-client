@@ -1,7 +1,7 @@
 'use client';
 
 import ManageModal from './ManageModal';
-import { Apply } from '@/apis/groups';
+import { Apply, usePatchApply } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup, IconButton } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
@@ -9,18 +9,36 @@ import { Flex } from '@/components/Layout';
 import { TextField } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface ApplyCardProps {
   apply: Apply;
+  groupId: number;
 }
 
-export default function ApplyCard({ apply }: ApplyCardProps) {
-  const { userImageUrl, userNickname, reliabilityLevel, introduce, reason } = apply;
+export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
+  const {
+    userId,
+    applyId,
+    isCertifiedStudent,
+    userImageUrl,
+    userNickname,
+    reliabilityLevel,
+    introduce,
+    reason,
+  } = apply;
 
+  const router = useRouter();
   const { open, close } = useModal();
+  const { mutate: mutateApproveApply } = usePatchApply(groupId, applyId, 'APPROVE');
+  const { mutate: mutateRefuseApply } = usePatchApply(groupId, applyId, 'REFUSE');
 
-  const handleAcceptClick = () => {};
-  const handleRejectClick = () => {};
+  const handleApproveClick = () => {
+    mutateApproveApply();
+  };
+  const handleRefuseClick = () => {
+    mutateRefuseApply();
+  };
 
   return (
     <div className="w-full shrink-0 rounded-8 bg-white p-16 shadow-card-ui">
@@ -28,7 +46,8 @@ export default function ApplyCard({ apply }: ApplyCardProps) {
         <Avatar
           imageUrl={userImageUrl}
           size="small"
-          // iconVariant={isCertifiedStudent ? 'education' : 'none'}
+          onClick={() => router.push(`/profile/${userId}`)}
+          iconVariant={isCertifiedStudent ? 'education' : 'none'}
         />
         <div className="grow">
           <p className="text-paragraph-1">{userNickname}</p>
@@ -58,14 +77,16 @@ export default function ApplyCard({ apply }: ApplyCardProps) {
         <Button
           variant="solid-warning"
           onClick={() =>
-            open(<ManageModal type="reject" onOkClick={handleRejectClick} onCancelClick={close} />)
+            open(<ManageModal type="REFUSE" onOkClick={handleRefuseClick} onCancelClick={close} />)
           }
         >
           거절
         </Button>
         <Button
           onClick={() =>
-            open(<ManageModal type="accept" onOkClick={handleAcceptClick} onCancelClick={close} />)
+            open(
+              <ManageModal type="APPROVE" onOkClick={handleApproveClick} onCancelClick={close} />
+            )
           }
         >
           승인
