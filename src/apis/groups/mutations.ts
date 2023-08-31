@@ -77,7 +77,7 @@ export const usePostApply = (groupId: number) => {
   return useMutation(postApply, {
     onSuccess: () => {
       queryClient.invalidateQueries([Keys.getGroupDetail, groupId]);
-      router.push('/meeting?tab=waiting');
+      router.push('/meeting/participate?tab=waiting');
     },
   });
 };
