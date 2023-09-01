@@ -13,7 +13,7 @@ export default function SpinBox({ value, min, max, onChange }: SpinBoxProps) {
   const isMax = max !== undefined && value >= max;
 
   return (
-    <Flex align="center" className="gap-8 bg-sub p-4">
+    <Flex align="center" className="gap-8 rounded-8 bg-sub p-4">
       <Button
         size="small"
         variant="solid-default"
