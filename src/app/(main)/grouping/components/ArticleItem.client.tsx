@@ -92,7 +92,7 @@ export default function ArticleItem({
         )}
       </Flex>
       <Spacing size={16} />
-      <div className="text-paragraph-2 text-sign-primary">{content}</div>
+      <div className="text-paragraph-1 text-sign-primary">{content}</div>
       {images.length > 0 && (
         <Flex className="my-16 h-160 gap-4 overflow-x-scroll">
           {images.map((imageUrl, index) => (
