@@ -7,6 +7,8 @@ import { BarGraph } from '@/components/Graph';
 import { Flex } from '@/components/Layout';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
+import { reliabilities } from '@/constants/reliabilities';
+import cn from '@/utils/cn';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -67,7 +69,23 @@ export default function ProfileSection() {
           <Spacing size={16} />
           <BarGraph maxCount={4} count={2} />
           <Spacing size={8} />
-          {/* Badge */}
+          <Flex className="text-caption" justify="between">
+            {reliabilities.map((reliabilityItem) => (
+              <Flex
+                key={reliabilityItem.id}
+                className={cn({ 'opacity-30': reliability !== reliabilityItem.name })}
+              >
+                <Image
+                  src={`/icons/16/reliability/${reliabilityItem.name}.svg`}
+                  width={16}
+                  height={16}
+                  alt="gloddy"
+                />
+                <Spacing size={2} direction="horizontal" />
+                <p>{reliabilityItem.name}</p>
+              </Flex>
+            ))}
+          </Flex>
           <Spacing size={12} />
         </Flex>
 
