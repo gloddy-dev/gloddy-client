@@ -13,7 +13,6 @@ export const reliabilities = [
   },
   {
     id: 4,
-
     name: 'GLODDY',
   },
 ];
