@@ -38,10 +38,10 @@ function MemberCard({ member }: MemberCardProps) {
       <Flex align="center">
         <Avatar size="medium" imageUrl={imageUrl} />
         <Spacing size={12} direction="horizontal" />
-        <div className="flex grow flex-col justify-center">
+        <Flex direction="column" justify="center" className="grow">
           <p className="text-paragraph-1">{name}</p>
           <p className="text-caption text-sign-tertiary">{name}</p>
-        </div>
+        </Flex>
         <CircleCheckbox />
       </Flex>
       <Spacing size={12} />
