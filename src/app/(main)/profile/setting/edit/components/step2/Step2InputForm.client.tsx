@@ -1,5 +1,3 @@
-'use client';
-
 import { useEditContext } from '../EditProvider.client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Tag } from '@/components/Tag';
@@ -8,10 +6,10 @@ import { PersonalityType } from '@/types';
 import { useCallback } from 'react';
 
 interface InputFormProps {
-  onClose: () => void;
+  onPrevClick: () => void;
 }
 
-export default function Step2InputForm({ onClose }: InputFormProps) {
+export default function Step2InputForm({ onPrevClick }: InputFormProps) {
   const { watch, setValue } = useEditContext();
 
   const handleSelectedClick = useCallback(
@@ -24,6 +22,7 @@ export default function Step2InputForm({ onClose }: InputFormProps) {
         );
         return;
       }
+      if (list.length === 3) return;
       setValue('personalities', [...list, personality]);
     },
     [setValue, watch]
@@ -44,7 +43,7 @@ export default function Step2InputForm({ onClose }: InputFormProps) {
         ))}
       </section>
       <ButtonGroup>
-        <Button disabled={watch('personalities').length < 3} type="button" onClick={onClose}>
+        <Button disabled={watch('personalities').length !== 3} type="button" onClick={onPrevClick}>
           완료
         </Button>
       </ButtonGroup>
