@@ -1,8 +1,4 @@
-type ReliabilityType = {
-  id: number;
-  name: string;
-};
-export const reliabilities: ReliabilityType[] = [
+export const reliabilities = [
   {
     id: 1,
     name: 'HOOD',
