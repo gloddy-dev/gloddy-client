@@ -6,14 +6,25 @@ import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
+import { reliabilities } from '@/constants/reliabilities';
+import cn from '@/utils/cn';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function ProfileSection() {
   const { data: profileData } = useGetProfile();
-  const { age, gender, imageUrl, name, praiseCount, reviewCount, school, personalities } =
-    profileData;
+  const {
+    age,
+    gender,
+    imageUrl,
+    name,
+    praiseCount,
+    reviewCount,
+    school,
+    personalities,
+    reliability,
+  } = profileData;
   const pathname = usePathname();
 
   return (
@@ -55,9 +66,34 @@ export default function ProfileSection() {
         <Spacing size={8} />
         <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
           <Spacing size={16} />
-          {/* Bar */}
+          <div className="h-16 rounded-10 bg-white">
+            <div
+              className={cn('h-full rounded-10 bg-primary', {
+                'w-[10%]': reliability === reliabilities[0].name,
+                'w-[35%]': reliability === reliabilities[1].name,
+                'w-[65%]': reliability === reliabilities[2].name,
+                'w-[100%]': reliability === reliabilities[3].name,
+              })}
+            />
+          </div>
           <Spacing size={8} />
-          {/* Badge */}
+          <Flex className="text-caption" justify="between">
+            {reliabilities.map((reliabilityItem) => (
+              <Flex
+                key={reliabilityItem.id}
+                className={cn({ 'opacity-30': reliability !== reliabilityItem.name })}
+              >
+                <Image
+                  src={`/icons/16/reliability/${reliabilityItem.name}.svg`}
+                  width={16}
+                  height={16}
+                  alt="gloddy"
+                />
+                <Spacing size={2} direction="horizontal" />
+                <p>{reliabilityItem.name}</p>
+              </Flex>
+            ))}
+          </Flex>
           <Spacing size={12} />
         </Flex>
 

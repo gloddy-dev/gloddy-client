@@ -43,7 +43,7 @@ function MemberItem({ member }: MemberItemProps) {
           </Flex>
           <Flex align="center" className="gap-2">
             <Image
-              src={`/icons/16/${reliabilityLevel.toLowerCase()}.svg`}
+              src={`/icons/16/reliability/${reliabilityLevel.toLowerCase()}.svg`}
               alt="reliability"
               width={16}
               height={16}
