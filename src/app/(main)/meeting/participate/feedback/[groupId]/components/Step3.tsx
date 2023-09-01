@@ -1,21 +1,15 @@
-import { IconButton } from '@/components/Button';
-import { Header } from '@/components/Header';
-import Image from 'next/image';
+import TitleSection from './TitleSection';
+import { Button, ButtonGroup } from '@/components/Button';
+import { Divider } from '@/components/Divider';
 
-interface Step3Props {
-  onPrevClick: () => void;
-  onNextClick: () => void;
-}
-export default function Step3({ onPrevClick, onNextClick }: Step3Props) {
+export default function Step3() {
   return (
     <div>
-      <Header>
-        <Header.Left>
-          <IconButton onClick={onPrevClick}>
-            <Image src="/icons/24/close.svg" width={24} height={24} alt="back" />
-          </IconButton>
-        </Header.Left>
-      </Header>
+      <TitleSection message="최괴의 짝꿍은 누구였나요?" step={2} />
+      <Divider thickness="thick" />
+      <ButtonGroup>
+        <Button>완료</Button>
+      </ButtonGroup>
     </div>
   );
 }
