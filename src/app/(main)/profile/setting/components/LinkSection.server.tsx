@@ -19,7 +19,7 @@ export default function LinkSection() {
       </div>
       <Divider thickness="thick" />
       <div className="px-20 py-12 ">
-        <Link href="/profile/setting/quit">계정 삭제하기</Link>
+        <Link href="/profile/setting/delete">계정 삭제하기</Link>
       </div>
     </section>
   );
