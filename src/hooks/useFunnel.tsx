@@ -17,7 +17,10 @@ interface StepProps<Steps extends NonEmptyArray<string>> {
 
 export function useFunnel<Steps extends NonEmptyArray<string>>(
   steps: Readonly<Steps>,
-  options?: { initialStep?: Steps[number]; stepQueryKey?: string }
+  options?: {
+    initialStep?: Steps[number];
+    stepQueryKey?: string;
+  }
 ) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -25,7 +28,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
   const initialStep = options?.initialStep ?? steps[0];
   const queryKey = options?.stepQueryKey ?? 'step';
 
-  let currentStep = searchParams.get(queryKey)!;
+  let currentStep: Steps[number] = searchParams.get(queryKey)!;
   if (!steps.includes(currentStep)) {
     currentStep = initialStep;
   }
@@ -41,7 +44,13 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
   const prevStep = () => {
     const currentIndex = steps.indexOf(currentStep);
     if (currentIndex > 0) {
-      router.push(`${pathname}?${queryKey}=${steps[currentIndex - 1]}`);
+      router.back();
+    }
+  };
+
+  const setStep = (step: Steps[number]) => {
+    if (steps.includes(step)) {
+      router.push(`${pathname}?${queryKey}=${step}`);
     }
   };
 
@@ -72,5 +81,5 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
 
   Funnel.Step = Step;
 
-  return { currentStep, Funnel, nextStep, prevStep };
+  return { currentStep, Funnel, nextStep, prevStep, setStep };
 }
