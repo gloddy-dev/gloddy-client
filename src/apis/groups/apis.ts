@@ -19,7 +19,7 @@ import type {
 } from './type';
 
 export const getGroups = (page: number) => {
-  return privateApi.get<GroupsResponse>(`/groups?size=15&page=${page}`);
+  return privateApi.get<GroupsResponse>(`/groups?size=40&page=${page}`);
 };
 
 export const getGroupDetail = (groupId: number) => {
@@ -31,7 +31,7 @@ export const postCreateGroup = (CreateGroupData: CreateGroupRequest) => {
 };
 
 export const getArticles = (groupId: number, page: number) => {
-  return privateApi.get<ArticlesResponse>(`/groups/${groupId}/articles?size=15&page=${page}`);
+  return privateApi.get<ArticlesResponse>(`/groups/${groupId}/articles?size=40&page=${page}`);
 };
 
 export const getArticle = (groupId: number, articleId: number) => {
