@@ -15,7 +15,7 @@ export default function FeedbackModal({ onClose }: FeedbackModalProps) {
       okText="이동하기"
       cancelText="취소"
       onCancelClick={onClose}
-      onOkClick={() => router.push('/meeting/participate/praise')}
+      onOkClick={() => router.push('/meeting/participate/feedback')}
     >
       <Spacing size={28} />
       <Image src="/images/approve_character.png" width={130} height={130} alt="approve" />

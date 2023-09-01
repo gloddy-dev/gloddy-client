@@ -6,17 +6,17 @@ import Step3 from './Step3';
 import { useFunnel } from '@/hooks/useFunnel';
 
 export default function PraiseSection() {
-  const { Funnel, prevStep, nextStep } = useFunnel(['step1', 'step2', 'step3']);
+  const { Funnel, prevStep, nextStep } = useFunnel(['1', '2', '3']);
 
   return (
     <Funnel>
-      <Funnel.Step name="step1">
+      <Funnel.Step name="1">
         <Step1 onNextClick={nextStep} />
       </Funnel.Step>
-      <Funnel.Step name="step2">
+      <Funnel.Step name="2">
         <Step2 onPrevClick={prevStep} onNextClick={nextStep} />
       </Funnel.Step>
-      <Funnel.Step name="step3">
+      <Funnel.Step name="3">
         <Step3 onPrevClick={prevStep} onNextClick={nextStep} />
       </Funnel.Step>
     </Funnel>
