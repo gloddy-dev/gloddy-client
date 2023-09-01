@@ -5,7 +5,6 @@ import { Spacing } from '@/components/common/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useShowMore } from '@/hooks/useShowMore';
 import Image from 'next/image';
-import { useState } from 'react';
 
 export default function TopSection() {
   const { groupId } = useNumberParams<['groupId']>();

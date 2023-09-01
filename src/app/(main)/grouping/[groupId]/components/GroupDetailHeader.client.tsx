@@ -7,8 +7,10 @@ import { Flex } from '@/components/Layout';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function GroupingHeader() {
+  const router = useRouter();
   const { groupId } = useNumberParams<['groupId']>();
 
   const { data: groupDetailData } = useGetGroupDetail(groupId);
@@ -18,11 +20,9 @@ export default function GroupingHeader() {
     <Header className="px-4">
       <Header.Left>
         <Flex align="center">
-          <Link href="/grouping">
-            <IconButton size="large">
-              <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
-            </IconButton>
-          </Link>
+          <IconButton size="large" onClick={() => router.back()}>
+            <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
+          </IconButton>
           <p>{title}</p>
         </Flex>
       </Header.Left>

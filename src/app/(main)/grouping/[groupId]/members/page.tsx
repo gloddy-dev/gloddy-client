@@ -1,5 +1,5 @@
 import MemeberList from './components/MemberList.client';
-import MembersHeader from './components/MembersHeader';
+import MembersHeader from './components/MembersHeader.client';
 import { Keys, getGroupMembers } from '@/apis/groups';
 import { HydrationProvider } from '@/components/common/Provider';
 import { Suspense } from 'react';
@@ -15,7 +15,7 @@ export default function GroupingMembersPage({ params }: GroupingMembersPageProps
 
   return (
     <>
-      <MembersHeader groupId={groupId} />
+      <MembersHeader />
       <Suspense fallback={null}>
         <HydrationProvider
           queryFn={() => getGroupMembers(groupId)}
