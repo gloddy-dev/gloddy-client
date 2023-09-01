@@ -1,9 +1,9 @@
+import { useDeleteContext } from './DeleteProvider.client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { TextList } from '@/components/TextList';
-import { useRouter } from 'next/navigation';
 
 interface Step1Props {
   onNextClick: () => void;
@@ -16,7 +16,11 @@ const infoList = [
 ];
 
 export default function Step1({ onNextClick }: Step1Props) {
-  const router = useRouter();
+  const { setValue, watch } = useDeleteContext();
+  const handleDeleteAgree = () => {
+    setValue('isDeleteAgree', !watch('isDeleteAgree'));
+  };
+
   return (
     <div>
       <Spacing size={32} />
@@ -30,8 +34,8 @@ export default function Step1({ onNextClick }: Step1Props) {
 
       <Spacing size={32} />
 
-      <Flex className="px-20">
-        <CircleCheckbox checked />
+      <Flex className="px-20" onClick={handleDeleteAgree}>
+        <CircleCheckbox checked={watch('isDeleteAgree')} />
         <Spacing size={8} direction="horizontal" />
         <p className="text-subtitle-2 text-sign-secondary">
           위 내용을 확인하였으며, 이에 동의합니다.
@@ -39,7 +43,9 @@ export default function Step1({ onNextClick }: Step1Props) {
       </Flex>
 
       <ButtonGroup>
-        <Button onClick={onNextClick}>다음</Button>
+        <Button onClick={onNextClick} disabled={!watch('isDeleteAgree')}>
+          다음
+        </Button>
       </ButtonGroup>
     </div>
   );
