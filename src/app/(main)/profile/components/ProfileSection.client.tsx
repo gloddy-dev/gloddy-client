@@ -3,7 +3,6 @@ import { useGetProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
-import { BarGraph } from '@/components/Graph';
 import { Flex } from '@/components/Layout';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
@@ -67,7 +66,6 @@ export default function ProfileSection() {
         <Spacing size={8} />
         <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
           <Spacing size={16} />
-          {/* <BarGraph maxCount={4} count={2} /> */}
           <div className="h-16 rounded-10 bg-white">
             <div
               className={cn('h-full rounded-10 bg-primary', {
