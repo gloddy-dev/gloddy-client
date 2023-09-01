@@ -1,4 +1,5 @@
 import DeleteModal from './DeleteModal.client';
+import { useDeleteContext } from './DeleteProvider.client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
@@ -18,6 +19,20 @@ const infoList = [
 export default function Step2() {
   const { open, close } = useModal();
   const handleDeleteClick = () => {};
+
+  const { watch, setValue } = useDeleteContext();
+  const handleDeleteReason = (index: number) => {
+    const deleteReason = watch('deleteReason');
+    if (deleteReason.includes(index)) {
+      setValue(
+        'deleteReason',
+        deleteReason.filter((reason) => reason !== index)
+      );
+    } else {
+      setValue('deleteReason', [...deleteReason, index]);
+    }
+  };
+
   return (
     <div>
       <Spacing size={32} />
@@ -30,8 +45,8 @@ export default function Step2() {
       <Spacing size={16} />
       <div className="px-20">
         {infoList.map((info, index) => (
-          <Flex key={index} className="py-12">
-            <CircleCheckbox />
+          <Flex key={index} className="py-12" onClick={() => handleDeleteReason(index + 1)}>
+            <CircleCheckbox checked={watch('deleteReason').includes(index + 1)} />
             <Spacing size={8} direction="horizontal" />
             <p className="text-subtitle-2 text-sign-secondary">{info}</p>
           </Flex>
