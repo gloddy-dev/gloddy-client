@@ -5,11 +5,11 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 
-interface MainFormProps {
+interface MainStepProps {
   onSelectMeetDate: () => void;
 }
 
-export default function MainForm({ onSelectMeetDate }: MainFormProps) {
+export default function MainStep({ onSelectMeetDate }: MainStepProps) {
   return (
     <>
       <UploadSection />
