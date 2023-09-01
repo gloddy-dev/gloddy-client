@@ -7,4 +7,5 @@ export const Keys = Object.freeze({
   getGroupMembers: (groupId: number) => ['getGroupMembers', groupId],
   getNotice: (groupId: number) => ['getNotice', groupId],
   getApplies: (groupId: number) => ['getApplies', groupId],
+  getEstimate: (groupId: number) => ['getEstimate', groupId],
 });
