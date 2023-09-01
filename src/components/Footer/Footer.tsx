@@ -49,31 +49,20 @@ export default function Footer({ page, isSpacing = true }: FooterProps) {
           <Link
             href={tab.url}
             key={tab.id}
-            className="flex w-full flex-col items-center text-center text-caption"
+            className={cn('flex w-full flex-col items-center text-center text-caption', {
+              'text-sign-brand': isSelected(tab),
+              'text-sign-tertiary': !isSelected(tab),
+            })}
           >
-            <div
-              className={cn('text-10', {
-                'text-sign-brand': isSelected(tab),
-                'text-sign-tertiary': !isSelected(tab),
-              })}
-            >
-              <Image
-                src={`/icons/32/footer/${tab.name}${
-                  tab.name === page ? '_selected' : '_default'
-                }.svg`}
-                alt={tab.title}
-                width={32}
-                height={32}
-              />
-              <p
-                className={cn('text-10', {
-                  'text-sign-brand': isSelected(tab),
-                  'text-sign-tertiary': !isSelected(tab),
-                })}
-              >
-                {tab.title}
-              </p>
-            </div>
+            <Image
+              src={`/icons/32/footer/${tab.name}${
+                tab.name === page ? '_selected' : '_default'
+              }.svg`}
+              alt={tab.title}
+              width={32}
+              height={32}
+            />
+            <p>{tab.title}</p>
           </Link>
         ))}
       </footer>
