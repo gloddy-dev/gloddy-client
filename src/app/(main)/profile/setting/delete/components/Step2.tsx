@@ -1,4 +1,4 @@
-import DeleteModal from '../DeleteModal.client';
+import DeleteModal from './DeleteModal.client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
