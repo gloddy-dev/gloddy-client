@@ -38,20 +38,27 @@ export default function InputForm() {
       <p className="text-subtitle-3">닉네임</p>
       <Spacing size={4} />
 
-      <TextFieldController
-        as="input"
-        placeholder="닉네임을 입력해주세요."
-        hookForm={hookForm}
-        register={register('nickname', {
-          required: true,
-          pattern: {
-            value: /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{3,15}$/,
-            message: '* 최소 3글자 이상 15자 이하로 작성해주세요.',
-          },
-        })}
-        leftCaption="* 최소 3글자 이상 15자 이하로 작성해주세요."
-        maxCount={15}
-      />
+      <Flex align="start" className="gap-8">
+        <div className="w-full">
+          <TextFieldController
+            as="input"
+            placeholder="닉네임을 입력해주세요."
+            hookForm={hookForm}
+            register={register('nickname', {
+              required: true,
+              pattern: {
+                value: /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{3,15}$/,
+                message: `* 올바른 형식이 아닙니다 (최소 3글자\n최대 15글자 이하, 특수문자 금지)`,
+              },
+            })}
+            leftCaption="* 최소 3글자, 최대 15자 이하"
+            maxCount={15}
+          />
+        </div>
+        <Button variant="solid-default" className="w-auto shrink whitespace-nowrap">
+          중복 확인
+        </Button>
+      </Flex>
 
       <Spacing size={8} />
 
