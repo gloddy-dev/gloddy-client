@@ -34,6 +34,7 @@ export default function LocationSection() {
           height={24}
           className="absolute right-12 top-12 z-10"
         />
+        <div className="absolute left-0 top-0 z-[2] aspect-video w-full opacity-0" />
         <Map
           center={{
             lat: +placeLatitude,
@@ -42,6 +43,7 @@ export default function LocationSection() {
           className="aspect-video rounded-t-8"
           level={4}
           draggable={false}
+          disableDoubleClick
         >
           <MapMarker
             position={{
