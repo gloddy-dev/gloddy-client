@@ -1,5 +1,6 @@
+import Step1Header from './FeedbackHeader';
+import FeedbackHeader from './FeedbackHeader';
 import NoShowModal from './NoShowModal.client';
-import Step1Header from './Step1Header';
 import TitleSection from './TitleSection';
 import { EstimateResponse } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
@@ -21,7 +22,6 @@ const tagList = ['차분함', '친절함', '적극적', '유머러스'];
 export default function Step1({ onNextClick }: Step1Props) {
   return (
     <div>
-      <Step1Header />
       <TitleSection message="모임에서 어땠나요?" step={1} />
 
       <Divider thickness="thick" />
