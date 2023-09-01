@@ -1,4 +1,5 @@
 'use client';
+
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
@@ -11,7 +12,6 @@ import type { PropsWithChildren } from 'react';
 
 interface GroupingCardProps {
   groupingData: Grouping;
-
   isNew?: boolean;
   isExistNewApply?: boolean;
   applyId?: number;
@@ -23,6 +23,7 @@ export default function GroupingCard({
   children,
 }: PropsWithChildren<GroupingCardProps>) {
   const {
+    groupId,
     title,
     content,
     imageUrl,
@@ -36,7 +37,7 @@ export default function GroupingCard({
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
-      <Flex onClick={() => router.push(`/grouping/${groupingData.groupId}`)} align="center">
+      <Flex onClick={() => router.push(`/grouping/${groupId}`)} align="center">
         <section className="relative h-96 w-96">
           {imageUrl ? (
             <Image fill src={imageUrl} alt="group" className="rounded-8 object-cover" />

@@ -5,6 +5,7 @@ import { getGroups } from '@/apis/groups/apis';
 import { Keys } from '@/apis/groups/keys';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider';
+import { Spacing } from '@/components/common/Spacing';
 import { Footer } from '@/components/Footer';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
@@ -18,6 +19,7 @@ export default function Grouping() {
         </HydrationProvider>
       </QueryAsyncBoundary>
       <CreateGroupButton />
+      <Spacing size={60} />
       <Footer page="grouping" />
     </>
   );
