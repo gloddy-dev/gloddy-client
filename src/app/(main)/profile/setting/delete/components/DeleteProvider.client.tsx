@@ -1,11 +1,12 @@
 'use client';
 
 import { DeleteState } from '../type';
-import { StrictPropsWithChildren } from '@/types';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
+import type { StrictPropsWithChildren } from '@/types';
+
 const defaultValues = {
-  idDeleteAgree: false,
+  isDeleteAgree: false,
   deleteReason: [],
 };
 
