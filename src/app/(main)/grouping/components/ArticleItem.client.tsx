@@ -64,7 +64,7 @@ export default function ArticleItem({
             )}
 
             <Image
-              src={`/icons/16/${writerReliabilityLevel.toLowerCase()}.svg`}
+              src={`/icons/16/reliability/${writerReliabilityLevel.toLowerCase()}.svg`}
               alt="writerReliabilityLevel"
               width={16}
               height={16}
