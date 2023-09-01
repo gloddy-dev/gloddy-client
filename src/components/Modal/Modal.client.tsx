@@ -3,6 +3,7 @@ import ModalWrapper from './ModalWrapper.client';
 import { Button } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { StrictPropsWithChildren } from '@/types';
+import cn from '@/utils/cn';
 
 export interface ModalProps {
   onOkClick?: () => void;
@@ -10,6 +11,7 @@ export interface ModalProps {
   onCancelClick?: () => void;
   cancelText?: string;
   variant?: 'warning' | 'success';
+  className?: string;
 }
 
 const variantMap = {
@@ -30,10 +32,16 @@ export function Modal({
   onCancelClick,
   cancelText = '아니오',
   variant,
+  className,
 }: StrictPropsWithChildren<ModalProps>) {
   return (
     <ModalWrapper onClose={onCancelClick}>
-      <div className="flex w-300 flex-col items-center rounded-16 bg-white px-16 text-center">
+      <div
+        className={cn(
+          'flex w-300 flex-col items-center rounded-16 bg-white px-16 text-center',
+          className
+        )}
+      >
         {children}
         {variant && (
           <div className="w-full py-12">

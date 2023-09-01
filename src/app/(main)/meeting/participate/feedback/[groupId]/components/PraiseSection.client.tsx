@@ -10,9 +10,8 @@ import { useNumberParams } from '@/hooks/useNumberParams';
 export default function PraiseSection() {
   const { Funnel, prevStep, nextStep } = useFunnel(['1', '2', '3']);
   const { groupId } = useNumberParams();
-  const { data } = useGetEstimate(groupId);
-
-  console.log(data);
+  // const { data } = useGetEstimate(groupId);
+  // console.log(data);
 
   return (
     <Funnel>

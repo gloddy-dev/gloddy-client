@@ -14,9 +14,9 @@ export default function page({ params }: PageProps) {
 
   return (
     <Suspense>
-      <HydrationProvider queryKey={Keys.getEstimate(groupId)} queryFn={() => getEstimate(groupId)}>
-        <PraiseSection />
-      </HydrationProvider>
+      {/* <HydrationProvider queryKey={Keys.getEstimate(groupId)} queryFn={() => getEstimate(groupId)}> */}
+      <PraiseSection />
+      {/* </HydrationProvider> */}
     </Suspense>
   );
 }
