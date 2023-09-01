@@ -1,45 +1,9 @@
-'use client';
 import DeleteModal from '../../../components/DeleteModal.client';
-import { type Notice, useDeleteArticle, useGetGroupDetail, useGetNotice } from '@/apis/groups';
-import { Spacing } from '@/components/common/Spacing';
+import { type Notice, useDeleteArticle } from '@/apis/groups';
 import { Flex } from '@/components/Layout';
 import { useModal } from '@/hooks/useModal';
-import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
-export default function NoticeList() {
-  const { groupId } = useNumberParams<['groupId']>();
-
-  const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { isCaptain } = groupDetailData;
-
-  const { data: noticeData } = useGetNotice(groupId);
-
-  return (
-    <div className="p-20 pb-8">
-      <div className="rounded-8 bg-card-ui p-16 text-subtitle-3 text-sign-secondary">
-        <p className="pl-4">공지사항</p>
-        <Spacing size={6} />
-        {noticeData.length === 0 ? (
-          <Flex align="center" className="gap-4 py-4">
-            <Image src="/icons/24/info.svg" alt="info" width={24} height={24} />
-            <p>등록된 공지사항이 없어요.</p>
-          </Flex>
-        ) : (
-          noticeData.map((notice) => (
-            <NoticeItem
-              key={notice.noticeId}
-              notice={notice}
-              groupId={groupId}
-              isCaptain={isCaptain}
-            />
-          ))
-        )}
-      </div>
-    </div>
-  );
-}
 
 interface NoticeItemProps {
   notice: Notice;
@@ -47,7 +11,7 @@ interface NoticeItemProps {
   isCaptain: boolean;
 }
 
-function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
+export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
   const { content, noticeId } = notice;
   const router = useRouter();
   const { open, close } = useModal();

@@ -1,6 +1,6 @@
 'use client';
 
-import { ArticleList, NoticeList } from './articles';
+import { ArticleSection, NoticeSection } from './articles';
 import { LocationSection, MemberSection, TimeSection } from './detail';
 import GroupDetailHeader from './GroupDetailHeader.client';
 import TopSection from './TopSection.client';
@@ -42,8 +42,8 @@ export default function GroupDetailPage({ groupId }: GroupDetailProps) {
           </div>
         </Tabs.Panel>
         <Tabs.Panel value="articles">
-          <NoticeList />
-          <ArticleList />
+          <NoticeSection />
+          <ArticleSection />
           <BottomFixedDiv className="flex justify-end">
             <Link href={`/grouping/${groupId}/write`}>
               <FloatAddButton />
@@ -52,7 +52,7 @@ export default function GroupDetailPage({ groupId }: GroupDetailProps) {
         </Tabs.Panel>
       </Tabs>
 
-      <Spacing size={100} />
+      <Spacing size={60} />
       {!myGroup && (
         <ButtonGroup>
           <Button as="a" href={`/grouping/${groupId}/apply`} disabled={isApplyWaited}>
