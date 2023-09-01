@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation';
 
 interface FeedbackModalProps {
   onClose: () => void;
+  groupId: number;
 }
-export default function FeedbackModal({ onClose }: FeedbackModalProps) {
+export default function FeedbackModal({ onClose, groupId }: FeedbackModalProps) {
   const router = useRouter();
   return (
     <Modal
@@ -15,7 +16,7 @@ export default function FeedbackModal({ onClose }: FeedbackModalProps) {
       okText="이동하기"
       cancelText="취소"
       onCancelClick={onClose}
-      onOkClick={() => router.push('/meeting/participate/feedback')}
+      onOkClick={() => router.push(`/meeting/participate/feedback/${groupId}`)}
     >
       <Spacing size={28} />
       <Image src="/images/approve_character.png" width={130} height={130} alt="approve" />

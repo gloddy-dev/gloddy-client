@@ -7,10 +7,8 @@ import { Button } from '@/components/Button';
 import { GroupingCard } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
 import { useModal } from '@/hooks/useModal';
-import { useRouter } from 'next/navigation';
 
 export default function FeedbackContent() {
-  const router = useRouter();
   const {
     data: { groups: meetingNotEstimatedData },
   } = useGetMeetingNotEstimated();
@@ -34,7 +32,9 @@ export default function FeedbackContent() {
           <Button
             size="small"
             variant="solid-secondary"
-            onClick={() => open(<FeedbackModal onClose={close} />)}
+            onClick={() =>
+              open(<FeedbackModal onClose={close} groupId={groupingData.group.groupId} />)
+            }
           >
             모임 평가하기
           </Button>
