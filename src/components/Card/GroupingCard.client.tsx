@@ -91,7 +91,7 @@ function MemberCountBadge({ maxMemeberCount, memberCount }: MemberCountBadgeProp
         src={`/icons/16/group_${clsx({
           blue: leftUser >= 2,
           warning: leftUser === 1,
-          gray: leftUser === 0,
+          gray: leftUser <= 0,
         })}.svg`}
         width={16}
         height={16}
@@ -101,7 +101,7 @@ function MemberCountBadge({ maxMemeberCount, memberCount }: MemberCountBadgeProp
         className={clsx('text-caption text-primary', {
           'text-primary': leftUser >= 2,
           'text-warning': leftUser === 1,
-          'text-sign-tertiary': leftUser === 0,
+          'text-sign-tertiary': leftUser <= 0,
         })}
       >
         {memberCount}/{maxMemeberCount}
