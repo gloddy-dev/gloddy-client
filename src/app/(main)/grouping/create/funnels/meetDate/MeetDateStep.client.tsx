@@ -5,10 +5,10 @@ import Calendar from '@/components/common/Calendar';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 
-interface MeetDateComponentProps {
+interface MeetDateStepProps {
   onDone: () => void;
 }
-export default function MeetDateComponent({ onDone }: MeetDateComponentProps) {
+export default function MeetDateStep({ onDone }: MeetDateStepProps) {
   const hookForm = useCreateGroupContext();
   const { watch, setValue } = hookForm;
 
