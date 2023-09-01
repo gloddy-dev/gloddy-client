@@ -2,28 +2,18 @@
 import { type GroupMember, useGetGroupMembers } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { IconButton } from '@/components/Button';
-import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
+import { ItemList } from '@/components/List';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment } from 'react';
 
 export default function MemeberList() {
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupMemberData } = useGetGroupMembers(groupId);
   const { groupMembers } = groupMemberData;
 
-  return (
-    <div>
-      {groupMembers.map((member, index) => (
-        <Fragment key={member.userId}>
-          <MemberItem member={member} />
-          {groupMembers.length - 1 !== index && <Divider />}
-        </Fragment>
-      ))}
-    </div>
-  );
+  return <ItemList data={groupMembers} renderItem={(member) => <MemberItem member={member} />} />;
 }
 
 interface MemberItemProps {
