@@ -62,7 +62,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
         <Avatar
           imageUrl={imageUrl}
           size="large"
-          iconVariant="education"
+          iconVariant="draft_orders"
           onClick={handleFileUploadClick}
         />
       </Flex>
