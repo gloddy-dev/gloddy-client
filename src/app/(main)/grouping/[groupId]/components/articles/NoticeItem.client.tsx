@@ -45,7 +45,7 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
         )}
       </Flex>
       <Image
-        src="/icons/24/navigate-next.svg"
+        src="/icons/24/navigate_next.svg"
         alt="navigate_next"
         width={24}
         height={24}

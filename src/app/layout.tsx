@@ -52,7 +52,9 @@ function Layout({ children }: StrictPropsWithChildren) {
   return (
     <html lang="ko">
       <body className="mx-auto h-full min-h-[100dvh] w-full max-w-450 bg-sub">
-        <div className="relative min-h-[100dvh] bg-white text-sign-primary">{children}</div>
+        <div className="relative min-h-[100dvh] bg-white text-subtitle-1 text-sign-primary">
+          {children}
+        </div>
       </body>
     </html>
   );
