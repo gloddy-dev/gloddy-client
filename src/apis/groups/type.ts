@@ -148,3 +148,10 @@ export interface AppliesResponse {
   totalCount: number;
   applies: Apply[];
 }
+
+export interface EstimateResponse {
+  groupMemberList: Array<{
+    imageUrl: string;
+    name: string;
+  }>;
+}

@@ -3,6 +3,7 @@ import type {
   Article,
   Comment,
   CreateGroupRequest,
+  EstimateResponse,
   GroupDetailResponse,
   GroupMember,
   Grouping,
@@ -318,3 +319,20 @@ export const DUMMY_APPLY_DATA: Apply[] = [
     reason: '저는 이 모임에 가입하고 싶습니다.',
   },
 ];
+
+export const DUMMY_DATA_ESTIMATE: EstimateResponse = {
+  groupMemberList: [
+    {
+      imageUrl: '/public/images/dummy_avatar.png',
+      name: '김지수',
+    },
+    {
+      imageUrl: '/public/images/dummy_avatar.png',
+      name: '김지하',
+    },
+    {
+      imageUrl: '/public/images/dummy_avatar.png',
+      name: '김지상',
+    },
+  ],
+};
