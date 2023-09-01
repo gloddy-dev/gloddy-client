@@ -67,7 +67,17 @@ export default function ProfileSection() {
         <Spacing size={8} />
         <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
           <Spacing size={16} />
-          <BarGraph maxCount={4} count={2} />
+          {/* <BarGraph maxCount={4} count={2} /> */}
+          <div className="h-16 rounded-10 bg-white">
+            <div
+              className={cn('h-full rounded-10 bg-primary', {
+                'w-[10%]': reliability === reliabilities[0].name,
+                'w-[35%]': reliability === reliabilities[1].name,
+                'w-[65%]': reliability === reliabilities[2].name,
+                'w-[100%]': reliability === reliabilities[3].name,
+              })}
+            />
+          </div>
           <Spacing size={8} />
           <Flex className="text-caption" justify="between">
             {reliabilities.map((reliabilityItem) => (
