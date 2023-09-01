@@ -1,4 +1,4 @@
-import GroupingDetail from './components/GroupingDetail.client';
+import GroupDetailPage from './components/GroupDetail.client';
 import { Keys, getGroupDetail } from '@/apis/groups';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider';
@@ -24,7 +24,7 @@ export default function GroupingDetailPage({ params, searchParams }: GroupingDet
         queryKey={Keys.getGroupDetail(groupId)}
         queryFn={() => getGroupDetail(groupId)}
       >
-        <GroupingDetail groupId={groupId} />
+        <GroupDetailPage groupId={groupId} />
       </HydrationProvider>
     </QueryAsyncBoundary>
   );
