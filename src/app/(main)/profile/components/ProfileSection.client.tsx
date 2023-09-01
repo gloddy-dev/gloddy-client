@@ -3,6 +3,7 @@ import { useGetProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
+import { BarGraph } from '@/components/Graph';
 import { Flex } from '@/components/Layout';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
@@ -12,8 +13,17 @@ import { usePathname } from 'next/navigation';
 
 export default function ProfileSection() {
   const { data: profileData } = useGetProfile();
-  const { age, gender, imageUrl, name, praiseCount, reviewCount, school, personalities } =
-    profileData;
+  const {
+    age,
+    gender,
+    imageUrl,
+    name,
+    praiseCount,
+    reviewCount,
+    school,
+    personalities,
+    reliability,
+  } = profileData;
   const pathname = usePathname();
 
   return (
@@ -55,7 +65,7 @@ export default function ProfileSection() {
         <Spacing size={8} />
         <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
           <Spacing size={16} />
-          {/* Bar */}
+          <BarGraph maxCount={4} count={2} />
           <Spacing size={8} />
           {/* Badge */}
           <Spacing size={12} />
