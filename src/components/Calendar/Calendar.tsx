@@ -8,12 +8,12 @@ import { ko } from 'date-fns/esm/locale';
 import Image from 'next/image';
 import DatePicker from 'react-datepicker';
 
-interface Props {
+interface CalendarProps {
   dateValue: Date | null;
   setDateValue: (date: Date) => void;
 }
 
-export default function Calendar({ dateValue, setDateValue }: Props) {
+export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
   return (
     <DatePicker
       locale={ko}
