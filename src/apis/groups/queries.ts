@@ -3,6 +3,7 @@ import {
   getArticle,
   getArticles,
   getComments,
+  getEstimate,
   getGroupDetail,
   getGroupMembers,
   getGroups,
@@ -72,3 +73,6 @@ export const useGetNotice = (groupId: number) => {
 export const useGetApplies = (groupId: number) => {
   return useSuspenseQuery(Keys.getApplies(groupId), () => getApplies(groupId));
 };
+
+export const useGetEstimate = (groupId: number) =>
+  useSuspenseQuery(Keys.getEstimate(groupId), () => getEstimate(groupId));

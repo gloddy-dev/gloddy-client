@@ -1,17 +1,18 @@
 'use client';
+import FeedbackModal from './FeedbackModal.client';
 import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
 import { useGetMeetingNotEstimated } from '@/apis/meeting';
 import { Button } from '@/components/Button';
 import { GroupingCard } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
-import { useRouter } from 'next/navigation';
+import { useModal } from '@/hooks/useModal';
 
 export default function FeedbackContent() {
-  const router = useRouter();
   const {
     data: { groups: meetingNotEstimatedData },
   } = useGetMeetingNotEstimated();
+  const { open, close } = useModal();
 
   return (
     <>
@@ -31,7 +32,9 @@ export default function FeedbackContent() {
           <Button
             size="small"
             variant="solid-secondary"
-            onClick={() => router.push(`grouping/${1}/feedback?step=praise`)}
+            onClick={() =>
+              open(<FeedbackModal onClose={close} groupId={groupingData.group.groupId} />)
+            }
           >
             모임 평가하기
           </Button>
