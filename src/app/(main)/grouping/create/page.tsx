@@ -1,12 +1,12 @@
 import CreateGroupContextProvider from './components/CreateGroupContext';
-import CreateFunnel from './funnels/CreateFunnel.client';
+import CreateGroupFunnel from './funnels/CreateGroupFunnel.client';
 import { ModalProvider } from '@/hooks/useModal';
 
 export default function CreateGroupPage() {
   return (
     <CreateGroupContextProvider>
       <ModalProvider>
-        <CreateFunnel />
+        <CreateGroupFunnel />
       </ModalProvider>
     </CreateGroupContextProvider>
   );
