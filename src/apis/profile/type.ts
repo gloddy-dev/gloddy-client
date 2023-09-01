@@ -1,4 +1,4 @@
-import { PersonalityType, ReliabilityType } from '@/types';
+import type { PersonalityType, ReliabilityType } from '@/types';
 
 export interface ProfileResponse {
   age: number;
