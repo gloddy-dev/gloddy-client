@@ -1,9 +1,8 @@
 'use client';
-import { CreateGroupContextValue } from '../type';
-import FormDevtools from '@/components/common/FormDevTools';
 import { createContext, useContext } from 'react';
-import { UseFormReturn, useForm } from 'react-hook-form';
+import { type UseFormReturn, useForm } from 'react-hook-form';
 
+import type { CreateGroupContextValue } from '../type';
 import type { StrictPropsWithChildren } from '@/types';
 
 const CreateGroupContext = createContext<UseFormReturn | null>(null);
@@ -16,30 +15,27 @@ export default function CreateGroupContextProvider({ children }: StrictPropsWith
       content: '',
       meetDate: undefined,
       time: {
-        fromHour: '01',
-        fromMin: '00',
+        fromHour: '',
+        fromMin: '',
         fromAmPm: 'AM',
-        toHour: '01',
-        toMin: '00',
+        toHour: '',
+        toMin: '',
         toAmPm: 'AM',
       },
       placeName: '',
       placeAddress: '',
       placeLatitude: undefined,
       placeLongitude: undefined,
-      maxUser: undefined,
+      maxUser: 3,
     },
   });
 
   const contextValue = { ...methods };
 
   return (
-    <>
-      <CreateGroupContext.Provider value={contextValue as unknown as UseFormReturn}>
-        {children}
-      </CreateGroupContext.Provider>
-      <FormDevtools control={methods.control} />
-    </>
+    <CreateGroupContext.Provider value={contextValue as unknown as UseFormReturn}>
+      {children}
+    </CreateGroupContext.Provider>
   );
 }
 
