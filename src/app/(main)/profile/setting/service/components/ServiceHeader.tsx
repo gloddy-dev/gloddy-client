@@ -1,7 +1,7 @@
+'use client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function ServiceHeader() {
