@@ -21,7 +21,7 @@ export const usePostCreateGroup = () => {
   return useMutation(postCreateGroup, {
     onSuccess: (data) => {
       queryClient.invalidateQueries(Keys.getGroupDetail(data.groupId));
-      router.push(`/grouping/${data.groupId}`);
+      router.replace(`/grouping/${data.groupId}`);
     },
   });
 };
@@ -34,7 +34,7 @@ export const usePostArticle = (groupId: number) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries(Keys.getArticles(groupId));
       queryClient.invalidateQueries(Keys.getNotice(groupId));
-      router.push(`/grouping/${groupId}/articles/${data.articleId}`);
+      router.replace(`/grouping/${groupId}/articles/${data.articleId}`);
     },
   });
 };
@@ -80,7 +80,7 @@ export const usePostApply = (groupId: number) => {
     onSuccess: () => {
       queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
       queryClient.invalidateQueries(Keys.getGroupMembers(groupId));
-      router.push('/meeting/participate?tab=waiting');
+      router.replace('/meeting/participate?tab=waiting');
     },
   });
 };
