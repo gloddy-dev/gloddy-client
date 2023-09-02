@@ -1,8 +1,6 @@
 import { IconButton } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { Header } from '../Header';
-import { useDidUnMount } from '@/hooks/common/useDidUnMount';
-import { useUnmountEffect } from 'framer-motion';
 import Image from 'next/image';
 import { forwardRef, useEffect, useState } from 'react';
 import Sheet, { type SheetRef } from 'react-modal-sheet';

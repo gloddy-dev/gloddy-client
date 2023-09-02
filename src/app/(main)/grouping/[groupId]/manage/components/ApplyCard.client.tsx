@@ -76,7 +76,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
           </Flex>
         </div>
         <IconButton>
-          <Image src="/icons/24/navigate-next.svg" alt="navigate-next" width={24} height={24} />
+          <Image src="/icons/24/navigate_next.svg" alt="navigate_next" width={24} height={24} />
         </IconButton>
       </Flex>
       <Spacing size={16} />

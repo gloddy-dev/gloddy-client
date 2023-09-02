@@ -5,10 +5,8 @@ import { Spacing } from '@/components/common/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useShowMore } from '@/hooks/useShowMore';
 import Image from 'next/image';
-import { useState } from 'react';
 
 export default function TopSection() {
-  const [isScrap, setIsScrap] = useState(false);
   const { groupId } = useNumberParams<['groupId']>();
   const { contentRef, toggleShowFullText, shouldShowButton, showFullText } = useShowMore({
     maxLines: 6,
@@ -17,16 +15,15 @@ export default function TopSection() {
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { mutate: mutatePostScrap } = usePostScrap(groupId);
   const { mutate: mutateDeleteScrap } = useDeleteScrap(groupId);
-  const { imageUrl, fileUrl, title, content } = groupDetailData;
+  const { imageUrl, fileUrl, isScraped, title, content } = groupDetailData;
 
   const handleScrapClick = () => {
-    if (isScrap) {
+    if (isScraped) {
       mutateDeleteScrap();
     } else {
       mutatePostScrap();
     }
-
-    setIsScrap((prev) => !prev);
+    console.log(isScraped);
   };
 
   return (
@@ -44,7 +41,7 @@ export default function TopSection() {
           onClick={handleScrapClick}
         >
           <Image
-            src={`/icons/24/bookmark_${isScrap ? 'filled' : 'outline'}.svg`}
+            src={`/icons/24/bookmark_${isScraped ? 'filled' : 'outline'}.svg`}
             alt="bookmark"
             width={24}
             height={24}
