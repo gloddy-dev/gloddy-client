@@ -12,7 +12,6 @@
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   white-space: pre-wrap;
   user-select: none;
-  touch-action: none;
   -webkit-tap-highlight-color: transparent;
 }
 
