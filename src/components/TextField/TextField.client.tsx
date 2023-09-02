@@ -96,10 +96,9 @@ function TextField<T extends React.ElementType = 'input'>(
       </section>
       {(!!leftCaption || !!rightCaption) && (
         <section
-          className={cn(
-            'flex h-18 w-full justify-between px-8 pt-4 text-caption text-sign-tertiary',
-            { absolute: !isSpacing }
-          )}
+          className={cn('flex w-full justify-between px-8 pt-4 text-caption text-sign-tertiary', {
+            absolute: !isSpacing,
+          })}
         >
           <LeftCaption isError={isLeftError} text={leftCaption}></LeftCaption>
           <RightCaption isError={isRightError} text={rightCaption}></RightCaption>
