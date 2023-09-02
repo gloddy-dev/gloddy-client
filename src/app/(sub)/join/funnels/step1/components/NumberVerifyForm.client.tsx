@@ -45,6 +45,13 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
     start();
   };
 
+  if (time === 0) {
+    setError('verifyNumber', {
+      type: 'validate',
+      message: '*인증 시간 초과: 새로운 인증 번호를 요청해주세요!',
+    });
+  }
+
   const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'verifyNumber'>> = (data) => {
     mutateSMSVerify(
       {
