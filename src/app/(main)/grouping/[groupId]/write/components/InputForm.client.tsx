@@ -2,7 +2,7 @@
 
 import ImageSection from './ImageSection.client';
 import WriteModal from './WriteModal';
-import { usePostArticle } from '@/apis/groups';
+import { useGetGroupDetail, usePostArticle } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/common/Checkbox';
 import { Spacing } from '@/components/common/Spacing';
@@ -27,6 +27,9 @@ export default function InputForm() {
   const { register, handleSubmit, watch, setValue, control } = hookForm;
 
   const { mutate: mutateArticle, isLoading } = usePostArticle(groupId);
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
+
+  const { isCaptain } = groupDetailData;
 
   const onSubmit = async (data: WriteFormValues) => {
     if (isLoading) return;
@@ -40,7 +43,7 @@ export default function InputForm() {
   return (
     <>
       <ImageSection control={control} />
-      <div className="grow px-20 py-8">
+      <section className="grow px-20 py-8">
         <TextFieldController
           as="textarea"
           hookForm={hookForm}
@@ -49,11 +52,13 @@ export default function InputForm() {
           maxCount={300}
           className="h-full"
         />
-      </div>
-      <Flex className="gap-8 px-20 py-12" onClick={() => setValue('notice', !watch('notice'))}>
-        <CircleCheckbox checked={watch('notice')} />
-        <p className="text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
-      </Flex>
+      </section>
+      {isCaptain && (
+        <Flex className="gap-8 px-20 py-12" onClick={() => setValue('notice', !watch('notice'))}>
+          <CircleCheckbox checked={watch('notice')} />
+          <p className="text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
+        </Flex>
+      )}
       <Spacing size={16} />
       <ButtonGroup>
         <Button
