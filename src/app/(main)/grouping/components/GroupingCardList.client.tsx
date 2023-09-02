@@ -1,10 +1,9 @@
 'use client';
 import { useGetGroups } from '@/apis/groups';
 import { GroupingCard } from '@/components/Card';
-import { InfiniteScrollSensor } from '@/components/InfiniteScrollSensor';
 import { ItemList } from '@/components/List';
 import useIntersection from '@/hooks/useIntersection';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback } from 'react';
 
 export default function GroupingCardList() {
   const { data, fetchNextPage } = useGetGroups();

@@ -7,6 +7,7 @@ const useIntersection = (
   const target = useRef(null);
 
   useEffect(() => {
+    if (!target.current) return;
     const observer = new IntersectionObserver(callback, options);
     observer.observe(target.current);
     return () => observer.disconnect();
