@@ -8,23 +8,35 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { useModal } from '@/hooks/useModal';
+import { format } from 'date-fns';
 
 import type { CreateGroupContextValue } from '../../type';
+import type { TimeType } from '@/types';
 import type { SubmitHandler } from 'react-hook-form';
+
+function formatTime(time: TimeType) {
+  time.fromHour =
+    time.fromAmPm === 'AM' ? time.fromHour : ((Number(time.fromHour) + 12) % 24).toString();
+  time.toHour = time.toAmPm === 'AM' ? time.toHour : ((Number(time.toHour) + 12) % 24).toString();
+
+  return {
+    startTime: time.fromHour.padStart(2, '0') + ':' + time.fromMin.padStart(2, '0'),
+    endTime: time.toHour.padStart(2, '0') + ':' + time.toMin.padStart(2, '0'),
+  };
+}
 
 interface MainStepProps {
   onSelectMeetDate: () => void;
 }
 
 export default function MainStep({ onSelectMeetDate }: MainStepProps) {
-  const { handleSubmit } = useCreateGroupContext();
+  const hookForm = useCreateGroupContext();
+  const { handleSubmit, formState } = hookForm;
 
   const { mutate: mutateCreateGroup } = usePostCreateGroup();
   const { open: openCreateModal, close: closeCreateModal } = useModal();
 
   const onSubmit: SubmitHandler<CreateGroupContextValue> = (data) => {
-    console.log(data);
-
     openCreateModal(
       <CreateModal
         onCancelClick={closeCreateModal}
@@ -36,15 +48,10 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
             placeLongitude: '127.12722',
             content: data.content,
             maxUser: data.maxUser,
-            meetDate: '2021-10-10',
-            startTime: '14:00',
-            endTime: '16:00',
-            // startTime:
-            //   data.time.fromHour.padStart(2, '0') + ':' + data.time.fromMin.padStart(2, '0'),
-            // endTime: data.time.toHour.padStart(2, '0') + ':' + data.time.toMin.padStart(2, '0'),
+            meetDate: format(data.meetDate, 'yyyy-MM-dd'),
             title: data.title,
-
             imageUrl: data.imageUrl,
+            ...formatTime(data.time),
           });
         }}
       />
@@ -59,7 +66,12 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
       <SettingSection onSelectMeetDate={onSelectMeetDate} />
       <Spacing size={60} />
       <ButtonGroup>
-        <Button onClick={handleSubmit(onSubmit)}>완료</Button>
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          disabled={!formState.isValid || !formState.isDirty}
+        >
+          완료
+        </Button>
       </ButtonGroup>
     </>
   );

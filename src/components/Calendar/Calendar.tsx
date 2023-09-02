@@ -6,6 +6,7 @@ import { Flex } from '@/components/Layout';
 import { getMonth, getYear } from 'date-fns';
 import { ko } from 'date-fns/esm/locale';
 import Image from 'next/image';
+import { useEffect, useMemo } from 'react';
 import DatePicker from 'react-datepicker';
 
 interface CalendarProps {
@@ -14,7 +15,13 @@ interface CalendarProps {
 }
 
 export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
-  const currentDate = new Date();
+  const currentDate = useMemo(() => new Date(), []);
+
+  useEffect(() => {
+    if (!dateValue) {
+      setDateValue(currentDate);
+    }
+  }, [dateValue, setDateValue, currentDate]);
 
   return (
     <DatePicker
