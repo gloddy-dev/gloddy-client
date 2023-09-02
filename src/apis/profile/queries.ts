@@ -1,12 +1,11 @@
 import { getMates, getPraises, getProfile } from './apis';
 import { Keys } from './keys';
-import { personalityList } from '@/constants/personalityList';
 import { useSuspenseQuery } from '@suspensive/react-query';
 
 export const useGetProfile = () =>
   useSuspenseQuery(Keys.getProfile(), getProfile, {
     select: (data) => {
-      const { birth } = data;
+      const { birth, introduce } = data;
 
       const formattedBirth = {
         year: +birth.split('.')[0] + '년',
@@ -14,7 +13,9 @@ export const useGetProfile = () =>
         date: +birth.split('.')[2] + '일',
       };
 
-      return { ...data, birth: formattedBirth };
+      const defaultIntroduce = introduce ?? '';
+
+      return { ...data, introduce: defaultIntroduce, birth: formattedBirth };
     },
     staleTime: Infinity,
     cacheTime: Infinity,
