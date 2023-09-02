@@ -14,12 +14,15 @@ interface CalendarProps {
 }
 
 export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
+  const currentDate = new Date();
+
   return (
     <DatePicker
       locale={ko}
       dateFormat="yyyy-MM-dd"
       formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 1)}
-      minDate={new Date()}
+      minDate={currentDate}
+      filterDate={(date) => date > currentDate}
       selected={dateValue}
       onChange={(date: Date) => setDateValue(date)}
       inline
