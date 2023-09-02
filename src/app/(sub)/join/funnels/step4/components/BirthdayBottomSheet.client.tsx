@@ -11,7 +11,12 @@ interface BirthdayBottomSheetProps {
 export default function BirthdayBottomSheet({ onClose }: BirthdayBottomSheetProps) {
   const { setValue, watch } = useJoinContext();
   const birth = watch('birth');
-  const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
+  const handleCloseClick = () => {
+    if (!watch('birth').year) setValue('birth.year', '1980년');
+    if (!watch('birth').month) setValue('birth.month', '1월');
+    if (!watch('birth').date) setValue('birth.date', '1일');
+    onClose();
+  };
 
   return (
     <BottomSheet snapPoints={[400, 0]} onClose={onClose} title="생년월일" disableDrag>
@@ -20,9 +25,7 @@ export default function BirthdayBottomSheet({ onClose }: BirthdayBottomSheetProp
         setDateValue={(birth: DateType) => setValue('birth', birth)}
       />
       <ButtonGroup>
-        <Button disabled={!isBirthDayEntered} onClick={onClose}>
-          다음
-        </Button>
+        <Button onClick={handleCloseClick}>다음</Button>
       </ButtonGroup>
     </BottomSheet>
   );

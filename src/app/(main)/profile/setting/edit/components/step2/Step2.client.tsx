@@ -15,9 +15,9 @@ export default function Step2({ onPrev }: Step2Props) {
         <br />
         선택해주세요!
       </div>
-      <p className="px-20 text-subtitle-2 text-sign-tertiary">3개 이상 선택해주세요.</p>
+      <p className="px-20 text-subtitle-2 text-sign-tertiary">3개를 선택해주세요.</p>
       <Spacing size={16} />
-      <Step2InputForm onClose={onPrev} />
+      <Step2InputForm onPrevClick={onPrev} />
     </>
   );
 }
