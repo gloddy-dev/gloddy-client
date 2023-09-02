@@ -3,10 +3,10 @@
 import MoreBottomSheet from './MoreBottomSheet.client';
 import { formatRelativeDate } from '../util';
 import { type Mate, useGetMates } from '@/apis/profile';
+import NoMeeting from '@/app/(main)/meeting/components/NoMeeting';
 import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
-import { DUMMY_PROFILE_MATES_DATA } from '@/constants/dummyData';
 import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 
@@ -17,7 +17,8 @@ export default function MatesDetail() {
 
   return (
     <main>
-      {DUMMY_PROFILE_MATES_DATA.map((mateData) => (
+      {matesData.length === 0 && <NoMeeting message="작성한 후기가 없습니다." />}
+      {matesData.map((mateData) => (
         <Mates key={mateData.createdAt} mateData={mateData} />
       ))}
     </main>
