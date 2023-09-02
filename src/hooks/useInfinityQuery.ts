@@ -2,7 +2,7 @@ import { GroupsResponse } from '@/apis/groups';
 import { FetchNextPageOptions, InfiniteQueryObserverResult } from '@tanstack/react-query';
 import { useCallback, useEffect, useRef } from 'react';
 
-const useIntersection = (
+const useInfinityQuery = (
   fetchNextPage: (
     options?: FetchNextPageOptions | undefined
   ) => Promise<InfiniteQueryObserverResult<GroupsResponse, unknown>>,
@@ -32,4 +32,4 @@ const useIntersection = (
   return target;
 };
 
-export default useIntersection;
+export default useInfinityQuery;
