@@ -2,12 +2,12 @@
 import { useGetGroups } from '@/apis/groups';
 import { GroupingCard } from '@/components/Card';
 import { ItemList } from '@/components/List';
-import useIntersection from '@/hooks/useIntersection';
+import useInfinityQuery from '@/hooks/useInfinityQuery';
 
 export default function GroupingCardList() {
   const { data, fetchNextPage } = useGetGroups();
 
-  const target = useIntersection(fetchNextPage);
+  const target = useInfinityQuery(fetchNextPage);
 
   return (
     <>
