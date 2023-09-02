@@ -11,6 +11,7 @@ import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { Tabs } from '@/components/Tabs';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface GroupDetailProps {
   groupId: number;
@@ -18,6 +19,7 @@ interface GroupDetailProps {
 
 export default function GroupDetailPage({ groupId }: GroupDetailProps) {
   const { data: groupDetailData } = useGetGroupDetail(groupId);
+  const router = useRouter();
 
   const { myGroup, isApplyWaited } = groupDetailData;
 
@@ -55,7 +57,10 @@ export default function GroupDetailPage({ groupId }: GroupDetailProps) {
       <Spacing size={60} />
       {!myGroup && (
         <ButtonGroup>
-          <Button as="a" href={`/grouping/${groupId}/apply`} disabled={isApplyWaited}>
+          <Button
+            onClick={() => router.push(`/grouping/${groupId}/apply`)}
+            disabled={isApplyWaited}
+          >
             {isApplyWaited ? '승인 대기 중' : '모임 가입하기'}
           </Button>
         </ButtonGroup>
