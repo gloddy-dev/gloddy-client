@@ -9,10 +9,10 @@ export default function ServiceHeader() {
       <Header.Left className="px-4">
         <Link href="/profile/setting">
           <IconButton size="large">
-            <Image src="/icons/24/arrow_back.svg" width={24} height={24} alt="back" />
+            <Image src="/icons/24/close.svg" width={24} height={24} alt="back" />
           </IconButton>
         </Link>
-        <p className="text-subtitle-1">개인정보 처리 방침</p>
+        <p className="text-subtitle-1">서비스 이용 약관</p>
       </Header.Left>
     </Header>
   );
