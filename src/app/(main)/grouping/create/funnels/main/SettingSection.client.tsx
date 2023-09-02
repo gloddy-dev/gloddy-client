@@ -1,4 +1,3 @@
-'use client';
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
 import LocationBottomSheet from '../../components/LocationBottomSheet.client';
 import { displayDate } from '../../util';
