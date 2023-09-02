@@ -81,8 +81,12 @@ textarea::-webkit-scrollbar-thumb {
   @apply flex h-32 w-32 items-center justify-center text-paragraph-1 text-sign-secondary;
 }
 
-.react-datepicker .react-datepicker__day:hover {
+.react-datepicker .react-datepicker__day:hover:not(.react-datepicker__day--disabled) {
   @apply flex h-32 w-32 items-center justify-center rounded-full bg-primary-light text-white;
+}
+
+.react-datepicker .react-datepicker__day--disabled {
+  @apply flex h-32 w-32 items-center justify-center text-paragraph-1 text-sign-caption;
 }
 
 .react-datepicker .react-datepicker__day--selected,
