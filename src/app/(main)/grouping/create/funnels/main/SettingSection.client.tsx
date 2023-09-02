@@ -21,7 +21,7 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
         <p className="px-4 text-subtitle-3 text-sign-secondary">모임 일시</p>
         <Spacing size={4} />
         <TextField
-          value={watch('meetDate') ? displayDate(watch('meetDate'), watch('time')) : ''}
+          value={displayDate(watch('meetDate'), watch('time'))}
           placeholder="모임 일시를 설정해주세요."
           rightIcon={
             <Image src="/icons/24/calendar_month.svg" alt="calendar" width={24} height={24} />

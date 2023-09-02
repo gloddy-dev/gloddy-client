@@ -10,10 +10,22 @@ export function getMonthName(monthIndex: number) {
   return months[monthIndex];
 }
 
-export function displayDate(date: Date, time: TimeType) {
+export function displayDate(date: Date | undefined, time: TimeType) {
+  if (
+    !date ||
+    !time.fromHour ||
+    !time.fromMin ||
+    !time.fromAmPm ||
+    !time.toHour ||
+    !time.toMin ||
+    !time.toAmPm
+  ) {
+    return '';
+  }
+
   const year = date.getFullYear();
   const month = getMonthName(date.getMonth());
-  const day = date.getDate();
+  const day = date.getDate().toString().padStart(2, '0');
   const dayName = getDayName(date.getDay());
   return `${year}. ${month}. ${day} ${dayName} ${time.fromHour}:${time.fromMin} ${time.fromAmPm} ~ ${time.toHour}:${time.toMin} ${time.toAmPm}`;
 }

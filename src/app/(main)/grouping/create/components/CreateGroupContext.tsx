@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext } from 'react';
-import { UseFormReturn, useForm } from 'react-hook-form';
+import { type UseFormReturn, useForm } from 'react-hook-form';
 
 import type { CreateGroupContextValue } from '../type';
 import type { StrictPropsWithChildren } from '@/types';

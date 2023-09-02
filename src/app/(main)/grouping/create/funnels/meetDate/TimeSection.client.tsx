@@ -17,13 +17,30 @@ export default function TimeSection({ type }: TimeSectionProps) {
     const t = e.target as HTMLInputElement;
     const value = t.value;
 
-    if (value.length === 2 && (Number(value) > max || Number(value) < min)) {
-      t.value = '';
+    if (/[^0-9]/g.test(value)) {
       return;
     }
 
-    if (value.length >= 3) {
-      t.value = value.slice(0, 2);
+    const isValueValid = Number(value) <= max && Number(value) >= min;
+
+    if (!isValueValid) {
+      const last = value.slice(-1);
+      if (last === '0' && min > 0) {
+        t.value = '';
+        return;
+      }
+
+      t.value = '0' + last;
+      return;
+    }
+
+    if (value.length === 1) {
+      t.value = '0' + value;
+      return;
+    }
+
+    if (value.length === 3) {
+      t.value = value.slice(1);
       return;
     }
   };
@@ -71,12 +88,9 @@ export default function TimeSection({ type }: TimeSectionProps) {
             placeholder="분"
             register={register(`time.${type}Min`, {
               required: true,
-              min: 0,
-              max: 59,
-              valueAsNumber: true,
-              maxLength: 2,
               onChange: (e) => handleTimeChange(e, 0, 59),
             })}
+            maxLength={2}
           />
         </div>
       </Flex>
