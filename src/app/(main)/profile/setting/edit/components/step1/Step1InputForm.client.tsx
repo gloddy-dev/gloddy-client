@@ -71,20 +71,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
       <p className="text-subtitle-3">닉네임</p>
       <Spacing size={4} />
 
-      <TextFieldController
-        as="input"
-        placeholder="닉네임을 입력해주세요."
-        hookForm={hookForm}
-        register={register('name', {
-          required: true,
-          pattern: {
-            value: /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{3,15}$/,
-            message: '* 최소 3글자 이상 15자 이하로 작성해주세요.',
-          },
-        })}
-        leftCaption="* 최소 3글자 이상 15자 이하로 작성해주세요."
-        maxCount={15}
-      />
+      <TextField as="input" value={watch('name')} readOnly />
 
       <Spacing size={8} />
 
