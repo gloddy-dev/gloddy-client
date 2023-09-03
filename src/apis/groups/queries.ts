@@ -11,18 +11,22 @@ import {
 } from './apis';
 import { Keys } from './keys';
 import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@suspensive/react-query';
+import { useMemo } from 'react';
 
 export const useGetGroups = () => {
   const { data, ...rest } = useSuspenseInfiniteQuery(
     Keys.getGroups(),
     ({ pageParam = 0 }) => getGroups(pageParam),
     {
-      getNextPageParam: (lastPage) => lastPage.currentPage + 1,
+      getNextPageParam: (lastPage) =>
+        lastPage.totalPage !== lastPage.currentPage ? lastPage.currentPage + 1 : undefined,
     }
   );
 
+  const mergeData = useMemo(() => data.pages?.flatMap((page) => page.contents), [data.pages]);
+
   return {
-    data: data.pages?.flatMap((page) => page.contents),
+    data: mergeData,
     ...rest,
   };
 };
