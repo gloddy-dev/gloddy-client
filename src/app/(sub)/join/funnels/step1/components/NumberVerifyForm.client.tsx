@@ -1,7 +1,7 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen } from '../util';
-import { LoginResponse, useLoginMutation, useSMSVerifyMutation } from '@/apis/auth';
+import { LoginResponse, useLoginMutation, useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
 import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
@@ -19,12 +19,13 @@ interface NumberVerifyFormProps {
 export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormProps) {
   const router = useRouter();
   const hookForm = useJoinContext();
-  const { handleSubmit, setError, register } = hookForm;
-  const { time } = useTimerContext();
+  const { handleSubmit, setError, register, watch, resetField } = hookForm;
+  const { time, reset, start } = useTimerContext();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
   const { mutate: mutateLogin } = useLoginMutation();
+  const { mutate: mutateSMS } = useSMSMutation();
 
   const handleResend = () => {
     if (time > 120) {
@@ -34,8 +35,22 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
       });
       return;
     }
-    setInputStatus('beforeSend');
+    const phoneNumberWithoutHyphen = watch('phoneNumber').replace(/[-\s]/g, '');
+    mutateSMS(
+      { number: phoneNumberWithoutHyphen },
+      { onSuccess: () => setInputStatus('afterSend') }
+    );
+    resetField('verifyNumber');
+    reset();
+    start();
   };
+
+  if (time === 0) {
+    setError('verifyNumber', {
+      type: 'validate',
+      message: '*인증 시간 초과: 새로운 인증 번호를 요청해주세요!',
+    });
+  }
 
   const onSubmit: SubmitHandler<Pick<SignUpState, 'phoneNumber' | 'verifyNumber'>> = (data) => {
     mutateSMSVerify(
