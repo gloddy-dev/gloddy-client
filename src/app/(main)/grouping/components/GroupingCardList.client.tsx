@@ -3,11 +3,18 @@ import { useGetGroups } from '@/apis/groups';
 import { GroupingCard } from '@/components/Card';
 import { ItemList } from '@/components/List';
 import useIntersect from '@/hooks/useIntersect';
+import { useCallback } from 'react';
 
 export default function GroupingCardList() {
-  const { data, fetchNextPage } = useGetGroups();
+  const { data, fetchNextPage, hasNextPage, isLoading } = useGetGroups();
 
-  const target = useIntersect(fetchNextPage);
+  const onIntersect = useCallback(async () => {
+    if (hasNextPage && !isLoading) {
+      await fetchNextPage();
+    }
+  }, [fetchNextPage, hasNextPage, isLoading]);
+
+  const target = useIntersect(onIntersect);
 
   return (
     <>
