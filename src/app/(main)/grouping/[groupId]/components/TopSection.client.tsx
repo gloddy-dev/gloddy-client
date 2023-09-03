@@ -37,7 +37,7 @@ export default function TopSection() {
         />
         <IconButton
           size="medium"
-          className="absolute bottom-20 right-20 z-10 rounded-full bg-white bg-opacity-[.38]"
+          className="absolute bottom-20 right-20 z-10 rounded-full bg-black bg-opacity-[.38]"
           onClick={handleScrapClick}
         >
           <Image
