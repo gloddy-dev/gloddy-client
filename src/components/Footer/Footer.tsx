@@ -35,7 +35,7 @@ const tabList: TabType[] = [
 ];
 
 interface FooterProps {
-  page: PageType;
+  page?: PageType;
   isSpacing?: boolean;
 }
 
