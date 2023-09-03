@@ -70,9 +70,9 @@ function CommentItem({ comment, articleId, groupId }: CommentItemProps) {
           size="small"
           iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
         />
-        <div className="grow">
+        <div className="grow overflow-hidden">
           <Flex align="center">
-            <p className="text-paragraph-2 text-sign-secondary">{name}</p>
+            <p className="truncate text-paragraph-2 text-sign-secondary">{name}</p>
             <Spacing size={2} direction="horizontal" />
             {isWriterCaptain && (
               <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />

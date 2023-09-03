@@ -39,10 +39,23 @@ export default function GroupingHeader() {
     );
   };
 
+  const handleReportClick = () => {
+    open(
+      <DeleteModal
+        onCancelClick={close}
+        onOkClick={() => {
+          close();
+        }}
+        content="신고하시겠어요?"
+      />
+    );
+  };
+
   const handleMoreClick = () => {
     open(
       <MoreBottomSheet onClose={close}>
-        <MoreBottomSheet.ListItem label="모임 나가기" onClick={handleExitClick} />
+        <MoreBottomSheet.ListItem label="신고하기" onClick={handleReportClick} />
+        {myGroup && <MoreBottomSheet.ListItem label="모임 나가기" onClick={handleExitClick} />}
       </MoreBottomSheet>
     );
   };
@@ -64,7 +77,7 @@ export default function GroupingHeader() {
               <Image src="/icons/24/application.svg" alt="application" width={24} height={24} />
             </IconButton>
           )}
-          {myGroup && !isCaptain && (
+          {!isCaptain && (
             <IconButton size="large" onClick={handleMoreClick}>
               <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
             </IconButton>
