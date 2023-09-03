@@ -33,6 +33,7 @@ export default function LocationBottomSheet({ control, onClose }: LocationBottom
       latitude: '',
       longitude: '',
     });
+
     if (!map || !keyword) {
       setPlaces([]);
       return;
