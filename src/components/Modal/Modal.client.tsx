@@ -11,8 +11,9 @@ export interface ModalProps {
   okDisabled?: boolean;
   onCancelClick?: () => void;
   cancelText?: string;
-  variant?: 'warning' | 'success';
+  variant?: 'warning' | 'success' | 'ok';
   className?: string;
+  okMessage?: string;
 }
 
 const variantMap = {
@@ -35,7 +36,9 @@ export function Modal({
   cancelText = '아니오',
   variant,
   className,
+  okMessage,
 }: StrictPropsWithChildren<ModalProps>) {
+  console.log(okMessage);
   return (
     <ModalWrapper onClose={onCancelClick}>
       <div
@@ -45,7 +48,7 @@ export function Modal({
         )}
       >
         {children}
-        {variant && (
+        {(variant === 'warning' || variant === 'success') && (
           <div className="w-full py-12">
             <Button
               variant={variantMap[variant].ok}
@@ -65,6 +68,11 @@ export function Modal({
             >
               {cancelText}
             </Button>
+          </div>
+        )}
+        {variant === 'ok' && (
+          <div className="w-full py-12">
+            <Button onClick={onOkClick}>{okMessage}</Button>
           </div>
         )}
       </div>
