@@ -52,8 +52,13 @@ export default function TopSection() {
       <div className="px-20">
         <h4 className="text-h4 text-sign-cto">{title}</h4>
         <Spacing size={8} />
-        <div ref={contentRef} className="text-paragraph-2 text-sign-secondary">
-          {showFullText ? content : content.split('\n').slice(0, 6).join('\n')}
+        <div className="overflow-hidden">
+          <div
+            ref={contentRef}
+            className="overflow-hidden break-words text-paragraph-2 text-sign-secondary"
+          >
+            {showFullText ? content : content.split('\n').slice(0, 6).join('\n')}
+          </div>
         </div>
         <Spacing size={4} />
         {shouldShowButton && (
