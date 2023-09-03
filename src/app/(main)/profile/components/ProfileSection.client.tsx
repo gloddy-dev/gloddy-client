@@ -61,7 +61,7 @@ export default function ProfileSection() {
       <Flex className="px-20" direction="column">
         <Flex className="w-full px-4" align="center" justify="start">
           <span className="text-secondary text-subtitle-3">신뢰도 지표 </span>
-          <span className="text-caption text-sign-caption">(22.01.01 가입)</span>
+          {/* <span className="text-caption text-sign-caption">(22.01.01 가입)</span> */}
         </Flex>
         <Spacing size={8} />
         <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
@@ -84,7 +84,7 @@ export default function ProfileSection() {
                 className={cn({ 'opacity-30': reliability !== reliabilityItem.name })}
               >
                 <Image
-                  src={`/icons/16/reliability/${reliabilityItem.name}.svg`}
+                  src={`/icons/16/reliability/${reliabilityItem.name.toLowerCase()}.svg`}
                   width={16}
                   height={16}
                   alt="gloddy"

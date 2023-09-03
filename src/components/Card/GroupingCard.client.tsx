@@ -12,15 +12,24 @@ import type { PropsWithChildren } from 'react';
 
 interface GroupingCardProps {
   groupingData: Grouping;
+
   isNew?: boolean;
   isExistNewApply?: boolean;
   applyId?: number;
   isCaptain?: boolean;
 }
 
+const blueBadge = ['NEW'];
+const warningBadge = ['재학생 인증 필요', '거절됨', '신규 지원'];
+const grayBadge = ['심사중', '모집중'];
+
 export default function GroupingCard({
   groupingData,
   children,
+  isNew,
+  isExistNewApply,
+  applyId,
+  isCaptain,
 }: PropsWithChildren<GroupingCardProps>) {
   const {
     groupId,
@@ -34,6 +43,7 @@ export default function GroupingCard({
     placeAddress,
   } = groupingData;
   const router = useRouter();
+  const status = isNew ? 'NEW' : isExistNewApply ? '신규 지원' : '';
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
@@ -64,6 +74,7 @@ export default function GroupingCard({
             <Spacing size={4} direction="horizontal" />
             {formatMeetingDate(meetDate, startTime)}
           </div>
+          {status && <StatusBadge status={status} />}
         </section>
       </Flex>
       {children}
@@ -112,7 +123,7 @@ function MemberCountBadge({ maxMemeberCount, memberCount }: MemberCountBadgeProp
 }
 
 interface StatusBadgeProps {
-  status: '재학생 인증 필요' | 'NEW' | '심사중' | '거절됨' | '모집중';
+  status: string;
 }
 
 function StatusBadge({ status }: StatusBadgeProps) {
@@ -121,11 +132,9 @@ function StatusBadge({ status }: StatusBadgeProps) {
       className={clsx(
         'absolute right-0 top-2 inline h-22 rounded-4 border-1 px-4 py-2 text-caption',
         {
-          'border-warning bg-warning-color text-warning':
-            status === '재학생 인증 필요' || status === '거절됨',
-          'border-sign-tertiary bg-sub text-sign-tertiary':
-            status === '심사중' || status === '모집중',
-          'border-primary bg-brand-color text-primary': status === 'NEW',
+          'border-warning bg-warning-color text-warning': warningBadge.includes(status),
+          'border-sign-tertiary bg-sub text-sign-tertiary': grayBadge.includes(status),
+          'border-primary bg-brand-color text-primary': blueBadge.includes(status),
         }
       )}
     >
