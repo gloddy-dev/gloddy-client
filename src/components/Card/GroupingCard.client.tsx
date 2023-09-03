@@ -8,15 +8,15 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import type { Grouping } from '@/apis/groups/type';
-import type { PropsWithChildren } from 'react';
+import type { HTMLAttributes, PropsWithChildren } from 'react';
 
-interface GroupingCardProps {
+interface GroupingCardProps extends HTMLAttributes<HTMLDivElement> {
   groupingData: Grouping;
-
   isNew?: boolean;
   isExistNewApply?: boolean;
   applyId?: number;
   isCaptain?: boolean;
+  onClick?: () => void;
 }
 
 const blueBadge = ['NEW'];
@@ -30,6 +30,7 @@ export default function GroupingCard({
   isExistNewApply,
   applyId,
   isCaptain,
+  onClick,
 }: PropsWithChildren<GroupingCardProps>) {
   const {
     groupId,
@@ -47,7 +48,7 @@ export default function GroupingCard({
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
-      <Flex onClick={() => router.push(`/grouping/${groupId}`)} align="center">
+      <Flex onClick={() => onClick || router.push(`/grouping/${groupId}`)} align="center">
         <section className="relative h-96 w-96">
           {imageUrl ? (
             <Image fill src={imageUrl} alt="group" className="rounded-8 object-cover" />

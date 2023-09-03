@@ -1,10 +1,12 @@
 'use client';
+import RejectModal from './RejectModal';
 import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
 import { useGetMeetingRejected, useGetMeetingWaiting } from '@/apis/meeting';
 import { GroupingCard } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
+import { useModal } from '@/hooks/useModal';
 
 export default function WaitingContent() {
   const {
@@ -13,6 +15,8 @@ export default function WaitingContent() {
   const {
     data: { groups: meetingRejectedData },
   } = useGetMeetingRejected();
+
+  const { open } = useModal();
 
   return (
     <>
@@ -36,6 +40,7 @@ export default function WaitingContent() {
           groupingData={groupingData.group}
           key={groupingData.group.groupId}
           applyId={groupingData.applyId}
+          onClick={() => open(<RejectModal applyId={groupingData.applyId} />)}
         />
       ))}
     </>
