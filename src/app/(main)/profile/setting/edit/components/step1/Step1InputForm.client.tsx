@@ -50,7 +50,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
       birth: formatDateDTO(birth),
     };
 
-    mutate(profileData, { onSuccess: () => router.push('/profile/setting') });
+    mutate(profileData);
   };
 
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
