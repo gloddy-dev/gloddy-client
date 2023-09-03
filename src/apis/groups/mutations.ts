@@ -1,6 +1,7 @@
 import {
   deleteArticle,
   deleteComment,
+  deleteGroupMember,
   deleteScrap,
   patchApply,
   postApply,
@@ -144,6 +145,20 @@ export const useDeleteScrap = (groupId: number) => {
 
     onSuccess: () => {
       queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
+    },
+  });
+};
+
+export const useDeleteGroupMember = (groupId: number) => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation(() => deleteGroupMember(groupId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(Keys.getGroups());
+      queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
+      queryClient.invalidateQueries(Keys.getGroupMembers(groupId));
+      router.push('/grouping');
     },
   });
 };
