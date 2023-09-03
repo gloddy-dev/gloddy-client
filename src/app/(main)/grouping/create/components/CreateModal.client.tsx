@@ -5,11 +5,17 @@ import Image from 'next/image';
 interface CreateModalProps {
   onOkClick: () => void;
   onCancelClick: () => void;
+  okDisabled?: boolean;
 }
 
-export default function CreateModal({ onOkClick, onCancelClick }: CreateModalProps) {
+export default function CreateModal({ onOkClick, onCancelClick, okDisabled }: CreateModalProps) {
   return (
-    <Modal variant="warning" onOkClick={onOkClick} onCancelClick={onCancelClick}>
+    <Modal
+      variant="warning"
+      onOkClick={onOkClick}
+      onCancelClick={onCancelClick}
+      okDisabled={okDisabled}
+    >
       <Spacing size={32} />
       <Image src="/icons/48/warning.svg" width={48} height={48} alt="warning" />
       <Spacing size={12} />

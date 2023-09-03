@@ -7,6 +7,7 @@ import { usePostCreateGroup } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
+import { Toast } from '@/components/Modal';
 import { useModal } from '@/hooks/useModal';
 import { format } from 'date-fns';
 
@@ -35,25 +36,48 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
 
   const { mutate: mutateCreateGroup } = usePostCreateGroup();
   const { open: openCreateModal, close: closeCreateModal } = useModal();
+  const { open: openToast } = useModal({
+    delay: 3000,
+  });
 
-  const onSubmit: SubmitHandler<CreateGroupContextValue> = (data) => {
+  const isAllInput = Object.values(hookForm.watch()).every((value) => {
+    if (typeof value === 'object') {
+      return Object.values(value).every((v) => !!v);
+    }
+    return !!value;
+  });
+
+  const onsubmit: SubmitHandler<CreateGroupContextValue> = (data) => {
+    mutateCreateGroup(
+      {
+        placeName: data.place.name,
+        placeAddress: data.place.address,
+        placeLatitude: data.place.latitude,
+        placeLongitude: data.place.longitude,
+        content: data.content,
+        maxUser: data.maxUser,
+        meetDate: format(data.meetDate, 'yyyy-MM-dd'),
+        title: data.title,
+        imageUrl: data.imageUrl,
+        ...formatTime(data.time),
+      },
+      {
+        onError: () => {
+          openToast(<Toast>모임 개설에 실패했습니다.</Toast>);
+        },
+        onSettled: () => {
+          closeCreateModal();
+        },
+      }
+    );
+  };
+
+  const handleCreateClick = () => {
     openCreateModal(
       <CreateModal
         onCancelClick={closeCreateModal}
-        onOkClick={() => {
-          mutateCreateGroup({
-            placeName: data.place.name,
-            placeAddress: data.place.address,
-            placeLatitude: data.place.latitude,
-            placeLongitude: data.place.longitude,
-            content: data.content,
-            maxUser: data.maxUser,
-            meetDate: format(data.meetDate, 'yyyy-MM-dd'),
-            title: data.title,
-            imageUrl: data.imageUrl,
-            ...formatTime(data.time),
-          });
-        }}
+        onOkClick={handleSubmit(onsubmit)}
+        okDisabled={formState.isSubmitting}
       />
     );
   };
@@ -66,10 +90,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
       <SettingSection onSelectMeetDate={onSelectMeetDate} />
       <Spacing size={60} />
       <ButtonGroup>
-        <Button
-          onClick={handleSubmit(onSubmit)}
-          disabled={!formState.isValid || !formState.isDirty}
-        >
+        <Button onClick={handleCreateClick} disabled={!isAllInput}>
           완료
         </Button>
       </ButtonGroup>
