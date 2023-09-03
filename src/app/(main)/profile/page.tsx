@@ -1,6 +1,5 @@
-import IntroduceSection from './components/IntroduceSection.client';
+import ProfileDetail from './components/ProfileDetail.client';
 import ProfileHeader from './components/ProfileHeader.client';
-import ProfileSection from './components/ProfileSection.client';
 import { Keys, getProfile } from '@/apis/profile';
 import { HydrationProvider } from '@/components/common/Provider';
 import { Footer } from '@/components/Footer';
@@ -12,8 +11,7 @@ export default function Profile() {
       <ProfileHeader />
       <QueryAsyncBoundary rejectedFallback={<div>에러</div>} pendingFallback={null}>
         <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
-          <ProfileSection />
-          <IntroduceSection />
+          <ProfileDetail />
         </HydrationProvider>
       </QueryAsyncBoundary>
       <Footer page="profile" />
