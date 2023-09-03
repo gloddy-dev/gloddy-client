@@ -5,11 +5,7 @@ import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { TextFieldController } from '@/components/TextField';
 
-interface TimeSectionProps {
-  type: 'from' | 'to';
-}
-
-export default function TimeSection({ type }: TimeSectionProps) {
+export default function TimeSection() {
   const hookForm = useCreateGroupContext();
   const { watch, setValue, register } = hookForm;
 
@@ -47,15 +43,13 @@ export default function TimeSection({ type }: TimeSectionProps) {
 
   return (
     <section className="p-20">
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">
-        {type === 'from' ? '시작 시간' : '종료 시간'}
-      </p>
+      <p className="pl-4 text-subtitle-3 text-sign-secondary">시작 시간</p>
       <Spacing size={8} />
       <Flex align="center" className="flex-auto">
         <SegmentGroup
-          selectedValue={watch(`time.${type}AmPm`)}
+          selectedValue={watch(`time.fromAmPm`)}
           onChange={(value) => {
-            setValue(`time.${type}AmPm`, value);
+            setValue(`time.fromAmPm`, value);
           }}
           className="shrink-0"
         >
@@ -70,7 +64,7 @@ export default function TimeSection({ type }: TimeSectionProps) {
             type="number"
             hookForm={hookForm}
             placeholder="시간"
-            register={register(`time.${type}Hour`, {
+            register={register(`time.fromHour`, {
               required: true,
               onChange: (e) => handleTimeChange(e, 1, 12),
             })}
@@ -86,7 +80,7 @@ export default function TimeSection({ type }: TimeSectionProps) {
             type="number"
             hookForm={hookForm}
             placeholder="분"
-            register={register(`time.${type}Min`, {
+            register={register(`time.fromMin`, {
               required: true,
               onChange: (e) => handleTimeChange(e, 0, 59),
             })}

@@ -67,6 +67,7 @@ export default function LocationBottomSheet({ control, onClose }: LocationBottom
       title="모임 장소"
       mountPoint={document.getElementById('setting') as HTMLElement}
       isTapOutsideToClose
+      disableDrag
     >
       <TextField
         placeholder="모임 위치를 입력해주세요."
