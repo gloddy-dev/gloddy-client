@@ -38,7 +38,7 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
           onClick={() =>
             openLocation(<LocationBottomSheet onClose={closeLocation} control={control} />)
           }
-          value={watch('placeName')}
+          value={watch('place.name')}
           placeholder="모임 위치를 설정해주세요."
           rightIcon={
             <Image src="/icons/24/location_on.svg" alt="location" width={24} height={24} />
