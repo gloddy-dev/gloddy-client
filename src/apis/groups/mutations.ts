@@ -40,12 +40,14 @@ export const usePostArticle = (groupId: number) => {
 };
 
 export const useDeleteArticle = (groupId: number, articleId: number) => {
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   return useMutation(() => deleteArticle(groupId, articleId), {
     onSuccess: () => {
       queryClient.invalidateQueries(Keys.getArticles(groupId));
       queryClient.invalidateQueries(Keys.getNotice(groupId));
+      router.replace(`/grouping/${groupId}?tab=articles`);
     },
   });
 };
