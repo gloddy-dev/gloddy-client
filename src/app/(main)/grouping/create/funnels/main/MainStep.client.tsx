@@ -86,7 +86,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
       <SettingSection onSelectMeetDate={onSelectMeetDate} />
       <Spacing size={60} />
       <ButtonGroup>
-        <Button onClick={handleCreateClick} disabled={!isAllInput}>
+        <Button onClick={handleCreateClick} disabled={!isAllInput || !formState.isValid}>
           완료
         </Button>
       </ButtonGroup>
