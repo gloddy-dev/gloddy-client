@@ -63,6 +63,10 @@ export const getGroupMembers = (groupId: number) => {
   return privateApi.get<GroupMembersResponse>(`/groups/${groupId}/members`);
 };
 
+export const deleteGroupMember = (groupId: number) => {
+  return privateApi.delete(`/groups/${groupId}/members`);
+};
+
 export const getNotice = (groupId: number) => {
   return privateApi.get<Notice[]>(`/groups/${groupId}/articles/notice`);
 };

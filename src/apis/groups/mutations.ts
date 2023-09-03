@@ -1,6 +1,7 @@
 import {
   deleteArticle,
   deleteComment,
+  deleteGroupMember,
   deleteScrap,
   patchApply,
   postApply,
@@ -20,7 +21,7 @@ export const usePostCreateGroup = () => {
 
   return useMutation(postCreateGroup, {
     onSuccess: (data) => {
-      queryClient.invalidateQueries(Keys.getGroupDetail(data.groupId));
+      queryClient.invalidateQueries(Keys.getGroups());
       router.replace(`/grouping/${data.groupId}`);
     },
   });
@@ -40,12 +41,14 @@ export const usePostArticle = (groupId: number) => {
 };
 
 export const useDeleteArticle = (groupId: number, articleId: number) => {
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   return useMutation(() => deleteArticle(groupId, articleId), {
     onSuccess: () => {
       queryClient.invalidateQueries(Keys.getArticles(groupId));
       queryClient.invalidateQueries(Keys.getNotice(groupId));
+      router.replace(`/grouping/${groupId}?tab=articles`);
     },
   });
 };
@@ -142,6 +145,20 @@ export const useDeleteScrap = (groupId: number) => {
 
     onSuccess: () => {
       queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
+    },
+  });
+};
+
+export const useDeleteGroupMember = (groupId: number) => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation(() => deleteGroupMember(groupId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(Keys.getGroups());
+      queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
+      queryClient.invalidateQueries(Keys.getGroupMembers(groupId));
+      router.push('/grouping');
     },
   });
 };

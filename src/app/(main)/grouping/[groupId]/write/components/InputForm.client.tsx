@@ -47,7 +47,7 @@ export default function InputForm() {
         <TextFieldController
           as="textarea"
           hookForm={hookForm}
-          register={register('content', { required: true })}
+          register={register('content', { required: true, maxLength: 300 })}
           placeholder="최소 20글자 이상의 게시글을 작성해보세요."
           maxCount={300}
           className="h-full"

@@ -55,9 +55,9 @@ export default function ArticleItem({
           size="small"
           iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
         />
-        <div className="grow">
+        <div className="grow overflow-hidden">
           <Flex align="center">
-            <p className="text-paragraph-2 text-sign-secondary">{name}</p>
+            <p className="truncate text-paragraph-2 text-sign-secondary">{name}</p>
             <Spacing size={2} direction="horizontal" />
             {isWriterCaptain && (
               <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />
@@ -72,7 +72,6 @@ export default function ArticleItem({
           </Flex>
           <p className="text-caption text-sign-tertiary">{date}</p>
         </div>
-        {/* TODO: 내 게시글 여부 api 추가 시 변경 */}
         {(isWriter || isCaptain) && !isArticleDetailPage && (
           <Image
             src="/icons/24/more_secondary.svg"

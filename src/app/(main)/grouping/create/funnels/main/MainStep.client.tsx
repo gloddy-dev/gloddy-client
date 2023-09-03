@@ -18,12 +18,8 @@ import type { SubmitHandler } from 'react-hook-form';
 function formatTime(time: TimeType) {
   time.fromHour =
     time.fromAmPm === 'AM' ? time.fromHour : ((Number(time.fromHour) + 12) % 24).toString();
-  time.toHour = time.toAmPm === 'AM' ? time.toHour : ((Number(time.toHour) + 12) % 24).toString();
 
-  return {
-    startTime: time.fromHour.padStart(2, '0') + ':' + time.fromMin.padStart(2, '0'),
-    endTime: time.toHour.padStart(2, '0') + ':' + time.toMin.padStart(2, '0'),
-  };
+  return time.fromHour.padStart(2, '0') + ':' + time.fromMin.padStart(2, '0');
 }
 
 interface MainStepProps {
@@ -59,7 +55,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
         meetDate: format(data.meetDate, 'yyyy-MM-dd'),
         title: data.title,
         imageUrl: data.imageUrl,
-        ...formatTime(data.time),
+        startTime: formatTime(data.time),
       },
       {
         onError: () => {
@@ -90,7 +86,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
       <SettingSection onSelectMeetDate={onSelectMeetDate} />
       <Spacing size={60} />
       <ButtonGroup>
-        <Button onClick={handleCreateClick} disabled={!isAllInput}>
+        <Button onClick={handleCreateClick} disabled={!isAllInput || !formState.isValid}>
           완료
         </Button>
       </ButtonGroup>
