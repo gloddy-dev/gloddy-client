@@ -42,10 +42,10 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
         onCancelClick={closeCreateModal}
         onOkClick={() => {
           mutateCreateGroup({
-            placeName: '스타벅스 천호로데오점',
-            placeAddress: '서울 강동구 천호대로 1037',
-            placeLatitude: '37.53777',
-            placeLongitude: '127.12722',
+            placeName: data.place.name,
+            placeAddress: data.place.address,
+            placeLatitude: data.place.latitude,
+            placeLongitude: data.place.longitude,
             content: data.content,
             maxUser: data.maxUser,
             meetDate: format(data.meetDate, 'yyyy-MM-dd'),

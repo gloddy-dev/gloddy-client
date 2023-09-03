@@ -21,19 +21,18 @@ export default function LocationBottomSheet({ control, onClose }: LocationBottom
   const [snapPoints, setSnapPoints] = useState<number[]>([500, 0]);
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
 
-  const { field: placeNameField, fieldState: placeNameState } = useController({
-    name: 'placeName',
-    control,
-  });
-
-  const { field: placeAddressField, fieldState: placeAddressState } = useController({
-    name: 'placeAddress',
+  const { field, fieldState } = useController({
+    name: 'place',
     control,
   });
 
   useEffect(() => {
-    placeAddressField.onChange('');
-    placeNameField.onChange('');
+    field.onChange({
+      name: '',
+      address: '',
+      latitude: '',
+      longitude: '',
+    });
     if (!map || !keyword) {
       setPlaces([]);
       return;
@@ -49,12 +48,16 @@ export default function LocationBottomSheet({ control, onClose }: LocationBottom
   }, [map, keyword]);
 
   useEffect(() => {
-    if (placeNameField.value && placeAddressField.value) {
+    if (places.length === 0) {
+      setSnapPoints([240, 0]);
+      return;
+    }
+    if (fieldState.isDirty) {
       setSnapPoints([330, 0]);
       return;
     }
     setSnapPoints([500, 0]);
-  }, [placeNameField.value, placeAddressField.value]);
+  }, [fieldState.isDirty, places]);
 
   return (
     <BottomSheet
@@ -79,12 +82,10 @@ export default function LocationBottomSheet({ control, onClose }: LocationBottom
         className="hidden"
       />
       <div className="scrollbar h-full overflow-hidden overflow-y-scroll">
-        {placeNameField.value && placeAddressField.value ? (
-          <Flex direction="column" className="gap-2 rounded-8 bg-divider p-16">
-            <p className="text-subtitle-2">{placeNameField.value}</p>
-            <p className="truncate text-paragraph-2 text-sign-secondary">
-              {placeAddressField.value}
-            </p>
+        {fieldState.isDirty ? (
+          <Flex direction="column" className="gap-2 overflow-hidden rounded-8 bg-divider p-16">
+            <p className="truncate text-subtitle-2">{field.value.name}</p>
+            <p className="truncate text-paragraph-2 text-sign-secondary">{field.value.address}</p>
           </Flex>
         ) : (
           <ItemList
@@ -92,10 +93,14 @@ export default function LocationBottomSheet({ control, onClose }: LocationBottom
             renderItem={(place) => (
               <LocationItem
                 place={place}
-                onSelect={(place) => {
-                  placeNameField.onChange(place.place_name);
-                  placeAddressField.onChange(place.address_name);
-                }}
+                onSelect={(place) =>
+                  field.onChange({
+                    name: place.place_name,
+                    address: place.address_name,
+                    latitude: place.y,
+                    longitude: place.x,
+                  })
+                }
               />
             )}
             hasDivider={false}
@@ -105,7 +110,7 @@ export default function LocationBottomSheet({ control, onClose }: LocationBottom
       </div>
 
       <ButtonGroup>
-        <Button onClick={onClose} disabled={!placeNameState.isDirty || !placeAddressState.isDirty}>
+        <Button onClick={onClose} disabled={!fieldState.isDirty}>
           완료
         </Button>
       </ButtonGroup>

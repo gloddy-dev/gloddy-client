@@ -22,10 +22,12 @@ export default function CreateGroupContextProvider({ children }: StrictPropsWith
         toMin: '',
         toAmPm: 'AM',
       },
-      placeName: '',
-      placeAddress: '',
-      placeLatitude: undefined,
-      placeLongitude: undefined,
+      place: {
+        name: '',
+        address: '',
+        latitude: '',
+        longitude: '',
+      },
       maxUser: 3,
     },
   });
