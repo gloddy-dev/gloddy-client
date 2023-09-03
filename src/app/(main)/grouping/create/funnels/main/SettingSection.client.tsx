@@ -13,10 +13,10 @@ interface SettingSectionProps {
 
 export default function SettingSection({ onSelectMeetDate }: SettingSectionProps) {
   const { open: openLocation, close: closeLocation } = useModal();
-  const { watch, setValue } = useCreateGroupContext();
+  const { watch, setValue, control } = useCreateGroupContext();
 
   return (
-    <section>
+    <section id="setting">
       <section className="px-20 pb-8 pt-20">
         <p className="px-4 text-subtitle-3 text-sign-secondary">모임 일시</p>
         <Spacing size={4} />
@@ -35,7 +35,9 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
         <p className="px-4 text-subtitle-3 text-sign-secondary">모임 위치</p>
         <Spacing size={4} />
         <TextField
-          onClick={() => openLocation(<LocationBottomSheet onClose={closeLocation} />)}
+          onClick={() =>
+            openLocation(<LocationBottomSheet onClose={closeLocation} control={control} />)
+          }
           value={watch('placeName')}
           placeholder="모임 위치를 설정해주세요."
           rightIcon={
