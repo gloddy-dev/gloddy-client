@@ -4,6 +4,9 @@ import type { MatesResponse, PraisesResponse, ProfileRequest, ProfileResponse } 
 
 export const getProfile = () => privateApi.get<ProfileResponse>('/me/page');
 
+export const getProfileById = (userId: number) =>
+  privateApi.get<ProfileResponse>(`/users/${userId}/me/page`);
+
 export const getPraises = () => privateApi.get<PraisesResponse>('/me/praises');
 
 export const patchProfile = (profileData: ProfileRequest) =>
