@@ -1,4 +1,5 @@
 import ProfileByIdDetail from './components/ProfileByIdDetail.client';
+import ProfileByIdHeader from './components/ProfileByIdHeader';
 import { Keys, getProfileById } from '@/apis/profile';
 import { HydrationProvider } from '@/components/common/Provider';
 import { Suspense } from 'react';
@@ -18,6 +19,7 @@ export default function page({ params }: PageProps) {
         queryFn={() => getProfileById(userId)}
         queryKey={Keys.getProfileById(userId)}
       >
+        <ProfileByIdHeader />
         <ProfileByIdDetail />
       </HydrationProvider>
     </Suspense>
