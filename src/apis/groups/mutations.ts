@@ -20,7 +20,7 @@ export const usePostCreateGroup = () => {
 
   return useMutation(postCreateGroup, {
     onSuccess: (data) => {
-      queryClient.invalidateQueries(Keys.getGroupDetail(data.groupId));
+      queryClient.invalidateQueries(Keys.getGroups());
       router.replace(`/grouping/${data.groupId}`);
     },
   });
