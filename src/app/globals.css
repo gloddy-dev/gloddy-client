@@ -13,6 +13,7 @@
   white-space: pre-wrap;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 input[type='number']::-webkit-outer-spin-button,
@@ -81,7 +82,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .react-datepicker .react-datepicker__day:hover:not(.react-datepicker__day--disabled) {
-  @apply flex h-32 w-32 items-center justify-center rounded-full bg-primary-light text-white;
+  @apply flex h-32 w-32 items-center justify-center rounded-full bg-primary text-white;
 }
 
 .react-datepicker .react-datepicker__day--disabled {
@@ -94,7 +95,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .react-datepicker .react-datepicker__day--selected:hover {
-  @apply flex h-32 w-32 items-center justify-center rounded-full bg-primary-light text-white;
+  @apply flex h-32 w-32 items-center justify-center rounded-full bg-primary text-white;
 }
 
 .react-datepicker .react-datepicker__triangle {

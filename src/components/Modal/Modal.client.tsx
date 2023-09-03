@@ -8,6 +8,7 @@ import cn from '@/utils/cn';
 export interface ModalProps {
   onOkClick?: () => void;
   okText?: string;
+  okDisabled?: boolean;
   onCancelClick?: () => void;
   cancelText?: string;
   variant?: 'warning' | 'success';
@@ -29,6 +30,7 @@ export function Modal({
   children,
   onOkClick,
   okText = '네',
+  okDisabled = false,
   onCancelClick,
   cancelText = '아니오',
   variant,
@@ -50,6 +52,7 @@ export function Modal({
               className="w-full"
               size="small"
               onClick={onOkClick}
+              disabled={okDisabled}
             >
               {okText}
             </Button>

@@ -44,7 +44,7 @@ export default function Footer({ page, isSpacing = true }: FooterProps) {
 
   return (
     <>
-      <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 rounded-t-24 bg-white pb-8 pt-12 shadow-navigation">
+      <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 touch-pan-x rounded-t-24 bg-white pb-8 pt-12 shadow-navigation">
         {tabList.map((tab: TabType) => (
           <Link
             href={tab.url}
