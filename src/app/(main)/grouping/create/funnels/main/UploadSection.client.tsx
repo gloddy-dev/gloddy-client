@@ -1,23 +1,14 @@
 'use client';
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
-import { usePostFiles } from '@/apis/common';
 import { Flex } from '@/components/Layout';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import Image from 'next/image';
 
 export default function UploadSection() {
   const { watch, setValue } = useCreateGroupContext();
-  const { mutate: mutatePostFiles } = usePostFiles();
 
-  const { handleFileUploadClick } = useFileUpload((files: File[]) => {
-    mutatePostFiles(
-      { fileList: files },
-      {
-        onSuccess: ({ fileUrlList }) => {
-          setValue('imageUrl', fileUrlList[0]);
-        },
-      }
-    );
+  const { handleFileUploadClick } = useFileUpload((files) => {
+    setValue('imageUrl', files[0]);
   });
 
   return (
