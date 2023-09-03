@@ -18,9 +18,6 @@ export default function CreateGroupContextProvider({ children }: StrictPropsWith
         fromHour: '',
         fromMin: '',
         fromAmPm: 'AM',
-        toHour: '',
-        toMin: '',
-        toAmPm: 'AM',
       },
       place: {
         name: '',
