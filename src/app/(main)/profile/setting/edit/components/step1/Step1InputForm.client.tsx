@@ -29,7 +29,6 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
   const { control, watch, handleSubmit, setValue, register, formState } = hookForm;
   const birth = watch('birth');
   const personalities = watch('personalities');
-  const imageUrl = watch('imageUrl');
 
   const {
     field: { value, onChange },
@@ -60,7 +59,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-20">
       <Flex justify="center">
         <Avatar
-          imageUrl={imageUrl}
+          imageUrl={value}
           size="large"
           iconVariant="draft_orders"
           onClick={handleFileUploadClick}
