@@ -6,9 +6,11 @@ export interface CreateGroupContextValue {
   content: string;
   meetDate: Date;
   time: TimeType;
-  placeName: string;
-  placeAddress: string;
-  placeLatitude: number;
-  placeLongitude: number;
+  place: {
+    name: string;
+    address: string;
+    latitude: string;
+    longitude: string;
+  };
   maxUser: number;
 }
