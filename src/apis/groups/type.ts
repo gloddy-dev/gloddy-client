@@ -65,7 +65,6 @@ export interface CreateGroupRequest {
   content: string;
   meetDate: string;
   startTime: string;
-  endTime: string;
   placeName: string;
   placeAddress: string;
   placeLatitude: string;

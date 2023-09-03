@@ -13,9 +13,6 @@ export interface TimeType {
   fromHour: string;
   fromMin: string;
   fromAmPm: AMPMType;
-  toHour: string;
-  toMin: string;
-  toAmPm: AMPMType;
 }
 
 export type DateType = {
