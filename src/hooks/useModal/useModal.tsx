@@ -1,6 +1,5 @@
 'use client';
 import { useModalContext } from './ModalProvider';
-import { useDidUnMount } from '../common/useDidUnMount';
 import { ReactElement, useState } from 'react';
 
 let elementId = 1;
