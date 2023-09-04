@@ -19,10 +19,7 @@ export default function FeedbackSection() {
   return (
     <Funnel>
       <Funnel.Step name="1">
-        <FeedbackHeader
-          message="모임 평가하기"
-          onPrevClick={() => router.push('/meeting/participate')}
-        />
+        <FeedbackHeader message="모임 평가하기" />
         <Step1 onNextClick={nextStep} />
       </Funnel.Step>
       <Funnel.Step name="2">
