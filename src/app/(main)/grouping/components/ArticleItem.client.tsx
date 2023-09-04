@@ -1,14 +1,10 @@
 'use client';
-import ArticleItemModal from './WarningModal.client';
-import WarningModal from './WarningModal.client';
-import { useDeleteArticle } from '@/apis/groups';
-import { Avatar } from '@/components/Avatar';
+
+import { useMoreSheet } from '../hooks/useMoreSheet';
 import { Button } from '@/components/Button';
-import CardHeader from '@/components/Card/CardHeader.client';
+import { CardHeader } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
-import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
-import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -27,21 +23,19 @@ export default function ArticleItem({
   groupId,
   isArticleDetailPage = false,
 }: ArticleItemProps) {
-  const { content, articleId, commentCount, images } = article;
-
+  const { content, articleId, commentCount, images, isWriter } = article;
+  const { handleMoreClick } = useMoreSheet({
+    type: 'article',
+    isWriter,
+    isCaptain,
+    groupId,
+    articleId,
+  });
   const pathname = usePathname();
 
   return (
     <div className="mx-20 mb-24 mt-16 px-4">
-      <CardHeader
-        type="article"
-        groupId={groupId}
-        isCaptain={isCaptain}
-        showMoreIcon={!isArticleDetailPage}
-        onOkReportClick={close}
-        onOkBlockClick={close}
-        {...article}
-      />
+      <CardHeader showMoreIcon={!isArticleDetailPage} onMoreClick={handleMoreClick} {...article} />
       <Spacing size={16} />
       <div className="break-words text-paragraph-1 text-sign-primary">{content}</div>
       {images.length > 0 && (

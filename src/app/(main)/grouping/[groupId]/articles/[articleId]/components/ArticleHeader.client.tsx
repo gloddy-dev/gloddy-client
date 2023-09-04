@@ -1,9 +1,8 @@
 'use client';
-import { useDeleteArticle, useGetArticle, useGetGroupDetail } from '@/apis/groups';
-import WarningModal from '@/app/(main)/grouping/components/WarningModal.client';
+import { useGetArticle, useGetGroupDetail } from '@/apis/groups';
+import { useMoreSheet } from '@/app/(main)/grouping/hooks/useMoreSheet';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
-import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -12,33 +11,17 @@ export default function ArticleHeader() {
   const { groupId, articleId } = useNumberParams<['groupId', 'articleId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { data: articleData } = useGetArticle(groupId, articleId);
-  const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
   const router = useRouter();
 
-  const { open, close } = useModal();
-
-  const { isCaptain } = groupDetailData;
   const { isWriter, notice } = articleData;
-
-  const handleMoreClick = () => {
-    open(
-      <WarningModal
-        onCancelClick={close}
-        onOkClick={() =>
-          mutateDeleteArticle(
-            {
-              articleId,
-              groupId,
-            },
-            {
-              onSettled: close,
-            }
-          )
-        }
-        content={`해당 ${notice ? '공지글' : '게시글'}을 삭제하시겠습니까?`}
-      />
-    );
-  };
+  const { isCaptain } = groupDetailData;
+  const { handleMoreClick } = useMoreSheet({
+    type: notice ? 'notice' : 'article',
+    isWriter,
+    isCaptain,
+    groupId,
+    articleId,
+  });
 
   return (
     <Header className="px-4">
