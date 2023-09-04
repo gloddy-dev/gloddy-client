@@ -1,6 +1,6 @@
 'use client';
 import cn from '@/utils/cn';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import {
@@ -14,6 +14,7 @@ import {
 import type { StrictPropsWithChildren } from '@/types';
 
 export default function Tabs({ children }: StrictPropsWithChildren) {
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;
 }
 
