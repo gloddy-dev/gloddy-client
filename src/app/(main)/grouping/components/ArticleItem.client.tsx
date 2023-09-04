@@ -1,5 +1,5 @@
 'use client';
-import ArticleItemModal from './DeleteModal.client';
+import ArticleItemModal from './WarningModal.client';
 import { useDeleteArticle } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
@@ -40,11 +40,18 @@ export default function ArticleItem({
 
   const pathname = usePathname();
   const { open, close } = useModal();
-  const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId, articleId);
+  const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
 
   const handleDeleteClick = () => {
-    mutateDeleteArticle();
-    close();
+    mutateDeleteArticle(
+      {
+        articleId,
+        groupId,
+      },
+      {
+        onSettled: close,
+      }
+    );
   };
 
   return (
@@ -91,7 +98,7 @@ export default function ArticleItem({
         )}
       </Flex>
       <Spacing size={16} />
-      <div className="text-paragraph-1 text-sign-primary">{content}</div>
+      <div className="break-words text-paragraph-1 text-sign-primary">{content}</div>
       {images.length > 0 && (
         <Flex className="my-16 h-160 gap-4 overflow-x-scroll">
           {images.map((imageUrl, index) => (

@@ -24,7 +24,7 @@ export default function CommentForm() {
   const { register, handleSubmit } = hookForm;
 
   const onSubmit = ({ content }: CommentFormType) => {
-    mutateComment({ content, groupId, articleId });
+    mutateComment({ params: { articleId, groupId }, content });
     hookForm.reset();
   };
 

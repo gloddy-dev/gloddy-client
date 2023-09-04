@@ -1,6 +1,6 @@
 'use client';
 
-import DeleteModal from '../../components/DeleteModal.client';
+import WarningModal from '../../components/WarningModal.client';
 import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
@@ -22,10 +22,10 @@ export default function GroupingHeader() {
 
   const handleExitClick = () => {
     openExitGroup(
-      <DeleteModal
+      <WarningModal
         onCancelClick={closeExitGroup}
         onOkClick={() => {
-          mutateExitGroup();
+          mutateExitGroup({ groupId }, { onSettled: closeExitGroup });
         }}
         content="모임에서 나가시겠어요?"
         description={
@@ -40,15 +40,7 @@ export default function GroupingHeader() {
   };
 
   const handleReportClick = () => {
-    open(
-      <DeleteModal
-        onCancelClick={close}
-        onOkClick={() => {
-          close();
-        }}
-        content="신고하시겠어요?"
-      />
-    );
+    open(<WarningModal onCancelClick={close} onOkClick={close} content="신고하시겠어요?" />);
   };
 
   const handleMoreClick = () => {

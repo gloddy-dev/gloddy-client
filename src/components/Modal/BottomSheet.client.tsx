@@ -1,3 +1,4 @@
+'use client';
 import { IconButton } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { Header } from '../Header';
