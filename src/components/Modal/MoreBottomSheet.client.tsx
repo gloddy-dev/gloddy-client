@@ -1,4 +1,4 @@
-import BottomSheet from './BottomSheet';
+import BottomSheet from './BottomSheet.client';
 import { Flex } from '../Layout';
 import { Children, isValidElement } from 'react';
 
@@ -17,7 +17,12 @@ export default function MoreBottomSheet({
   );
 
   return (
-    <BottomSheet onClose={onClose} snapPoints={[68 + validChildren.length * 48 + 16, 0]}>
+    <BottomSheet
+      onClose={onClose}
+      snapPoints={[68 + validChildren.length * 48 + 16, 0]}
+      isTapOutsideToClose
+      disableDrag
+    >
       <Flex direction="column" className="h-full pb-16">
         {children}
       </Flex>

@@ -1,7 +1,7 @@
 'use client';
 
 import { type Comment, useDeleteComment, useGetComments } from '@/apis/groups';
-import DeleteModal from '@/app/(main)/grouping/components/DeleteModal.client';
+import WarningModal from '@/app/(main)/grouping/components/WarningModal.client';
 import { Avatar } from '@/components/Avatar';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
@@ -55,11 +55,19 @@ function CommentItem({ comment, articleId, groupId }: CommentItemProps) {
   } = comment;
 
   const { open, close } = useModal();
-  const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId, commentId);
+  const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId);
 
   const handleDeleteClick = () => {
-    mutateDeleteComment();
-    close();
+    mutateDeleteComment(
+      {
+        commentId,
+        groupId,
+        articleId,
+      },
+      {
+        onSettled: close,
+      }
+    );
   };
 
   return (
@@ -94,7 +102,7 @@ function CommentItem({ comment, articleId, groupId }: CommentItemProps) {
             height={24}
             onClick={() =>
               open(
-                <DeleteModal
+                <WarningModal
                   content="해당 댓글을 삭제하시겠습니까?"
                   onOkClick={handleDeleteClick}
                   onCancelClick={close}
@@ -105,7 +113,7 @@ function CommentItem({ comment, articleId, groupId }: CommentItemProps) {
         )}
       </Flex>
       <Spacing size={8} />
-      <div className="text-paragraph-2 text-sign-primary">{content}</div>
+      <div className="break-words text-paragraph-2 text-sign-primary">{content}</div>
     </Flex>
   );
 }
