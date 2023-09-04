@@ -1,5 +1,6 @@
 import { postReissue } from './apis/auth';
 import { AUTH_KEYS } from './constants/token';
+import { currentKoreaTime, oneDay } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
 
 const privatePages = /^\/(grouping|meeting|profile)/;
@@ -19,11 +20,12 @@ const middleware = async (request: NextRequest) => {
         { headers: { 'X-AUTH-TOKEN': accessToken } }
       );
       const response = NextResponse.next();
+
       response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken, {
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
+        expires: new Date(currentKoreaTime.getTime() + oneDay),
       });
       response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
+        expires: new Date(currentKoreaTime.getTime() + oneDay * 60),
       });
 
       return response;
