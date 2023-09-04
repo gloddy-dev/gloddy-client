@@ -1,9 +1,9 @@
 'use client';
 
 import FeedbackHeader from './FeedbackHeader';
-import Step1 from './Step1';
-import Step2 from './Step2';
-import Step3 from './Step3';
+import Step1 from '../funnels/step1/Step1';
+import Step2 from '../funnels/step2/Step2';
+import Step3 from '../funnels/step3/Step3';
 import { useFunnel } from '@/hooks/useFunnel';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useRouter } from 'next/navigation';
@@ -19,10 +19,7 @@ export default function FeedbackSection() {
   return (
     <Funnel>
       <Funnel.Step name="1">
-        <FeedbackHeader
-          message="모임 평가하기"
-          onPrevClick={() => router.push('/meeting/participate')}
-        />
+        <FeedbackHeader message="모임 평가하기" />
         <Step1 onNextClick={nextStep} />
       </Funnel.Step>
       <Funnel.Step name="2">
