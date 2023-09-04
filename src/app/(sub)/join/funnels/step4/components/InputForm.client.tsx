@@ -2,12 +2,13 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import BirthdayBottomSheet from '@/app/(sub)/join/funnels/step4/components/BirthdayBottomSheet.client';
+import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
-import ImageFrame from '@/components/common/ImageFrame';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { TextField, TextFieldController } from '@/components/TextField';
+import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
 
 export default function InputForm() {
@@ -28,12 +29,21 @@ export default function InputForm() {
     nextStep();
   };
 
+  const { handleFileUploadClick } = useFileUpload((files) => setValue('imageUrl', files[0]));
+
   const birth = watch('birth');
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)}>
-      <ImageFrame setImageUrl={(imageUrl: string) => setValue('imageUrl', imageUrl)} />
+      <Flex className="py-20" justify="center">
+        <Avatar
+          imageUrl={watch('imageUrl') || ''}
+          size="large"
+          iconVariant="add"
+          onClick={handleFileUploadClick}
+        />
+      </Flex>
 
       <p className="text-subtitle-3">닉네임</p>
       <Spacing size={4} />
