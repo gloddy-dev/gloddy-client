@@ -1,5 +1,6 @@
 'use client';
 
+import { AnimatePresence } from 'framer-motion';
 import React, {
   PropsWithChildren,
   ReactNode,
@@ -48,9 +49,11 @@ export default function ModalProvider({ children }: PropsWithChildren) {
   return (
     <ModalContext.Provider value={context}>
       {children}
-      {Array.from(modalMap.entries()).map(([id, element]) => (
-        <React.Fragment key={id}>{element}</React.Fragment>
-      ))}
+      <AnimatePresence>
+        {Array.from(modalMap.entries()).map(([id, element]) => (
+          <React.Fragment key={id}>{element}</React.Fragment>
+        ))}
+      </AnimatePresence>
     </ModalContext.Provider>
   );
 }
