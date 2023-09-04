@@ -1,3 +1,4 @@
+import { useFeedbackContext } from './FeedbackProvider.client';
 import TitleSection from './TitleSection';
 import { EstimateResponse } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
@@ -14,7 +15,7 @@ interface Step2Props {
 export default function Step2({ onNextClick }: Step2Props) {
   return (
     <div>
-      <TitleSection message="최괴의 짝꿍은 누구였나요?" step={2} />
+      <TitleSection message="최고의 짝꿍은 누구였나요?" step={2} />
       <Divider thickness="thick" />
       {DUMMY_DATA_ESTIMATE.groupMemberList.map((member, index) => (
         <MemberCard member={member} key={index} />
@@ -31,7 +32,10 @@ interface MemberCardProps {
 }
 
 function MemberCard({ member }: MemberCardProps) {
-  const { imageUrl, name } = member;
+  const { imageUrl, name, userId } = member;
+  const { setValue, watch } = useFeedbackContext();
+  console.log(watch('mateInfo.userId'));
+
   return (
     <section className="px-20">
       <Spacing size={12} />
@@ -42,7 +46,10 @@ function MemberCard({ member }: MemberCardProps) {
           <p className="text-paragraph-1">{name}</p>
           <p className="text-caption text-sign-tertiary">{name}</p>
         </Flex>
-        <CircleCheckbox />
+        <CircleCheckbox
+          onClick={() => setValue('mateInfo.userId', userId)}
+          checked={watch('mateInfo.userId') === userId}
+        />
       </Flex>
       <Spacing size={12} />
       <Divider />
