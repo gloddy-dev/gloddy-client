@@ -1,3 +1,4 @@
+import { useFeedbackContext } from './FeedbackProvider.client';
 import TitleSection from './TitleSection';
 import { EstimateResponse } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
@@ -30,8 +31,9 @@ interface MemberCardProps {
 
 function MemberCard({ member }: MemberCardProps) {
   const { imageUrl, name } = member;
-  const hookForm = useForm({ defaultValues: { feedback: '' } });
+  const hookForm = useFeedbackContext();
   const { register } = hookForm;
+
   return (
     <section className="px-20">
       <Flex align="center">
@@ -46,7 +48,7 @@ function MemberCard({ member }: MemberCardProps) {
       <TextFieldController
         as="textarea"
         hookForm={hookForm}
-        register={register('feedback')}
+        register={register('mateInfo.selectionReason', { maxLength: 100 })}
         placeholder="최고의 짝꿍에게 후기를 남겨주세요."
         maxCount={100}
       />
