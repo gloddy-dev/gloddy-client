@@ -14,7 +14,6 @@ export default function FeedbackHeader({ message, onPrevClick }: FeedbackHeaderP
         <IconButton size="large" onClick={onPrevClick}>
           <Image src="/icons/24/arrow_back.svg" width={24} height={24} alt="back" />
         </IconButton>
-
         <p>{message}</p>
       </Header.Left>
     </Header>
