@@ -36,9 +36,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
     mutatePatchApply(
       { groupId, applyId, status: 'APPROVE' },
       {
-        onSuccess: () => {
-          close();
-        },
+        onSettled: close,
       }
     );
   };
@@ -47,9 +45,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
     mutatePatchApply(
       { groupId, applyId, status: 'REFUSE' },
       {
-        onSuccess: () => {
-          close();
-        },
+        onSettled: close,
       }
     );
   };
