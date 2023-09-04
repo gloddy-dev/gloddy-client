@@ -20,8 +20,10 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
   const handleDeleteClick = () => {
     mutateDeleteArticle(
       {
-        articleId: noticeId,
-        groupId,
+        params: {
+          articleId: noticeId,
+          groupId,
+        },
       },
       {
         onSettled: close,

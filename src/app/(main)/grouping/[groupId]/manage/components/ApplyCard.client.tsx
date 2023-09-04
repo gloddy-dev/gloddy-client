@@ -34,7 +34,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
 
   const handleApproveClick = () => {
     mutatePatchApply(
-      { groupId, applyId, status: 'APPROVE' },
+      { params: { groupId, applyId, status: 'APPROVE' } },
       {
         onSettled: close,
       }
@@ -43,7 +43,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
 
   const handleRefuseClick = () => {
     mutatePatchApply(
-      { groupId, applyId, status: 'REFUSE' },
+      { params: { groupId, applyId, status: 'REFUSE' } },
       {
         onSettled: close,
       }
