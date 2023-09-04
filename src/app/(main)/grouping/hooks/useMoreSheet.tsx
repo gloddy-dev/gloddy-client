@@ -40,7 +40,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
   const handleDeleteClick = () => {
     if (type === 'article' || type === 'notice') {
       mutateDeleteArticle(
-        { groupId, articleId },
+        { params: { groupId, articleId } },
         {
           onSettled: () => {
             closeItemModal();
@@ -51,7 +51,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
     } else {
       if (!commentId) throw new Error('commentId is undefined');
       mutateDeleteComment(
-        { groupId, articleId, commentId },
+        { params: { groupId, articleId, commentId } },
         {
           onSettled: () => {
             closeItemModal();
