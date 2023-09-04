@@ -320,14 +320,17 @@ export const DUMMY_DATA_ESTIMATE: EstimateResponse = {
     {
       imageUrl: '/public/images/dummy_avatar.png',
       name: '김지수',
+      userId: 1,
     },
     {
       imageUrl: '/public/images/dummy_avatar.png',
       name: '김지하',
+      userId: 2,
     },
     {
       imageUrl: '/public/images/dummy_avatar.png',
       name: '김지상',
+      userId: 3,
     },
   ],
 };
