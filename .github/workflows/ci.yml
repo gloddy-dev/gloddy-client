@@ -27,9 +27,9 @@ jobs:
         with:
           node-version: ${{ env.DEFAULT_NODE_VERSION }}
 
-    - name: Compute dependency cache key
-      id: compute_lockfile_hash
-      run: echo "::set-output name=hash::${{ hashFiles('yarn.lock') }}"
+      - name: Compute dependency cache key
+        id: compute_lockfile_hash
+        run: echo "::set-output name=hash::${{ hashFiles('yarn.lock') }}"
 
       - name: Check dependency cache
         uses: actions/cache@v3
@@ -99,10 +99,6 @@ jobs:
       - name: Check Lint
         if: github.event_name != 'push'
         run: yarn lint
-
-      # - name: Check Unit Test
-      #   if: github.event_name != 'push'
-      #   run: yarn test
 
       - name : Run Prettier
         if: github.event_name != 'push'
