@@ -1,6 +1,6 @@
-import { useFeedbackContext } from './FeedbackProvider.client';
 import NoShowModal from './NoShowModal.client';
-import TitleSection from './TitleSection';
+import { useFeedbackContext } from '../../components/FeedbackProvider.client';
+import TitleSection from '../../components/TitleSection';
 import { EstimateResponse } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';

@@ -1,4 +1,4 @@
-import FeedbackOutModal from './FeedbackOutModal.client';
+import FeedbackOutModal from '../funnels/step1/FeedbackOutModal.client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { useModal } from '@/hooks/useModal';
