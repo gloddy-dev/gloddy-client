@@ -1,13 +1,11 @@
 'use client';
 
-import { type Comment, useDeleteComment, useGetComments, useGetGroupDetail } from '@/apis/groups';
-import WarningModal from '@/app/(main)/grouping/components/WarningModal.client';
-import { Avatar } from '@/components/Avatar';
-import CardHeader from '@/components/Card/CardHeader.client';
+import { type Comment, useGetComments, useGetGroupDetail } from '@/apis/groups';
+import { useMoreSheet } from '@/app/(main)/grouping/hooks/useMoreSheet';
+import { CardHeader } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
-import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import Image from 'next/image';
 import { Fragment } from 'react';
@@ -52,34 +50,20 @@ interface CommentItemProps {
 }
 
 function CommentItem({ comment, articleId, groupId, isCaptain }: CommentItemProps) {
-  const { content, commentId } = comment;
+  const { content, commentId, isWriter } = comment;
 
-  const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId);
-
-  const handleDeleteClick = (close: () => void) => {
-    mutateDeleteComment(
-      {
-        commentId,
-        groupId,
-        articleId,
-      },
-      {
-        onSettled: close,
-      }
-    );
-  };
+  const { handleMoreClick } = useMoreSheet({
+    type: 'comment',
+    isWriter,
+    isCaptain,
+    groupId,
+    articleId,
+    commentId,
+  });
 
   return (
     <Flex direction="column" className="m-20 mb-20 px-4">
-      <CardHeader
-        type="comment"
-        groupId={groupId}
-        articleId={articleId}
-        isCaptain={isCaptain}
-        onOkDeleteClick={handleDeleteClick}
-        showMoreIcon
-        {...comment}
-      />
+      <CardHeader onMoreClick={handleMoreClick} showMoreIcon {...comment} />
       <Spacing size={8} />
       <div className="break-words text-paragraph-2 text-sign-primary">{content}</div>
     </Flex>
