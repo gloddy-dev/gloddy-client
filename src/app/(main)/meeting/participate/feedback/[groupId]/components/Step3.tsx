@@ -1,6 +1,6 @@
-import { useFeedbackContext } from './FeedbackProvider.client';
+import FeedbackCompleteModal from './FeedbackCompleteModal.client';
+import { FeedbackRequestType, useFeedbackContext } from './FeedbackProvider.client';
 import TitleSection from './TitleSection';
-import { EstimateResponse } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
@@ -8,20 +8,37 @@ import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
 import { TextFieldController } from '@/components/TextField';
 import { DUMMY_DATA_ESTIMATE } from '@/constants/dummyData';
-import { useForm } from 'react-hook-form';
+import { useModal } from '@/hooks/useModal';
+import { useRouter } from 'next/navigation';
+
+import type { EstimateResponse } from '@/apis/groups';
 
 export default function Step3() {
+  const { handleSubmit, watch } = useFeedbackContext();
+  const router = useRouter();
+  const { open } = useModal();
+  const onSubmit = (data: FeedbackRequestType) => {
+    // TODO : API 연결
+    router.push('/meeting/participate?tab=participating');
+    open(<FeedbackCompleteModal />);
+  };
+
   return (
-    <div>
+    <>
       <TitleSection message={`최고의 짝꿍으로\n선정한 이유는 무엇인가요?`} step={3} />
       <Divider thickness="thick" />
       <Spacing size={16} />
       <MemberCard member={DUMMY_DATA_ESTIMATE.groupMemberList[0]} />
 
       <ButtonGroup>
-        <Button>완료</Button>
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          disabled={watch('mateInfo.selectionReason').length === 0}
+        >
+          완료
+        </Button>
       </ButtonGroup>
-    </div>
+    </>
   );
 }
 
