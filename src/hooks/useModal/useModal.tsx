@@ -14,8 +14,6 @@ export default function useModal({ delay = 0 }: UseModalProps = {}) {
 
   const [id] = useState(() => String(elementId++));
 
-  useDidUnMount(() => removeModal(id));
-
   return {
     open: (modalElement: ReactElement) => {
       addModal(id, modalElement);
