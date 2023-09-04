@@ -1,4 +1,5 @@
 'use client';
+import { PageAnimation } from '../PageAnimation';
 import cn from '@/utils/cn';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -102,13 +103,7 @@ function Panel({ value, children }: PropsWithChildren<Pick<TabProps, 'value'>>) 
   const searchParams = useSearchParams();
   const isActive = searchParams.get('tab') === value;
 
-  return (
-    isActive && (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        {children}
-      </motion.div>
-    )
-  );
+  return isActive && <PageAnimation>{children}</PageAnimation>;
 }
 
 Tabs.List = List;
