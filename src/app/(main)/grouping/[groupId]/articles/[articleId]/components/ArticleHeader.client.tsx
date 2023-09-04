@@ -31,13 +31,11 @@ export default function ArticleHeader() {
         </IconButton>
         <p>게시글</p>
       </Header.Left>
-      {(isWriter || isCaptain) && (
-        <Header.Right>
-          <IconButton size="large" onClick={handleMoreClick}>
-            <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
-          </IconButton>
-        </Header.Right>
-      )}
+      <Header.Right>
+        <IconButton size="large" onClick={handleMoreClick}>
+          <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
+        </IconButton>
+      </Header.Right>
     </Header>
   );
 }
