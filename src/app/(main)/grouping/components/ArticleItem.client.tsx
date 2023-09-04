@@ -43,15 +43,7 @@ export default function ArticleItem({
   const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
 
   const handleDeleteClick = () => {
-    mutateDeleteArticle(
-      {
-        articleId,
-        groupId,
-      },
-      {
-        onSettled: close,
-      }
-    );
+    mutateDeleteArticle({ articleId, groupId }, { onSettled: close });
   };
 
   return (
