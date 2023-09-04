@@ -1,8 +1,9 @@
 'use client';
 
-import { type Comment, useDeleteComment, useGetComments } from '@/apis/groups';
+import { type Comment, useDeleteComment, useGetComments, useGetGroupDetail } from '@/apis/groups';
 import WarningModal from '@/app/(main)/grouping/components/WarningModal.client';
 import { Avatar } from '@/components/Avatar';
+import CardHeader from '@/components/Card/CardHeader.client';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
@@ -14,6 +15,9 @@ import { Fragment } from 'react';
 export default function CommentList() {
   const { articleId, groupId } = useNumberParams<['articleId', 'groupId']>();
   const { data: commentsData } = useGetComments(groupId, articleId);
+  const { data: groupDetailData } = useGetGroupDetail(groupId);
+
+  const { isCaptain } = groupDetailData;
 
   if (commentsData.comments.length === 0)
     return (
@@ -28,7 +32,12 @@ export default function CommentList() {
     <div>
       {commentsData.comments.map((comment) => (
         <Fragment key={comment.commentId}>
-          <CommentItem comment={comment} groupId={groupId} articleId={articleId} />
+          <CommentItem
+            comment={comment}
+            groupId={groupId}
+            articleId={articleId}
+            isCaptain={isCaptain}
+          />
           <Divider thickness="thin" />
         </Fragment>
       ))}
@@ -39,25 +48,15 @@ interface CommentItemProps {
   comment: Comment;
   groupId: number;
   articleId: number;
+  isCaptain: boolean;
 }
 
-function CommentItem({ comment, articleId, groupId }: CommentItemProps) {
-  const {
-    name,
-    date,
-    content,
-    userImageUrl,
-    isWriter,
-    isWriterCaptain,
-    isWriterCertifiedStudent,
-    writerReliabilityLevel,
-    commentId,
-  } = comment;
+function CommentItem({ comment, articleId, groupId, isCaptain }: CommentItemProps) {
+  const { content, commentId } = comment;
 
-  const { open, close } = useModal();
   const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId);
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (close: () => void) => {
     mutateDeleteComment(
       {
         commentId,
@@ -72,46 +71,15 @@ function CommentItem({ comment, articleId, groupId }: CommentItemProps) {
 
   return (
     <Flex direction="column" className="m-20 mb-20 px-4">
-      <Flex align="center" className="gap-12 pb-4 pt-6">
-        <Avatar
-          imageUrl={userImageUrl ?? '/images/dummy_avatar.png'}
-          size="small"
-          iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
-        />
-        <div className="grow overflow-hidden">
-          <Flex align="center">
-            <p className="truncate text-paragraph-2 text-sign-secondary">{name}</p>
-            <Spacing size={2} direction="horizontal" />
-            {isWriterCaptain && (
-              <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />
-            )}
-            <Image
-              src={`/icons/16/reliability/${writerReliabilityLevel.toLowerCase()}.svg`}
-              alt="writerReliabilityLevel"
-              width={16}
-              height={16}
-            />
-          </Flex>
-          <p className="text-caption text-sign-tertiary">{date}</p>
-        </div>
-        {isWriter && (
-          <Image
-            src="/icons/24/more_secondary.svg"
-            alt="more"
-            width={24}
-            height={24}
-            onClick={() =>
-              open(
-                <WarningModal
-                  content="해당 댓글을 삭제하시겠습니까?"
-                  onOkClick={handleDeleteClick}
-                  onCancelClick={close}
-                />
-              )
-            }
-          />
-        )}
-      </Flex>
+      <CardHeader
+        type="comment"
+        groupId={groupId}
+        articleId={articleId}
+        isCaptain={isCaptain}
+        onOkDeleteClick={handleDeleteClick}
+        showMoreIcon
+        {...comment}
+      />
       <Spacing size={8} />
       <div className="break-words text-paragraph-2 text-sign-primary">{content}</div>
     </Flex>

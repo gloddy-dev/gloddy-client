@@ -15,17 +15,17 @@ export default function GroupingHeader() {
   const router = useRouter();
   const { groupId } = useNumberParams<['groupId']>();
   const { open, close } = useModal();
-  const { open: openExitGroup, close: closeExitGroup } = useModal();
+  const { open: openItemModal, close: closeItemModal } = useModal();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { mutate: mutateExitGroup, isLoading: isExitGroupLoading } = useDeleteGroupMember(groupId);
   const { title, isCaptain, myGroup } = groupDetailData;
 
   const handleExitClick = () => {
-    openExitGroup(
+    openItemModal(
       <WarningModal
-        onCancelClick={closeExitGroup}
+        onCancelClick={closeItemModal}
         onOkClick={() => {
-          mutateExitGroup({ groupId }, { onSettled: closeExitGroup });
+          mutateExitGroup({ groupId }, { onSettled: closeItemModal });
         }}
         content="모임에서 나가시겠어요?"
         description={
@@ -46,8 +46,16 @@ export default function GroupingHeader() {
   const handleMoreClick = () => {
     open(
       <MoreBottomSheet onClose={close}>
-        <MoreBottomSheet.ListItem label="신고하기" onClick={handleReportClick} />
-        {myGroup && <MoreBottomSheet.ListItem label="모임 나가기" onClick={handleExitClick} />}
+        <MoreBottomSheet.ListItem
+          label="신고하기"
+          isShown={!isCaptain}
+          onClick={handleReportClick}
+        />
+        <MoreBottomSheet.ListItem
+          label="모임 나가기"
+          isShown={myGroup && !isCaptain}
+          onClick={handleExitClick}
+        />
       </MoreBottomSheet>
     );
   };

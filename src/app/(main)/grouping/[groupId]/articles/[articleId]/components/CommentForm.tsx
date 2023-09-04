@@ -29,7 +29,7 @@ export default function CommentForm() {
   };
 
   return (
-    <BottomFixedDiv>
+    <BottomFixedDiv className="bg-white">
       <form onSubmit={handleSubmit(onSubmit)} className="flex items-center gap-8">
         <div className="grow">
           <TextFieldController

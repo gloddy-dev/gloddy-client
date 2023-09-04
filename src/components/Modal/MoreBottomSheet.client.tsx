@@ -13,7 +13,7 @@ export default function MoreBottomSheet({
   children,
 }: StrictPropsWithChildren<MoreBottomSheetProps>) {
   const validChildren = Children.toArray(children).filter(
-    (child) => isValidElement(child) && (child.props as ListItemProps).label
+    (child) => isValidElement(child) && (child.props as ListItemProps).isShown
   );
 
   return (
@@ -32,14 +32,17 @@ export default function MoreBottomSheet({
 
 interface ListItemProps {
   label: string;
+  isShown?: boolean;
   onClick?: () => void;
 }
 
-function ListItem({ label, onClick }: ListItemProps) {
+function ListItem({ label, isShown, onClick }: ListItemProps) {
   return (
-    <div className="h-48 py-12 text-subtitle-2 text-sign-secondary" onClick={onClick}>
-      {label}
-    </div>
+    isShown && (
+      <div className="h-48 py-12 text-subtitle-2 text-sign-secondary" onClick={onClick}>
+        {label}
+      </div>
+    )
   );
 }
 
