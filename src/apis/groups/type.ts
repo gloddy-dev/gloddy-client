@@ -43,6 +43,31 @@ export interface Comment {
   writerReliabilityLevel: ReliabilityType;
 }
 
+export interface Notice {
+  noticeId: number;
+  content: string;
+}
+
+export interface Apply {
+  applyId: number;
+  userId: number;
+  userNickname: string;
+  userImageUrl: string;
+  isCertifiedStudent: boolean;
+  reliabilityLevel: ReliabilityType;
+  introduce: string;
+  reason: string;
+}
+
+export interface GroupMember {
+  isCaptain: boolean;
+  isCertifiedStudent: boolean;
+  userId: number;
+  nickName: string;
+  imageUrl: string;
+  reliabilityLevel: ReliabilityType;
+}
+
 export interface GroupsResponse {
   totalCount: number;
   currentCount: number;
@@ -76,8 +101,15 @@ export interface CreateGroupResponse {
 }
 
 export interface ArticleRequest {
-  groupId: number;
+  params: { groupId: number };
   article: Pick<Article, 'content' | 'notice' | 'images'>;
+}
+
+export interface ArticleDeleteRequest {
+  params: {
+    groupId: number;
+    articleId: number;
+  };
 }
 
 export interface ArticlesResponse {
@@ -88,63 +120,64 @@ export interface ArticlesResponse {
   contents: Article[];
 }
 
+export interface NoticesResponse extends Array<Notice> {}
+
 export interface CommentRequest {
-  groupId: number;
-  articleId: number;
-  content: string;
+  params: {
+    groupId: number;
+    articleId: number;
+  };
+  payload: {
+    content: string;
+  };
+}
+
+export interface CommentDeleteRequest {
+  params: {
+    groupId: number;
+    articleId: number;
+    commentId: number;
+  };
 }
 
 export interface CommentsReponse {
   comments: Comment[];
 }
 
-export interface GroupMember {
-  isCaptain: boolean;
-  isCertifiedStudent: boolean;
-  userId: number;
-  nickName: string;
-  imageUrl: string;
-  reliabilityLevel: ReliabilityType;
+export interface GroupMembersDeleteRequest {
+  params: {
+    groupId: number;
+  };
 }
 
 export interface GroupMembersResponse {
   groupMembers: GroupMember[];
 }
 
-export interface Notice {
-  noticeId: number;
-  content: string;
-}
-
-export interface Apply {
-  applyId: number;
-  userId: number;
-  userNickname: string;
-  userImageUrl: string;
-  isCertifiedStudent: boolean;
-  reliabilityLevel: ReliabilityType;
-  introduce: string;
-  reason: string;
-}
-
 export interface ApplyRequest {
-  groupId: number;
+  params: {
+    groupId: number;
+  };
   apply: Pick<Apply, 'introduce' | 'reason'>;
 }
 
-export interface ApplyPatchRequest {
-  groupId: number;
-  applyId: number;
-  status: ApplyStatusType;
-}
-
-export interface ApplyResponse {
-  applyId: number;
+export interface ApplyStatusRequest {
+  params: {
+    groupId: number;
+    applyId: number;
+    status: ApplyStatusType;
+  };
 }
 
 export interface AppliesResponse {
   totalCount: number;
   applies: Apply[];
+}
+
+export interface ScrapRequest {
+  params: {
+    groupId: number;
+  };
 }
 
 export interface EstimateResponse {

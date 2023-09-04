@@ -32,9 +32,6 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
 
   const { mutate: mutateCreateGroup } = usePostCreateGroup();
   const { open: openCreateModal, close: closeCreateModal } = useModal();
-  const { open: openToast } = useModal({
-    delay: 3000,
-  });
 
   const isAllInput = Object.values(hookForm.watch()).every((value) => {
     if (typeof value === 'object') {
@@ -58,12 +55,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
         startTime: formatTime(data.time),
       },
       {
-        onError: () => {
-          openToast(<Toast>모임 개설에 실패했습니다.</Toast>);
-        },
-        onSettled: () => {
-          closeCreateModal();
-        },
+        onSettled: closeCreateModal,
       }
     );
   };

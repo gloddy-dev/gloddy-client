@@ -35,7 +35,7 @@ export default function InputForm() {
     if (isLoading) return;
 
     mutateArticle({
-      groupId,
+      params: { groupId },
       article: data,
     });
   };
