@@ -25,7 +25,7 @@ export default function GroupingHeader() {
       <WarningModal
         onCancelClick={closeItemModal}
         onOkClick={() => {
-          mutateExitGroup({ groupId }, { onSettled: closeItemModal });
+          mutateExitGroup({ params: { groupId } }, { onSettled: closeItemModal });
         }}
         content="모임에서 나가시겠어요?"
         description={
