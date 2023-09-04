@@ -1,6 +1,6 @@
 import FeedbackCompleteModal from './FeedbackCompleteModal.client';
-import { FeedbackRequestType, useFeedbackContext } from './FeedbackProvider.client';
-import TitleSection from './TitleSection';
+import { FeedbackRequestType, useFeedbackContext } from '../../components/FeedbackProvider.client';
+import TitleSection from '../../components/TitleSection';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
