@@ -1,0 +1,33 @@
+import GroupDetailPage from './components/GroupDetail.client';
+import { Keys, getGroupDetail } from '@/apis/groups';
+import { RejectedFallback } from '@/components/common/ErrorBoundary';
+import { HydrationProvider } from '@/components/common/Provider';
+import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { redirect } from 'next/navigation';
+
+interface GroupingDetailPageProps {
+  params: {
+    groupId: string;
+    lng: string;
+  };
+  searchParams: {
+    tab?: string;
+  };
+}
+
+export default function GroupingDetailPage({ params, searchParams }: GroupingDetailPageProps) {
+  const groupId = Number(params.groupId);
+  const lng = params.lng as string;
+  if (!searchParams?.tab) redirect(`/${lng}/grouping/${groupId}?tab=detail`);
+
+  return (
+    <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={null}>
+      <HydrationProvider
+        queryKey={Keys.getGroupDetail(groupId)}
+        queryFn={() => getGroupDetail(groupId)}
+      >
+        <GroupDetailPage groupId={groupId} />
+      </HydrationProvider>
+    </QueryAsyncBoundary>
+  );
+}
