@@ -1,6 +1,8 @@
 'use client';
 import WarningModal from '../components/WarningModal.client';
 import { useDeleteArticle, useDeleteComment } from '@/apis/groups';
+import { Spacing } from '@/components/common/Spacing';
+import { Modal } from '@/components/Modal';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { useModal } from '@/hooks/useModal';
 
@@ -24,6 +26,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
 }: MoreSheetProps<T> & CommentId<T>) {
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
   const { open: openItemModal, close: closeItemModal } = useModal();
+  const { open: openDoneModal, close: closeDoneModal } = useModal();
 
   const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
   const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId);
@@ -60,11 +63,38 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
   };
 
   const handleReportClick = () => {
+    openDoneModal(
+      <Modal
+        variant="ok"
+        okMessage="확인"
+        onOkClick={closeDoneModal}
+        onCancelClick={closeDoneModal}
+      >
+        <Spacing size={36} />
+        <p>신고가 접수되었습니다.</p>
+        <Spacing size={12} />
+        <p className="text-paragraph-1 text-sign-tertiary">빠른 처리를 위해 노력하겠습니다.</p>
+        <Spacing size={20} />
+      </Modal>
+    );
     closeItemModal();
     closeBottomSheet();
   };
 
   const handleBlockClick = () => {
+    openDoneModal(
+      <Modal
+        variant="ok"
+        okMessage="확인"
+        onOkClick={closeDoneModal}
+        onCancelClick={closeDoneModal}
+      >
+        <Spacing size={36} />
+        <p>차단이 완료되었습니다.</p>
+        <Spacing size={20} />
+      </Modal>
+    );
+
     closeItemModal();
     closeBottomSheet();
   };
