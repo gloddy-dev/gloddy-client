@@ -1,3 +1,4 @@
+import { useFeedbackContext } from './FeedbackProvider.client';
 import NoShowModal from './NoShowModal.client';
 import TitleSection from './TitleSection';
 import { EstimateResponse } from '@/apis/groups';
@@ -39,10 +40,23 @@ interface MemberCardProps {
 function MemberCard({ member }: MemberCardProps) {
   const { imageUrl, name } = member;
   const { open, close } = useModal();
+  const { setValue, watch } = useFeedbackContext();
+  const handleTag = (tag: string) => {
+    setValue(
+      'praiseInfos',
+      watch('praiseInfos')
+        .filter((it) => it.userId !== member.userId)
+        .concat({
+          userId: member.userId,
+          praiseValue: tag,
+        })
+    );
+  };
+
   return (
     <section className="px-20">
       <Spacing size={16} />
-      <Flex align="center">
+      <Flex align="center" className="py-4">
         <Avatar size="medium" imageUrl={imageUrl} />
         <Spacing size={12} direction="horizontal" />
         <div className="flex grow flex-col justify-center">
@@ -64,7 +78,15 @@ function MemberCard({ member }: MemberCardProps) {
 
       <Flex>
         {tagList.map((tag, index) => (
-          <Tag key={index} className="mr-4">
+          <Tag
+            key={index}
+            className="mr-4"
+            id={tag}
+            onSelected={handleTag}
+            isSelected={
+              watch('praiseInfos').find((it) => it.userId === member.userId)?.praiseValue === tag
+            }
+          >
             {tag}
           </Tag>
         ))}
