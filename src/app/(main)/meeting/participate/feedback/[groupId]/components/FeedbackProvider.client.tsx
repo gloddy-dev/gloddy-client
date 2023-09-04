@@ -3,7 +3,7 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-interface FeedbackRequestType {
+export interface FeedbackRequestType {
   praiseInfos: Array<{ userId: number; praiseValue: string }>;
   mateInfo: { userId: number; selectionReason: string };
 }
