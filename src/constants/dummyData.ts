@@ -318,16 +318,19 @@ export const DUMMY_APPLY_DATA: Apply[] = [
 export const DUMMY_DATA_ESTIMATE: EstimateResponse = {
   groupMemberList: [
     {
-      imageUrl: '/public/images/dummy_avatar.png',
+      imageUrl: '/images/dummy_avatar.png',
       name: '김지수',
+      userId: 1,
     },
     {
-      imageUrl: '/public/images/dummy_avatar.png',
+      imageUrl: '/images/dummy_avatar.png',
       name: '김지하',
+      userId: 2,
     },
     {
-      imageUrl: '/public/images/dummy_avatar.png',
+      imageUrl: '/images/dummy_avatar.png',
       name: '김지상',
+      userId: 3,
     },
   ],
 };
