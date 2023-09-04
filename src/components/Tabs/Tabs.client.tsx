@@ -1,5 +1,7 @@
 'use client';
+import { PageAnimation } from '../PageAnimation';
 import cn from '@/utils/cn';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import {
@@ -13,6 +15,7 @@ import {
 import type { StrictPropsWithChildren } from '@/types';
 
 export default function Tabs({ children }: StrictPropsWithChildren) {
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;
 }
 
@@ -26,7 +29,7 @@ const renderTabElement = (
   }
 
   return (
-    <div className={cn('flex h-50 border-b border-white3 ', { 'gap-20 px-20': !isStretch })}>
+    <div className={cn('flex h-50 border-b border-border-default', { 'gap-20 px-20': !isStretch })}>
       {elements.map((element, index) => {
         return cloneElement(element, {
           className: cn(props[index].className, { 'flex-1 justify-center': isStretch }),
@@ -71,9 +74,8 @@ function Tab({ value, text, queryString, className, disabled = false }: TabProps
   return (
     <Link
       className={cn(
-        'flex cursor-pointer items-center',
+        'relative flex cursor-pointer items-center',
         {
-          'border-b-1 border-primary text-subtitle-2 text-primary': isActive,
           'text-sign-caption': disabled,
         },
         className
@@ -87,6 +89,12 @@ function Tab({ value, text, queryString, className, disabled = false }: TabProps
       replace
     >
       {text}
+      {isActive && (
+        <motion.span
+          layoutId="underline"
+          className="absolute bottom-0 left-0 w-full border-b-1 border-primary text-subtitle-2 text-primary"
+        />
+      )}
     </Link>
   );
 }
@@ -95,7 +103,7 @@ function Panel({ value, children }: PropsWithChildren<Pick<TabProps, 'value'>>) 
   const searchParams = useSearchParams();
   const isActive = searchParams.get('tab') === value;
 
-  return isActive && children;
+  return isActive && <PageAnimation>{children}</PageAnimation>;
 }
 
 Tabs.List = List;
