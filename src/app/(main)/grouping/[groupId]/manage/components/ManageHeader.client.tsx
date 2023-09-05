@@ -11,7 +11,7 @@ export default function ManageHeader() {
     <Header className="px-4">
       <Header.Left>
         <IconButton size="large" onClick={() => router.back()}>
-          <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
+          <Image src="/icons/24/close.svg" alt="close" width={24} height={24} />
         </IconButton>
         <p>모임 지원서 관리</p>
       </Header.Left>

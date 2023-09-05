@@ -1,11 +1,10 @@
 'use client';
-import ArticleItemModal from './DeleteModal.client';
-import { useDeleteArticle } from '@/apis/groups';
-import { Avatar } from '@/components/Avatar';
+
+import { useMoreSheet } from '../hooks/useMoreSheet';
 import { Button } from '@/components/Button';
+import { CardHeader } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
-import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -24,74 +23,21 @@ export default function ArticleItem({
   groupId,
   isArticleDetailPage = false,
 }: ArticleItemProps) {
-  const {
-    userImageUrl,
-    name,
-    date,
-    content,
-    articleId,
-    commentCount,
-    images,
+  const { content, articleId, commentCount, images, isWriter } = article;
+  const { handleMoreClick } = useMoreSheet({
+    type: 'article',
     isWriter,
-    isWriterCaptain,
-    isWriterCertifiedStudent,
-    writerReliabilityLevel,
-  } = article;
-
+    isCaptain,
+    groupId,
+    articleId,
+  });
   const pathname = usePathname();
-  const { open, close } = useModal();
-  const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId, articleId);
-
-  const handleDeleteClick = () => {
-    mutateDeleteArticle();
-    close();
-  };
 
   return (
     <div className="mx-20 mb-24 mt-16 px-4">
-      <Flex align="center" className="gap-12 pb-4 pt-6">
-        <Avatar
-          imageUrl={userImageUrl ?? '/images/dummy_avatar.png'}
-          size="small"
-          iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
-        />
-        <div className="grow overflow-hidden">
-          <Flex align="center">
-            <p className="truncate text-paragraph-2 text-sign-secondary">{name}</p>
-            <Spacing size={2} direction="horizontal" />
-            {isWriterCaptain && (
-              <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />
-            )}
-
-            <Image
-              src={`/icons/16/reliability/${writerReliabilityLevel.toLowerCase()}.svg`}
-              alt="writerReliabilityLevel"
-              width={16}
-              height={16}
-            />
-          </Flex>
-          <p className="text-caption text-sign-tertiary">{date}</p>
-        </div>
-        {(isWriter || isCaptain) && !isArticleDetailPage && (
-          <Image
-            src="/icons/24/more_secondary.svg"
-            alt="more"
-            width={24}
-            height={24}
-            onClick={() =>
-              open(
-                <ArticleItemModal
-                  content="해당 게시글을 삭제하시겠습니까?"
-                  onOkClick={handleDeleteClick}
-                  onCancelClick={close}
-                />
-              )
-            }
-          />
-        )}
-      </Flex>
+      <CardHeader showMoreIcon={!isArticleDetailPage} onMoreClick={handleMoreClick} {...article} />
       <Spacing size={16} />
-      <div className="text-paragraph-1 text-sign-primary">{content}</div>
+      <div className="break-words text-paragraph-1 text-sign-primary">{content}</div>
       {images.length > 0 && (
         <Flex className="my-16 h-160 gap-4 overflow-x-scroll">
           {images.map((imageUrl, index) => (

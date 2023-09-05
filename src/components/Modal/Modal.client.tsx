@@ -38,7 +38,6 @@ export function Modal({
   className,
   okMessage,
 }: StrictPropsWithChildren<ModalProps>) {
-  console.log(okMessage);
   return (
     <ModalWrapper onClose={onCancelClick}>
       <div

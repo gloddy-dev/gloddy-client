@@ -24,6 +24,7 @@ export default function WriteHeader() {
                   type="cancel"
                   onCancelClick={close}
                   onOkClick={() => {
+                    close();
                     router.back();
                   }}
                 />

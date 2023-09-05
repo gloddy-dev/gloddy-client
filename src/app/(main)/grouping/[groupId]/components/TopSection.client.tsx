@@ -19,11 +19,10 @@ export default function TopSection() {
 
   const handleScrapClick = () => {
     if (isScraped) {
-      mutateDeleteScrap();
+      mutateDeleteScrap({ params: { groupId } });
     } else {
-      mutatePostScrap();
+      mutatePostScrap({ params: { groupId } });
     }
-    console.log(isScraped);
   };
 
   return (

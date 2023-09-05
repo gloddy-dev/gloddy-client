@@ -32,8 +32,8 @@ export default function InputForm() {
     if (isLoading) return;
 
     mutatePostApply({
+      params: { groupId },
       apply,
-      groupId,
     });
   };
 

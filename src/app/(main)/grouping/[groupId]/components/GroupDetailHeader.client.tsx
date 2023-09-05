@@ -1,6 +1,6 @@
 'use client';
 
-import DeleteModal from '../../components/DeleteModal.client';
+import WarningModal from '../../components/WarningModal.client';
 import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
@@ -15,17 +15,17 @@ export default function GroupingHeader() {
   const router = useRouter();
   const { groupId } = useNumberParams<['groupId']>();
   const { open, close } = useModal();
-  const { open: openExitGroup, close: closeExitGroup } = useModal();
+  const { open: openItemModal, close: closeItemModal } = useModal();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { mutate: mutateExitGroup, isLoading: isExitGroupLoading } = useDeleteGroupMember(groupId);
   const { title, isCaptain, myGroup } = groupDetailData;
 
   const handleExitClick = () => {
-    openExitGroup(
-      <DeleteModal
-        onCancelClick={closeExitGroup}
+    openItemModal(
+      <WarningModal
+        onCancelClick={closeItemModal}
         onOkClick={() => {
-          mutateExitGroup();
+          mutateExitGroup({ params: { groupId } }, { onSettled: closeItemModal });
         }}
         content="모임에서 나가시겠어요?"
         description={
@@ -40,22 +40,22 @@ export default function GroupingHeader() {
   };
 
   const handleReportClick = () => {
-    open(
-      <DeleteModal
-        onCancelClick={close}
-        onOkClick={() => {
-          close();
-        }}
-        content="신고하시겠어요?"
-      />
-    );
+    open(<WarningModal onCancelClick={close} onOkClick={close} content="신고하시겠어요?" />);
   };
 
   const handleMoreClick = () => {
     open(
       <MoreBottomSheet onClose={close}>
-        <MoreBottomSheet.ListItem label="신고하기" onClick={handleReportClick} />
-        {myGroup && <MoreBottomSheet.ListItem label="모임 나가기" onClick={handleExitClick} />}
+        <MoreBottomSheet.ListItem
+          label="신고하기"
+          isShown={!isCaptain}
+          onClick={handleReportClick}
+        />
+        <MoreBottomSheet.ListItem
+          label="모임 나가기"
+          isShown={myGroup && !isCaptain}
+          onClick={handleExitClick}
+        />
       </MoreBottomSheet>
     );
   };
