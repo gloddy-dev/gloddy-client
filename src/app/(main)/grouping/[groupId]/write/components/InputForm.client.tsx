@@ -43,7 +43,7 @@ export default function InputForm() {
   return (
     <>
       <ImageSection control={control} />
-      <section className="grow px-20 py-8">
+      <section className="h-full px-20 py-8">
         <TextFieldController
           as="textarea"
           hookForm={hookForm}
