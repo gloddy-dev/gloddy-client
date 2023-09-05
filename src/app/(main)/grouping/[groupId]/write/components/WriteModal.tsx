@@ -1,12 +1,13 @@
 import { Spacing } from '@/components/common/Spacing';
+import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
-import Image from 'next/image';
-import { ComponentProps } from 'react';
+
+import type { ComponentProps } from 'react';
 
 type ModalStyle = {
   [key in WriteModalProps['type']]: {
     variant: NonNullable<ComponentProps<typeof Modal>['variant']>;
-    icon: string;
+    iconId: string;
     content: string;
   };
 };
@@ -14,12 +15,12 @@ type ModalStyle = {
 const modalStyle: ModalStyle = {
   write: {
     variant: 'success',
-    icon: '/icons/48/check.svg',
+    iconId: '48-check',
     content: '게시글을 등록하시겠습니까?',
   },
   cancel: {
     variant: 'warning',
-    icon: '/icons/48/warning.svg',
+    iconId: '48-warning',
     content: '게시글 작성을 취소하시겠습니까?',
   },
 };
@@ -31,12 +32,12 @@ interface WriteModalProps {
 }
 
 export default function WriteModal({ type, onCancelClick, onOkClick }: WriteModalProps) {
-  const { variant, icon, content } = modalStyle[type];
+  const { variant, iconId, content } = modalStyle[type];
 
   return (
     <Modal variant={variant} onCancelClick={onCancelClick} onOkClick={onOkClick}>
       <Spacing size={32} />
-      <Image src={icon} alt={variant} width={48} height={48} />
+      <Icon id={iconId} width={48} height={48} />
       <Spacing size={12} />
       <p className="text-paragraph-1">{content}</p>
       <Spacing size={16} />

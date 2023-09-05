@@ -5,10 +5,10 @@ import { Apply, usePatchApply } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup, IconButton } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { TextField } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 interface ApplyCardProps {
@@ -62,17 +62,13 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
         <div className="grow">
           <p className="text-paragraph-1">{userNickname}</p>
           <Flex align="center" className="gap-2">
-            <Image
-              src={`/icons/16/reliability/${reliabilityLevel.toLowerCase()}.svg`}
-              alt="medal"
-              width={16}
-              height={16}
-            />
+            <Icon id={`16-reliability-${reliabilityLevel.toLowerCase()}`} width={16} height={16} />
+
             <p className="text-caption text-sign-tertiary">{reliabilityLevel}</p>
           </Flex>
         </div>
         <IconButton>
-          <Image src="/icons/24/navigate_next.svg" alt="navigate_next" width={24} height={24} />
+          <Icon id="24-navigate_next" />
         </IconButton>
       </Flex>
       <Spacing size={16} />

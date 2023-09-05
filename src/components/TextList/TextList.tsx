@@ -1,7 +1,7 @@
 import { Spacing } from '../common/Spacing';
+import { Icon } from '../Icon';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
-import Image from 'next/image';
 
 type VariantKeys = 'info' | 'info-no-icon' | 'caption' | 'subtitle' | 'grade';
 
@@ -20,7 +20,7 @@ interface TextListProps extends React.HTMLAttributes<HTMLParagraphElement> {
 
 const variantAttribute: VariantAttributeType = {
   info: {
-    prefix: <Image src="/icons/4/dot.svg" width={4} height={4} alt="dot" />,
+    prefix: <Icon id="4-dot" width={4} height={4} />,
     margin: 8,
     typography: 'text-paragraph-2 text-sign-secondary',
   },
@@ -29,7 +29,7 @@ const variantAttribute: VariantAttributeType = {
     typography: 'text-paragraph-2 text-sign-secondary',
   },
   caption: {
-    prefix: <Image src="/icons/16/info.svg" width={16} height={16} alt="info" />,
+    prefix: <Icon id="16-info" width={16} height={16} />,
     margin: 4,
     typography: 'text-caption text-sign-tertiary',
   },
@@ -37,7 +37,7 @@ const variantAttribute: VariantAttributeType = {
     typography: 'text-subtitle-3 text-sign-secondary',
   },
   grade: {
-    prefix: <Image src="/icons/16/gloddy.svg" width={16} height={16} alt="grade" />,
+    prefix: <Icon id="16-gloddy" width={16} height={16} />,
     margin: 2,
     typography: 'text-caption text-sign-tertiary',
   },

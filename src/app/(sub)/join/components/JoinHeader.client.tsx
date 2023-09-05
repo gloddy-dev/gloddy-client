@@ -2,8 +2,8 @@
 import { IconButton } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Header } from '@/components/Header';
+import { Icon } from '@/components/Icon';
 import cn from '@/utils/cn';
-import Image from 'next/image';
 
 interface JoinHeaderProps {
   onPrevClick?: () => void;
@@ -18,13 +18,7 @@ export default function JoinHeader({ onPrevClick, isBack }: JoinHeaderProps) {
           <>
             <Spacing direction="horizontal" size={4} />
             <IconButton size="large">
-              <Image
-                alt="back"
-                src="/icons/24/arrow_back.svg"
-                width={24}
-                height={24}
-                onClick={onPrevClick}
-              />
+              <Icon id="24-arrow_back" onClick={onPrevClick} />
             </IconButton>
           </>
         )}

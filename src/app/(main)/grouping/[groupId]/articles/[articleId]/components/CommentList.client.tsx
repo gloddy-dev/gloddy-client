@@ -5,9 +5,9 @@ import { useMoreSheet } from '@/app/(main)/grouping/hooks/useMoreSheet';
 import { CardHeader } from '@/components/Card';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import Image from 'next/image';
 import { Fragment } from 'react';
 
 export default function CommentList() {
@@ -20,7 +20,7 @@ export default function CommentList() {
   if (commentsData.comments.length === 0)
     return (
       <Flex direction="column" justify="center" align="center" className="my-80">
-        <Image src="/icons/48/cancel.svg" alt="cancel" width={48} height={48} />
+        <Icon id="48-cancel" width={48} height={48} />
         <Spacing size={8} />
         <p className="text-sign-tertiary">첫 댓글을 남겨보세요!</p>
       </Flex>

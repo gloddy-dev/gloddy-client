@@ -2,19 +2,16 @@
 
 import ApplyCard from './ApplyCard.client';
 import { useGetApplies } from '@/apis/groups';
-import { useGetMeetingParticipating } from '@/apis/meeting';
 import { Spacing } from '@/components/common/Spacing';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import Image from 'next/image';
 import { useState } from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function ManageDetail() {
   const { groupId } = useNumberParams<['groupId']>();
-  const { data } = useGetMeetingParticipating();
-  console.log(data);
 
   const { data: appliesData } = useGetApplies(groupId);
   const { applies, totalCount } = appliesData;
@@ -24,7 +21,7 @@ export default function ManageDetail() {
   if (!totalCount) {
     return (
       <Flex direction="column" justify="center" align="center" className="my-80 gap-8">
-        <Image src="/icons/48/cancel.svg" alt="cancel" width={48} height={48} />
+        <Icon id="48-cancel" width={48} height={48} />
         <p className="text-sign-tertiary">아직 지원서가 없어요.</p>
       </Flex>
     );
@@ -40,7 +37,7 @@ export default function ManageDetail() {
           지원서를 확인해주세요
         </p>
         <Flex align="center">
-          <Image src="/icons/16/application.svg" alt="application" width={16} height={16} />
+          <Icon id="16-application" width={16} height={16} />
           <p className="text-caption text-sign-sub">
             {currentApplication}/{totalCount}
           </p>

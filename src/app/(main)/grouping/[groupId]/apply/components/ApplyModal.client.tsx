@@ -1,6 +1,6 @@
 import { Spacing } from '@/components/common/Spacing';
+import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
-import Image from 'next/image';
 
 interface ApplyModalProps {
   onOkClick: () => void;
@@ -10,7 +10,7 @@ export default function ApplyModal({ onOkClick, onCancelClick }: ApplyModalProps
   return (
     <Modal onOkClick={onOkClick} onCancelClick={onCancelClick} variant="success">
       <Spacing size={32} />
-      <Image src="/icons/48/check.svg" alt="check" width={48} height={48} />
+      <Icon id="48-check" width={48} height={48} />
       <Spacing size={12} />
       <p>지원서를 제출하시겠습니까?</p>
       <Spacing size={4} />

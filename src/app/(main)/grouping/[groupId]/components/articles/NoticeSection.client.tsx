@@ -3,10 +3,10 @@
 import NoticeItem from './NoticeItem.client';
 import { useGetGroupDetail, useGetNotices } from '@/apis/groups';
 import { Spacing } from '@/components/common/Spacing';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import Image from 'next/image';
 
 export default function NoticeSection() {
   const { groupId } = useNumberParams<['groupId']>();
@@ -39,7 +39,7 @@ export default function NoticeSection() {
 function EmptyNotice() {
   return (
     <Flex align="center" className="gap-4 py-4">
-      <Image src="/icons/24/info.svg" alt="info" width={24} height={24} />
+      <Icon id="24-info" />
       <p>등록된 공지사항이 없어요.</p>
     </Flex>
   );

@@ -6,12 +6,12 @@ import WarningModal from '../../components/WarningModal.client';
 import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { Suspense } from '@suspensive/react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function GroupDetailHeader() {
@@ -23,7 +23,7 @@ export default function GroupDetailHeader() {
       <Header.Left>
         <Flex align="center">
           <IconButton size="large" onClick={() => router.back()}>
-            <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
+            <Icon id="24-arrow_back" />
           </IconButton>
           <Suspense>
             <TitleAction groupId={groupId} />
@@ -61,7 +61,7 @@ function ManageButtonAction({ groupId }: ActionProps) {
   return (
     isCaptain && (
       <IconButton size="large" onClick={() => router.push(`/grouping/${groupId}/manage`)}>
-        <Image src="/icons/24/application.svg" alt="application" width={24} height={24} />
+        <Icon id="24-application" />
       </IconButton>
     )
   );
@@ -148,7 +148,7 @@ function MoreButtonAction({ groupId }: ActionProps) {
   return (
     !isCaptain && (
       <IconButton size="large" onClick={handleMoreClick}>
-        <Image src="/icons/24/more.svg" alt="more" width={24} height={24} />
+        <Icon id="24-more" />
       </IconButton>
     )
   );
