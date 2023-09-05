@@ -1,9 +1,9 @@
 'use client';
 
 import { PraisesResponse, useGetPraises } from '@/apis/profile';
-import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 
 interface Praise {
   id: number;

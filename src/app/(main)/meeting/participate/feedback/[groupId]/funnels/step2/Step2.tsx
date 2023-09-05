@@ -4,9 +4,9 @@ import { EstimateResponse } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
-import { Spacing } from '@/components/Spacing';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { DUMMY_DATA_ESTIMATE } from '@/constants/dummyData';
 
 interface Step2Props {

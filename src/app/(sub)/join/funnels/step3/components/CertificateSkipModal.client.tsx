@@ -1,6 +1,6 @@
-import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Modal, type ModalProps } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 
 export default function CertificateSkipModal({ ...props }: ModalProps) {
   return (

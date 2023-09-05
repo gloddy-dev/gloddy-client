@@ -3,8 +3,8 @@ import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
 import { useGetMeetingHosting, useGetMeetingParticipating } from '@/apis/meeting';
 import { GroupingCard } from '@/components/Card';
-import { Spacing } from '@/components/Spacing';
 import { Divider } from '@/components/Divider';
+import { Spacing } from '@/components/Spacing';
 
 export default function ParticipatingContent() {
   const {

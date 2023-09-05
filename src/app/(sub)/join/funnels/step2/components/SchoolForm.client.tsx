@@ -5,9 +5,9 @@ import { useFunnelContext } from '../../JoinFunnel';
 import { formatAddress } from '../utils';
 import { SchoolSearchResponse, useGetSearchSchool } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 

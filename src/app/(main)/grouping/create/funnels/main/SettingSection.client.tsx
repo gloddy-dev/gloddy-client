@@ -1,8 +1,8 @@
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
 import LocationBottomSheet from '../../components/LocationBottomSheet.client';
 import { displayDate } from '../../util';
-import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
+import { Spacing } from '@/components/Spacing';
 import { SpinBox } from '@/components/SpinBox';
 import { TextField } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';

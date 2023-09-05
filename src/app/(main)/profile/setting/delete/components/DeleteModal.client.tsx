@@ -1,7 +1,7 @@
 import DeleteCompleteModal from './DeleteCompleteModal.client';
-import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 
 interface DeleteModalProps {
