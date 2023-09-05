@@ -22,7 +22,7 @@ export default function InputForm() {
       reason: '',
     },
   });
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
   const { groupId } = useNumberParams<['groupId']>();
   const { mutate: mutatePostApply, isLoading } = usePostApply(groupId);
 
@@ -62,7 +62,7 @@ export default function InputForm() {
       <ButtonGroup>
         <Button
           onClick={() =>
-            open(<ApplyModal onOkClick={handleSubmit(onSubmit)} onCancelClick={close} />)
+            open(() => <ApplyModal onOkClick={handleSubmit(onSubmit)} onCancelClick={exit} />)
           }
           disabled={!formState.isValid}
         >

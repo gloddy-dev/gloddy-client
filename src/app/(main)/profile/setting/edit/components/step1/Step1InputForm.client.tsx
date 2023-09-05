@@ -79,7 +79,9 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
       <TextField
         placeholder="생년월일을 선택해주세요."
         onClick={() =>
-          openBirthdayBottomSheet(<BirthdayBottomSheet onClose={closeBirthdayBottomSheet} />)
+          openBirthdayBottomSheet(({ isOpen }) => (
+            <BirthdayBottomSheet onClose={closeBirthdayBottomSheet} isOpen={isOpen} />
+          ))
         }
         value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
         readOnly

@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import type { WriteFormValues } from '../type';
 
 export default function InputForm() {
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
   const { groupId } = useNumberParams<['groupId']>();
   const hookForm = useForm<WriteFormValues>({
     defaultValues: {
@@ -63,9 +63,9 @@ export default function InputForm() {
       <ButtonGroup>
         <Button
           onClick={() =>
-            open(
-              <WriteModal type="write" onCancelClick={close} onOkClick={handleSubmit(onSubmit)} />
-            )
+            open(() => (
+              <WriteModal type="write" onCancelClick={exit} onOkClick={handleSubmit(onSubmit)} />
+            ))
           }
           disabled={watch('content').length < 20}
         >

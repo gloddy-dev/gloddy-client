@@ -15,7 +15,7 @@ export default function DeleteModal({ onCancelClick }: DeleteModalProps) {
     <Modal
       variant="warning"
       onCancelClick={onCancelClick}
-      onOkClick={() => open(<DeleteCompleteModal />)}
+      onOkClick={() => open(() => <DeleteCompleteModal />)}
     >
       <Spacing size={32} />
       <Image src="/icons/48/warning.svg" width={48} height={48} alt="warning" />

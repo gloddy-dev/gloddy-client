@@ -14,7 +14,7 @@ interface NoticeItemProps {
 export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
   const { content, noticeId } = notice;
   const router = useRouter();
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
   const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
 
   const handleDeleteClick = () => {
@@ -26,7 +26,7 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
         },
       },
       {
-        onSettled: close,
+        onSettled: exit,
       }
     );
   };
@@ -43,13 +43,13 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
             width={24}
             height={24}
             onClick={() => {
-              open(
+              open(() => (
                 <WarningModal
-                  onCancelClick={close}
+                  onCancelClick={exit}
                   onOkClick={handleDeleteClick}
                   content="해당 공지글을 삭제하시겠습니까?"
                 />
-              );
+              ));
             }}
           />
         )}

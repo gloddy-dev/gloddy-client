@@ -1,3 +1,4 @@
+'use client';
 import FeedbackOutModal from '../funnels/step1/FeedbackOutModal.client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
@@ -9,7 +10,8 @@ interface FeedbackHeaderProps {
   onPrevClick?: () => void;
 }
 export default function FeedbackHeader({ message, onPrevClick }: FeedbackHeaderProps) {
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
+
   return (
     <Header className="px-4">
       <Header.Left>
@@ -19,7 +21,7 @@ export default function FeedbackHeader({ message, onPrevClick }: FeedbackHeaderP
             if (typeof onPrevClick === 'function') {
               onPrevClick();
             } else {
-              open(<FeedbackOutModal onClose={close} />);
+              open(() => <FeedbackOutModal onClose={exit} />);
             }
           }}
         >

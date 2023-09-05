@@ -3,8 +3,6 @@ import BlockDoneModal from '../components/BlockDoneModal.client';
 import ReportDoneModal from '../components/ReportDoneModal.client';
 import WarningModal from '../components/WarningModal.client';
 import { useDeleteArticle, useDeleteComment } from '@/apis/groups';
-import { Spacing } from '@/components/common/Spacing';
-import { Modal } from '@/components/Modal';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { useModal } from '@/hooks/useModal';
 
@@ -27,8 +25,8 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
   commentId,
 }: MoreSheetProps<T> & CommentId<T>) {
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
-  const { open: openItemModal, close: closeItemModal } = useModal();
-  const { open: openDoneModal, close: closeDoneModal } = useModal();
+  const { open: openItemModal, exit: exitItemModal } = useModal();
+  const { open: openDoneModal, exit: exitDoneModal } = useModal();
 
   const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
   const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId);
@@ -45,7 +43,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
         { params: { groupId, articleId } },
         {
           onSettled: () => {
-            closeItemModal();
+            exitItemModal();
             closeBottomSheet();
           },
         }
@@ -56,7 +54,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
         { params: { groupId, articleId, commentId } },
         {
           onSettled: () => {
-            closeItemModal();
+            exitItemModal();
             closeBottomSheet();
           },
         }
@@ -65,73 +63,73 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
   };
 
   const handleReportClick = () => {
-    closeItemModal();
+    exitItemModal();
     closeBottomSheet();
-    openDoneModal(<ReportDoneModal onOkClick={closeDoneModal} />);
+    openDoneModal(() => <ReportDoneModal onOkClick={exitDoneModal} />);
   };
 
   const handleBlockClick = () => {
-    closeItemModal();
+    exitItemModal();
     closeBottomSheet();
-    openDoneModal(<BlockDoneModal onOkClick={closeDoneModal} />);
+    openDoneModal(() => <BlockDoneModal onOkClick={exitDoneModal} />);
   };
 
   const handleMoreClick = () => {
-    openBottomSheet(
-      <MoreBottomSheet onClose={closeBottomSheet}>
+    openBottomSheet(({ isOpen }) => (
+      <MoreBottomSheet onClose={closeBottomSheet} isOpen={isOpen}>
         <MoreBottomSheet.ListItem
           label="삭제하기"
           isShown={isWriter || (type === 'article' && isCaptain)}
           onClick={() =>
-            openItemModal(
+            openItemModal(() => (
               <WarningModal
                 content={`해당 ${content}을 삭제하시겠습니까?`}
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleDeleteClick}
               />
-            )
+            ))
           }
         />
         <MoreBottomSheet.ListItem
           label="신고하기"
           isShown={!isWriter}
           onClick={() =>
-            openItemModal(
+            openItemModal(() => (
               <WarningModal
                 content={`해당 ${content}을 신고하시겠습니까?`}
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleReportClick}
               />
-            )
+            ))
           }
         />
         <MoreBottomSheet.ListItem
           label="차단하기"
           isShown={!isWriter}
           onClick={() =>
-            openItemModal(
+            openItemModal(() => (
               <WarningModal
                 content={`해당 ${content}을 차단하시겠습니까?`}
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleBlockClick}
               />
-            )
+            ))
           }
         />
       </MoreBottomSheet>
-    );
+    ));
   };
 
   function DeleteItem() {
     const { open, close } = useModal();
 
-    open(
+    open(() => (
       <WarningModal
         content={`해당 ${content}을 삭제하시겠습니까?`}
         onCancelClick={close}
         onOkClick={handleDeleteClick}
       />
-    );
+    ));
   }
 
   return {
