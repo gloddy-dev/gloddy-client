@@ -5,11 +5,11 @@ import { useFunnelContext } from '../../JoinFunnel';
 import { formatAddress } from '../utils';
 import { SchoolSearchResponse, useGetSearchSchool } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import Image from 'next/image';
 
 export default function SchoolForm() {
   const hookForm = useJoinContext();
@@ -28,7 +28,7 @@ export default function SchoolForm() {
           required: true,
           pattern: regexr.school,
         })}
-        leftIcon={<Image src="/icons/24/search.svg" width={24} height={24} alt="search" />}
+        leftIcon={<Icon id="24-search" />}
       />
       {data &&
         data?.schools.map((school) => (
@@ -52,7 +52,7 @@ interface SearchResultProps extends React.HTMLAttributes<React.ElementType> {
 function SearchResult({ school, ...props }: SearchResultProps) {
   return (
     <Flex {...props}>
-      <Image src="/icons/24/location_on.svg" width={24} height={24} alt="location" />
+      <Icon id="24-location_on" />
       <Spacing size={8} direction="horizontal" />
       <Flex className="border-b-1 border-gray6 py-12" direction="column">
         <div className="text-subtitle-2">{school.name}</div>

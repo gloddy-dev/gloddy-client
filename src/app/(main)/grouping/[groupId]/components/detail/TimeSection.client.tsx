@@ -1,5 +1,5 @@
 import { useGetGroupDetail } from '@/apis/groups';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';

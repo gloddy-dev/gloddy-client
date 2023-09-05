@@ -1,5 +1,5 @@
-import { Spacing } from '@/components/common/Spacing';
 import { IndicatorGroup } from '@/components/Indicator';
+import { Spacing } from '@/components/Spacing';
 
 interface TitleSectionProps {
   message: string;

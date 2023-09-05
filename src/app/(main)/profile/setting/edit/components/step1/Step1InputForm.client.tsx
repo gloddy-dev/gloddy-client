@@ -3,16 +3,16 @@ import { useEditContext } from '../EditProvider.client';
 import { usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
+import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
 import { formatDateDTO } from '@/utils/formatDateDTO';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useController } from 'react-hook-form';
 
@@ -129,7 +129,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
         ))}
 
         <div className="rounded-full bg-sign-brand" onClick={onNext}>
-          <Image src="/icons/24/add.svg" width={24} height={24} alt="plus" />
+          <Icon id="24-add" />
         </div>
       </Flex>
 

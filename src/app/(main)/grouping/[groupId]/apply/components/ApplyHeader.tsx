@@ -1,8 +1,8 @@
 'use client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function ApplyHeader() {
@@ -13,7 +13,7 @@ export default function ApplyHeader() {
       <Header.Left>
         <Flex align="center">
           <IconButton size="large" onClick={() => router.back()}>
-            <Image alt="back" src="/icons/24/arrow_back.svg" width={24} height={24} />
+            <Icon id="24-arrow_back" />
           </IconButton>
           <p>모임 지원서 작성</p>
         </Flex>

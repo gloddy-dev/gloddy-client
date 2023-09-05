@@ -3,8 +3,8 @@
 import CommentList from './CommentList.client';
 import { useGetArticle, useGetGroupDetail } from '@/apis/groups';
 import ArticleItem from '@/app/(main)/grouping/components/ArticleItem.client';
-import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
+import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 
 export default function ArticleDetail() {

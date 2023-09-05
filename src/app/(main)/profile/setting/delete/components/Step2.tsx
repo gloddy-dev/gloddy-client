@@ -1,9 +1,9 @@
 import DeleteModal from './DeleteModal.client';
 import { useDeleteContext } from './DeleteProvider.client';
 import { Button, ButtonGroup } from '@/components/Button';
-import { CircleCheckbox } from '@/components/common/Checkbox';
-import { Spacing } from '@/components/common/Spacing';
+import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 
 const infoList = [

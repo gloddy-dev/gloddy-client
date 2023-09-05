@@ -1,7 +1,7 @@
 import FeedbackFunnel from './components/FeedbackFunnel.client';
 import FeedbackProvider from './components/FeedbackProvider.client';
 import { Keys, getEstimate } from '@/apis/groups';
-import { HydrationProvider } from '@/components/common/Provider';
+import { HydrationProvider } from '@/components/Provider';
 import { Suspense } from 'react';
 
 interface PageProps {

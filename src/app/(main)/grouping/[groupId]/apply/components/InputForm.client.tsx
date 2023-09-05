@@ -3,7 +3,7 @@
 import ApplyModal from './ApplyModal.client';
 import { usePostApply } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';

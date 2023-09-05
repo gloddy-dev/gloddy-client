@@ -1,6 +1,6 @@
 'use client';
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 
 export default function InputSection() {

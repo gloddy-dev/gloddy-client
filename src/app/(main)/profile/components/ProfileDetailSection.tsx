@@ -1,15 +1,15 @@
 'use client';
 import { useGetProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
 import { TextField } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
 import cn from '@/utils/cn';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 
@@ -45,13 +45,13 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
           <h4 className="text-h4">{name}</h4>
           <Spacing size={4} />
           <Flex className="h-18 text-caption text-sign-tertiary" align="center">
-            <Image src="/icons/16/school.svg" width={16} height={16} alt="school" />
+            <Icon id="16-school" width={16} height={16} />
             <span>{school}</span>
             <Divider direction="vertical" className="mx-4" />
-            <Image src="/icons/16/male.svg" width={16} height={16} alt="male" />
+            <Icon id="16-male" width={16} height={16} />
             <span>{gender === 'MAIL' ? '남' : '여'}</span>
             <Divider direction="vertical" className="mx-4" />
-            <Image src="/icons/16/birth.svg" width={16} height={16} alt="birth" />
+            <Icon id="16-birth" width={16} height={16} />
             <span>{age}세</span>
           </Flex>
           <Spacing size={16} />
@@ -92,11 +92,10 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
                   key={reliabilityItem.id}
                   className={cn({ 'opacity-30': reliability !== reliabilityItem.name })}
                 >
-                  <Image
-                    src={`/icons/16/reliability/${reliabilityItem.name.toLowerCase()}.svg`}
+                  <Icon
+                    id={`16-reliability-${reliabilityItem.name.toLowerCase()}`}
                     width={16}
                     height={16}
-                    alt="gloddy"
                   />
                   <Spacing size={2} direction="horizontal" />
                   <p>{reliabilityItem.name}</p>
