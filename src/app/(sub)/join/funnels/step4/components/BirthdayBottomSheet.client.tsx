@@ -7,8 +7,9 @@ import type { DateType } from '@/types';
 
 interface BirthdayBottomSheetProps {
   onClose: () => void;
+  isOpen: boolean;
 }
-export default function BirthdayBottomSheet({ onClose }: BirthdayBottomSheetProps) {
+export default function BirthdayBottomSheet({ onClose, isOpen }: BirthdayBottomSheetProps) {
   const { setValue, watch } = useJoinContext();
   const birth = watch('birth');
   const handleCloseClick = () => {
@@ -19,7 +20,13 @@ export default function BirthdayBottomSheet({ onClose }: BirthdayBottomSheetProp
   };
 
   return (
-    <BottomSheet snapPoints={[400, 0]} onClose={onClose} title="생년월일" disableDrag>
+    <BottomSheet
+      snapPoints={[400, 0]}
+      onClose={onClose}
+      title="생년월일"
+      disableDrag
+      isOpen={isOpen}
+    >
       <DateSwipePicker
         dateValue={birth}
         setDateValue={(birth: DateType) => setValue('birth', birth)}
