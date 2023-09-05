@@ -1,6 +1,6 @@
 import { postReissue } from './apis/auth';
 import { AUTH_KEYS } from './constants/token';
-import { currentTime, day1, day60 } from './utils/date';
+import { afterDay1, afterDay60, currentTime, day1, day60 } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
 
 const privatePages = /^\/(grouping|meeting|profile)/;
@@ -23,19 +23,15 @@ const middleware = async (request: NextRequest) => {
         const response = NextResponse.next();
 
         response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken, {
-          expires: new Date(currentTime.getTime() + day60),
+          expires: afterDay60,
         });
 
-        response.cookies.set(
-          AUTH_KEYS.accessTokenExpireTime,
-          String(currentTime.getTime() + day1),
-          {
-            expires: new Date(currentTime.getTime() + day60),
-          }
-        );
+        response.cookies.set(AUTH_KEYS.accessTokenExpireTime, String(afterDay1.getTime()), {
+          expires: afterDay60,
+        });
 
         response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
-          expires: new Date(currentTime.getTime() + day60),
+          expires: afterDay60,
         });
 
         console.log('token reissued');
