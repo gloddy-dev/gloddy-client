@@ -19,7 +19,7 @@ export default function FeedbackHeader({ message, onPrevClick }: FeedbackHeaderP
             if (typeof onPrevClick === 'function') {
               onPrevClick();
             } else {
-              open(<FeedbackOutModal onClose={close} />);
+              open(() => <FeedbackOutModal onClose={close} />);
             }
           }}
         >

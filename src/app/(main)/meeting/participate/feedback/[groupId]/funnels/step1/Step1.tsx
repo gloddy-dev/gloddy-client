@@ -69,7 +69,7 @@ function MemberCard({ member }: MemberCardProps) {
           height={24}
           alt="close"
           onClick={() =>
-            open(<NoShowModal name={name} imageUrl={imageUrl} onCancelClick={close} />)
+            open(() => <NoShowModal name={name} imageUrl={imageUrl} onCancelClick={close} />)
           }
         />
       </Flex>
