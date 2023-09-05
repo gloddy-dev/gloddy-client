@@ -87,7 +87,9 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
         <Button
           variant="solid-warning"
           onClick={() =>
-            open(<ManageModal type="REFUSE" onOkClick={handleRefuseClick} onCancelClick={close} />)
+            open(() => (
+              <ManageModal type="REFUSE" onOkClick={handleRefuseClick} onCancelClick={close} />
+            ))
           }
         >
           거절

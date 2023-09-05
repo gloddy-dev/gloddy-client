@@ -21,7 +21,7 @@ export default function GroupingHeader() {
   const { title, isCaptain, myGroup } = groupDetailData;
 
   const handleExitClick = () => {
-    openItemModal(
+    openItemModal(() => (
       <WarningModal
         onCancelClick={closeItemModal}
         onOkClick={() => {
@@ -36,15 +36,15 @@ export default function GroupingHeader() {
         }
         okDisabled={isExitGroupLoading}
       />
-    );
+    ));
   };
 
   const handleReportClick = () => {
-    open(<WarningModal onCancelClick={close} onOkClick={close} content="신고하시겠어요?" />);
+    open(() => <WarningModal onCancelClick={close} onOkClick={close} content="신고하시겠어요?" />);
   };
 
   const handleMoreClick = () => {
-    open(
+    open(() => (
       <MoreBottomSheet onClose={close}>
         <MoreBottomSheet.ListItem
           label="신고하기"
@@ -57,7 +57,7 @@ export default function GroupingHeader() {
           onClick={handleExitClick}
         />
       </MoreBottomSheet>
-    );
+    ));
   };
 
   return (

@@ -62,7 +62,7 @@ export default function InputForm() {
       <ButtonGroup>
         <Button
           onClick={() =>
-            open(<ApplyModal onOkClick={handleSubmit(onSubmit)} onCancelClick={close} />)
+            open(() => <ApplyModal onOkClick={handleSubmit(onSubmit)} onCancelClick={close} />)
           }
           disabled={!formState.isValid}
         >

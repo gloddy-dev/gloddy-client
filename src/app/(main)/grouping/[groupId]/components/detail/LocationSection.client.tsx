@@ -18,8 +18,8 @@ export default function LocationSection() {
 
   const handleClipboardClick = () => {
     copyToClipboard(placeAddress)
-      .then(() => open(<Toast>주소가 복사되었습니다.</Toast>))
-      .catch(() => open(<Toast>주소 복사에 실패했습니다.</Toast>));
+      .then(() => open(() => <Toast>주소가 복사되었습니다.</Toast>))
+      .catch(() => open(() => <Toast>주소 복사에 실패했습니다.</Toast>));
   };
 
   return (

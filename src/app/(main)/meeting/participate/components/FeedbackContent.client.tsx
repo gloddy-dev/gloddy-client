@@ -33,7 +33,7 @@ export default function FeedbackContent() {
             size="small"
             variant="solid-secondary"
             onClick={() =>
-              open(<FeedbackModal onClose={close} groupId={groupingData.group.groupId} />)
+              open(() => <FeedbackModal onClose={close} groupId={groupingData.group.groupId} />)
             }
           >
             모임 평가하기

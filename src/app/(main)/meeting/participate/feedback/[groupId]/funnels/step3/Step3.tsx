@@ -20,7 +20,7 @@ export default function Step3() {
   const onSubmit = (data: FeedbackRequestType) => {
     // TODO : API 연결
     router.push('/meeting/participate?tab=participating');
-    open(<FeedbackCompleteModal />);
+    open(() => <FeedbackCompleteModal />);
   };
 
   return (
