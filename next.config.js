@@ -8,6 +8,9 @@ const nextConfig = {
         hostname: '*',
       },
     ],
+    experimental: {
+      optimizeCss: true,
+    },
   },
 };
 
