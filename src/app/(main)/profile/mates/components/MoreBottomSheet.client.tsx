@@ -14,7 +14,7 @@ export default function MoreBottomSheet({
   onCloseBottomSheet,
   isOpen,
 }: MoreBottomSheetProps) {
-  const { open, close } = useModal();
+  const { open: openModal, exit: exitModal } = useModal();
 
   return (
     <BottomSheet
@@ -26,10 +26,10 @@ export default function MoreBottomSheet({
       <p
         className="py-12 text-subtitle-2 text-sign-secondary"
         onClick={() => {
-          open(() => (
+          openModal(() => (
             <MatesDeleteModal
               mateData={mateData}
-              onCloseModal={close}
+              onCloseModal={exitModal}
               onCloseBottomSheet={onCloseBottomSheet}
             />
           ));

@@ -30,7 +30,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
   const { handleSubmit, formState } = hookForm;
 
   const { mutate: mutateCreateGroup } = usePostCreateGroup();
-  const { open: openCreateModal, close: closeCreateModal } = useModal();
+  const { open: openCreateModal, exit: exitCreateModal } = useModal();
 
   const isAllInput = Object.values(hookForm.watch()).every((value) => {
     if (typeof value === 'object') {
@@ -54,7 +54,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
         startTime: formatTime(data.time),
       },
       {
-        onSettled: closeCreateModal,
+        onSettled: exitCreateModal,
       }
     );
   };
@@ -62,7 +62,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
   const handleCreateClick = () => {
     openCreateModal(() => (
       <CreateModal
-        onCancelClick={closeCreateModal}
+        onCancelClick={exitCreateModal}
         onOkClick={handleSubmit(onsubmit)}
         okDisabled={formState.isSubmitting}
       />
