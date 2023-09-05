@@ -17,51 +17,6 @@ import { useRouter } from 'next/navigation';
 export default function GroupDetailHeader() {
   const router = useRouter();
   const { groupId } = useNumberParams<['groupId']>();
-  const { open, close } = useModal();
-  const { open: openItemModal, close: closeItemModal } = useModal();
-  const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { mutate: mutateExitGroup, isLoading: isExitGroupLoading } = useDeleteGroupMember(groupId);
-  const { title, isCaptain, myGroup } = groupDetailData;
-
-  const handleExitClick = () => {
-    openItemModal(() => (
-      <WarningModal
-        onCancelClick={closeItemModal}
-        onOkClick={() => {
-          mutateExitGroup({ params: { groupId } }, { onSettled: closeItemModal });
-        }}
-        content="모임에서 나가시겠어요?"
-        description={
-          <p className="text-sign-tertiary">
-            모임방에서 나갈 시<br />
-            <span className="text-sign-brand">신뢰포인트</span>가 차감돼요.
-          </p>
-        }
-        okDisabled={isExitGroupLoading}
-      />
-    ));
-  };
-
-  const handleReportClick = () => {
-    open(() => <WarningModal onCancelClick={close} onOkClick={close} content="신고하시겠어요?" />);
-  };
-
-  const handleMoreClick = () => {
-    open(({ isOpen }) => (
-      <MoreBottomSheet onClose={close} isOpen={isOpen}>
-        <MoreBottomSheet.ListItem
-          label="신고하기"
-          isShown={!isCaptain}
-          onClick={handleReportClick}
-        />
-        <MoreBottomSheet.ListItem
-          label="모임 나가기"
-          isShown={myGroup && !isCaptain}
-          onClick={handleExitClick}
-        />
-      </MoreBottomSheet>
-    ));
-  };
 
   return (
     <Header className="px-4">
@@ -114,27 +69,27 @@ function ManageButtonAction({ groupId }: ActionProps) {
 
 function MoreButtonAction({ groupId }: ActionProps) {
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
-  const { open: openItemModal, close: closeItemModal } = useModal();
-  const { open: openDoneModal, close: closeDoneModal } = useModal();
+  const { open: openItemModal, exit: exitItemModal } = useModal();
+  const { open: openDoneModal, exit: exitDoneModal } = useModal();
 
   const { mutate: mutateExitGroup, isLoading: isExitGroupLoading } = useDeleteGroupMember(groupId);
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { isCaptain, myGroup } = groupDetailData;
 
   const handleExitClick = () => {
-    mutateExitGroup({ params: { groupId } }, { onSettled: closeItemModal });
+    mutateExitGroup({ params: { groupId } }, { onSettled: exitItemModal });
   };
 
   const handleReportClick = () => {
-    closeItemModal();
+    exitItemModal();
     closeBottomSheet();
-    openDoneModal(() => <ReportDoneModal onOkClick={closeDoneModal} />);
+    openDoneModal(() => <ReportDoneModal onOkClick={exitDoneModal} />);
   };
 
   const handleBlockClick = () => {
-    closeItemModal();
+    exitItemModal();
     closeBottomSheet();
-    openDoneModal(() => <BlockDoneModal onOkClick={closeDoneModal} />);
+    openDoneModal(() => <BlockDoneModal onOkClick={exitDoneModal} />);
   };
 
   const handleMoreClick = () => {
@@ -144,9 +99,9 @@ function MoreButtonAction({ groupId }: ActionProps) {
           label="모임 나가기"
           isShown={myGroup && !isCaptain}
           onClick={() =>
-            openItemModal(() => (
+            openItemModal(({ exit }) => (
               <WarningModal
-                onCancelClick={closeItemModal}
+                onCancelClick={exit}
                 onOkClick={handleExitClick}
                 content="모임에서 나가시겠어요?"
                 description={
@@ -166,7 +121,7 @@ function MoreButtonAction({ groupId }: ActionProps) {
           onClick={() =>
             openItemModal(() => (
               <WarningModal
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleReportClick}
                 content="신고하시겠어요?"
               />
@@ -179,7 +134,7 @@ function MoreButtonAction({ groupId }: ActionProps) {
           onClick={() =>
             openItemModal(() => (
               <WarningModal
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleBlockClick}
                 content="차단하시겠어요?"
               />
