@@ -43,8 +43,8 @@ export default function MeetingPage({ searchParams }: MeetingPageProps) {
         >
           <ContentSection />
         </HydrationProvider>
-        <Footer page="meeting" />
       </Suspense>
+      <Footer page="meeting" />
     </>
   );
 }
