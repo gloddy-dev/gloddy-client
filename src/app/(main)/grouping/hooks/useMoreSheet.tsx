@@ -25,8 +25,8 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
   commentId,
 }: MoreSheetProps<T> & CommentId<T>) {
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
-  const { open: openItemModal, close: closeItemModal } = useModal();
-  const { open: openDoneModal, close: closeDoneModal } = useModal();
+  const { open: openItemModal, exit: exitItemModal } = useModal();
+  const { open: openDoneModal, exit: exitDoneModal } = useModal();
 
   const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
   const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId);
@@ -43,7 +43,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
         { params: { groupId, articleId } },
         {
           onSettled: () => {
-            closeItemModal();
+            exitItemModal();
             closeBottomSheet();
           },
         }
@@ -54,7 +54,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
         { params: { groupId, articleId, commentId } },
         {
           onSettled: () => {
-            closeItemModal();
+            exitItemModal();
             closeBottomSheet();
           },
         }
@@ -63,15 +63,15 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
   };
 
   const handleReportClick = () => {
-    closeItemModal();
+    exitItemModal();
     closeBottomSheet();
-    openDoneModal(() => <ReportDoneModal onOkClick={closeDoneModal} />);
+    openDoneModal(() => <ReportDoneModal onOkClick={exitDoneModal} />);
   };
 
   const handleBlockClick = () => {
-    closeItemModal();
+    exitItemModal();
     closeBottomSheet();
-    openDoneModal(() => <BlockDoneModal onOkClick={closeDoneModal} />);
+    openDoneModal(() => <BlockDoneModal onOkClick={exitDoneModal} />);
   };
 
   const handleMoreClick = () => {
@@ -84,7 +84,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
             openItemModal(() => (
               <WarningModal
                 content={`해당 ${content}을 삭제하시겠습니까?`}
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleDeleteClick}
               />
             ))
@@ -97,7 +97,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
             openItemModal(() => (
               <WarningModal
                 content={`해당 ${content}을 신고하시겠습니까?`}
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleReportClick}
               />
             ))
@@ -110,7 +110,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
             openItemModal(() => (
               <WarningModal
                 content={`해당 ${content}을 차단하시겠습니까?`}
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleBlockClick}
               />
             ))
