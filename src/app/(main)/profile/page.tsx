@@ -21,7 +21,7 @@ export default function Profile() {
           </HydrationProvider>
         </PageAnimation>
       </QueryAsyncBoundary>
-      <Footer page="profile" />
+      <Footer page="profile" spacingColor="#F7F7FA" />
     </>
   );
 }

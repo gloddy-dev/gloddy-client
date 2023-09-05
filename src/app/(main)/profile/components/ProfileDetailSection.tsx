@@ -11,7 +11,7 @@ import { reliabilities } from '@/constants/reliabilities';
 import cn from '@/utils/cn';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
 interface ProfileDetailSectionProps {
   profileData: ReturnType<typeof useGetProfile>['data'];
@@ -19,6 +19,9 @@ interface ProfileDetailSectionProps {
 
 export default function ProfileDetailSection({ profileData }: ProfileDetailSectionProps) {
   const pathname = usePathname();
+  const params = useParams();
+  const isPrivateProfile = !params.userId;
+
   const {
     age,
     gender,
@@ -111,12 +114,20 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
               <h4 className="text-secondary text-h4">5회</h4>
             </div>
             <Divider direction="vertical" className="h-12" />
-            <Link className="flex flex-grow flex-col items-center" href={`${pathname}/praise`}>
+            <Link
+              className="flex flex-grow flex-col items-center text-center"
+              href={isPrivateProfile ? `${pathname}/praise` : ''}
+              scroll={false}
+            >
               <p className="text-tertiary text-caption">받은 칭찬</p>
               <h4 className="text-secondary text-h4 text-sign-brand">{praiseCount}회</h4>
             </Link>
             <Divider direction="vertical" className="h-12" />
-            <Link className="flex flex-grow flex-col items-center" href={`${pathname}/mates`}>
+            <Link
+              className="flex flex-grow flex-col items-center"
+              href={isPrivateProfile ? `${pathname}/mates` : ''}
+              scroll={false}
+            >
               <p className="text-tertiary text-caption">모임 후기</p>
               <h4 className="text-secondary text-h4 text-sign-brand">{reviewCount}회</h4>
             </Link>
