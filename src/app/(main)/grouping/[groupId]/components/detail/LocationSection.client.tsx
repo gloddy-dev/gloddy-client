@@ -1,9 +1,9 @@
 'use client';
 
 import { useGetGroupDetail } from '@/apis/groups';
-import { Spacing } from '@/components/common/Spacing';
 import { Icon } from '@/components/Icon';
 import { Toast } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { copyToClipboard } from '@/utils/copyToClipboard';

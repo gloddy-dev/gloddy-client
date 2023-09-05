@@ -1,4 +1,4 @@
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Modal, type ModalProps } from '@/components/Modal';
 

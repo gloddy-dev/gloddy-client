@@ -5,7 +5,7 @@ import NoMeeting from '../../components/NoMeeting';
 import { useGetMeetingNotEstimated } from '@/apis/meeting';
 import { Button } from '@/components/Button';
 import { GroupingCard } from '@/components/Card';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 
 export default function FeedbackContent() {

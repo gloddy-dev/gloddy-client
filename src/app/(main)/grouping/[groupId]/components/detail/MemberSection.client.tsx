@@ -2,8 +2,8 @@
 
 import { useGetGroupDetail, useGetGroupMembers } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/common/Spacing';
 import { Icon } from '@/components/Icon';
+import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { usePathname, useRouter } from 'next/navigation';
 

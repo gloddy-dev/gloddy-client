@@ -3,12 +3,12 @@ import GroupingCardList from './components/GroupingCardList.client';
 import GroupingHeader from './components/GroupingHeader';
 import { getGroups } from '@/apis/groups/apis';
 import { Keys } from '@/apis/groups/keys';
-import { RejectedFallback } from '@/components/common/ErrorBoundary';
-import { HydrationProvider } from '@/components/common/Provider';
-import { Spacing } from '@/components/common/Spacing';
+import { RejectedFallback } from '@/components/ErrorBoundary';
+import { HydrationProvider } from '@/components/Provider';
 import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
+import { Spacing } from '@/components/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 export default function Grouping() {

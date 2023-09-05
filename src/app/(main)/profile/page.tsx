@@ -1,7 +1,7 @@
 import ProfileDetail from './components/ProfileDetail.client';
 import ProfileHeader from './components/ProfileHeader.client';
 import { Keys, getProfile } from '@/apis/profile';
-import { HydrationProvider } from '@/components/common/Provider';
+import { HydrationProvider } from '@/components/Provider';
 import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';

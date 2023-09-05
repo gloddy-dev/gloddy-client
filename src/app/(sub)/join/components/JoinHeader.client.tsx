@@ -1,6 +1,6 @@
 'use client';
 import { IconButton } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import cn from '@/utils/cn';

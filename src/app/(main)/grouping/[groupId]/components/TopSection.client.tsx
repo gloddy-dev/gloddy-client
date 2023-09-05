@@ -1,11 +1,12 @@
 'use client';
 import { useDeleteScrap, useGetGroupDetail, usePostScrap } from '@/apis/groups';
-import { IconButton } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
 import { Icon } from '@/components/Icon';
+import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useShowMore } from '@/hooks/useShowMore';
 import Image from 'next/image';
+
+import { IconButton } from '@/components/Button';
 
 export default function TopSection() {
   const { groupId } = useNumberParams<['groupId']>();

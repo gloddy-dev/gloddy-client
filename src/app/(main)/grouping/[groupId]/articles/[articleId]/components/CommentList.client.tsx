@@ -3,10 +3,10 @@
 import { type Comment, useGetComments, useGetGroupDetail } from '@/apis/groups';
 import { useMoreSheet } from '@/app/(main)/grouping/hooks/useMoreSheet';
 import { CardHeader } from '@/components/Card';
-import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { Fragment } from 'react';
 

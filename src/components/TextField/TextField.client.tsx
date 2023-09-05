@@ -1,5 +1,5 @@
 'use client';
-import { Spacing } from '../common/Spacing';
+import { Spacing } from '../Spacing';
 import cn from '@/utils/cn';
 import { forwardRef, useState } from 'react';
 

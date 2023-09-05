@@ -1,6 +1,6 @@
-import { Spacing } from '@/components/common/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 
 interface NoMeetingProps {
   message: string;

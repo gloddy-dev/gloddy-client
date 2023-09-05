@@ -2,9 +2,9 @@
 
 import ApplyCard from './ApplyCard.client';
 import { useGetApplies } from '@/apis/groups';
-import { Spacing } from '@/components/common/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useState } from 'react';
 import { Pagination } from 'swiper';

@@ -1,6 +1,6 @@
-import { Spacing } from '@/components/common/Spacing';
 import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 
 import type { ComponentProps } from 'react';
 

@@ -4,7 +4,7 @@ import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
 import { useGetMeetingRejected, useGetMeetingWaiting } from '@/apis/meeting';
 import { GroupingCard } from '@/components/Card';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Divider } from '@/components/Divider';
 import { useModal } from '@/hooks/useModal';
 

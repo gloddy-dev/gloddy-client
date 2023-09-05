@@ -1,4 +1,4 @@
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Modal } from '@/components/Modal';
 
 export default function DeleteCompleteModal() {

@@ -1,6 +1,6 @@
 'use client';
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { TextFieldController } from '@/components/TextField';

@@ -1,7 +1,7 @@
 import { Avatar } from '../Avatar';
-import { Spacing } from '../common/Spacing';
 import { Icon } from '../Icon';
 import { Flex } from '../Layout';
+import { Spacing } from '../Spacing';
 
 import type { ReliabilityType } from '@/types';
 

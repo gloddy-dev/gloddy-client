@@ -1,5 +1,5 @@
 'use client';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { TextList } from '@/components/TextList';
 
 export default function NoticeSection() {

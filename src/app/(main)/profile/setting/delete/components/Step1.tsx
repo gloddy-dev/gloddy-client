@@ -1,7 +1,7 @@
 import { useDeleteContext } from './DeleteProvider.client';
 import { Button, ButtonGroup } from '@/components/Button';
-import { CircleCheckbox } from '@/components/common/Checkbox';
-import { Spacing } from '@/components/common/Spacing';
+import { CircleCheckbox } from '@/components/Checkbox';
+import { Spacing } from '@/components/Spacing';
 import { Flex } from '@/components/Layout';
 import { TextList } from '@/components/TextList';
 
