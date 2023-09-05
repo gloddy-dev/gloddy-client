@@ -111,7 +111,10 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
               <h4 className="text-secondary text-h4">5회</h4>
             </div>
             <Divider direction="vertical" className="h-12" />
-            <Link className="flex flex-grow flex-col items-center" href={`${pathname}/praise`}>
+            <Link
+              className="flex flex-grow flex-col items-center text-center"
+              href={`${pathname}/praise`}
+            >
               <p className="text-tertiary text-caption">받은 칭찬</p>
               <h4 className="text-secondary text-h4 text-sign-brand">{praiseCount}회</h4>
             </Link>
