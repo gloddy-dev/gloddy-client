@@ -26,7 +26,7 @@ export default function MemberSection() {
         </p>
         <div
           className="flex cursor-pointer items-center text-caption text-sign-caption"
-          onClick={() => router.push(`${pathname}/members`)}
+          onClick={() => router.push(`${pathname}/members`, { scroll: false })}
         >
           <p>전체 보기</p>
           <Image src="/icons/24/navigate_next.svg" alt="navigate_next" width={24} height={24} />

@@ -1,7 +1,7 @@
 'use client';
 import TextField, { type TextFieldProps } from './TextField.client';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { forwardRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 
@@ -11,7 +11,8 @@ function formatTimer(timer: number) {
   return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 }
 
-interface TextFieldControllerProps<T extends React.ElementType> extends TextFieldProps<T> {
+interface TextFieldControllerProps<T extends React.ElementType = 'input'>
+  extends TextFieldProps<T> {
   as?: T;
   hookForm: UseFormReturn<any>;
   register: UseFormRegisterReturn<string>;
@@ -39,19 +40,20 @@ function getErrorMessage(error: any, name: string) {
   return error[name]?.message;
 }
 
-export default function TextFieldController<T extends React.ElementType>({
-  as,
-  hookForm,
-  register,
-  className,
-  readOnly = false,
-  leftCaption,
-  maxCount,
-  timer,
-  ...props
-}: TextFieldControllerProps<T> & React.ComponentPropsWithoutRef<T>) {
-  const textFieldRef = useRef<HTMLLabelElement>(null);
-
+function TextFieldController<T extends React.ElementType>(
+  {
+    as,
+    hookForm,
+    register,
+    className,
+    readOnly = false,
+    leftCaption,
+    maxCount,
+    timer,
+    ...props
+  }: TextFieldControllerProps<T> & React.ComponentPropsWithoutRef<T>,
+  ref: React.ForwardedRef<HTMLInputElement>
+) {
   const { formState, watch, resetField } = hookForm;
   const inputName = register.name;
 
@@ -65,7 +67,7 @@ export default function TextFieldController<T extends React.ElementType>({
 
   return (
     <TextField
-      ref={textFieldRef}
+      ref={ref}
       as={as || 'input'}
       register={register}
       leftCaption={(errorMessage as string) ?? leftCaption ?? ''}
@@ -93,3 +95,8 @@ export default function TextFieldController<T extends React.ElementType>({
     />
   );
 }
+
+export default forwardRef(TextFieldController) as <T extends React.ElementType = 'input'>(
+  props: TextFieldControllerProps<T> &
+    React.ComponentPropsWithoutRef<T> & { ref?: React.ForwardedRef<HTMLInputElement> }
+) => React.ReactElement;

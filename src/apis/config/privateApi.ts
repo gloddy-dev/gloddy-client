@@ -43,13 +43,14 @@ privateApi.interceptors.response.use(
       ) {
         try {
           const { refreshToken, accessToken } = await getTokenFromCookie();
-          if (!refreshToken || !accessToken)
+          if (!refreshToken || !accessToken) {
             throw new ApiError(
               '에러 발생',
               '토큰이 없습니다.',
               AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
               new Date()
             );
+          }
 
           const {
             token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },
@@ -78,7 +79,7 @@ privateApi.interceptors.response.use(
           }
 
           prevRequest.headers['X-AUTH-TOKEN'] = reIssuedAccessToken;
-          return privateApi(prevRequest);
+          Promise.reject(new Error('요청 도중 에러 발생'));
         } catch (e) {
           return Promise.reject(e);
         }
