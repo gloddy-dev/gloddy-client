@@ -6,11 +6,11 @@ import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Tag } from '@/components/Tag';
 import { DUMMY_DATA_ESTIMATE } from '@/constants/dummyData';
 import { useModal } from '@/hooks/useModal';
-import Image from 'next/image';
 
 interface Step1Props {
   onNextClick: () => void;
@@ -63,11 +63,8 @@ function MemberCard({ member }: MemberCardProps) {
           <p className="text-paragraph-1">{name}</p>
           <p className="text-caption text-sign-tertiary">{name}</p>
         </div>
-        <Image
-          src="/icons/24/close.svg"
-          width={24}
-          height={24}
-          alt="close"
+        <Icon
+          id="24-close"
           onClick={() =>
             open(() => <NoShowModal name={name} imageUrl={imageUrl} onCancelClick={exit} />)
           }

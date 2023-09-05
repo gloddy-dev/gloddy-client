@@ -2,7 +2,7 @@
 import { IconButton } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { Header } from '../Header';
-import Image from 'next/image';
+import { Icon } from '../Icon';
 import { forwardRef } from 'react';
 import Sheet, { type SheetRef } from 'react-modal-sheet';
 
@@ -59,13 +59,7 @@ export default forwardRef(function BottomSheet(
             {isRightCloseIcon && (
               <Header.Right className="pr-4">
                 <IconButton size="large" onClick={onClose}>
-                  <Image
-                    src="/icons/24/close.svg"
-                    alt="close"
-                    width={24}
-                    height={24}
-                    className="cursor-pointer"
-                  />
+                  <Icon id="24-close" className="cursor-pointer" />
                 </IconButton>
               </Header.Right>
             )}

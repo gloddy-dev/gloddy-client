@@ -3,9 +3,9 @@
 import WriteModal from './WriteModal';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { useModal } from '@/hooks/useModal';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function WriteHeader() {
@@ -31,7 +31,7 @@ export default function WriteHeader() {
               ))
             }
           >
-            <Image src="/icons/24/arrow_back.svg" alt="arrow_back" width={24} height={24} />
+            <Icon id="24-arrow_back" />
           </IconButton>
           <p className="text-subtitle-1">게시글 작성</p>
         </Flex>

@@ -13,7 +13,7 @@ import type { MatesResponse } from '@/apis/profile';
 export const DUMMY_GROUPING_DATA: Grouping[] = [
   {
     groupId: 12345,
-    imageUrl: '/assets/location.svg',
+    imageUrl: '/images/dummy_image.png',
     title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
@@ -27,7 +27,7 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
   },
   {
     groupId: 12346,
-    imageUrl: '/assets/location.svg',
+    imageUrl: '/images/dummy_image.png',
     title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
@@ -41,7 +41,7 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
   },
   {
     groupId: 12346,
-    imageUrl: '/assets/location.svg',
+    imageUrl: '/images/dummy_image.png',
     title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
@@ -132,8 +132,8 @@ export const DETAIL_DUMMY_DATA: GroupDetailResponse = {
   isApplyWaited: false,
   isScraped: false,
   groupId: 1,
-  imageUrl: '/assets/main_logo.png',
-  fileUrl: '/assets/main_logo.png',
+  imageUrl: '/images/dummy_image.png',
+  fileUrl: '/images/dummy_image.png',
   title: 'Let’s go for a walk!',
   content: 'It’s a group that \n🏃walks around, \n🗣talks, \n🌏and learns languages.',
   memberCount: 2,

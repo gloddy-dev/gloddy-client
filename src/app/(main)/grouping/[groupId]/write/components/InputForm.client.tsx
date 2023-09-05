@@ -34,10 +34,15 @@ export default function InputForm() {
   const onSubmit = async (data: WriteFormValues) => {
     if (isLoading) return;
 
-    mutateArticle({
-      params: { groupId },
-      article: data,
-    });
+    mutateArticle(
+      {
+        params: { groupId },
+        article: data,
+      },
+      {
+        onSettled: exit,
+      }
+    );
   };
 
   return (

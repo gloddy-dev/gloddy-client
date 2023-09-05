@@ -2,10 +2,10 @@
 import { type GroupMember, useGetGroupMembers } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { IconButton } from '@/components/Button';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function MemeberList() {
@@ -29,20 +29,16 @@ function MemberItem({ member }: MemberItemProps) {
         <div className="min-w-0 grow">
           <Flex align="center" className="gap-2">
             <span className="truncate">{nickName}</span>
-            {isCaptain && <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />}
+
+            {isCaptain && <Icon id="16-host" width={16} height={16} />}
           </Flex>
           <Flex align="center" className="gap-2">
-            <Image
-              src={`/icons/16/reliability/${reliabilityLevel.toLowerCase()}.svg`}
-              alt="reliability"
-              width={16}
-              height={16}
-            />
+            <Icon id={`16-reliability-${reliabilityLevel.toLowerCase()}`} width={16} height={16} />
             <p className="text-caption text-sign-tertiary">{reliabilityLevel}</p>
           </Flex>
         </div>
         <IconButton>
-          <Image src="/icons/24/navigate_next.svg" alt="navigate_next" width={24} height={24} />
+          <Icon id="24-navigate_next" />
         </IconButton>
       </Flex>
     </Link>

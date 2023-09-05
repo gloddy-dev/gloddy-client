@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { Icon } from '@/components/Icon';
 
 interface CircleCheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
   checked?: boolean;
@@ -10,11 +10,11 @@ export default function CircleCheckbox({
   variant = 'solid',
   ...props
 }: CircleCheckboxProps) {
-  const checkboxIcon = `/icons/24/checkbox_${variant}_${checked ? 'checked' : 'default'}.svg`;
+  const checkboxIconId = `24-checkbox_${variant}_${checked ? 'checked' : 'default'}`;
 
   return (
     <div className="flex items-center" {...props}>
-      <Image alt="checkbox" src={checkboxIcon} width={24} height={24} />
+      <Icon id={checkboxIconId} />
     </div>
   );
 }
