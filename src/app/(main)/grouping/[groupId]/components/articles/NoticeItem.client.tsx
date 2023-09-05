@@ -43,13 +43,13 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
             width={24}
             height={24}
             onClick={() => {
-              open(
+              open(() => (
                 <WarningModal
                   onCancelClick={close}
                   onOkClick={handleDeleteClick}
                   content="해당 공지글을 삭제하시겠습니까?"
                 />
-              );
+              ));
             }}
           />
         )}

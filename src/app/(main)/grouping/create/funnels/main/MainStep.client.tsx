@@ -7,7 +7,6 @@ import { usePostCreateGroup } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/common/Spacing';
 import { Divider } from '@/components/Divider';
-import { Toast } from '@/components/Modal';
 import { useModal } from '@/hooks/useModal';
 import { format } from 'date-fns';
 
@@ -61,13 +60,13 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
   };
 
   const handleCreateClick = () => {
-    openCreateModal(
+    openCreateModal(() => (
       <CreateModal
         onCancelClick={closeCreateModal}
         onOkClick={handleSubmit(onsubmit)}
         okDisabled={formState.isSubmitting}
       />
-    );
+    ));
   };
 
   return (

@@ -19,7 +19,7 @@ export default function WriteHeader() {
           <IconButton
             size="large"
             onClick={() =>
-              open(
+              open(() => (
                 <WriteModal
                   type="cancel"
                   onCancelClick={close}
@@ -28,7 +28,7 @@ export default function WriteHeader() {
                     router.back();
                   }}
                 />
-              )
+              ))
             }
           >
             <Image src="/icons/24/arrow_back.svg" alt="arrow_back" width={24} height={24} />

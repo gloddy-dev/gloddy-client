@@ -47,8 +47,8 @@ export default function GroupDetailHeader() {
   };
 
   const handleMoreClick = () => {
-    open(() => (
-      <MoreBottomSheet onClose={close}>
+    open(({ isOpen }) => (
+      <MoreBottomSheet onClose={close} isOpen={isOpen}>
         <MoreBottomSheet.ListItem
           label="신고하기"
           isShown={!isCaptain}
@@ -138,8 +138,8 @@ function MoreButtonAction({ groupId }: ActionProps) {
   };
 
   const handleMoreClick = () => {
-    openBottomSheet(() => (
-      <MoreBottomSheet onClose={closeBottomSheet}>
+    openBottomSheet(({ isOpen }) => (
+      <MoreBottomSheet onClose={closeBottomSheet} isOpen={isOpen}>
         <MoreBottomSheet.ListItem
           label="모임 나가기"
           isShown={myGroup && !isCaptain}
