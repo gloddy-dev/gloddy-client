@@ -37,9 +37,10 @@ const tabList: TabType[] = [
 interface FooterProps {
   page?: PageType;
   isSpacing?: boolean;
+  spacingColor?: string;
 }
 
-export default function Footer({ page, isSpacing = true }: FooterProps) {
+export default function Footer({ page, isSpacing = true, spacingColor }: FooterProps) {
   const isSelected = (tab: TabType) => tab.name === page;
 
   return (
@@ -67,7 +68,7 @@ export default function Footer({ page, isSpacing = true }: FooterProps) {
           </Link>
         ))}
       </footer>
-      {isSpacing && <div className="h-70" />}
+      {isSpacing && <div className="h-70" style={{ backgroundColor: spacingColor }} />}
     </>
   );
 }
