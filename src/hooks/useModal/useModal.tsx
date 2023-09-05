@@ -27,7 +27,6 @@ export default function useModal({ delay = 0 }: UseModalProps = {}) {
         addModal(
           id,
           <ModalController
-            // NOTE: state should be reset every time we open an modal
             key={Date.now()}
             ref={modalRef}
             modalElement={modalElement}
@@ -36,6 +35,11 @@ export default function useModal({ delay = 0 }: UseModalProps = {}) {
             }}
           />
         );
+        if (delay) {
+          setTimeout(() => {
+            removeModal(id);
+          }, delay);
+        }
       },
       close: () => {
         modalRef.current?.close();
@@ -44,6 +48,6 @@ export default function useModal({ delay = 0 }: UseModalProps = {}) {
         removeModal(id);
       },
     }),
-    [id, addModal, removeModal]
+    [addModal, id, delay, removeModal]
   );
 }
