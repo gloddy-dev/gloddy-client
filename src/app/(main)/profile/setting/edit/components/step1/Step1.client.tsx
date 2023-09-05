@@ -1,6 +1,6 @@
 import Step1Header from './Step1Header';
 import Step1InputForm from './Step1InputForm.client';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 
 interface Step1Props {
   onNext: () => void;

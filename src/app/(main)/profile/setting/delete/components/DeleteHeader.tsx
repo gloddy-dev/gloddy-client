@@ -1,6 +1,6 @@
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
-import Image from 'next/image';
+import { Icon } from '@/components/Icon';
 
 interface DeleteHeaderProps {
   onPrevClick: () => void;
@@ -11,7 +11,7 @@ export default function DeleteHeader({ onPrevClick, icon }: DeleteHeaderProps) {
     <Header>
       <Header.Left>
         <IconButton size="large" onClick={onPrevClick}>
-          <Image src={`/icons/24/${icon}.svg`} width={24} height={24} alt="back" />
+          <Icon id={`24-${icon}`} />
         </IconButton>
         <p>회원 탈퇴</p>
       </Header.Left>

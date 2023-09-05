@@ -1,5 +1,5 @@
 import Button from './Button';
-import { Spacing } from '../common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import cn from '@/utils/cn';
 import { Children, type ReactElement, cloneElement, isValidElement } from 'react';
 

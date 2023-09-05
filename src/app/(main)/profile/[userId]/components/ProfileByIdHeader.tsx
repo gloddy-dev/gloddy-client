@@ -2,8 +2,8 @@
 import { useGetProfileById } from '@/apis/profile';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { Icon } from '@/components/Icon';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function ProfileByIdHeader() {
@@ -16,7 +16,7 @@ export default function ProfileByIdHeader() {
     <Header>
       <Header.Left>
         <IconButton size="large" onClick={() => router.back()}>
-          <Image src="/icons/24/close.svg" width={24} height={24} alt="close" />
+          <Icon id="24-close" />
         </IconButton>
         <p>{name}</p>
       </Header.Left>

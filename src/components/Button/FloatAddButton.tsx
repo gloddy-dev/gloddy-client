@@ -1,5 +1,5 @@
+import { Icon } from '@/components/Icon';
 import cn from '@/utils/cn';
-import Image from 'next/image';
 
 interface FloatButtonProps {
   /**
@@ -26,7 +26,7 @@ export default function FloatAddButton({ className, onClick, disabled }: FloatBu
       onClick={onClick}
       disabled={disabled}
     >
-      <Image src="/icons/24/add.svg" width={24} height={24} alt="add" />
+      <Icon id="24-add" />
     </button>
   );
 }

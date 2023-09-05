@@ -1,7 +1,7 @@
 'use client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
-import Image from 'next/image';
+import { Icon } from '@/components/Icon';
 import Link from 'next/link';
 
 export default function ProfileHeader() {
@@ -10,7 +10,7 @@ export default function ProfileHeader() {
       <Header.Right>
         <Link href="/profile/setting">
           <IconButton size="large">
-            <Image src="/icons/24/settings.svg" width={24} height={24} alt="action" />
+            <Icon id="24-settings" />
           </IconButton>
         </Link>
       </Header.Right>

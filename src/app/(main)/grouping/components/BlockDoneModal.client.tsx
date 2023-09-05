@@ -1,5 +1,5 @@
-import { Spacing } from '@/components/common/Spacing';
 import { Modal } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 
 interface BlockDoneModalProps {
   onOkClick: () => void;

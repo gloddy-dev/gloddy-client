@@ -1,7 +1,7 @@
 import ProfileByIdDetail from './components/ProfileByIdDetail.client';
 import ProfileByIdHeader from './components/ProfileByIdHeader';
 import { Keys, getProfileById } from '@/apis/profile';
-import { HydrationProvider } from '@/components/common/Provider';
+import { HydrationProvider } from '@/components/Provider';
 import { Suspense } from 'react';
 
 interface PageProps {

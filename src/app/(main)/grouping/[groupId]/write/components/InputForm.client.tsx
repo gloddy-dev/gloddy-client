@@ -4,9 +4,9 @@ import ImageSection from './ImageSection.client';
 import WriteModal from './WriteModal';
 import { useGetGroupDetail, usePostArticle } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
-import { CircleCheckbox } from '@/components/common/Checkbox';
-import { Spacing } from '@/components/common/Spacing';
+import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
@@ -34,10 +34,15 @@ export default function InputForm() {
   const onSubmit = async (data: WriteFormValues) => {
     if (isLoading) return;
 
-    mutateArticle({
-      params: { groupId },
-      article: data,
-    });
+    mutateArticle(
+      {
+        params: { groupId },
+        article: data,
+      },
+      {
+        onSettled: exit,
+      }
+    );
   };
 
   return (
