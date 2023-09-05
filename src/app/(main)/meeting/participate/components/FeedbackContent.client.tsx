@@ -12,7 +12,7 @@ export default function FeedbackContent() {
   const {
     data: { groups: meetingNotEstimatedData },
   } = useGetMeetingNotEstimated();
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
 
   return (
     <>
@@ -33,7 +33,7 @@ export default function FeedbackContent() {
             size="small"
             variant="solid-secondary"
             onClick={() =>
-              open(<FeedbackModal onClose={close} groupId={groupingData.group.groupId} />)
+              open(() => <FeedbackModal onClose={exit} groupId={groupingData.group.groupId} />)
             }
           >
             모임 평가하기

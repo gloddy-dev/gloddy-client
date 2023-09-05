@@ -3,7 +3,7 @@ import { IconButton } from '../Button';
 import { Spacing } from '../common/Spacing';
 import { Header } from '../Header';
 import Image from 'next/image';
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef } from 'react';
 import Sheet, { type SheetRef } from 'react-modal-sheet';
 
 import type { StrictPropsWithChildren } from '@/types';
@@ -16,6 +16,7 @@ interface BottomSheetProps extends Partial<SheetProps> {
   disableDrag?: boolean;
   isTapOutsideToClose?: boolean;
   isRightCloseIcon?: boolean;
+  isOpen: boolean;
 }
 
 export default forwardRef(function BottomSheet(
@@ -31,16 +32,9 @@ export default forwardRef(function BottomSheet(
   }: StrictPropsWithChildren<BottomSheetProps>,
   ref?: React.ForwardedRef<SheetRef>
 ) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    setIsOpen(true);
-  }, []);
-
   return (
     <Sheet
       ref={ref}
-      isOpen={isOpen}
       onClose={onClose}
       snapPoints={snapPoints}
       initialSnap={0}

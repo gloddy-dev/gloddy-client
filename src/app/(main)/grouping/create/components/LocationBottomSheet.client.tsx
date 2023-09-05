@@ -13,9 +13,14 @@ import { Map } from 'react-kakao-maps-sdk';
 interface LocationBottomSheetProps {
   control: Control<CreateGroupContextValue>;
   onClose: () => void;
+  isOpen: boolean;
 }
 
-export default function LocationBottomSheet({ control, onClose }: LocationBottomSheetProps) {
+export default function LocationBottomSheet({
+  control,
+  onClose,
+  isOpen,
+}: LocationBottomSheetProps) {
   const [keyword, setKeyword] = useState('');
   const [places, setPlaces] = useState<kakao.maps.services.PlacesSearchResult>([]);
   const [snapPoints, setSnapPoints] = useState<number[]>([500, 0]);
@@ -68,6 +73,7 @@ export default function LocationBottomSheet({ control, onClose }: LocationBottom
       mountPoint={document.getElementById('setting') as HTMLElement}
       isTapOutsideToClose
       disableDrag
+      isOpen={isOpen}
     >
       <TextField
         placeholder="모임 위치를 입력해주세요."

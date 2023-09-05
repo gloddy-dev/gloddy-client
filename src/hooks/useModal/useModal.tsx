@@ -1,6 +1,8 @@
 'use client';
-import { useModalContext } from './ModalProvider';
-import { ReactElement, useState } from 'react';
+import { ModalControlRef, ModalController } from './ModalController';
+import { ModalContext } from './ModalProvider';
+import { CreateModalElement } from './type';
+import { useContext, useMemo, useRef, useState } from 'react';
 
 let elementId = 1;
 
@@ -9,21 +11,43 @@ interface UseModalProps {
 }
 
 export default function useModal({ delay = 0 }: UseModalProps = {}) {
-  const { addModal, removeModal } = useModalContext();
+  const context = useContext(ModalContext);
+
+  if (context === null) throw new Error('useModal is only available within ModalProvider.');
+
+  const { addModal, removeModal } = context;
 
   const [id] = useState(() => String(elementId++));
 
-  return {
-    open: (modalElement: ReactElement) => {
-      addModal(id, modalElement);
-      if (delay) {
-        setTimeout(() => {
-          removeModal(id);
-        }, delay);
-      }
-    },
-    close: () => {
-      removeModal(id);
-    },
-  };
+  const modalRef = useRef<ModalControlRef | null>(null);
+
+  return useMemo(
+    () => ({
+      open: (modalElement: CreateModalElement) => {
+        addModal(
+          id,
+          <ModalController
+            key={Date.now()}
+            ref={modalRef}
+            modalElement={modalElement}
+            onExit={() => {
+              removeModal(id);
+            }}
+          />
+        );
+        if (delay) {
+          setTimeout(() => {
+            removeModal(id);
+          }, delay);
+        }
+      },
+      close: () => {
+        modalRef.current?.close();
+      },
+      exit: () => {
+        removeModal(id);
+      },
+    }),
+    [addModal, id, delay, removeModal]
+  );
 }

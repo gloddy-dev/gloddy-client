@@ -69,39 +69,39 @@ function ManageButtonAction({ groupId }: ActionProps) {
 
 function MoreButtonAction({ groupId }: ActionProps) {
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
-  const { open: openItemModal, close: closeItemModal } = useModal();
-  const { open: openDoneModal, close: closeDoneModal } = useModal();
+  const { open: openItemModal, exit: exitItemModal } = useModal();
+  const { open: openDoneModal, exit: exitDoneModal } = useModal();
 
   const { mutate: mutateExitGroup, isLoading: isExitGroupLoading } = useDeleteGroupMember(groupId);
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { isCaptain, myGroup } = groupDetailData;
 
   const handleExitClick = () => {
-    mutateExitGroup({ params: { groupId } }, { onSettled: closeItemModal });
+    mutateExitGroup({ params: { groupId } }, { onSettled: exitItemModal });
   };
 
   const handleReportClick = () => {
-    closeItemModal();
+    exitItemModal();
     closeBottomSheet();
-    openDoneModal(<ReportDoneModal onOkClick={closeDoneModal} />);
+    openDoneModal(() => <ReportDoneModal onOkClick={exitDoneModal} />);
   };
 
   const handleBlockClick = () => {
-    closeItemModal();
+    exitItemModal();
     closeBottomSheet();
-    openDoneModal(<BlockDoneModal onOkClick={closeDoneModal} />);
+    openDoneModal(() => <BlockDoneModal onOkClick={exitDoneModal} />);
   };
 
   const handleMoreClick = () => {
-    openBottomSheet(
-      <MoreBottomSheet onClose={closeBottomSheet}>
+    openBottomSheet(({ isOpen }) => (
+      <MoreBottomSheet onClose={closeBottomSheet} isOpen={isOpen}>
         <MoreBottomSheet.ListItem
           label="모임 나가기"
           isShown={myGroup && !isCaptain}
           onClick={() =>
-            openItemModal(
+            openItemModal(({ exit }) => (
               <WarningModal
-                onCancelClick={closeItemModal}
+                onCancelClick={exit}
                 onOkClick={handleExitClick}
                 content="모임에서 나가시겠어요?"
                 description={
@@ -112,37 +112,37 @@ function MoreButtonAction({ groupId }: ActionProps) {
                 }
                 okDisabled={isExitGroupLoading}
               />
-            )
+            ))
           }
         />
         <MoreBottomSheet.ListItem
           label="신고하기"
           isShown={!isCaptain}
           onClick={() =>
-            openItemModal(
+            openItemModal(() => (
               <WarningModal
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleReportClick}
                 content="신고하시겠어요?"
               />
-            )
+            ))
           }
         />
         <MoreBottomSheet.ListItem
           label="차단하기"
           isShown={!isCaptain}
           onClick={() =>
-            openItemModal(
+            openItemModal(() => (
               <WarningModal
-                onCancelClick={closeItemModal}
+                onCancelClick={exitItemModal}
                 onOkClick={handleBlockClick}
                 content="차단하시겠어요?"
               />
-            )
+            ))
           }
         />
       </MoreBottomSheet>
-    );
+    ));
   };
 
   return (

@@ -17,7 +17,7 @@ const infoList = [
 ];
 
 export default function Step2() {
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
   const handleDeleteClick = () => {};
 
   const { watch, setValue } = useDeleteContext();
@@ -55,7 +55,7 @@ export default function Step2() {
       <ButtonGroup>
         <Button
           disabled={watch('deleteReason').length === 0}
-          onClick={() => open(<DeleteModal onCancelClick={close} />)}
+          onClick={() => open(() => <DeleteModal onCancelClick={exit} />)}
         >
           탈퇴하기
         </Button>

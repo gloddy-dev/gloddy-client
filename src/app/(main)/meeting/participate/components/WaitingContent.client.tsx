@@ -40,7 +40,7 @@ export default function WaitingContent() {
           groupingData={groupingData.group}
           key={groupingData.group.groupId}
           applyId={groupingData.applyId}
-          onClick={() => open(<RejectModal applyId={groupingData.applyId} />)}
+          onClick={() => open(() => <RejectModal applyId={groupingData.applyId} />)}
         />
       ))}
     </>

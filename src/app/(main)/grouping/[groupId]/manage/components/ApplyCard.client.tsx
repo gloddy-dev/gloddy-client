@@ -29,14 +29,14 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
   } = apply;
 
   const router = useRouter();
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
   const { mutate: mutatePatchApply } = usePatchApply(groupId);
 
   const handleApproveClick = () => {
     mutatePatchApply(
       { params: { groupId, applyId, status: 'APPROVE' } },
       {
-        onSettled: close,
+        onSettled: exit,
       }
     );
   };
@@ -45,7 +45,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
     mutatePatchApply(
       { params: { groupId, applyId, status: 'REFUSE' } },
       {
-        onSettled: close,
+        onSettled: exit,
       }
     );
   };
@@ -87,16 +87,18 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
         <Button
           variant="solid-warning"
           onClick={() =>
-            open(<ManageModal type="REFUSE" onOkClick={handleRefuseClick} onCancelClick={close} />)
+            open(() => (
+              <ManageModal type="REFUSE" onOkClick={handleRefuseClick} onCancelClick={exit} />
+            ))
           }
         >
           거절
         </Button>
         <Button
           onClick={() =>
-            open(
-              <ManageModal type="APPROVE" onOkClick={handleApproveClick} onCancelClick={close} />
-            )
+            open(() => (
+              <ManageModal type="APPROVE" onOkClick={handleApproveClick} onCancelClick={exit} />
+            ))
           }
         >
           승인

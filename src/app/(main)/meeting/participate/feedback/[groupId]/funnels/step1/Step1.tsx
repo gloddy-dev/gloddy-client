@@ -39,7 +39,7 @@ interface MemberCardProps {
 
 function MemberCard({ member }: MemberCardProps) {
   const { imageUrl, name } = member;
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
   const { setValue, watch } = useFeedbackContext();
   const handleTag = (tag: string) => {
     setValue(
@@ -69,7 +69,7 @@ function MemberCard({ member }: MemberCardProps) {
           height={24}
           alt="close"
           onClick={() =>
-            open(<NoShowModal name={name} imageUrl={imageUrl} onCancelClick={close} />)
+            open(() => <NoShowModal name={name} imageUrl={imageUrl} onCancelClick={exit} />)
           }
         />
       </Flex>
