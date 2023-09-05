@@ -5,6 +5,7 @@ import { Keys, getArticle } from '@/apis/groups';
 import { RejectedFallback } from '@/components/common/ErrorBoundary';
 import { HydrationProvider } from '@/components/common/Provider';
 import { Spacing } from '@/components/common/Spacing';
+import { PageAnimation } from '@/components/PageAnimation';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 interface ArticleDetailPageProps {
@@ -20,14 +21,16 @@ export default function ArticlePage({ params }: ArticleDetailPageProps) {
 
   return (
     <>
+      <ArticleHeader />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
-        <HydrationProvider
-          queryFn={() => getArticle(groupId, articleId)}
-          queryKey={Keys.getArticle(groupId, articleId)}
-        >
-          <ArticleHeader />
-          <ArticleDetail />
-        </HydrationProvider>
+        <PageAnimation>
+          <HydrationProvider
+            queryFn={() => getArticle(groupId, articleId)}
+            queryKey={Keys.getArticle(groupId, articleId)}
+          >
+            <ArticleDetail />
+          </HydrationProvider>
+        </PageAnimation>
       </QueryAsyncBoundary>
       <Spacing size={100} />
       <CommentForm />
