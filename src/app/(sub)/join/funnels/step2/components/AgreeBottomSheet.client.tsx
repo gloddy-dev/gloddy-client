@@ -25,9 +25,10 @@ const defaultAgreeCheckList = [
 
 interface AgreeBottomSheetProps {
   onClose: () => void;
+  isOpen: boolean;
 }
 
-export default function AgreeBottomSheet({ onClose }: AgreeBottomSheetProps) {
+export default function AgreeBottomSheet({ onClose, isOpen }: AgreeBottomSheetProps) {
   const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>(defaultAgreeCheckList);
 
   const handleAgreeAllCheckList = () => {
@@ -54,6 +55,7 @@ export default function AgreeBottomSheet({ onClose }: AgreeBottomSheetProps) {
       title="약관 동의"
       disableDrag
       isRightCloseIcon={false}
+      isOpen={isOpen}
     >
       <section className="rounded-12 border-1 border-border-default">
         <div

@@ -34,7 +34,9 @@ function Mates({ mateData }: MatesProps) {
   const { open, close } = useModal();
 
   const handleMateDelete = () => {
-    open(() => <MoreBottomSheet onCloseBottomSheet={close} mateData={mateData} />);
+    open(({ isOpen }) => (
+      <MoreBottomSheet onCloseBottomSheet={close} mateData={mateData} isOpen={isOpen} />
+    ));
   };
 
   return (

@@ -63,9 +63,9 @@ export default function InputForm() {
       <ButtonGroup>
         <Button
           onClick={() =>
-            open(
+            open(() => (
               <WriteModal type="write" onCancelClick={close} onOkClick={handleSubmit(onSubmit)} />
-            )
+            ))
           }
           disabled={watch('content').length < 20}
         >

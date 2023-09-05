@@ -96,9 +96,9 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
         </Button>
         <Button
           onClick={() =>
-            open(
+            open(() => (
               <ManageModal type="APPROVE" onOkClick={handleApproveClick} onCancelClick={close} />
-            )
+            ))
           }
         >
           승인
