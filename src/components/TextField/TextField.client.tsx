@@ -40,7 +40,7 @@ function TextField<T extends React.ElementType = 'input'>(
     className,
     ...props
   }: TextFieldProps<T> & React.ComponentPropsWithoutRef<T>,
-  ref: React.ForwardedRef<HTMLLabelElement>
+  ref: React.ForwardedRef<HTMLInputElement>
 ) {
   const isError = isLeftError || isRightError;
   const [isFocus, setIsFocus] = useState(false);
@@ -49,7 +49,7 @@ function TextField<T extends React.ElementType = 'input'>(
   const [id] = useState(() => String(elementId++));
 
   return (
-    <label ref={ref} htmlFor={id} className="relative py-8">
+    <label htmlFor={id} className="relative">
       <section
         className={cn(
           'w-full rounded-8 border-1 p-16',
@@ -72,6 +72,7 @@ function TextField<T extends React.ElementType = 'input'>(
         <div className="relative flex h-full w-full items-center justify-around">
           {leftIcon}
           <Element
+            ref={ref}
             className={cn(
               'w-full resize-none text-paragraph-1 outline-none placeholder:text-paragraph-1 placeholder:text-sign-caption',
               {
@@ -138,5 +139,5 @@ function RightCaption({ isError, text }: RightCaptionProps) {
 
 export default forwardRef(TextField) as <T extends React.ElementType = 'input'>(
   props: TextFieldProps<T> &
-    React.ComponentPropsWithoutRef<T> & { ref?: React.ForwardedRef<HTMLLabelElement> }
+    React.ComponentPropsWithoutRef<T> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => React.ReactElement;

@@ -34,6 +34,7 @@ export default function ArticlePage({ params }: ArticleDetailPageProps) {
       </QueryAsyncBoundary>
       <Spacing size={100} />
       <CommentForm />
+      <Spacing size={60} />
     </>
   );
 }
