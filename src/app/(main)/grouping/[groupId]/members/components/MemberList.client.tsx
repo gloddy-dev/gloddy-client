@@ -23,7 +23,7 @@ interface MemberItemProps {
 function MemberItem({ member }: MemberItemProps) {
   const { userId, imageUrl, nickName, isCaptain, isCertifiedStudent, reliabilityLevel } = member;
   return (
-    <Link href={`/profile/${userId}`}>
+    <Link href={`/profile/${userId}`} scroll={false}>
       <Flex align="center" className="mx-20 my-8 flex-auto gap-12 py-4">
         <Avatar imageUrl={imageUrl} iconVariant={isCertifiedStudent ? 'education' : 'none'} />
         <div className="min-w-0 grow">

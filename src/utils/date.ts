@@ -1,12 +1,2 @@
-const getDate = {
-  today: () => {
-    const today = new Date();
-    return {
-      todayYear: today.getFullYear(),
-      todayMonth: today.getMonth() + 1,
-      todayDate: today.getDate(),
-    };
-  },
-};
-
-export default getDate;
+export const currentKoreaTime = new Date(Date.now() + 9 * 60 * 60 * 1000);
+export const oneDay = 1000 * 60 * 60 * 24;

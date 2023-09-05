@@ -5,7 +5,7 @@ import type { StrictPropsWithChildren } from '@/types';
 import type { QueryFunction, QueryKey } from '@tanstack/react-query';
 
 interface HydrationProviderProps {
-  queryKey: QueryKey;
+  queryKey?: QueryKey;
   queryMultipleKey?: QueryKey[];
   queryFn?: QueryFunction;
   queryMultipleFn?: QueryFunction[];
