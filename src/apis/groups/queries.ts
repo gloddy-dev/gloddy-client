@@ -7,7 +7,7 @@ import {
   getGroupDetail,
   getGroupMembers,
   getGroups,
-  getNotice,
+  getNotices,
 } from './apis';
 import { Keys } from './keys';
 import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@suspensive/react-query';
@@ -70,8 +70,8 @@ export const useGetGroupMembers = (groupId: number) => {
   return useSuspenseQuery(Keys.getGroupMembers(groupId), () => getGroupMembers(groupId));
 };
 
-export const useGetNotice = (groupId: number) => {
-  return useSuspenseQuery(Keys.getNotice(groupId), () => getNotice(groupId));
+export const useGetNotices = (groupId: number) => {
+  return useSuspenseQuery(Keys.getNotice(groupId), () => getNotices(groupId));
 };
 
 export const useGetApplies = (groupId: number) => {
