@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 
 export default function WriteHeader() {
   const router = useRouter();
-  const { open, close } = useModal();
+  const { open, exit } = useModal();
 
   return (
     <Header className="px-4">
@@ -22,9 +22,9 @@ export default function WriteHeader() {
               open(() => (
                 <WriteModal
                   type="cancel"
-                  onCancelClick={close}
+                  onCancelClick={exit}
                   onOkClick={() => {
-                    close();
+                    exit();
                     router.back();
                   }}
                 />

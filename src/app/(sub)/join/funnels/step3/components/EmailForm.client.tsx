@@ -15,7 +15,7 @@ import type { SignUpState } from '../../../type';
 export default memo(function EmailForm() {
   const { nextStep } = useFunnelContext();
 
-  const { open: openSkipModal, close: closeSkipModal } = useModal();
+  const { open: openSkipModal, exit: exitSkipModal } = useModal();
   const { open: openVerifyBottomSheet, close: closeVerifyBottomSheet } = useModal();
   const { mutate: mutateEmail } = useEmailMutation();
   const hookForm = useJoinContext();
@@ -47,7 +47,7 @@ export default memo(function EmailForm() {
           setValue('schoolInfo.email', '');
           nextStep();
         }}
-        onCancelClick={closeSkipModal}
+        onCancelClick={exitSkipModal}
       />
     ));
   };

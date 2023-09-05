@@ -78,12 +78,7 @@ export default function InputForm() {
         placeholder="생년월일을 선택해주세요."
         onClick={() =>
           openBirthdayBottomSheet(({ close, isOpen }) => (
-            <BirthdayBottomSheet
-              onClose={() => {
-                close();
-              }}
-              isOpen={isOpen}
-            />
+            <BirthdayBottomSheet onClose={close} isOpen={isOpen} />
           ))
         }
         value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}

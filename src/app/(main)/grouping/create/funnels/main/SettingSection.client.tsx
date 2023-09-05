@@ -12,7 +12,7 @@ interface SettingSectionProps {
 }
 
 export default function SettingSection({ onSelectMeetDate }: SettingSectionProps) {
-  const { open: openLocation, close: closeLocation } = useModal();
+  const { open: openLocationSheet, close: closeLocationSheet } = useModal();
   const { watch, setValue, control } = useCreateGroupContext();
 
   return (
@@ -36,8 +36,8 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
         <Spacing size={4} />
         <TextField
           onClick={() =>
-            openLocation(({ isOpen }) => (
-              <LocationBottomSheet onClose={closeLocation} control={control} isOpen={isOpen} />
+            openLocationSheet(({ isOpen }) => (
+              <LocationBottomSheet onClose={closeLocationSheet} control={control} isOpen={isOpen} />
             ))
           }
           value={watch('place.name')}
