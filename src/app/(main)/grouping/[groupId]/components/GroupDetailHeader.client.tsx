@@ -26,15 +26,15 @@ export default function GroupDetailHeader() {
             <Image src="/icons/24/arrow_back.svg" alt="back" width={24} height={24} />
           </IconButton>
           <Suspense>
-            <ActionTitle groupId={groupId} />
+            <TitleAction groupId={groupId} />
           </Suspense>
         </Flex>
       </Header.Left>
       <Header.Right>
         <Flex align="center">
           <Suspense>
-            <ActionManageButton groupId={groupId} />
-            <ActionMoreButton groupId={groupId} />
+            <ManageButtonAction groupId={groupId} />
+            <MoreButtonAction groupId={groupId} />
           </Suspense>
         </Flex>
       </Header.Right>
@@ -46,14 +46,14 @@ interface ActionProps {
   groupId: number;
 }
 
-function ActionTitle({ groupId }: ActionProps) {
+function TitleAction({ groupId }: ActionProps) {
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { title } = groupDetailData;
 
   return <p>{title}</p>;
 }
 
-function ActionManageButton({ groupId }: ActionProps) {
+function ManageButtonAction({ groupId }: ActionProps) {
   const router = useRouter();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { isCaptain } = groupDetailData;
@@ -67,7 +67,7 @@ function ActionManageButton({ groupId }: ActionProps) {
   );
 }
 
-function ActionMoreButton({ groupId }: ActionProps) {
+function MoreButtonAction({ groupId }: ActionProps) {
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
   const { open: openItemModal, close: closeItemModal } = useModal();
   const { open: openDoneModal, close: closeDoneModal } = useModal();
