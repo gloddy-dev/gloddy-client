@@ -1,6 +1,6 @@
 import { useEditContext } from '@/app/(main)/profile/setting/edit/components/EditProvider.client';
 import { Button, ButtonGroup } from '@/components/Button';
-import { DateSwipePicker } from '@/components/common/SwipePicker';
+import { DateSwipePicker } from '@/components/SwipePicker';
 import { BottomSheet } from '@/components/Modal';
 
 import type { DateType } from '@/types';

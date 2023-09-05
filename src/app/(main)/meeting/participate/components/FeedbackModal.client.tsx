@@ -1,5 +1,5 @@
 'use client';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Modal } from '@/components/Modal';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';

@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { QueryProvider } from '@/components/common/Provider';
+import { QueryProvider } from '@/components/Provider';
 import { BASE_WEB_URL, KAKAO_SDK_URL } from '@/constants';
 import ModalProvider from '@/hooks/useModal/ModalProvider';
 import Script from 'next/script';

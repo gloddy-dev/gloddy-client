@@ -3,7 +3,7 @@ import { FeedbackRequestType, useFeedbackContext } from '../../components/Feedba
 import TitleSection from '../../components/TitleSection';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Divider } from '@/components/Divider';
 import { Flex } from '@/components/Layout';
 import { TextFieldController } from '@/components/TextField';

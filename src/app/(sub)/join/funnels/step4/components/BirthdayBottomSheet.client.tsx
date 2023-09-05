@@ -1,6 +1,6 @@
 import { useJoinContext } from '@/app/(sub)/join/components/JoinContext.client';
 import { Button, ButtonGroup } from '@/components/Button';
-import { DateSwipePicker } from '@/components/common/SwipePicker';
+import { DateSwipePicker } from '@/components/SwipePicker';
 import { BottomSheet } from '@/components/Modal';
 
 import type { DateType } from '@/types';

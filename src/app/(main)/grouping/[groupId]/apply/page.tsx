@@ -1,7 +1,7 @@
 import ApplyHeader from './components/ApplyHeader';
 import InputForm from './components/InputForm.client';
-import { Spacing } from '@/components/common/Spacing';
 import { PageAnimation } from '@/components/PageAnimation';
+import { Spacing } from '@/components/Spacing';
 
 export default function ApplyPage() {
   return (

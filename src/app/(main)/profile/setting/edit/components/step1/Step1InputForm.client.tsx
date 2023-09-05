@@ -3,7 +3,7 @@ import { useEditContext } from '../EditProvider.client';
 import { usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';

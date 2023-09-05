@@ -1,7 +1,7 @@
 'use client';
 
 import { PraisesResponse, useGetPraises } from '@/apis/profile';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 

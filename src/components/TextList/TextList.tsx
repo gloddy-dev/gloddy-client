@@ -1,5 +1,5 @@
-import { Spacing } from '../common/Spacing';
 import { Icon } from '../Icon';
+import { Spacing } from '../Spacing';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
 

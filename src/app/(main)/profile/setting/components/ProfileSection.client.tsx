@@ -2,7 +2,7 @@
 
 import { useGetProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import Link from 'next/link';

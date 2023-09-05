@@ -4,7 +4,7 @@ import { useFunnelContext } from '../../JoinFunnel';
 import BirthdayBottomSheet from '@/app/(sub)/join/funnels/step4/components/BirthdayBottomSheet.client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { TextField, TextFieldController } from '@/components/TextField';

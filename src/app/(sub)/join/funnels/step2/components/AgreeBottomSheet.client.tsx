@@ -1,6 +1,6 @@
 import { Button, ButtonGroup } from '@/components/Button';
-import { CircleCheckbox } from '@/components/common/Checkbox';
-import { Spacing } from '@/components/common/Spacing';
+import { CircleCheckbox } from '@/components/Checkbox';
+import { Spacing } from '@/components/Spacing';
 import { BottomSheet } from '@/components/Modal';
 import { useState } from 'react';
 

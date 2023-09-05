@@ -1,6 +1,6 @@
 import { Mate, useDeleteMate } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Modal } from '@/components/Modal';
 
 export interface MatesDeleteModalProps {

@@ -1,7 +1,7 @@
 import ManageDetail from './components/ManageDetail.client';
 import ManageHeader from './components/ManageHeader.client';
 import { Keys, getApplies } from '@/apis/groups';
-import { HydrationProvider } from '@/components/common/Provider';
+import { HydrationProvider } from '@/components/Provider';
 import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { Suspense } from 'react';

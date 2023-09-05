@@ -1,8 +1,8 @@
 'use client';
 
 import { Icon } from '../Icon';
-import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import cn from '@/utils/cn';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 import Image from 'next/image';

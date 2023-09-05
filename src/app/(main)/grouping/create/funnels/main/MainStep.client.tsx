@@ -5,7 +5,7 @@ import { useCreateGroupContext } from '../../components/CreateGroupContext';
 import CreateModal from '../../components/CreateModal.client';
 import { usePostCreateGroup } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Divider } from '@/components/Divider';
 import { useModal } from '@/hooks/useModal';
 import { format } from 'date-fns';

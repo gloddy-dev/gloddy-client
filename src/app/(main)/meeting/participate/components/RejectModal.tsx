@@ -1,5 +1,5 @@
 import { Button } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 import { Modal } from '@/components/Modal';
 import { useRouter } from 'next/navigation';
 
