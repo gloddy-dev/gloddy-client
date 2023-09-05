@@ -15,7 +15,7 @@ export default function InputForm() {
   const hookForm = useJoinContext();
   const { watch, handleSubmit, setValue, register, formState } = hookForm;
   const { nextStep } = useFunnelContext();
-  const { open: openBirthdayBottomSheet, close: closeBirthdayBottomSheet } = useModal();
+  const { open: openBirthdayBottomSheet } = useModal();
 
   const isAllTyped = !!(
     formState.isValid &&
@@ -77,7 +77,14 @@ export default function InputForm() {
       <TextField
         placeholder="생년월일을 선택해주세요."
         onClick={() =>
-          openBirthdayBottomSheet(<BirthdayBottomSheet onClose={closeBirthdayBottomSheet} />)
+          openBirthdayBottomSheet(({ close, isOpen }) => (
+            <BirthdayBottomSheet
+              onClose={() => {
+                close();
+              }}
+              isOpen={isOpen}
+            />
+          ))
         }
         value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
         readOnly
