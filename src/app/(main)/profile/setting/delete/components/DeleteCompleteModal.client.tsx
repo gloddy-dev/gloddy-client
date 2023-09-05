@@ -1,5 +1,5 @@
-import { Spacing } from '@/components/Spacing';
 import { Modal } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 
 export default function DeleteCompleteModal() {
   const handleDeleteAccount = () => {

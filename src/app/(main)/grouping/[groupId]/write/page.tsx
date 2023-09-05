@@ -1,8 +1,8 @@
 import InputForm from './components/InputForm.client';
 import WriteHeader from './components/WriteHeader.client';
 import { Keys, getGroupDetail } from '@/apis/groups';
-import { HydrationProvider } from '@/components/Provider';
 import { PageAnimation } from '@/components/PageAnimation';
+import { HydrationProvider } from '@/components/Provider';
 import { Suspense } from 'react';
 
 interface WritePageProps {

@@ -2,9 +2,9 @@ import GroupDetailPage from './components/GroupDetail.client';
 import GroupDetailHeader from './components/GroupDetailHeader.client';
 import { Keys, getGroupDetail, getGroupMembers } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
-import { HydrationProvider } from '@/components/Provider';
 import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
+import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 import { redirect } from 'next/navigation';
 

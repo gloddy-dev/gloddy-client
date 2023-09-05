@@ -5,9 +5,9 @@ import { formatRelativeDate } from '../util';
 import { type Mate, useGetMates } from '@/apis/profile';
 import NoMeeting from '@/app/(main)/meeting/components/NoMeeting';
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 
 export default function MatesDetail() {

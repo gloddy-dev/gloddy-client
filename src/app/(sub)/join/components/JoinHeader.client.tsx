@@ -1,8 +1,8 @@
 'use client';
 import { IconButton } from '@/components/Button';
-import { Spacing } from '@/components/Spacing';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
+import { Spacing } from '@/components/Spacing';
 import cn from '@/utils/cn';
 
 interface JoinHeaderProps {

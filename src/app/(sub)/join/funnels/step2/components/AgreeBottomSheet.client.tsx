@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
-import { Spacing } from '@/components/Spacing';
 import { BottomSheet } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 import { useState } from 'react';
 
 type AgreeCheckListType = {

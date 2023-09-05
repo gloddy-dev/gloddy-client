@@ -1,10 +1,10 @@
 'use client';
 import { useGetProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/Spacing';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
 import { TextField } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';

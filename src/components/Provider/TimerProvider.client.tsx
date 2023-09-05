@@ -19,10 +19,8 @@ export default function TimerProvider({ children }: StrictPropsWithChildren) {
   return <TimerContext.Provider value={timer}>{children}</TimerContext.Provider>;
 }
 
-const useTimerContext = () => {
+export const useTimerContext = () => {
   const ctx = useContext(TimerContext);
   if (!ctx) throw new Error('Cannot find Context. It should be wrapped within ContextProvider.');
   return ctx;
 };
-
-export { useTimerContext };

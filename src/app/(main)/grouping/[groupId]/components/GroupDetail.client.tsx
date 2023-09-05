@@ -5,13 +5,12 @@ import { LocationSection, MemberSection, TimeSection } from './detail';
 import TopSection from './TopSection.client';
 import { useGetGroupDetail } from '@/apis/groups';
 import { BottomFixedDiv } from '@/components/BottomFixedDiv';
+import { Button, ButtonGroup, FloatAddButton } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
 import { Tabs } from '@/components/Tabs';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
-import { Button, ButtonGroup, FloatAddButton } from '@/components/Button';
 
 interface GroupDetailProps {
   groupId: number;

@@ -2,9 +2,9 @@
 
 import { useGetProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import Link from 'next/link';
 
 export default function ProfileSection() {
