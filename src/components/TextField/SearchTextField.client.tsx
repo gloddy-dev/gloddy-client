@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 
 export default forwardRef(function SearchTextField<T extends React.ElementType>(
   { ...props }: TextFieldProps<T> & React.ComponentPropsWithoutRef<T>,
-  ref: React.ForwardedRef<HTMLLabelElement>
+  ref: React.ForwardedRef<HTMLInputElement>
 ) {
   return (
     <div>
@@ -17,5 +17,5 @@ export default forwardRef(function SearchTextField<T extends React.ElementType>(
   );
 }) as <T extends React.ElementType = 'input'>(
   props: TextFieldProps<T> &
-    React.ComponentPropsWithoutRef<T> & { ref?: React.ForwardedRef<HTMLLabelElement> }
+    React.ComponentPropsWithoutRef<T> & { ref?: React.ForwardedRef<HTMLInputElement> }
 ) => React.ReactElement;

@@ -15,9 +15,10 @@ export default function Grouping() {
   return (
     <>
       <GroupingHeader />
+
       <QueryAsyncBoundary
         rejectedFallback={RejectedFallback}
-        pendingFallback={<Loading className="h-300" />}
+        pendingFallback={<Loading className="h-[calc(100dvh-178px)]" />}
       >
         <PageAnimation>
           <HydrationProvider
