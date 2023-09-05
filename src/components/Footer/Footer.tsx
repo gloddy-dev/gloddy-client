@@ -53,6 +53,7 @@ export default function Footer({ page, isSpacing = true }: FooterProps) {
               'text-sign-brand': isSelected(tab),
               'text-sign-tertiary': !isSelected(tab),
             })}
+            scroll={false}
           >
             <Image
               src={`/icons/32/footer/${tab.name}${
