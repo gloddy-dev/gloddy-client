@@ -12,9 +12,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    optimizeCss: true,
-  },
 };
 
 const sentryWebpackPluginOptions = {

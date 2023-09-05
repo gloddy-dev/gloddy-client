@@ -57,7 +57,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:1.4.0"],\
             ["babel-jest", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:29.6.2"],\
             ["clsx", "npm:1.2.1"],\
-            ["critters", "npm:0.0.20"],\
             ["date-fns", "npm:2.30.0"],\
             ["debug", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:4.3.4"],\
             ["esbuild", "npm:0.18.20"],\
@@ -6928,22 +6927,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["critters", [\
-        ["npm:0.0.20", {\
-          "packageLocation": "./.yarn/cache/critters-npm-0.0.20-2928776d99-402b9a2cf6.zip/node_modules/critters/",\
-          "packageDependencies": [\
-            ["critters", "npm:0.0.20"],\
-            ["chalk", "npm:4.1.2"],\
-            ["css-select", "npm:5.1.0"],\
-            ["dom-serializer", "npm:2.0.0"],\
-            ["domhandler", "npm:5.0.3"],\
-            ["htmlparser2", "npm:8.0.2"],\
-            ["postcss", "npm:8.4.27"],\
-            ["pretty-bytes", "npm:5.6.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["cross-spawn", [\
         ["npm:6.0.5", {\
           "packageLocation": "./.yarn/cache/cross-spawn-npm-6.0.5-2deab6c280-f893bb0d96.zip/node_modules/cross-spawn/",\
@@ -6977,18 +6960,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["css-what", "npm:6.1.0"],\
             ["domhandler", "npm:4.3.1"],\
             ["domutils", "npm:2.8.0"],\
-            ["nth-check", "npm:2.1.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["npm:5.1.0", {\
-          "packageLocation": "./.yarn/cache/css-select-npm-5.1.0-9365a79de5-2772c049b1.zip/node_modules/css-select/",\
-          "packageDependencies": [\
-            ["css-select", "npm:5.1.0"],\
-            ["boolbase", "npm:1.0.0"],\
-            ["css-what", "npm:6.1.0"],\
-            ["domhandler", "npm:5.0.3"],\
-            ["domutils", "npm:3.1.0"],\
             ["nth-check", "npm:2.1.1"]\
           ],\
           "linkType": "HARD"\
@@ -7498,16 +7469,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["entities", "npm:2.2.0"]\
           ],\
           "linkType": "HARD"\
-        }],\
-        ["npm:2.0.0", {\
-          "packageLocation": "./.yarn/cache/dom-serializer-npm-2.0.0-378ebc7200-cd1810544f.zip/node_modules/dom-serializer/",\
-          "packageDependencies": [\
-            ["dom-serializer", "npm:2.0.0"],\
-            ["domelementtype", "npm:2.3.0"],\
-            ["domhandler", "npm:5.0.3"],\
-            ["entities", "npm:4.5.0"]\
-          ],\
-          "linkType": "HARD"\
         }]\
       ]],\
       ["domelementtype", [\
@@ -7537,14 +7498,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["domelementtype", "npm:2.3.0"]\
           ],\
           "linkType": "HARD"\
-        }],\
-        ["npm:5.0.3", {\
-          "packageLocation": "./.yarn/cache/domhandler-npm-5.0.3-3ede73dc10-0f58f4a6af.zip/node_modules/domhandler/",\
-          "packageDependencies": [\
-            ["domhandler", "npm:5.0.3"],\
-            ["domelementtype", "npm:2.3.0"]\
-          ],\
-          "linkType": "HARD"\
         }]\
       ]],\
       ["domutils", [\
@@ -7555,16 +7508,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["dom-serializer", "npm:1.4.1"],\
             ["domelementtype", "npm:2.3.0"],\
             ["domhandler", "npm:4.3.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["npm:3.1.0", {\
-          "packageLocation": "./.yarn/cache/domutils-npm-3.1.0-66c92ef7eb-e5757456dd.zip/node_modules/domutils/",\
-          "packageDependencies": [\
-            ["domutils", "npm:3.1.0"],\
-            ["dom-serializer", "npm:2.0.0"],\
-            ["domelementtype", "npm:2.3.0"],\
-            ["domhandler", "npm:5.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9273,7 +9216,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:1.4.0"],\
             ["babel-jest", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:29.6.2"],\
             ["clsx", "npm:1.2.1"],\
-            ["critters", "npm:0.0.20"],\
             ["date-fns", "npm:2.30.0"],\
             ["debug", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:4.3.4"],\
             ["esbuild", "npm:0.18.20"],\
@@ -9534,17 +9476,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["domhandler", "npm:4.3.1"],\
             ["domutils", "npm:2.8.0"],\
             ["entities", "npm:2.2.0"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["npm:8.0.2", {\
-          "packageLocation": "./.yarn/cache/htmlparser2-npm-8.0.2-5d9f901bb6-29167a0f92.zip/node_modules/htmlparser2/",\
-          "packageDependencies": [\
-            ["htmlparser2", "npm:8.0.2"],\
-            ["domelementtype", "npm:2.3.0"],\
-            ["domhandler", "npm:5.0.3"],\
-            ["domutils", "npm:3.1.0"],\
-            ["entities", "npm:4.5.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -12975,15 +12906,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "prettier-plugin-svelte",\
             "prettier-plugin-twig-melody",\
             "prettier"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["pretty-bytes", [\
-        ["npm:5.6.0", {\
-          "packageLocation": "./.yarn/cache/pretty-bytes-npm-5.6.0-0061079c9f-9c082500d1.zip/node_modules/pretty-bytes/",\
-          "packageDependencies": [\
-            ["pretty-bytes", "npm:5.6.0"]\
           ],\
           "linkType": "HARD"\
         }]\
