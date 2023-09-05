@@ -2,7 +2,6 @@
 
 import { ArticleSection, NoticeSection } from './articles';
 import { LocationSection, MemberSection, TimeSection } from './detail';
-import GroupDetailHeader from './GroupDetailHeader.client';
 import TopSection from './TopSection.client';
 import { useGetGroupDetail } from '@/apis/groups';
 import { BottomFixedDiv } from '@/components/BottomFixedDiv';
@@ -25,7 +24,6 @@ export default function GroupDetailPage({ groupId }: GroupDetailProps) {
 
   return (
     <>
-      <GroupDetailHeader />
       <TopSection />
       <Divider />
       <Tabs>
