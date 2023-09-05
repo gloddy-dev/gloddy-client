@@ -20,7 +20,7 @@ export default function ProfileSection() {
           <Spacing direction="horizontal" size={2} />
           <p className="flex text-caption text-sign-tertiary">
             <Image
-              src={`/icons/16/reliability/${reliability}.svg`}
+              src={`/icons/16/reliability/${reliability.toLocaleLowerCase()}.svg`}
               alt="writerReliabilityLevel"
               width={16}
               height={16}
