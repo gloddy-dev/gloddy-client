@@ -5,6 +5,7 @@ import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
+import { Spacing } from '@/components/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 export default function Profile() {
@@ -13,15 +14,16 @@ export default function Profile() {
       <ProfileHeader />
       <QueryAsyncBoundary
         rejectedFallback={<div>에러</div>}
-        pendingFallback={<Loading className="h-300" />}
+        pendingFallback={<Loading className="h-[calc(100dvh-118px)]" />}
       >
-        <PageAnimation>
+        <PageAnimation className="bg-sub">
           <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
             <ProfileDetail />
+            <Spacing size={70} />
           </HydrationProvider>
         </PageAnimation>
       </QueryAsyncBoundary>
-      <Footer page="profile" spacingColor="#F7F7FA" />
+      <Footer page="profile" isSpacing={false} />
     </>
   );
 }
