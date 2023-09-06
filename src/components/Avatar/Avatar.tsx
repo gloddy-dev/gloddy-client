@@ -35,8 +35,9 @@ export default function Avatar({
         'w-56': size === 'medium',
         'w-96': size === 'large',
       })}
+      onClick={onClick}
     >
-      <div className="relative inline-block w-full before:block before:pb-[100%]" onClick={onClick}>
+      <div className="relative inline-block w-full before:block before:pb-[100%]">
         <Image
           src={imageUrl}
           alt="avatar"
