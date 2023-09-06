@@ -1,11 +1,10 @@
+import ModalWrapper from './ModalWrapper.client';
 import { Flex } from '../Layout';
 import { Spacing } from '../Spacing';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import ModalWrapper from './ModalWrapper.client';
 
 interface ImageModalProps {
   images: string[];
