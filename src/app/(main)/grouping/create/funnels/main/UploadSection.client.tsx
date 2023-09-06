@@ -23,7 +23,7 @@ export default function UploadSection() {
         <Image src={watch('imageUrl')} alt="group_image" className="object-cover" fill />
       ) : (
         <div className="relative h-48 w-48">
-          <Icon id="48-add_photo_white" />
+          <Icon id="48-add_photo_white" width={48} height={48} />
         </div>
       )}
     </Flex>
