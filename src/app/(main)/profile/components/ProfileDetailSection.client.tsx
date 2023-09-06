@@ -10,14 +10,16 @@ import { TextField } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
 import cn from '@/utils/cn';
+import { format } from 'date-fns';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 
-interface ProfileDetailSectionProps {
+interface ProfileDetailProps {
   profileData: ReturnType<typeof useGetProfile>['data'];
 }
 
-export default function ProfileDetailSection({ profileData }: ProfileDetailSectionProps) {
+export default function ProfileDetailSection({ profileData }: ProfileDetailProps) {
   const pathname = usePathname();
   const params = useParams();
   const isPrivateProfile = !params.userId;
@@ -25,14 +27,17 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
   const {
     age,
     gender,
-    imageUrl = '',
-    name,
+    imageUrl,
+    nickname,
     praiseCount,
     reviewCount,
     school,
+    joinAt,
     personalities,
-    reliability = 'a',
-    introduce = 'a',
+    reliabilityLevel,
+    reliabilityScore,
+    isCertifiedStudent,
+    introduce,
   } = profileData;
 
   return (
@@ -40,24 +45,56 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
       <section className="rounded-b-24 bg-white shadow-float">
         <Flex direction="column" align="center">
           <Spacing size={7} />
-          {imageUrl && <Avatar imageUrl={imageUrl} size="large" />}
+          <Avatar imageUrl={imageUrl} size="large">
+            <Icon
+              id={isCertifiedStudent ? '32-education' : '32-error'}
+              width={32}
+              height={32}
+              className="absolute -right-1 -top-1"
+            />
+            {!isCertifiedStudent && (
+              <Flex
+                align="center"
+                justify="center"
+                className="absolute bottom-0 rounded-8 border border-warning bg-warning-color px-2 py-4 text-caption text-warning"
+              >
+                재학생 인증 필요
+              </Flex>
+            )}
+          </Avatar>
           <Spacing size={16} />
-          <h4 className="text-h4">{name}</h4>
+          <h4 className="relative text-h4">
+            {nickname}
+            <Icon
+              id={`16-reliability-${reliabilityLevel.toLowerCase()}`}
+              className="absolute -right-22 top-0"
+            />
+          </h4>
           <Spacing size={4} />
-          <Flex className="h-18 text-caption text-sign-tertiary" align="center">
-            <Icon id="16-school" width={16} height={16} />
-            <span>{school}</span>
-            <Divider direction="vertical" className="mx-4" />
-            <Icon id="16-male" width={16} height={16} />
-            <span>{gender === 'MAIL' ? '남' : '여'}</span>
-            <Divider direction="vertical" className="mx-4" />
-            <Icon id="16-birth" width={16} height={16} />
-            <span>{age}세</span>
+          <Flex className="h-18 gap-4 text-caption text-sign-tertiary" align="start">
+            <Flex className="gap-4" align="center">
+              <Icon id="16-school" width={16} height={16} />
+              <span>{school}</span>
+            </Flex>
+            <Divider direction="vertical" className="h-12" />
+            <Flex className="gap-4" align="center">
+              <Icon id="16-male" width={16} height={16} />
+              <span>{gender === 'MAIL' ? '남' : '여'}</span>
+            </Flex>
+            <Divider direction="vertical" className="h-12" />
+            <Flex className="gap-4" align="center">
+              <Icon id="16-birth" width={16} height={16} />
+              <span>{age}세</span>
+            </Flex>
           </Flex>
           <Spacing size={16} />
           <Flex className="gap-4" wrap="wrap" justify="center">
             {personalities.map((personality) => (
-              <Tag key={personality} className="border-none bg-brand-color text-primary-dark">
+              <Tag
+                key={personality}
+                size="small"
+                className="border-none bg-brand-color text-primary-dark"
+              >
                 {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
               </Tag>
             ))}
@@ -68,21 +105,21 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
         </Flex>
 
         <Flex className="px-20" direction="column">
-          <Flex className="w-full px-4" align="center" justify="start">
+          <Flex className="w-full px-4" align="end">
             <span className="text-secondary text-subtitle-3">신뢰도 지표 </span>
-            {/* <span className="text-caption text-sign-caption">(22.01.01 가입)</span> */}
+            <span className="text-caption text-sign-caption">
+              {format(new Date(joinAt), '(yyyy.MM.dd 가입)')}
+            </span>
           </Flex>
           <Spacing size={8} />
           <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
             <Spacing size={16} />
-            <div className="h-16 rounded-10 bg-white">
-              <div
-                className={cn('h-full rounded-10 bg-primary', {
-                  'w-[10%]': reliability === reliabilities[0].name,
-                  'w-[35%]': reliability === reliabilities[1].name,
-                  'w-[65%]': reliability === reliabilities[2].name,
-                  'w-[100%]': reliability === reliabilities[3].name,
-                })}
+            <div className="h-16 overflow-hidden rounded-10 bg-white">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${reliabilityScore / 3}%` }}
+                transition={{ duration: 0.5 }}
+                className="h-full rounded-10 bg-primary"
               />
             </div>
             <Spacing size={8} />
@@ -90,7 +127,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
               {reliabilities.map((reliabilityItem) => (
                 <Flex
                   key={reliabilityItem.id}
-                  className={cn({ 'opacity-30': reliability !== reliabilityItem.name })}
+                  className={cn({ 'opacity-30': reliabilityLevel !== reliabilityItem.name })}
                 >
                   <Icon
                     id={`16-reliability-${reliabilityItem.name.toLowerCase()}`}
@@ -109,8 +146,8 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
 
           <Flex align="center">
             <div className="flex flex-grow flex-col items-center justify-center">
-              <p className="text-tertiary text-caption">누적 모임</p>
-              <h4 className="text-secondary text-h4">5회</h4>
+              <p className="text-caption text-sign-tertiary">누적 모임</p>
+              <h4 className="text-h4 text-sign-secondary">5회</h4>
             </div>
             <Divider direction="vertical" className="h-12" />
             <Link
@@ -118,8 +155,8 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
               href={isPrivateProfile ? `${pathname}/praise` : ''}
               scroll={false}
             >
-              <p className="text-tertiary text-caption">받은 칭찬</p>
-              <h4 className="text-secondary text-h4 text-sign-brand">{praiseCount}회</h4>
+              <p className="text-caption text-sign-tertiary">받은 칭찬</p>
+              <h4 className="text-h4 text-sign-brand">{praiseCount}회</h4>
             </Link>
             <Divider direction="vertical" className="h-12" />
             <Link
@@ -127,8 +164,8 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailSecti
               href={isPrivateProfile ? `${pathname}/mates` : ''}
               scroll={false}
             >
-              <p className="text-tertiary text-caption">모임 후기</p>
-              <h4 className="text-secondary text-h4 text-sign-brand">{reviewCount}회</h4>
+              <p className="text-caption text-sign-tertiary">모임 후기</p>
+              <h4 className="text-h4 text-sign-brand">{reviewCount}회</h4>
             </Link>
           </Flex>
           <Spacing size={32} />

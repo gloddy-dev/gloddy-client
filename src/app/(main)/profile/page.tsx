@@ -5,23 +5,22 @@ import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Spacing } from '@/components/Spacing';
+import { Suspense } from 'react';
 
 export default function Profile() {
   return (
     <>
       <ProfileHeader />
-      <QueryAsyncBoundary
-        rejectedFallback={<div>에러</div>}
-        pendingFallback={<Loading className="h-300" />}
-      >
-        <PageAnimation>
+      <Suspense fallback={<Loading className="h-[calc(100dvh-118px)]" />}>
+        <PageAnimation className="bg-sub">
           <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
             <ProfileDetail />
+            <Spacing size={70} />
           </HydrationProvider>
         </PageAnimation>
-      </QueryAsyncBoundary>
-      <Footer page="profile" spacingColor="#F7F7FA" />
+      </Suspense>
+      <Footer page="profile" isSpacing={false} />
     </>
   );
 }

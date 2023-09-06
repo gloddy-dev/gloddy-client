@@ -1,13 +1,10 @@
 'use client';
-import ProfileDetailSection from './ProfileDetailSection';
+
+import ProfileDetailSection from './ProfileDetailSection.client';
 import { useGetProfile } from '@/apis/profile';
 
 export default function ProfileDetail() {
   const { data: profileData } = useGetProfile();
 
-  return (
-    <div className="h-full bg-sub">
-      <ProfileDetailSection profileData={profileData} />
-    </div>
-  );
+  return <ProfileDetailSection profileData={profileData} />;
 }
