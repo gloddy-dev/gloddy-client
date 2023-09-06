@@ -1,5 +1,5 @@
 'use client';
-import ProfileDetail from '../../components/ProfileDetail.client';
+import ProfileDetail from '../../components/ProfileDetailSection.client';
 import { useGetProfileById } from '@/apis/profile';
 import { useNumberParams } from '@/hooks/useNumberParams';
 

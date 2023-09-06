@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 export default function ProfileByIdHeader() {
   const { userId } = useNumberParams();
   const { data: profileData } = useGetProfileById(userId);
-  const { name } = profileData;
+  const { nickname } = profileData;
   const router = useRouter();
 
   return (
@@ -18,7 +18,7 @@ export default function ProfileByIdHeader() {
         <IconButton size="large" onClick={() => router.back()}>
           <Icon id="24-close" />
         </IconButton>
-        <p>{name}</p>
+        <p>{nickname}</p>
       </Header.Left>
     </Header>
   );
