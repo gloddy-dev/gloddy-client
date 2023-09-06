@@ -13,7 +13,10 @@ export default function ContentSection() {
   return (
     <Fragment>
       {contents.length === 0 && <NoMeeting message="아직 찜한 모임이 없어요." />}
-      <ItemList data={contents} renderItem={(content) => <GroupingCard groupingData={content} />} />
+      <ItemList
+        data={contents}
+        renderItem={(content) => <GroupingCard groupingData={content} isScrapped />}
+      />
     </Fragment>
   );
 }
