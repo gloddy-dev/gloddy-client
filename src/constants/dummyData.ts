@@ -13,7 +13,7 @@ import type { MatesResponse } from '@/apis/profile';
 export const DUMMY_GROUPING_DATA: Grouping[] = [
   {
     groupId: 12345,
-    imageUrl: '/assets/location.svg',
+    imageUrl: '/images/dummy_image.png',
     title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
@@ -27,7 +27,7 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
   },
   {
     groupId: 12346,
-    imageUrl: '/assets/location.svg',
+    imageUrl: '/images/dummy_image.png',
     title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
@@ -41,7 +41,7 @@ export const DUMMY_GROUPING_DATA: Grouping[] = [
   },
   {
     groupId: 12346,
-    imageUrl: '/assets/location.svg',
+    imageUrl: '/images/dummy_image.png',
     title: 'Let’s go for a walk!',
     content: 'This is a sample content for the group.',
     memberCount: 10,
@@ -81,7 +81,7 @@ export const DUMMY_SIGN_UP_DATA = {
   personalities: ['OUTGOING'],
 };
 
-export const DUMMY_ARTICLES_DATA: Article[] = [
+export const DUMMY_ARTICLES_DATA = [
   {
     articleId: 1,
     images: ['/images/dummy_avatar.png', '/images/dummy_image.png'],
@@ -132,8 +132,8 @@ export const DETAIL_DUMMY_DATA: GroupDetailResponse = {
   isApplyWaited: false,
   isScraped: false,
   groupId: 1,
-  imageUrl: '/assets/main_logo.png',
-  fileUrl: '/assets/main_logo.png',
+  imageUrl: '/images/dummy_image.png',
+  fileUrl: '/images/dummy_image.png',
   title: 'Let’s go for a walk!',
   content: 'It’s a group that \n🏃walks around, \n🗣talks, \n🌏and learns languages.',
   memberCount: 2,
@@ -226,7 +226,7 @@ export const MEMBER_DUMMY_DATA: GroupMember[] = [
   },
 ];
 
-export const DUMMY_COMMENTS_DATA: Comment[] = [
+export const DUMMY_COMMENTS_DATA = [
   {
     commentId: 1,
     userImageUrl: '/images/dummy_avatar.png',

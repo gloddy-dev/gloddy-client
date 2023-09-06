@@ -1,7 +1,8 @@
 import ProfileByIdDetail from './components/ProfileByIdDetail.client';
 import ProfileByIdHeader from './components/ProfileByIdHeader';
 import { Keys, getProfileById } from '@/apis/profile';
-import { HydrationProvider } from '@/components/common/Provider';
+import { PageAnimation } from '@/components/PageAnimation';
+import { HydrationProvider } from '@/components/Provider';
 import { Suspense } from 'react';
 
 interface PageProps {
@@ -15,13 +16,15 @@ export default function page({ params }: PageProps) {
 
   return (
     <Suspense>
-      <HydrationProvider
-        queryFn={() => getProfileById(userId)}
-        queryKey={Keys.getProfileById(userId)}
-      >
-        <ProfileByIdHeader />
-        <ProfileByIdDetail />
-      </HydrationProvider>
+      <PageAnimation className="h-full bg-sub">
+        <HydrationProvider
+          queryFn={() => getProfileById(userId)}
+          queryKey={Keys.getProfileById(userId)}
+        >
+          <ProfileByIdHeader />
+          <ProfileByIdDetail />
+        </HydrationProvider>
+      </PageAnimation>
     </Suspense>
   );
 }

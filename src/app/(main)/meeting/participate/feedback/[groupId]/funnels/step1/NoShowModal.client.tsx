@@ -1,8 +1,8 @@
 'use client';
 
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/common/Spacing';
 import { Modal, ModalProps } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 
 interface NoShowModalProps extends ModalProps {
   name: string;

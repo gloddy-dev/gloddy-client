@@ -7,8 +7,8 @@ import {
   getMeetingParticipating,
   getMeetingRejected,
 } from '@/apis/meeting';
-import { HydrationProvider } from '@/components/common/Provider';
 import { Footer } from '@/components/Footer';
+import { HydrationProvider } from '@/components/Provider';
 import { redirect } from 'next/navigation';
 import React, { Suspense } from 'react';
 

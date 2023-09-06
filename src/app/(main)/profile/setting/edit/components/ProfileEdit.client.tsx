@@ -11,7 +11,7 @@ export default function ProfileEdit() {
   const { data: defaultProfileData } = useGetProfile();
 
   return (
-    <EditProvider defaultValues={defaultProfileData}>
+    <EditProvider defaultValues={{ ...defaultProfileData, name: defaultProfileData.nickname }}>
       <ModalProvider>
         {step === 1 && <Step1 onNext={() => setStep(2)} />}
         {step === 2 && <Step2 onPrev={() => setStep(1)} />}

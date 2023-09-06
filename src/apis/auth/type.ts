@@ -75,3 +75,7 @@ export interface SignUpResponse {
   };
   userId: number;
 }
+
+export interface NicknameDuplicateResponse {
+  isExistNickname: boolean;
+}

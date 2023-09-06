@@ -18,7 +18,6 @@ privateApi.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     try {
       const { accessToken } = await getTokenFromCookie();
-      if (!accessToken) throw new Error('로그인이 필요합니다.');
       config.headers['X-AUTH-TOKEN'] = accessToken;
       return config;
     } catch (error) {

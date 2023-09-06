@@ -1,7 +1,7 @@
 'use client';
 import ModalWrapper from './ModalWrapper.client';
 import { Button } from '../Button';
-import { Spacing } from '../common/Spacing';
+import { Spacing } from '../Spacing';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
 
