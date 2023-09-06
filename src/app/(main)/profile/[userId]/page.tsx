@@ -16,7 +16,7 @@ export default function page({ params }: PageProps) {
 
   return (
     <Suspense>
-      <PageAnimation className="bg-sub">
+      <PageAnimation className="h-full bg-sub">
         <HydrationProvider
           queryFn={() => getProfileById(userId)}
           queryKey={Keys.getProfileById(userId)}
