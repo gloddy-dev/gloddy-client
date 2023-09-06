@@ -43,7 +43,6 @@ export default function ModalProvider({ children }: PropsWithChildren) {
       cloned.delete(id);
       return cloned;
     });
-    history.back();
   }, []);
 
   const context = useMemo(() => ({ addModal, removeModal }), [addModal, removeModal]);
