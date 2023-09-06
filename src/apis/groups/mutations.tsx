@@ -10,8 +10,10 @@ import {
   postCreateGroup,
   postScrap,
 } from './apis';
-import { Keys } from './keys';
+import { Keys as GroupsKeys } from './keys';
 import { GroupDetailResponse } from './type';
+import { MeetingScrapResponse } from '../meeting';
+import { Keys as MeetingKeys } from '../meeting/keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -21,7 +23,7 @@ export const usePostCreateGroup = () => {
 
   return useMutation(postCreateGroup, {
     onSuccess: (data) => {
-      queryClient.invalidateQueries(Keys.getGroups());
+      queryClient.invalidateQueries(GroupsKeys.getGroups());
       router.replace(`/grouping/${data.groupId}`);
     },
   });
@@ -33,8 +35,8 @@ export const usePostArticle = (groupId: number) => {
 
   return useMutation(postArticle, {
     onSuccess: (data) => {
-      queryClient.invalidateQueries(Keys.getArticles(groupId));
-      queryClient.invalidateQueries(Keys.getNotice(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getArticles(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getNotice(groupId));
       router.replace(`/grouping/${groupId}/articles/${data.articleId}`);
     },
   });
@@ -46,8 +48,8 @@ export const useDeleteArticle = (groupId: number) => {
 
   return useMutation(deleteArticle, {
     onSuccess: () => {
-      queryClient.invalidateQueries(Keys.getArticles(groupId));
-      queryClient.invalidateQueries(Keys.getNotice(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getArticles(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getNotice(groupId));
       router.replace(`/grouping/${groupId}?tab=articles`);
     },
   });
@@ -58,8 +60,8 @@ export const usePostComment = (groupId: number, articleId: number) => {
 
   return useMutation(postComment, {
     onSuccess: () => {
-      queryClient.invalidateQueries(Keys.getComments(groupId, articleId));
-      queryClient.invalidateQueries(Keys.getArticle(groupId, articleId));
+      queryClient.invalidateQueries(GroupsKeys.getComments(groupId, articleId));
+      queryClient.invalidateQueries(GroupsKeys.getArticle(groupId, articleId));
     },
   });
 };
@@ -69,8 +71,8 @@ export const useDeleteComment = (groupId: number, articleId: number) => {
 
   return useMutation(deleteComment, {
     onSuccess: () => {
-      queryClient.invalidateQueries(Keys.getComments(groupId, articleId));
-      queryClient.invalidateQueries(Keys.getArticle(groupId, articleId));
+      queryClient.invalidateQueries(GroupsKeys.getComments(groupId, articleId));
+      queryClient.invalidateQueries(GroupsKeys.getArticle(groupId, articleId));
     },
   });
 };
@@ -81,8 +83,8 @@ export const usePostApply = (groupId: number) => {
 
   return useMutation(postApply, {
     onSuccess: () => {
-      queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
-      queryClient.invalidateQueries(Keys.getGroupMembers(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
       router.replace('/meeting/participate?tab=waiting');
     },
   });
@@ -93,9 +95,9 @@ export const usePatchApply = (groupId: number) => {
 
   return useMutation(patchApply, {
     onSuccess: () => {
-      queryClient.invalidateQueries(Keys.getApplies(groupId));
-      queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
-      queryClient.invalidateQueries(Keys.getGroupMembers(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getApplies(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
     },
   });
 };
@@ -104,11 +106,11 @@ export const usePostScrap = (groupId: number) => {
   const queryClient = useQueryClient();
   return useMutation(postScrap, {
     onMutate: async () => {
-      await queryClient.cancelQueries(Keys.getGroupDetail(groupId));
+      await queryClient.cancelQueries(GroupsKeys.getGroupDetail(groupId));
       const previousData = queryClient.getQueryData<GroupDetailResponse>(
-        Keys.getGroupDetail(groupId)
+        GroupsKeys.getGroupDetail(groupId)
       );
-      queryClient.setQueryData<Partial<GroupDetailResponse>>(Keys.getGroupDetail(groupId), {
+      queryClient.setQueryData<Partial<GroupDetailResponse>>(GroupsKeys.getGroupDetail(groupId), {
         ...previousData,
         isScraped: true,
       });
@@ -116,23 +118,23 @@ export const usePostScrap = (groupId: number) => {
       return { previousData };
     },
     onSettled: () => {
-      queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
     },
   });
 };
 
-export const useDeleteScrap = (groupId: number) => {
+export const useDeleteScrapGroups = (groupId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation(deleteScrap, {
     onMutate: async () => {
-      await queryClient.cancelQueries(Keys.getGroupDetail(groupId));
+      await queryClient.cancelQueries(GroupsKeys.getGroupDetail(groupId));
 
       const previousData = queryClient.getQueryData<GroupDetailResponse>(
-        Keys.getGroupDetail(groupId)
+        GroupsKeys.getGroupDetail(groupId)
       );
 
-      queryClient.setQueryData<Partial<GroupDetailResponse>>(Keys.getGroupDetail(groupId), {
+      queryClient.setQueryData<Partial<GroupDetailResponse>>(GroupsKeys.getGroupDetail(groupId), {
         ...previousData,
         isScraped: false,
       });
@@ -140,7 +142,31 @@ export const useDeleteScrap = (groupId: number) => {
       return { previousData };
     },
     onSettled: () => {
-      queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
+    },
+  });
+};
+
+export const useDeleteScrapMeeting = (groupId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation(deleteScrap, {
+    onMutate: async () => {
+      await queryClient.cancelQueries(MeetingKeys.getMeetingScraps());
+
+      const previousData = queryClient.getQueryData<MeetingScrapResponse>(
+        MeetingKeys.getMeetingScraps()
+      );
+
+      queryClient.setQueryData<Partial<MeetingScrapResponse>>(MeetingKeys.getMeetingScraps(), {
+        ...previousData,
+        contents: previousData?.contents.filter((it) => it.groupId !== groupId),
+      });
+
+      return { previousData };
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
     },
   });
 };
@@ -151,9 +177,9 @@ export const useDeleteGroupMember = (groupId: number) => {
 
   return useMutation(deleteGroupMember, {
     onSuccess: () => {
-      queryClient.invalidateQueries(Keys.getGroups());
-      queryClient.invalidateQueries(Keys.getGroupDetail(groupId));
-      queryClient.invalidateQueries(Keys.getGroupMembers(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getGroups());
+      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
       router.push('/grouping');
     },
   });
