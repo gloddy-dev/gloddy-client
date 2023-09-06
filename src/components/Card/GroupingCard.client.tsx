@@ -17,6 +17,7 @@ interface GroupingCardProps extends HTMLAttributes<HTMLDivElement> {
   groupingData: Grouping;
   isNew?: boolean;
   isExistNewApply?: boolean;
+  isCaptain?: boolean;
   applyId?: number;
   isScrapped?: boolean;
   onClick?: () => void;
@@ -31,6 +32,7 @@ export default function GroupingCard({
   children,
   isNew,
   isExistNewApply,
+  isCaptain,
   applyId,
   isScrapped,
   onClick,
