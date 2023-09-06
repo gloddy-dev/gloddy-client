@@ -35,6 +35,7 @@ export default function Avatar({
         'w-56': size === 'medium',
         'w-96': size === 'large',
       })}
+      onClick={onClick}
     >
       <div className="relative flex w-full before:block before:pb-[100%]" onClick={onClick}>
         {!!imageUrl ? (

@@ -13,7 +13,6 @@ import { personalityList } from '@/constants/personalityList';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
 import { formatDateDTO } from '@/utils/formatDateDTO';
-import { useRouter } from 'next/navigation';
 import { useController } from 'react-hook-form';
 
 import type { ProfileEditState } from '../../type';
@@ -22,7 +21,6 @@ interface Step1InputFormProps {
   onNext: () => void;
 }
 export default function Step1InputForm({ onNext }: Step1InputFormProps) {
-  const router = useRouter();
   const { mutate } = usePatchProfile();
 
   const hookForm = useEditContext();
