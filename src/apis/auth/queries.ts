@@ -6,14 +6,11 @@ export const useGetSearchSchool = (searchWord: string) =>
     enabled: !!searchWord,
   });
 
-export const useGetNicknameDuplicate = (nickname: string) => {
-  return {
-    ...useSuspenseQuery<NicknameDuplicateResponse>(
-      Keys.getNicknameDuplicate(nickname),
-      () => getNicknameDuplicate(nickname),
-      {
-        enabled: false,
-      }
-    ),
-  };
-};
+export const useGetNicknameDuplicate = (nickname: string) =>
+  useSuspenseQuery<NicknameDuplicateResponse>(
+    Keys.getNicknameDuplicate(nickname),
+    () => getNicknameDuplicate(nickname),
+    {
+      enabled: false,
+    }
+  );
