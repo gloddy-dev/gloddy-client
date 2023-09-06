@@ -6,6 +6,7 @@ import type {
   EmailVerifyRequest,
   LoginRequest,
   LoginResponse,
+  NicknameDuplicateResponse,
   ReissueRequest,
   ReissueResponse,
   SMSRequest,
@@ -39,3 +40,6 @@ export const postEmailVerify = (emailVerifyData: EmailVerifyRequest) =>
 
 export const postSignUp = (signUpData: SignUpRequest) =>
   publicApi.post<SignUpResponse>('/auth/sign-up', signUpData);
+
+export const getNicknameDuplicate = (nickname: string) =>
+  publicApi.get<NicknameDuplicateResponse>(`/users/duplicate?nickname=${nickname}`);
