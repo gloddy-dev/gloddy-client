@@ -12,15 +12,18 @@ import { TextField, TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
-import React, { type ElementType, type KeyboardEventHandler, useState } from 'react';
+import { type ElementType, type KeyboardEventHandler } from 'react';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
-  const { watch, handleSubmit, setValue, register, setError, clearErrors, formState } = hookForm;
+  const { watch, handleSubmit, setValue, register, setError, clearErrors } = hookForm;
   const { nextStep } = useFunnelContext();
   const { open: openBirthdayBottomSheet } = useModal();
-  const [isDuplicateChecked, setIsDuplicateChecked] = useState(false);
-  const { data = { isExistNickname: false }, refetch } = useGetNicknameDuplicate(watch('nickname'));
+  const { refetch, isDuplicateChecked, setIsDuplicateChecked } = useGetNicknameDuplicate({
+    nickname: watch('nickname'),
+    setError,
+    clearErrors,
+  });
 
   const isAllTyped = !!(
     watch('birth').year &&
@@ -47,21 +50,8 @@ export default function InputForm() {
   const birth = watch('birth');
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
-  const checkNicknameDuplicate = (isExistNickname: boolean) => {
-    if (isExistNickname) {
-      setError('nickname', {
-        type: 'duplicate',
-        message: '이미 사용중인 닉네임입니다.',
-      });
-    } else {
-      setIsDuplicateChecked(true);
-      clearErrors('nickname');
-    }
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
-  ): any => {
+  const handleInputChange = () => {
+    clearErrors('nickname');
     setIsDuplicateChecked(false);
   };
 
@@ -112,7 +102,6 @@ export default function InputForm() {
                   return;
                 }
                 await refetch();
-                checkNicknameDuplicate(data?.isExistNickname);
               }}
               type="button"
             >
