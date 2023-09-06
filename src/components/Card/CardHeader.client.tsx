@@ -2,10 +2,12 @@ import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { Flex } from '../Layout';
 import { Spacing } from '../Spacing';
+import { useRouter } from 'next/navigation';
 
 import type { ReliabilityType } from '@/types';
 
 interface CardHeaderProps {
+  userId: number;
   userImageUrl: string;
   name: string;
   date: string;
@@ -17,6 +19,7 @@ interface CardHeaderProps {
 }
 
 export default function CardHeader({
+  userId,
   userImageUrl,
   name,
   date,
@@ -26,12 +29,15 @@ export default function CardHeader({
   showMoreIcon = false,
   onMoreClick,
 }: CardHeaderProps) {
+  const router = useRouter();
+
   return (
     <Flex align="center" className="gap-12 pb-4 pt-6">
       <Avatar
         imageUrl={userImageUrl}
         size="small"
         iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
+        onClick={() => router.push(`/profile/${userId}`)}
       />
       <div className="grow overflow-hidden">
         <Flex align="center">
