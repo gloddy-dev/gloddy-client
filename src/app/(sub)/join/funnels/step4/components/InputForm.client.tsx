@@ -47,6 +47,18 @@ export default function InputForm() {
   const birth = watch('birth');
   const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
 
+  const checkNicknameDuplicate = (isExistNickname: boolean) => {
+    if (isExistNickname) {
+      setError('nickname', {
+        type: 'duplicate',
+        message: '이미 사용중인 닉네임입니다.',
+      });
+    } else {
+      setIsDuplicateChecked(true);
+      clearErrors('nickname');
+    }
+  };
+
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)}>
       <Flex className="py-20" justify="center">
@@ -94,16 +106,7 @@ export default function InputForm() {
                   return;
                 }
                 await refetch();
-                if (data?.isExistNickname) {
-                  console.log(1);
-                  setError('nickname', {
-                    type: 'duplicate',
-                    message: '이미 사용중인 닉네임입니다.',
-                  });
-                } else {
-                  setIsDuplicateChecked(true);
-                  clearErrors('nickname');
-                }
+                checkNicknameDuplicate(data?.isExistNickname);
               }}
               type="button"
             >
