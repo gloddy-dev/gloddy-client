@@ -42,7 +42,5 @@ export interface MeetingScrapResponse {
   currentCount: number;
   currentPage: number;
   totalPage: number;
-  contents: Array<{
-    group: Grouping;
-  }>;
+  contents: Grouping[];
 }
