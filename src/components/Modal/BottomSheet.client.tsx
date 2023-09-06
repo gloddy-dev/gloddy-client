@@ -52,11 +52,7 @@ export default forwardRef(function BottomSheet(
   return (
     <Sheet
       ref={ref}
-      onClose={() => {
-        console.log(3);
-        onClose();
-        history.back();
-      }}
+      onClose={onClose}
       snapPoints={snapPoints}
       initialSnap={0}
       disableDrag={disableDrag}
