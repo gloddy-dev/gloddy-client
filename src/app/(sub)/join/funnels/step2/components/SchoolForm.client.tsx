@@ -51,7 +51,7 @@ interface SearchResultProps extends React.HTMLAttributes<React.ElementType> {
 
 function SearchResult({ school, ...props }: SearchResultProps) {
   return (
-    <Flex {...props}>
+    <Flex {...props} align="center">
       <Icon id="24-location_on" />
       <Spacing size={8} direction="horizontal" />
       <Flex className="border-b-1 border-gray6 py-12" direction="column">
