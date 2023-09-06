@@ -37,8 +37,10 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
     reliabilityLevel,
     reliabilityScore,
     isCertifiedStudent,
+    participatedGroupCount,
     introduce,
   } = profileData;
+  console.log(introduce);
 
   return (
     <>
@@ -147,7 +149,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           <Flex align="center">
             <div className="flex flex-grow flex-col items-center justify-center">
               <p className="text-caption text-sign-tertiary">누적 모임</p>
-              <h4 className="text-h4 text-sign-secondary">5회</h4>
+              <h4 className="text-h4 text-sign-secondary">{participatedGroupCount}회</h4>
             </div>
             <Divider direction="vertical" className="h-12" />
             <Link
