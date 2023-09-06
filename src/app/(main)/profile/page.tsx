@@ -6,23 +6,20 @@ import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Suspense } from 'react';
 
 export default function Profile() {
   return (
     <>
       <ProfileHeader />
-      <QueryAsyncBoundary
-        rejectedFallback={<div>에러</div>}
-        pendingFallback={<Loading className="h-[calc(100dvh-118px)]" />}
-      >
+      <Suspense fallback={<Loading className="h-[calc(100dvh-118px)]" />}>
         <PageAnimation className="bg-sub">
           <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
             <ProfileDetail />
             <Spacing size={70} />
           </HydrationProvider>
         </PageAnimation>
-      </QueryAsyncBoundary>
+      </Suspense>
       <Footer page="profile" isSpacing={false} />
     </>
   );
