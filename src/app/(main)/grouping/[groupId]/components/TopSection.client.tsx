@@ -1,5 +1,5 @@
 'use client';
-import { useDeleteScrap, useGetGroupDetail, usePostScrap } from '@/apis/groups';
+import { useDeleteScrapGroups, useGetGroupDetail, usePostScrap } from '@/apis/groups';
 import { IconButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Spacing } from '@/components/Spacing';
@@ -15,7 +15,7 @@ export default function TopSection() {
 
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { mutate: mutatePostScrap } = usePostScrap(groupId);
-  const { mutate: mutateDeleteScrap } = useDeleteScrap(groupId);
+  const { mutate: mutateDeleteScrap } = useDeleteScrapGroups(groupId);
   const { imageUrl, fileUrl, isScraped, title, content } = groupDetailData;
 
   const handleScrapClick = () => {
