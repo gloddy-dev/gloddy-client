@@ -1,3 +1,4 @@
+import { Icon } from '../Icon';
 import { Flex } from '../Layout';
 import cn from '@/utils/cn';
 import Image from 'next/image';
@@ -34,25 +35,29 @@ export default function Avatar({
         'w-56': size === 'medium',
         'w-96': size === 'large',
       })}
+      onClick={onClick}
     >
-      <div className="relative inline-block w-full before:block before:pb-[100%]" onClick={onClick}>
-        <Image
-          src={imageUrl}
-          alt="avatar"
-          className="cursor-pointer rounded-full bg-sub object-cover"
-          fill
-        />
-        {iconVariant !== 'none' && (
+      <div className="relative flex w-full before:block before:pb-[100%]">
+        {!!imageUrl ? (
           <Image
-            src={`/icons/32/${iconVariant}.svg`}
-            alt={iconVariant}
-            width={size === 'large' ? 32 : 24}
-            height={size === 'large' ? 32 : 24}
+            src={imageUrl}
+            alt="avatar"
+            className="cursor-pointer rounded-full object-cover"
+            fill
+          />
+        ) : (
+          <div className="h-full w-full cursor-pointer rounded-full bg-sub" />
+        )}
+        {iconVariant !== 'none' && (
+          <Icon
+            id={`32-${iconVariant}`}
             className={cn('absolute', {
               '-right-6 -top-6': size === 'small',
               '-right-2 -top-2': size === 'medium',
               '-right-1 -top-1': size === 'large',
             })}
+            width={size === 'large' ? 32 : 24}
+            height={size === 'large' ? 32 : 24}
           />
         )}
       </div>
@@ -71,7 +76,7 @@ interface NameProps {
 function Name({ children, isCaptain = false }: StrictPropsWithChildren<NameProps>) {
   return (
     <Flex justify="center" align="center">
-      {isCaptain && <Image src="/icons/16/host.svg" alt="host" width={16} height={16} />}
+      {isCaptain && <Icon id="16-host" width={16} height={16} />}
       <p className="truncate text-caption text-sign-tertiary">{children}</p>
     </Flex>
   );

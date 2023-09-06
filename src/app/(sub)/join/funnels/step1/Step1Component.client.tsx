@@ -3,7 +3,7 @@
 import FormSection from './components/FormSection.client';
 import NoticeSection from './components/NoticeSection.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.client';
-import { Spacing } from '@/components/common/Spacing';
+import { Spacing } from '@/components/Spacing';
 
 export default function Step1Component() {
   return (

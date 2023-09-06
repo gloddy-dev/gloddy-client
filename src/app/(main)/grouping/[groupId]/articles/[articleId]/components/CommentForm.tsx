@@ -1,11 +1,11 @@
 'use client';
 
 import { usePostComment } from '@/apis/groups';
-import BottomFixedDiv from '@/components/common/BottomFixedDiv';
+import { BottomFixedDiv } from '@/components/BottomFixedDiv';
+import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import cn from '@/utils/cn';
-import Image from 'next/image';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -60,7 +60,7 @@ export default function CommentForm() {
           className="flex h-48 w-48 shrink-0 items-center justify-center rounded-full bg-primary"
           onClick={handleSubmit(onSubmit)}
         >
-          <Image src="/icons/24/send.svg" alt="send" width={24} height={24} />
+          <Icon id="24-send" />
         </button>
       </form>
     </BottomFixedDiv>

@@ -1,7 +1,7 @@
 'use client';
 
-import { Spacing } from '@/components/common/Spacing';
 import { Flex } from '@/components/Layout';
+import { Spacing } from '@/components/Spacing';
 import Image from 'next/image';
 import { useEffect } from 'react';
 

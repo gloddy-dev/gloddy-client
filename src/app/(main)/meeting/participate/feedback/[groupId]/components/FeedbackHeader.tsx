@@ -2,8 +2,8 @@
 import FeedbackOutModal from '../funnels/step1/FeedbackOutModal.client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { Icon } from '@/components/Icon';
 import { useModal } from '@/hooks/useModal';
-import Image from 'next/image';
 
 interface FeedbackHeaderProps {
   message: string;
@@ -25,7 +25,7 @@ export default function FeedbackHeader({ message, onPrevClick }: FeedbackHeaderP
             }
           }}
         >
-          <Image src="/icons/24/arrow_back.svg" width={24} height={24} alt="back" />
+          <Icon id="24-arrow_back" />
         </IconButton>
         <p>{message}</p>
       </Header.Left>

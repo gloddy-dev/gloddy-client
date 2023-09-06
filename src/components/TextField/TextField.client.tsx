@@ -1,5 +1,5 @@
 'use client';
-import { Spacing } from '../common/Spacing';
+import { Spacing } from '../Spacing';
 import cn from '@/utils/cn';
 import { forwardRef, useState } from 'react';
 
@@ -125,7 +125,7 @@ interface LeftCaptionProps {
 
 function LeftCaption({ isError, text }: LeftCaptionProps) {
   if (!text) return <div />;
-  return <span className={cn({ 'whitespace-nowrap text-warning': isError })}>{text}</span>;
+  return <span className={cn({ 'text-warning': isError })}>{text}</span>;
 }
 interface RightCaptionProps {
   isError?: boolean;
@@ -134,7 +134,7 @@ interface RightCaptionProps {
 
 function RightCaption({ isError, text }: RightCaptionProps) {
   if (!text) return <div />;
-  return <span className={cn({ 'whitespace-nowrap text-warning': isError })}>{text}</span>;
+  return <span className={cn({ 'text-warning': isError })}>{text}</span>;
 }
 
 export default forwardRef(TextField) as <T extends React.ElementType = 'input'>(

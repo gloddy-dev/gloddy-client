@@ -2,9 +2,9 @@
 
 import { useGetGroupDetail, useGetGroupMembers } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
-import { Spacing } from '@/components/common/Spacing';
+import { Icon } from '@/components/Icon';
+import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function MemberSection() {
@@ -29,7 +29,7 @@ export default function MemberSection() {
           onClick={() => router.push(`${pathname}/members`, { scroll: false })}
         >
           <p>전체 보기</p>
-          <Image src="/icons/24/navigate_next.svg" alt="navigate_next" width={24} height={24} />
+          <Icon id="24-navigate_next" />
         </div>
       </div>
       <Spacing size={20} />
@@ -37,7 +37,7 @@ export default function MemberSection() {
         {groupMembers.map((member) => (
           <Avatar
             key={member.userId}
-            imageUrl={member.imageUrl ?? '/dummy_avatar.png'}
+            imageUrl={member.imageUrl ?? '/images/dummy_avatar.png'}
             iconVariant="education"
             onClick={() => router.push(`${pathname}/members`)}
           >

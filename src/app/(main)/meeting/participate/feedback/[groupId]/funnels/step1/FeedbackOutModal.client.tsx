@@ -1,5 +1,5 @@
-import { Spacing } from '@/components/common/Spacing';
 import { Modal } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 

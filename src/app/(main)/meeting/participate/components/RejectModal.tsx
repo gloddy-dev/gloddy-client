@@ -1,6 +1,6 @@
 import { Button } from '@/components/Button';
-import { Spacing } from '@/components/common/Spacing';
 import { Modal } from '@/components/Modal';
+import { Spacing } from '@/components/Spacing';
 import { useRouter } from 'next/navigation';
 
 interface RejectModalProps {
