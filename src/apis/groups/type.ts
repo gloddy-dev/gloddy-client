@@ -12,8 +12,8 @@ export interface Grouping {
   startTime: string; // '19:00'
   placeName: string;
   placeAddress: string;
-  placeLatitude: number;
-  placeLongitude: number;
+  placeLatitude: string;
+  placeLongitude: string;
 }
 
 export interface Article {
