@@ -91,6 +91,7 @@ export default function InputForm() {
                     type: 'pattern',
                     message: `* 올바른 형식이 아닙니다 (최소 3글자\n최대 15글자 이하, 특수문자 금지)`,
                   });
+                  return;
                 }
                 await refetch();
                 if (data?.isExistNickname) {
