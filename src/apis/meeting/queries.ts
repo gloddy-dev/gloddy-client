@@ -3,6 +3,7 @@ import {
   getMeetingNotEstimated,
   getMeetingParticipating,
   getMeetingRejected,
+  getMeetingScrap,
   getMeetingWaiting,
 } from '.';
 import { Keys } from './keys';
@@ -27,3 +28,7 @@ export const useGetMeetingRejected = () =>
 /* 평가 */
 export const useGetMeetingNotEstimated = () =>
   useSuspenseQuery(Keys.getMeetingNotEstimated(), getMeetingNotEstimated);
+
+/* 찜한 모임 */
+
+export const useGetMeetingScrap = () => useSuspenseQuery(Keys.getMeetingScraps(), getMeetingScrap);
