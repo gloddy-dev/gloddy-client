@@ -8,14 +8,14 @@ export const useGetSearchSchool = (searchWord: string) =>
     enabled: !!searchWord,
   });
 
-export const useGetNicknameDuplicate = (
-  nickname: string,
-  { onSuccess }: { onSuccess: Pick<UseQueryOptions, 'onSuccess'> }
-) => {
+export const useGetNicknameDuplicate = (nickname: string) => {
   return {
-    ...useSuspenseQuery(Keys.getNicknameDuplicate(nickname), () => getNicknameDuplicate(nickname), {
-      enabled: false,
-      onSuccess,
-    }),
+    ...useSuspenseQuery<NicknameDuplicateResponse>(
+      Keys.getNicknameDuplicate(nickname),
+      () => getNicknameDuplicate(nickname),
+      {
+        enabled: false,
+      }
+    ),
   };
 };

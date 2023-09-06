@@ -1,6 +1,7 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
+import { useGetNicknameDuplicate } from '@/apis/auth';
 import BirthdayBottomSheet from '@/app/(sub)/join/funnels/step4/components/BirthdayBottomSheet.client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -10,22 +11,33 @@ import { Spacing } from '@/components/Spacing';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
+import { useState } from 'react';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
-  const { watch, handleSubmit, setValue, register, formState } = hookForm;
+  const { watch, handleSubmit, setValue, register, setError, clearErrors } = hookForm;
   const { nextStep } = useFunnelContext();
   const { open: openBirthdayBottomSheet } = useModal();
+  const [isDuplicateChecked, setIsDuplicateChecked] = useState(false);
+  const { data = { isExistNickname: false }, refetch } = useGetNicknameDuplicate(watch('nickname'));
 
   const isAllTyped = !!(
-    formState.isValid &&
     watch('birth').year &&
     watch('birth').month &&
     watch('birth').date &&
-    watch('gender')
+    watch('gender') &&
+    watch('imageUrl')
   );
+
   const onSubmit = () => {
     if (!isAllTyped) return;
+    if (!isDuplicateChecked) {
+      setError('nickname', {
+        type: 'duplicate',
+        message: '닉네임 중복 확인을 해주세요.',
+      });
+      return;
+    }
     nextStep();
   };
 
@@ -61,11 +73,31 @@ export default function InputForm() {
                 message: `* 올바른 형식이 아닙니다 (최소 3글자\n최대 15글자 이하, 특수문자 금지)`,
               },
             })}
-            leftCaption="* 최소 3글자, 최대 15자 이하"
+            leftCaption={
+              isDuplicateChecked ? '사용 가능한 닉네임입니다.' : '* 최소 3글자, 최대 15자 이하'
+            }
             maxCount={15}
+            onChange={() => setIsDuplicateChecked(false)}
           />
         </div>
-        <Button variant="solid-default" className="w-auto shrink whitespace-nowrap">
+        <Button
+          variant="solid-default"
+          className="w-auto shrink whitespace-nowrap"
+          onClick={async () => {
+            await refetch();
+            if (data?.isExistNickname) {
+              console.log(1);
+              setError('nickname', {
+                type: 'duplicate',
+                message: '이미 사용중인 닉네임입니다.',
+              });
+            } else {
+              setIsDuplicateChecked(true);
+              clearErrors('nickname');
+            }
+          }}
+          type="button"
+        >
           중복 확인
         </Button>
       </Flex>
