@@ -12,7 +12,7 @@ import { TextField, TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
-import { useState } from 'react';
+import React, { type ElementType, type KeyboardEventHandler, useState } from 'react';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
@@ -59,6 +59,12 @@ export default function InputForm() {
     }
   };
 
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
+  ): any => {
+    setIsDuplicateChecked(false);
+  };
+
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)}>
       <Flex className="py-20" justify="center">
@@ -78,7 +84,6 @@ export default function InputForm() {
             <div className="w-full">
               <TextFieldController
                 as="input"
-                placeholder="닉네임을 입력해주세요."
                 hookForm={hookForm}
                 register={register('nickname', {
                   required: true,
@@ -90,8 +95,9 @@ export default function InputForm() {
                 leftCaption={
                   isDuplicateChecked ? '사용 가능한 닉네임입니다.' : '* 최소 3글자, 최대 15자 이하'
                 }
+                placeholder="닉네임을 입력해주세요."
                 maxCount={15}
-                onChange={() => setIsDuplicateChecked(false)}
+                onKeyDown={handleInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
               />
             </div>
             <Button
