@@ -37,7 +37,7 @@ export default function Avatar({
       })}
       onClick={onClick}
     >
-      <div className="relative flex w-full before:block before:pb-[100%]" onClick={onClick}>
+      <div className="relative flex w-full before:block before:pb-[100%]">
         {!!imageUrl ? (
           <Image
             src={imageUrl}
