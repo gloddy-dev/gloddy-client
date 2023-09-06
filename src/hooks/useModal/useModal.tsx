@@ -3,7 +3,7 @@ import { ModalControlRef, ModalController } from './ModalController';
 import { ModalContext } from './ModalProvider';
 import { CreateModalElement } from './type';
 import { useUnmountEffect } from 'framer-motion';
-import { useContext, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 let elementId = 1;
 
@@ -23,9 +23,18 @@ export default function useModal({ delay = 0, isUnmountExit = true }: UseModalPr
 
   const modalRef = useRef<ModalControlRef | null>(null);
 
-  useUnmountEffect(() => {
-    isUnmountExit && removeModal(id);
-  });
+  const goBack = () => {
+    removeModal(id);
+  };
+
+  useEffect(() => {
+    history.pushState({ page: 'modal' }, document.title);
+    window.addEventListener('popstate', goBack);
+    return () => {
+      window.removeEventListener('popstate', goBack);
+      isUnmountExit && removeModal(id);
+    };
+  }, []);
 
   return useMemo(
     () => ({
@@ -41,6 +50,7 @@ export default function useModal({ delay = 0, isUnmountExit = true }: UseModalPr
             }}
           />
         );
+
         if (delay) {
           setTimeout(() => {
             removeModal(id);
