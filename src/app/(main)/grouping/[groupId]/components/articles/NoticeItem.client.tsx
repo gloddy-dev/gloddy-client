@@ -34,7 +34,7 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
   return (
     <Flex align="center" className="gap-12 py-4">
       <Flex align="center" className="gap-4 overflow-hidden">
-        <Icon id="24-announcement" />
+        <Icon id="24-announcement" className="shrink-0" />
         <p className="truncate">{content}</p>
         {isCaptain && (
           <Icon
@@ -53,6 +53,7 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
       </Flex>
       <Icon
         id="24-navigate_next"
+        className="shrink-0"
         onClick={() => router.push(`/grouping/${groupId}/articles/${noticeId}`)}
       />
     </Flex>
