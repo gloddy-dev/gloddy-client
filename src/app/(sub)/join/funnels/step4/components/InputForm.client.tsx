@@ -12,7 +12,6 @@ import { TextField, TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
-import { type ElementType, type KeyboardEventHandler } from 'react';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
@@ -26,6 +25,7 @@ export default function InputForm() {
   });
 
   const isAllTyped = !!(
+    watch('nickname') &&
     watch('birth').year &&
     watch('birth').month &&
     watch('birth').date &&
@@ -87,7 +87,7 @@ export default function InputForm() {
                 }
                 placeholder="닉네임을 입력해주세요."
                 maxCount={15}
-                onKeyDown={handleInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
+                onKeyDown={handleInputChange}
               />
             </div>
             <Button
