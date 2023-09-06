@@ -2,10 +2,8 @@
 import { ModalControlRef, ModalController } from './ModalController';
 import { ModalContext } from './ModalProvider';
 import { CreateModalElement } from './type';
-import { useDidMount } from '../common/useDidMount';
-import { useDidUnMount } from '../common/useDidUnMount';
 import { useUnmountEffect } from 'framer-motion';
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useMemo, useRef, useState } from 'react';
 
 let elementId = 1;
 
