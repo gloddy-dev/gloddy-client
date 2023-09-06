@@ -40,7 +40,7 @@ export default function TopSection() {
           className="absolute bottom-20 right-20 z-10 rounded-full bg-black bg-opacity-[.38]"
           onClick={handleScrapClick}
         >
-          <Icon id={`24-bookmark_${isScraped ? 'filled' : 'outline'}`} />
+          <Icon id={`24-scrap_${isScraped ? 'filled' : 'outline'}`} />
         </IconButton>
       </div>
       <Spacing size={24} />
