@@ -23,18 +23,17 @@ export default function useModal({ delay = 0, isUnmountExit = true }: UseModalPr
 
   const modalRef = useRef<ModalControlRef | null>(null);
 
-  const goBack = () => {
-    removeModal(id);
-  };
-
   useEffect(() => {
+    const goBack = () => {
+      removeModal(id);
+    };
     history.pushState({ page: 'modal' }, document.title);
     window.addEventListener('popstate', goBack);
     return () => {
       window.removeEventListener('popstate', goBack);
       isUnmountExit && removeModal(id);
     };
-  }, []);
+  }, [id, isUnmountExit, removeModal]);
 
   return useMemo(
     () => ({
