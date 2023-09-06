@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 
-export default function ProfileDetailSection() {
+export default function ProfileDetail() {
   const pathname = usePathname();
   const params = useParams();
   const isPrivateProfile = !params.userId;
