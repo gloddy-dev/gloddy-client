@@ -1,15 +1,26 @@
 'use client';
-import { useCreateGroupContext } from '../../components/CreateGroupContext';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Loading } from '@/components/Loading';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import Image from 'next/image';
+import { memo } from 'react';
+import { Control, useController } from 'react-hook-form';
 
-export default function UploadSection() {
-  const { watch, setValue } = useCreateGroupContext();
+import type { CreateGroupContextValue } from '../../type';
 
-  const { handleFileUploadClick } = useFileUpload((files) => {
-    setValue('imageUrl', files[0]);
+interface ImageThumbnailProps {
+  control: Control<CreateGroupContextValue>;
+}
+
+export default function UploadSection({ control }: ImageThumbnailProps) {
+  const { field } = useController({
+    name: 'imageUrl',
+    control,
+  });
+
+  const { handleFileUploadClick, isLoading } = useFileUpload((files) => {
+    field.onChange(files[0]);
   });
 
   return (
@@ -19,13 +30,25 @@ export default function UploadSection() {
       className="relative mx-20 aspect-[8/5] overflow-hidden rounded-8 bg-sub"
       onClick={handleFileUploadClick}
     >
-      {!!watch('imageUrl') ? (
-        <Image src={watch('imageUrl')} alt="group_image" className="object-cover" fill />
-      ) : (
-        <div className="relative h-48 w-48">
-          <Icon id="48-add_photo_white" width={48} height={48} />
-        </div>
-      )}
+      <RenderImage isLoading={isLoading} imageUrl={field.value} />
     </Flex>
   );
 }
+
+interface RenderImageProps {
+  isLoading: boolean;
+  imageUrl: string;
+}
+
+const RenderImage = memo(function ({ isLoading, imageUrl }: RenderImageProps) {
+  console.log('render');
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (imageUrl) {
+    return <Image src={imageUrl} alt="group_image" className="object-cover" fill />;
+  }
+
+  return <Icon id="48-add_photo_white" width={48} height={48} />;
+});

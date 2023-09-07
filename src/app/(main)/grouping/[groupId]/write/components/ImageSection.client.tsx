@@ -1,5 +1,6 @@
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Loading } from '@/components/Loading';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import Image from 'next/image';
 import { memo, useCallback } from 'react';
@@ -19,7 +20,7 @@ export default function ImageSection({ control }: ImageSectionProps) {
     control,
   });
 
-  const { handleFileUploadClick } = useFileUpload((files) => {
+  const { handleFileUploadClick, isLoading } = useFileUpload((files) => {
     onChange([...value, ...files]);
   });
 
@@ -31,16 +32,20 @@ export default function ImageSection({ control }: ImageSectionProps) {
   return (
     <section className="px-20 pb-8 pt-16">
       <Flex className="gap-8">
-        {value.map((imageUrl, index) => {
-          return (
-            <ImageThumbnail
-              key={imageUrl + index}
-              imageUrl={imageUrl}
-              onClick={handleDeleteClick}
-            />
-          );
-        })}
-        {value.length < 3 && (
+        {value.map((imageUrl, index) => (
+          <ImageThumbnail key={imageUrl + index} imageUrl={imageUrl} onClick={handleDeleteClick} />
+        ))}
+        {isLoading && (
+          <Flex
+            direction="column"
+            justify="center"
+            align="center"
+            className="h-96 w-96 rounded-8 bg-card-ui"
+          >
+            <Loading />
+          </Flex>
+        )}
+        {value.length < 3 && !(isLoading && value.length === 2) && (
           <AddImageButton imageCount={value.length} onClick={handleFileUploadClick} />
         )}
       </Flex>

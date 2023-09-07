@@ -22,7 +22,7 @@ export function useFileUpload(
   handleFileChange: UseImageUploadProps['handleFileChange'],
   options?: UseImageUploadProps['options']
 ) {
-  const { mutate } = usePostFiles();
+  const { mutate, isLoading } = usePostFiles();
 
   const handleFileUploadClick = useCallback(() => {
     const input = document.createElement('input');
@@ -47,5 +47,6 @@ export function useFileUpload(
 
   return {
     handleFileUploadClick,
+    isLoading,
   };
 }

@@ -1,14 +1,16 @@
 import { Icon } from '../Icon';
+import { Flex } from '../Layout';
+import { Loading } from '../Loading';
 import cn from '@/utils/cn';
 import Image from 'next/image';
-
-import type { PropsWithChildren } from 'react';
+import { type PropsWithChildren, memo } from 'react';
 
 interface AvatarProps {
   /**
    * 아바타의 이미지 URL을 지정합니다. (필수)
    */
   imageUrl: string;
+  isLoading?: boolean;
   /**
    * 아바타의 크기를 지정합니다. small: 40x40, medium: 56x56, large: 96x96 (기본값: medium)
    */
@@ -21,10 +23,11 @@ interface AvatarProps {
 }
 export default function Avatar({
   imageUrl,
-  onClick,
+  isLoading,
   size = 'medium',
-  children,
   iconVariant = 'none',
+  onClick,
+  children,
 }: PropsWithChildren<AvatarProps>) {
   return (
     <span
@@ -36,16 +39,7 @@ export default function Avatar({
       onClick={onClick}
     >
       <div className="relative flex w-full before:block before:pb-[100%]">
-        {!!imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt="avatar"
-            className="cursor-pointer rounded-full object-cover"
-            fill
-          />
-        ) : (
-          <div className="h-full w-full cursor-pointer rounded-full bg-sub" />
-        )}
+        <AvatarImage imageUrl={imageUrl} isLoading={isLoading} />
         {iconVariant !== 'none' && (
           <Icon
             id={`32-${iconVariant}`}
@@ -63,3 +57,23 @@ export default function Avatar({
     </span>
   );
 }
+
+const AvatarImage = memo(function ({
+  imageUrl,
+  isLoading,
+}: Pick<AvatarProps, 'imageUrl' | 'isLoading'>) {
+  console.log('render');
+  if (isLoading) {
+    return (
+      <Flex direction="column" justify="center" align="center" className="h-full w-full">
+        <Loading />
+      </Flex>
+    );
+  }
+
+  if (imageUrl) {
+    return <Image src={imageUrl} alt="avatar" className="rounded-full object-cover" fill />;
+  }
+
+  return <div className="h-full w-full cursor-pointer rounded-full bg-sub" />;
+});

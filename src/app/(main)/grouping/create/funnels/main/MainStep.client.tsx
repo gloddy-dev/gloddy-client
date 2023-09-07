@@ -27,7 +27,7 @@ interface MainStepProps {
 
 export default function MainStep({ onSelectMeetDate }: MainStepProps) {
   const hookForm = useCreateGroupContext();
-  const { handleSubmit, formState } = hookForm;
+  const { handleSubmit, formState, control } = hookForm;
 
   const { mutate: mutateCreateGroup } = usePostCreateGroup();
   const { open: openCreateModal, exit: exitCreateModal } = useModal();
@@ -71,7 +71,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
 
   return (
     <>
-      <UploadSection />
+      <UploadSection control={control} />
       <InputSection />
       <Divider thickness="thick" />
       <SettingSection onSelectMeetDate={onSelectMeetDate} />
