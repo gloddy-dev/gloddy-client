@@ -3,6 +3,7 @@
 import MainStep from './main/MainStep.client';
 import MeetDateStep from './meetDate/MeetDateStep.client';
 import CreateHeader from '../components/CreateHeader.client';
+import { PageAnimation } from '@/components/PageAnimation';
 import { useFunnel } from '@/hooks/useFunnel';
 
 export default function CreateFunnel() {
@@ -12,10 +13,14 @@ export default function CreateFunnel() {
     <Funnel>
       <CreateHeader currentStep={currentStep} />
       <Funnel.Step name="main">
-        <MainStep onSelectMeetDate={() => setStep('meetDate')} />
+        <PageAnimation>
+          <MainStep onSelectMeetDate={() => setStep('meetDate')} />
+        </PageAnimation>
       </Funnel.Step>
       <Funnel.Step name="meetDate">
-        <MeetDateStep onDone={prevStep} />
+        <PageAnimation>
+          <MeetDateStep onDone={prevStep} />
+        </PageAnimation>
       </Funnel.Step>
     </Funnel>
   );

@@ -12,8 +12,9 @@ export interface Grouping {
   startTime: string; // '19:00'
   placeName: string;
   placeAddress: string;
-  placeLatitude: string;
-  placeLongitude: string;
+  placeLatitude: number;
+  placeLongitude: number;
+  placeId: string;
 }
 
 export interface Article {
@@ -93,9 +94,10 @@ export interface CreateGroupRequest {
   startTime: string;
   placeName: string;
   placeAddress: string;
-  placeLatitude: string;
-  placeLongitude: string;
+  placeLatitude: number;
+  placeLongitude: number;
   maxUser: number;
+  placeId: string;
 }
 
 export interface CreateGroupResponse {

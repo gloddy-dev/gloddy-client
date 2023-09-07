@@ -36,7 +36,7 @@ export default function LocationBottomSheet({
     id: 'google-map-script',
     googleMapsApiKey: GOOGLE_API_KEY as string,
     libraries,
-    language: 'en',
+    language: 'en', // 언어 설정
     region: 'KR',
   });
   const [searchBox, setSearchBox] = useState<google.maps.places.SearchBox>();
@@ -47,32 +47,23 @@ export default function LocationBottomSheet({
   const { field, fieldState } = useController({
     name: 'place',
     control,
+    rules: {
+      required: true,
+    },
   });
-  console.log(places);
-
-  // useEffect(() => {
-  //   if (places.length === 0) {
-  //     setSnapPoints([240, 0]);
-  //     return;
-  //   }
-  //   if (fieldState.isDirty) {
-  //     setSnapPoints([330, 0]);
-  //     return;
-  //   }
-  //   setSnapPoints([500, 0]);
-  // }, [fieldState.isDirty, places]);
 
   useEffect(() => {
     field.onChange({
+      id: '',
       name: '',
       address: '',
-      latitude: '',
-      longitude: '',
+      latitude: undefined,
+      longitude: undefined,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [places]);
-
+  console.log(field);
   return (
     <BottomSheet
       snapPoints={snapPoints}
@@ -102,8 +93,8 @@ export default function LocationBottomSheet({
             <GoogleMap
               mapContainerStyle={{ width: '100%', height: '200px', borderRadius: '8px' }}
               center={{
-                lat: +field.value.latitude || places[0]?.geometry?.location?.lat() || 37.566,
-                lng: +field.value.longitude || places[0]?.geometry?.location?.lng() || 126.978,
+                lat: field.value.latitude || places[0]?.geometry?.location?.lat() || 37.566,
+                lng: field.value.longitude || places[0]?.geometry?.location?.lng() || 126.978,
               }}
               zoom={15}
               options={{
@@ -120,6 +111,7 @@ export default function LocationBottomSheet({
                   }}
                   onClick={() => {
                     field.onChange({
+                      id: place.place_id,
                       name: place.name,
                       address: place.formatted_address,
                       latitude: place.geometry?.location?.lat(),
@@ -147,14 +139,16 @@ export default function LocationBottomSheet({
             renderItem={(place) => (
               <LocationItem
                 place={place}
-                onSelect={(place) =>
+                onSelect={(place) => {
+                  console.log(place);
                   field.onChange({
+                    id: place.place_id,
                     name: place.name,
                     address: place.formatted_address,
                     latitude: place.geometry?.location?.lat(),
                     longitude: place.geometry?.location?.lng(),
-                  })
-                }
+                  });
+                }}
               />
             )}
             hasDivider={false}
