@@ -34,7 +34,9 @@ export default function Step2({ onNextClick, groupMemberList }: Step2Props) {
         </div>
       ))}
       <ButtonGroup>
-        <Button onClick={onNextClick}>다음</Button>
+        <Button onClick={onNextClick} disabled={!watch('mateInfo.userId')}>
+          다음
+        </Button>
       </ButtonGroup>
     </div>
   );

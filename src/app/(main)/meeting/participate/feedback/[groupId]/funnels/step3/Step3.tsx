@@ -45,7 +45,12 @@ export default function Step3({ groupMemberList }: Step3Props) {
       <Divider thickness="thick" />
       <Spacing size={16} />
       <div className="px-20">
-        <Membercard member={groupMemberList[0]} />
+        <Membercard
+          member={
+            groupMemberList.filter((it) => it.userId === watch('mateInfo.userId'))[0] ||
+            groupMemberList[0]
+          }
+        />
         <Spacing size={8} />
         <TextFieldController
           as="textarea"
