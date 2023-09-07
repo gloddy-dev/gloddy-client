@@ -18,7 +18,10 @@ export const useReissueMutation = () => useMutation(postReissue);
 
 export const useSMSMutation = () => useMutation(postSMS);
 
-export const useSMSVerifyMutation = () => useMutation(postSMSVerify);
+export const useSMSVerifyMutation = () =>
+  useMutation(postSMSVerify, {
+    onError: () => {},
+  });
 
 export const useEmailMutation = () => useMutation(postEmail);
 
