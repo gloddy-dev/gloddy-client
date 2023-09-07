@@ -6,11 +6,9 @@ import { ModalProvider } from '@/hooks/useModal';
 export default function CreateGroupPage() {
   return (
     <PageAnimation>
-      <ModalProvider>
-        <CreateGroupContextProvider>
-          <CreateGroupFunnel />
-        </CreateGroupContextProvider>
-      </ModalProvider>
+      <CreateGroupContextProvider>
+        <CreateGroupFunnel />
+      </CreateGroupContextProvider>
     </PageAnimation>
   );
 }
