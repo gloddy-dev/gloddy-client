@@ -1,9 +1,7 @@
 import { Icon } from '../Icon';
-import { Flex } from '../Layout';
 import cn from '@/utils/cn';
 import Image from 'next/image';
 
-import type { StrictPropsWithChildren } from '@/types';
 import type { PropsWithChildren } from 'react';
 
 interface AvatarProps {
@@ -30,7 +28,7 @@ export default function Avatar({
 }: PropsWithChildren<AvatarProps>) {
   return (
     <span
-      className={cn('relative flex shrink-0 flex-col items-center gap-1', {
+      className={cn('relative flex shrink-0 flex-col items-center gap-1 overflow-hidden', {
         'w-40': size === 'small',
         'w-56': size === 'medium',
         'w-96': size === 'large',
@@ -65,21 +63,3 @@ export default function Avatar({
     </span>
   );
 }
-
-interface NameProps {
-  /**
-   * 호스트면 이름 왼쪽에 호스트 아이콘이 표시됩니다.
-   */
-  isCaptain?: boolean;
-}
-
-function Name({ children, isCaptain = false }: StrictPropsWithChildren<NameProps>) {
-  return (
-    <Flex justify="center" align="center">
-      {isCaptain && <Icon id="16-host" width={16} height={16} />}
-      <p className="truncate text-caption text-sign-tertiary">{children}</p>
-    </Flex>
-  );
-}
-
-Avatar.Name = Name;
