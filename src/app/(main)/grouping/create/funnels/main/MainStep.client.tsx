@@ -29,7 +29,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
   const hookForm = useCreateGroupContext();
   const { handleSubmit, formState, control } = hookForm;
 
-  const { mutate: mutateCreateGroup } = usePostCreateGroup();
+  const { mutate: mutateCreateGroup, isLoading } = usePostCreateGroup();
   const { open: openCreateModal, exit: exitCreateModal } = useModal();
 
   const isAllInput = Object.values(hookForm.watch()).every((value) => {
@@ -64,7 +64,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
       <CreateModal
         onCancelClick={exitCreateModal}
         onOkClick={handleSubmit(onsubmit)}
-        okDisabled={formState.isSubmitting}
+        isLoading={isLoading}
       />
     ));
   };

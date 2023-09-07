@@ -29,13 +29,19 @@ interface WriteModalProps {
   type: 'write' | 'cancel';
   onOkClick: () => void;
   onCancelClick: () => void;
+  isLoading?: boolean;
 }
 
-export default function WriteModal({ type, onCancelClick, onOkClick }: WriteModalProps) {
+export default function WriteModal({ type, onCancelClick, onOkClick, isLoading }: WriteModalProps) {
   const { variant, iconId, content } = modalStyle[type];
 
   return (
-    <Modal variant={variant} onCancelClick={onCancelClick} onOkClick={onOkClick}>
+    <Modal
+      variant={variant}
+      onCancelClick={onCancelClick}
+      onOkClick={onOkClick}
+      isLoading={isLoading}
+    >
       <Spacing size={32} />
       <Icon id={iconId} width={48} height={48} />
       <Spacing size={12} />
