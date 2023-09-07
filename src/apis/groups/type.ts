@@ -201,9 +201,15 @@ export interface EstimateRequest {
       userId: number;
       praiseValue?: string;
     }>;
+
     mateInfo: {
       userId: number;
       selectionReason: string;
     };
   };
 }
+
+export type PraiseInfoType = {
+  userId: number;
+  praiseValue?: string;
+};
