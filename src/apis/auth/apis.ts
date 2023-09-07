@@ -31,7 +31,7 @@ export const postSMSVerify = (SMSVerifyData: SMSVerifiyRequest) =>
   publicApi.post('/auth/sms/verify-code', SMSVerifyData);
 
 export const getSchoolSearch = (searchWord: string) =>
-  publicApi.get<SchoolSearchResponse>(`search/schools?keyword=${searchWord}`);
+  publicApi.get<SchoolSearchResponse>(`/search/schools?keyword=${searchWord}`);
 
 export const postEmail = (emailData: EmailRequest) => publicApi.post('/auth/email', emailData);
 
