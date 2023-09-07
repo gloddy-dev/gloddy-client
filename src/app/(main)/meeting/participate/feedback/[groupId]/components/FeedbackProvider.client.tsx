@@ -9,8 +9,8 @@ export type FeedbackRequestType = EstimateRequest['payload'];
 export default function FeedbackContextProvider({ children }: StrictPropsWithChildren) {
   const methods = useForm<FeedbackRequestType>({
     defaultValues: {
-      praiseInfos: [{ userId: 0, praiseValue: '유머러스' }],
-      mateInfo: { userId: 0, selectionReason: '' },
+      praiseInfos: [],
+      mateInfo: { selectionReason: '' },
     },
   });
 

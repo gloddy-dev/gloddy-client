@@ -2,7 +2,6 @@ import NoShowModal from './NoShowModal.client';
 import { useFeedbackContext } from '../../components/FeedbackProvider.client';
 import Membercard from '../../components/Membercard.client';
 import TitleSection from '../../components/TitleSection';
-import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
@@ -10,7 +9,6 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
 import { useModal } from '@/hooks/useModal';
-import { Fragment } from 'react';
 
 import type { EstimateResponse } from '@/apis/groups';
 
@@ -35,13 +33,27 @@ export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
         })
     );
   };
+  const handleDeleteNoShow = (userId: number) => {
+    const praiseInfos = watch('praiseInfos').filter((it) => it.userId !== userId);
+    setValue('praiseInfos', [...praiseInfos, { userId, praiseValue: '불참' }]);
+
+    exit();
+  };
+
+  const noShowMemberUserIdList = watch('praiseInfos')
+    .filter((it) => it.praiseValue === '불참')
+    .map((it) => it.userId);
+
+  const showMemberList = groupMemberList.filter(
+    (it) => !noShowMemberUserIdList.includes(it.userId)
+  );
 
   return (
     <div>
       <TitleSection message="모임에서 어땠나요?" step={1} />
 
       <Divider thickness="thick" />
-      {groupMemberList.map((member) => (
+      {showMemberList.map((member) => (
         <div key={member.userId} className="px-20">
           <Spacing size={16} />
           <Membercard member={member}>
@@ -51,6 +63,7 @@ export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
                 onClick={() =>
                   open(() => (
                     <NoShowModal
+                      onOkClick={() => handleDeleteNoShow(member.userId)}
                       name={member.nickName}
                       imageUrl={member.imageUrl}
                       onCancelClick={exit}
