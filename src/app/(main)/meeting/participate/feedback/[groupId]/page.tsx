@@ -15,11 +15,11 @@ export default function page({ params }: PageProps) {
 
   return (
     <Suspense>
-      {/* <HydrationProvider queryKey={Keys.getEstimate(groupId)} queryFn={() => getEstimate(groupId)}> */}
-      <FeedbackProvider>
-        <FeedbackFunnel />
-      </FeedbackProvider>
-      {/* </HydrationProvider> */}
+      <HydrationProvider queryKey={Keys.getEstimate(groupId)} queryFn={() => getEstimate(groupId)}>
+        <FeedbackProvider>
+          <FeedbackFunnel />
+        </FeedbackProvider>
+      </HydrationProvider>
     </Suspense>
   );
 }
