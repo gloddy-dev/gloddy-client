@@ -23,11 +23,11 @@ export default function FeedbackSection() {
       </Funnel.Step>
       <Funnel.Step name="2">
         <FeedbackHeader message="최고의 짝꿍" onPrevClick={prevStep} />
-        <Step2 onNextClick={nextStep} />
+        <Step2 onNextClick={nextStep} groupMemberList={groupMemberList} />
       </Funnel.Step>
       <Funnel.Step name="3">
         <FeedbackHeader message="최고의 짝꿍" onPrevClick={prevStep} />
-        <Step3 />
+        <Step3 groupMemberList={groupMemberList} />
       </Funnel.Step>
     </Funnel>
   );
