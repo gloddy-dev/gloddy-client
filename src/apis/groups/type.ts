@@ -185,7 +185,9 @@ export interface ScrapRequest {
 export interface EstimateResponse {
   groupMemberList: Array<{
     imageUrl: string;
-    name: string;
+    isCaptain: boolean;
+    nickName: string;
+    reliabilityLevel: ReliabilityType;
     userId: number;
   }>;
 }

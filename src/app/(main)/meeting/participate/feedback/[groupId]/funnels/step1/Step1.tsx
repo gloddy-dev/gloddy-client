@@ -11,20 +11,22 @@ import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
 import { DUMMY_DATA_ESTIMATE } from '@/constants/dummyData';
 import { useModal } from '@/hooks/useModal';
+import { Fragment } from 'react';
 
 interface Step1Props {
   onNextClick: () => void;
+  groupMemberList: EstimateResponse['groupMemberList'];
 }
 
 const tagList = ['차분함', '친절함', '적극적', '유머러스'];
 
-export default function Step1({ onNextClick }: Step1Props) {
+export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
   return (
     <div>
       <TitleSection message="모임에서 어땠나요?" step={1} />
 
       <Divider thickness="thick" />
-      {DUMMY_DATA_ESTIMATE.groupMemberList.map((member, index) => (
+      {groupMemberList.map((member, index) => (
         <MemberCard member={member} key={index} />
       ))}
       <ButtonGroup>
@@ -38,7 +40,7 @@ interface MemberCardProps {
 }
 
 function MemberCard({ member }: MemberCardProps) {
-  const { imageUrl, name } = member;
+  const { imageUrl, isCaptain, nickName, reliabilityLevel, userId } = member;
   const { open, exit } = useModal();
   const { setValue, watch } = useFeedbackContext();
   const handleTag = (tag: string) => {
@@ -53,20 +55,37 @@ function MemberCard({ member }: MemberCardProps) {
     );
   };
 
+  console.log(member);
+
   return (
     <section className="px-20">
       <Spacing size={16} />
       <Flex align="center" className="py-4">
-        <Avatar size="medium" imageUrl={imageUrl} />
+        <Avatar size="medium" imageUrl={imageUrl}>
+          <Icon id="24-education" className="absolute -right-2 -top-2" />
+        </Avatar>
         <Spacing size={12} direction="horizontal" />
-        <div className="flex grow flex-col justify-center">
-          <p className="text-paragraph-1">{name}</p>
-          <p className="text-caption text-sign-tertiary">{name}</p>
-        </div>
+        <Flex direction="column" justify="center" className="grow">
+          <Flex align="center">
+            <p className="text-paragraph-1">{nickName}</p>
+            {isCaptain && (
+              <Fragment>
+                <Spacing size={2} direction="horizontal" />
+                <Icon id="16-host" />
+              </Fragment>
+            )}
+          </Flex>
+
+          <Flex align="center">
+            <Icon id={`16-reliability-${reliabilityLevel.toLowerCase()}`} />
+            <Spacing size={2} direction="horizontal" />
+            <p className="text-caption text-sign-tertiary">{reliabilityLevel}</p>
+          </Flex>
+        </Flex>
         <Icon
-          id="24-close"
+          id="24-delete"
           onClick={() =>
-            open(() => <NoShowModal name={name} imageUrl={imageUrl} onCancelClick={exit} />)
+            open(() => <NoShowModal name={nickName} imageUrl={imageUrl} onCancelClick={exit} />)
           }
         />
       </Flex>
