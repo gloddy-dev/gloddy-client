@@ -16,11 +16,11 @@ import type { EstimateResponse } from '@/apis/groups';
 export default function Step3() {
   const { handleSubmit, watch } = useFeedbackContext();
   const router = useRouter();
-  const { open } = useModal();
+  const { open } = useModal({ isUnmountExit: false });
   const onSubmit = (data: FeedbackRequestType) => {
     // TODO : API 연결
     router.push('/meeting/participate?tab=participating');
-    open(() => <FeedbackCompleteModal />);
+    open(({ exit }) => <FeedbackCompleteModal onClose={exit} />);
   };
 
   return (
