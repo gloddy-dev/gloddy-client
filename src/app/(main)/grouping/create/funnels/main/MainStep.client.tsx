@@ -42,6 +42,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
   const onsubmit: SubmitHandler<CreateGroupContextValue> = (data) => {
     mutateCreateGroup(
       {
+        placeId: data.place.id,
         placeName: data.place.name,
         placeAddress: data.place.address,
         placeLatitude: data.place.latitude,
@@ -77,7 +78,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
       <SettingSection onSelectMeetDate={onSelectMeetDate} />
       <Spacing size={60} />
       <ButtonGroup>
-        <Button onClick={handleCreateClick} disabled={!isAllInput || !formState.isValid}>
+        <Button onClick={handleCreateClick} disabled={!isAllInput}>
           완료
         </Button>
       </ButtonGroup>
