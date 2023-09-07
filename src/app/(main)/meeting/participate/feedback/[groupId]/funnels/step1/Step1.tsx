@@ -1,7 +1,6 @@
 import NoShowModal from './NoShowModal.client';
 import { useFeedbackContext } from '../../components/FeedbackProvider.client';
 import TitleSection from '../../components/TitleSection';
-import { EstimateResponse } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
@@ -9,9 +8,10 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
-import { DUMMY_DATA_ESTIMATE } from '@/constants/dummyData';
 import { useModal } from '@/hooks/useModal';
 import { Fragment } from 'react';
+
+import type { EstimateResponse } from '@/apis/groups';
 
 interface Step1Props {
   onNextClick: () => void;
@@ -54,8 +54,6 @@ function MemberCard({ member }: MemberCardProps) {
         })
     );
   };
-
-  console.log(member);
 
   return (
     <section className="px-20">
