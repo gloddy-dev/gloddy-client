@@ -41,7 +41,6 @@ interface RenderImageProps {
 }
 
 const RenderImage = memo(function ({ isLoading, imageUrl }: RenderImageProps) {
-  console.log('render');
   if (isLoading) {
     return <Loading />;
   }

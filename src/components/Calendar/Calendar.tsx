@@ -17,8 +17,6 @@ interface CalendarProps {
 export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
   const currentDate = useMemo(() => new Date(), []);
 
-  console.log('Calendar', dateValue, currentDate);
-
   useEffect(() => {
     if (!dateValue) {
       setDateValue(currentDate);

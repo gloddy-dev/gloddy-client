@@ -62,7 +62,6 @@ const AvatarImage = memo(function ({
   imageUrl,
   isLoading,
 }: Pick<AvatarProps, 'imageUrl' | 'isLoading'>) {
-  console.log('render');
   if (isLoading) {
     return (
       <Flex direction="column" justify="center" align="center" className="h-full w-full">
