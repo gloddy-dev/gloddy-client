@@ -69,7 +69,7 @@ export default function LocationBottomSheet({
     <BottomSheet
       snapPoints={snapPoints}
       onClose={onClose}
-      title="모임 장소"
+      title="모임 위치"
       mountPoint={document.getElementById('setting') as HTMLElement}
       isTapOutsideToClose
       disableDrag
