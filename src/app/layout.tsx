@@ -1,6 +1,7 @@
 import './globals.css';
 
 import { QueryProvider } from '@/components/Provider';
+import QueryProviderWrapModal from '@/components/Provider/QueryProviderWrapModal.client';
 import { BASE_WEB_URL, KAKAO_SDK_URL } from '@/constants';
 import ModalProvider from '@/hooks/useModal/ModalProvider';
 import Script from 'next/script';
@@ -39,9 +40,11 @@ export const metadata = {
 export default function RootLayout({ children }: StrictPropsWithChildren) {
   return (
     <Layout>
-      <ModalProvider>
-        <QueryProvider>{children}</QueryProvider>
-      </ModalProvider>
+      <QueryProviderWrapModal>
+        <ModalProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </ModalProvider>
+      </QueryProviderWrapModal>
 
       {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
       <Script type="text/javascript" src={KAKAO_SDK_URL} strategy="beforeInteractive" />
