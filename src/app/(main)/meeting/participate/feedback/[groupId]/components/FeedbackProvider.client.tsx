@@ -1,17 +1,15 @@
 'use client';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
+import type { EstimateRequest } from '@/apis/groups';
 import type { StrictPropsWithChildren } from '@/types';
 
-export interface FeedbackRequestType {
-  praiseInfos: Array<{ userId: number; praiseValue: string }>;
-  mateInfo: { userId: number; selectionReason: string };
-}
+export type FeedbackRequestType = EstimateRequest['payload'];
 
 export default function FeedbackContextProvider({ children }: StrictPropsWithChildren) {
   const methods = useForm<FeedbackRequestType>({
     defaultValues: {
-      praiseInfos: [],
+      praiseInfos: [{ userId: 0, praiseValue: '유머러스' }],
       mateInfo: { userId: 0, selectionReason: '' },
     },
   });

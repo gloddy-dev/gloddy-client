@@ -8,6 +8,7 @@ import {
   postArticle,
   postComment,
   postCreateGroup,
+  postEstimate,
   postScrap,
 } from './apis';
 import { Keys as GroupsKeys } from './keys';
@@ -181,6 +182,15 @@ export const useDeleteGroupMember = (groupId: number) => {
       queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
       queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
       router.push('/grouping');
+    },
+  });
+};
+
+export const usePostEstimate = () => {
+  const router = useRouter();
+  return useMutation(postEstimate, {
+    onSuccess: () => {
+      router.push('/meeting/participate?tab=participating');
     },
   });
 };

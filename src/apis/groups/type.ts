@@ -191,3 +191,19 @@ export interface EstimateResponse {
     userId: number;
   }>;
 }
+
+export interface EstimateRequest {
+  params: {
+    groupId: number;
+  };
+  payload: {
+    praiseInfos: Array<{
+      userId: number;
+      praiseValue?: string;
+    }>;
+    mateInfo: {
+      userId: number;
+      selectionReason: string;
+    };
+  };
+}
