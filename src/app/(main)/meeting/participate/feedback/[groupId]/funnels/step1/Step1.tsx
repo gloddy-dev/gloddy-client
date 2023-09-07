@@ -1,4 +1,5 @@
 import NoShowModal from './NoShowModal.client';
+import { convertShowMember } from '../../../util';
 import { useFeedbackContext } from '../../components/FeedbackProvider.client';
 import Membercard from '../../components/Membercard.client';
 import TitleSection from '../../components/TitleSection';
@@ -40,13 +41,7 @@ export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
     exit();
   };
 
-  const noShowMemberUserIdList = watch('praiseInfos')
-    .filter((it) => it.praiseValue === '불참')
-    .map((it) => it.userId);
-
-  const showMemberList = groupMemberList.filter(
-    (it) => !noShowMemberUserIdList.includes(it.userId)
-  );
+  const showMemberList = convertShowMember(watch('praiseInfos'), groupMemberList);
 
   return (
     <div>
@@ -95,7 +90,12 @@ export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
         </div>
       ))}
       <ButtonGroup>
-        <Button onClick={onNextClick}>다음</Button>
+        <Button
+          onClick={onNextClick}
+          disabled={watch('praiseInfos').length < groupMemberList.length}
+        >
+          다음
+        </Button>
       </ButtonGroup>
     </div>
   );
