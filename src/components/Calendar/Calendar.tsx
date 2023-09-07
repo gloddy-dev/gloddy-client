@@ -17,6 +17,8 @@ interface CalendarProps {
 export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
   const currentDate = useMemo(() => new Date(), []);
 
+  console.log('Calendar', dateValue, currentDate);
+
   useEffect(() => {
     if (!dateValue) {
       setDateValue(currentDate);
@@ -36,7 +38,7 @@ export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
       renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
         <Flex align="center">
           <p className="text-subtitle-1">
-            {getYear(date)}년 {getMonth(date)}월
+            {getYear(date)}년 {getMonth(date) + 1}월
           </p>
           <Spacing size={0} className="grow" />
           <IconButton size="medium" onClick={decreaseMonth}>
