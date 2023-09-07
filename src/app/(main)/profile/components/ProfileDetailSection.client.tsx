@@ -117,7 +117,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             <div className="h-16 overflow-hidden rounded-10 bg-white">
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: `${reliabilityScore / 3}%` }}
+                animate={{ width: `${reliabilityScore / 2}%` }}
                 transition={{ duration: 0.5 }}
                 className="h-full rounded-10 bg-primary"
               />
