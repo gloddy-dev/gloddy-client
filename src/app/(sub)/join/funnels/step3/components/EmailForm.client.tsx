@@ -23,7 +23,7 @@ export default memo(function EmailForm() {
     register,
     handleSubmit,
     setValue,
-    formState: { isDirty },
+    formState: { isValid },
   } = hookForm;
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
@@ -69,7 +69,7 @@ export default memo(function EmailForm() {
         <Button type="button" onClick={handleSkipClick}>
           건너뛰기
         </Button>
-        <Button type="submit" disabled={!isDirty}>
+        <Button type="submit" disabled={!isValid}>
           확인
         </Button>
       </ButtonGroup>
