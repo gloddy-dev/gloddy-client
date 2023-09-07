@@ -83,6 +83,7 @@ export interface GroupDetailResponse extends Grouping {
   isCaptain: boolean;
   isScraped: boolean;
   isApplyWaited: boolean;
+  isExistNewApply: boolean;
 }
 
 export interface CreateGroupRequest {
