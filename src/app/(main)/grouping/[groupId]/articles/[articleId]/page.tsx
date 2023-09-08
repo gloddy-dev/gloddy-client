@@ -7,6 +7,7 @@ import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Loading } from 'antd-mobile';
 
 interface ArticleDetailPageProps {
   params: {
@@ -22,7 +23,7 @@ export default function ArticlePage({ params }: ArticleDetailPageProps) {
   return (
     <>
       <ArticleHeader />
-      <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
+      <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
         <PageAnimation>
           <HydrationProvider
             queryFn={() => getArticle(groupId, articleId)}

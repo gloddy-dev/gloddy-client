@@ -7,10 +7,12 @@ import {
   getMeetingParticipating,
   getMeetingRejected,
 } from '@/apis/meeting';
+import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Footer } from '@/components/Footer';
 import { HydrationProvider } from '@/components/Provider';
+import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Loading } from 'antd-mobile';
 import { redirect } from 'next/navigation';
-import React, { Suspense } from 'react';
 
 interface MeetingPageProps {
   searchParams: {
@@ -24,7 +26,7 @@ export default function MeetingPage({ searchParams }: MeetingPageProps) {
   return (
     <>
       <MeetingParticipateHeader />
-      <Suspense fallback={null}>
+      <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
         <HydrationProvider
           queryMultipleFn={[
             getMeetingParticipating,
@@ -43,7 +45,7 @@ export default function MeetingPage({ searchParams }: MeetingPageProps) {
         >
           <ContentSection />
         </HydrationProvider>
-      </Suspense>
+      </QueryAsyncBoundary>
       <Footer page="meeting" />
     </>
   );

@@ -5,13 +5,15 @@ import ReportDoneModal from '../../components/ReportDoneModal.client';
 import WarningModal from '../../components/WarningModal.client';
 import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
 import { IconButton } from '@/components/Button';
+import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { Suspense } from '@suspensive/react';
+import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Loading } from 'antd-mobile';
 import { useRouter } from 'next/navigation';
 
 export default function GroupDetailHeader() {
@@ -25,17 +27,17 @@ export default function GroupDetailHeader() {
           <IconButton size="large" onClick={() => router.back()}>
             <Icon id="24-arrow_back" />
           </IconButton>
-          <Suspense>
+          <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
             <TitleAction groupId={groupId} />
-          </Suspense>
+          </QueryAsyncBoundary>
         </Flex>
       </Header.Left>
       <Header.Right>
         <Flex align="center">
-          <Suspense>
+          <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
             <ManageButtonAction groupId={groupId} />
             <MoreButtonAction groupId={groupId} />
-          </Suspense>
+          </QueryAsyncBoundary>
         </Flex>
       </Header.Right>
     </Header>

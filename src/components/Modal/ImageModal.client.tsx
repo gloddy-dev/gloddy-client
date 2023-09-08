@@ -1,3 +1,4 @@
+'use client';
 import ModalWrapper from './ModalWrapper.client';
 import { Flex } from '../Layout';
 import { Spacing } from '../Spacing';
