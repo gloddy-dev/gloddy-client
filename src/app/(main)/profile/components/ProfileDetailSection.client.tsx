@@ -37,6 +37,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
     reliabilityLevel,
     reliabilityScore,
     isCertifiedStudent,
+    participatedGroupCount,
     introduce,
   } = profileData;
 
@@ -117,7 +118,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             <div className="h-16 overflow-hidden rounded-10 bg-white">
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: `${reliabilityScore / 3}%` }}
+                animate={{ width: `${reliabilityScore / 2}%` }}
                 transition={{ duration: 0.5 }}
                 className="h-full rounded-10 bg-primary"
               />
@@ -147,7 +148,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           <Flex align="center">
             <div className="flex flex-grow flex-col items-center justify-center">
               <p className="text-caption text-sign-tertiary">누적 모임</p>
-              <h4 className="text-h4 text-sign-secondary">5회</h4>
+              <h4 className="text-h4 text-sign-secondary">{participatedGroupCount}회</h4>
             </div>
             <Divider direction="vertical" className="h-12" />
             <Link

@@ -34,7 +34,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
     name: 'imageUrl',
     control,
   });
-  const { handleFileUploadClick } = useFileUpload((files) => onChange(files[0]));
+  const { handleFileUploadClick, isLoading } = useFileUpload((files) => onChange(files[0]));
 
   const { open: openBirthdayBottomSheet, close: closeBirthdayBottomSheet } = useModal();
 
@@ -60,6 +60,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
           imageUrl={value}
           size="large"
           iconVariant="draft_orders"
+          isLoading={isLoading}
           onClick={handleFileUploadClick}
         />
       </Flex>

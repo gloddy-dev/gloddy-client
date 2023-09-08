@@ -14,6 +14,7 @@ export interface ModalProps {
   variant?: 'warning' | 'success' | 'ok';
   className?: string;
   okMessage?: string;
+  isLoading?: boolean;
 }
 
 const variantMap = {
@@ -37,6 +38,7 @@ export function Modal({
   variant,
   className,
   okMessage,
+  isLoading,
 }: StrictPropsWithChildren<ModalProps>) {
   return (
     <ModalWrapper onClose={onCancelClick}>
@@ -55,6 +57,7 @@ export function Modal({
               size="small"
               onClick={onOkClick}
               disabled={okDisabled}
+              isLoading={isLoading}
             >
               {okText}
             </Button>
