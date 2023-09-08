@@ -15,6 +15,8 @@ import { Keys as GroupsKeys } from './keys';
 import { GroupDetailResponse } from './type';
 import { MeetingScrapResponse } from '../meeting';
 import { Keys as MeetingKeys } from '../meeting/keys';
+import FeedbackCompleteModal from '@/app/(main)/meeting/participate/feedback/[groupId]/funnels/step3/FeedbackCompleteModal.client';
+import { useModal } from '@/hooks/useModal';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -188,8 +190,11 @@ export const useDeleteGroupMember = (groupId: number) => {
 
 export const usePostEstimate = () => {
   const router = useRouter();
+  const { open } = useModal({ isUnmountExit: false });
+
   return useMutation(postEstimate, {
     onSuccess: () => {
+      open(({ exit }) => <FeedbackCompleteModal onClose={exit} />);
       router.push('/meeting/participate?tab=participating');
     },
   });
