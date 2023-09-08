@@ -9,9 +9,6 @@ export default function LinkSection() {
         <span className="ml-auto text-caption text-sign-caption">1.0.0v</span>
       </div>
       <div className="px-20 py-12">
-        <Link href="http://pf.kakao.com/_yEJxdG">FAQ</Link>
-      </div>
-      <div className="px-20 py-12">
         <Link href="/profile/setting/service">서비스 이용약관</Link>
       </div>
       <div className="px-20 py-12">

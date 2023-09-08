@@ -1,28 +1,27 @@
-import { useJoinContext } from '../../../components/JoinContext.client';
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { Button, ButtonGroup } from '@/components/Button';
 import { BottomSheet, type ModalProps } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
+import { useRouter } from 'next/navigation';
 import { memo } from 'react';
 
-import type { SignUpState } from '../../../type';
+import type { VerifyType } from '../type';
+import type { UseFormReturn } from 'react-hook-form';
 
 interface VerifyBottomSheetProps extends ModalProps {
   onClose: () => void;
-  onOkClick: () => void;
   isOpen: boolean;
+  hookForm: UseFormReturn<VerifyType>;
 }
-
 export default memo(function VerifyBottomSheet({
   onClose,
-  onOkClick,
   isOpen,
+  hookForm,
 }: VerifyBottomSheetProps) {
-  const hookForm = useJoinContext();
-  const { register, handleSubmit, setValue, watch, setError, resetField } = hookForm;
-
+  const { register, handleSubmit, setError, resetField, watch } = hookForm;
+  const router = useRouter();
   const { time: verifyTime } = useTimer({
     initialTime: 180,
     timerType: 'DECREMENTAL',
@@ -32,18 +31,15 @@ export default memo(function VerifyBottomSheet({
 
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
-  const onSubmit = (data: Pick<SignUpState, 'schoolInfo' | 'verifyEmailNumber'>) => {
-    if (!data.verifyEmailNumber || !data.schoolInfo.email) return;
+  const onSubmit = (data: VerifyType) => {
+    if (!data.verifyEmailNumber || !data.email) return;
     mutateEmailVerify(
       {
-        email: data.schoolInfo.email,
+        email: data.email,
         authCode: +data.verifyEmailNumber,
       },
       {
-        onSuccess: () => {
-          setValue('schoolInfo.certifiedStudent', true);
-          onOkClick();
-        },
+        onSuccess: () => router.back(),
         onError: () => {
           setError('verifyEmailNumber', {
             type: 'manual',
