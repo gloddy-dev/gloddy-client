@@ -1833,6 +1833,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@googlemaps/js-api-loader@npm:1.16.2":
+  version: 1.16.2
+  resolution: "@googlemaps/js-api-loader@npm:1.16.2"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+  checksum: 122ee57cc6a936e50358aedc4e79042353590467210e901fb42d4e7d9123c248c4db5cd5407a350cb5bea6de9e9ef1a508c08ba593475285d90bc4b93db42f51
+  languageName: node
+  linkType: hard
+
+"@googlemaps/markerclusterer@npm:2.3.2":
+  version: 2.3.2
+  resolution: "@googlemaps/markerclusterer@npm:2.3.2"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+    supercluster: ^8.0.1
+  checksum: 44a542d179c02a7c7eb03856aa700d9995ad55722c0c74271b75ed487fc06d33c98461c10972ad7a29ea833a14395379d72e6679bd244192166cd383f803d798
+  languageName: node
+  linkType: hard
+
 "@hookform/devtools@npm:^4.3.1":
   version: 4.3.1
   resolution: "@hookform/devtools@npm:4.3.1"
@@ -2421,6 +2440,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-google-maps/api@npm:^2.19.2":
+  version: 2.19.2
+  resolution: "@react-google-maps/api@npm:2.19.2"
+  dependencies:
+    "@googlemaps/js-api-loader": 1.16.2
+    "@googlemaps/markerclusterer": 2.3.2
+    "@react-google-maps/infobox": 2.19.2
+    "@react-google-maps/marker-clusterer": 2.19.2
+    "@types/google.maps": 3.53.5
+    invariant: 2.2.4
+  peerDependencies:
+    react: ^16.8 || ^17 || ^18
+    react-dom: ^16.8 || ^17 || ^18
+  checksum: 07ba34939e66d7539adc899810079571c022e3da3077c0c61f25f4f93515e6b6611b3845bc0829a939a3fe7fe9690c67f32e56430d16feab9a75fe4ebf3a11a9
+  languageName: node
+  linkType: hard
+
+"@react-google-maps/infobox@npm:2.19.2":
+  version: 2.19.2
+  resolution: "@react-google-maps/infobox@npm:2.19.2"
+  checksum: e2022d857931492d0fd457b72fa729076da1e3e0c5281a402a71127e35d683cb7ca4074e2888682a612ca4b5d2b0d6abc26cce94aa9a315abeaa61b4f6239f24
+  languageName: node
+  linkType: hard
+
+"@react-google-maps/marker-clusterer@npm:2.19.2":
+  version: 2.19.2
+  resolution: "@react-google-maps/marker-clusterer@npm:2.19.2"
+  checksum: fde23240ae153ec8aeddd1d702f1e2a8ee51412fe3b5079a88d4e1697f8c580e743afe6bb815214b218cefddb1a2097a9d982440c2207906dd1dd2a88b8068cb
+  languageName: node
+  linkType: hard
+
 "@react-spring/animated@npm:~9.6.1":
   version: 9.6.1
   resolution: "@react-spring/animated@npm:9.6.1"
@@ -2998,6 +3048,20 @@ __metadata:
   version: 1.0.1
   resolution: "@types/estree@npm:1.0.1"
   checksum: e9aa175eacb797216fafce4d41e8202c7a75555bc55232dee0f9903d7171f8f19f0ae7d5191bb1a88cb90e65468be508c0df850a9fb81b4433b293a5a749899d
+  languageName: node
+  linkType: hard
+
+"@types/google.maps@npm:3.53.5":
+  version: 3.53.5
+  resolution: "@types/google.maps@npm:3.53.5"
+  checksum: 57862d61435a523ae769d19ebcca99dc1d4a2ea976bbdf92da25bda3f2bed71871f8d78ef50b567bcbc54c8a78a55cfa16e8bd785e3d503fe2c3b5ef8fd76972
+  languageName: node
+  linkType: hard
+
+"@types/google.maps@npm:^3.54.0":
+  version: 3.54.0
+  resolution: "@types/google.maps@npm:3.54.0"
+  checksum: 8df82c6ca90dade30e09c8f6eb0b0f76eec252f359014a9771a6d913f56096522805156013b7d7904d26f23b77c1a11804602e4eab27d078e39b4ec123880835
   languageName: node
   linkType: hard
 
@@ -6572,6 +6636,7 @@ __metadata:
     "@babel/preset-env": ^7.22.10
     "@babel/preset-typescript": ^7.22.5
     "@hookform/devtools": ^4.3.1
+    "@react-google-maps/api": ^2.19.2
     "@sentry/cli": ^2.20.4
     "@sentry/nextjs": ^7.62.0
     "@sentry/utils": ^7.62.0
@@ -6583,6 +6648,7 @@ __metadata:
     "@testing-library/react": ^14.0.0
     "@testing-library/react-hooks": ^8.0.1
     "@testing-library/user-event": ^14.4.3
+    "@types/google.maps": ^3.54.0
     "@types/jest": ^29.5.3
     "@types/jest-plugin-context": ^2.9.5
     "@types/node": ^20.3.1
@@ -6626,7 +6692,6 @@ __metadata:
     react-dom: 18.2.0
     react-error-boundary: ^4.0.10
     react-hook-form: ^7.45.0
-    react-kakao-maps-sdk: ^1.1.9
     react-modal-sheet: ^2.0.0
     server-only: ^0.0.1
     sharp: ^0.32.5
@@ -6998,6 +7063,15 @@ __metadata:
   version: 0.12.2
   resolution: "intersection-observer@npm:0.12.2"
   checksum: d1fa9ebbb1e0baafe88ad95545bbb93f92bdcb8789912a2bd11b2463ab177ef185052c9c79c26187833d633f404acb077d4b1249353c5f6e2ca5cd64f50e216b
+  languageName: node
+  linkType: hard
+
+"invariant@npm:2.2.4":
+  version: 2.2.4
+  resolution: "invariant@npm:2.2.4"
+  dependencies:
+    loose-envify: ^1.0.0
+  checksum: cc3182d793aad82a8d1f0af697b462939cb46066ec48bbf1707c150ad5fad6406137e91a262022c269702e01621f35ef60269f6c0d7fd178487959809acdfb14
   languageName: node
   linkType: hard
 
@@ -8286,10 +8360,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kakao.maps.d.ts@npm:^0.1.38":
-  version: 0.1.38
-  resolution: "kakao.maps.d.ts@npm:0.1.38"
-  checksum: 4033de2f1aa23d0d10c2585b4297aab0a0203b76bac63584f3833bdcdb8baf79ea23d77eeaaefa570128a2fd947f5f29ea7e66038b1bc8609c34c8887296951b
+"kdbush@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "kdbush@npm:4.0.2"
+  checksum: 6782ef2cdaec9322376b9955a16b0163beda0cefa2f87da76e8970ade2572d8b63bec915347aaeac609484b0c6e84d7b591f229ef353b68b460238095bacde2d
   languageName: node
   linkType: hard
 
@@ -10074,18 +10148,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-kakao-maps-sdk@npm:^1.1.9":
-  version: 1.1.11
-  resolution: "react-kakao-maps-sdk@npm:1.1.11"
-  dependencies:
-    kakao.maps.d.ts: ^0.1.38
-  peerDependencies:
-    react: ">=16.9.0"
-    react-dom: ">=16.9.0"
-  checksum: 564847d02316b314d8d87772111944d0be31936edc880cf7a10680d2b46593459c318228f48472cc6c222ccb2703410bebde913fe604721e9ceef2fc694b8a0d
-  languageName: node
-  linkType: hard
-
 "react-modal-sheet@npm:^2.0.0":
   version: 2.0.0
   resolution: "react-modal-sheet@npm:2.0.0"
@@ -11251,6 +11313,15 @@ __metadata:
     sucrase: bin/sucrase
     sucrase-node: bin/sucrase-node
   checksum: 61860063bdf6103413698e13247a3074d25843e91170825a9752e4af7668ffadd331b6e99e92fc32ee5b3c484ee134936f926fa9039d5711fafff29d017a2110
+  languageName: node
+  linkType: hard
+
+"supercluster@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "supercluster@npm:8.0.1"
+  dependencies:
+    kdbush: ^4.0.2
+  checksum: 39d141f768a511efa53260252f9dab9a2ce0228b334e55482c8d3019e151932f05e1a9a0252d681737651b13c741c665542a6ddb40ec27de96159ea7ad41f7f4
   languageName: node
   linkType: hard
 
