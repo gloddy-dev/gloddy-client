@@ -1,15 +1,31 @@
 'use client';
-import { useCreateGroupContext } from '../../components/CreateGroupContext';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
-import { TextFieldController } from '@/components/TextField';
+import { TextField } from '@/components/TextField';
+import { Control, useController } from 'react-hook-form';
 
-export default function TimeSection() {
-  const hookForm = useCreateGroupContext();
-  const { watch, setValue, register } = hookForm;
+import type { CreateGroupContextValue } from '../../type';
 
-  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>, min: number, max: number) => {
+interface TimeSectionProps {
+  control: Control<CreateGroupContextValue>;
+}
+
+export default function TimeSection({ control }: TimeSectionProps) {
+  const { field: time } = useController({
+    name: 'time',
+    control,
+    rules: {
+      required: true,
+    },
+  });
+
+  const handleTimeChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    min: number,
+    max: number,
+    field: string
+  ) => {
     const t = e.target as HTMLInputElement;
     const value = t.value;
 
@@ -22,21 +38,21 @@ export default function TimeSection() {
     if (!isValueValid) {
       const last = value.slice(-1);
       if (last === '0' && min > 0) {
-        t.value = '';
+        time.onChange({ ...time.value, [field]: '' });
         return;
       }
 
-      t.value = '0' + last;
+      time.onChange({ ...time.value, [field]: '0' + last });
       return;
     }
 
     if (value.length === 1) {
-      t.value = '0' + value;
+      time.onChange({ ...time.value, [field]: '0' + value });
       return;
     }
 
     if (value.length === 3) {
-      t.value = value.slice(1);
+      time.onChange({ ...time.value, [field]: value.slice(1) });
       return;
     }
   };
@@ -47,10 +63,8 @@ export default function TimeSection() {
       <Spacing size={8} />
       <Flex align="center" className="flex-auto">
         <SegmentGroup
-          selectedValue={watch(`time.fromAmPm`)}
-          onChange={(value) => {
-            setValue(`time.fromAmPm`, value);
-          }}
+          selectedValue={time.value.fromAmPm}
+          onChange={(value) => time.onChange({ ...time.value, fromAmPm: value })}
           className="shrink-0"
         >
           <SegmentGroup.Segment label="오전" value="AM" />
@@ -59,15 +73,14 @@ export default function TimeSection() {
         <Spacing direction="horizontal" size={8} />
 
         <div className="flex-1">
-          <TextFieldController
+          <TextField
             as="input"
             type="number"
-            hookForm={hookForm}
             placeholder="시간"
-            register={register(`time.fromHour`, {
-              required: true,
-              onChange: (e) => handleTimeChange(e, 1, 12),
-            })}
+            value={time.value.fromHour}
+            onChange={(e) =>
+              handleTimeChange(e as React.ChangeEvent<HTMLInputElement>, 1, 12, 'fromHour')
+            }
             maxLength={2}
           />
         </div>
@@ -75,15 +88,14 @@ export default function TimeSection() {
         <p className="text-subtitle-2 text-sign-secondary">:</p>
         <Spacing direction="horizontal" size={4} />
         <div className="flex-1">
-          <TextFieldController
+          <TextField
             as="input"
             type="number"
-            hookForm={hookForm}
             placeholder="분"
-            register={register(`time.fromMin`, {
-              required: true,
-              onChange: (e) => handleTimeChange(e, 0, 59),
-            })}
+            value={time.value.fromMin}
+            onChange={(e) =>
+              handleTimeChange(e as React.ChangeEvent<HTMLInputElement>, 0, 59, 'fromMin')
+            }
             maxLength={2}
           />
         </div>
