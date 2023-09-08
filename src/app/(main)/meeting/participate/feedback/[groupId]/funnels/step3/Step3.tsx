@@ -1,4 +1,3 @@
-import FeedbackCompleteModal from './FeedbackCompleteModal.client';
 import { PRAISE_VALUE_MAP } from '../../../constants';
 import { FeedbackRequestType, useFeedbackContext } from '../../components/FeedbackProvider.client';
 import Membercard from '../../components/Membercard.client';
@@ -8,7 +7,6 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
-import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 
 interface Step3Props {
@@ -17,13 +15,11 @@ interface Step3Props {
 
 export default function Step3({ groupMemberList }: Step3Props) {
   const { handleSubmit, watch } = useFeedbackContext();
-  const { open } = useModal({ isUnmountExit: false });
   const { mutate } = usePostEstimate();
   const { groupId } = useNumberParams();
 
   const onSubmit = (data: FeedbackRequestType) => {
     // TODO : API 연결
-    console.log(data);
     mutate({
       params: { groupId },
       payload: {
@@ -34,7 +30,6 @@ export default function Step3({ groupMemberList }: Step3Props) {
         })),
       },
     });
-    open(({ exit }) => <FeedbackCompleteModal onClose={exit} />);
   };
   const hookForm = useFeedbackContext();
   const { register } = hookForm;
