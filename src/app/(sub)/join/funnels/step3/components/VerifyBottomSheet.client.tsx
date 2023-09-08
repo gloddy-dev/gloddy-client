@@ -21,16 +21,9 @@ export default memo(function VerifyBottomSheet({
   isOpen,
 }: VerifyBottomSheetProps) {
   const hookForm = useJoinContext();
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { isValid },
-    setError,
-    resetField,
-  } = hookForm;
+  const { register, handleSubmit, setValue, watch, setError, resetField } = hookForm;
 
-  const { status: timerStatus, time: verifyTime } = useTimer({
+  const { time: verifyTime } = useTimer({
     initialTime: 180,
     timerType: 'DECREMENTAL',
     endTime: 0,
@@ -101,7 +94,7 @@ export default memo(function VerifyBottomSheet({
           <Button type="button" onClick={handleResend}>
             재전송
           </Button>
-          <Button type="submit" disabled={!isValid}>
+          <Button type="submit" disabled={!watch('verifyEmailNumber').match(regexr.verifyNumber)}>
             확인
           </Button>
         </ButtonGroup>
