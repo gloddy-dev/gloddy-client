@@ -31,7 +31,12 @@ export default function LocationBottomSheet({
     suggestions: { status, data },
     setValue,
     clearSuggestions,
-  } = usePlacesAutocomplete();
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      language: 'en', // 언어설정
+      region: 'KR',
+    },
+  });
 
   const { field, fieldState } = useController({
     name: 'place',
