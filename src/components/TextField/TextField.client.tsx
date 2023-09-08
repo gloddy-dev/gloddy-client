@@ -17,6 +17,7 @@ export interface TextFieldProps<T extends React.ElementType = 'input'>
   isSuccess?: boolean;
   isLeftError?: boolean;
   isRightError?: boolean;
+  isLeftCaptionWrap?: boolean;
   isSpacing?: boolean;
   readOnly?: boolean;
   className?: string;
@@ -35,6 +36,7 @@ function TextField<T extends React.ElementType = 'input'>(
     rightIcon,
     isLeftError = false,
     isRightError = false,
+    isLeftCaptionWrap = true,
     isSpacing = true,
     readOnly = false,
     className,
@@ -105,8 +107,12 @@ function TextField<T extends React.ElementType = 'input'>(
             absolute: !isSpacing,
           })}
         >
-          <LeftCaption isError={isLeftError} text={leftCaption}></LeftCaption>
-          <RightCaption isError={isRightError} text={rightCaption}></RightCaption>
+          <LeftCaption
+            isError={isLeftError}
+            text={leftCaption}
+            isLeftCaptionWrap={isLeftCaptionWrap}
+          />
+          <RightCaption isError={isRightError} text={rightCaption} />
         </section>
       )}
     </label>
@@ -125,11 +131,16 @@ function Label({ text }: LabelProps) {
 interface LeftCaptionProps {
   isError?: boolean;
   text?: string;
+  isLeftCaptionWrap?: boolean;
 }
 
-function LeftCaption({ isError, text }: LeftCaptionProps) {
+function LeftCaption({ isError, text, isLeftCaptionWrap }: LeftCaptionProps) {
   if (!text) return <div />;
-  return <span className={cn({ 'text-warning': isError })}>{text}</span>;
+  return (
+    <span className={cn({ 'text-warning': isError, 'whitespace-nowrap': !isLeftCaptionWrap })}>
+      {text}
+    </span>
+  );
 }
 interface RightCaptionProps {
   isError?: boolean;

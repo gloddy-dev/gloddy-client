@@ -20,10 +20,11 @@ export default function CreateGroupContextProvider({ children }: StrictPropsWith
         fromAmPm: 'AM',
       },
       place: {
+        id: '',
         name: '',
         address: '',
-        latitude: '',
-        longitude: '',
+        latitude: undefined,
+        longitude: undefined,
       },
       maxUser: 3,
     },

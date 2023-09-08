@@ -22,7 +22,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["@types/jest"]
+    "types": ["@types/jest", "google.maps"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules", "mock-server", "eslint"]
