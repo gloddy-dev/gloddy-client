@@ -14,6 +14,7 @@ export default function LocationSection() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: GOOGLE_API_KEY as string,
+    nonce: 'location',
   });
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
@@ -38,7 +39,7 @@ export default function LocationSection() {
           {isLoaded ? (
             <GoogleMap
               mapContainerStyle={{ width: '100%', height: '100%' }}
-              center={{ lat: placeLatitude, lng: placeLongitude }}
+              center={{ lat: +placeLatitude, lng: +placeLongitude }}
               zoom={14}
               options={{
                 disableDefaultUI: true,

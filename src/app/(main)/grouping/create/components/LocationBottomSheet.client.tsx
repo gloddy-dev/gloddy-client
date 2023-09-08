@@ -38,6 +38,7 @@ export default function LocationBottomSheet({
     libraries,
     language: 'en', // 언어 설정
     region: 'KR',
+    nonce: 'location',
   });
   const [searchBox, setSearchBox] = useState<google.maps.places.SearchBox>();
   const [places, setPlaces] = useState<google.maps.places.PlaceResult[]>([]);
