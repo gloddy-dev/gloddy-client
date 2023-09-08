@@ -5,6 +5,7 @@ import { IconButton } from '@/components/Button';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
+import { PageAnimation } from '@/components/PageAnimation';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 import { Loading } from 'antd-mobile';
@@ -23,7 +24,9 @@ export default function ArticleHeader() {
       </Header.Left>
       <Header.Right>
         <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
-          <IconButtonAction />
+          <PageAnimation>
+            <IconButtonAction />
+          </PageAnimation>
         </QueryAsyncBoundary>
       </Header.Right>
     </Header>

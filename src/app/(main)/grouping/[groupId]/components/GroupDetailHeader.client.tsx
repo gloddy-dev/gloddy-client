@@ -10,6 +10,7 @@ import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
+import { PageAnimation } from '@/components/PageAnimation';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
@@ -28,15 +29,19 @@ export default function GroupDetailHeader() {
             <Icon id="24-arrow_back" />
           </IconButton>
           <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
-            <TitleAction groupId={groupId} />
+            <PageAnimation>
+              <TitleAction groupId={groupId} />
+            </PageAnimation>
           </QueryAsyncBoundary>
         </Flex>
       </Header.Left>
       <Header.Right>
         <Flex align="center">
           <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
-            <ManageButtonAction groupId={groupId} />
-            <MoreButtonAction groupId={groupId} />
+            <PageAnimation>
+              <ManageButtonAction groupId={groupId} />
+              <MoreButtonAction groupId={groupId} />
+            </PageAnimation>
           </QueryAsyncBoundary>
         </Flex>
       </Header.Right>

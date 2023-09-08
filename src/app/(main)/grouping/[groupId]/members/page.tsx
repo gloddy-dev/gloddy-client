@@ -19,16 +19,16 @@ export default function GroupingMembersPage({ params }: GroupingMembersPageProps
   return (
     <>
       <MembersHeader />
-      <PageAnimation>
-        <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
+      <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
+        <PageAnimation>
           <HydrationProvider
             queryFn={() => getGroupMembers(groupId)}
             queryKey={Keys.getGroupMembers(groupId)}
           >
             <MemeberList />
           </HydrationProvider>
-        </QueryAsyncBoundary>
-      </PageAnimation>
+        </PageAnimation>
+      </QueryAsyncBoundary>
     </>
   );
 }

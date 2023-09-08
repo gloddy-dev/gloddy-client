@@ -2,6 +2,7 @@ import FeedbackFunnel from './components/FeedbackFunnel.client';
 import FeedbackProvider from './components/FeedbackProvider.client';
 import { Keys, getEstimate } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
+import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 import { Loading } from 'antd-mobile';
@@ -17,11 +18,16 @@ export default function page({ params }: PageProps) {
 
   return (
     <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
-      <HydrationProvider queryKey={Keys.getEstimate(groupId)} queryFn={() => getEstimate(groupId)}>
-        <FeedbackProvider>
-          <FeedbackFunnel />
-        </FeedbackProvider>
-      </HydrationProvider>
+      <PageAnimation>
+        <HydrationProvider
+          queryKey={Keys.getEstimate(groupId)}
+          queryFn={() => getEstimate(groupId)}
+        >
+          <FeedbackProvider>
+            <FeedbackFunnel />
+          </FeedbackProvider>
+        </HydrationProvider>
+      </PageAnimation>
     </QueryAsyncBoundary>
   );
 }
