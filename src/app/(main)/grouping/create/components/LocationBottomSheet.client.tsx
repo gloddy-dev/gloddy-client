@@ -11,9 +11,9 @@ import { GOOGLE_API_KEY } from '@/constants';
 import {
   GoogleMap,
   type Libraries,
+  LoadScript,
   Marker,
   StandaloneSearchBox,
-  useJsApiLoader,
 } from '@react-google-maps/api';
 import { useEffect, useRef, useState } from 'react';
 import { Control, useController } from 'react-hook-form';
@@ -31,15 +31,6 @@ export default function LocationBottomSheet({
   onClose,
   isOpen,
 }: LocationBottomSheetProps) {
-  const { isLoaded } = useJsApiLoader({
-    preventGoogleFontsLoading: true,
-    id: 'google-map-script',
-    googleMapsApiKey: GOOGLE_API_KEY as string,
-    libraries,
-    language: 'en', // 언어 설정
-    region: 'KR',
-    nonce: 'location',
-  });
   const [searchBox, setSearchBox] = useState<google.maps.places.SearchBox>();
   const [places, setPlaces] = useState<google.maps.places.PlaceResult[]>([]);
   const [snapPoints, setSnapPoints] = useState<number[]>([-100, 0]);
@@ -73,57 +64,61 @@ export default function LocationBottomSheet({
       disableDrag
       isOpen={isOpen}
     >
-      {isLoaded && (
-        <>
-          <StandaloneSearchBox
-            onLoad={(searchBox) => setSearchBox(searchBox)}
-            onPlacesChanged={() => {
-              const places = searchBox?.getPlaces() || [];
-              setPlaces(places);
+      <LoadScript
+        googleMapsApiKey={GOOGLE_API_KEY as string}
+        libraries={libraries}
+        language="ko"
+        region="KR"
+        preventGoogleFontsLoading
+      >
+        <StandaloneSearchBox
+          onLoad={(searchBox) => setSearchBox(searchBox)}
+          onPlacesChanged={() => {
+            const places = searchBox?.getPlaces() || [];
+            setPlaces(places);
+          }}
+        >
+          <TextField
+            ref={ref}
+            placeholder="모임 위치를 입력해주세요."
+            leftIcon={<Icon id="24-search" width={24} height={24} />}
+          />
+        </StandaloneSearchBox>
+        <Spacing size={20} />
+        <div className="aspect-video">
+          <GoogleMap
+            mapContainerStyle={{ width: '100%', height: '200px', borderRadius: '8px' }}
+            center={{
+              lat: field.value.latitude || places[0]?.geometry?.location?.lat() || 37.566,
+              lng: field.value.longitude || places[0]?.geometry?.location?.lng() || 126.978,
+            }}
+            zoom={15}
+            options={{
+              disableDefaultUI: true,
+              keyboardShortcuts: false,
             }}
           >
-            <TextField
-              ref={ref}
-              placeholder="모임 위치를 입력해주세요."
-              leftIcon={<Icon id="24-search" width={24} height={24} />}
-            />
-          </StandaloneSearchBox>
-          <Spacing size={20} />
-          <div className="aspect-video">
-            <GoogleMap
-              mapContainerStyle={{ width: '100%', height: '200px', borderRadius: '8px' }}
-              center={{
-                lat: field.value.latitude || places[0]?.geometry?.location?.lat() || 37.566,
-                lng: field.value.longitude || places[0]?.geometry?.location?.lng() || 126.978,
-              }}
-              zoom={15}
-              options={{
-                disableDefaultUI: true,
-                keyboardShortcuts: false,
-              }}
-            >
-              {places.map((place) => (
-                <Marker
-                  key={place.place_id}
-                  position={{
-                    lat: place.geometry?.location?.lat() || 0,
-                    lng: place.geometry?.location?.lng() || 0,
-                  }}
-                  onClick={() => {
-                    field.onChange({
-                      id: place.place_id,
-                      name: place.name,
-                      address: place.formatted_address,
-                      latitude: place.geometry?.location?.lat(),
-                      longitude: place.geometry?.location?.lng(),
-                    });
-                  }}
-                />
-              ))}
-            </GoogleMap>
-          </div>
-        </>
-      )}
+            {places.map((place) => (
+              <Marker
+                key={place.place_id}
+                position={{
+                  lat: place.geometry?.location?.lat() || 0,
+                  lng: place.geometry?.location?.lng() || 0,
+                }}
+                onClick={() => {
+                  field.onChange({
+                    id: place.place_id,
+                    name: place.name,
+                    address: place.formatted_address,
+                    latitude: place.geometry?.location?.lat(),
+                    longitude: place.geometry?.location?.lng(),
+                  });
+                }}
+              />
+            ))}
+          </GoogleMap>
+        </div>
+      </LoadScript>
       <div className="scrollbar h-full overflow-hidden overflow-y-scroll">
         {fieldState.isDirty ? (
           <Flex
