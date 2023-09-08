@@ -61,7 +61,7 @@ function ManageButtonAction({ groupId }: ActionProps) {
   return (
     isCaptain && (
       <IconButton size="large" onClick={() => router.push(`/grouping/${groupId}/manage`)}>
-        {isExistNewApply ? <Icon id="24-application_notification" /> : <Icon id="24-application" />}
+        <Icon id={`24-application${isExistNewApply ? '_notification' : ''}`} />
       </IconButton>
     )
   );
