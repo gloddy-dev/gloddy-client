@@ -38,7 +38,7 @@ export default function LocationSection() {
           {isLoaded ? (
             <GoogleMap
               mapContainerStyle={{ width: '100%', height: '100%' }}
-              center={{ lat: +placeLatitude, lng: +placeLongitude }}
+              center={{ lat: placeLatitude, lng: placeLongitude }}
               zoom={14}
               options={{
                 disableDefaultUI: true,

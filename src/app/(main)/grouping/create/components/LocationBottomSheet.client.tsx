@@ -63,7 +63,6 @@ export default function LocationBottomSheet({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [places]);
-  console.log(field);
   return (
     <BottomSheet
       snapPoints={snapPoints}
@@ -140,7 +139,6 @@ export default function LocationBottomSheet({
               <LocationItem
                 place={place}
                 onSelect={(place) => {
-                  console.log(place);
                   field.onChange({
                     id: place.place_id,
                     name: place.name,
