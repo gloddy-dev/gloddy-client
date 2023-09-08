@@ -32,8 +32,6 @@ export default memo(function VerifyBottomSheet({
 
   const { mutate: mutateEmailVerify } = useEmailVerifyMutation();
 
-  console.log(watch('verifyEmailNumber'));
-
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo' | 'verifyEmailNumber'>) => {
     if (!data.verifyEmailNumber || !data.schoolInfo.email) return;
     mutateEmailVerify(
