@@ -4,3 +4,4 @@ export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 export const BASE_WEB_URL = process.env.NEXT_PUBLIC_BASE_WEB_URL ?? 'http://localhost:3000';
 export const INSTAGRAM_URL = 'https://www.instagram.com/gloddykorea';
 export const DAY_OF_WEEK = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+export const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY;

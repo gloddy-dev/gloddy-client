@@ -1,16 +1,16 @@
 import { Icon } from '../Icon';
 import { Flex } from '../Layout';
+import { Loading } from '../Loading';
 import cn from '@/utils/cn';
 import Image from 'next/image';
-
-import type { StrictPropsWithChildren } from '@/types';
-import type { PropsWithChildren } from 'react';
+import { type PropsWithChildren, memo } from 'react';
 
 interface AvatarProps {
   /**
    * 아바타의 이미지 URL을 지정합니다. (필수)
    */
   imageUrl: string;
+  isLoading?: boolean;
   /**
    * 아바타의 크기를 지정합니다. small: 40x40, medium: 56x56, large: 96x96 (기본값: medium)
    */
@@ -23,14 +23,15 @@ interface AvatarProps {
 }
 export default function Avatar({
   imageUrl,
-  onClick,
+  isLoading,
   size = 'medium',
-  children,
   iconVariant = 'none',
+  onClick,
+  children,
 }: PropsWithChildren<AvatarProps>) {
   return (
     <span
-      className={cn('relative flex shrink-0 flex-col items-center gap-1', {
+      className={cn('relative flex shrink-0 flex-col items-center gap-1 overflow-hidden', {
         'w-40': size === 'small',
         'w-56': size === 'medium',
         'w-96': size === 'large',
@@ -38,16 +39,7 @@ export default function Avatar({
       onClick={onClick}
     >
       <div className="relative flex w-full before:block before:pb-[100%]">
-        {!!imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt="avatar"
-            className="cursor-pointer rounded-full object-cover"
-            fill
-          />
-        ) : (
-          <div className="h-full w-full cursor-pointer rounded-full bg-sub" />
-        )}
+        <AvatarImage imageUrl={imageUrl} isLoading={isLoading} />
         {iconVariant !== 'none' && (
           <Icon
             id={`32-${iconVariant}`}
@@ -66,20 +58,21 @@ export default function Avatar({
   );
 }
 
-interface NameProps {
-  /**
-   * 호스트면 이름 왼쪽에 호스트 아이콘이 표시됩니다.
-   */
-  isCaptain?: boolean;
-}
+const AvatarImage = memo(function ({
+  imageUrl,
+  isLoading,
+}: Pick<AvatarProps, 'imageUrl' | 'isLoading'>) {
+  if (isLoading) {
+    return (
+      <Flex direction="column" justify="center" align="center" className="h-full w-full">
+        <Loading />
+      </Flex>
+    );
+  }
 
-function Name({ children, isCaptain = false }: StrictPropsWithChildren<NameProps>) {
-  return (
-    <Flex justify="center" align="center">
-      {isCaptain && <Icon id="16-host" width={16} height={16} />}
-      <p className="truncate text-caption text-sign-tertiary">{children}</p>
-    </Flex>
-  );
-}
+  if (imageUrl) {
+    return <Image src={imageUrl} alt="avatar" className="rounded-full object-cover" fill />;
+  }
 
-Avatar.Name = Name;
+  return <div className="h-full w-full cursor-pointer rounded-full bg-sub" />;
+});

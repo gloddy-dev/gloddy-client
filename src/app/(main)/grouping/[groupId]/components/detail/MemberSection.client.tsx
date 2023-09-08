@@ -3,6 +3,7 @@
 import { useGetGroupDetail, useGetGroupMembers } from '@/apis/groups';
 import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
+import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { usePathname, useRouter } from 'next/navigation';
@@ -39,9 +40,14 @@ export default function MemberSection() {
             key={member.userId}
             imageUrl={member.imageUrl ?? '/images/dummy_avatar.png'}
             iconVariant="education"
-            onClick={() => router.push(`${pathname}/members`)}
+            onClick={() => router.prefetch(`${pathname}/members`)}
           >
-            <Avatar.Name isCaptain={member.isCaptain}>{member.nickName}</Avatar.Name>
+            <Flex justify="center" align="center" className="w-full">
+              {member.isCaptain && (
+                <Icon id="16-host" width={16} height={16} className="shrink-0" />
+              )}
+              <p className="truncate text-caption text-sign-tertiary">{member.nickName}</p>
+            </Flex>
           </Avatar>
         ))}
       </div>
