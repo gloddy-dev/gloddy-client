@@ -15,6 +15,7 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
   queryClient.setDefaultOptions({
     queries: {
       retry: 1,
+      refetchOnWindowFocus: false,
     },
     mutations: {
       onError: () => open(() => <Toast>오류가 발생했습니다. 다시 시도해주세요.</Toast>),
