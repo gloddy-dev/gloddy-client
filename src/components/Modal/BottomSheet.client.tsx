@@ -4,7 +4,7 @@ import { Header } from '../Header';
 import { Icon } from '../Icon';
 import { Spacing } from '../Spacing';
 import { usePathname } from 'next/navigation';
-import { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import Sheet, { type SheetRef } from 'react-modal-sheet';
 
 import type { StrictPropsWithChildren } from '@/types';
@@ -33,21 +33,21 @@ export default forwardRef(function BottomSheet(
   }: StrictPropsWithChildren<BottomSheetProps>,
   ref?: React.ForwardedRef<SheetRef>
 ) {
-  let isGoBackClicked = false;
+  const pageRef = useRef(false);
   useEffect(() => {
     const goBack = () => {
-      isGoBackClicked = true;
+      pageRef.current = true;
       onClose();
     };
     history.pushState({ page: 'modal' }, document.title);
     window.addEventListener('popstate', goBack);
     return () => {
       window.removeEventListener('popstate', goBack);
-      if (!isGoBackClicked) {
+      if (!pageRef.current) {
         history.back();
       }
     };
-  }, [isGoBackClicked]);
+  }, [onClose]);
 
   return (
     <Sheet
