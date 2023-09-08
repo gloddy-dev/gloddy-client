@@ -9,6 +9,7 @@ import {
 } from '@/apis/meeting';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Footer } from '@/components/Footer';
+import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 import { Loading } from 'antd-mobile';
@@ -27,24 +28,26 @@ export default function MeetingPage({ searchParams }: MeetingPageProps) {
     <>
       <MeetingParticipateHeader />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
-        <HydrationProvider
-          queryMultipleFn={[
-            getMeetingParticipating,
-            getMeetingHosting,
-            getMeetingRejected,
-            getMeetingNotEstimated,
-            getMeetingNotEstimated,
-          ]}
-          queryKey={[
-            Keys.getMeetingParticipating(),
-            Keys.getMeetingHosting(),
-            Keys.getMeetingRejected(),
-            Keys.getMeetingNotEstimated(),
-            Keys.getMeetingNotEstimated(),
-          ]}
-        >
-          <ContentSection />
-        </HydrationProvider>
+        <PageAnimation>
+          <HydrationProvider
+            queryMultipleFn={[
+              getMeetingParticipating,
+              getMeetingHosting,
+              getMeetingRejected,
+              getMeetingNotEstimated,
+              getMeetingNotEstimated,
+            ]}
+            queryKey={[
+              Keys.getMeetingParticipating(),
+              Keys.getMeetingHosting(),
+              Keys.getMeetingRejected(),
+              Keys.getMeetingNotEstimated(),
+              Keys.getMeetingNotEstimated(),
+            ]}
+          >
+            <ContentSection />
+          </HydrationProvider>
+        </PageAnimation>
       </QueryAsyncBoundary>
       <Footer page="meeting" />
     </>
