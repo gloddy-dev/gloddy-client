@@ -1,4 +1,7 @@
+import { Loading } from '../Loading';
 import cn from '@/utils/cn';
+import { debounce } from 'lodash';
+import { useCallback } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 
@@ -21,6 +24,14 @@ interface ButtonProps<T extends React.ElementType> extends React.ButtonHTMLAttri
    * 전체 너비를 설정합니다. (default: true)
    */
   fullWidth?: boolean;
+  /**
+   * 로딩 중임을 표시합니다. (default: false)
+   */
+  isLoading?: boolean;
+  /**
+   * 디바운스 딜레이를 설정합니다. (default: 200)
+   */
+  debounceDelay?: number;
 }
 
 export default function Button<T extends React.ElementType>({
@@ -28,12 +39,23 @@ export default function Button<T extends React.ElementType>({
   className,
   disabled,
   children,
+  onClick,
+  isLoading = false,
   size = 'medium',
   variant = 'solid-primary',
   fullWidth = true,
+  debounceDelay = 200,
   ...props
 }: StrictPropsWithChildren<ButtonProps<T> & React.ComponentPropsWithoutRef<T>>) {
   const Element = as ?? 'button';
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleClick = useCallback(
+    debounce((event) => {
+      onClick?.(event);
+    }, debounceDelay),
+    [onClick, debounceDelay]
+  );
 
   return (
     <Element
@@ -54,10 +76,11 @@ export default function Button<T extends React.ElementType>({
         },
         className
       )}
-      disabled={disabled}
+      onClick={handleClick}
+      disabled={disabled || isLoading}
       {...props}
     >
-      {children}
+      {isLoading ? <Loading /> : children}
     </Element>
   );
 }

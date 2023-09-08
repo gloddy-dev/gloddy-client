@@ -3157,6 +3157,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.198":
+  version: 4.14.198
+  resolution: "@types/lodash@npm:4.14.198"
+  checksum: b290e4480707151bcec738bca40527915defe52a0d8e26c83685c674163a265e1a88cb2ee56b0fb587a89819d0cd5df86ada836aec3e9c2e4bf516e7d348d524
+  languageName: node
+  linkType: hard
+
 "@types/minimist@npm:^1.2.0":
   version: 1.2.2
   resolution: "@types/minimist@npm:1.2.2"
@@ -6651,6 +6658,7 @@ __metadata:
     "@types/google.maps": ^3.54.0
     "@types/jest": ^29.5.3
     "@types/jest-plugin-context": ^2.9.5
+    "@types/lodash": ^4.14.198
     "@types/node": ^20.3.1
     "@types/react": ^18.2.14
     "@types/react-datepicker": ^4.11.2
@@ -6683,6 +6691,7 @@ __metadata:
     jest-dom: ^4.0.0
     jest-environment-jsdom: ^29.6.2
     jest-plugin-context: ^2.9.0
+    lodash: ^4.17.21
     next: 13.4.19
     postcss: ^8.4.24
     prettier: ^2.8.8

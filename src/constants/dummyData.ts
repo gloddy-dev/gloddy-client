@@ -149,6 +149,7 @@ export const DETAIL_DUMMY_DATA: GroupDetailResponse = {
   placeId: 'ChIJgUbEo8cfqokR5lP9_Wh_DaM',
   isCaptain: true,
   myGroup: true,
+  isExistNewApply: true,
 };
 
 export const DUMMY_PROFILE_MATES_DATA: MatesResponse['mates'] = [
