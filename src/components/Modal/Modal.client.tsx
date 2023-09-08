@@ -15,6 +15,7 @@ export interface ModalProps {
   variant?: 'warning' | 'success' | 'ok';
   className?: string;
   okMessage?: string;
+  isLoading?: boolean;
 }
 
 const variantMap = {
@@ -38,6 +39,7 @@ export function Modal({
   variant,
   className,
   okMessage,
+  isLoading,
 }: StrictPropsWithChildren<ModalProps>) {
   const pageRef = useRef(false);
   useEffect(() => {
@@ -72,6 +74,7 @@ export function Modal({
               size="small"
               onClick={onOkClick}
               disabled={okDisabled}
+              isLoading={isLoading}
             >
               {okText}
             </Button>

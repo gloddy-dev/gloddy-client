@@ -4,7 +4,9 @@ import { useMoreSheet } from '../hooks/useMoreSheet';
 import { Button } from '@/components/Button';
 import { CardHeader } from '@/components/Card';
 import { Flex } from '@/components/Layout';
+import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
+import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -23,6 +25,7 @@ export default function ArticleItem({
   groupId,
   isArticleDetailPage = false,
 }: ArticleItemProps) {
+  const { open, exit } = useModal();
   const { content, articleId, commentCount, images, isWriter } = article;
   const { handleMoreClick } = useMoreSheet({
     type: 'article',
@@ -41,7 +44,13 @@ export default function ArticleItem({
       {images.length > 0 && (
         <Flex className="my-16 h-160 gap-4 overflow-x-scroll">
           {images.map((imageUrl, index) => (
-            <div key={imageUrl + index} className="relative h-160 w-160 shrink-0">
+            <div
+              key={imageUrl + index}
+              className="relative h-160 w-160 shrink-0"
+              onClick={() =>
+                open(() => <ImageModal images={images} currentImage={imageUrl} onClose={exit} />)
+              }
+            >
               <Image src={imageUrl} alt="article_image" className="object-cover" fill />
             </div>
           ))}
