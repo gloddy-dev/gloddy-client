@@ -13,12 +13,10 @@ interface MembercardProps {
 }
 
 export default function Membercard({ member, children }: PropsWithChildren<MembercardProps>) {
-  const { imageUrl, isCaptain, nickName, reliabilityLevel, userId } = member;
+  const { imageUrl, isCaptain, nickName, reliabilityLevel } = member;
   return (
     <Flex align="center" className="py-4">
-      <Avatar size="medium" imageUrl={imageUrl}>
-        <Icon id="24-education" className="absolute -right-2 -top-2" />
-      </Avatar>
+      <Avatar size="medium" imageUrl={imageUrl} iconVariant="education" />
       <Spacing size={12} direction="horizontal" />
       <Flex direction="column" justify="center" className="grow">
         <Flex align="center">
