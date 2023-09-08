@@ -104,7 +104,7 @@ jobs:
         if: github.event_name != 'push'
         run: yarn lint:fix
 
-      - name : Run Prettier
+      - name: Run Prettier
         if: github.event_name != 'push'
         run: yarn format
 
