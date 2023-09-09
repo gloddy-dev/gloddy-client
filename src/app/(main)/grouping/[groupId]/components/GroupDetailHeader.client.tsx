@@ -5,17 +5,15 @@ import ReportDoneModal from '../../components/ReportDoneModal.client';
 import WarningModal from '../../components/WarningModal.client';
 import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
 import { IconButton } from '@/components/Button';
-import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import { Loading } from '@/components/Loading';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { PageAnimation } from '@/components/PageAnimation';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
 import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default function GroupDetailHeader() {
   const router = useRouter();
@@ -28,21 +26,21 @@ export default function GroupDetailHeader() {
           <IconButton size="large" onClick={() => router.back()}>
             <Icon id="24-arrow_back" />
           </IconButton>
-          <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
+          <Suspense>
             <PageAnimation>
               <TitleAction groupId={groupId} />
             </PageAnimation>
-          </QueryAsyncBoundary>
+          </Suspense>
         </Flex>
       </Header.Left>
       <Header.Right>
         <Flex align="center">
-          <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
+          <Suspense>
             <PageAnimation>
               <ManageButtonAction groupId={groupId} />
               <MoreButtonAction groupId={groupId} />
             </PageAnimation>
-          </QueryAsyncBoundary>
+          </Suspense>
         </Flex>
       </Header.Right>
     </Header>

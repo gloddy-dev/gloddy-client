@@ -2,14 +2,12 @@
 import { useGetArticle, useGetGroupDetail } from '@/apis/groups';
 import { useMoreSheet } from '@/app/(main)/grouping/hooks/useMoreSheet';
 import { IconButton } from '@/components/Button';
-import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
 import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default function ArticleHeader() {
   const router = useRouter();
@@ -23,11 +21,11 @@ export default function ArticleHeader() {
         <p>게시글</p>
       </Header.Left>
       <Header.Right>
-        <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
+        <Suspense>
           <PageAnimation>
             <IconButtonAction />
           </PageAnimation>
-        </QueryAsyncBoundary>
+        </Suspense>
       </Header.Right>
     </Header>
   );
