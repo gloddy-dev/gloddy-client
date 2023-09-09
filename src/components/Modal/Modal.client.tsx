@@ -58,6 +58,7 @@ export function Modal({
               onClick={onOkClick}
               disabled={okDisabled}
               isLoading={isLoading}
+              actionType="throttle"
             >
               {okText}
             </Button>

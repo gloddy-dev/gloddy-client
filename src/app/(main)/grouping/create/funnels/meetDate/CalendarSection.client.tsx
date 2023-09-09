@@ -1,5 +1,4 @@
 'use client';
-import { useCreateGroupContext } from '../../components/CreateGroupContext';
 import Calendar from '@/components/Calendar/Calendar';
 import { type Control, useController } from 'react-hook-form';
 
