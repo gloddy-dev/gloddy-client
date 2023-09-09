@@ -4,27 +4,23 @@ import { ModalWrapper } from '../Modal';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 
-import type { MutationStatus } from '@tanstack/react-query';
-
 interface LayerLoadingProps {
-  status: MutationStatus;
+  isLoading: boolean;
   layerNumber?: number;
 }
 
-export default function LayerLoading({ status, layerNumber = 1 }: LayerLoadingProps) {
-  const isLayerLoading = status !== 'idle' && status !== 'error';
-
+export default function LayerLoading({ isLoading, layerNumber = 1 }: LayerLoadingProps) {
   useEffect(() => {
-    document.body.style.overflow = isLayerLoading ? 'hidden' : 'unset';
+    document.body.style.overflow = isLoading ? 'hidden' : 'unset';
 
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isLayerLoading]);
+  }, [isLoading]);
 
   return (
     <AnimatePresence>
-      {isLayerLoading && (
+      {isLoading && (
         <ModalWrapper layerNumber={layerNumber}>
           <Loading />
         </ModalWrapper>

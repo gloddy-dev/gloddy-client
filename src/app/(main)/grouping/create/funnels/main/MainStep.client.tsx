@@ -101,7 +101,7 @@ export default function MainStep({ onSelectMeetDate }: MainStepProps) {
           완료
         </Button>
       </ButtonGroup>
-      <LayerLoading status={status} />
+      <LayerLoading isLoading={status !== 'idle' && status !== 'error'} />
     </>
   );
 }
