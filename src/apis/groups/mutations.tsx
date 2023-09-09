@@ -26,7 +26,7 @@ export const usePostCreateGroup = () => {
 
   return useMutation(postCreateGroup, {
     onSuccess: (data) => {
-      queryClient.removeQueries(GroupsKeys.getGroups());
+      queryClient.resetQueries(GroupsKeys.getGroups());
       router.replace(`/grouping/${data.groupId}`);
     },
   });
@@ -180,7 +180,7 @@ export const useDeleteGroupMember = (groupId: number) => {
 
   return useMutation(deleteGroupMember, {
     onSuccess: () => {
-      queryClient.removeQueries(GroupsKeys.getGroups());
+      queryClient.resetQueries(GroupsKeys.getGroups());
       queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
       queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
       router.push('/grouping');
