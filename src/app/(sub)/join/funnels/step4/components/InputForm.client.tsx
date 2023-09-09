@@ -2,22 +2,32 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useGetNicknameDuplicate } from '@/apis/auth';
-import BirthdayBottomSheet from '@/app/(sub)/join/funnels/step4/components/BirthdayBottomSheet.client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
-import { TextField, TextFieldController } from '@/components/TextField';
+import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import { useModal } from '@/hooks/useModal';
+
+const formatBirthTyping = (birth: string) => {
+  if (birth.length === 4) {
+    return birth + '/';
+  }
+  if (birth.length === 7) {
+    return birth + '/';
+  }
+  if (birth.length > 9) {
+    return birth.slice(0, 9);
+  }
+  return birth;
+};
 
 export default function InputForm() {
   const hookForm = useJoinContext();
   const { watch, handleSubmit, setValue, register, setError, clearErrors } = hookForm;
   const { nextStep } = useFunnelContext();
-  const { open: openBirthdayBottomSheet } = useModal();
   const { refetch, isDuplicateChecked, setIsDuplicateChecked } = useGetNicknameDuplicate({
     nickname: watch('nickname'),
     setError,
@@ -26,9 +36,7 @@ export default function InputForm() {
 
   const isAllTyped = !!(
     watch('nickname') &&
-    watch('birth').year &&
-    watch('birth').month &&
-    watch('birth').date &&
+    watch('birth') &&
     watch('gender') &&
     watch('imageUrl')
   );
@@ -49,12 +57,30 @@ export default function InputForm() {
     setValue('imageUrl', files[0])
   );
 
-  const birth = watch('birth');
-  const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
-
-  const handleInputChange = () => {
+  const handleNicknameInputChange = () => {
     clearErrors('nickname');
     setIsDuplicateChecked(false);
+  };
+
+  const formatBirthBackspace = (birth: string) => {
+    if (birth.length === 7) {
+      return birth.slice(0, 4);
+    }
+    if (birth.length === 4) {
+      return '';
+    }
+    return birth;
+  };
+
+  const handleBirthInputChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
+  ): any => {
+    const birth = e.currentTarget.value.replace(/[^0-9]/g, '');
+    const birthWithoutSlash = watch('birth').replace(/[^0-9]/g, '');
+    if ('key' in e && e.key === 'Backspace') {
+      setValue('birth', formatBirthBackspace(birthWithoutSlash));
+    }
+    setValue('birth', formatBirthTyping(watch('birth')));
   };
 
   return (
@@ -90,7 +116,7 @@ export default function InputForm() {
                 }
                 placeholder="닉네임을 입력해주세요."
                 maxCount={15}
-                onKeyDown={handleInputChange}
+                onKeyDown={handleNicknameInputChange}
               />
             </div>
             <Button
@@ -115,15 +141,18 @@ export default function InputForm() {
 
         <Flex direction="column" gap={4}>
           <p className="text-subtitle-3">생년월일</p>
-          <TextField
-            placeholder="생년월일을 선택해주세요."
-            onClick={() =>
-              openBirthdayBottomSheet(({ close, isOpen }) => (
-                <BirthdayBottomSheet onClose={close} isOpen={isOpen} />
-              ))
-            }
-            value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
-            readOnly
+
+          <TextFieldController
+            placeholder="생년월일 8자리를 입력해주세요."
+            hookForm={hookForm}
+            register={register('birth', {
+              required: true,
+              pattern: {
+                value: regexr.birth,
+                message: '* 생년월일을 다시 확인해주세요.',
+              },
+            })}
+            onKeyDown={handleBirthInputChange}
           />
         </Flex>
 
