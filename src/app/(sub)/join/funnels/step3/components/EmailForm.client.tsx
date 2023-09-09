@@ -69,6 +69,8 @@ export default memo(function EmailForm() {
             message: '* 학교 이메일을 다시 확인해주세요.',
           },
         })}
+        type="email"
+        placeholder="gloddykorea@khu.ac.kr"
       />
       <ButtonGroup isSpacing={false}>
         <Button type="button" onClick={handleSkipClick}>

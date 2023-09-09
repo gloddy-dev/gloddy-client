@@ -29,6 +29,7 @@ export default function SchoolForm() {
           pattern: regexr.school,
         })}
         leftIcon={<Icon id="24-search" />}
+        placeholder="학교 이름 입력"
       />
       {data &&
         data?.schools.map((school) => (
