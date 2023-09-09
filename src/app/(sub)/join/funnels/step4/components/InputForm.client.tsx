@@ -1,34 +1,36 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
+import { formatBirthBackspace, formatBirthTyping } from '../util';
 import { useGetNicknameDuplicate } from '@/apis/auth';
-import BirthdayBottomSheet from '@/app/(sub)/join/funnels/step4/components/BirthdayBottomSheet.client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
-import { TextField, TextFieldController } from '@/components/TextField';
+import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import { useModal } from '@/hooks/useModal';
+
+import type { ElementType, KeyboardEventHandler } from 'react';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
   const { watch, handleSubmit, setValue, register, setError, clearErrors } = hookForm;
   const { nextStep } = useFunnelContext();
-  const { open: openBirthdayBottomSheet } = useModal();
   const { refetch, isDuplicateChecked, setIsDuplicateChecked } = useGetNicknameDuplicate({
     nickname: watch('nickname'),
     setError,
     clearErrors,
   });
 
+  const { handleFileUploadClick, isLoading } = useFileUpload((files) =>
+    setValue('imageUrl', files[0])
+  );
+
   const isAllTyped = !!(
     watch('nickname') &&
-    watch('birth').year &&
-    watch('birth').month &&
-    watch('birth').date &&
+    watch('birth') &&
     watch('gender') &&
     watch('imageUrl')
   );
@@ -45,16 +47,22 @@ export default function InputForm() {
     nextStep();
   };
 
-  const { handleFileUploadClick, isLoading } = useFileUpload((files) =>
-    setValue('imageUrl', files[0])
-  );
-
-  const birth = watch('birth');
-  const isBirthDayEntered = !!birth.year && !!birth.month && !!birth.date;
-
-  const handleInputChange = () => {
+  const handleNicknameInputChange = () => {
     clearErrors('nickname');
     setIsDuplicateChecked(false);
+  };
+
+  const handleBirthInputChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
+  ): any => {
+    const birth = e.currentTarget.value;
+    const birthWithoutSlash = birth.replace(/[^0-9]/g, '');
+
+    if ('key' in e && e.key === 'Backspace') {
+      setValue('birth', formatBirthBackspace(birthWithoutSlash));
+    } else {
+      setValue('birth', formatBirthTyping(birthWithoutSlash));
+    }
   };
 
   return (
@@ -90,7 +98,7 @@ export default function InputForm() {
                 }
                 placeholder="닉네임을 입력해주세요."
                 maxCount={15}
-                onKeyDown={handleInputChange}
+                onKeyDown={handleNicknameInputChange}
               />
             </div>
             <Button
@@ -115,15 +123,20 @@ export default function InputForm() {
 
         <Flex direction="column" gap={4}>
           <p className="text-subtitle-3">생년월일</p>
-          <TextField
-            placeholder="생년월일을 선택해주세요."
-            onClick={() =>
-              openBirthdayBottomSheet(({ close, isOpen }) => (
-                <BirthdayBottomSheet onClose={close} isOpen={isOpen} />
-              ))
-            }
-            value={isBirthDayEntered ? `${birth.year} ${birth.month} ${birth.date}` : ''}
-            readOnly
+
+          <TextFieldController
+            placeholder="생년월일 8자리를 입력해주세요."
+            hookForm={hookForm}
+            register={register('birth', {
+              required: true,
+              pattern: {
+                value: regexr.birth,
+                message: '* 생년월일을 다시 확인해주세요.',
+              },
+              onChange: handleBirthInputChange,
+            })}
+            onKeyDown={handleBirthInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
+            type="tel"
           />
         </Flex>
 

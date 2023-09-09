@@ -43,7 +43,7 @@ export default forwardRef(function BottomSheet(
         ease: 'easeInOut',
         duration: 0.5,
       }}
-      className="fixed inset-x-0 m-auto max-w-450"
+      className="fixed inset-x-0 bottom-0 m-auto max-w-450"
       {...props}
     >
       <Sheet.Backdrop

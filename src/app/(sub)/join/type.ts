@@ -8,5 +8,5 @@ export interface SignUpState extends Omit<SignUpRequest, 'personalities' | 'birt
 
   personalityIdList: number[];
 
-  birth: DateType;
+  birth: string;
 }
