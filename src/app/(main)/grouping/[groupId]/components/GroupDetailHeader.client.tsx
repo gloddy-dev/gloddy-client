@@ -21,22 +21,18 @@ export default function GroupDetailHeader() {
   return (
     <Header className="px-4">
       <Header.Left>
-        <Flex align="center">
-          <IconButton size="large" onClick={() => router.back()}>
-            <Icon id="24-arrow_back" />
-          </IconButton>
-          <Suspense>
-            <TitleAction groupId={groupId} />
-          </Suspense>
-        </Flex>
+        <IconButton size="large" onClick={() => router.back()}>
+          <Icon id="24-arrow_back" />
+        </IconButton>
+        <Suspense>
+          <TitleAction groupId={groupId} />
+        </Suspense>
       </Header.Left>
       <Header.Right>
-        <Flex align="center">
-          <Suspense>
-            <ManageButtonAction groupId={groupId} />
-            <MoreButtonAction groupId={groupId} />
-          </Suspense>
-        </Flex>
+        <Suspense>
+          <ManageButtonAction groupId={groupId} />
+          <MoreButtonAction groupId={groupId} />
+        </Suspense>
       </Header.Right>
     </Header>
   );
@@ -50,7 +46,7 @@ function TitleAction({ groupId }: ActionProps) {
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { title } = groupDetailData;
 
-  return <p>{title}</p>;
+  return <p className="w-full truncate">{title}</p>;
 }
 
 function ManageButtonAction({ groupId }: ActionProps) {
