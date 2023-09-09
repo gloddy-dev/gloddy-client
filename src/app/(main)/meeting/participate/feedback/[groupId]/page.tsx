@@ -5,7 +5,7 @@ import { RejectedFallback } from '@/components/ErrorBoundary';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
-import { Loading } from 'antd-mobile';
+import { Loading } from '@/components/Loading';
 
 interface PageProps {
   params: {

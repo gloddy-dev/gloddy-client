@@ -2,10 +2,10 @@ import ProfileByIdDetail from './components/ProfileByIdDetail.client';
 import ProfileByIdHeader from './components/ProfileByIdHeader';
 import { Keys, getProfileById } from '@/apis/profile';
 import { RejectedFallback } from '@/components/ErrorBoundary';
+import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
-import { Loading } from 'antd-mobile';
 
 interface PageProps {
   params: {
