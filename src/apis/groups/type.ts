@@ -98,7 +98,8 @@ export interface CreateGroupRequest {
   placeLatitude: number;
   placeLongitude: number;
   maxUser: number;
-  placeId: string;
+  placeId?: string;
+  placeUrl?: string;
 }
 
 export interface CreateGroupResponse {

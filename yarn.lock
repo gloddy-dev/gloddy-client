@@ -6502,6 +6502,7 @@ __metadata:
     tailwindcss: ^3.3.2
     ts-jest: ^29.1.1
     typescript: ^5.1.3
+    use-places-autocomplete: ^4.0.1
     zustand: ^4.3.8
   languageName: unknown
   linkType: soft
@@ -11784,6 +11785,15 @@ __metadata:
   peerDependencies:
     react: ">=16.13"
   checksum: 2b9b6291df3f772f44d259b352e5d998963ccee0db2efeb76bb05525d928064aeeb69bb0dee5a5e428fea7cf3db67c097a770ebd30caa080662b565f6ef02b2e
+  languageName: node
+  linkType: hard
+
+"use-places-autocomplete@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "use-places-autocomplete@npm:4.0.1"
+  peerDependencies:
+    react: ">= 16.8.0"
+  checksum: 0145203deca6e85304a051090c15999f5a2477707f5db822ec05a7b4f9842c5e2a6a63963785e979cc29b9e602b0410cce57dca7916a4ea9e2b7440626e58807
   languageName: node
   linkType: hard
 
