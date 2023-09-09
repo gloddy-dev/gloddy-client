@@ -149,7 +149,6 @@ export default function InputForm() {
             <SegmentGroup.Segment value="MAIL" label="남성" />
             <SegmentGroup.Segment value="FEMAIL" label="여성" />
           </SegmentGroup>
-          in
         </Flex>
       </Flex>
       <ButtonGroup>
