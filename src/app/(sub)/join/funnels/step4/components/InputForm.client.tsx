@@ -1,6 +1,7 @@
 'use client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
+import { formatBirthBackspace, formatBirthTyping } from '../util';
 import { useGetNicknameDuplicate } from '@/apis/auth';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -11,18 +12,7 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useFileUpload } from '@/hooks/useFileUpload';
 
-const formatBirthTyping = (birth: string) => {
-  if (birth.length === 4) {
-    return birth + '/';
-  }
-  if (birth.length === 7) {
-    return birth + '/';
-  }
-  if (birth.length > 9) {
-    return birth.slice(0, 9);
-  }
-  return birth;
-};
+import type { ElementType, KeyboardEventHandler } from 'react';
 
 export default function InputForm() {
   const hookForm = useJoinContext();
@@ -33,6 +23,10 @@ export default function InputForm() {
     setError,
     clearErrors,
   });
+
+  const { handleFileUploadClick, isLoading } = useFileUpload((files) =>
+    setValue('imageUrl', files[0])
+  );
 
   const isAllTyped = !!(
     watch('nickname') &&
@@ -53,34 +47,22 @@ export default function InputForm() {
     nextStep();
   };
 
-  const { handleFileUploadClick, isLoading } = useFileUpload((files) =>
-    setValue('imageUrl', files[0])
-  );
-
   const handleNicknameInputChange = () => {
     clearErrors('nickname');
     setIsDuplicateChecked(false);
   };
 
-  const formatBirthBackspace = (birth: string) => {
-    if (birth.length === 7) {
-      return birth.slice(0, 4);
-    }
-    if (birth.length === 4) {
-      return '';
-    }
-    return birth;
-  };
-
   const handleBirthInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
   ): any => {
-    const birth = e.currentTarget.value.replace(/[^0-9]/g, '');
-    const birthWithoutSlash = watch('birth').replace(/[^0-9]/g, '');
+    const birth = e.currentTarget.value;
+    const birthWithoutSlash = birth.replace(/[^0-9]/g, '');
+
     if ('key' in e && e.key === 'Backspace') {
       setValue('birth', formatBirthBackspace(birthWithoutSlash));
+    } else {
+      setValue('birth', formatBirthTyping(birthWithoutSlash));
     }
-    setValue('birth', formatBirthTyping(watch('birth')));
   };
 
   return (
@@ -151,8 +133,11 @@ export default function InputForm() {
                 value: regexr.birth,
                 message: '* 생년월일을 다시 확인해주세요.',
               },
+              onChange: handleBirthInputChange,
             })}
-            onKeyDown={handleBirthInputChange}
+            onKeyDown={handleBirthInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
+            type="text"
+            pattern="\d*"
           />
         </Flex>
 
