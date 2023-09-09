@@ -73,6 +73,7 @@ export default memo(function VerifyBottomSheet({
       title="인증번호 입력"
       isRightCloseIcon={false}
       isOpen={isOpen}
+      disableDrag
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
@@ -85,9 +86,10 @@ export default memo(function VerifyBottomSheet({
                 message: '인증 번호를 다시 확인해주세요.',
               },
             })}
-            maxLength={6}
             timer={verifyTime}
-            type="number"
+            type="text"
+            pattern="\d*"
+            maxLength={6}
           />
         </section>
 
