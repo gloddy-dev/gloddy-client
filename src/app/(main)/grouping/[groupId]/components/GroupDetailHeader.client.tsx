@@ -7,12 +7,11 @@ import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import { Flex } from '@/components/Layout';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { Suspense } from '@suspensive/react';
 import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default function GroupDetailHeader() {
   const router = useRouter();

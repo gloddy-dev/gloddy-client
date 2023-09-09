@@ -27,15 +27,20 @@ export default memo(function EmailForm() {
   } = hookForm;
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
-    openVerifyBottomSheet(({ isOpen }) => (
-      <VerifyBottomSheet onClose={closeVerifyBottomSheet} onOkClick={nextStep} isOpen={isOpen} />
-    ));
-
     if (!data.schoolInfo.email) return;
+
     mutateEmail(
       { email: data.schoolInfo.email },
       {
-        onSuccess: () => {},
+        onSuccess: () => {
+          openVerifyBottomSheet(({ isOpen }) => (
+            <VerifyBottomSheet
+              onClose={closeVerifyBottomSheet}
+              onOkClick={nextStep}
+              isOpen={isOpen}
+            />
+          ));
+        },
       }
     );
   };
@@ -64,6 +69,8 @@ export default memo(function EmailForm() {
             message: '* 학교 이메일을 다시 확인해주세요.',
           },
         })}
+        type="email"
+        placeholder="gloddykorea@khu.ac.kr"
       />
       <ButtonGroup isSpacing={false}>
         <Button type="button" onClick={handleSkipClick}>

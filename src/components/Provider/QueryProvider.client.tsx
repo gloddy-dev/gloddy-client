@@ -20,7 +20,8 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
     },
     mutations: {
       onError: (error) => {
-        const errorMessage = error ?? '오류가 발생했습니다. 다시 시도해주세요.';
+        const errorMessage =
+          typeof error === 'string' ? error : '오류가 발생했습니다. 다시 시도해주세요.';
         open(() => (
           <Toast>
             <>{errorMessage}</>
@@ -33,7 +34,7 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools initialIsOpen={false} panelPosition="top" />
     </QueryClientProvider>
   );
 }

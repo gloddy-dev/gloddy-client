@@ -29,7 +29,6 @@ function MemberItem({ member }: MemberItemProps) {
         <div className="min-w-0 grow">
           <Flex align="center" className="gap-2">
             <span className="truncate">{nickName}</span>
-
             {isCaptain && <Icon id="16-host" width={16} height={16} />}
           </Flex>
           <Flex align="center" className="gap-2">

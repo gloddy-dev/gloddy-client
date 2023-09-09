@@ -1,5 +1,5 @@
 import { getLocalCookie, setLocalCookie } from '../cookieController';
-import { afterDay1, afterDay60, currentTime, day1, day60 } from '../date';
+import { afterDay1, afterDay60 } from '../date';
 import { AUTH_KEYS } from '@/constants/token';
 
 import type { CookieKeyType } from '@/types';
