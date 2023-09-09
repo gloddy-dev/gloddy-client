@@ -27,15 +27,20 @@ export default memo(function EmailForm() {
   } = hookForm;
 
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
-    openVerifyBottomSheet(({ isOpen }) => (
-      <VerifyBottomSheet onClose={closeVerifyBottomSheet} onOkClick={nextStep} isOpen={isOpen} />
-    ));
-
     if (!data.schoolInfo.email) return;
+
     mutateEmail(
       { email: data.schoolInfo.email },
       {
-        onSuccess: () => {},
+        onSuccess: () => {
+          openVerifyBottomSheet(({ isOpen }) => (
+            <VerifyBottomSheet
+              onClose={closeVerifyBottomSheet}
+              onOkClick={nextStep}
+              isOpen={isOpen}
+            />
+          ));
+        },
       }
     );
   };
