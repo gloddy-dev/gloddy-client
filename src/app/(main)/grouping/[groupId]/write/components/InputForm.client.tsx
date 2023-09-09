@@ -74,7 +74,7 @@ export default function InputForm() {
           글쓰기
         </Button>
       </ButtonGroup>
-      <LayerLoading status={status} />
+      <LayerLoading isLoading={status !== 'idle' && status !== 'error'} />
     </>
   );
 }
