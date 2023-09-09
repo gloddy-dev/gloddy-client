@@ -30,7 +30,6 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   ): any => {
     const phoneNumber = e.currentTarget.value.replace(/[^0-9-]/g, '');
     const phoneNumberWithoutHyphen = phoneNumber.replace(/-/g, '');
-    console.log(phoneNumber, phoneNumberWithoutHyphen);
 
     if ('key' in e && e.key === 'Backspace') {
       setValue('phoneNumber', formatNumberBackSpace(phoneNumberWithoutHyphen));
