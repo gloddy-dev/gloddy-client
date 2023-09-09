@@ -8,13 +8,9 @@ import { GOOGLE_API_KEY } from '@/constants';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { copyToClipboard } from '@/utils/copyToClipboard';
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 export default function LocationSection() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: GOOGLE_API_KEY as string,
-  });
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { placeName, placeLatitude, placeLongitude, placeAddress } = groupDetailData;
@@ -35,10 +31,10 @@ export default function LocationSection() {
         <Icon id="24-copy" className="absolute right-12 top-12 z-10" />
         <div className="absolute left-0 top-0 z-[2] aspect-video w-full opacity-0" />
         <div className="aspect-video w-full">
-          {isLoaded ? (
+          <LoadScript id="google-map-script" googleMapsApiKey={GOOGLE_API_KEY as string}>
             <GoogleMap
               mapContainerStyle={{ width: '100%', height: '100%' }}
-              center={{ lat: placeLatitude, lng: placeLongitude }}
+              center={{ lat: +placeLatitude, lng: +placeLongitude }}
               zoom={14}
               options={{
                 disableDefaultUI: true,
@@ -46,9 +42,7 @@ export default function LocationSection() {
             >
               <Marker position={{ lat: +placeLatitude, lng: +placeLongitude }} />
             </GoogleMap>
-          ) : (
-            <div className="bg-gray-300 h-full w-full" />
-          )}
+          </LoadScript>
         </div>
 
         <div className="p-16">
