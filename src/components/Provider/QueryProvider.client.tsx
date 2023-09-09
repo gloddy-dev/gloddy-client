@@ -16,6 +16,7 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
   queryClient.setDefaultOptions({
     queries: {
       retry: 1,
+      refetchOnWindowFocus: false,
     },
     mutations: {
       onError: (error) => {

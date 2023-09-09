@@ -5,7 +5,9 @@ import { Icon } from '@/components/Icon';
 import { Spacing } from '@/components/Spacing';
 import { SpinBox } from '@/components/SpinBox';
 import { TextField } from '@/components/TextField';
+import { GOOGLE_API_KEY } from '@/constants';
 import { useModal } from '@/hooks/useModal';
+import { LoadScript } from '@react-google-maps/api';
 import { useController } from 'react-hook-form';
 
 interface SettingSectionProps {
@@ -44,7 +46,19 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
         <TextField
           onClick={() =>
             openLocationSheet(({ isOpen }) => (
-              <LocationBottomSheet onClose={closeLocationSheet} control={control} isOpen={isOpen} />
+              <LoadScript
+                googleMapsApiKey={GOOGLE_API_KEY as string}
+                libraries={['places']}
+                language="ko"
+                region="KR"
+                preventGoogleFontsLoading
+              >
+                <LocationBottomSheet
+                  onClose={closeLocationSheet}
+                  control={control}
+                  isOpen={isOpen}
+                />
+              </LoadScript>
             ))
           }
           value={watch('place.name')}
