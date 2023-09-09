@@ -3,11 +3,11 @@ import ArticleHeader from './components/ArticleHeader.client';
 import CommentForm from './components/CommentForm';
 import { Keys, getArticle } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
+import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
-import { Loading } from 'antd-mobile';
 
 interface ArticleDetailPageProps {
   params: {

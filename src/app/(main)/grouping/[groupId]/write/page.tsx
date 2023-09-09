@@ -2,10 +2,10 @@ import InputForm from './components/InputForm.client';
 import WriteHeader from './components/WriteHeader.client';
 import { Keys, getGroupDetail } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
+import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
-import { Loading } from 'antd-mobile';
 
 interface WritePageProps {
   params: {

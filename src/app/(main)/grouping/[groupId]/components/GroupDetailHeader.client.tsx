@@ -9,12 +9,12 @@ import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Loading } from '@/components/Loading';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { PageAnimation } from '@/components/PageAnimation';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
-import { Loading } from 'antd-mobile';
 import { useRouter } from 'next/navigation';
 
 export default function GroupDetailHeader() {

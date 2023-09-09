@@ -5,10 +5,10 @@ import { IconButton } from '@/components/Button';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
+import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
-import { Loading } from 'antd-mobile';
 import { useRouter } from 'next/navigation';
 
 export default function ArticleHeader() {
