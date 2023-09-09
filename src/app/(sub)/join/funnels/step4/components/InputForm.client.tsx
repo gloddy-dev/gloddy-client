@@ -136,10 +136,10 @@ export default function InputForm() {
               onChange: handleBirthInputChange,
             })}
             onKeyDown={handleBirthInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
-            type="text"
-            pattern="\d*"
+            type="tel"
           />
         </Flex>
+        <input type="date" />
 
         <Flex direction="column" gap={4}>
           <p className="text-subtitle-3">성별</p>
@@ -150,6 +150,7 @@ export default function InputForm() {
             <SegmentGroup.Segment value="MAIL" label="남성" />
             <SegmentGroup.Segment value="FEMAIL" label="여성" />
           </SegmentGroup>
+          in
         </Flex>
       </Flex>
       <ButtonGroup>
