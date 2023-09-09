@@ -105,7 +105,10 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
           },
         })}
         maxLength={6}
+        type="text"
+        pattern="\d*"
         timer={time}
+        autoComplete="one-time-code"
       />
       <ButtonGroup isSpacing={false}>
         <Button type="button" onClick={handleResend}>

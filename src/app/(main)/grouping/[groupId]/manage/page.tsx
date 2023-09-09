@@ -1,10 +1,11 @@
 import ManageDetail from './components/ManageDetail.client';
 import ManageHeader from './components/ManageHeader.client';
 import { Keys, getApplies } from '@/apis/groups';
+import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
-import { Suspense } from 'react';
+import { QueryAsyncBoundary } from '@suspensive/react-query';
 
 interface GroupingManagePageProps {
   params: {
@@ -18,7 +19,7 @@ export default function GroupingManagePage({ params }: GroupingManagePageProps) 
   return (
     <>
       <ManageHeader />
-      <Suspense fallback={<Loading className="h-[calc(100dvh-48px)]" />}>
+      <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
         <PageAnimation>
           <HydrationProvider
             queryFn={() => getApplies(groupId)}
@@ -27,7 +28,7 @@ export default function GroupingManagePage({ params }: GroupingManagePageProps) 
             <ManageDetail />
           </HydrationProvider>
         </PageAnimation>
-      </Suspense>
+      </QueryAsyncBoundary>
     </>
   );
 }
