@@ -87,6 +87,7 @@ export default memo(function VerifyBottomSheet({
             })}
             maxLength={6}
             timer={verifyTime}
+            type="number"
           />
         </section>
 

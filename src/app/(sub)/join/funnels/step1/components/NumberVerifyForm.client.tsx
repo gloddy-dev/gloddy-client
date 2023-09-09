@@ -106,6 +106,7 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
         })}
         maxLength={6}
         timer={time}
+        type="number"
       />
       <ButtonGroup isSpacing={false}>
         <Button type="button" onClick={handleResend}>
