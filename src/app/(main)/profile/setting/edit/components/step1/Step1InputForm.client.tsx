@@ -1,3 +1,4 @@
+import { formatBirthDTO } from '../../util';
 import { useEditContext } from '../EditProvider.client';
 import { usePatchProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
@@ -32,7 +33,6 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
   const { handleFileUploadClick, isLoading } = useFileUpload((files) => onChange(files[0]));
 
   const isAllTyped = formState.isValid && !!watch('gender');
-  const formatBirthDTO = (birth: string) => birth.replace(/\./g, '-');
 
   const onSubmit = (data: ProfileEditState) => {
     const { birth } = data;
