@@ -139,7 +139,6 @@ export default function InputForm() {
             type="tel"
           />
         </Flex>
-        <input type="date" />
 
         <Flex direction="column" gap={4}>
           <p className="text-subtitle-3">성별</p>
