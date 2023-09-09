@@ -1,4 +1,4 @@
-import LocationItem from './LoctationItem.client';
+import LocationItem from './LocationItem.client';
 import { CreateGroupContextValue } from '../type';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Icon } from '@/components/Icon';
@@ -45,7 +45,6 @@ export default function LocationBottomSheet({
       required: true,
     },
   });
-  console.log(status, data, field);
 
   const [latLng, setLatLng] = useState<LatLng | undefined>(
     field.value.latitude && field.value.longitude
