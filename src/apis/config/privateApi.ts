@@ -36,17 +36,20 @@ privateApi.interceptors.response.use(
   async (error: AxiosError<ErrorType, InternalAxiosRequestConfig>) => {
     try {
       if (!error.response) return Promise.reject(error);
-      if (error.response.status === AUTH_ERROR_CODES.TOKEN_ERROR) {
+      if (
+        error.response.status === AUTH_ERROR_CODES.UNAUTHORIZED ||
+        error.response.status === AUTH_ERROR_CODES.NOT_FOUND
+      ) {
         window.location.href = '/join?step=1';
       }
-      if (error.response.status === AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR) {
+      if (error.response.status === AUTH_ERROR_CODES.TOKEN_ERROR) {
         try {
           const { refreshToken, accessToken } = await getTokenFromCookie();
           if (!refreshToken || !accessToken) {
             throw new ApiError(
               '에러 발생',
               '토큰이 없습니다.',
-              AUTH_ERROR_CODES.TOKEN_ERROR,
+              AUTH_ERROR_CODES.UNAUTHORIZED,
               new Date()
             );
           }
@@ -62,7 +65,7 @@ privateApi.interceptors.response.use(
             throw new ApiError(
               '에러 발생',
               'accessToken 발급 중 오류가 발생했습니다.',
-              AUTH_ERROR_CODES.TOKEN_ERROR,
+              AUTH_ERROR_CODES.UNAUTHORIZED,
               new Date()
             );
           }
@@ -72,7 +75,7 @@ privateApi.interceptors.response.use(
             throw new ApiError(
               '에러 발생',
               '이전 정보가 없습니다.',
-              AUTH_ERROR_CODES.TOKEN_ERROR,
+              AUTH_ERROR_CODES.UNAUTHORIZED,
               new Date()
             );
           }
