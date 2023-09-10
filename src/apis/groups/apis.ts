@@ -26,7 +26,7 @@ import type {
 } from '.';
 
 export const getGroups = (page: number) => {
-  return privateApi.get<GroupsResponse>(`/groups?size=5&page=${page}`);
+  return privateApi.get<GroupsResponse>(`/groups?size=10&page=${page}`);
 };
 
 export const getGroupDetail = (groupId: number) => {
