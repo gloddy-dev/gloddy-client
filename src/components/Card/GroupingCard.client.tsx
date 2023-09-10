@@ -56,11 +56,12 @@ export default function GroupingCard({
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
       <Flex
-        onClick={() =>
+        onClick={
           onClick ||
-          router.push(`/grouping/${groupId}`, {
-            scroll: false,
-          })
+          (() =>
+            router.push(`/grouping/${groupId}`, {
+              scroll: false,
+            }))
         }
         align="center"
       >
@@ -112,7 +113,7 @@ function MemberCountBadge({ maxMemeberCount, memberCount }: MemberCountBadgeProp
   return (
     <Flex
       align="center"
-      className={cn('absolute bottom-0 left-0 h-22 w-45 rounded-4 p-4', {
+      className={cn('absolute bottom-0 left-0 h-22 rounded-4 p-4', {
         'bg-brand-color': leftUser >= 2,
         'bg-warning-color': leftUser === 1,
         'bg-sub': leftUser === 0,
