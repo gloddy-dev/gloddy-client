@@ -23,7 +23,7 @@ export default function RejectModal({ applyId }: RejectModalProps) {
       </p>
       <Spacing size={20} />
       <div className="py-12">
-        <Button onClick={() => router.back()}>다른 모임 지원하러 가기</Button>
+        <Button onClick={() => router.push('/grouping')}>다른 모임 지원하러 가기</Button>
       </div>
     </Modal>
   );
