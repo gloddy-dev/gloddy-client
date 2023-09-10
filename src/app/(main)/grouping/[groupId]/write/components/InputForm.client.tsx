@@ -6,9 +6,7 @@ import { useGetGroupDetail, usePostArticle } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
-import { Loading } from '@/components/Loading';
 import LayerLoading from '@/components/Loading/LayerLoading.client';
-import { ModalWrapper } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
@@ -74,7 +72,7 @@ export default function InputForm() {
           글쓰기
         </Button>
       </ButtonGroup>
-      <LayerLoading isLoading={status !== 'idle' && status !== 'error'} />
+      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
     </>
   );
 }
