@@ -6,6 +6,7 @@ import { useGetGroupDetail, usePostArticle } from '@/apis/groups';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
+import LayerLoading from '@/components/Loading/LayerLoading.client';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
@@ -26,23 +27,18 @@ export default function InputForm() {
   });
   const { register, handleSubmit, watch, setValue, control, formState } = hookForm;
 
-  const { mutate: mutateArticle, isLoading } = usePostArticle(groupId);
+  const { mutate: mutateArticle, status } = usePostArticle(groupId);
   const { data: groupDetailData } = useGetGroupDetail(groupId);
 
   const { isCaptain } = groupDetailData;
 
   const onSubmit = async (data: WriteFormValues) => {
-    mutateArticle(
-      {
-        params: { groupId },
-        article: data,
-      },
-      {
-        onSettled: exit,
-      }
-    );
+    exit();
+    mutateArticle({
+      params: { groupId },
+      article: data,
+    });
   };
-  console.log(isLoading, formState.isSubmitting);
 
   return (
     <>
@@ -51,7 +47,7 @@ export default function InputForm() {
         <TextFieldController
           as="textarea"
           hookForm={hookForm}
-          register={register('content', { required: true, maxLength: 300 })}
+          register={register('content', { required: true, minLength: 20, maxLength: 300 })}
           placeholder="최소 20글자 이상의 게시글을 작성해보세요."
           maxCount={300}
           className="h-full"
@@ -68,19 +64,15 @@ export default function InputForm() {
         <Button
           onClick={() =>
             open(() => (
-              <WriteModal
-                type="write"
-                onCancelClick={exit}
-                onOkClick={handleSubmit(onSubmit)}
-                isLoading={isLoading}
-              />
+              <WriteModal type="write" onCancelClick={exit} onOkClick={handleSubmit(onSubmit)} />
             ))
           }
-          disabled={watch('content').length < 20}
+          disabled={!formState.isValid}
         >
           글쓰기
         </Button>
       </ButtonGroup>
+      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
     </>
   );
 }
