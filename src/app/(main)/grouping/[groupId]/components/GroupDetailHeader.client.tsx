@@ -10,6 +10,7 @@ import { Icon } from '@/components/Icon';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
+import { useBlockStore } from '@/store/useBlockStore';
 import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -63,6 +64,8 @@ function ManageButtonAction({ groupId }: ActionProps) {
 }
 
 function MoreButtonAction({ groupId }: ActionProps) {
+  const router = useRouter();
+  const { setBlockId } = useBlockStore();
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
   const { open: openItemModal, exit: exitItemModal } = useModal();
   const { open: openDoneModal, exit: exitDoneModal } = useModal();
@@ -76,15 +79,33 @@ function MoreButtonAction({ groupId }: ActionProps) {
   };
 
   const handleReportClick = () => {
+    setBlockId(groupId, 'group');
     exitItemModal();
     closeBottomSheet();
-    openDoneModal(() => <ReportDoneModal onOkClick={exitDoneModal} />);
+    openDoneModal(() => (
+      <ReportDoneModal
+        onOkClick={() => {
+          exitDoneModal();
+          router.replace('/grouping');
+          router.back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
+        }}
+      />
+    ));
   };
 
   const handleBlockClick = () => {
+    setBlockId(groupId, 'group');
     exitItemModal();
     closeBottomSheet();
-    openDoneModal(() => <BlockDoneModal onOkClick={exitDoneModal} />);
+    openDoneModal(() => (
+      <BlockDoneModal
+        onOkClick={() => {
+          exitDoneModal();
+          router.replace('/grouping');
+          router.back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
+        }}
+      />
+    ));
   };
 
   const handleMoreClick = () => {
