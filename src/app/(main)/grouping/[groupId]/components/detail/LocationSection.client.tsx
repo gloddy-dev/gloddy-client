@@ -5,15 +5,15 @@ import { Spacing } from '@/components/Spacing';
 import { GOOGLE_API_KEY } from '@/constants';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
-import { GoogleMap, Libraries, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
+import { GoogleMap, Libraries, LoadScript, Marker } from '@react-google-maps/api';
 import { useState } from 'react';
 
-const requests = {
-  placeId: 'ChIJ59CDR6GofDURced1F1WLGQ8',
-  fields: ['name', 'formatted_address'],
-  language: 'ko',
-  region: 'KR',
-};
+// const requests = {
+//   placeId: 'ChIJ59CDR6GofDURced1F1WLGQ8',
+//   fields: ['name', 'formatted_address'],
+//   language: 'ko',
+//   region: 'KR',
+// };
 
 const libraries: Libraries = ['places'];
 
@@ -22,9 +22,8 @@ export default function LocationSection() {
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { placeName, placeLatitude, placeLongitude, placeAddress, placeId } = groupDetailData;
   const [map, setMap] = useState<google.maps.Map | null>(null);
-  const { place } = usePlaceDetails(map, requests);
+  // const { place } = usePlaceDetails(map, requests);
 
-  console.log(place);
   return (
     <section>
       <h2 className="pl-4 text-subtitle-3 text-sign-secondary">모임 위치</h2>
