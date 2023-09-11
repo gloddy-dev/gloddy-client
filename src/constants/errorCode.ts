@@ -5,4 +5,6 @@ export const AUTH_ERROR_CODES = {
   UNAUTHORIZED: 401,
   /* 존재하지 않는 유저 => 회원가입 페이지로 이동 */
   NOT_FOUND: 404,
+  /* 서버 내부 에러 */
+  SERVER_INTERNAL_ERROR: 500,
 } as const;

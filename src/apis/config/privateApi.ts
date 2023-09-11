@@ -36,12 +36,18 @@ privateApi.interceptors.response.use(
   async (error: AxiosError<ErrorType, InternalAxiosRequestConfig>) => {
     try {
       if (!error.response) return Promise.reject(error);
+      /* 서버 내부 오류 */
+      if (error.response.status === AUTH_ERROR_CODES.SERVER_INTERNAL_ERROR) {
+        return Promise.reject(error.response.data.reason);
+      }
+      /* 토큰이 잘못된 경우 */
       if (
         error.response.status === AUTH_ERROR_CODES.UNAUTHORIZED ||
         error.response.status === AUTH_ERROR_CODES.NOT_FOUND
       ) {
         window.location.href = '/join?step=1';
       }
+      /* 토큰 재발급이 필요한 경우 */
       if (error.response.status === AUTH_ERROR_CODES.TOKEN_ERROR) {
         try {
           const { refreshToken, accessToken } = await getTokenFromCookie();
