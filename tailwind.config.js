@@ -17,10 +17,10 @@ module.exports = {
       boxShadow,
       keyframes,
       animation,
+      fontSize,
       zIndex: {
         modal: '10000000',
       },
     },
-    fontSize,
   },
 };
