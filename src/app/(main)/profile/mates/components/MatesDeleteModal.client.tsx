@@ -17,9 +17,12 @@ export default function MatesModal({
   const { mutate: mutateDeleteMate } = useDeleteMate();
 
   const handleDelete = () => {
-    mutateDeleteMate(mateId);
-    onCloseModal();
-    onCloseBottomSheet();
+    mutateDeleteMate(mateId, {
+      onSuccess: () => {
+        onCloseModal();
+        onCloseBottomSheet();
+      },
+    });
   };
 
   return (
