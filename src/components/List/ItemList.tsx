@@ -4,7 +4,7 @@ import { ComponentProps, Fragment } from 'react';
 
 interface ItemListProps<T> extends Omit<ComponentProps<typeof Flex>, 'children'> {
   data: T[];
-  renderItem: (data: T) => JSX.Element;
+  renderItem: (data: T) => JSX.Element | boolean | null | undefined;
   direction?: 'row' | 'column';
   className?: string;
   hasDivider?: boolean;
@@ -24,7 +24,7 @@ export default function ItemList<T>({
         return (
           <Fragment key={index}>
             {renderItem(item)}
-            {hasDivider && index !== data.length - 1 && <Divider />}
+            {renderItem(item) && hasDivider && index !== data.length - 1 && <Divider />}
           </Fragment>
         );
       })}
