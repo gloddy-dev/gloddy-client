@@ -14,15 +14,15 @@ export default function MatesModal({
   onCloseBottomSheet,
 }: MatesDeleteModalProps) {
   const { mateName, mateImageUrl, mateId } = mateData;
-  const { mutate: mutateDeleteMate } = useDeleteMate({
-    onSuccess: () => {
-      onCloseModal();
-      onCloseBottomSheet();
-    },
-  });
+  const { mutate: mutateDeleteMate } = useDeleteMate();
 
   const handleDelete = () => {
-    mutateDeleteMate(mateId);
+    mutateDeleteMate(mateId, {
+      onSuccess: () => {
+        onCloseModal();
+        onCloseBottomSheet();
+      },
+    });
   };
 
   return (
