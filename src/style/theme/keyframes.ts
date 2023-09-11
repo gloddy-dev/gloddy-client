@@ -1,4 +1,4 @@
-export const animations = {
+export const keyframes = {
   fadeIn: {
     '0%': { backgroundColor: 'rgba(0.8, 0.8, 0.8, 0)' },
     '50%': { backgroundColor: 'rgba(0.8, 0.8, 0.8, 0.3)' },

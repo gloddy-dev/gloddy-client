@@ -1,4 +1,4 @@
-import { fontSizes } from '@/style/theme';
+import { fontSize } from '@/style/theme';
 import { clsx } from 'clsx';
 import { extendTailwindMerge } from 'tailwind-merge';
 
@@ -8,7 +8,7 @@ const customTwMerge = extendTailwindMerge({
   classGroups: {
     'font-size': [
       {
-        text: Object.keys(fontSizes),
+        text: Object.keys(fontSize),
       },
     ],
   },
