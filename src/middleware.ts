@@ -1,6 +1,6 @@
 import { postReissue } from './apis/auth';
 import { AUTH_KEYS } from './constants/token';
-import { afterDay1, afterDay60, currentTime, day1, day60 } from './utils/date';
+import { afterDay1, afterDay60 } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
 
 const privatePages = /^\/(grouping|meeting|profile)/;
@@ -37,7 +37,6 @@ const middleware = async (request: NextRequest) => {
         console.log('token reissued');
         return response;
       } catch (e) {
-        alert('로그인이 필요합니다.');
         return NextResponse.redirect(new URL('/join', request.nextUrl.origin));
       }
     }

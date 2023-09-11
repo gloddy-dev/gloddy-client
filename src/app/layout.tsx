@@ -1,5 +1,7 @@
 import './globals.css';
 
+import { readFileSync } from 'fs';
+
 import { QueryProvider } from '@/components/Provider';
 import QueryProviderWrapModal from '@/components/Provider/QueryProviderWrapModal.client';
 import { BASE_WEB_URL, KAKAO_SDK_URL } from '@/constants';
@@ -53,8 +55,12 @@ export default function RootLayout({ children }: StrictPropsWithChildren) {
 }
 
 function Layout({ children }: StrictPropsWithChildren) {
+  const filePath = `src/style/tailwindSSR.css`;
+  const styleSheetContent = readFileSync(filePath, 'utf8');
+
   return (
     <html lang="ko">
+      <style dangerouslySetInnerHTML={{ __html: styleSheetContent }} />
       <body className="flex h-full min-h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
         <div className="relative min-h-[100dvh] w-full max-w-450 bg-white text-sign-primary">
           {children}
