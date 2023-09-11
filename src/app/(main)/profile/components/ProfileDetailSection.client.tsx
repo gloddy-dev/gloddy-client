@@ -59,7 +59,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 align="center"
                 justify="center"
                 className="absolute bottom-0 rounded-8 border border-warning bg-warning-color px-2 py-4 text-caption text-warning"
-                onClick={() => router.push('/profile/verfify')}
+                onClick={() => router.push('/profile/verify')}
               >
                 재학생 인증 필요
               </Flex>
