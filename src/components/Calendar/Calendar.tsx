@@ -16,6 +16,7 @@ interface CalendarProps {
 
 export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
   const currentDate = useMemo(() => new Date(), []);
+  const yesterdayDate = useMemo(() => new Date(currentDate.setDate(currentDate.getDate() - 1)), []);
 
   useEffect(() => {
     if (!dateValue) {
@@ -29,7 +30,7 @@ export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
       dateFormat="yyyy-MM-dd"
       formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 1)}
       minDate={currentDate}
-      filterDate={(date) => date > currentDate}
+      filterDate={(date) => date > yesterdayDate}
       selected={dateValue}
       onChange={(date: Date) => setDateValue(date)}
       inline
