@@ -1,4 +1,3 @@
-import { BASE_WEB_URL } from '@/constants';
 import cn from '@/utils/cn';
 
 import type { SVGProps } from 'react';

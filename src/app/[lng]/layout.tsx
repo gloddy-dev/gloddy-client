@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { readFileSync } from 'fs';
+// import { readFileSync } from 'fs';
 
 import { GoogleAnalytics } from '@/components/Analytics';
 import { InitMap } from '@/components/Map';
@@ -62,14 +62,14 @@ export default function RootLayout({ children }: StrictPropsWithChildren) {
 }
 
 function Layout({ children }: StrictPropsWithChildren) {
-  const filePath = `src/style/tailwindSSR.css`;
-  const styleSheetContent = readFileSync(filePath, 'utf8');
+  // const filePath = `src/style/tailwindSSR.css`;
+  // const styleSheetContent = readFileSync(filePath, 'utf8');
 
   return (
     <html lang="ko">
-      <head>
+      {/* <head>
         <style dangerouslySetInnerHTML={{ __html: styleSheetContent }} />
-      </head>
+      </head> */}
       <body className="flex h-full min-h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
         <div className="relative min-h-[100dvh] w-full max-w-450 bg-white text-sign-primary">
           {children}
