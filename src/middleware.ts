@@ -70,7 +70,14 @@ const middleware = async (request: NextRequest) => {
     !languages.some((loc: string) => request.nextUrl.pathname.startsWith(`/${loc}`)) &&
     !request.nextUrl.pathname.startsWith('/_next')
   ) {
-    return NextResponse.redirect(new URL(`/${lng}${request.nextUrl.pathname}`, request.url));
+    console.log('redirect');
+    const searchParams = request.nextUrl.searchParams.toString();
+    return NextResponse.redirect(
+      new URL(
+        `/${lng}${request.nextUrl.pathname}${searchParams ? `?${searchParams}` : ''}`,
+        request.url
+      )
+    );
   }
 
   if (request.headers.has('referer')) {

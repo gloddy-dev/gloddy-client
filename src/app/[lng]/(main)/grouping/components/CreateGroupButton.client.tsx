@@ -9,7 +9,7 @@ export default function CreateGroupButton() {
     <div className="fixed inset-x-0 bottom-0 mx-auto h-70 max-w-450">
       <FloatAddButton
         className="absolute bottom-90 right-20 ml-auto"
-        onClick={() => router.push('/grouping/create')}
+라        onClick={() => router.push('/grouping/create?step=main')}
       />
     </div>
   );

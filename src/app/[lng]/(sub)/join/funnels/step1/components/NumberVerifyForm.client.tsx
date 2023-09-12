@@ -74,7 +74,7 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
                     refreshToken,
                     userId,
                   });
-                  router.push('/grouping');
+                  router.replace('/');
                 } else {
                   nextStep();
                 }
