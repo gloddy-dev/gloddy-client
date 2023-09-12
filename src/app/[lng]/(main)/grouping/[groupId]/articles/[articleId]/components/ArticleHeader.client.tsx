@@ -1,6 +1,6 @@
 'use client';
 import { useGetArticle, useGetGroupDetail } from '@/apis/groups';
-import { useMoreSheet } from '@/app/(main)/grouping/hooks/useMoreSheet';
+import { useMoreSheet } from '@/app/[lng]/(main)/grouping/hooks/useMoreSheet';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useGetArticles, useGetGroupDetail } from '@/apis/groups/queries';
-import ArticleItem from '@/app/(main)/grouping/components/ArticleItem.client';
+import ArticleItem from '@/app/[lng]/(main)/grouping/components/ArticleItem.client';
 import { ItemList } from '@/components/List';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';

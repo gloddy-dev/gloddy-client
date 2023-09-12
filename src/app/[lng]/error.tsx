@@ -16,7 +16,7 @@ export default function Error({ error }: ErrorProps) {
 
   return (
     <Flex align="center" justify="center" className="h-full" direction="column">
-      <p className="flex h-48 w-48 items-center justify-center rounded-full bg-sign-caption text-30 text-white">
+      <p className="text-30 flex h-48 w-48 items-center justify-center rounded-full bg-sign-caption text-white">
         X
       </p>
       <Spacing size={20} />

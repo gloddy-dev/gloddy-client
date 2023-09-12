@@ -13,17 +13,8 @@ import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
-import { redirect } from 'next/navigation';
 
-interface MeetingPageProps {
-  searchParams: {
-    tab?: string;
-  };
-}
-
-export default function MeetingPage({ searchParams }: MeetingPageProps) {
-  if (!searchParams?.tab) redirect(`/meeting/participate?tab=participating`);
-
+export default function MeetingPage() {
   return (
     <>
       <MeetingParticipateHeader />
