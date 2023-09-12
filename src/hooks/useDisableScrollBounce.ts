@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-export default function DisableScrollBounce() {
+export default function useDisableScrollBounce() {
   useEffect(() => {
     const handleTouchMove = (event: TouchEvent) => {
       if (document.body.clientHeight > document.body.scrollHeight - document.body.scrollTop) {

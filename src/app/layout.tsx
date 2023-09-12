@@ -2,7 +2,6 @@ import './globals.css';
 
 import { readFileSync } from 'fs';
 
-import { DisableScrollBounce } from '@/components/EventListener';
 import { QueryProvider } from '@/components/Provider';
 import QueryProviderWrapModal from '@/components/Provider/QueryProviderWrapModal.client';
 import { BASE_WEB_URL } from '@/constants';
@@ -46,7 +45,6 @@ export default function RootLayout({ children }: StrictPropsWithChildren) {
         <ModalProvider>
           <QueryProvider>{children}</QueryProvider>
         </ModalProvider>
-        <DisableScrollBounce />
       </QueryProviderWrapModal>
     </Layout>
   );
