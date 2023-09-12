@@ -41,6 +41,7 @@ export default function useModal({ delay = 0, isUnmountExit = true }: UseModalPr
             }}
           />
         );
+
         if (delay) {
           setTimeout(() => {
             removeModal(id);
