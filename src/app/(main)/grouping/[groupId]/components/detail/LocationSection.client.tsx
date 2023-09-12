@@ -1,48 +1,43 @@
 'use client';
 
 import { useGetGroupDetail } from '@/apis/groups';
-import { Icon } from '@/components/Icon';
-import { Toast } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { GOOGLE_API_KEY } from '@/constants';
-import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { copyToClipboard } from '@/utils/copyToClipboard';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import usePlaceDetails from '@/hooks/usePlaceDetails';
+import { GoogleMap, Libraries, Marker } from '@react-google-maps/api';
+
+// const requests = {
+//   placeId: 'ChIJ59CDR6GofDURced1F1WLGQ8',
+//   fields: ['name', 'formatted_address'],
+//   language: 'ko',
+//   region: 'KR',
+// };
+
+// const libraries: Libraries = ['places'];
 
 export default function LocationSection() {
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { placeName, placeLatitude, placeLongitude, placeAddress } = groupDetailData;
-
-  const { open } = useModal({ delay: 2000 });
-
-  const handleClipboardClick = () => {
-    copyToClipboard(placeAddress)
-      .then(() => open(() => <Toast>주소가 복사되었습니다.</Toast>))
-      .catch(() => open(() => <Toast>주소 복사에 실패했습니다.</Toast>));
-  };
+  const { placeName, placeLatitude, placeLongitude, placeAddress, placeId } = groupDetailData;
+  // const { place } = usePlaceDetails(requests);
 
   return (
     <section>
       <h2 className="pl-4 text-subtitle-3 text-sign-secondary">모임 위치</h2>
       <Spacing size={4} />
-      <div className="relative overflow-hidden rounded-8 bg-divider" onClick={handleClipboardClick}>
-        <Icon id="24-copy" className="absolute right-12 top-12 z-10" />
-        <div className="absolute left-0 top-0 z-[2] aspect-video w-full opacity-0" />
+      <div className="relative overflow-hidden rounded-8 bg-divider">
         <div className="aspect-video w-full">
-          <LoadScript id="google-map-script" googleMapsApiKey={GOOGLE_API_KEY as string}>
-            <GoogleMap
-              mapContainerStyle={{ width: '100%', height: '100%' }}
-              center={{ lat: +placeLatitude, lng: +placeLongitude }}
-              zoom={14}
-              options={{
-                disableDefaultUI: true,
-              }}
-            >
-              <Marker position={{ lat: +placeLatitude, lng: +placeLongitude }} />
-            </GoogleMap>
-          </LoadScript>
+          <GoogleMap
+            mapContainerStyle={{ width: '100%', height: '100%' }}
+            center={{ lat: +placeLatitude, lng: +placeLongitude }}
+            zoom={14}
+            options={{
+              streetViewControl: false,
+              mapTypeControl: false,
+            }}
+          >
+            <Marker position={{ lat: +placeLatitude, lng: +placeLongitude }} />
+          </GoogleMap>
         </div>
 
         <div className="p-16">
