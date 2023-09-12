@@ -2,6 +2,7 @@ import './globals.css';
 
 // import { readFileSync } from 'fs';
 
+import { GoogleAnalytics } from '@/components/Analytics';
 import { InitMap } from '@/components/Map';
 import { QueryProvider } from '@/components/Provider';
 import QueryProviderWrapModal from '@/components/Provider/QueryProviderWrapModal.client';
@@ -45,7 +46,10 @@ export default function RootLayout({ children }: StrictPropsWithChildren) {
     <Layout>
       <QueryProviderWrapModal>
         <ModalProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <GoogleAnalytics />
+            {children}
+          </QueryProvider>
         </ModalProvider>
       </QueryProviderWrapModal>
       <InitMap />
