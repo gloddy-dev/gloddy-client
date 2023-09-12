@@ -13,7 +13,7 @@ export default function CreateGroupContextProvider({ children }: StrictPropsWith
       imageUrl: '',
       title: '',
       content: '',
-      meetDate: undefined,
+      meetDate: new Date(),
       time: {
         fromHour: '',
         fromMin: '',
