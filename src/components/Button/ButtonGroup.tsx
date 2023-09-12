@@ -1,5 +1,4 @@
 import Button from './Button';
-import { BottomFixedDiv } from '../BottomFixedDiv';
 import { Spacing } from '@/components/Spacing';
 import cn from '@/utils/cn';
 import { Children, type ReactElement, cloneElement, isValidElement } from 'react';

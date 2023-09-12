@@ -1,4 +1,4 @@
-export const fontSizes = {
+export const fontSize = {
   h1: [
     '3rem',
     {
