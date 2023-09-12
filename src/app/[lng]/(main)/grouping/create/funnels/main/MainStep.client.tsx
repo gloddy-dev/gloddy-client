@@ -3,6 +3,7 @@ import SettingSection from './SettingSection.client';
 import UploadSection from './UploadSection.client';
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
 import CreateModal from '../../components/CreateModal.client';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Toast } from '@/components/Modal';
@@ -40,6 +41,7 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
   const hookForm = useCreateGroupContext();
   const { handleSubmit, watch, control } = hookForm;
 
+  const { t } = useTranslation('grouping');
   const { open: openCreateModal, exit: exitCreateModal } = useModal();
   const { open: openToast } = useModal({ delay: 2000 });
 
@@ -52,7 +54,7 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
 
   const handleCreateClick = () => {
     if (!validateDate(watch('meetDate'), watch('time'))) {
-      openToast(() => <Toast>현재 시간 이후로 설정해주세요.</Toast>);
+      openToast(() => <Toast>{t('create.error.time')}</Toast>);
       return;
     }
 
@@ -76,7 +78,7 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
       <Spacing size={60} />
       <ButtonGroup>
         <Button onClick={handleCreateClick} disabled={!isAllInput}>
-          완료
+          {t('create.continue')}
         </Button>
       </ButtonGroup>
     </>

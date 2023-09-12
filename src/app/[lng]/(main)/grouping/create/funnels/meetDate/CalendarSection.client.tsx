@@ -1,5 +1,5 @@
 'use client';
-import Calendar from '@/components/Calendar/Calendar';
+import { Calendar } from '@/components/Calendar';
 import { type Control, useController } from 'react-hook-form';
 
 import type { CreateGroupContextValue } from '../../type';

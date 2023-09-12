@@ -2,12 +2,14 @@ import './globals.css';
 
 // import { readFileSync } from 'fs';
 
+import { languages } from '../i18n/settings';
 import { GoogleAnalytics } from '@/components/Analytics';
 import { InitMap } from '@/components/Map';
 import { QueryProvider } from '@/components/Provider';
 import QueryProviderWrapModal from '@/components/Provider/QueryProviderWrapModal.client';
 import { BASE_WEB_URL, GOOGLE_API_KEY } from '@/constants';
 import ModalProvider from '@/hooks/useModal/ModalProvider';
+import { dir } from 'i18next';
 import Script from 'next/script';
 
 import type { StrictPropsWithChildren } from '@/types';
@@ -41,9 +43,22 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }: StrictPropsWithChildren) {
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }));
+}
+
+interface RootLayoutProps {
+  params: {
+    lng: string;
+  };
+}
+
+export default function RootLayout({
+  params: { lng },
+  children,
+}: StrictPropsWithChildren<RootLayoutProps>) {
   return (
-    <Layout>
+    <Layout lng={lng}>
       <QueryProviderWrapModal>
         <ModalProvider>
           <QueryProvider>
@@ -61,12 +76,16 @@ export default function RootLayout({ children }: StrictPropsWithChildren) {
   );
 }
 
-function Layout({ children }: StrictPropsWithChildren) {
+interface LayoutProps {
+  lng: string;
+}
+
+function Layout({ lng, children }: StrictPropsWithChildren<LayoutProps>) {
   // const filePath = `src/style/tailwindSSR.css`;
   // const styleSheetContent = readFileSync(filePath, 'utf8');
 
   return (
-    <html lang="ko">
+    <html lang="ko" dir={dir(lng)}>
       {/* <head>
         <style dangerouslySetInnerHTML={{ __html: styleSheetContent }} />
       </head> */}
