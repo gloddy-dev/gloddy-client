@@ -65,12 +65,10 @@ const middleware = async (request: NextRequest) => {
   if (!lng) lng = acceptLanguage.get(request.headers.get('Accept-Language'));
   if (!lng) lng = fallbackLng;
 
-  // Redirect if lng in path is not supported
   if (
     !languages.some((loc: string) => request.nextUrl.pathname.startsWith(`/${loc}`)) &&
     !request.nextUrl.pathname.startsWith('/_next')
   ) {
-    console.log('redirect');
     const searchParams = request.nextUrl.searchParams.toString();
     return NextResponse.redirect(
       new URL(
