@@ -1,9 +1,3 @@
-type WindowWithDataLayer = Window & {
-  dataLayer: Array<Record<string, any>>;
-};
-
-declare const window: WindowWithDataLayer;
-
 export const pageview = (url: string) => {
   if (typeof window.dataLayer !== 'undefined') {
     window.dataLayer.push({
