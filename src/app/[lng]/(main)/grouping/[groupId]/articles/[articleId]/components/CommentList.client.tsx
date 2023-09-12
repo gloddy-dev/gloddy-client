@@ -1,7 +1,7 @@
 'use client';
 
 import { type Comment, useGetComments, useGetGroupDetail } from '@/apis/groups';
-import { useMoreSheet } from '@/app/(main)/grouping/hooks/useMoreSheet';
+import { useMoreSheet } from '@/app/[lng]/(main)/grouping/hooks/useMoreSheet';
 import { CardHeader } from '@/components/Card';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';

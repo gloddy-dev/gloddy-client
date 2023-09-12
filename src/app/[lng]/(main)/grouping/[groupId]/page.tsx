@@ -6,20 +6,15 @@ import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
-import { redirect } from 'next/navigation';
 
 interface GroupingDetailPageProps {
   params: {
     groupId: string;
   };
-  searchParams: {
-    tab?: string;
-  };
 }
 
-export default function GroupingDetailPage({ params, searchParams }: GroupingDetailPageProps) {
+export default function GroupingDetailPage({ params }: GroupingDetailPageProps) {
   const groupId = Number(params.groupId);
-  if (!searchParams?.tab) redirect(`/grouping/${groupId}?tab=detail`);
 
   return (
     <>

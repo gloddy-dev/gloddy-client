@@ -3,7 +3,7 @@
 import MoreBottomSheet from './MoreBottomSheet.client';
 import { formatRelativeDate } from '../util';
 import { type Mate, useGetMates } from '@/apis/profile';
-import NoMeeting from '@/app/(main)/meeting/components/NoMeeting';
+import NoMeeting from '@/app/[lng]/(main)/meeting/components/NoMeeting';
 import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
