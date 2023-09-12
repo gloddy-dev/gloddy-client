@@ -3,13 +3,14 @@ import { PageAnimation } from '../PageAnimation';
 import cn from '@/utils/cn';
 import { LayoutGroup, motion } from 'framer-motion';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   Children,
   type PropsWithChildren,
   ReactElement,
   cloneElement,
   isValidElement,
+  useEffect,
   useState,
 } from 'react';
 
@@ -57,6 +58,16 @@ function List({ isStretch = true, children }: StrictPropsWithChildren<ListProps>
   }
 
   const props = validChildren.map((child) => child.props as React.ComponentProps<typeof Tab>);
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (!tab) router.replace(`${pathname}?tab=${props[0].value}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <>{renderTabElement(validChildren, props, isStretch)}</>;
 }
