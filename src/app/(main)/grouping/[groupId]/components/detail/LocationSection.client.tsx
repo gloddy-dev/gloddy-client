@@ -2,11 +2,9 @@
 
 import { useGetGroupDetail } from '@/apis/groups';
 import { Spacing } from '@/components/Spacing';
-import { GOOGLE_API_KEY } from '@/constants';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
-import { GoogleMap, Libraries, LoadScript, Marker } from '@react-google-maps/api';
-import { useState } from 'react';
+import { GoogleMap, Libraries, Marker } from '@react-google-maps/api';
 
 // const requests = {
 //   placeId: 'ChIJ59CDR6GofDURced1F1WLGQ8',
@@ -15,14 +13,13 @@ import { useState } from 'react';
 //   region: 'KR',
 // };
 
-const libraries: Libraries = ['places'];
+// const libraries: Libraries = ['places'];
 
 export default function LocationSection() {
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { placeName, placeLatitude, placeLongitude, placeAddress, placeId } = groupDetailData;
-  const [map, setMap] = useState<google.maps.Map | null>(null);
-  // const { place } = usePlaceDetails(map, requests);
+  // const { place } = usePlaceDetails(requests);
 
   return (
     <section>
@@ -38,7 +35,6 @@ export default function LocationSection() {
               streetViewControl: false,
               mapTypeControl: false,
             }}
-            onLoad={(map) => setMap(map)}
           >
             <Marker position={{ lat: +placeLatitude, lng: +placeLongitude }} />
           </GoogleMap>
