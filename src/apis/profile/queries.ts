@@ -1,5 +1,4 @@
-import { getMates, getPraises, getProfile, getProfileById } from './apis';
-import { Keys } from './keys';
+import { Keys, getMates, getPraises, getProfile, getProfileById } from '.';
 import { useSuspenseQuery } from '@suspensive/react-query';
 
 export const useGetProfile = () =>
