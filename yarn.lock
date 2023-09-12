@@ -6522,6 +6522,7 @@ __metadata:
     react-error-boundary: ^4.0.10
     react-hook-form: ^7.45.0
     react-i18next: ^13.2.2
+    react-intersection-observer: ^9.5.2
     react-modal-sheet: ^2.0.0
     react-simple-pull-to-refresh: ^1.3.3
     server-only: ^0.0.1
@@ -9969,6 +9970,15 @@ __metadata:
     react-native:
       optional: true
   checksum: 2b85bfb347af1a00add1c02901025706f7d2037fade4e8aa08159287ddf012e8cf35626eb9f5c578b9d1c24c065c69f2ad4b5a3087fb5cdbea540f8bc18c0f59
+  languageName: node
+  linkType: hard
+
+"react-intersection-observer@npm:^9.5.2":
+  version: 9.5.2
+  resolution: "react-intersection-observer@npm:9.5.2"
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: cdbe40544930d59fc3820bce017fb688910cbecd7baaf382387a3d60d98a36e1d1e4bc27a876775e99b2a9f86762286a29d7bca21f3345f653cff29850c2641d
   languageName: node
   linkType: hard
 
