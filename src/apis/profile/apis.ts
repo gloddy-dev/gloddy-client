@@ -1,11 +1,15 @@
 import privateApi from '../config/privateApi';
 
-import type { MatesResponse, PraisesResponse, ProfileRequest, ProfileResponse } from './type';
+import type { MatesResponse, PraisesResponse, ProfileRequest, ProfileResponse } from '.';
+import type { EmailVerifyRequest } from '../auth';
 
 export const getProfile = () => privateApi.get<ProfileResponse>('/me/page');
 
 export const getProfileById = (userId: number) =>
   privateApi.get<ProfileResponse>(`/users/${userId}/me/page`);
+
+export const postEmailVerify = (emailVerifyData: EmailVerifyRequest) =>
+  privateApi.post('/users/email/verify-code', emailVerifyData);
 
 export const getPraises = () => privateApi.get<PraisesResponse>('/me/praises');
 
