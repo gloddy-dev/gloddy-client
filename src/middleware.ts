@@ -1,6 +1,8 @@
 import { postReissue } from './apis/auth';
+import { cookieName, fallbackLng, languages } from './app/i18n/settings';
 import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
+import acceptLanguage from 'accept-language';
 import { type NextRequest, NextResponse } from 'next/server';
 
 const privatePages = /^\/(grouping|meeting|profile)/;
@@ -41,6 +43,35 @@ const middleware = async (request: NextRequest) => {
       }
     }
   }
+
+  if (
+    request.nextUrl.pathname.indexOf('icon') > -1 ||
+    request.nextUrl.pathname.indexOf('chrome') > -1
+  )
+    return NextResponse.next();
+  let lng;
+  if (request.cookies.has(cookieName))
+    lng = acceptLanguage.get(request.cookies.get(cookieName)?.value);
+  if (!lng) lng = acceptLanguage.get(request.headers.get('Accept-Language'));
+  if (!lng) lng = fallbackLng;
+
+  // Redirect if lng in path is not supported
+  if (
+    !languages.some((loc: string) => request.nextUrl.pathname.startsWith(`/${loc}`)) &&
+    !request.nextUrl.pathname.startsWith('/_next')
+  ) {
+    return NextResponse.redirect(new URL(`/${lng}${request.nextUrl.pathname}`, request.url));
+  }
+
+  if (request.headers.has('referer')) {
+    const refererUrl = new URL(request.headers.get('referer')!);
+    const lngInReferer = languages.find((l: string) => refererUrl.pathname.startsWith(`/${l}`));
+    const response = NextResponse.next();
+    if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
+    return response;
+  }
+
+  return NextResponse.next();
 };
 
 const config = {
