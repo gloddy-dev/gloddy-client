@@ -31,6 +31,7 @@ export default function LocationBottomSheet({
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
+    callbackName: 'initMap',
     requestOptions: {
       language: 'en', // 언어설정
       region: 'KR',
