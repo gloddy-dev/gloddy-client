@@ -6,7 +6,7 @@ import { IconButton } from '@/components/Button';
 import { Flex } from '@/components/Layout';
 import { getMonth, getYear } from 'date-fns';
 import { ko } from 'date-fns/esm/locale';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import DatePicker from 'react-datepicker';
 
 interface CalendarProps {
@@ -16,13 +16,10 @@ interface CalendarProps {
 
 export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
   const currentDate = useMemo(() => new Date(), []);
-  const yesterdayDate = useMemo(() => new Date(currentDate.setDate(currentDate.getDate() - 1)), []);
-
-  useEffect(() => {
-    if (!dateValue) {
-      setDateValue(currentDate);
-    }
-  }, [dateValue, setDateValue, currentDate]);
+  const yesterdayDate = useMemo(
+    () => new Date(currentDate.setDate(currentDate.getDate() - 1)),
+    [currentDate]
+  );
 
   return (
     <DatePicker
