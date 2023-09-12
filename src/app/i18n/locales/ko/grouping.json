@@ -1,0 +1,45 @@
+{
+  "headerTitle": "매칭",
+  "create": {
+    "headerTitle": "모임 개설하기",
+    "title": {
+      "label": "모임 제목",
+      "placeholder": "제목을 입력해주세요."
+    },
+    "content": {
+      "label": "활동 소개글",
+      "placeholder": "활동 소개글을 작성해주세요."
+    },
+    "meetDate": {
+      "label": "모임 일시",
+      "placeholder": "모임 일시를 설정해주세요.",
+      "year": "년",
+      "month": "월"
+    },
+    "time": {
+      "label": "시작 시간",
+      "am": "오전",
+      "pm": "오후",
+      "hour": "시간",
+      "minute": "분"
+    },
+    "place": {
+      "label": "모임 위치",
+      "placeholder": "모임 위치를 설정해주세요.",
+      "noResult": "검색 결과가 없습니다."
+    },
+    "maxUser": {
+      "label": "모임 인원"
+    },
+    "error": {
+      "time": "현재 시간 이후로 설정해주세요."
+    },
+    "continue": "완료",
+    "submit": {
+      "label": "완료",
+      "message": "모임 개설 후 수정 및 삭제가 불가합니다.\n계속하시겠어요?",
+      "ok": "네",
+      "cancel": "아니오"
+    }
+  }
+}
