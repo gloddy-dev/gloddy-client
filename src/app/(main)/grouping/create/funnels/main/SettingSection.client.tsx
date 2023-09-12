@@ -46,19 +46,7 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
         <TextField
           onClick={() =>
             openLocationSheet(({ isOpen }) => (
-              <LoadScript
-                googleMapsApiKey={GOOGLE_API_KEY as string}
-                libraries={['places']}
-                language="ko"
-                region="KR"
-                preventGoogleFontsLoading
-              >
-                <LocationBottomSheet
-                  onClose={closeLocationSheet}
-                  control={control}
-                  isOpen={isOpen}
-                />
-              </LoadScript>
+              <LocationBottomSheet onClose={closeLocationSheet} control={control} isOpen={isOpen} />
             ))
           }
           value={watch('place.name')}
