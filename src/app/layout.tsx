@@ -2,10 +2,12 @@ import './globals.css';
 
 import { readFileSync } from 'fs';
 
+import { InitMap } from '@/components/Map';
 import { QueryProvider } from '@/components/Provider';
 import QueryProviderWrapModal from '@/components/Provider/QueryProviderWrapModal.client';
-import { BASE_WEB_URL } from '@/constants';
+import { BASE_WEB_URL, GOOGLE_API_KEY } from '@/constants';
 import ModalProvider from '@/hooks/useModal/ModalProvider';
+import Script from 'next/script';
 
 import type { StrictPropsWithChildren } from '@/types';
 
@@ -46,6 +48,11 @@ export default function RootLayout({ children }: StrictPropsWithChildren) {
           <QueryProvider>{children}</QueryProvider>
         </ModalProvider>
       </QueryProviderWrapModal>
+      <InitMap />
+      <Script
+        defer
+        src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places&callback=initMap`}
+      ></Script>
     </Layout>
   );
 }
