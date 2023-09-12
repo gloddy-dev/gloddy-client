@@ -22,6 +22,10 @@ input[type='number']::-webkit-inner-spin-button {
   appearance: none;
 }
 
+.bottom-fixed {
+  @apply fixed inset-x-0 bottom-0 mx-auto max-w-450 px-20 pb-20;
+}
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #f7f7fa inset;
 }
