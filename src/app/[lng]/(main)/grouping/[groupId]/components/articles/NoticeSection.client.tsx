@@ -2,6 +2,7 @@
 
 import NoticeItem from './NoticeItem.client';
 import { useGetGroupDetail, useGetNotices } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
@@ -10,6 +11,7 @@ import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
 
 export default function NoticeSection() {
+  const { t } = useTranslation('groupDetail');
   const { blockNoticeIds } = useBlockStore();
   const { groupId } = useNumberParams<['groupId']>();
 
@@ -23,7 +25,7 @@ export default function NoticeSection() {
   return (
     <section className="p-20 pb-8">
       <div className="rounded-8 bg-card-ui p-16 text-subtitle-3 text-sign-secondary">
-        <p className="pl-4">공지사항</p>
+        <p className="pl-4">{t('board.notice')}</p>
         <Spacing size={6} />
         {notices.length ? (
           <ItemList
@@ -43,10 +45,12 @@ export default function NoticeSection() {
 }
 
 function EmptyNotice() {
+  const { t } = useTranslation('groupDetail');
+
   return (
     <Flex align="center" className="gap-4 py-4">
       <Icon id="24-info" />
-      <p>등록된 공지사항이 없어요.</p>
+      <p>{t('board.emptyNotice')}</p>
     </Flex>
   );
 }

@@ -1,4 +1,5 @@
 'use client';
+import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
@@ -6,6 +7,7 @@ import { useRouter } from 'next/navigation';
 
 export default function MembersHeader() {
   const router = useRouter();
+  const { t } = useTranslation('groupDetail');
 
   return (
     <Header>
@@ -13,7 +15,7 @@ export default function MembersHeader() {
         <IconButton size="large" onClick={() => router.back()}>
           <Icon id="24-arrow_back" />
         </IconButton>
-        <p>모임 멤버</p>
+        <p>{t('members.headerTitle')}</p>
       </Header.Left>
     </Header>
   );

@@ -3,6 +3,7 @@ import BlockDoneModal from '../components/BlockDoneModal.client';
 import ReportDoneModal from '../components/ReportDoneModal.client';
 import WarningModal from '../components/WarningModal.client';
 import { useDeleteArticle, useDeleteComment } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { useModal } from '@/hooks/useModal';
 import { useBlockStore } from '@/store/useBlockStore';
@@ -26,6 +27,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
   articleId,
   commentId,
 }: MoreSheetProps<T> & CommentId<T>) {
+  const { t } = useTranslation('groupDetail');
   const router = useRouter();
   const { setBlockId } = useBlockStore();
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
@@ -34,12 +36,6 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
 
   const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
   const { mutate: mutateDeleteComment } = useDeleteComment(groupId, articleId);
-
-  const content = {
-    article: '게시글',
-    notice: '공지글',
-    comment: '댓글',
-  }[type];
 
   const handleDeleteClick = () => {
     if (type === 'article' || type === 'notice') {
@@ -106,12 +102,12 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
     openBottomSheet(({ isOpen }) => (
       <MoreBottomSheet onClose={closeBottomSheet} isOpen={isOpen}>
         <MoreBottomSheet.ListItem
-          label="삭제하기"
+          label={t(`${type}.delete.label`)}
           isShown={isWriter || (type === 'article' && isCaptain)}
           onClick={() =>
             openItemModal(() => (
               <WarningModal
-                content={`해당 ${content}을 삭제하시겠습니까?`}
+                content={t(`${type}.delete.content`)}
                 onCancelClick={exitItemModal}
                 onOkClick={handleDeleteClick}
               />
@@ -119,12 +115,12 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
           }
         />
         <MoreBottomSheet.ListItem
-          label="신고하기"
+          label={t(`${type}.report.label`)}
           isShown={!isWriter}
           onClick={() =>
             openItemModal(() => (
               <WarningModal
-                content={`해당 ${content}을 신고하시겠습니까?`}
+                content={t(`${type}.report.content`)}
                 onCancelClick={exitItemModal}
                 onOkClick={handleReportClick}
               />
@@ -132,12 +128,12 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
           }
         />
         <MoreBottomSheet.ListItem
-          label="차단하기"
+          label={t(`${type}.block.label`)}
           isShown={!isWriter}
           onClick={() =>
             openItemModal(() => (
               <WarningModal
-                content={`해당 ${content}을 차단하시겠습니까?`}
+                content={t(`${type}.block.content`)}
                 onCancelClick={exitItemModal}
                 onOkClick={handleBlockClick}
               />

@@ -2,6 +2,7 @@
 
 import ManageModal from './ManageModal';
 import { Apply, usePatchApply } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup, IconButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
@@ -17,6 +18,7 @@ interface ApplyCardProps {
 }
 
 export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
+  const { t } = useTranslation('groupDetail');
   const {
     userId,
     applyId,
@@ -72,11 +74,11 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
         </IconButton>
       </Flex>
       <Spacing size={16} />
-      <p className="px-4 text-sign-secondary">나는 이런 사람이에요!</p>
+      <p className="px-4 text-sign-secondary">{t('apply.introduce')}</p>
       <Spacing size={4} />
       <TextField as="textarea" value={introduce} readOnly />
       <Spacing size={16} />
-      <p className="px-4 text-sign-secondary">모임에 함께하고 싶은 이유</p>
+      <p className="px-4 text-sign-secondary">{t('apply.reason')}</p>
       <TextField as="textarea" value={reason} readOnly />
       <Spacing size={16} />
       <ButtonGroup position="contents" hasDivider={false}>
@@ -88,7 +90,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
             ))
           }
         >
-          거절
+          {t('manage.refuse')}
         </Button>
         <Button
           onClick={() =>
@@ -97,7 +99,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
             ))
           }
         >
-          승인
+          {t('manage.approve')}
         </Button>
       </ButtonGroup>
     </div>

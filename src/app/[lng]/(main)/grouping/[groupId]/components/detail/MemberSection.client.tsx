@@ -1,6 +1,7 @@
 'use client';
 
 import { useGetGroupDetail, useGetGroupMembers } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
@@ -9,6 +10,7 @@ import { useNumberParams } from '@/hooks/useNumberParams';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function MemberSection() {
+  const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
   const router = useRouter();
   const pathname = usePathname();
@@ -23,13 +25,13 @@ export default function MemberSection() {
     <section>
       <div className="flex items-center justify-between">
         <p className="pl-4 text-subtitle-3 text-sign-secondary">
-          모임 멤버 ({memberCount}/{maxMemberCount})
+          {t('details.members', { memberCount, maxMemberCount })}
         </p>
         <div
           className="flex cursor-pointer items-center text-caption text-sign-caption"
           onClick={() => router.push(`${pathname}/members`, { scroll: false })}
         >
-          <p>전체 보기</p>
+          <p>{t('details.viewAll')}</p>
           <Icon id="24-navigate_next" />
         </div>
       </div>

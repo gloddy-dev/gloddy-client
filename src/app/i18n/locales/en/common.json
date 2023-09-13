@@ -5,5 +5,11 @@
   "female": "Female",
   "grouping": "matching",
   "meeting": "My Group",
-  "profile": "Profile"
+  "profile": "Profile",
+  "yes": "Yes",
+  "no": "No",
+  "confirm": "Confirm",
+  "reportMessage1": "The report has been received.",
+  "reportMessage2": "We will make every effort for a prompt resolution.",
+  "blockMessage": "Blocking has been completed."
 }

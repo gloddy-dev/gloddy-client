@@ -2,6 +2,7 @@
 
 import ApplyModal from './ApplyModal.client';
 import { usePostApply } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
@@ -15,6 +16,7 @@ type ApplyFormType = {
 };
 
 export default function InputForm() {
+  const { t } = useTranslation('groupDetail');
   const hookForm = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -40,23 +42,23 @@ export default function InputForm() {
   return (
     <>
       <Spacing size={8} />
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">나는 이런 사람이에요!</p>
+      <p className="pl-4 text-subtitle-3 text-sign-secondary">{t('apply.introduce')}</p>
       <Spacing size={4} />
       <TextFieldController
         as="textarea"
         hookForm={hookForm}
         register={register('introduce', { required: true })}
-        placeholder="내용을 입력해주세요."
+        placeholder={t('apply.placeholder')}
         maxCount={150}
       />
       <Spacing size={18} />
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">모임에 함께 하고 싶은 이유</p>
+      <p className="pl-4 text-subtitle-3 text-sign-secondary">{t('apply.reason')}</p>
       <Spacing size={4} />
       <TextFieldController
         as="textarea"
         hookForm={hookForm}
         register={register('reason', { required: true })}
-        placeholder="내용을 입력해주세요."
+        placeholder={t('apply.placeholder')}
         maxCount={150}
       />
       <ButtonGroup>
@@ -66,7 +68,7 @@ export default function InputForm() {
           }
           disabled={!formState.isValid}
         >
-          지원하기
+          {t('apply.submit.label')}
         </Button>
       </ButtonGroup>
     </>

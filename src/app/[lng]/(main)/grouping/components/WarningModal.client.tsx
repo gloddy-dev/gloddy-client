@@ -9,6 +9,8 @@ interface WarningModalProps {
   onOkClick: () => void;
   okDisabled?: boolean;
   onCancelClick: () => void;
+  okText?: string;
+  cancelText?: string;
 }
 
 export default function WarningModal({
@@ -17,6 +19,8 @@ export default function WarningModal({
   onOkClick,
   okDisabled,
   onCancelClick,
+  okText,
+  cancelText,
 }: WarningModalProps) {
   return (
     <Modal
@@ -24,6 +28,8 @@ export default function WarningModal({
       onCancelClick={onCancelClick}
       onOkClick={onOkClick}
       okDisabled={okDisabled}
+      okText={okText}
+      cancelText={cancelText}
     >
       <Spacing size={32} />
       <Icon id="48-warning" width={48} height={48} />

@@ -1,6 +1,7 @@
 'use client';
 
 import WriteModal from './WriteModal';
+import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
@@ -9,6 +10,7 @@ import { useModal } from '@/hooks/useModal';
 import { useRouter } from 'next/navigation';
 
 export default function WriteHeader() {
+  const { t } = useTranslation('groupDetail');
   const router = useRouter();
   const { open, exit } = useModal();
 
@@ -33,7 +35,7 @@ export default function WriteHeader() {
           >
             <Icon id="24-arrow_back" />
           </IconButton>
-          <p className="text-subtitle-1">게시글 작성</p>
+          <p className="text-subtitle-1">{t('writeArticle.headerTitle')}</p>
         </Flex>
       </Header.Left>
     </Header>

@@ -1,0 +1,128 @@
+{
+  "more": "더보기",
+  "fold": "접기",
+  "group": {
+    "exit": {
+      "label": "모임 나가기",
+      "content": "모임에서 나가시겠어요?",
+      "description1": "모임에서 나갈 시",
+      "description2": "신뢰포인트",
+      "description3": "가 차감돼요."
+    },
+    "report": {
+      "label": "신고하기",
+      "content": "해당 모임을 신고하시겠습니까?"
+    },
+    "block": {
+      "label": "차단하기",
+      "content": "해당 모임을 차단하시겠습니까?"
+    }
+  },
+  "comment": {
+    "placeholder": "댓글 쓰기",
+    "commentLengthError": "* 최대 150자 이하로 작성해주세요.",
+    "firstComment": "첫 댓글을 남겨보세요!",
+    "blockComment": "차단된 댓글입니다.",
+    "delete": {
+      "label": "삭제하기",
+      "content": "해당 댓글을 삭제하시겠습니까?"
+    },
+    "report": {
+      "label": "신고하기",
+      "content": "해당 댓글을 신고하시겠습니까?"
+    },
+    "block": {
+      "label": "차단하기",
+      "content": "해당 댓글을 차단하시겠습니까?"
+    }
+  },
+  "article": {
+    "headerTitle": "게시글",
+    "delete": {
+      "label": "삭제하기",
+      "content": "해당 게시글을 삭제하시겠습니까?"
+    },
+    "report": {
+      "label": "신고하기",
+      "content": "해당 게시글을 신고하시겠습니까?"
+    },
+    "block": {
+      "label": "차단하기",
+      "content": "해당 게시글을 차단하시겠습니까?"
+    }
+  },
+  "notice": {
+    "headerTitle": "공지글",
+    "delete": {
+      "label": "삭제하기",
+      "content": "해당 공지글을 삭제하시겠습니까?"
+    },
+    "report": {
+      "label": "신고하기",
+      "content": "해당 공지글을 신고하시겠습니까?"
+    },
+    "block": {
+      "label": "차단하기",
+      "content": "해당 공지글을 차단하시겠습니까?"
+    }
+  },
+  "details": {
+    "tab": "상세정보",
+    "members": "모임 멤버 ({{memberCount}}/{{maxMemberCount}})",
+    "viewAll": "전체 보기",
+    "meetDate": "모임 일시",
+    "place": "모임 위치",
+    "join": "모임 가입하기",
+    "wait": "승인 대기 중"
+  },
+  "board": {
+    "tab": "게시판",
+    "notice": "공지사항",
+    "emptyNotice": "등록된 공지사항이 없어요.",
+    "commentCount": "댓글 {{commentCount}}개"
+  },
+  "members": {
+    "headerTitle": "모임 멤버"
+  },
+  "manage": {
+    "headerTitle": "모임 지원서 관리",
+    "empty": "아직 지원서가 없어요.",
+    "description": "모임에 가입하고 싶은 멤버의\n지원서를 확인해주세요",
+    "refuse": {
+      "label": "거절",
+      "description": "성급한 거절로\n적합한 지원자를 놓칠 수 있어요.",
+      "content": "지원서를 거절하시겠어요?"
+    },
+    "approve": {
+      "label": "승인",
+      "description": "서로에 대한 존중으로\n건전한 모임 문화를 만들어요!",
+      "content": "지원서를 승인하시겠어요?"
+    }
+  },
+  "apply": {
+    "headerTitle": "모임 지원서 작성",
+    "description": "모임에 가입하기 위해\n지원서를 작성해주세요.",
+    "introduce": "나는 이런 사람이에요!",
+    "reason": "모임에 함께하고 싶은 이유",
+    "placeholder": "내용을 입력해주세요.",
+    "submit": {
+      "label": "지원하기",
+      "content": "지원서를 제출하시겠습니까?",
+      "description": "지원서를 제출하면\n다시 수정할 수 없어요."
+    }
+  },
+  "writeArticle": {
+    "headerTitle": "게시글 작성",
+    "content": {
+      "placeholder": "최소 20글자 이상의 게시글을 작성해보세요."
+    },
+    "notice": "위 게시글을 공지로 설정합니다.",
+    "submit": {
+      "label": "글쓰기",
+      "content": "게시글을 등록하시겠습니까?"
+    },
+    "cancel": {
+      "content": "게시글 작성을 취소하시겠습니까?"
+    }
+  }
+}

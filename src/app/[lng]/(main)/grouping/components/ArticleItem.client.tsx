@@ -1,6 +1,7 @@
 'use client';
 
 import { useMoreSheet } from '../hooks/useMoreSheet';
+import { useTranslation } from '@/app/i18n/client';
 import { Button } from '@/components/Button';
 import { CardHeader } from '@/components/Card';
 import { Flex } from '@/components/Layout';
@@ -25,6 +26,7 @@ export default function ArticleItem({
   groupId,
   isArticleDetailPage = false,
 }: ArticleItemProps) {
+  const { t } = useTranslation('groupDetail');
   const { open, exit } = useModal();
   const { content, articleId, commentCount, images, isWriter } = article;
   const { handleMoreClick } = useMoreSheet({
@@ -66,7 +68,7 @@ export default function ArticleItem({
                 ${pathname}/articles/${articleId}
               `}
           >
-            댓글 {commentCount}개
+            {t('board.commentCount', { commentCount })}
           </Button>
           <Spacing size={24} />
         </>
