@@ -3,6 +3,7 @@ import { convertShowMember } from '../../../util';
 import { useFeedbackContext } from '../../components/FeedbackProvider.client';
 import Membercard from '../../components/Membercard.client';
 import TitleSection from '../../components/TitleSection';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
@@ -18,9 +19,10 @@ interface Step1Props {
   groupMemberList: EstimateResponse['groupMemberList'];
 }
 
-const tagList = ['차분함', '친절함', '적극적', '유머러스'];
+const tagList = ['calm', 'kind', 'active', 'witty'];
 
 export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
+  const { t } = useTranslation('meeting');
   const { open, exit } = useModal();
   const { setValue, watch } = useFeedbackContext();
   const handleTag = (tag: string, userId: number) => {
@@ -45,7 +47,7 @@ export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
 
   return (
     <div>
-      <TitleSection message="모임에서 어땠나요?" step={1} />
+      <TitleSection message={t('evaluation.howWasGroup')} step={1} />
 
       <Divider thickness="thick" />
       {showMemberList.map((member) => (
@@ -81,7 +83,7 @@ export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
                   tag
                 }
               >
-                {tag}
+                {t(`evaluation.traits.${tag}`)}
               </Tag>
             ))}
           </Flex>

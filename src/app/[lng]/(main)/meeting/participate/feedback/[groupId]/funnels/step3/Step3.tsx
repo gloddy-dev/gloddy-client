@@ -39,7 +39,7 @@ export default function Step3({ groupMemberList }: Step3Props) {
   return (
     <>
       <TitleSection
-        message={`${t('evaluation.reasonBestPartner1')}\n${t('evaluation.reasonBestPartner2')}')}`}
+        message={`${t('evaluation.reasonBestPartner1')}\n${t('evaluation.reasonBestPartner2')}`}
         step={3}
       />
       <Divider thickness="thick" />
