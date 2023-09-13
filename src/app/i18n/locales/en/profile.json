@@ -46,9 +46,7 @@
     "deleteGroupData": "Upon leaving, all data associated with your group activities will be removed and cannot be retrieved.",
     "agreeTerms": "I have understood the above information,  and I agree to it.",
     "privacyPolicy": "Your personal information will be securely disposed of following our privacy policy after withdrawal.",
-    "goBack": "Go back",
     "proceedDeletion": "Proceed with Deletion",
-    "reasonForWithdrawal": "Why do you want to withdraw?",
     "feedback": "Did you encounter any inconveniences while using our service? We are committed to making improvements based on your feedback.",
     "noDesiredGroups": "There are no groups that I want to join.",
     "difficultToFindMembers": "Difficult to find the desired members",
@@ -58,7 +56,6 @@
     "poorMatching": "Matching process doesn't work well.",
     "otherReasons": "Other reasons.",
     "confirmWithdrawal": "Are you sure you want to withdraw?",
-    "deleteWarning": "Deleting your account will erase all activity data, and it cannot be recovered.",
     "withdrawalComplete": "Your membership withdrawal has been completed.",
     "thankYou": "Thank you for using Gloddy and for your love and support.",
     "promise": "Gloddy will continue to strive for further improvement and growth."
