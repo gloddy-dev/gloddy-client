@@ -2,5 +2,8 @@
   "time": "th times",
   "nickname": "nickname",
   "male": "Male",
-  "female": "Female"
+  "female": "Female",
+  "grouping": "matching",
+  "meeting": "My Group",
+  "profile": "Profile"
 }
