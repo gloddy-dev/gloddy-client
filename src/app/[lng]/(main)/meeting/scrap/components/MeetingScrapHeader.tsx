@@ -1,3 +1,4 @@
+'use client';
 import { useTranslation } from '@/app/i18n/client';
 import { Header } from '@/components/Header';
 import Link from 'next/link';
