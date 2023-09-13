@@ -26,6 +26,7 @@ export default function Login() {
               userId,
             });
           }
+          router.push('/grouping');
         },
       }
     );
@@ -33,7 +34,6 @@ export default function Login() {
 
   useEffect(() => {
     handlegetTokenFromCookie();
-    router.push('/grouping');
   }, []);
 
   return <Loading className="h-screen" />;
