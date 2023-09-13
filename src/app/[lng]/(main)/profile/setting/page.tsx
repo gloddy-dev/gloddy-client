@@ -13,7 +13,7 @@ export default function page({ params: { lng } }: PageParams) {
     <>
       <SettingHeader />
       <ProfileSection />
-      <LinkSection />
+      <LinkSection lng={lng} />
     </>
   );
 }
