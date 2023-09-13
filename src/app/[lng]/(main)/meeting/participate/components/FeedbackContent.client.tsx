@@ -19,7 +19,7 @@ export default function FeedbackContent() {
   return (
     <>
       <Spacing size={20} />
-      <SubtitleSection text="상호 평가가 필요한 모임" />
+      <SubtitleSection text={t('home.mutualEvaluationRequired')} />
 
       {meetingNotEstimatedData.length === 0 && (
         <NoMeeting message={t('home.noMutualEvaluationGroups')} />
