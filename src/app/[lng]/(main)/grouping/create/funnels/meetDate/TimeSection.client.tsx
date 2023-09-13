@@ -1,4 +1,5 @@
 'use client';
+import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
@@ -12,6 +13,7 @@ interface TimeSectionProps {
 }
 
 export default function TimeSection({ control }: TimeSectionProps) {
+  const { t } = useTranslation('grouping');
   const { field: time } = useController({
     name: 'time',
     control,
@@ -59,7 +61,7 @@ export default function TimeSection({ control }: TimeSectionProps) {
 
   return (
     <section className="p-20">
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">시작 시간</p>
+      <p className="pl-4 text-subtitle-3 text-sign-secondary">{t('create.time.label')}</p>
       <Spacing size={8} />
       <Flex align="center" className="flex-auto">
         <SegmentGroup
@@ -67,8 +69,8 @@ export default function TimeSection({ control }: TimeSectionProps) {
           onChange={(value) => time.onChange({ ...time.value, fromAmPm: value })}
           className="shrink-0"
         >
-          <SegmentGroup.Segment label="오전" value="AM" />
-          <SegmentGroup.Segment label="오후" value="PM" />
+          <SegmentGroup.Segment label={t('create.time.am')} value="AM" />
+          <SegmentGroup.Segment label={t('create.time.pm')} value="PM" />
         </SegmentGroup>
         <Spacing direction="horizontal" size={8} />
 
@@ -76,7 +78,7 @@ export default function TimeSection({ control }: TimeSectionProps) {
           <TextField
             as="input"
             type="number"
-            placeholder="시간"
+            placeholder={t('create.time.hour')}
             value={time.value.fromHour}
             onChange={(e) =>
               handleTimeChange(e as React.ChangeEvent<HTMLInputElement>, 1, 12, 'fromHour')
@@ -91,7 +93,7 @@ export default function TimeSection({ control }: TimeSectionProps) {
           <TextField
             as="input"
             type="number"
-            placeholder="분"
+            placeholder={t('create.time.minute')}
             value={time.value.fromMin}
             onChange={(e) =>
               handleTimeChange(e as React.ChangeEvent<HTMLInputElement>, 0, 59, 'fromMin')
