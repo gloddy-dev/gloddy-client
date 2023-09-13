@@ -4,12 +4,12 @@ import { Divider } from '@/components/Divider';
 import Link from 'next/link';
 
 export default function LinkSection() {
-  const { t } = useTranslation('profile.setting');
+  const { t } = useTranslation('profile');
 
   return (
     <section className="text-subtitle-2">
       <div className="flex px-20 py-12">
-        <span>{t('version')}</span>
+        <span>{t('settings.version')}</span>
         <span className="ml-auto text-caption text-sign-caption">1.0.0v</span>
       </div>
       <div className="px-20 py-12">
