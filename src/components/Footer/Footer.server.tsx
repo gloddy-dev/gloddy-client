@@ -1,6 +1,5 @@
-'use client';
-
 import { Icon } from '../Icon';
+import { serverTranslation } from '@/app/i18n';
 import cn from '@/utils/cn';
 import Link from 'next/link';
 
@@ -35,12 +34,14 @@ const tabList: TabType[] = [
 ];
 
 interface FooterProps {
+  lng: string;
   page?: PageType;
   isSpacing?: boolean;
   spacingColor?: string;
 }
 
-export default function Footer({ page, isSpacing = true, spacingColor }: FooterProps) {
+export default async function Footer({ lng, page, isSpacing = true, spacingColor }: FooterProps) {
+  const { t } = await serverTranslation(lng, 'common');
   const isSelected = (tab: TabType) => tab.name === page;
 
   return (
@@ -61,7 +62,7 @@ export default function Footer({ page, isSpacing = true, spacingColor }: FooterP
               width={32}
               height={32}
             />
-            <p>{tab.title}</p>
+            <p>{t(tab.name)}</p>
           </Link>
         ))}
       </footer>

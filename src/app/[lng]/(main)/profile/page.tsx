@@ -9,7 +9,13 @@ import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-export default function Profile() {
+interface ProfilePageProps {
+  params: {
+    lng: string;
+  };
+}
+
+export default function Profile({ params: { lng } }: ProfilePageProps) {
   return (
     <>
       <ProfileHeader />
@@ -24,7 +30,7 @@ export default function Profile() {
           </HydrationProvider>
         </PageAnimation>
       </QueryAsyncBoundary>
-      <Footer page="profile" isSpacing={false} />
+      <Footer page="profile" isSpacing={false} lng={lng} />
     </>
   );
 }

@@ -3,12 +3,14 @@ import RejectModal from './RejectModal';
 import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
 import { useGetMeetingRejected, useGetMeetingWaiting } from '@/apis/meeting';
+import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 
 export default function WaitingContent() {
+  const { t } = useTranslation('meeting');
   const {
     data: { groups: meetingWaitingData },
   } = useGetMeetingWaiting();
@@ -21,9 +23,9 @@ export default function WaitingContent() {
   return (
     <>
       <Spacing size={20} />
-      <SubtitleSection text="승인 대기중인 모임" />
+      <SubtitleSection text={t('home.awaitingApproval')} />
 
-      {meetingWaitingData.length === 0 && <NoMeeting message="아직 대기중인 모임이 없어요." />}
+      {meetingWaitingData.length === 0 && <NoMeeting message={t('home.noPendingGroups')} />}
       {meetingWaitingData.map((groupingData) => (
         <GroupingCard groupingData={groupingData.group} key={groupingData.group.groupId} />
       ))}
@@ -32,9 +34,9 @@ export default function WaitingContent() {
       <Divider thickness="thick" />
       <Spacing size={20} />
 
-      <SubtitleSection text="거절된 모임" />
+      <SubtitleSection text={t('home.rejectedGroups')} />
 
-      {meetingRejectedData.length === 0 && <NoMeeting message="거절된 모임이 없어요." />}
+      {meetingRejectedData.length === 0 && <NoMeeting message={t('home.noRejectedGroups')} />}
       {meetingRejectedData.map((groupingData) => (
         <GroupingCard
           groupingData={groupingData.group}
