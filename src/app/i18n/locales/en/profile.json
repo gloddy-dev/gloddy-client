@@ -1,4 +1,9 @@
 {
+  "birth": "Date of Birth",
+  "gender": "Gender",
+  "introduce": "Self-introduction ",
+  "personality": "Personality ",
+
   "home": {
     "gender": {
       "male": "Male",
@@ -24,13 +29,13 @@
     "selfIntro": "Self-Introduction",
     "studentVerification": "Student Verification Required",
     "noSelfIntro": "Self-introduction hasn’t been registered yet!",
+
     "participatedGroupCount": "Accumulated Meetings",
     "praiseCount": "Received Praises",
-    "reviewCount": "Meeting Reviews"
-  },
-  "review": {
+    "reviewCount": "Meeting Reviews",
     "deleteReview": "Want to delete the review from Gloddy?"
   },
+
   "settings": {
     "settings": "Settings",
     "version": "version",
