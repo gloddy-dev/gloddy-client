@@ -1,5 +1,8 @@
 {
   "time": "회",
   "nickname": "닉네임",
-  "male": "남성"
+  "male": "남성",
+  "grouping": "매칭",
+  "meeting": "나의 모임",
+  "profile": "프로필"
 }

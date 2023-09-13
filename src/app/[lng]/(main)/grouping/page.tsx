@@ -34,7 +34,7 @@ export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
       </QueryAsyncBoundary>
       <CreateGroupButton />
       <Spacing size={60} />
-      <Footer page="grouping" />
+      <Footer page="grouping" lng={lng} />
     </>
   );
 }
