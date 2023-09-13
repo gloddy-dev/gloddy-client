@@ -1,6 +1,7 @@
 'use client';
 
 import { Icon } from '../Icon';
+import { useTranslation } from '@/app/i18n/client';
 import cn from '@/utils/cn';
 import Link from 'next/link';
 
@@ -42,6 +43,7 @@ interface FooterProps {
 
 export default function Footer({ page, isSpacing = true, spacingColor }: FooterProps) {
   const isSelected = (tab: TabType) => tab.name === page;
+  const { t: tc } = useTranslation('common');
 
   return (
     <>
@@ -61,7 +63,7 @@ export default function Footer({ page, isSpacing = true, spacingColor }: FooterP
               width={32}
               height={32}
             />
-            <p>{tab.title}</p>
+            <p>{tc(tab.name)}</p>
           </Link>
         ))}
       </footer>
