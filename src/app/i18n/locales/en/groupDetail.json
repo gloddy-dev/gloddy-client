@@ -1,0 +1,130 @@
+{
+  "more": "Show More",
+  "fold": "Fold",
+  "reportMessage1": "The report has been received.",
+  "reportMessage2": "We will make every effort for a prompt resolution.",
+  "group": {
+    "exit": {
+      "label": "Leave the Group",
+      "content": "Are you sure you want to leave this group?",
+      "description1": "When you leave the group,",
+      "description2": "Trust Points ",
+      "description3": "will be deducted."
+    },
+    "report": {
+      "label": "Report",
+      "content": "Do you want to report this group?"
+    },
+    "block": {
+      "label": "Block",
+      "content": "Would you like to block this group?"
+    }
+  },
+  "comment": {
+    "placeholder": "Write a comment",
+    "commentLengthError": "* Comments are limited to 150 characters.",
+    "firstComment": "Be the first to leave a comment!",
+    "blockComment": "It's a blocked comment.",
+    "delete": {
+      "label": "Delete",
+      "content": "Would you like to delete this comment?"
+    },
+    "report": {
+      "label": "Report",
+      "content": "Do you want to report this comment?"
+    },
+    "block": {
+      "label": "Block",
+      "content": "Would you like to block this comment?"
+    }
+  },
+  "article": {
+    "headerTitle": "post",
+    "delete": {
+      "label": "Delete",
+      "content": "Would you like to delete this post?"
+    },
+    "report": {
+      "label": "Report",
+      "content": "Do you want to report this post?"
+    },
+    "block": {
+      "label": "Block",
+      "content": "Would you like to block this post?"
+    }
+  },
+  "notice": {
+    "headerTitle": "Notice",
+    "delete": {
+      "label": "Delete",
+      "content": "Would you like to delete this notice post?"
+    },
+    "report": {
+      "label": "Report",
+      "content": "Do you want to report this notice post?"
+    },
+    "block": {
+      "label": "Block",
+      "content": "Would you like to block this notice post?"
+    }
+  },
+  "details": {
+    "tab": "Details",
+    "members": "Group Members ({{memberCount}}/{{maxMemberCount}})",
+    "viewAll": "View All",
+    "meetDate": "Date and Time",
+    "place": "Location",
+    "join": "Join this group",
+    "wait": "Waiting for approval"
+  },
+  "board": {
+    "tab": "Notice Board",
+    "notice": "Notice",
+    "emptyNotice": "There are no registered notice posts.",
+    "commentCount": "Comments ({{commentCount}})"
+  },
+  "members": {
+    "headerTitle": "Members"
+  },
+  "manage": {
+    "headerTitle": "Application Management",
+    "empty": "There are currently no applications.",
+    "description": "Please fill out the application form to join this group.",
+    "refuse": {
+      "label": "deny",
+      "description": "Rejecting too quickly could mean missing out on suitable applicants.",
+      "content": "Are you sure you want to reject the application?"
+    },
+    "approve": {
+      "label": "approve",
+      "description": "Let’s build a wholesome group culture through mutual respect!",
+      "content": "Would you like to approve the application?"
+    }
+  },
+  "apply": {
+    "headerTitle": "Fill out an application form",
+    "description": "Please fill out the application form to join this group.",
+    "introduce": "This is who I am!",
+    "reason": "Why do you want to join this Group?",
+    "placeholder": "Please provide the content.",
+    "submit": {
+      "label": "Apply",
+      "content": "Would you like to submit an application?",
+      "description": "Once you submit the application,\nyou can’t make any further edits."
+    }
+  },
+  "writeArticle": {
+    "headerTitle": "Write a post",
+    "content": {
+      "placeholder": "Try writing a post with a minimum of 20 characters."
+    },
+    "notice": "Set the above text as a notice.",
+    "submit": {
+      "label": "Upload Post",
+      "content": "Want to upload the post?"
+    },
+    "cancel": {
+      "content": "Want to delete the post writing?"
+    }
+  }
+}

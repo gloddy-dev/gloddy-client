@@ -1,10 +1,12 @@
 import { useGetGroupDetail } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 
 export default function TimeSection() {
+  const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
 
@@ -12,7 +14,7 @@ export default function TimeSection() {
 
   return (
     <section>
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">모임 일시</p>
+      <p className="pl-4 text-subtitle-3 text-sign-secondary">{t('details.meetDate')}</p>
       <Spacing size={4} />
       <TextField
         value={formatMeetingDate(meetDate, startTime)}

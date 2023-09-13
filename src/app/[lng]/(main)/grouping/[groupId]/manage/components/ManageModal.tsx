@@ -1,3 +1,4 @@
+import { useTranslation } from '@/app/i18n/client';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import Image from 'next/image';
@@ -26,6 +27,23 @@ interface ManageModalProps {
 }
 
 export default function ManageModal({ type, onOkClick, onCancelClick }: ManageModalProps) {
+  const { t } = useTranslation('groupDetail');
+
+  const modalText = {
+    APPROVE: {
+      description: t('manage.approve.description'),
+      content: t('manage.approve.content'),
+      variant: 'success',
+      image: '/images/approve_character.png',
+    },
+    REFUSE: {
+      description: t('manage.refuse.description'),
+      content: t('manage.refuse.content'),
+      variant: 'warning',
+      image: '/images/refuse_character.png',
+    },
+  } as const;
+
   const { description, content, variant, image } = modalText[type];
 
   return (

@@ -1,6 +1,7 @@
 'use client';
 import { useGetArticle, useGetGroupDetail } from '@/apis/groups';
 import { useMoreSheet } from '@/app/[lng]/(main)/grouping/hooks/useMoreSheet';
+import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
@@ -10,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
 export default function ArticleHeader() {
+  const { t } = useTranslation('groupDetail');
   const router = useRouter();
 
   return (
@@ -18,7 +20,7 @@ export default function ArticleHeader() {
         <IconButton size="large" onClick={() => router.back()}>
           <Icon id="24-arrow_back" />
         </IconButton>
-        <p>게시글</p>
+        <p>{t('article.headerTitle')}</p>
       </Header.Left>
       <Header.Right>
         <Suspense>

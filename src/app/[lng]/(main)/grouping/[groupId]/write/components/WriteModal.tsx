@@ -1,3 +1,4 @@
+import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
@@ -12,19 +13,6 @@ type ModalStyle = {
   };
 };
 
-const modalStyle: ModalStyle = {
-  write: {
-    variant: 'success',
-    iconId: '48-check',
-    content: '게시글을 등록하시겠습니까?',
-  },
-  cancel: {
-    variant: 'warning',
-    iconId: '48-warning',
-    content: '게시글 작성을 취소하시겠습니까?',
-  },
-};
-
 interface WriteModalProps {
   type: 'write' | 'cancel';
   onOkClick: () => void;
@@ -32,6 +20,19 @@ interface WriteModalProps {
 }
 
 export default function WriteModal({ type, onCancelClick, onOkClick }: WriteModalProps) {
+  const { t } = useTranslation('groupDetail');
+  const modalStyle: ModalStyle = {
+    write: {
+      variant: 'success',
+      iconId: '48-check',
+      content: t('writeArticle.submit.content'),
+    },
+    cancel: {
+      variant: 'warning',
+      iconId: '48-warning',
+      content: t('writeArticle.cancel.content'),
+    },
+  };
   const { variant, iconId, content } = modalStyle[type];
 
   return (

@@ -1,6 +1,7 @@
 'use client';
 
 import { usePostComment } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
 import { useNumberParams } from '@/hooks/useNumberParams';
@@ -13,6 +14,7 @@ export type CommentFormType = {
 };
 
 export default function CommentForm() {
+  const { t } = useTranslation('groupDetail');
   const { articleId, groupId } = useNumberParams<['articleId', 'groupId']>();
   const { mutate: mutateComment } = usePostComment(groupId, articleId);
   const hookForm = useForm<CommentFormType>({
@@ -42,10 +44,10 @@ export default function CommentForm() {
               required: true,
               pattern: {
                 value: /^[\s\S]{0,150}$/,
-                message: '* 최대 150자 이하로 작성해주세요.',
+                message: t('comment.commentLengthError'),
               },
             })}
-            placeholder="댓글 쓰기"
+            placeholder={t('comment.placeholder')}
             maxCount={150}
             className={cn('transition-all', {
               'h-60': watch('content')?.length === 0,

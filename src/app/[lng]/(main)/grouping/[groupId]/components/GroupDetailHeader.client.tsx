@@ -4,6 +4,7 @@ import BlockDoneModal from '../../components/BlockDoneModal.client';
 import ReportDoneModal from '../../components/ReportDoneModal.client';
 import WarningModal from '../../components/WarningModal.client';
 import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
@@ -64,6 +65,7 @@ function ManageButtonAction({ groupId }: ActionProps) {
 }
 
 function MoreButtonAction({ groupId }: ActionProps) {
+  const { t } = useTranslation('groupDetail');
   const router = useRouter();
   const { setBlockId } = useBlockStore();
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
@@ -112,18 +114,20 @@ function MoreButtonAction({ groupId }: ActionProps) {
     openBottomSheet(({ isOpen }) => (
       <MoreBottomSheet onClose={closeBottomSheet} isOpen={isOpen}>
         <MoreBottomSheet.ListItem
-          label="모임 나가기"
+          label={t('group.exit.label')}
           isShown={myGroup && !isCaptain}
           onClick={() =>
             openItemModal(({ exit }) => (
               <WarningModal
                 onCancelClick={exit}
                 onOkClick={handleExitClick}
-                content="모임에서 나가시겠어요?"
+                content={t('group.exit.content')}
                 description={
                   <p className="text-sign-tertiary">
-                    모임방에서 나갈 시<br />
-                    <span className="text-sign-brand">신뢰포인트</span>가 차감돼요.
+                    {t('group.exit.description1')}
+                    <br />
+                    <span className="text-sign-brand">{t('group.exit.description2')}</span>
+                    {t('group.exit.description3')}
                   </p>
                 }
                 okDisabled={isExitGroupLoading}
@@ -132,27 +136,27 @@ function MoreButtonAction({ groupId }: ActionProps) {
           }
         />
         <MoreBottomSheet.ListItem
-          label="신고하기"
+          label={t('group.report.label')}
           isShown={!isCaptain}
           onClick={() =>
             openItemModal(() => (
               <WarningModal
                 onCancelClick={exitItemModal}
                 onOkClick={handleReportClick}
-                content="신고하시겠어요?"
+                content={t('group.report.content')}
               />
             ))
           }
         />
         <MoreBottomSheet.ListItem
-          label="차단하기"
+          label={t('group.block.label')}
           isShown={!isCaptain}
           onClick={() =>
             openItemModal(() => (
               <WarningModal
                 onCancelClick={exitItemModal}
                 onOkClick={handleBlockClick}
-                content="차단하시겠어요?"
+                content={t('group.block.content')}
               />
             ))
           }
