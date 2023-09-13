@@ -1,4 +1,5 @@
 import { usePostApply } from '@/apis/meeting';
+import { useTranslation } from '@/app/i18n/client';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { useRouter } from 'next/navigation';
@@ -10,6 +11,7 @@ interface RejectModalProps {
 export default function RejectModal({ applyId }: RejectModalProps) {
   const router = useRouter();
   const { mutate } = usePostApply();
+  const { t } = useTranslation('meeting');
   const handleOkClick = () => {
     mutate(applyId, {
       onSuccess: () => {
@@ -19,15 +21,15 @@ export default function RejectModal({ applyId }: RejectModalProps) {
   };
 
   return (
-    <Modal variant="ok" okMessage="다른 모임 지원하러 가기" onOkClick={handleOkClick}>
+    <Modal variant="ok" okMessage={t('home.applyOtherGroups')} onOkClick={handleOkClick}>
       <Spacing size={36} />
       <h4 className="text-h4 text-sign-primary">Let’s go for a walk!</h4>
-      <p className="text-subtitle-1 text-sign-primary">아쉽지만 모임에 반려되었습니다</p>
+      <p className="text-subtitle-1 text-sign-primary">{t('rejectedApplication')}</p>
       <Spacing size={12} />
       <p className="text-paragraph-1 text-sign-tertiary">
-        다른 재밌는 모임 활동들이
+        {t('home.excitingActivities1')}
         <br />
-        회원님을 기다리고 있어요!
+        {t('home.excitingActivities2')}
       </p>
       <Spacing size={20} />
     </Modal>
