@@ -31,15 +31,22 @@
   "evaluation": {
     "evaluateGroup": "Evaluate the Group",
     "howWasGroup": "How was the gathering?",
-    "traits": "Calm / Kind / Active / Witty",
+    "traits": {
+      "calm": "Calm",
+      "kind": "Kind",
+      "active": "Active",
+      "witty": "Witty"
+    },
     "absence": "Was ‘Gloddy’ absent from the gathering?",
     "bestPartner": "Best partner",
     "whoBestPartner": "Who was your best partner?",
-    "reasonBestPartner": "What was the reason for choosing your best partner?",
+    "reasonBestPartner1": "What was the reason",
+    "reasonBestPartner2": "for choosing your best partner?",
     "leaveReview": "Please leave a review for your best partner.",
     "evaluationComplete": "You have completed the group evaluation.",
     "excitingGroups": "There are other exciting Groups waiting for you!",
-    "evaluationHelp": "Member evaluations will greatly assist with future matching!",
+    "evaluationHelp1": "Member evaluations will",
+    "evaluationHelp2": "greatly assist with future matching!",
     "reallyNotEvaluate": "Are you really not going to provide the evaluation?"
   }
 }
