@@ -1,5 +1,6 @@
 'use client';
 import { useGetProfileById } from '@/apis/profile';
+import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
@@ -24,6 +25,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
   const params = useParams();
   const router = useRouter();
   const isPrivateProfile = !params.userId;
+  const { t } = useTranslation('profile');
 
   const {
     age,
@@ -82,7 +84,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
               <Icon id="16-male" width={16} height={16} />
-              <span>{gender === 'MAIL' ? '남' : '여'}</span>
+              {/* <span>{gender === 'MAIL' ? t('profile.gender.male') : '여'}</span> */}
             </Flex>
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
@@ -109,9 +111,9 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
 
         <Flex className="px-20" direction="column">
           <Flex className="w-full px-4" align="end">
-            <span className="text-secondary text-subtitle-3">신뢰도 지표 </span>
+            <span className="text-secondary text-subtitle-3">{t('reliabilityScore')} </span>
             <span className="text-caption text-sign-caption">
-              {format(new Date(joinAt), '(yyyy.MM.dd 가입)')}
+              {format(new Date(joinAt), '(yyyy.MM.dd ') + `${t('join')})`}
             </span>
           </Flex>
           <Spacing size={8} />
@@ -149,7 +151,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
 
           <Flex align="center">
             <div className="flex flex-grow flex-col items-center justify-center">
-              <p className="text-caption text-sign-tertiary">누적 모임</p>
+              <p className="text-caption text-sign-tertiary">{t('participatedGroupCount')}</p>
               <h4 className="text-h4 text-sign-secondary">{participatedGroupCount}회</h4>
             </div>
             <Divider direction="vertical" className="h-12" />
@@ -158,7 +160,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
               href={isPrivateProfile ? `${pathname}/praise` : ''}
               scroll={false}
             >
-              <p className="text-caption text-sign-tertiary">받은 칭찬</p>
+              <p className="text-caption text-sign-tertiary">{t('praiseCount')}</p>
               <h4 className="text-h4 text-sign-brand">{praiseCount}회</h4>
             </Link>
             <Divider direction="vertical" className="h-12" />
@@ -167,7 +169,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
               href={isPrivateProfile ? `${pathname}/mates` : ''}
               scroll={false}
             >
-              <p className="text-caption text-sign-tertiary">모임 후기</p>
+              <p className="text-caption text-sign-tertiary">{t('reviewCount')}</p>
               <h4 className="text-h4 text-sign-brand">{reviewCount}회</h4>
             </Link>
           </Flex>
@@ -175,7 +177,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
         </Flex>
       </section>
       <section className="px-20 py-40">
-        <p className="px-4 text-subtitle-3 text-sign-secondary">자기소개</p>
+        <p className="px-4 text-subtitle-3 text-sign-secondary">{t('introduce')}</p>
         <TextField
           as="textarea"
           readOnly
