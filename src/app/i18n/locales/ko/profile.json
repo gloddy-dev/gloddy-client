@@ -1,8 +1,66 @@
 {
-  "participatedGroupCount": "누적 모임",
-  "praiseCount": "받은 칭찬",
-  "reviewCount": "모임 후기",
-  "introduce": "자기소개",
-  "reliabilityScore": "신뢰도 지표",
-  "join": "가입"
+  "home": {
+    "gender": {
+      "male": "남",
+      "female": "여"
+    },
+    "extroverted": "외향적인",
+    "introverted": "내향적인",
+    "discreet": "신중한",
+    "affable": "친절한",
+    "optimistic": "낙천적인",
+    "sociable": "사교적인",
+    "outspoken": "솔직한",
+    "responsible": "책임감 있는",
+    "calm": "차분한",
+    "outgoing": "활동적인",
+    "playful": "엉뚱한",
+    "sensible": "센스있는",
+    "leaderType": "리더십 있는",
+    "humorous": "유머러스한",
+
+    "trustScore": "신뢰도 지표",
+    "joined": "가입",
+    "selfIntro": "자기 소개",
+    "studentVerification": "재학생 인증 필요",
+    "noSelfIntro": "자기소개가 아직 등록되지 않았어요!",
+    "participatedGroupCount": "누적 모임",
+    "praiseCount": "받은 칭찬",
+    "reviewCount": "모임 후기"
+  },
+  "review": {
+    "deleteReview": "Gloddy님의 후기를 삭제하시겠어요?"
+  },
+  "settings": {
+    "settings": "환경설정",
+    "version": "버전",
+    "termsOfService": "서비스 이용약관",
+    "customerService": "개인정보 처리방침",
+    "deleteAccount": "계정 삭제하기",
+    "editProfile": "프로필 수정",
+    "accountDeletion": "회원 탈퇴",
+    "confirmDeletion": "정말 탈퇴하시겠어요?",
+    "deleteAllPraises": "지금까지 진행했던 모임에서 받은 모든 칭찬 내역이 사라집니다",
+    "deleteBestPartnerReviews": "지금까지 진행했던 모임에서 받은 다른 회원의 ‘최고의 짝꿍’ 후기 내용이 사라집니다",
+    "deleteTrustScore": "회원 탈퇴 시 개인 프로필 내 신뢰도 지표 데이터가 사라지며 다시 복구할 수 없습니다.",
+    "deleteGroupData": "회원 탈퇴 시 모임 활동을 진행했던 모든 데이터가 삭제되며 복구할 수 없습니다.",
+    "agreeTerms": "위 내용을 확인하였으며, 이에 동의합니다.",
+    "privacyPolicy": "회원님의 개인정보는 개인정보처리방침에 따라 탈퇴 후 안전하게 파기될 예정입니다.",
+    "goBack": "돌아가기",
+    "proceedDeletion": "탈퇴하기",
+    "reasonForWithdrawal": "탈퇴하시려는 이유가 무엇인가요?",
+    "feedback": "서비스 이용에 불편한 점이 있으셨나요? 보내주신 의견을 꼭 개선할 수 있도록 노력하겠습니다.",
+    "noDesiredGroups": "참여를 원하는 모임이 없어요",
+    "difficultToFindMembers": "원하는 모임 인원을 찾기가 어려워요",
+    "appInconvenience": "앱 이용이 불편해요",
+    "rudeMembers": "비매너 회원을 만났어요",
+    "dataLeakConcern": "개인 정보에 대한 유출이 우려돼요",
+    "poorMatching": "매칭이 잘 진행되지 않아요",
+    "otherReasons": "기타",
+    "confirmWithdrawal": "정말 탈퇴하시겠어요?",
+    "deleteWarning": "계정을 삭제하면 모든 활동 정보가 삭제되며 복구할 수 없습니다.",
+    "withdrawalComplete": "회원 탈퇴가 완료되었습니다.",
+    "thankYou": "Gloddy를 이용해주시고 사랑해주셔서 감사합니다.",
+    "promise": "더욱 발전하고 노력하는 Gloddy가 되겠습니다."
+  }
 }
