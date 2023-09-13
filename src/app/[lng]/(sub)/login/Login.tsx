@@ -15,7 +15,7 @@ export default function Login() {
       { phoneNumber: '010-2018-0262' },
       {
         onSuccess: (response: LoginResponse) => {
-          async () => {
+          (async () => {
             if (response.existUser) {
               const {
                 token: { accessToken, refreshToken },
@@ -28,7 +28,7 @@ export default function Login() {
               });
             }
             router.push('/grouping');
-          };
+          })();
         },
       }
     );
