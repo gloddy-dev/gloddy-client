@@ -34,7 +34,12 @@
   "evaluation": {
     "evaluateGroup": "모임 평가하기",
     "howWasGroup": "모임에서 어땠나요?",
-    "traits": "차분함 친절함 적극적 유머러스",
+    "traits": {
+      "calm": "차분함",
+      "kind": "친절함",
+      "active": "적극적",
+      "witty": "유머러스"
+    },
     "absence": "Gloddy님이 모임에 불참하셨나요?",
     "bestPartner": "최고의 짝꿍",
     "whoBestPartner": "최고의 짝꿍은 누구였나요?",
