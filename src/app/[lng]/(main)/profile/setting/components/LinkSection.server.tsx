@@ -1,10 +1,13 @@
-'use client';
-import { useTranslation } from '@/app/i18n/client';
+import { serverTranslation } from '@/app/i18n';
 import { Divider } from '@/components/Divider';
 import Link from 'next/link';
 
-export default function LinkSection() {
-  const { t } = useTranslation('profile');
+interface LinkSectionProps {
+  lng: string;
+}
+
+export default async function LinkSection({ lng }: LinkSectionProps) {
+  const { t } = await serverTranslation(lng, 'profile');
 
   return (
     <section className="text-subtitle-2">
