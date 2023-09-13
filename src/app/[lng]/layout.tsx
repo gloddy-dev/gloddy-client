@@ -85,7 +85,7 @@ function Layout({ lng, children }: StrictPropsWithChildren<LayoutProps>) {
   // const styleSheetContent = readFileSync(filePath, 'utf8');
 
   return (
-    <html lang="ko" dir={dir(lng)}>
+    <html lang={lng} dir={dir(lng)}>
       {/* <head>
         <style dangerouslySetInnerHTML={{ __html: styleSheetContent }} />
       </head> */}

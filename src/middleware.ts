@@ -62,8 +62,10 @@ const middleware = async (request: NextRequest) => {
   let lng;
   if (request.cookies.has(cookieName))
     lng = acceptLanguage.get(request.cookies.get(cookieName)?.value);
+
   if (!lng) lng = acceptLanguage.get(request.headers.get('Accept-Language'));
-  if (!lng) lng = fallbackLng;
+  // if (!lng) lng = fallbackLng;
+  if (!lng) lng = 'en';
 
   if (
     !languages.some((loc: string) => request.nextUrl.pathname.startsWith(`/${loc}`)) &&
