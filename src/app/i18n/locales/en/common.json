@@ -1,4 +1,8 @@
 {
+  "time": "th times",
+  "nickname": "nickname",
+  "male": "Male",
+  "female": "Female",
   "grouping": "matching",
   "meeting": "My Group",
   "profile": "Profile"

@@ -1,16 +1,19 @@
 import LinkSection from './components/LinkSection.server';
 import ProfileSection from './components/ProfileSection.client';
 import SettingHeader from './components/SettingHeader';
-import { PageAnimation } from '@/components/PageAnimation';
 
-export default function page() {
+interface PageParams {
+  params: {
+    lng: string;
+  };
+}
+
+export default function page({ params: { lng } }: PageParams) {
   return (
     <>
       <SettingHeader />
-      <PageAnimation>
-        <ProfileSection />
-        <LinkSection />
-      </PageAnimation>
+      <ProfileSection />
+      <LinkSection lng={lng} />
     </>
   );
 }
