@@ -44,6 +44,7 @@
     "deleteAccount": "Delete Account",
     "editProfile": "Edit Profile",
     "accountDeletion": "Account Deletion",
+    "reasonForWithdrawal": "Why do you want to withdraw?",
     "confirmDeletion": "Are you really sure you want to delete the account?",
     "deleteAllPraises": "All compliments you’ve received from the previous Matchings will be removed.",
     "deleteBestPartnerReviews": "The 'Best Partner' reviews from other members in the Groups you've participated in will also be deleted.",

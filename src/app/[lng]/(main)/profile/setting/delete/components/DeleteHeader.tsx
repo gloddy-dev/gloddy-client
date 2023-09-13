@@ -8,7 +8,7 @@ interface DeleteHeaderProps {
   icon: 'close' | 'arrow_back';
 }
 export default function DeleteHeader({ onPrevClick, icon }: DeleteHeaderProps) {
-  const { t } = useTranslation('profile.setting');
+  const { t } = useTranslation('profile');
 
   return (
     <Header>

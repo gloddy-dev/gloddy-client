@@ -37,7 +37,7 @@ export default function Step2() {
   return (
     <div>
       <Spacing size={32} />
-      <h3 className="px-20 text-h3">{t('reasonForWithdrawal')}</h3>
+      <h3 className="px-20 text-h3">{t('settings.reasonForWithdrawal')}</h3>
       <Spacing size={8} />
       <div className="px-20 text-subtitle-2 text-sign-tertiary">
         <p>{t('settings.feedback1')}</p>
