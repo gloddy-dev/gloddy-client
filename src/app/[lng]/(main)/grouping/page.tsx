@@ -11,10 +11,16 @@ import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-export default function Grouping() {
+interface GroupingPageProps {
+  params: {
+    lng: string;
+  };
+}
+
+export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
   return (
     <>
-      <GroupingHeader />
+      <GroupingHeader lng={lng} />
 
       <QueryAsyncBoundary
         rejectedFallback={RejectedFallback}
