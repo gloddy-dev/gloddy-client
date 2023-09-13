@@ -1,9 +1,10 @@
 {
-  "home": {
-    "gender": {
-      "male": "남",
-      "female": "여"
-    },
+  "birth": "생년월일",
+  "gender": "성별",
+  "introduce": "자기소개",
+  "personality": "성격",
+
+  "keyword": {
     "extroverted": "외향적인",
     "introverted": "내향적인",
     "discreet": "신중한",
@@ -17,18 +18,24 @@
     "playful": "엉뚱한",
     "sensible": "센스있는",
     "leaderType": "리더십 있는",
-    "humorous": "유머러스한",
+    "humorous": "유머러스한"
+  },
+  "home": {
+    "gender": {
+      "male": "남",
+      "female": "여"
+    },
 
     "trustScore": "신뢰도 지표",
     "joined": "가입",
     "selfIntro": "자기 소개",
     "studentVerification": "재학생 인증 필요",
     "noSelfIntro": "자기소개가 아직 등록되지 않았어요!",
+
     "participatedGroupCount": "누적 모임",
     "praiseCount": "받은 칭찬",
-    "reviewCount": "모임 후기"
-  },
-  "review": {
+    "reviewCount": "모임 후기",
+
     "deleteReview": "Gloddy님의 후기를 삭제하시겠어요?"
   },
   "settings": {

@@ -1,3 +1,6 @@
 {
-  "time": "th times"
+  "time": "th times",
+  "nickname": "nickname",
+  "male": "Male",
+  "female": "Female"
 }
