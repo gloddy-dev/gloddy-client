@@ -3,12 +3,14 @@ import FeedbackModal from './FeedbackModal.client';
 import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
 import { useGetMeetingNotEstimated } from '@/apis/meeting';
+import { useTranslation } from '@/app/i18n/client';
 import { Button } from '@/components/Button';
 import { GroupingCard } from '@/components/Card';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 
 export default function FeedbackContent() {
+  const { t } = useTranslation('meeting');
   const {
     data: { groups: meetingNotEstimatedData },
   } = useGetMeetingNotEstimated();
@@ -20,7 +22,7 @@ export default function FeedbackContent() {
       <SubtitleSection text="상호 평가가 필요한 모임" />
 
       {meetingNotEstimatedData.length === 0 && (
-        <NoMeeting message="상호평가가 필요한 모임이 없어요." />
+        <NoMeeting message={t('home.noMutualEvaluationGroups')} />
       )}
       {meetingNotEstimatedData.map((groupingData) => (
         <GroupingCard
@@ -36,7 +38,7 @@ export default function FeedbackContent() {
               open(() => <FeedbackModal onClose={exit} groupId={groupingData.group.groupId} />)
             }
           >
-            모임 평가하기
+            {t('home.evaluateGroup')}
           </Button>
         </GroupingCard>
       ))}

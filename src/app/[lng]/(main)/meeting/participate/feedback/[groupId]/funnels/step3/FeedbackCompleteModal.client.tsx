@@ -1,3 +1,4 @@
+import { useTranslation } from '@/app/i18n/client';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 
@@ -6,16 +7,17 @@ interface FeedbackCompleteModalProps {
 }
 
 export default function FeedbackCompleteModal({ onClose }: FeedbackCompleteModalProps) {
+  const { t } = useTranslation('meeting');
   return (
     <Modal variant="ok" okMessage="확인" onOkClick={onClose}>
       <Spacing size={36} />
       <h4 className="text-h4">Let’s go for a walk!</h4>
-      <p className="text-subtitle-1">모임 평가를 완료했습니다.</p>
+      <p className="text-subtitle-1">{t('evaluation.evaluationComplete')}</p>
       <Spacing size={12} />
       <p className="text-paragraph-1 text-sign-tertiary">
-        다른 재미있는 모임이
+        {t('evaluation.excitingGroups1')}
         <br />
-        회원님을 기다리고 있어요!
+        {t('evaluation.excitingGroups2')}
       </p>
       <Spacing size={20} />
     </Modal>
