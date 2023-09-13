@@ -3,6 +3,7 @@ import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatBirthBackspace, formatBirthTyping } from '../util';
 import { useGetNicknameDuplicate } from '@/apis/auth';
+import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Flex } from '@/components/Layout';
@@ -15,6 +16,7 @@ import { useFileUpload } from '@/hooks/useFileUpload';
 import type { ElementType, KeyboardEventHandler } from 'react';
 
 export default function InputForm() {
+  const { t: tc } = useTranslation('common');
   const hookForm = useJoinContext();
   const { watch, handleSubmit, setValue, register, setError, clearErrors } = hookForm;
   const { nextStep } = useFunnelContext();
@@ -80,7 +82,7 @@ export default function InputForm() {
 
       <Flex direction="column" gap={16}>
         <Flex direction="column" gap={4}>
-          <p className="text-subtitle-3">닉네임</p>
+          <p className="text-subtitle-3">{tc('nickname')}</p>
           <Flex align="start" gap={8}>
             <div className="w-full">
               <TextFieldController
@@ -146,8 +148,8 @@ export default function InputForm() {
             selectedValue={watch('gender')}
             onChange={(value) => setValue('gender', value)}
           >
-            <SegmentGroup.Segment value="MAIL" label="남성" />
-            <SegmentGroup.Segment value="FEMAIL" label="여성" />
+            <SegmentGroup.Segment value="MAIL" label={tc('male')} />
+            <SegmentGroup.Segment value="FEMAIL" label={tc('female')} />
           </SegmentGroup>
         </Flex>
       </Flex>
