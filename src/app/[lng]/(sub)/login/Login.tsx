@@ -10,23 +10,25 @@ export default function Login() {
   const { mutate: mutateLogin } = useLoginMutation();
   const router = useRouter();
 
-  const handlegetTokenFromCookie = async () => {
+  const handlegetTokenFromCookie = () => {
     mutateLogin(
       { phoneNumber: '010-2018-0262' },
       {
         onSuccess: (response: LoginResponse) => {
-          if (response.existUser) {
-            const {
-              token: { accessToken, refreshToken },
-              userId,
-            } = response;
-            setTokenAtCookie({
-              accessToken,
-              refreshToken,
-              userId,
-            });
-          }
-          router.push('/grouping');
+          (async () => {
+            if (response.existUser) {
+              const {
+                token: { accessToken, refreshToken },
+                userId,
+              } = response;
+              await setTokenAtCookie({
+                accessToken,
+                refreshToken,
+                userId,
+              });
+            }
+            router.push('/grouping');
+          })();
         },
       }
     );
