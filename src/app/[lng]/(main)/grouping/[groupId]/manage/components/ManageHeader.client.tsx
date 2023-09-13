@@ -1,10 +1,12 @@
 'use client';
+import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { useRouter } from 'next/navigation';
 
 export default function ManageHeader() {
+  const { t } = useTranslation('groupDetail');
   const router = useRouter();
 
   return (
@@ -13,7 +15,7 @@ export default function ManageHeader() {
         <IconButton size="large" onClick={() => router.back()}>
           <Icon id="24-close" />
         </IconButton>
-        <p>모임 지원서 관리</p>
+        <p>{t('manage.headerTitle')}</p>
       </Header.Left>
     </Header>
   );

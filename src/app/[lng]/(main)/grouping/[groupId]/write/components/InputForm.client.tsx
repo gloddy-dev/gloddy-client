@@ -3,6 +3,7 @@
 import ImageSection from './ImageSection.client';
 import WriteModal from './WriteModal';
 import { useGetGroupDetail, usePostArticle } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
@@ -16,6 +17,7 @@ import { useForm } from 'react-hook-form';
 import type { WriteFormValues } from '../type';
 
 export default function InputForm() {
+  const { t } = useTranslation('groupDetail');
   const { open, exit } = useModal();
   const { groupId } = useNumberParams<['groupId']>();
   const hookForm = useForm<WriteFormValues>({
@@ -48,7 +50,7 @@ export default function InputForm() {
           as="textarea"
           hookForm={hookForm}
           register={register('content', { required: true, minLength: 20, maxLength: 300 })}
-          placeholder="최소 20글자 이상의 게시글을 작성해보세요."
+          placeholder={t('writeArticle.content.placeholder')}
           maxCount={300}
           className="h-full"
         />
@@ -56,7 +58,7 @@ export default function InputForm() {
       {isCaptain && (
         <Flex className="gap-8 px-20 py-12" onClick={() => setValue('notice', !watch('notice'))}>
           <CircleCheckbox checked={watch('notice')} />
-          <p className="text-subtitle-2">위 게시글을 공지로 설정합니다.</p>
+          <p className="text-subtitle-2">{t('writeArticle.notice')}</p>
         </Flex>
       )}
       <Spacing size={16} />
@@ -69,7 +71,7 @@ export default function InputForm() {
           }
           disabled={!formState.isValid}
         >
-          글쓰기
+          {t('writeArticle.submit.label')}
         </Button>
       </ButtonGroup>
       <LayerLoading isLoading={status === 'loading' || status === 'success'} />

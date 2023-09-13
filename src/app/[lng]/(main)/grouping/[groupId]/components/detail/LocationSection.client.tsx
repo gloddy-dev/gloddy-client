@@ -1,6 +1,7 @@
 'use client';
 
 import { useGetGroupDetail } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
@@ -16,6 +17,7 @@ import { GoogleMap, Libraries, Marker } from '@react-google-maps/api';
 // const libraries: Libraries = ['places'];
 
 export default function LocationSection() {
+  const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { placeName, placeLatitude, placeLongitude, placeAddress, placeId } = groupDetailData;
@@ -23,7 +25,7 @@ export default function LocationSection() {
 
   return (
     <section>
-      <h2 className="pl-4 text-subtitle-3 text-sign-secondary">모임 위치</h2>
+      <h2 className="pl-4 text-subtitle-3 text-sign-secondary">{t('details.place')}</h2>
       <Spacing size={4} />
       <div className="relative overflow-hidden rounded-8 bg-divider">
         <div className="aspect-video w-full">

@@ -1,5 +1,6 @@
 'use client';
 import { useDeleteScrapGroups, useGetGroupDetail, usePostScrap } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { ImageModal } from '@/components/Modal';
@@ -10,6 +11,7 @@ import { useShowMore } from '@/hooks/useShowMore';
 import Image from 'next/image';
 
 export default function TopSection() {
+  const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
   const { open, exit } = useModal();
   const { contentRef, toggleShowFullText, shouldShowButton, showFullText } = useShowMore({
@@ -73,7 +75,7 @@ export default function TopSection() {
             className="p-2 text-subtitle-2 text-sign-sub"
             onClick={() => toggleShowFullText()}
           >
-            {showFullText ? '접기' : '더보기'}
+            {t(showFullText ? 'fold' : 'more')}
           </button>
         )}
       </div>

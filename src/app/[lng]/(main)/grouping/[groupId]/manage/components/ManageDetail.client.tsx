@@ -2,6 +2,7 @@
 
 import ApplyCard from './ApplyCard.client';
 import { useGetApplies } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
@@ -11,6 +12,7 @@ import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function ManageDetail() {
+  const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
 
   const { data: appliesData } = useGetApplies(groupId);
@@ -22,7 +24,7 @@ export default function ManageDetail() {
     return (
       <Flex direction="column" justify="center" align="center" className="my-80 gap-8">
         <Icon id="48-cancel" width={48} height={48} />
-        <p className="text-sign-tertiary">아직 지원서가 없어요.</p>
+        <p className="text-sign-tertiary">{t('manage.empty')}</p>
       </Flex>
     );
   }
@@ -31,11 +33,7 @@ export default function ManageDetail() {
     <div>
       <Spacing size={32} />
       <Flex justify="between" align="end" className="px-20">
-        <p className="text-h4 text-sign-cto">
-          모임에 가입하고 싶은 멤버의
-          <br />
-          지원서를 확인해주세요
-        </p>
+        <p className="text-h4 text-sign-cto">{t('manage.description')}</p>
         <Flex align="center">
           <Icon id="16-application" width={16} height={16} />
           <p className="text-caption text-sign-sub">

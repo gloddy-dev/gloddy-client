@@ -4,6 +4,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { useModal } from '@/hooks/useModal';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 
 interface NoticeItemProps {
   notice: Notice;
@@ -12,6 +13,7 @@ interface NoticeItemProps {
 }
 
 export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
+  const { t } = useTranslation('groupDetail');
   const { content, noticeId } = notice;
   const router = useRouter();
   const { open, exit } = useModal();
@@ -44,7 +46,7 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
                 <WarningModal
                   onCancelClick={exit}
                   onOkClick={handleDeleteClick}
-                  content="해당 공지글을 삭제하시겠습니까?"
+                  content={t('notice.delete.content')}
                 />
               ));
             }}
