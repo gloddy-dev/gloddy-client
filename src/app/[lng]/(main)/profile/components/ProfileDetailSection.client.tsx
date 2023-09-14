@@ -104,6 +104,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 size="small"
                 className="border-none bg-brand-color text-primary-dark"
               >
+                {personalityList.find((it) => it.keywordDTO === personality)?.emoji + ' '}
                 {t(
                   'keyword.' +
                     personalityList.find((it) => it.keywordDTO === personality)?.keyword || ''
