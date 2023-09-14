@@ -31,6 +31,8 @@
   "재학생 인증 필요": "Student Verification Required",
   "거절됨": "Rejected",
   "신규 지원": "New Application",
+  "심사중": "Under Review",
+  "모집중": "Recruiting",
   "home": {
     "gender": {
       "male": "Male",
