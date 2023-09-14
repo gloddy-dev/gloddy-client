@@ -64,6 +64,7 @@ function PersonalitySection() {
           isSelected={watch('personalityIdList').includes(tag.id)}
           onSelected={handleSelectedClick}
         >
+          {tag.emoji + ' '}
           {tag.keyword}
         </Tag>
       ))}

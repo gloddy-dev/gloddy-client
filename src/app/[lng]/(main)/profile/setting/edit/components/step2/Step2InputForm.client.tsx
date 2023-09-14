@@ -41,6 +41,7 @@ export default function Step2InputForm({ onPrevClick }: InputFormProps) {
             isSelected={watch('personalities').includes(tag.keywordDTO)}
             onSelected={handleSelectedClick}
           >
+            {tag.emoji + ' '}
             {t('keyword.' + tag.keyword)}
           </Tag>
         ))}
