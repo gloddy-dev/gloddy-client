@@ -106,6 +106,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
       <Flex className="flex-wrap gap-4" align="center">
         {personalities.map((personality, index) => (
           <Tag isSelected size="small" variant="solid" key={index}>
+            {personalityList.find((it) => it.keywordDTO === personality)?.emoji + ' '}
             {t(
               'keyword.' + personalityList.find((it) => it.keywordDTO === personality)?.keyword ||
                 ''
