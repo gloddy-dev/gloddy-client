@@ -2,9 +2,9 @@
 
 import { Icon } from '../Icon';
 import { useDeleteScrapMeeting } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import usePlaceDetails from '@/hooks/usePlaceDetails';
 import cn from '@/utils/cn';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 import Image from 'next/image';
@@ -148,6 +148,8 @@ interface StatusBadgeProps {
 }
 
 function StatusBadge({ status }: StatusBadgeProps) {
+  const { t } = useTranslation('profile');
+
   return (
     <Flex
       className={cn('h-22 shrink-0 rounded-4 border-1 px-4 py-2 text-caption', {
@@ -156,7 +158,7 @@ function StatusBadge({ status }: StatusBadgeProps) {
         'border-primary bg-brand-color text-primary': blueBadge.includes(status),
       })}
     >
-      {status}
+      {t(status)}
     </Flex>
   );
 }

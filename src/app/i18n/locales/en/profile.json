@@ -28,6 +28,9 @@
     "leaderType": "Leader-type",
     "humorous": "Humorous"
   },
+  "재학생 인증 필요": "Student Verification Required",
+  "거절됨": "Rejected",
+  "신규 지원": "New Application",
   "home": {
     "gender": {
       "male": "Male",
@@ -38,7 +41,6 @@
     "trustScore": "Trust Score",
     "joined": "Joined",
     "selfIntro": "Self-Introduction",
-    "studentVerification": "Student Verification Required",
     "noSelfIntro": "Self-introduction hasn’t been registered yet!",
 
     "participatedGroupCount": "Accumulated Meetings",
