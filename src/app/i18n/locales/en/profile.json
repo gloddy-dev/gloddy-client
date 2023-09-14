@@ -2,7 +2,9 @@
   "birth": "Date of Birth",
   "gender": "Gender",
   "introduce": "Self-introduction ",
-  "personality": "Personality ",
+  "personality": "Personality",
+  "세": "years old",
+
   "keyword": {
     "extroverted": "Extroverted",
     "introverted": "Introverted",
@@ -66,6 +68,10 @@
     "confirmWithdrawal": "Are you sure you want to withdraw?",
     "withdrawalComplete": "Your membership withdrawal has been completed.",
     "thankYou": "Thank you for using Gloddy and for your love and support.",
-    "promise": "Gloddy will continue to strive for further improvement and growth."
+    "promise": "Gloddy will continue to strive for further improvement and growth.",
+    "pickThree": "Please select 3.",
+
+    "사용자님의 성격을": "Pick your",
+    "선택해주세요!": "personality traits!"
   }
 }

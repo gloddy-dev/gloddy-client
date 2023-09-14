@@ -90,7 +90,10 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
               <Icon id="16-birth" width={16} height={16} />
-              <span>{age}세</span>
+              <span>
+                {age}
+                {t('세')}
+              </span>
             </Flex>
           </Flex>
           <Spacing size={16} />
