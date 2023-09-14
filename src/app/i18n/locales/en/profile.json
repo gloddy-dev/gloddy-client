@@ -4,6 +4,12 @@
   "introduce": "Self-introduction ",
   "personality": "Personality",
   "세": "years old",
+  "praise": {
+    "calm": "Calm",
+    "kind": "Kind",
+    "active": "Active",
+    "humor": "Humor"
+  },
 
   "keyword": {
     "extroverted": "Extroverted",
