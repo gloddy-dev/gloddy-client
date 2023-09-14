@@ -8,7 +8,9 @@
   "profile": "Profile",
   "yes": "Yes",
   "no": "No",
+  "명": "person",
   "confirm": "Confirm",
+  "complete": "Complete",
   "reportMessage1": "The report has been received.",
   "reportMessage2": "We will make every effort for a prompt resolution.",
   "blockMessage": "Blocking has been completed."

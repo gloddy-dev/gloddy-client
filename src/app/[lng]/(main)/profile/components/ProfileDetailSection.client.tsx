@@ -64,7 +64,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 className="absolute bottom-0 rounded-8 border border-warning bg-warning-color px-2 py-4 text-caption text-warning"
                 onClick={() => isPrivateProfile && router.push('/profile/verify')}
               >
-                재학생 인증 필요
+                {t('재학생 인증 필요')}
               </Flex>
             )}
           </Avatar>
@@ -90,7 +90,10 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
               <Icon id="16-birth" width={16} height={16} />
-              <span>{age}세</span>
+              <span>
+                {age}
+                {t('세')}
+              </span>
             </Flex>
           </Flex>
           <Spacing size={16} />
@@ -101,7 +104,10 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 size="small"
                 className="border-none bg-brand-color text-primary-dark"
               >
-                {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
+                {t(
+                  'keyword.' +
+                    personalityList.find((it) => it.keywordDTO === personality)?.keyword || ''
+                )}
               </Tag>
             ))}
           </Flex>

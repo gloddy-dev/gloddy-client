@@ -2,14 +2,17 @@
   "birth": "Date of Birth",
   "gender": "Gender",
   "introduce": "Self-introduction ",
-  "personality": "Personality ",
+  "personality": "Personality",
+  "세": "years old",
+  "selectPeronsonality": "Select your personality traits",
+  "praise": {
+    "calm": "Calm",
+    "kind": "Kind",
+    "active": "Active",
+    "humor": "Humor"
+  },
 
-  "home": {
-    "gender": {
-      "male": "Male",
-      "female": "Female"
-    },
-    "personalityTraits": "Personality Traits",
+  "keyword": {
     "extroverted": "Extroverted",
     "introverted": "Introverted",
     "discreet": "Discreet",
@@ -23,11 +26,23 @@
     "playful": "Playful",
     "sensible": "Sensible",
     "leaderType": "Leader-type",
-    "humorous": "Humorous",
+    "humorous": "Humorous"
+  },
+  "재학생 인증 필요": "Student Verification Required",
+  "거절됨": "Rejected",
+  "신규 지원": "New Application",
+  "심사중": "Under Review",
+  "모집중": "Recruiting",
+  "home": {
+    "gender": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "personalityTraits": "Personality Traits",
+
     "trustScore": "Trust Score",
     "joined": "Joined",
     "selfIntro": "Self-Introduction",
-    "studentVerification": "Student Verification Required",
     "noSelfIntro": "Self-introduction hasn’t been registered yet!",
 
     "participatedGroupCount": "Accumulated Meetings",
@@ -64,6 +79,10 @@
     "confirmWithdrawal": "Are you sure you want to withdraw?",
     "withdrawalComplete": "Your membership withdrawal has been completed.",
     "thankYou": "Thank you for using Gloddy and for your love and support.",
-    "promise": "Gloddy will continue to strive for further improvement and growth."
+    "promise": "Gloddy will continue to strive for further improvement and growth.",
+    "pickThree": "Please select 3.",
+
+    "사용자님의 성격을": "Pick your",
+    "선택해주세요!": "personality traits!"
   }
 }
