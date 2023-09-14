@@ -3,6 +3,7 @@
   "gender": "성별",
   "introduce": "자기소개",
   "personality": "성격",
+  "세": "세",
 
   "keyword": {
     "extroverted": "외향적인",
@@ -69,6 +70,10 @@
     "confirmWithdrawal": "정말 탈퇴하시겠어요?",
     "withdrawalComplete": "회원 탈퇴가 완료되었습니다.",
     "thankYou": "Gloddy를 이용해주시고 사랑해주셔서 감사합니다.",
-    "promise": "더욱 발전하고 노력하는 Gloddy가 되겠습니다."
+    "promise": "더욱 발전하고 노력하는 Gloddy가 되겠습니다.",
+    "pickThree": "3개를 선택해주세요.",
+
+    "사용자님의 성격을": "사용자님의 성격을",
+    "선택해주세요!": "선택해주세요!"
   }
 }
