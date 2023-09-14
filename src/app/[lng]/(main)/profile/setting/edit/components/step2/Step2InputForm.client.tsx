@@ -13,6 +13,7 @@ interface InputFormProps {
 export default function Step2InputForm({ onPrevClick }: InputFormProps) {
   const { watch, setValue } = useEditContext();
   const { t } = useTranslation('profile');
+  const { t: tc } = useTranslation('common');
 
   const handleSelectedClick = useCallback(
     (personality: PersonalityType['keywordDTO']) => {
@@ -46,7 +47,7 @@ export default function Step2InputForm({ onPrevClick }: InputFormProps) {
       </section>
       <ButtonGroup>
         <Button disabled={watch('personalities').length !== 3} type="button" onClick={onPrevClick}>
-          완료
+          {tc('complete')}
         </Button>
       </ButtonGroup>
     </form>
