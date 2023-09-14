@@ -19,7 +19,7 @@ export default function MatesDetail() {
 
   return (
     <main>
-      {matesData.length === 0 && <NoMeeting message={t('noReview')} />}
+      {matesData.length === 0 && <NoMeeting message={t('home.noReview')} />}
       {matesData.map((mateData) => (
         <Mates key={mateData.createdAt} mateData={mateData} />
       ))}
