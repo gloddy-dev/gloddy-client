@@ -7,7 +7,9 @@
   "profile": "프로필",
   "yes": "네",
   "no": "아니오",
+  "명": "명",
   "confirm": "확인",
+  "complete": "완료",
   "reportMessage1": "신고가 접수되었습니다.",
   "reportMessage2": "빠른 처리를 위해 노력하겠습니다.",
   "blockMessage": "차단이 완료되었습니다."

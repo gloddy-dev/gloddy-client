@@ -29,7 +29,8 @@
     "noPendingGroups": "아직 대기중인 모임이 없어요.",
     "noRejectedGroups": "거절된 모임이 없어요",
     "noMutualEvaluationGroups": "상호평가가 필요한 모임이 없어요",
-    "noFavoritedGroups": "아직 찜한 모임이 없어요."
+    "noFavoritedGroups": "아직 찜한 모임이 없어요.",
+    "noReview": "작성한 후기가 없습니다."
   },
   "evaluation": {
     "evaluateGroup": "모임 평가하기",

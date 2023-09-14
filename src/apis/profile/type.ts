@@ -10,7 +10,7 @@ export interface ProfileResponse {
   birth: string;
   school: string;
   introduce: string;
-  personalities: Array<PersonalityType['keywordInEnglish']>;
+  personalities: Array<PersonalityType['keywordDTO']>;
   joinAt: string;
   reliabilityLevel: ReliabilityType;
   reliabilityScore: 0;
@@ -25,7 +25,7 @@ export interface ProfileRequest {
   birth: string;
   gender: 'MAIL' | 'FEMAIL';
   introduce: string;
-  personalities: Array<PersonalityType['keywordInEnglish']>;
+  personalities: Array<PersonalityType['keywordDTO']>;
 }
 
 export interface PraisesResponse {

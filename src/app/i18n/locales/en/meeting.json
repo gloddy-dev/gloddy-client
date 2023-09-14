@@ -26,7 +26,8 @@
     "noPendingGroups": "There are no groups pending approval yet.",
     "noRejectedGroups": "No rejected Groups",
     "noMutualEvaluationGroups": "No Groups requiring mutual evaluation.",
-    "noFavoritedGroups": "You haven’t favorited any groups yet."
+    "noFavoritedGroups": "You haven’t favorited any groups yet.",
+    "noReview": "No reviews yet."
   },
   "evaluation": {
     "evaluateGroup": "Evaluate the Group",

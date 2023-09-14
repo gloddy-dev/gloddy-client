@@ -3,7 +3,14 @@
   "gender": "성별",
   "introduce": "자기소개",
   "personality": "성격",
-
+  "세": "세",
+  "selectPeronsonality": "성격 선택",
+  "praise": {
+    "calm": "차분해요.",
+    "kind": "친절해요.",
+    "active": "적극적이에요.",
+    "humor": "유머러스해요."
+  },
   "keyword": {
     "extroverted": "외향적인",
     "introverted": "내향적인",
@@ -20,6 +27,11 @@
     "leaderType": "리더십 있는",
     "humorous": "유머러스한"
   },
+  "재학생 인증 필요": "재학생 인증 필요",
+  "거절됨": "거절됨",
+  "신규 지원": "신규 지원",
+  "심사중": "심사중",
+  "모집중": "모집중",
   "home": {
     "gender": {
       "male": "남",
@@ -29,7 +41,6 @@
     "trustScore": "신뢰도 지표",
     "joined": "가입",
     "selfIntro": "자기 소개",
-    "studentVerification": "재학생 인증 필요",
     "noSelfIntro": "자기소개가 아직 등록되지 않았어요!",
 
     "participatedGroupCount": "누적 모임",
@@ -69,6 +80,10 @@
     "confirmWithdrawal": "정말 탈퇴하시겠어요?",
     "withdrawalComplete": "회원 탈퇴가 완료되었습니다.",
     "thankYou": "Gloddy를 이용해주시고 사랑해주셔서 감사합니다.",
-    "promise": "더욱 발전하고 노력하는 Gloddy가 되겠습니다."
+    "promise": "더욱 발전하고 노력하는 Gloddy가 되겠습니다.",
+    "pickThree": "3개를 선택해주세요.",
+
+    "사용자님의 성격을": "사용자님의 성격을",
+    "선택해주세요!": "선택해주세요!"
   }
 }
