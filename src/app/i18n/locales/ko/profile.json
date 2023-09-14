@@ -27,6 +27,9 @@
     "leaderType": "리더십 있는",
     "humorous": "유머러스한"
   },
+  "재학생 인증 필요": "재학생 인증 필요",
+  "거절됨": "거절됨",
+  "신규 지원": "신규 지원",
   "home": {
     "gender": {
       "male": "남",
@@ -36,7 +39,6 @@
     "trustScore": "신뢰도 지표",
     "joined": "가입",
     "selfIntro": "자기 소개",
-    "studentVerification": "재학생 인증 필요",
     "noSelfIntro": "자기소개가 아직 등록되지 않았어요!",
 
     "participatedGroupCount": "누적 모임",

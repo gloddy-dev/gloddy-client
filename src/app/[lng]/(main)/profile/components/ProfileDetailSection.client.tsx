@@ -64,7 +64,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 className="absolute bottom-0 rounded-8 border border-warning bg-warning-color px-2 py-4 text-caption text-warning"
                 onClick={() => isPrivateProfile && router.push('/profile/verify')}
               >
-                재학생 인증 필요
+                {t('재학생 인증 필요')}
               </Flex>
             )}
           </Avatar>

@@ -60,6 +60,8 @@ interface PraiseItemProps {
 
 function PraiseItem({ praise, count }: PraiseItemProps) {
   const { t } = useTranslation('profile');
+  const { t: tc } = useTranslation('common');
+
   return (
     <Flex align="center" justify="between" className="rounded-8 bg-sub py-8">
       <div className="flex items-center">
@@ -70,7 +72,7 @@ function PraiseItem({ praise, count }: PraiseItemProps) {
       <div className="text-secondary flex items-center">
         <h4 className="text-h4">{count}</h4>
         <Spacing size={8} direction="horizontal" />
-        <span className="text-subtitle">{t('명')}</span>
+        <span className="text-subtitle">{tc('명')}</span>
         <Spacing size={20} direction="horizontal" />
       </div>
     </Flex>
