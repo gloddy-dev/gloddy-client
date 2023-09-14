@@ -122,7 +122,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
 
       <ButtonGroup>
         <Button type="submit" disabled={!isAllTyped}>
-          확인
+          {tc('confirm')}
         </Button>
       </ButtonGroup>
     </form>
