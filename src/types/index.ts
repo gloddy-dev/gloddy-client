@@ -33,8 +33,9 @@ export type CookieKeyType = {
 
 export type PersonalityType = {
   id: number;
+  emoji: string;
   keyword: string;
-  keywordInEnglish: string;
+  keywordDTO: string;
 };
 
 export type ReliabilityType = 'HOOD' | 'MATE' | 'SOULMATE' | 'GLODDY';
