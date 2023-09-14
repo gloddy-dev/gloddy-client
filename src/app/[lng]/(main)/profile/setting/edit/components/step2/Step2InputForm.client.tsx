@@ -1,4 +1,5 @@
 import { useEditContext } from '../EditProvider.client';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
@@ -11,9 +12,10 @@ interface InputFormProps {
 
 export default function Step2InputForm({ onPrevClick }: InputFormProps) {
   const { watch, setValue } = useEditContext();
+  const { t } = useTranslation('profile');
 
   const handleSelectedClick = useCallback(
-    (personality: PersonalityType['keywordInEnglish']) => {
+    (personality: PersonalityType['keywordDTO']) => {
       const list = watch('personalities');
       if (list.includes(personality)) {
         setValue(
@@ -34,11 +36,11 @@ export default function Step2InputForm({ onPrevClick }: InputFormProps) {
         {personalityList.map((tag) => (
           <Tag
             key={tag.id}
-            id={tag.keywordInEnglish}
-            isSelected={watch('personalities').includes(tag.keywordInEnglish)}
+            id={tag.keywordDTO}
+            isSelected={watch('personalities').includes(tag.keywordDTO)}
             onSelected={handleSelectedClick}
           >
-            {tag.keyword}
+            {t('keyword.' + tag.keyword)}
           </Tag>
         ))}
       </section>

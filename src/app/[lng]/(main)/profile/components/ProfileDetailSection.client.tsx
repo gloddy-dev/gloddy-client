@@ -101,7 +101,10 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 size="small"
                 className="border-none bg-brand-color text-primary-dark"
               >
-                {personalityList.find((it) => it.keywordInEnglish === personality)?.keyword}
+                {t(
+                  'keyword.' +
+                    personalityList.find((it) => it.keywordDTO === personality)?.keyword || ''
+                )}
               </Tag>
             ))}
           </Flex>
