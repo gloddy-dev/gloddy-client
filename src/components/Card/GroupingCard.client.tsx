@@ -8,7 +8,7 @@ import usePlaceDetails from '@/hooks/usePlaceDetails';
 import cn from '@/utils/cn';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { type HTMLAttributes, type PropsWithChildren, useEffect, useState } from 'react';
 
 import type { Grouping } from '@/apis/groups/type';
@@ -49,7 +49,14 @@ export default function GroupingCard({
     placeAddress,
     placeId,
   } = groupingData;
+  const { lng } = useParams() as { lng: string };
   const router = useRouter();
+  const { place } = usePlaceDetails({
+    placeId,
+    fields: ['formatted_address'],
+    language: lng,
+    region: 'KR',
+  });
 
   let status = '';
   if (isNew) status = 'NEW';
@@ -89,7 +96,7 @@ export default function GroupingCard({
           <Flex align="center" className="text-caption text-sign-tertiary">
             <Icon id="16-location" width={16} height={16} />
             <Spacing size={4} direction="horizontal" />
-            <p className="truncate">{placeAddress}</p>
+            <p className="truncate">{place?.formatted_address || placeAddress}</p>
           </Flex>
           <Spacing size={4} />
           <Flex align="center" className="text-caption text-sign-tertiary">

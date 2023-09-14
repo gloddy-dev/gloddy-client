@@ -6,7 +6,7 @@ export default function usePlaceDetails(requests: google.maps.places.PlaceDetail
   const [place, setPlace] = useState<google.maps.places.PlaceResult | null>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof google === 'undefined' || !requests.placeId) return;
 
     const service = new google.maps.places.PlacesService(document.createElement('div'));
     service.getDetails(requests, (result) => {
