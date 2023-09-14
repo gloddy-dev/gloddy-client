@@ -4,13 +4,13 @@
   "introduce": "자기소개",
   "personality": "성격",
   "세": "세",
+  "selectPeronsonality": "성격 선택",
   "praise": {
     "calm": "차분해요.",
     "kind": "친절해요.",
     "active": "적극적이에요.",
     "humor": "유머러스해요."
   },
-
   "keyword": {
     "extroverted": "외향적인",
     "introverted": "내향적인",
