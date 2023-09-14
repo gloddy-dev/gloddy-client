@@ -58,8 +58,6 @@ export default function GroupingCard({
     region: 'KR',
   });
 
-  console.log(place);
-
   let status = '';
   if (isNew) status = 'NEW';
   if (isExistNewApply) status = '신규 지원';
