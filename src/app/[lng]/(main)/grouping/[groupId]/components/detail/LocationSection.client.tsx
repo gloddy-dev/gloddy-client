@@ -5,23 +5,21 @@ import { useTranslation } from '@/app/i18n/client';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
-import { GoogleMap, Libraries, Marker } from '@react-google-maps/api';
-
-// const requests = {
-//   placeId: 'ChIJ59CDR6GofDURced1F1WLGQ8',
-//   fields: ['name', 'formatted_address'],
-//   language: 'ko',
-//   region: 'KR',
-// };
-
-// const libraries: Libraries = ['places'];
+import { GoogleMap, Marker } from '@react-google-maps/api';
+import { useParams } from 'next/navigation';
 
 export default function LocationSection() {
+  const { lng } = useParams() as { lng: string };
   const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { placeName, placeLatitude, placeLongitude, placeAddress, placeId } = groupDetailData;
-  // const { place } = usePlaceDetails(requests);
+  const { place } = usePlaceDetails({
+    placeId,
+    fields: ['name', 'formatted_address'],
+    language: lng,
+    region: 'KR',
+  });
 
   return (
     <section>
@@ -44,11 +42,13 @@ export default function LocationSection() {
 
         <div className="p-16">
           <p>
-            <span className="text-subtitle-2">{placeName}</span>
+            <span className="text-subtitle-2">{place?.name || placeName}</span>
             {/* <span className="pl-4 text-caption text-sign-sub">호프, 요리주점</span> */}
           </p>
           <Spacing size={2} />
-          <p className="text-paragraph-2 text-sign-secondary">{placeAddress}</p>
+          <p className="text-paragraph-2 text-sign-secondary">
+            {place?.formatted_address || placeAddress}
+          </p>
         </div>
       </div>
     </section>

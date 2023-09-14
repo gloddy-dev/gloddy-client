@@ -4,7 +4,6 @@ export const convertShowMember = (
   currentMember: EstimateRequest['payload']['praiseInfos'],
   totalMember: EstimateResponse['groupMemberList']
 ) => {
-  console.log(totalMember);
   const noShowMemberUserIdList = currentMember
     .filter((it) => it.praiseValue === '불참')
     .map((it) => it.userId);
