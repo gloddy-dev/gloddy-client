@@ -19,7 +19,7 @@ export default function InputForm() {
     const signUpRequest = {
       ...rest,
       birth: formatDateDTO(birth),
-      personalities: personalityIdList.map((id) => personalityList[id].keywordInEnglish),
+      personalities: personalityIdList.map((id) => personalityList[id].keywordDTO),
     };
     mutateSignUp(signUpRequest);
   };
