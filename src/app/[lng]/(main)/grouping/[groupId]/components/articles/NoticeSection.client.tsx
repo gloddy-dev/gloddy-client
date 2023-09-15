@@ -1,7 +1,7 @@
 'use client';
 
 import NoticeItem from './NoticeItem.client';
-import { useGetGroupDetail, useGetNotices } from '@/apis/groups';
+import { GroupDetailResponse, useGetNotices } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
@@ -10,13 +10,12 @@ import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
 
-export default function NoticeSection() {
+interface NoticeSectionProps extends GroupDetailResponse {}
+
+export default function NoticeSection({ isCaptain }: NoticeSectionProps) {
   const { t } = useTranslation('groupDetail');
   const { blockNoticeIds } = useBlockStore();
   const { groupId } = useNumberParams<['groupId']>();
-
-  const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { isCaptain } = groupDetailData;
 
   const { data: noticesData } = useGetNotices(groupId);
 

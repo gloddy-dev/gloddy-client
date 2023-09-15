@@ -7,7 +7,6 @@ import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { usePathname, useRouter } from 'next/navigation';
-import { Suspense } from 'react';
 
 export default function DetailContent() {
   const { t } = useTranslation('groupDetail');
@@ -18,7 +17,7 @@ export default function DetailContent() {
   const { isApplyWaited, myGroup } = groupDetailData;
 
   return (
-    <Suspense>
+    <>
       <MemberSection {...groupDetailData} />
       <TimeSection {...groupDetailData} />
       <LocationSection {...groupDetailData} />
@@ -29,6 +28,6 @@ export default function DetailContent() {
           </Button>
         </ButtonGroup>
       )}
-    </Suspense>
+    </>
   );
 }
