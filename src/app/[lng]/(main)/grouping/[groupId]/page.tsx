@@ -1,6 +1,6 @@
 import GroupDetailPage from './components/GroupDetail.client';
 import GroupDetailHeader from './components/GroupDetailHeader.client';
-import { Keys, getGroupDetail, getGroupMembers } from '@/apis/groups';
+import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
 import { PageAnimation } from '@/components/PageAnimation';
@@ -25,8 +25,16 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
       >
         <PageAnimation>
           <HydrationProvider
-            queryMultipleFn={[() => getGroupDetail(groupId), () => getGroupMembers(groupId)]}
-            queryMultipleKey={[Keys.getGroupDetail(groupId), Keys.getGroupMembers(groupId)]}
+            queryMultipleFn={[
+              () => getGroupDetail(groupId),
+              () => getGroupMembers(groupId),
+              () => getNotices(groupId),
+            ]}
+            queryMultipleKey={[
+              Keys.getGroupDetail(groupId),
+              Keys.getGroupMembers(groupId),
+              Keys.getNotices(groupId),
+            ]}
           >
             <GroupDetailPage />
           </HydrationProvider>
