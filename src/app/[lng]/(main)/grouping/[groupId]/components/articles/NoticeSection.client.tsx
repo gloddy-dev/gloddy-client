@@ -1,7 +1,7 @@
 'use client';
 
 import NoticeItem from './NoticeItem.client';
-import { useGetGroupDetail, useGetNotices } from '@/apis/groups';
+import { GroupDetailResponse, useGetNotices } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
@@ -10,13 +10,12 @@ import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
 
-export default function NoticeSection() {
+interface NoticeSectionProps extends GroupDetailResponse {}
+
+export default function NoticeSection({ isCaptain }: NoticeSectionProps) {
   const { t } = useTranslation('groupDetail');
   const { blockNoticeIds } = useBlockStore();
   const { groupId } = useNumberParams<['groupId']>();
-
-  const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { isCaptain } = groupDetailData;
 
   const { data: noticesData } = useGetNotices(groupId);
 
@@ -27,18 +26,15 @@ export default function NoticeSection() {
       <div className="rounded-8 bg-card-ui p-16 text-subtitle-3 text-sign-secondary">
         <p className="pl-4">{t('board.notice')}</p>
         <Spacing size={6} />
-        {notices.length ? (
-          <ItemList
-            data={notices}
-            renderItem={(notice) =>
-              !blockNoticeIds.includes(notice.noticeId) && (
-                <NoticeItem notice={notice} groupId={groupId} isCaptain={isCaptain} />
-              )
-            }
-          />
-        ) : (
-          <EmptyNotice />
-        )}
+        <ItemList
+          data={notices}
+          renderItem={(notice) =>
+            !blockNoticeIds.includes(notice.noticeId) && (
+              <NoticeItem notice={notice} groupId={groupId} isCaptain={isCaptain} />
+            )
+          }
+          renderEmpty={() => <EmptyNotice />}
+        />
       </div>
     </section>
   );
