@@ -1,19 +1,23 @@
 'use client';
 
-import { useGetGroupDetail } from '@/apis/groups';
+import { GroupDetailResponse } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Spacing } from '@/components/Spacing';
-import { useNumberParams } from '@/hooks/useNumberParams';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
 import { GoogleMap, Marker } from '@react-google-maps/api';
 import { useParams } from 'next/navigation';
 
-export default function LocationSection() {
+interface LocationSectionProps extends GroupDetailResponse {}
+
+export default function LocationSection({
+  placeName,
+  placeLatitude,
+  placeLongitude,
+  placeAddress,
+  placeId,
+}: LocationSectionProps) {
   const { lng } = useParams() as { lng: string };
   const { t } = useTranslation('groupDetail');
-  const { groupId } = useNumberParams<['groupId']>();
-  const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { placeName, placeLatitude, placeLongitude, placeAddress, placeId } = groupDetailData;
   const { place } = usePlaceDetails({
     placeId,
     fields: ['name', 'formatted_address'],
@@ -21,8 +25,10 @@ export default function LocationSection() {
     region: 'KR',
   });
 
+  if (typeof google === 'undefined') return null;
+
   return (
-    <section>
+    <section className="p-20 pb-8">
       <h2 className="pl-4 text-subtitle-3 text-sign-secondary">{t('details.place')}</h2>
       <Spacing size={4} />
       <div className="relative overflow-hidden rounded-8 bg-divider">

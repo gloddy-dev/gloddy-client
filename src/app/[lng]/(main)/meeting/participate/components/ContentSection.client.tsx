@@ -4,8 +4,9 @@ import ParticipatingContent from './ParticipatingContent.client';
 import WaitingContent from './WaitingContent.client';
 import { useTranslation } from '@/app/i18n/client';
 import { Tabs } from '@/components/Tabs';
+import { Suspense } from 'react';
 
-export default function ContentTabs() {
+export default function ContentSection() {
   const { t } = useTranslation('meeting');
 
   return (
@@ -16,13 +17,19 @@ export default function ContentTabs() {
         <Tabs.Tab value="feedback" text={t('home.evaluation')} />
       </Tabs.List>
       <Tabs.Panel value="participating">
-        <ParticipatingContent />
+        <Suspense>
+          <ParticipatingContent />
+        </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="waiting">
-        <WaitingContent />
+        <Suspense>
+          <WaitingContent />
+        </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="feedback">
-        <FeedbackContent />
+        <Suspense>
+          <FeedbackContent />
+        </Suspense>
       </Tabs.Panel>
     </Tabs>
   );

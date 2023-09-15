@@ -38,7 +38,7 @@ export const postCreateGroup = (CreateGroupData: CreateGroupRequest) => {
 };
 
 export const getArticles = (groupId: number, page: number) => {
-  return privateApi.get<ArticlesResponse>(`/groups/${groupId}/articles?size=40&page=${page}`);
+  return privateApi.get<ArticlesResponse>(`/groups/${groupId}/articles?size=5&page=${page}`);
 };
 
 export const getArticle = (groupId: number, articleId: number) => {

@@ -5,6 +5,7 @@ import { ComponentProps, Fragment } from 'react';
 interface ItemListProps<T> extends Omit<ComponentProps<typeof Flex>, 'children'> {
   data: T[];
   renderItem: (data: T) => JSX.Element | boolean | null | undefined;
+  renderEmpty?: () => JSX.Element | boolean | null | undefined;
   direction?: 'row' | 'column';
   className?: string;
   hasDivider?: boolean;
@@ -13,6 +14,7 @@ interface ItemListProps<T> extends Omit<ComponentProps<typeof Flex>, 'children'>
 export default function ItemList<T>({
   data,
   renderItem,
+  renderEmpty,
   direction = 'column',
   className,
   hasDivider = true,
@@ -20,14 +22,16 @@ export default function ItemList<T>({
 }: ItemListProps<T>) {
   return (
     <Flex direction={direction} className={className} {...props}>
-      {data.map((item, index) => {
-        return (
-          <Fragment key={index}>
-            {renderItem(item)}
-            {renderItem(item) && hasDivider && index !== data.length - 1 && <Divider />}
-          </Fragment>
-        );
-      })}
+      {data.length === 0
+        ? renderEmpty?.()
+        : data.map((item, index) => {
+            return (
+              <Fragment key={index}>
+                {renderItem(item)}
+                {renderItem(item) && hasDivider && index !== data.length - 1 && <Divider />}
+              </Fragment>
+            );
+          })}
     </Flex>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetGroupDetail, useGetGroupMembers } from '@/apis/groups';
+import { GroupDetailResponse, useGetGroupMembers } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
@@ -9,20 +9,19 @@ import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { usePathname, useRouter } from 'next/navigation';
 
-export default function MemberSection() {
+interface MemberSectionProps extends GroupDetailResponse {}
+
+export default function MemberSection({ memberCount, maxMemberCount }: MemberSectionProps) {
   const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
   const router = useRouter();
   const pathname = usePathname();
 
-  const { data: groupDetailData } = useGetGroupDetail(groupId);
-  const { memberCount, maxMemberCount } = groupDetailData;
-
   const { data: groupMembersData } = useGetGroupMembers(groupId);
   const { groupMembers } = groupMembersData;
 
   return (
-    <section>
+    <section className="p-20 pb-16">
       <div className="flex items-center justify-between">
         <p className="pl-4 text-subtitle-3 text-sign-secondary">
           {t('details.members', { memberCount, maxMemberCount })}

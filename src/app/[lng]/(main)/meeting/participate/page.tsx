@@ -32,13 +32,11 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
               getMeetingHosting,
               getMeetingRejected,
               getMeetingNotEstimated,
-              getMeetingNotEstimated,
             ]}
-            queryKey={[
+            queryMultipleKey={[
               Keys.getMeetingParticipating(),
               Keys.getMeetingHosting(),
               Keys.getMeetingRejected(),
-              Keys.getMeetingNotEstimated(),
               Keys.getMeetingNotEstimated(),
             ]}
           >
