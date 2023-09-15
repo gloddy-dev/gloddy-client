@@ -28,7 +28,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
             queryMultipleFn={[() => getGroupDetail(groupId), () => getGroupMembers(groupId)]}
             queryMultipleKey={[Keys.getGroupDetail(groupId), Keys.getGroupMembers(groupId)]}
           >
-            <GroupDetailPage groupId={groupId} />
+            <GroupDetailPage />
           </HydrationProvider>
         </PageAnimation>
       </QueryAsyncBoundary>
