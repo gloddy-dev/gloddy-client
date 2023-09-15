@@ -12,22 +12,12 @@ import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
 
 export default function CommentList() {
-  const { t } = useTranslation('groupDetail');
   const { articleId, groupId } = useNumberParams<['articleId', 'groupId']>();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { data: commentsData } = useGetComments(groupId, articleId);
 
   const { isCaptain } = groupDetailData;
   const { comments } = commentsData;
-
-  if (comments.length === 0)
-    return (
-      <Flex direction="column" justify="center" align="center" className="my-80">
-        <Icon id="48-cancel" width={48} height={48} />
-        <Spacing size={8} />
-        <p className="text-sign-tertiary">{t('comment.firstComment')}</p>
-      </Flex>
-    );
 
   return (
     <ItemList
@@ -40,6 +30,7 @@ export default function CommentList() {
           isCaptain={isCaptain}
         />
       )}
+      renderEmpty={() => <EmptyComment />}
     />
   );
 }
@@ -73,6 +64,18 @@ function CommentItem({ comment, articleId, groupId, isCaptain }: CommentItemProp
       <div className="break-words text-paragraph-2 text-sign-primary">
         {isBlocked ? t('comment.blockComment') : content}
       </div>
+    </Flex>
+  );
+}
+
+function EmptyComment() {
+  const { t } = useTranslation('groupDetail');
+
+  return (
+    <Flex direction="column" justify="center" align="center" className="my-80">
+      <Icon id="48-cancel" width={48} height={48} />
+      <Spacing size={8} />
+      <p className="text-sign-tertiary">{t('comment.firstComment')}</p>
     </Flex>
   );
 }

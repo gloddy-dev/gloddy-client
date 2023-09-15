@@ -27,18 +27,15 @@ export default function NoticeSection() {
       <div className="rounded-8 bg-card-ui p-16 text-subtitle-3 text-sign-secondary">
         <p className="pl-4">{t('board.notice')}</p>
         <Spacing size={6} />
-        {notices.length ? (
-          <ItemList
-            data={notices}
-            renderItem={(notice) =>
-              !blockNoticeIds.includes(notice.noticeId) && (
-                <NoticeItem notice={notice} groupId={groupId} isCaptain={isCaptain} />
-              )
-            }
-          />
-        ) : (
-          <EmptyNotice />
-        )}
+        <ItemList
+          data={notices}
+          renderItem={(notice) =>
+            !blockNoticeIds.includes(notice.noticeId) && (
+              <NoticeItem notice={notice} groupId={groupId} isCaptain={isCaptain} />
+            )
+          }
+          renderEmpty={() => <EmptyNotice />}
+        />
       </div>
     </section>
   );
