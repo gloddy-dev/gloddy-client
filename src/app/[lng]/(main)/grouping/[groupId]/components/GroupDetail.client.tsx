@@ -11,6 +11,7 @@ import { Spacing } from '@/components/Spacing';
 import { Tabs } from '@/components/Tabs';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 
 interface GroupDetailProps {
   groupId: number;
@@ -33,23 +34,27 @@ export default function GroupDetailPage({ groupId }: GroupDetailProps) {
           <Tabs.Tab value="articles" text={t('board.tab')} disabled={!myGroup} />
         </Tabs.List>
         <Tabs.Panel value="detail">
-          <div className="px-20">
-            <Spacing size={20} />
-            <MemberSection />
-            <Spacing size={36} />
-            <TimeSection />
-            <Spacing size={28} />
-            <LocationSection />
-          </div>
+          <Suspense>
+            <div className="px-20">
+              <Spacing size={20} />
+              <MemberSection />
+              <Spacing size={36} />
+              <TimeSection />
+              <Spacing size={28} />
+              <LocationSection />
+            </div>
+          </Suspense>
         </Tabs.Panel>
         <Tabs.Panel value="articles">
-          <NoticeSection />
-          <ArticleSection />
-          <div className="bottom-fixed flex justify-end">
-            <Link href={`/grouping/${groupId}/write`}>
-              <FloatAddButton />
-            </Link>
-          </div>
+          <Suspense>
+            <NoticeSection />
+            <ArticleSection />
+            <div className="bottom-fixed flex justify-end">
+              <Link href={`/grouping/${groupId}/write`}>
+                <FloatAddButton />
+              </Link>
+            </div>
+          </Suspense>
         </Tabs.Panel>
       </Tabs>
 
