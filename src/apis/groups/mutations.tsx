@@ -39,7 +39,7 @@ export const usePostArticle = (groupId: number) => {
   return useMutation(postArticle, {
     onSuccess: (data) => {
       queryClient.invalidateQueries(GroupsKeys.getArticles(groupId));
-      queryClient.invalidateQueries(GroupsKeys.getNotice(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getNotices(groupId));
       router.replace(`/grouping/${groupId}/articles/${data.articleId}`);
     },
   });
@@ -52,7 +52,7 @@ export const useDeleteArticle = (groupId: number) => {
   return useMutation(deleteArticle, {
     onSuccess: () => {
       queryClient.invalidateQueries(GroupsKeys.getArticles(groupId));
-      queryClient.invalidateQueries(GroupsKeys.getNotice(groupId));
+      queryClient.invalidateQueries(GroupsKeys.getNotices(groupId));
       router.replace(`/grouping/${groupId}?tab=articles`);
     },
   });
