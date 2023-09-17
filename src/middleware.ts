@@ -1,8 +1,7 @@
 import { postReissue } from './apis/auth';
-import { cookieName, fallbackLng, languages } from './app/i18n/settings';
+import { cookieName, languages } from './app/i18n/settings';
 import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
-import acceptLanguage from 'accept-language';
 import { type NextRequest, NextResponse } from 'next/server';
 
 const PRIVATE_PAGE = /^\/(grouping|meeting|profile)/;
