@@ -59,7 +59,12 @@ const middleware = async (request: NextRequest) => {
   )
     return NextResponse.next();
 
-  const lng = request.cookies.get(cookieName)?.value;
+  const response = NextResponse.next();
+
+  if (!request.cookies.has(cookieName)) {
+    response.cookies.set(cookieName, 'en');
+  }
+  const lng = request.cookies.get(cookieName)?.value || 'en';
 
   /* 새로운 페이지 접속 시 */
   if (
@@ -75,7 +80,7 @@ const middleware = async (request: NextRequest) => {
     );
   }
 
-  return NextResponse.next();
+  return response;
 };
 
 const config = {
