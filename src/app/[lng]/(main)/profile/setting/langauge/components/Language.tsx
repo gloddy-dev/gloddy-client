@@ -17,6 +17,7 @@ export default function Language() {
 
   const handleSubmit = () => {
     setLocalCookie('i18next', language);
+    router.refresh();
     router.replace(`/${language}/grouping`);
   };
 
