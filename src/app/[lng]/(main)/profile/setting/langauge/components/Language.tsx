@@ -13,7 +13,7 @@ export default function Language() {
   const { t } = useTranslation('common');
   const router = useRouter();
 
-  const [language, setLanguage] = useState(getLocalCookie('i18next') || 'ko');
+  const [language, setLanguage] = useState(getLocalCookie('i18next') || 'en');
 
   const handleSubmit = () => {
     setLocalCookie('i18next', language);
