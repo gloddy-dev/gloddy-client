@@ -59,6 +59,8 @@
     "deleteAccount": "Delete Account",
     "editProfile": "Edit Profile",
     "changeLanguage": "Change Language",
+    "한글": "Korean",
+    "영어": "English",
     "accountDeletion": "Account Deletion",
     "reasonForWithdrawal": "Why do you want to withdraw?",
     "confirmDeletion": "Are you really sure you want to delete the account?",

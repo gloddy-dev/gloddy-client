@@ -14,7 +14,7 @@ export default function LangaugeHeader() {
         <IconButton size="large" onClick={() => router.back()}>
           <Icon id="24-close" />
         </IconButton>
-        <p className="text-subtitle-1">{t('settings.customerService')}</p>
+        <p className="text-subtitle-1">{t('settings.changeLanguage')}</p>
       </Header.Left>
     </Header>
   );
