@@ -58,17 +58,22 @@
     "customerService": "Customer Service",
     "deleteAccount": "Delete Account",
     "editProfile": "Edit Profile",
+    "changeLanguage": "Change Language",
+    "한글": "Korean",
+    "영어": "English",
     "accountDeletion": "Account Deletion",
     "reasonForWithdrawal": "Why do you want to withdraw?",
     "confirmDeletion": "Are you really sure you want to delete the account?",
-    "deleteAllPraises": "All compliments you’ve received from the previous Matchings will be removed.",
-    "deleteBestPartnerReviews": "The 'Best Partner' reviews from other members in the Groups you've participated in will also be deleted.",
-    "deleteTrustScore": "When you leave, your trust score data within your personal profile will be deleted and cannot be retrieved.",
-    "deleteGroupData": "Upon leaving, all data associated with your group activities will be removed and cannot be retrieved.",
+
+    "deleteAllPraises": "All compliments you’ve received from the\nprevious Matchings will be removed.",
+    "deleteBestPartnerReviews": "The 'Best Partner' reviews from other members\nin the Groups you've participated in will also be deleted.",
+    "deleteTrustScore": "When you leave, your trust score data within your\npersonal profile will be deleted and cannot be retrieved.",
+    "deleteGroupData": "Upon leaving, all data associated with your group activities\nwill be removed and cannot be retrieved.",
+
     "agreeTerms": "I have understood the above information,  and I agree to it.",
     "privacyPolicy": "Your personal information will be securely disposed of following our privacy policy after withdrawal.",
     "proceedDeletion": "Proceed with Deletion",
-    "feedback": "Did you encounter any inconveniences while using our service? We are committed to making improvements based on your feedback.",
+    "feedback": "Did you encounter any inconveniences while using our service?\nWe are committed to making improvements based on your feedback.",
     "noDesiredGroups": "There are no groups that I want to join.",
     "difficultToFindMembers": "Difficult to find the desired members",
     "appInconvenience": "Using the app is inconvenient.",
@@ -81,6 +86,8 @@
     "thankYou": "Thank you for using Gloddy and for your love and support.",
     "promise": "Gloddy will continue to strive for further improvement and growth.",
     "pickThree": "Please select 3.",
+
+    "ifYouDelete": "If you delete your account\nall activity information will be removed\nand it cannot be recovered.",
 
     "사용자님의 성격을": "Pick your",
     "선택해주세요!": "personality traits!"
