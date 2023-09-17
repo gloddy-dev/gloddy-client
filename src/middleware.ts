@@ -59,14 +59,10 @@ const middleware = async (request: NextRequest) => {
     request.nextUrl.pathname.indexOf('chrome') > -1
   )
     return NextResponse.next();
-  let lng;
-  if (request.cookies.has(cookieName))
-    lng = acceptLanguage.get(request.cookies.get(cookieName)?.value);
 
-  if (!lng) lng = acceptLanguage.get(request.headers.get('Accept-Language'));
-  // if (!lng) lng = fallbackLng;
-  if (!lng) lng = 'en';
+  const lng = request.cookies.get(cookieName)?.value;
 
+  /* 새로운 페이지 접속 시 */
   if (
     !languages.some((loc: string) => request.nextUrl.pathname.startsWith(`/${loc}`)) &&
     !request.nextUrl.pathname.startsWith('/_next')
@@ -83,8 +79,10 @@ const middleware = async (request: NextRequest) => {
   if (request.headers.has('referer')) {
     const refererUrl = new URL(request.headers.get('referer')!);
     const lngInReferer = languages.find((l: string) => refererUrl.pathname.startsWith(`/${l}`));
+    // console.log('referer', lngInReferer)
+    // console.log()
     const response = NextResponse.next();
-    if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
+    // if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
     return response;
   }
 
