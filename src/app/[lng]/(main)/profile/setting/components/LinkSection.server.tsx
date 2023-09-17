@@ -21,6 +21,9 @@ export default async function LinkSection({ lng }: LinkSectionProps) {
       <div className="px-20 py-12">
         <Link href="/profile/setting/information">{t('settings.customerService')}</Link>
       </div>
+      <div className="px-20 py-12">
+        <Link href="/profile/setting/langauge">{t('settings.changeLanguage')}</Link>
+      </div>
       <Divider thickness="thick" />
       <div className="px-20 py-12 ">
         <Link href="/profile/setting/delete">{t('settings.deleteAccount')}</Link>
