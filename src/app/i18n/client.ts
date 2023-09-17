@@ -51,10 +51,10 @@ export function useTranslation(ns: string, options: { keyPrefix?: string } = {})
       i18n.changeLanguage(lng);
     }, [lng, i18n]);
 
-    useEffect(() => {
-      if (i18next === lng) return;
-      setLocalCookie(cookieName, lng);
-    }, [lng, i18next]);
+    // useEffect(() => {
+    //   if (i18next === lng) return;
+    //   setLocalCookie(cookieName, lng);
+    // }, [lng, i18next]);
   }
   return ret;
 }

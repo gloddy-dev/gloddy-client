@@ -13,12 +13,12 @@ export default function Language() {
   const handleKorean = () => {
     setLocalCookie('i18next', 'ko');
     i18n.changeLanguage('ko');
-    router.replace('/ko/profile/setting/langauge');
+    router.replace('/ko/grouping');
   };
   const handleEnglish = () => {
     setLocalCookie('i18next', 'en');
     i18n.changeLanguage('en');
-    router.replace('/en/profile/setting/langauge');
+    router.replace('/en/grouping');
   };
   return (
     <Flex>

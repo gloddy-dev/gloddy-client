@@ -76,16 +76,6 @@ const middleware = async (request: NextRequest) => {
     );
   }
 
-  if (request.headers.has('referer')) {
-    const refererUrl = new URL(request.headers.get('referer')!);
-    const lngInReferer = languages.find((l: string) => refererUrl.pathname.startsWith(`/${l}`));
-    // console.log('referer', lngInReferer)
-    // console.log()
-    const response = NextResponse.next();
-    // if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
-    return response;
-  }
-
   return NextResponse.next();
 };
 
