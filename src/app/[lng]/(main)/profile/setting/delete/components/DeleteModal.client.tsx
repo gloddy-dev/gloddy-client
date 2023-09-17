@@ -22,15 +22,9 @@ export default function DeleteModal({ onCancelClick }: DeleteModalProps) {
       <Spacing size={32} />
       <Icon id="48-warning" width={48} height={48} />
       <Spacing size={12} />
-      <p className="text-subtitle-1">{t('settings.confirmWithDrawal')}</p>
+      <p className="text-subtitle-1">{t('settings.confirmWithdrawal')}</p>
       <Spacing size={4} />
-      <p className="text-paragraph-1 text-sign-tertiary">
-        게정을 삭제하면
-        <br />
-        모든 활동 정보가 삭제되며
-        <br />
-        복구할 수 없습니다.
-      </p>
+      <p className="text-paragraph-1 text-sign-tertiary">{t('settings.ifYouDelete')}</p>
     </Modal>
   );
 }
