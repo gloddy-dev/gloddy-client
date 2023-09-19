@@ -1,3 +1,4 @@
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { BottomSheet } from '@/components/Modal';
@@ -12,12 +13,12 @@ type AgreeCheckListType = {
 
 const defaultAgreeCheckList = [
   {
-    name: '서비스 이용약관 동의',
+    name: 'agreeServiceTerms',
     required: true,
     isAgreed: false,
   },
   {
-    name: '개인정보 수집 및 이용 동의',
+    name: 'agreePrivacyPolicy',
     required: true,
     isAgreed: false,
   },
@@ -29,6 +30,7 @@ interface AgreeBottomSheetProps {
 }
 
 export default function AgreeBottomSheet({ onClose, isOpen }: AgreeBottomSheetProps) {
+  const { t } = useTranslation('join');
   const [agreeCheckList, setAgreeCheckList] = useState<AgreeCheckListType[]>(defaultAgreeCheckList);
 
   const handleAgreeAllCheckList = () => {
@@ -52,7 +54,7 @@ export default function AgreeBottomSheet({ onClose, isOpen }: AgreeBottomSheetPr
     <BottomSheet
       snapPoints={[300, 0]}
       onClose={onClose}
-      title="약관 동의"
+      title={t('agreeToTerms')}
       disableDrag
       isRightCloseIcon={false}
       isOpen={isOpen}
@@ -63,7 +65,7 @@ export default function AgreeBottomSheet({ onClose, isOpen }: AgreeBottomSheetPr
           onClick={() => handleAgreeAllCheckList()}
         >
           <CircleCheckbox checked={agreeCheckList.every((agree) => agree.isAgreed)} />
-          <p className="text-subtitle-2 text-sign-secondary">전체동의</p>
+          <p className="text-subtitle-2 text-sign-secondary">{t('allAgree')}</p>
         </div>
 
         {agreeCheckList.map((agree) => (
@@ -73,9 +75,11 @@ export default function AgreeBottomSheet({ onClose, isOpen }: AgreeBottomSheetPr
             onClick={() => handleAgreeCheckList(agree.name)}
           >
             <CircleCheckbox key={agree.name} checked={agree.isAgreed} variant="outline" />
-            <p className="">
-              <span className="text-sign-tertiary">{agree.required && '(필수) '}</span>
-              {agree.name}
+            <p>
+              <span className="text-sign-tertiary">
+                {agree.required && '(' + t('essential') + ') '}
+              </span>
+              {t(agree.name)}
             </p>
           </div>
         ))}
@@ -88,7 +92,7 @@ export default function AgreeBottomSheet({ onClose, isOpen }: AgreeBottomSheetPr
           disabled={agreeCheckList.some((checkItem) => checkItem.required && !checkItem.isAgreed)}
           onClick={onClose}
         >
-          완료
+          {t('complete')}
         </Button>
       </ButtonGroup>
     </BottomSheet>

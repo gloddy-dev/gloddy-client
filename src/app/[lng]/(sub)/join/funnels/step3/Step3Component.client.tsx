@@ -3,15 +3,13 @@
 import EmailForm from './components/EmailForm.client';
 import NoticeSection from './components/NoticeSection.client';
 import JoinTitleTextMessage from '../../components/JoinTitleTextMessage.client';
+import { useTranslation } from '@/app/i18n/client';
 
 export default function Step3Component() {
+  const { t } = useTranslation('join');
   return (
     <main>
-      <JoinTitleTextMessage>
-        재학생 인증을 위해
-        <br />
-        학교 이메일을 입력해주세요
-      </JoinTitleTextMessage>
+      <JoinTitleTextMessage>{t('enterSchoolEmail')}</JoinTitleTextMessage>
 
       <EmailForm />
 

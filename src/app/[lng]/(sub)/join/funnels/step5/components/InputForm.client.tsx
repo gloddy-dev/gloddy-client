@@ -2,6 +2,7 @@
 
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useSignUpMutation } from '@/apis/auth';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
@@ -11,6 +12,8 @@ import { useCallback } from 'react';
 import type { SignUpState } from '../../../type';
 
 export default function InputForm() {
+  const { t } = useTranslation('join');
+
   const { handleSubmit, watch } = useJoinContext();
   const { mutate: mutateSignUp } = useSignUpMutation();
 
@@ -29,7 +32,7 @@ export default function InputForm() {
       <PersonalitySection />
       <ButtonGroup>
         <Button disabled={watch('personalityIdList').length !== 3} type="submit">
-          완료
+          {t('complete')}
         </Button>
       </ButtonGroup>
     </form>

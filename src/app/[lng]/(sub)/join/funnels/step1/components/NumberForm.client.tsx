@@ -1,6 +1,7 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { formatNumber, formatNumberBackSpace } from '../util';
 import { useSMSMutation } from '@/apis/auth';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { useTimerContext } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
@@ -18,6 +19,7 @@ interface NumberSectionProps {
 }
 
 export default function NumberForm({ inputStatus, setInputStatus }: NumberSectionProps) {
+  const { t } = useTranslation('join');
   const hookForm = useJoinContext();
   const { setValue, handleSubmit, register, formState } = hookForm;
   const { mutate: mutateSMS } = useSMSMutation();
@@ -50,12 +52,12 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     <form onSubmit={handleSubmit(onSubmit)}>
       <Spacing size={8} />
       <TextFieldController
-        label="휴대폰 번호"
+        label={t('phoneNumber')}
         register={register('phoneNumber', {
           required: true,
           pattern: {
             value: regexr.phoneNumber,
-            message: '* 휴대폰 번호를 다시 확인해주세요.',
+            message: t('* 휴대폰 번호를 다시 확인해주세요.'),
           },
           onChange: handleInputChange,
         })}
@@ -73,7 +75,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
       {inputStatus === 'beforeSend' && (
         <ButtonGroup isSpacing={false}>
           <Button disabled={!formState.isValid || timerStatus === 'RUNNING'} type="submit">
-            인증번호 전송
+            {t('sendVerificationCode')}
           </Button>
         </ButtonGroup>
       )}
