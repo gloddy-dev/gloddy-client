@@ -2,10 +2,17 @@ import EmailForm from './components/EmailForm.client';
 import NoticeSection from './components/NoticeSection.client';
 import TitleTextMessage from './components/TitleTextMessage';
 import VerifyHeader from './components/VerifyHeader.client';
-import { useTranslation } from '@/app/i18n/client';
+import { serverTranslation } from '@/app/i18n';
 
-export default function Step3Component() {
-  const { t } = useTranslation('join');
+interface PageProps {
+  params: {
+    lng: string;
+  };
+}
+
+export default async function Page({ params: { lng } }: PageProps) {
+  const { t } = await serverTranslation(lng, 'grouping');
+
   return (
     <main className="px-20">
       <VerifyHeader />
