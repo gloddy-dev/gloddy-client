@@ -3,19 +3,19 @@ import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-export default function PraiseHeader() {
+export default function Step1Header() {
   const { t } = useTranslation('profile');
+  const router = useRouter();
+
   return (
     <Header>
       <Header.Left className="px-4">
-        <Link href="/profile">
-          <IconButton size="large">
-            <Icon id="24-arrow_back" />
-          </IconButton>
-        </Link>
-        <p className="text-subtitle-1">{t('home.praiseCount')}</p>
+        <IconButton size="large" onClick={() => router.back()}>
+          <Icon id="24-close" />
+        </IconButton>
+        <p className="text-subtitle-1">{t('settings.editProfile')}</p>
       </Header.Left>
     </Header>
   );

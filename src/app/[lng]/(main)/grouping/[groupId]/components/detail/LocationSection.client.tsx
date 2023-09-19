@@ -20,7 +20,7 @@ export default function LocationSection({
   const { t } = useTranslation('groupDetail');
   const { place } = usePlaceDetails({
     placeId,
-    fields: ['name', 'formatted_address'],
+    fields: ['name', 'formatted_address', 'url'],
     language: lng,
     region: 'KR',
   });
@@ -32,14 +32,18 @@ export default function LocationSection({
       <h2 className="pl-4 text-subtitle-3 text-sign-secondary">{t('details.place')}</h2>
       <Spacing size={4} />
       <div className="relative overflow-hidden rounded-8 bg-divider">
+        <div
+          className="absolute left-0 top-0 z-[2] aspect-video w-full cursor-pointer opacity-0"
+          onClick={() => window.open(place?.url, '_blank')}
+        />
         <div className="aspect-video w-full">
           <GoogleMap
             mapContainerStyle={{ width: '100%', height: '100%' }}
             center={{ lat: +placeLatitude, lng: +placeLongitude }}
             zoom={14}
             options={{
-              streetViewControl: false,
-              mapTypeControl: false,
+              disableDefaultUI: true,
+              zoomControl: false,
             }}
           >
             <Marker position={{ lat: +placeLatitude, lng: +placeLongitude }} />

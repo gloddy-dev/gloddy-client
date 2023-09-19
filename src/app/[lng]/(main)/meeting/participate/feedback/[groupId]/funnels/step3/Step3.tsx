@@ -19,9 +19,9 @@ export default function Step3({ groupMemberList }: Step3Props) {
   const { mutate } = usePostEstimate();
   const { groupId } = useNumberParams();
   const { t } = useTranslation('meeting');
+  const { t: tc } = useTranslation('common');
 
   const onSubmit = (data: FeedbackRequestType) => {
-    // TODO : API 연결
     mutate({
       params: { groupId },
       payload: {
@@ -65,7 +65,7 @@ export default function Step3({ groupMemberList }: Step3Props) {
           onClick={handleSubmit(onSubmit)}
           disabled={watch('mateInfo.selectionReason').length === 0}
         >
-          완료
+          {tc('complete')}
         </Button>
       </ButtonGroup>
     </>
