@@ -1,5 +1,6 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useEmailVerifyMutation } from '@/apis/auth';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { BottomSheet, type ModalProps } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
@@ -20,6 +21,7 @@ export default memo(function VerifyBottomSheet({
   onOkClick,
   isOpen,
 }: VerifyBottomSheetProps) {
+  const { t } = useTranslation('join');
   const hookForm = useJoinContext();
   const { register, handleSubmit, setValue, watch, setError, resetField } = hookForm;
 
@@ -47,7 +49,7 @@ export default memo(function VerifyBottomSheet({
         onError: () => {
           setError('verifyEmailNumber', {
             type: 'manual',
-            message: '인증 번호를 다시 확인해주세요.',
+            message: t('인증 번호를 다시 확인해주세요.'),
           });
         },
       }
@@ -70,7 +72,7 @@ export default memo(function VerifyBottomSheet({
     <BottomSheet
       onClose={onClose}
       snapPoints={[300, 0]}
-      title="인증번호 입력"
+      title={t('enterVerificationCode')}
       isRightCloseIcon={false}
       isOpen={isOpen}
       disableDrag
@@ -78,12 +80,12 @@ export default memo(function VerifyBottomSheet({
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="my-20">
           <TextFieldController
-            label="인증번호"
+            label={t('인증번호')}
             hookForm={hookForm}
             register={register('verifyEmailNumber', {
               pattern: {
                 value: regexr.verifyNumber,
-                message: '인증 번호를 다시 확인해주세요.',
+                message: t('인증 번호를 다시 확인해주세요.'),
               },
             })}
             timer={verifyTime}
@@ -95,10 +97,10 @@ export default memo(function VerifyBottomSheet({
 
         <ButtonGroup>
           <Button type="button" onClick={handleResend}>
-            재전송
+            {t('resend')}
           </Button>
           <Button type="submit" disabled={!watch('verifyEmailNumber').match(regexr.verifyNumber)}>
-            확인
+            {t('complete')}
           </Button>
         </ButtonGroup>
       </form>

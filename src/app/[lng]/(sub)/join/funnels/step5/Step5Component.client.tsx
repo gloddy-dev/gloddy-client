@@ -12,9 +12,9 @@ export default function Step5Component() {
   return (
     <main>
       <JoinTitleTextMessage>
-        {t('settings.a')}
+        {t('settings.사용자님의 성격을')}
         <br />
-        {t('settings.b')}
+        {t('settings.선택해주세요!')}
       </JoinTitleTextMessage>
       <JoinContentTextMessage>{t('settings.pickThree')}</JoinContentTextMessage>
       <Spacing size={16} />

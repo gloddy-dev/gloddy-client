@@ -1,4 +1,5 @@
 'use client';
+import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
@@ -11,6 +12,8 @@ interface JoinHeaderProps {
 }
 
 export default function JoinHeader({ onPrevClick, isBack }: JoinHeaderProps) {
+  const { t } = useTranslation('join');
+
   return (
     <Header>
       <Header.Left>
@@ -22,7 +25,7 @@ export default function JoinHeader({ onPrevClick, isBack }: JoinHeaderProps) {
             </IconButton>
           </>
         )}
-        <p className={cn({ 'px-20': !isBack })}>회원가입</p>
+        <p className={cn({ 'px-20': !isBack })}>{t('signUp')}</p>
       </Header.Left>
     </Header>
   );

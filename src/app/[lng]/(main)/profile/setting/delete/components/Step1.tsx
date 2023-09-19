@@ -44,7 +44,7 @@ export default function Step1({ onNextClick }: Step1Props) {
 
       <ButtonGroup>
         <Button onClick={onNextClick} disabled={!watch('isDeleteAgree')}>
-          다음
+          {t('next')}
         </Button>
       </ButtonGroup>
     </div>
