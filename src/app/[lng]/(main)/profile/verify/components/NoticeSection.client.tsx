@@ -11,7 +11,7 @@ export default function NoticeSection() {
   const { t } = useTranslation('join');
   return (
     <Flex direction="column" className="gap-8 py-16">
-      <TextList variant="info" className="flex items-center">
+      <TextList variant="info" className="flex flex-wrap items-center">
         {t('재학생 인증을 진행하면')} <span className="text-sign-brand">{t('인증마크')}</span>
         <Icon id="24-education" className="inline" />
         {t('를 받을 수 있어요')}
