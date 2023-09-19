@@ -50,7 +50,7 @@ export default memo(function EmailForm() {
       />
       <ButtonGroup isSpacing={false}>
         <Button type="submit" disabled={!isValid}>
-          확인
+          {t('complete')}
         </Button>
       </ButtonGroup>
     </form>
