@@ -90,7 +90,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
             ))
           }
         >
-          {t('manage.refuse')}
+          {t('manage.refuse.label')}
         </Button>
         <Button
           onClick={() =>
@@ -99,7 +99,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
             ))
           }
         >
-          {t('manage.approve')}
+          {t('manage.approve.label')}
         </Button>
       </ButtonGroup>
     </div>
