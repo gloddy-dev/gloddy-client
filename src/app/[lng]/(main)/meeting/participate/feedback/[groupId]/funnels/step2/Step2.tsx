@@ -16,6 +16,7 @@ interface Step2Props {
 export default function Step2({ onNextClick, groupMemberList }: Step2Props) {
   const { setValue, watch } = useFeedbackContext();
   const { t } = useTranslation('meeting');
+  const { t: tc } = useTranslation('common');
 
   const showMemberList = convertShowMember(watch('praiseInfos'), groupMemberList);
 
@@ -37,7 +38,7 @@ export default function Step2({ onNextClick, groupMemberList }: Step2Props) {
       ))}
       <ButtonGroup>
         <Button onClick={onNextClick} disabled={!watch('mateInfo.userId')}>
-          다음
+          {tc('next')}
         </Button>
       </ButtonGroup>
     </div>
