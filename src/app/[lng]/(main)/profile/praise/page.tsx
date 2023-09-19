@@ -1,4 +1,4 @@
-import PraiseHeader from './components/PraiseHeader';
+import PraiseHeader from './components/PraiseHeader.client';
 import ProfilePraiseDetail from './components/ProfilePraiseDetail.client';
 import { Keys, getPraises } from '@/apis/profile';
 import { RejectedFallback } from '@/components/ErrorBoundary';

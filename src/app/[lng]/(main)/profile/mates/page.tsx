@@ -1,5 +1,5 @@
 import ProfileMatesDetail from './components/MatesDetail.client';
-import MatesHeader from './components/MatesHeader';
+import MatesHeader from './components/MatesHeader.client';
 import { Keys, getMates } from '@/apis/profile';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
