@@ -1,4 +1,4 @@
-import Step1Header from './Step1Header';
+import Step1Header from './Step1Header.client';
 import Step1InputForm from './Step1InputForm.client';
 import { PageAnimation } from '@/components/PageAnimation';
 import { Spacing } from '@/components/Spacing';
