@@ -4,6 +4,7 @@ import VerifyBottomSheet from './VerifyBottomSheet.client';
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useEmailMutation } from '@/apis/auth';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
@@ -13,6 +14,8 @@ import { memo } from 'react';
 import type { SignUpState } from '../../../type';
 
 export default memo(function EmailForm() {
+  const { t } = useTranslation('join');
+
   const { nextStep } = useFunnelContext();
 
   const { open: openSkipModal, exit: exitSkipModal } = useModal();
@@ -60,13 +63,13 @@ export default memo(function EmailForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextFieldController
-        label="학교 이메일"
+        label={t('schoolEmail')}
         hookForm={hookForm}
         register={register('schoolInfo.email', {
           required: true,
           pattern: {
             value: regexr.email,
-            message: '* 학교 이메일을 다시 확인해주세요.',
+            message: t('* 학교 이메일을 다시 확인해주세요.'),
           },
         })}
         type="email"
@@ -74,10 +77,10 @@ export default memo(function EmailForm() {
       />
       <ButtonGroup isSpacing={false}>
         <Button type="button" onClick={handleSkipClick}>
-          건너뛰기
+          {t('건너뛰기')}
         </Button>
         <Button type="submit" disabled={!isValid}>
-          확인
+          {t('complete')}
         </Button>
       </ButtonGroup>
     </form>

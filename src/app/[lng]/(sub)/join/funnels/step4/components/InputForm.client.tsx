@@ -16,6 +16,7 @@ import { useFileUpload } from '@/hooks/useFileUpload';
 import type { ElementType, KeyboardEventHandler } from 'react';
 
 export default function InputForm() {
+  const { t } = useTranslation('join');
   const { t: tc } = useTranslation('common');
   const hookForm = useJoinContext();
   const { watch, handleSubmit, setValue, register, setError, clearErrors } = hookForm;
@@ -92,13 +93,13 @@ export default function InputForm() {
                   required: true,
                   pattern: {
                     value: regexr.nickname,
-                    message: `* 올바른 형식이 아닙니다 (최소 3글자\n최대 15글자 이하, 특수문자 금지)`,
+                    message: t('invalidNicknameFormat'),
                   },
                 })}
                 leftCaption={
-                  isDuplicateChecked ? '사용 가능한 닉네임입니다.' : '* 최소 3글자, 최대 15자 이하'
+                  isDuplicateChecked ? t('nicknameAvailable') : t('* 최소 3글자, 최대 15자 이하')
                 }
-                placeholder="닉네임을 입력해주세요."
+                placeholder={t('enterNickname')}
                 maxCount={15}
                 onKeyDown={handleNicknameInputChange}
               />
@@ -110,7 +111,7 @@ export default function InputForm() {
                 if (!watch('nickname').match(regexr.nickname)) {
                   setError('nickname', {
                     type: 'pattern',
-                    message: `* 올바른 형식이 아닙니다 (최소 3글자\n최대 15글자 이하, 특수문자 금지)`,
+                    message: t('invalidNicknameFormat'),
                   });
                   return;
                 }
@@ -118,22 +119,22 @@ export default function InputForm() {
               }}
               type="button"
             >
-              중복 확인
+              {t('checkDuplicate')}
             </Button>
           </Flex>
         </Flex>
 
         <Flex direction="column" gap={4}>
-          <p className="text-subtitle-3">생년월일</p>
+          <p className="text-subtitle-3">{t('dob')}</p>
 
           <TextFieldController
-            placeholder="생년월일 8자리를 입력해주세요."
+            placeholder={t('생년월일 8자리를 입력해주세요.')}
             hookForm={hookForm}
             register={register('birth', {
               required: true,
               pattern: {
                 value: regexr.birth,
-                message: '* 생년월일을 다시 확인해주세요.',
+                message: t('dobFormat'),
               },
               onChange: handleBirthInputChange,
             })}
@@ -143,7 +144,7 @@ export default function InputForm() {
         </Flex>
 
         <Flex direction="column" gap={4}>
-          <p className="text-subtitle-3">성별</p>
+          <p className="text-subtitle-3">{t('gender')}</p>
           <SegmentGroup
             selectedValue={watch('gender')}
             onChange={(value) => setValue('gender', value)}
@@ -155,7 +156,7 @@ export default function InputForm() {
       </Flex>
       <ButtonGroup>
         <Button type="submit" disabled={!isAllTyped}>
-          {isAllTyped ? '완료' : '다음'}
+          {isAllTyped ? t('complete') : t('next')}
         </Button>
       </ButtonGroup>
     </Flex>

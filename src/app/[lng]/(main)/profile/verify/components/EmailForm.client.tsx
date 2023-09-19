@@ -1,6 +1,7 @@
 'use client';
 import VerifyBottomSheet from './VerifyBottomSheet.client';
 import { useEmailMutation } from '@/apis/auth';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
@@ -16,6 +17,7 @@ const defaultValues = {
 };
 
 export default memo(function EmailForm() {
+  const { t } = useTranslation('join');
   const { open: openVerifyBottomSheet, close: closeVerifyBottomSheet } = useModal();
   const { mutate: mutateEmail } = useEmailMutation();
   const hookForm = useForm({ defaultValues, mode: 'onBlur' });
@@ -36,19 +38,19 @@ export default memo(function EmailForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextFieldController
-        label="학교 이메일"
+        label={t('schoolEmail')}
         hookForm={hookForm}
         register={register('email', {
           required: true,
           pattern: {
             value: regexr.email,
-            message: '* 학교 이메일을 다시 확인해주세요.',
+            message: t('checkEmailAgain'),
           },
         })}
       />
       <ButtonGroup isSpacing={false}>
         <Button type="submit" disabled={!isValid}>
-          확인
+          {t('complete')}
         </Button>
       </ButtonGroup>
     </form>

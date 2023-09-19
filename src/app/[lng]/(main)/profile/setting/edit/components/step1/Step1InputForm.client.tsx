@@ -67,7 +67,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
 
       <p className="text-subtitle-3">{t('birth')}</p>
       <Spacing size={4} />
-      <TextField placeholder="생년월일을 선택해주세요." value={watch('birth')} readOnly />
+      <TextField placeholder={t('enterDOB')} value={watch('birth')} readOnly />
 
       <Spacing size={8} />
 
