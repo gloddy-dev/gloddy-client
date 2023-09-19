@@ -23,6 +23,7 @@ const tagList = ['calm', 'kind', 'active', 'witty'];
 
 export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
   const { t } = useTranslation('meeting');
+  const { t: tc } = useTranslation('common');
   const { open, exit } = useModal();
   const { setValue, watch } = useFeedbackContext();
   const handleTag = (tag: string, userId: number) => {
@@ -96,7 +97,7 @@ export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
           onClick={onNextClick}
           disabled={watch('praiseInfos').length < groupMemberList.length}
         >
-          다음
+          {tc('next')}
         </Button>
       </ButtonGroup>
     </div>
