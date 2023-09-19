@@ -39,7 +39,7 @@ export default function Step1({ onNextClick, groupMemberList }: Step1Props) {
   };
   const handleDeleteNoShow = (userId: number) => {
     const praiseInfos = watch('praiseInfos').filter((it) => it.userId !== userId);
-    setValue('praiseInfos', [...praiseInfos, { userId, praiseValue: '불참' }]);
+    setValue('praiseInfos', [...praiseInfos, { userId, praiseValue: 'absence' }]);
 
     exit();
   };

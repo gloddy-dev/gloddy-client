@@ -5,7 +5,7 @@ export const convertShowMember = (
   totalMember: EstimateResponse['groupMemberList']
 ) => {
   const noShowMemberUserIdList = currentMember
-    .filter((it) => it.praiseValue === '불참')
+    .filter((it) => it.praiseValue === 'absence')
     .map((it) => it.userId);
   const showMemberList = totalMember.filter((it) => !noShowMemberUserIdList.includes(it.userId));
   return showMemberList;
