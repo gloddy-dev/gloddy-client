@@ -8,6 +8,7 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 
 import type { SignUpState } from '../../../type';
 import type { SubmitHandler } from 'react-hook-form';
@@ -17,6 +18,7 @@ interface NumberVerifyFormProps {
 }
 
 export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormProps) {
+  const { t } = useTranslation('join');
   const router = useRouter();
   const hookForm = useJoinContext();
   const { handleSubmit, setError, register, watch, resetField } = hookForm;
@@ -31,7 +33,7 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
     if (time > 120) {
       setError('verifyNumber', {
         type: 'validate',
-        message: '인증 번호 재전송은 1분에 한 번만 가능합니다.',
+        message: t('인증 번호 재전송은 1분에 한 번만 가능합니다.'),
       });
       return;
     }
@@ -48,7 +50,7 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
   if (time === 0) {
     setError('verifyNumber', {
       type: 'validate',
-      message: '*인증 시간 초과: 새로운 인증 번호를 요청해주세요!',
+      message: t('verificationTimeExceeded'),
     });
   }
 
@@ -95,13 +97,13 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextFieldController
-        label="인증 번호"
+        label={t('verifyCode')}
         hookForm={hookForm}
         register={register('verifyNumber', {
           required: true,
           pattern: {
             value: regexr.verifyNumber,
-            message: '인증번호 6자리를 입력해주세요.',
+            message: t('inputSix'),
           },
         })}
         maxLength={6}
@@ -112,9 +114,9 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
       />
       <ButtonGroup isSpacing={false}>
         <Button type="button" onClick={handleResend}>
-          재전송
+          {t('resend')}
         </Button>
-        <Button type="submit">확인</Button>
+        <Button type="submit">{t('complete')}</Button>
       </ButtonGroup>
     </form>
   );

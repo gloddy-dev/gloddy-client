@@ -4,6 +4,7 @@ import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatAddress } from '../utils';
 import { SchoolSearchResponse, useGetSearchSchool } from '@/apis/auth';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
@@ -12,6 +13,7 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 
 export default function SchoolForm() {
+  const { t } = useTranslation('join');
   const hookForm = useJoinContext();
   const { handleSubmit, register, watch, setValue } = hookForm;
   const { nextStep } = useFunnelContext();
@@ -29,7 +31,7 @@ export default function SchoolForm() {
           pattern: regexr.school,
         })}
         leftIcon={<Icon id="24-search" />}
-        placeholder="학교 이름 입력"
+        placeholder={t('enterSchoolName')}
       />
       {data &&
         data?.schools.map((school) => (
