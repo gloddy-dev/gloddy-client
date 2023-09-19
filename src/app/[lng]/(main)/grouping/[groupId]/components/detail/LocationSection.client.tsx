@@ -28,7 +28,7 @@ export default function LocationSection({
   if (typeof google === 'undefined') return null;
 
   return (
-    <section className="p-20 pb-8">
+    <section className="p-20 pb-8" onClick={() => window.open()}>
       <h2 className="pl-4 text-subtitle-3 text-sign-secondary">{t('details.place')}</h2>
       <Spacing size={4} />
       <div className="relative overflow-hidden rounded-8 bg-divider">
