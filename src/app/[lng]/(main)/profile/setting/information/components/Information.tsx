@@ -1,5 +1,12 @@
-import { settingInformation } from '@/constants/settingInformation';
+import { en, ko } from '@/constants/service';
 
-export default function Information() {
-  return <div className="p-20 text-paragraph-2 text-sign-tertiary ">{settingInformation}</div>;
+interface InformationProps {
+  lng: string;
+}
+export default function Information({ lng }: InformationProps) {
+  return (
+    <div className="p-20 text-paragraph-2 text-sign-tertiary ">
+      {lng === 'ko' ? <p>{ko}</p> : <p>{en}</p>}
+    </div>
+  );
 }
