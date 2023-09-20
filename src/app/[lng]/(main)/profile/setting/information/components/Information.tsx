@@ -1,4 +1,4 @@
-import { en, ko } from '@/constants/service';
+import { en, ko } from '@/constants/information';
 
 interface InformationProps {
   lng: string;
