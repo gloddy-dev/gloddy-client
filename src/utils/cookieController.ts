@@ -13,3 +13,8 @@ export const setLocalCookie = (key: string, value: string, options?: { expires?:
     options?.expires ? `expires=${options.expires.toUTCString()}` : ''
   }`;
 };
+
+export const removeLocalCookie = (key: string) => {
+  if (typeof document === 'undefined') return;
+  document.cookie = `${key}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+};
