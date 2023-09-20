@@ -2,12 +2,17 @@ import Information from './components/Information';
 import InformationHeader from './components/InformationHeader';
 import { PageAnimation } from '@/components/PageAnimation';
 
-export default function page() {
+interface PageProps {
+  params: {
+    lng: string;
+  };
+}
+export default function page({ params: { lng } }: PageProps) {
   return (
     <>
       <InformationHeader />
       <PageAnimation>
-        <Information />
+        <Information lng={lng} />
       </PageAnimation>
     </>
   );
