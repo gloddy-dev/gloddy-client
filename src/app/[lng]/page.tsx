@@ -1,6 +1,7 @@
 import { postReissue } from '@/apis/auth';
 import { AUTH_KEYS } from '@/constants/token';
 import { getTokenFromCookie } from '@/utils/auth/tokenController';
+import { afterDay60 } from '@/utils/date';
 import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
@@ -22,10 +23,10 @@ export default async function Home() {
 
     const response = NextResponse.next();
     response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken, {
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
+      expires: afterDay60,
     });
     response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 60 + 9 * 60 * 60 * 1000),
+      expires: afterDay60,
     });
 
     redirect('/grouping');
