@@ -1,4 +1,4 @@
-export const settingService = `Terms of Service
+export const ko = `Terms of Service
 
 제1조(목적)
 이 약관은 Gloddy (이하 '글로디' 또는 '회사' 라고 합니다)가 제공하는 제반 서비스의 이용과 관련하여 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.

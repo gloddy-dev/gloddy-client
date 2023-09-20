@@ -1,5 +1,12 @@
-import { settingService } from '@/constants/service';
+import { en, ko } from '@/constants/service';
 
-export default function Service() {
-  return <div className="p-20 text-paragraph-2 text-sign-tertiary ">{settingService}</div>;
+interface ServiceProps {
+  lng: string;
+}
+export default function Service({ lng }: ServiceProps) {
+  return (
+    <div className="p-20 text-paragraph-2 text-sign-tertiary ">
+      {lng === 'ko' ? <p>{ko}</p> : <p>{en}</p>}
+    </div>
+  );
 }
