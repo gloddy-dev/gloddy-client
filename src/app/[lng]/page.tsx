@@ -1,14 +1,37 @@
 'use client';
+import { cookieName } from '../i18n/settings';
 import { postReissue } from '@/apis/auth';
 import { AUTH_KEYS } from '@/constants/token';
+import { useDidMount } from '@/hooks/common/useDidMount';
 import { getTokenFromCookie } from '@/utils/auth/tokenController';
+import { setLocalCookie } from '@/utils/cookieController';
 import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 import { NextResponse } from 'next/server';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 export default function Home() {
   const router = useRouter();
+
+  const listenRN = useCallback(() => {
+    const listener = (event: any) => {
+      const { data, type } = JSON.parse(event.data);
+      if (data === 'ko')
+        setLocalCookie(cookieName, 'ko', {
+          expires: afterDay60,
+        });
+      else
+        setLocalCookie(cookieName, 'en', {
+          expires: afterDay60,
+        });
+    };
+
+    if (window.ReactNativeWebView) {
+      document.addEventListener('message', listener); /* Android */
+      window.addEventListener('message', listener); /* iOS */
+    }
+  }, []);
+
   const checkToken = useCallback(async () => {
     const { accessToken, refreshToken } = (await getTokenFromCookie()) as {
       accessToken: string;
@@ -38,9 +61,10 @@ export default function Home() {
       console.log(e);
       router.push('/join');
     }
-  }, []);
+  }, [router]);
 
-  useEffect(() => {
+  useDidMount(() => {
+    listenRN();
     checkToken();
-  }, [checkToken]);
+  });
 }
