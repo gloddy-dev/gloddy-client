@@ -62,7 +62,9 @@ const middleware = async (request: NextRequest) => {
   const response = NextResponse.next();
 
   if (!request.cookies.has(cookieName)) {
-    response.cookies.set(cookieName, 'en');
+    response.cookies.set(cookieName, 'en', {
+      expires: afterDay60,
+    });
   }
   const lng = request.cookies.get(cookieName)?.value || 'en';
 
