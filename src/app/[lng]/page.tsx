@@ -16,6 +16,8 @@ export default function Home() {
   const listenRN = useCallback(() => {
     const listener = (event: any) => {
       const { data, type } = JSON.parse(event.data);
+      alert(data);
+      alert(type);
       setLocalCookie(cookieName, data, {
         expires: afterDay60,
       });
