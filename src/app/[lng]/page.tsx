@@ -19,7 +19,7 @@ export default function Home() {
       setLocalCookie(cookieName, data, {
         expires: afterDay60,
       });
-      router.push('/join');
+      router.push(`/${data}/join?step=1`);
     };
 
     if (window.ReactNativeWebView) {
@@ -60,7 +60,7 @@ export default function Home() {
 
       router.push('/grouping');
     } catch (e) {
-      router.push('/join');
+      router.push('/join?step=1');
     }
   }, [router]);
 
