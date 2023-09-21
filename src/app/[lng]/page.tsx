@@ -15,12 +15,16 @@ export default function Home() {
 
   const listenRN = () => {
     const listener = async (event: any) => {
-      const response = await JSON.parse(event.data);
-      const { data } = response;
-      setLocalCookie(cookieName, data, {
-        expires: afterDay60,
-      });
-      router.push(`/${data}/join?step=1`);
+      try {
+        const response = await JSON.parse(event.data);
+        const { data } = response;
+        setLocalCookie(cookieName, data, {
+          expires: afterDay60,
+        });
+        router.push(`/${data}/join?step=1`);
+      } catch (e) {
+        router.push('/join');
+      }
     };
 
     if (window.ReactNativeWebView) {
