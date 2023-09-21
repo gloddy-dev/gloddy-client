@@ -21,6 +21,7 @@ export default function Home() {
       setLocalCookie(cookieName, data, {
         expires: afterDay60,
       });
+      router.push('/join');
     };
 
     if (window.ReactNativeWebView) {
@@ -30,8 +31,9 @@ export default function Home() {
         document.removeEventListener('message', listener);
         window.removeEventListener('message', listener);
       };
+    } else {
+      router.push('/join');
     }
-    router.push('/join');
   }, [router]);
 
   const checkToken = useCallback(async () => {
