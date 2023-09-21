@@ -16,15 +16,9 @@ export default function Home() {
   const listenRN = useCallback(() => {
     const listener = (event: any) => {
       const { data, type } = JSON.parse(event.data);
-      if (data === 'ko')
-        setLocalCookie(cookieName, 'ko', {
+        setLocalCookie(cookieName, data, {
           expires: afterDay60,
         });
-      else
-        setLocalCookie(cookieName, 'en', {
-          expires: afterDay60,
-        });
-    };
 
     if (window.ReactNativeWebView) {
       document.addEventListener('message', listener); /* Android */
