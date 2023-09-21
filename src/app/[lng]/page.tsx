@@ -1,6 +1,9 @@
 'use client';
+import { cookieName } from '../i18n/settings';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import { getTokenFromCookie } from '@/utils/auth/tokenController';
+import { setLocalCookie } from '@/utils/cookieController';
+import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
@@ -8,16 +11,11 @@ export default function Home() {
 
   const checkLanguageCookie = () => {
     const listener = async (event: any) => {
-      try {
-        const response = await JSON.parse(event.data);
-        const { data } = response;
-        // setLocalCookie(cookieName, data, {
-        //   expires: afterDay60,
-        // });
-        router.push(`/${data}/join?step=1`);
-      } catch (e) {
-        router.push('/join');
-      }
+      const response = await JSON.parse(event.data);
+      const { data } = response;
+      setLocalCookie(cookieName, data, {
+        expires: afterDay60,
+      });
     };
 
     if (window.ReactNativeWebView) {
@@ -35,8 +33,8 @@ export default function Home() {
     else router.push('/join?step=1');
   };
 
-  useDidMount(() => {
-    checkLanguageCookie();
-    checkTokenCookie();
+  useDidMount(async () => {
+    await checkLanguageCookie();
+    await checkTokenCookie();
   });
 }
