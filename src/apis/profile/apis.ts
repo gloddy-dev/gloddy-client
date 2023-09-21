@@ -19,3 +19,5 @@ export const patchProfile = (profileData: ProfileRequest) =>
 export const getMates = () => privateApi.get<MatesResponse>('/me/mates');
 
 export const deleteMate = (mateId: number) => privateApi.delete(`/me/mate/${mateId}`);
+
+export const patchSignOut = () => privateApi.patch('/auth/sign-out');
