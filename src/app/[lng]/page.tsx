@@ -32,8 +32,6 @@ export default function Home() {
     const { accessToken, refreshToken } = await getTokenFromCookie();
 
     if (accessToken && refreshToken) router.push('/grouping');
-      response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
-        expires: afterDay60,
     else router.push('/join?step=1');
   };
 
