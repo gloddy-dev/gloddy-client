@@ -31,7 +31,8 @@ export default function Home() {
         window.removeEventListener('message', listener);
       };
     }
-  }, []);
+    router.push('/join');
+  }, [router]);
 
   const checkToken = useCallback(async () => {
     const { accessToken, refreshToken } = (await getTokenFromCookie()) as {
@@ -59,7 +60,6 @@ export default function Home() {
 
       router.push('/grouping');
     } catch (e) {
-      console.log(e);
       router.push('/join');
     }
   }, [router]);
