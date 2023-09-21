@@ -29,6 +29,10 @@ export default function Home() {
     if (window.ReactNativeWebView) {
       document.addEventListener('message', listener); /* Android */
       window.addEventListener('message', listener); /* iOS */
+      return () => {
+        document.removeEventListener('message', listener);
+        window.removeEventListener('message', listener);
+      };
     }
   }, []);
 
@@ -64,7 +68,11 @@ export default function Home() {
   }, [router]);
 
   useDidMount(() => {
+    if (!!getLocalCookie(cookieName)) {
+      checkToken();
+      return;
+    }
+
     listenRN();
-    checkToken();
   });
 }
