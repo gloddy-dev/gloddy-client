@@ -13,9 +13,9 @@ import { useCallback } from 'react';
 export default function Home() {
   const router = useRouter();
 
-  const listenRN = useCallback(() => {
-    const listener = (event: any) => {
-      const { data } = JSON.parse(event.data);
+  const listenRN = () => {
+    const listener = async (event: any) => {
+      const { data } = await JSON.parse(event.data);
       setLocalCookie(cookieName, data, {
         expires: afterDay60,
       });
@@ -28,7 +28,7 @@ export default function Home() {
     } else {
       router.push('/join');
     }
-  }, [router]);
+  };
 
   const checkToken = useCallback(async () => {
     const { accessToken, refreshToken } = (await getTokenFromCookie()) as {
