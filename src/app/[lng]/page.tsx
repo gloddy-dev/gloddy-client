@@ -27,10 +27,6 @@ export default function Home() {
     if (window.ReactNativeWebView) {
       document.addEventListener('message', listener); /* Android */
       window.addEventListener('message', listener); /* iOS */
-      return () => {
-        document.removeEventListener('message', listener);
-        window.removeEventListener('message', listener);
-      };
     } else {
       router.push('/join');
     }
