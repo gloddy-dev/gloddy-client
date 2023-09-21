@@ -4,7 +4,7 @@ import { postReissue } from '@/apis/auth';
 import { AUTH_KEYS } from '@/constants/token';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import { getTokenFromCookie } from '@/utils/auth/tokenController';
-import { setLocalCookie } from '@/utils/cookieController';
+import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
 import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 import { NextResponse } from 'next/server';
@@ -16,9 +16,10 @@ export default function Home() {
   const listenRN = useCallback(() => {
     const listener = (event: any) => {
       const { data, type } = JSON.parse(event.data);
-        setLocalCookie(cookieName, data, {
-          expires: afterDay60,
-        });
+      setLocalCookie(cookieName, data, {
+        expires: afterDay60,
+      });
+    };
 
     if (window.ReactNativeWebView) {
       document.addEventListener('message', listener); /* Android */
