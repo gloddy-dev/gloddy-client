@@ -15,7 +15,8 @@ export default function Home() {
 
   const listenRN = () => {
     const listener = async (event: any) => {
-      const { data } = await JSON.parse(event.data);
+      const response = await JSON.parse(event.data);
+      const { data } = response;
       setLocalCookie(cookieName, data, {
         expires: afterDay60,
       });
