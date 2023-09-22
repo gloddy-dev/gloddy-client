@@ -76,7 +76,8 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
                     refreshToken,
                     userId,
                   });
-                  router.replace('/');
+                  router.refresh();
+                  router.replace('/grouping');
                 } else {
                   nextStep();
                 }
