@@ -27,6 +27,7 @@ export default function Login() {
                 userId,
               });
             }
+            router.refresh();
             router.push('/grouping');
           })();
         },
