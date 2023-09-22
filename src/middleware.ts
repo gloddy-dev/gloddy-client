@@ -4,7 +4,7 @@ import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
 
-const PRIVATE_PAGE = /^\/(grouping|meeting|profile)/;
+const PRIVATE_PAGE = /(grouping|meeting|profile)/;
 
 const PUBLIC_FILE = /\.(.*)$/;
 
