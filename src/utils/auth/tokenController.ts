@@ -33,7 +33,7 @@ export const setTokenAtCookie = async ({ accessToken, refreshToken, userId }: Co
       expires: afterDay60,
     });
     cookieStore.set(AUTH_KEYS.accessTokenExpireTime, String(afterDay1.getTime()), {
-      expires: afterDay60,
+      expires: afterDay1,
     });
 
     cookieStore.set(AUTH_KEYS.userId, '' + userId, {
@@ -46,6 +46,11 @@ export const setTokenAtCookie = async ({ accessToken, refreshToken, userId }: Co
     setLocalCookie(AUTH_KEYS.refreshToken, refreshToken, {
       expires: afterDay60,
     });
-    setLocalCookie(AUTH_KEYS.userId, '' + userId);
+    setLocalCookie(AUTH_KEYS.userId, '' + userId, {
+      expires: afterDay60,
+    });
+    setLocalCookie(AUTH_KEYS.accessTokenExpireTime, String(afterDay1.getTime()), {
+      expires: afterDay1,
+    });
   }
 };
