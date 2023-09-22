@@ -5,6 +5,7 @@ import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
+import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +17,9 @@ export default function Language() {
   const [language, setLanguage] = useState(getLocalCookie('i18next') || 'en');
 
   const handleSubmit = () => {
-    setLocalCookie('i18next', language);
+    setLocalCookie('i18next', language, {
+      expires: afterDay60,
+    });
     router.refresh();
     router.replace(`/${language}/grouping`);
   };
