@@ -1,10 +1,10 @@
+import { useTranslation } from '@/app/i18n/client';
 import WarningModal from '../../../components/WarningModal.client';
 import { type Notice, useDeleteArticle } from '@/apis/groups';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { useModal } from '@/hooks/useModal';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
 
 interface NoticeItemProps {
   notice: Notice;
