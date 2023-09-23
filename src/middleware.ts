@@ -53,6 +53,7 @@ const middleware = async (request: NextRequest) => {
     return NextResponse.next();
 
   const cookieLng = request.cookies.get(cookieName)?.value;
+  let response: NextResponse;
 
   /* 새로운 페이지 접속 시 */
   if (
@@ -61,7 +62,7 @@ const middleware = async (request: NextRequest) => {
   ) {
     const searchParams = request.nextUrl.searchParams.toString();
 
-    const response = NextResponse.redirect(
+    response = NextResponse.redirect(
       new URL(
         `/${cookieLng || fallbackLng}${request.nextUrl.pathname}${
           searchParams ? `?${searchParams}` : ''
@@ -69,21 +70,21 @@ const middleware = async (request: NextRequest) => {
         request.url
       )
     );
-
-    if (!cookieLng) {
-      response.cookies.set(cookieName, fallbackLng, {
-        expires: afterDay60,
-      });
-    }
-
-    if (PRIVATE_PAGE.test(request.nextUrl.pathname)) {
-      await setReissueToken(request, response);
-    }
-
-    return response;
+  } else {
+    response = NextResponse.next();
   }
 
-  return NextResponse.next();
+  if (!cookieLng) {
+    response.cookies.set(cookieName, fallbackLng, {
+      expires: afterDay60,
+    });
+  }
+
+  if (PRIVATE_PAGE.test(request.nextUrl.pathname)) {
+    await setReissueToken(request, response);
+  }
+
+  return response;
 };
 
 const config = {
