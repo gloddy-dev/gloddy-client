@@ -1,40 +1,41 @@
 'use client';
 import { cookieName } from '../i18n/settings';
 import { useDidMount } from '@/hooks/common/useDidMount';
-import { getTokenFromCookie } from '@/utils/auth/tokenController';
 import { setLocalCookie } from '@/utils/cookieController';
 import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 
-export default function Home() {
+interface HomeProps {
+  params: {
+    lng: string;
+  };
+}
+
+export default function Home({ params: { lng } }: HomeProps) {
   const router = useRouter();
 
-  const checkLanguageCookie = () => {
-    const listener = async (event: any) => {
-      const response = await JSON.parse(event.data);
-      const { data } = response;
-      setLocalCookie(cookieName, data, {
-        expires: afterDay60,
-      });
-    };
+  const listener = async (event: any) => {
+    console.log(event); // 모바일에서 보낸 데이터 확인하기 위한 로그
+    const response = await JSON.parse(event.data);
+    const { data } = response;
+    setLocalCookie(cookieName, data, {
+      expires: afterDay60,
+    });
 
+    router.replace(`/${lng}/grouping`);
+  };
+
+  useDidMount(() => {
     if (window.ReactNativeWebView) {
       document.addEventListener('message', listener); /* Android */
       window.addEventListener('message', listener); /* iOS */
-    } else {
-      router.push('/join');
+
+      return () => {
+        document.removeEventListener('message', listener);
+        window.removeEventListener('message', listener);
+      };
     }
-  };
 
-  const checkTokenCookie = async () => {
-    const { accessToken, refreshToken } = await getTokenFromCookie();
-
-    if (accessToken && refreshToken) router.push('/grouping');
-    else router.push('/join?step=1');
-  };
-
-  useDidMount(async () => {
-    await checkLanguageCookie();
-    await checkTokenCookie();
+    router.replace(`/${lng}/grouping`);
   });
 }

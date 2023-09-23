@@ -15,21 +15,14 @@ export default function Login() {
       { phoneNumber: '010-2018-0262' },
       {
         onSuccess: (response: LoginResponse) => {
-          (async () => {
-            if (response.existUser) {
-              const {
-                token: { accessToken, refreshToken },
-                userId,
-              } = response;
-              await setTokenAtCookie({
-                accessToken,
-                refreshToken,
-                userId,
-              });
-            }
+          setTokenAtCookie({
+            accessToken: response.token.accessToken,
+            refreshToken: response.token.refreshToken,
+            userId: response.userId,
+          }).then(() => {
+            router.replace('/grouping');
             router.refresh();
-            router.push('/grouping');
-          })();
+          });
         },
       }
     );
