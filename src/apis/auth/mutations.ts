@@ -36,7 +36,7 @@ export const useSignUpMutation = () => {
         token: { accessToken, refreshToken },
       } = data;
       setTokenAtCookie({ accessToken, refreshToken, userId });
-      router.push('grouping');
+      router.push('/grouping');
     },
   });
 };

@@ -2,13 +2,13 @@ import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen } from '../util';
 import { LoginResponse, useLoginMutation, useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
+import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useRouter } from 'next/navigation';
-import { useTranslation } from 'react-i18next';
 
 import type { SignUpState } from '../../../type';
 import type { SubmitHandler } from 'react-hook-form';
@@ -66,21 +66,16 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
             { phoneNumber: data.phoneNumber },
             {
               onSuccess: (response: LoginResponse) => {
-                if (response.existUser) {
-                  const {
-                    token: { accessToken, refreshToken },
-                    userId,
-                  } = response;
-                  setTokenAtCookie({
-                    accessToken,
-                    refreshToken,
-                    userId,
-                  });
-                  router.refresh();
-                  router.replace('/grouping');
-                } else {
+                if (!response.existUser) {
                   nextStep();
+                  return;
                 }
+
+                setTokenAtCookie({
+                  accessToken: response.token.accessToken,
+                  refreshToken: response.token.refreshToken,
+                  userId: response.userId,
+                }).then(() => router.replace('/'));
               },
             }
           );
