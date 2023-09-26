@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function Language() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const router = useRouter();
 
   const [language, setLanguage] = useState(getLocalCookie('i18next') || 'en');
@@ -20,6 +20,7 @@ export default function Language() {
     setLocalCookie('i18next', language, {
       expires: afterDay60,
     });
+    i18n.changeLanguage(language);
     router.refresh();
     router.replace(`/${language}/grouping`);
   };
