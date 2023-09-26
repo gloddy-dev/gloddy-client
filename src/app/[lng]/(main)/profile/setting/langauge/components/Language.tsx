@@ -1,7 +1,5 @@
 'use client';
 
-import { useTranslation } from '@/app/i18n/client';
-import { cookieName, fallbackLng } from '@/app/i18n/settings';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
@@ -10,21 +8,20 @@ import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
 import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Language() {
-  const { t, i18n } = useTranslation('common');
+  const { t } = useTranslation('common');
   const router = useRouter();
 
-  const [language, setLanguage] = useState(getLocalCookie(cookieName) || fallbackLng);
+  const [language, setLanguage] = useState(getLocalCookie('i18next') || 'en');
 
   const handleSubmit = () => {
     setLocalCookie('i18next', language, {
       expires: afterDay60,
     });
-
-    i18n.changeLanguage(language);
     router.refresh();
-    router.replace('/');
+    router.replace(`/${language}/grouping`);
   };
 
   return (
