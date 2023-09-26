@@ -34,8 +34,8 @@ export default function Home({ params: { lng } }: HomeProps) {
         document.removeEventListener('message', listener);
         window.removeEventListener('message', listener);
       };
+    } else {
+      router.replace(`/${lng}/grouping`);
     }
-
-    router.replace(`/${lng}/grouping`);
   });
 }
