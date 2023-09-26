@@ -4,7 +4,7 @@ import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
 
-const PRIVATE_PAGE = /(grouping|meeting|profile)/;
+const PRIVATE_PAGE = /\/(?:en|ko)\/(grouping|meeting|profile)/;
 
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -23,7 +23,7 @@ const middleware = async (request: NextRequest) => {
     const refreshToken = request.cookies.get(AUTH_KEYS.refreshToken)?.value as string;
     const accessTokenExpireTime = request.cookies.get(AUTH_KEYS.accessTokenExpireTime)
       ?.value as string;
-    if (!accessTokenExpireTime || Number(accessTokenExpireTime) < new Date().getTime()) {
+    if (!accessTokenExpireTime) {
       try {
         const {
           token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },
