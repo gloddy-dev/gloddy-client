@@ -16,7 +16,6 @@ const middleware = async (request: NextRequest) => {
   ) {
     return;
   }
-
   const pathname = request.nextUrl.pathname;
   if (PRIVATE_PAGE.test(pathname)) {
     const accessToken = request.cookies.get(AUTH_KEYS.accessToken)?.value as string;
@@ -38,7 +37,7 @@ const middleware = async (request: NextRequest) => {
         });
 
         response.cookies.set(AUTH_KEYS.accessTokenExpireTime, String(afterDay1.getTime()), {
-          expires: afterDay60,
+          expires: afterDay1,
         });
 
         response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
