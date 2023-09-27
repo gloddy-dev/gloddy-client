@@ -1,5 +1,4 @@
 import { postReissue } from './apis/auth';
-import { cookieName, languages } from './app/i18n/settings';
 import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
@@ -52,31 +51,7 @@ const middleware = async (request: NextRequest) => {
     }
   }
 
-  if (
-    request.nextUrl.pathname.indexOf('icon') > -1 ||
-    request.nextUrl.pathname.indexOf('chrome') > -1
-  )
-    return NextResponse.next();
-
-  const response = NextResponse.next();
-
-  const lng = request.cookies.get(cookieName)?.value || 'en';
-
-  /* 새로운 페이지 접속 시 */
-  if (
-    !languages.some((loc: string) => request.nextUrl.pathname.startsWith(`/${loc}`)) &&
-    !request.nextUrl.pathname.startsWith('/_next')
-  ) {
-    const searchParams = request.nextUrl.searchParams.toString();
-    return NextResponse.redirect(
-      new URL(
-        `/${lng}${request.nextUrl.pathname}${searchParams ? `?${searchParams}` : ''}`,
-        request.url
-      )
-    );
-  }
-
-  return response;
+  return NextResponse.next();
 };
 
 const config = {

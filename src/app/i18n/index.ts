@@ -1,4 +1,5 @@
 import { getOptions } from './settings';
+import { getLangauage } from '@/utils/getLanguage';
 import { createInstance } from 'i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { initReactI18next } from 'react-i18next/initReactI18next';
@@ -18,13 +19,11 @@ const initI18next = async (lng: string, ns: string) => {
 };
 
 export async function serverTranslation(ns: string, options?: { keyPrefix?: string }) {
-  const { cookies } = await import('next/headers');
-  const cookiesStore = cookies();
-  const cookieLng = cookiesStore.get('i18next')?.value || 'en';
-  const i18nextInstance = await initI18next(cookieLng, ns);
+  const lng = await getLangauage();
+  const i18nextInstance = await initI18next(lng, ns);
 
   return {
-    t: i18nextInstance.getFixedT(cookieLng, Array.isArray(ns) ? ns[0] : ns, options?.keyPrefix),
+    t: i18nextInstance.getFixedT(lng, Array.isArray(ns) ? ns[0] : ns, options?.keyPrefix),
     i18n: i18nextInstance,
   };
 }

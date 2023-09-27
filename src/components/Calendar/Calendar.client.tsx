@@ -4,9 +4,9 @@ import { Icon } from '../Icon';
 import { Spacing } from '../Spacing';
 import { IconButton } from '@/components/Button';
 import { Flex } from '@/components/Layout';
+import { getLocalCookie } from '@/utils/cookieController';
 import { format } from 'date-fns';
 import { enUS, ko } from 'date-fns/esm/locale';
-import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
 import DatePicker from 'react-datepicker';
 
@@ -16,7 +16,7 @@ interface CalendarProps {
 }
 
 export default function Calendar({ dateValue, setDateValue }: CalendarProps) {
-  const { lng } = useParams();
+  const lng = getLocalCookie('i18next') || 'en';
   const currentDate = useMemo(() => new Date(), []);
   const yesterdayDate = useMemo(
     () => new Date(currentDate.setDate(currentDate.getDate() - 1)),

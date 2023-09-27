@@ -7,6 +7,7 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
 import cn from '@/utils/cn';
+import { getLocalCookie } from '@/utils/cookieController';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
@@ -50,7 +51,8 @@ export default function GroupingCard({
     placeAddress,
     placeId,
   } = groupingData;
-  const { lng } = useParams() as { lng: string };
+  const lng = getLocalCookie('i18next') || 'en';
+
   const router = useRouter();
   const { place } = usePlaceDetails({
     placeId,
