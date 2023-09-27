@@ -65,17 +65,19 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
           mutateLogin(
             { phoneNumber: data.phoneNumber },
             {
-              onSuccess: (response: LoginResponse) => {
+              onSuccess: async (response: LoginResponse) => {
                 if (!response.existUser) {
                   nextStep();
                   return;
                 }
 
-                setTokenAtCookie({
+                await setTokenAtCookie({
                   accessToken: response.token.accessToken,
                   refreshToken: response.token.refreshToken,
                   userId: response.userId,
-                }).then(() => router.replace('/'));
+                });
+                router.refresh();
+                router.replace('/grouping');
               },
             }
           );
