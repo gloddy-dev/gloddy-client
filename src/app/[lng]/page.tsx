@@ -15,7 +15,6 @@ export default function Home() {
     const accessToken = getLocalCookie(AUTH_KEYS.accessToken);
     const refreshToken = getLocalCookie(AUTH_KEYS.refreshToken);
 
-    alert(accessToken);
     router.refresh();
     if (accessToken || refreshToken) {
       router.push('/grouping');
@@ -30,16 +29,12 @@ export default function Home() {
       expires: afterDay60,
     });
 
-    i18n.changeLanguage(data);
+    await i18n.changeLanguage(data);
 
     checkTokenCookie();
   };
 
   useEffect(() => {
-    if (typeof window === 'undefined' || typeof document === 'undefined') {
-      return;
-    }
-
     if (!window.ReactNativeWebView) {
       router.push('/grouping');
       return;
@@ -52,5 +47,5 @@ export default function Home() {
       document.removeEventListener('message', listener); /* Android */
       window.removeEventListener('message', listener); /* iOS */
     };
-  }, [document]);
+  }, []);
 }
