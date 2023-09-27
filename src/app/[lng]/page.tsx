@@ -21,6 +21,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!window.ReactNativeWebView) {
+      alert(1);
       router.push('/grouping');
       return;
     }
