@@ -1,6 +1,7 @@
 'use client';
 import { useTranslation } from '../i18n/client';
 import { cookieName } from '../i18n/settings';
+import { getTokenFromCookie } from '@/utils/auth/tokenController';
 import { setLocalCookie } from '@/utils/cookieController';
 import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
@@ -10,6 +11,14 @@ export default function Home() {
   const router = useRouter();
   const { i18n } = useTranslation('common');
 
+  const checkTokenCookie = async () => {
+    const { accessToken, refreshToken } = await getTokenFromCookie();
+
+    router.refresh();
+    if (accessToken && refreshToken) router.push('/grouping');
+    else router.push('/join?step=1');
+  };
+
   const listener = async (event: any) => {
     const { data } = await JSON.parse(event.data);
     setLocalCookie(cookieName, data, {
@@ -17,15 +26,15 @@ export default function Home() {
     });
 
     i18n.changeLanguage(data);
-    router.refresh();
-    router.push(`/${data}/join?step=1`);
+
+    await checkTokenCookie();
   };
 
   useEffect(() => {
-    if (!window.ReactNativeWebView) {
-      router.push('/grouping');
-      return;
-    }
+    // if (!window.ReactNativeWebView) {
+    //   router.push('/grouping');
+    //   return;
+    // }
 
     document.addEventListener('message', listener); /* Android */
     window.addEventListener('message', listener); /* iOS */

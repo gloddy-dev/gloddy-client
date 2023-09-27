@@ -42,7 +42,6 @@ const praises: Praise[] = [
 
 export default function ProfilePraiseDetail() {
   const { data: praisesData } = useGetPraises();
-  console.log(praisesData);
 
   return (
     <Flex as="main" direction="column" className="gap-8 px-20 py-16">
