@@ -15,13 +15,11 @@ export default function Home() {
     const accessToken = getLocalCookie(AUTH_KEYS.accessToken);
     const refreshToken = getLocalCookie(AUTH_KEYS.refreshToken);
 
-    router.refresh();
     alert(accessToken);
+    router.refresh();
     if (accessToken || refreshToken) {
-      alert(1);
       router.push('/grouping');
     } else {
-      alert(2);
       router.push('/join?step=1');
     }
   };
@@ -38,6 +36,10 @@ export default function Home() {
   };
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     if (!window.ReactNativeWebView) {
       router.push('/grouping');
       return;
@@ -50,5 +52,5 @@ export default function Home() {
       document.removeEventListener('message', listener); /* Android */
       window.removeEventListener('message', listener); /* iOS */
     };
-  }, []);
+  }, [document]);
 }
