@@ -14,13 +14,7 @@ import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
-interface MeetingPageProps {
-  params: {
-    lng: string;
-  };
-}
-
-export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
+export default function MeetingPage() {
   return (
     <>
       <MeetingParticipateHeader />
@@ -44,7 +38,7 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
           </HydrationProvider>
         </PageAnimation>
       </QueryAsyncBoundary>
-      <Footer page="meeting" lng={lng} />
+      <Footer page="meeting" />
     </>
   );
 }

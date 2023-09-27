@@ -2,12 +2,8 @@ import { serverTranslation } from '@/app/i18n';
 import { Divider } from '@/components/Divider';
 import Link from 'next/link';
 
-interface LinkSectionProps {
-  lng: string;
-}
-
-export default async function LinkSection({ lng }: LinkSectionProps) {
-  const { t } = await serverTranslation(lng, 'profile');
+export default async function LinkSection() {
+  const { t } = await serverTranslation('profile');
 
   return (
     <section className="text-subtitle-2">

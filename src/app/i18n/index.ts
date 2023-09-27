@@ -17,10 +17,14 @@ const initI18next = async (lng: string, ns: string) => {
   return i18nInstance;
 };
 
-export async function serverTranslation(lng: string, ns: string, options?: { keyPrefix?: string }) {
-  const i18nextInstance = await initI18next(lng, ns);
+export async function serverTranslation(ns: string, options?: { keyPrefix?: string }) {
+  const { cookies } = await import('next/headers');
+  const cookiesStore = cookies();
+  const cookieLng = cookiesStore.get('i18next')?.value || 'en';
+  const i18nextInstance = await initI18next(cookieLng, ns);
+
   return {
-    t: i18nextInstance.getFixedT(lng, Array.isArray(ns) ? ns[0] : ns, options?.keyPrefix),
+    t: i18nextInstance.getFixedT(cookieLng, Array.isArray(ns) ? ns[0] : ns, options?.keyPrefix),
     i18n: i18nextInstance,
   };
 }

@@ -4,14 +4,8 @@ import { serverTranslation } from '@/app/i18n';
 import { PageAnimation } from '@/components/PageAnimation';
 import { Spacing } from '@/components/Spacing';
 
-interface GroupingApplyPageProps {
-  params: {
-    lng: string;
-  };
-}
-
-export default async function ApplyPage({ params: { lng } }: GroupingApplyPageProps) {
-  const { t } = await serverTranslation(lng, 'groupDetail');
+export default async function ApplyPage() {
+  const { t } = await serverTranslation('groupDetail');
 
   return (
     <main className="px-20">
