@@ -13,7 +13,7 @@ interface FunnelContextProps extends Pick<ReturnType<typeof useFunnel>, 'nextSte
 
 const FunnelContext = createContext<FunnelContextProps | null>(null);
 
-export default function JoinFunnel({ lng }) {
+export default function JoinFunnel() {
   const { Funnel, prevStep, nextStep, currentStep } = useFunnel(['1', '2', '3', '4', '5']);
 
   return (
@@ -22,7 +22,6 @@ export default function JoinFunnel({ lng }) {
         <JoinHeader onPrevClick={prevStep} isBack={currentStep === '5'} />
         <Funnel.Step name="1">
           <Step1Component />
-          {lng}sdgqwdqwd
         </Funnel.Step>
         <Funnel.Step name="2">
           <Step2Component />
