@@ -13,13 +13,15 @@ import { usePathname } from 'next/navigation';
 export default function Step1Component() {
   const { t } = useTranslation('join');
   const pathname = usePathname();
-  const language = getLocalCookie('i18next');
+  const accessToken = getLocalCookie(AUTH_KEYS.accessToken);
+  const refreshToken = getLocalCookie(AUTH_KEYS.refreshToken);
 
   return (
     <main>
       <JoinTitleTextMessage>{t('enterPhoneNumber')}</JoinTitleTextMessage>
       <JoinTitleTextMessage>{pathname}</JoinTitleTextMessage>
-      <JoinTitleTextMessage>{language}</JoinTitleTextMessage>
+      <JoinTitleTextMessage>{accessToken}</JoinTitleTextMessage>
+      <JoinTitleTextMessage>{refreshToken}</JoinTitleTextMessage>
       <FormSection />
       <Spacing size={16} />
       <NoticeSection />
