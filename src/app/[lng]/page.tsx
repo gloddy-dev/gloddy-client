@@ -1,8 +1,8 @@
 'use client';
 import { useTranslation } from '../i18n/client';
 import { cookieName } from '../i18n/settings';
-import { getTokenFromCookie } from '@/utils/auth/tokenController';
-import { setLocalCookie } from '@/utils/cookieController';
+import { AUTH_KEYS } from '@/constants/token';
+import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
 import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -11,8 +11,9 @@ export default function Home() {
   const router = useRouter();
   const { i18n } = useTranslation('common');
 
-  const checkTokenCookie = async () => {
-    const { accessToken, refreshToken } = await getTokenFromCookie();
+  const checkTokenCookie = () => {
+    const accessToken = getLocalCookie(AUTH_KEYS.accessToken);
+    const refreshToken = getLocalCookie(AUTH_KEYS.refreshToken);
 
     router.refresh();
     if (accessToken && refreshToken) router.push('/grouping');
@@ -20,6 +21,7 @@ export default function Home() {
   };
 
   const listener = async (event: any) => {
+    alert(1);
     const { data } = await JSON.parse(event.data);
     setLocalCookie(cookieName, data, {
       expires: afterDay60,
@@ -27,14 +29,14 @@ export default function Home() {
 
     i18n.changeLanguage(data);
 
-    await checkTokenCookie();
+    checkTokenCookie();
   };
 
   useEffect(() => {
-    // if (!window.ReactNativeWebView) {
-    //   router.push('/grouping');
-    //   return;
-    // }
+    if (!window.ReactNativeWebView) {
+      router.push('/grouping');
+      return;
+    }
 
     document.addEventListener('message', listener); /* Android */
     window.addEventListener('message', listener); /* iOS */
