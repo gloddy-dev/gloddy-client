@@ -13,7 +13,7 @@ interface FunnelContextProps extends Pick<ReturnType<typeof useFunnel>, 'nextSte
 
 const FunnelContext = createContext<FunnelContextProps | null>(null);
 
-export default function JoinFunnel({ lng }: any) {
+export default function JoinFunnel({ lng }) {
   const { Funnel, prevStep, nextStep, currentStep } = useFunnel(['1', '2', '3', '4', '5']);
 
   return (
