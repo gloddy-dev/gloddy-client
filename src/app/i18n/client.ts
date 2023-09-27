@@ -2,6 +2,7 @@
 'use client';
 
 import { getOptions, languages } from './settings';
+import { getLangauage } from '@/utils/getLanguage';
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
@@ -23,7 +24,7 @@ i18next
     ...getOptions(),
     lng: undefined,
     detection: {
-      order: ['path', 'htmlTag', 'cookie', 'navigator'],
+      order: ['cookie', 'path', 'htmlTag', 'navigator'],
     },
     preload: runsOnServerSide ? languages : [],
   });
