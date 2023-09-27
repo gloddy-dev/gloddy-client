@@ -27,7 +27,6 @@ i18next
   });
 
 export function useTranslation(ns: string, options: { keyPrefix?: string } = {}) {
-  console.log(options);
   const ret = useTranslationOrg(ns, options);
 
   return ret;
