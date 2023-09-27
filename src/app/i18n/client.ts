@@ -20,6 +20,7 @@ i18next
   .init({
     ...getOptions(),
     lng: undefined,
+    fallbackLng: undefined,
     detection: {
       order: ['path', 'htmlTag', 'cookie', 'navigator'],
     },
