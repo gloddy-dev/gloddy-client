@@ -34,13 +34,14 @@ const tabList: TabType[] = [
 ];
 
 interface FooterProps {
+  lng: string;
   page?: PageType;
   isSpacing?: boolean;
   spacingColor?: string;
 }
 
-export default async function Footer({ page, isSpacing = true, spacingColor }: FooterProps) {
-  const { t } = await serverTranslation('common');
+export default async function Footer({ lng, page, isSpacing = true, spacingColor }: FooterProps) {
+  const { t } = await serverTranslation(lng, 'common');
   const isSelected = (tab: TabType) => tab.name === page;
 
   return (
