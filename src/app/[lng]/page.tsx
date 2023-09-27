@@ -16,12 +16,17 @@ export default function Home() {
     const refreshToken = getLocalCookie(AUTH_KEYS.refreshToken);
 
     router.refresh();
-    if (accessToken && refreshToken) router.push('/grouping');
-    else router.push('/join?step=1');
+    alert(accessToken);
+    if (accessToken || refreshToken) {
+      alert(1);
+      router.push('/grouping');
+    } else {
+      alert(2);
+      router.push('/join?step=1');
+    }
   };
 
   const listener = async (event: any) => {
-    alert(1);
     const { data } = await JSON.parse(event.data);
     setLocalCookie(cookieName, data, {
       expires: afterDay60,
