@@ -6,6 +6,12 @@ import { type NextRequest, NextResponse } from 'next/server';
 
 const PRIVATE_PAGE = /\/(?:en|ko)\/(grouping|meeting|profile)/;
 
+const excludePages = ['/ko/profile/setting/information', '/ko/profile/setting/service'];
+
+function isPrivatePage(path: string) {
+  return !excludePages.includes(path) && PRIVATE_PAGE.test(path);
+}
+
 const PUBLIC_FILE = /\.(.*)$/;
 
 const middleware = async (request: NextRequest) => {
@@ -17,7 +23,7 @@ const middleware = async (request: NextRequest) => {
     return;
   }
   const pathname = request.nextUrl.pathname;
-  if (PRIVATE_PAGE.test(pathname)) {
+  if (isPrivatePage(pathname)) {
     const accessToken = request.cookies.get(AUTH_KEYS.accessToken)?.value as string;
     const refreshToken = request.cookies.get(AUTH_KEYS.refreshToken)?.value as string;
     const accessTokenExpireTime = request.cookies.get(AUTH_KEYS.accessTokenExpireTime)
