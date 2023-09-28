@@ -4,13 +4,15 @@ import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
 
-const PRIVATE_PAGE = /\/(?:en|ko)\/(grouping|meeting|profile)/;
+const privatePages = /\/(?:en|ko)\/(grouping|meeting|profile)/;
 
-const excludePages = ['/ko/profile/setting/information', '/ko/profile/setting/service'];
+const excludePages = [
+  /\/(?:en|ko)\/profile\/setting\/information/,
+  /\/(?:en|ko)\/profile\/setting\/service/,
+];
 
-function isPrivatePage(path: string) {
-  return !excludePages.includes(path) && PRIVATE_PAGE.test(path);
-}
+const isPrivatePage = (path: string) =>
+  !excludePages.some((it) => it.test(path)) && privatePages.test(path);
 
 const PUBLIC_FILE = /\.(.*)$/;
 
