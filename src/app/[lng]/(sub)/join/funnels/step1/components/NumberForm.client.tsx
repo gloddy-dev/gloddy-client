@@ -50,12 +50,14 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
       mutateLogin(
         { phoneNumber: data.phoneNumber },
         {
-          onSuccess: (response: LoginResponse) => {
-            setTokenAtCookie({
+          onSuccess: async (response: LoginResponse) => {
+            await setTokenAtCookie({
               accessToken: response.token.accessToken,
               refreshToken: response.token.refreshToken,
               userId: response.userId,
-            }).then(() => router.replace('/'));
+            });
+            router.refresh();
+            router.replace('/grouping');
           },
         }
       );
