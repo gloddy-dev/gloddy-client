@@ -25,9 +25,11 @@ export default function Home() {
 
   const listener = async (event: any) => {
     const { data } = await JSON.parse(event.data);
-    setLocalCookie(cookieName, data, {
-      expires: afterDay60,
-    });
+    if (data) {
+      setLocalCookie(cookieName, data, {
+        expires: afterDay60,
+      });
+    }
 
     await i18n.changeLanguage(data);
 
