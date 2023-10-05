@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
   const { i18n } = useTranslation();
 
-  useDidMount(() => {
+  useDidMount(async () => {
     const browserLanguage = (() => {
       const cookieLanguage = getLocalCookie('i18next');
       const deviceLanguage = navigator.language === 'ko-KR' ? 'ko' : 'en';
@@ -20,7 +20,7 @@ export default function Home() {
     })();
 
     setLocalCookie('i18next', browserLanguage, { expires: afterDay60 });
-    i18n.changeLanguage(browserLanguage);
+    await i18n.changeLanguage(browserLanguage);
 
     if (hasToken()) router.push(`/${browserLanguage}/grouping`);
     else router.push(`/${browserLanguage}/join?step=1`);
