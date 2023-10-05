@@ -11,7 +11,7 @@ interface PageProps {
 }
 
 export default async function Page({ params: { lng } }: PageProps) {
-  const { t } = await serverTranslation(lng, 'grouping');
+  const { t } = await serverTranslation(lng, 'join');
 
   return (
     <main className="px-20">
