@@ -54,3 +54,10 @@ export const setTokenAtCookie = async ({ accessToken, refreshToken, userId }: Co
     });
   }
 };
+
+export const hasToken = () => {
+  const accessToken = getLocalCookie(AUTH_KEYS.accessToken);
+  const refreshToken = getLocalCookie(AUTH_KEYS.refreshToken);
+
+  return accessToken || refreshToken;
+};
