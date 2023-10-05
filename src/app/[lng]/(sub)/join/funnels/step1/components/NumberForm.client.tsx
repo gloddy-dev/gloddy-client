@@ -3,10 +3,12 @@ import { formatNumber, formatNumberBackSpace } from '../util';
 import { useLoginMutation, useSMSMutation } from '@/apis/auth';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
+import { Toast } from '@/components/Modal';
 import { useTimerContext } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
+import { useModal } from '@/hooks/useModal';
 import { useRouter } from 'next/navigation';
 import { ElementType, KeyboardEventHandler } from 'react';
 
@@ -25,6 +27,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   const { setValue, handleSubmit, register, formState } = hookForm;
   const { mutate: mutateSMS } = useSMSMutation();
   const { start: timerStart, status: timerStatus } = useTimerContext();
+  const { open: openToast } = useModal({ delay: 2000 });
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -45,7 +48,12 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     mutateSMS(
       { number: phoneNumberWithoutHyphen },
-      { onSuccess: () => setInputStatus('afterSend') }
+      {
+        onSuccess: () => {
+          openToast(() => <Toast>인증 번호가 전송되었습니다.</Toast>);
+          setInputStatus('afterSend');
+        },
+      }
     );
   };
 
