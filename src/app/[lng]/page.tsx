@@ -1,53 +1,28 @@
 'use client';
-import { useTranslation } from '../i18n/client';
-import { cookieName } from '../i18n/settings';
-import { AUTH_KEYS } from '@/constants/token';
+import { useDidMount } from '@/hooks/common/useDidMount';
+import { hasToken } from '@/utils/auth/tokenController';
 import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
 import { afterDay60 } from '@/utils/date';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
   const router = useRouter();
-  const { i18n } = useTranslation('common');
+  const { i18n } = useTranslation();
 
-  const checkTokenCookie = () => {
-    const accessToken = getLocalCookie(AUTH_KEYS.accessToken);
-    const refreshToken = getLocalCookie(AUTH_KEYS.refreshToken);
+  useDidMount(() => {
+    const browserLanguage = (() => {
+      const cookieLanguage = getLocalCookie('i18next');
+      const deviceLanguage = navigator.language === 'ko-KR' ? 'ko' : 'en';
 
-    router.refresh();
-    if (accessToken || refreshToken) {
-      router.push('/grouping');
-    } else {
-      router.push('/join?step=1');
-    }
-  };
+      if (cookieLanguage) return cookieLanguage;
+      else return deviceLanguage;
+    })();
 
-  const listener = async (event: any) => {
-    const { data } = await JSON.parse(event.data);
-    if (data) {
-      setLocalCookie(cookieName, data, {
-        expires: afterDay60,
-      });
-    }
+    setLocalCookie('i18next', browserLanguage, { expires: afterDay60 });
+    i18n.changeLanguage(browserLanguage);
 
-    await i18n.changeLanguage(data);
-
-    checkTokenCookie();
-  };
-
-  useEffect(() => {
-    if (!window.ReactNativeWebView) {
-      router.push('/grouping');
-      return;
-    }
-
-    document.addEventListener('message', listener); /* Android */
-    window.addEventListener('message', listener); /* iOS */
-
-    return () => {
-      document.removeEventListener('message', listener); /* Android */
-      window.removeEventListener('message', listener); /* iOS */
-    };
-  }, []);
+    if (hasToken()) router.push(`/${browserLanguage}/grouping`);
+    else router.push(`/${browserLanguage}/join?step=1`);
+  });
 }
