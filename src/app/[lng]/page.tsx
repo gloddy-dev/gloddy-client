@@ -1,4 +1,5 @@
 'use client';
+import { cookieName } from '../i18n/settings';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import { hasToken } from '@/utils/auth/tokenController';
 import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
@@ -11,15 +12,11 @@ export default function Home() {
   const { i18n } = useTranslation();
 
   useDidMount(async () => {
-    const browserLanguage = (() => {
-      const cookieLanguage = getLocalCookie('i18next');
-      const deviceLanguage = navigator.language === 'ko-KR' ? 'ko' : 'en';
+    const cookieLanguage = getLocalCookie(cookieName);
+    const deviceLanguage = navigator.language === 'ko-KR' ? 'ko' : 'en';
+    const browserLanguage = cookieLanguage || deviceLanguage;
 
-      if (cookieLanguage) return cookieLanguage;
-      else return deviceLanguage;
-    })();
-
-    setLocalCookie('i18next', browserLanguage, { expires: afterDay60 });
+    setLocalCookie(cookieName, browserLanguage, { expires: afterDay60 });
     await i18n.changeLanguage(browserLanguage);
 
     if (hasToken()) router.push(`/${browserLanguage}/grouping`);
