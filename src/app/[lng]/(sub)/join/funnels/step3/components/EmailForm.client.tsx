@@ -32,20 +32,10 @@ export default memo(function EmailForm() {
   const onSubmit = (data: Pick<SignUpState, 'schoolInfo'>) => {
     if (!data.schoolInfo.email) return;
 
-    mutateEmail(
-      { email: data.schoolInfo.email },
-      {
-        onSuccess: () => {
-          openVerifyBottomSheet(({ isOpen }) => (
-            <VerifyBottomSheet
-              onClose={closeVerifyBottomSheet}
-              onOkClick={nextStep}
-              isOpen={isOpen}
-            />
-          ));
-        },
-      }
-    );
+    mutateEmail({ email: data.schoolInfo.email });
+    openVerifyBottomSheet(({ isOpen }) => (
+      <VerifyBottomSheet onClose={closeVerifyBottomSheet} onOkClick={nextStep} isOpen={isOpen} />
+    ));
   };
 
   const handleSkipClick = () => {
