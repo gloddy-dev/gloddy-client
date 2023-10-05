@@ -78,6 +78,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         readOnly={inputStatus === 'afterSend'}
         isLeftCaptionWrap={false}
         type="tel"
+        inputMode="tel"
       />
 
       <Spacing size={8} />
