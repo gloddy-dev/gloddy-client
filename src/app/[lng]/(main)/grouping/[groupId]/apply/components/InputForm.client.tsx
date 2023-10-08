@@ -4,6 +4,7 @@ import ApplyModal from './ApplyModal.client';
 import { usePostApply } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
+import { LayerLoading } from '@/components/Loading';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
@@ -26,13 +27,11 @@ export default function InputForm() {
   });
   const { open, exit } = useModal();
   const { groupId } = useNumberParams<['groupId']>();
-  const { mutate: mutatePostApply, isLoading } = usePostApply(groupId);
+  const { mutate: mutatePostApply, status } = usePostApply(groupId);
 
   const { register, handleSubmit, formState } = hookForm;
 
   const onSubmit: SubmitHandler<ApplyFormType> = (apply) => {
-    if (isLoading) return;
-
     mutatePostApply({
       params: { groupId },
       apply,
@@ -70,6 +69,7 @@ export default function InputForm() {
         >
           {t('apply.submit.label')}
         </Button>
+        <LayerLoading isLoading={status === 'loading' || status === 'success'} />
       </ButtonGroup>
     </>
   );
