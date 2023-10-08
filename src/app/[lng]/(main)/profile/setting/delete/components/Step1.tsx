@@ -18,6 +18,7 @@ const infoList = [
 
 export default function Step1({ onNextClick }: Step1Props) {
   const { t } = useTranslation('profile');
+  const { t: tc } = useTranslation('common');
   const { setValue, watch } = useDeleteContext();
   const handleDeleteAgree = () => {
     setValue('isDeleteAgree', !watch('isDeleteAgree'));
@@ -44,7 +45,7 @@ export default function Step1({ onNextClick }: Step1Props) {
 
       <ButtonGroup>
         <Button onClick={onNextClick} disabled={!watch('isDeleteAgree')}>
-          {t('next')}
+          {tc('next')}
         </Button>
       </ButtonGroup>
     </div>

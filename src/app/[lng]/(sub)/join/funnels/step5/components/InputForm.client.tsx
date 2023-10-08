@@ -4,6 +4,7 @@ import { useJoinContext } from '../../../components/JoinContext.client';
 import { useSignUpMutation } from '@/apis/auth';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
+import { LayerLoading } from '@/components/Loading';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
 import { formatDateDTO } from '@/utils/formatDateDTO';
@@ -15,14 +16,14 @@ export default function InputForm() {
   const { t } = useTranslation('join');
 
   const { handleSubmit, watch } = useJoinContext();
-  const { mutate: mutateSignUp } = useSignUpMutation();
+  const { mutate: mutateSignUp, status } = useSignUpMutation();
 
   const onSubmit = async (data: SignUpState) => {
     const { verifyEmailNumber, verifyNumber, birth, personalityIdList, ...rest } = data;
     const signUpRequest = {
       ...rest,
       birth: formatDateDTO(birth),
-      personalities: personalityIdList.map((id) => personalityList[id].keywordDTO),
+      personalities: personalityIdList.map((id) => personalityList[id]?.keywordDTO),
     };
     mutateSignUp(signUpRequest);
   };
@@ -35,6 +36,7 @@ export default function InputForm() {
           {t('complete')}
         </Button>
       </ButtonGroup>
+      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
     </form>
   );
 }
