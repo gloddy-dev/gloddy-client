@@ -28,8 +28,8 @@ export default function CommentForm() {
   const { handleSubmit, reset, watch, register } = hookForm;
 
   const onSubmit = ({ content }: CommentFormType) => {
-    mutateComment({ params: { articleId, groupId }, payload: { content } });
     reset();
+    mutateComment({ params: { articleId, groupId }, payload: { content } });
   };
 
   return (
