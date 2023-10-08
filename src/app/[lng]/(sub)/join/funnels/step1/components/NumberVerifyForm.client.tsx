@@ -4,6 +4,7 @@ import { formatWithoutHyphen } from '../util';
 import { LoginResponse, useLoginMutation, useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
+import { LayerLoading } from '@/components/Loading';
 import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
@@ -26,7 +27,7 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
-  const { mutate: mutateLogin } = useLoginMutation();
+  const { mutate: mutateLogin, status } = useLoginMutation();
   const { mutate: mutateSMS } = useSMSMutation();
 
   const handleResend = () => {
@@ -116,6 +117,7 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
         </Button>
         <Button type="submit">{t('complete')}</Button>
       </ButtonGroup>
+      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
     </form>
   );
 }
