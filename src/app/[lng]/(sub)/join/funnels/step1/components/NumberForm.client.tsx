@@ -78,7 +78,8 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
         // type="tel"
         // inputMode="tel"
       />
-      <input onChange={handleInputChange} className="border border-1" />
+      <input onChange={handleInputChange} className="border " />
+      <input className="border " />
 
       <Spacing size={8} />
       {inputStatus === 'beforeSend' && (
