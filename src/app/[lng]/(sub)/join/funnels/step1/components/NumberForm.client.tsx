@@ -70,7 +70,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
           },
           onChange: handleInputChange,
         })}
-        onKeyDown={handleInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
+        // onKeyDown={handleInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
         maxLength={13}
         hookForm={hookForm}
         placeholder="010-0000-0000"
