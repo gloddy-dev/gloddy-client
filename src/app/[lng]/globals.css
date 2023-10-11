@@ -14,6 +14,12 @@
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+input,textarea{
+  -moz-user-select: auto;
+  -webkit-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
 
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
