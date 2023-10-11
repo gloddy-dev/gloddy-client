@@ -68,18 +68,16 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
           },
         })}
         onChange={handleInputChange}
-        // onKeyDown={handleInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
-        // maxLength={13}
+        onKeyDown={handleInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
+        maxLength={13}
         hookForm={hookForm}
-        // placeholder="010-0000-0000"
-        // isSpacing={false}
-        // readOnly={inputStatus === 'afterSend'}
-        // isLeftCaptionWrap={false}
-        // type="tel"
-        // inputMode="tel"
+        placeholder="010-0000-0000"
+        isSpacing={false}
+        readOnly={inputStatus === 'afterSend'}
+        isLeftCaptionWrap={false}
+        type="tel"
+        inputMode="tel"
       />
-      <input onChange={handleInputChange} className="border " />
-      <input className="border " />
 
       <Spacing size={8} />
       {inputStatus === 'beforeSend' && (
