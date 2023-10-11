@@ -29,7 +29,9 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   const { start: timerStart, status: timerStatus } = useTimerContext();
   const { open: openToast } = useModal({ delay: 2000 });
 
-  const handleInputChange = (e: any): any => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
+  ): any => {
     const phoneNumber = e.currentTarget.value.replace(/[^0-9-]/g, '');
     const phoneNumberWithoutHyphen = phoneNumber.replace(/-/g, '');
 
@@ -66,8 +68,8 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
             value: regexr.phoneNumber,
             message: t('* 휴대폰 번호를 다시 확인해주세요.'),
           },
+          onChange: handleInputChange,
         })}
-        onChange={handleInputChange}
         onKeyDown={handleInputChange as unknown as KeyboardEventHandler<ElementType<any>>}
         maxLength={13}
         hookForm={hookForm}
