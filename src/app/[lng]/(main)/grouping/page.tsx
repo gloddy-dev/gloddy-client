@@ -17,7 +17,7 @@ interface GroupingPageProps {
 export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
   return (
     <>
-      <GroupingHeader lng={lng} />
+      <GroupingHeader />
 
       <QueryAsyncBoundary
         rejectedFallback={RejectedFallback}
