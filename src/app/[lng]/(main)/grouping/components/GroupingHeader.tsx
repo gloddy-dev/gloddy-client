@@ -1,15 +1,24 @@
-import { serverTranslation } from '@/app/i18n';
+'use client';
+
+import { useTranslation } from '@/app/i18n/client';
+import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
+import { Icon } from '@/components/Icon';
 
-interface GroupingHeaderProps {
-  lng: string;
-}
+export default function GroupingHeader() {
+  const { t } = useTranslation('grouping');
 
-export default async function GroupingHeader({ lng }: GroupingHeaderProps) {
-  const { t } = await serverTranslation(lng, 'grouping');
   return (
-    <Header className="px-20">
-      <Header.Left>{t('headerTitle')}</Header.Left>
+    <Header>
+      <Header.Left className="pl-20">{t('headerTitle')}</Header.Left>
+      <Header.Right className="pr-4">
+        <IconButton
+          size="large"
+          onClick={() => window.open('https://forms.gle/YJvNzLniP8he4xv68', '_blank')}
+        >
+          <Icon id="24-comments" />
+        </IconButton>
+      </Header.Right>
     </Header>
   );
 }
