@@ -29,7 +29,6 @@ export function useFileUpload(
     input.type = 'file';
     input.accept = options?.accept || 'image/*';
     input.multiple = options?.multiple || false;
-    input.click();
     input.onchange = (event) => {
       const { files } = event.target as HTMLInputElement;
       if (!files) return;
@@ -43,6 +42,7 @@ export function useFileUpload(
         }
       );
     };
+    input.click();
   }, [handleFileChange, mutate, options?.accept, options?.multiple]);
 
   return {
