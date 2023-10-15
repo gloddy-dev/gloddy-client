@@ -42,6 +42,7 @@ export default function InputForm() {
 }
 
 function PersonalitySection() {
+  const { t } = useTranslation('join');
   const { watch, setValue } = useJoinContext();
 
   const handleSelectedClick = useCallback(
@@ -70,7 +71,7 @@ function PersonalitySection() {
           onSelected={handleSelectedClick}
         >
           {tag.emoji + ' '}
-          {tag.keyword}
+          {t(tag.keyword)}
         </Tag>
       ))}
     </section>
