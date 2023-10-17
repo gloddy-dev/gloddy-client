@@ -4,6 +4,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
+import Link from 'next/link';
 
 export default function GroupingHeader() {
   const { t } = useTranslation('grouping');
@@ -18,6 +19,11 @@ export default function GroupingHeader() {
         >
           <Icon id="24-comments" />
         </IconButton>
+        <Link href="/notification">
+          <IconButton size="large">
+            <Icon id="24-notification" />
+          </IconButton>
+        </Link>
       </Header.Right>
     </Header>
   );
