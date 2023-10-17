@@ -12,17 +12,15 @@ import { useTranslation } from 'react-i18next';
 
 export default function Language() {
   const { t, i18n } = useTranslation('common');
-  const router = useRouter();
 
-  const [language, setLanguage] = useState(getLocalCookie('i18next') || 'en');
+  const prevLanguage = getLocalCookie('i18next');
+  const [language, setLanguage] = useState(prevLanguage || 'en');
 
   const handleSubmit = () => {
     setLocalCookie('i18next', language, {
       expires: afterDay60,
     });
     i18n.changeLanguage(language);
-    router.refresh();
-    router.replace(`/${language}/grouping`);
   };
 
   return (
@@ -38,7 +36,9 @@ export default function Language() {
         <span>English</span>
       </Flex>
       <ButtonGroup>
-        <Button onClick={handleSubmit}>{t('confirm')}</Button>
+        <Button onClick={handleSubmit} disabled={prevLanguage === language}>
+          {t('confirm')}
+        </Button>
       </ButtonGroup>
     </Flex>
   );
