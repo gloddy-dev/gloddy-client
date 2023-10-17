@@ -1,5 +1,48 @@
+import NotiCard from './components/NotiCard.client';
 import NotificationHeader from './components/NotificationHeader';
+import { Flex } from '@/components/Layout';
+import { ItemList } from '@/components/List';
+import { ComponentProps } from 'react';
+
+const DUMMY_DATA: Array<ComponentProps<typeof NotiCard>['notiData']> = [
+  {
+    title: '모임 참여 인원으로 승인되었습니다.',
+    imageUrl: '/images/dummy_image.png',
+    date: new Date().toISOString(),
+    isRead: false,
+  },
+  {
+    title: '1시간 뒤 모임이 진행됩니다. 준비는 되었나요?',
+    imageUrl: '/images/dummy_image.png',
+    date: new Date(Date.now() - 6000000).toISOString(),
+    isRead: true,
+  },
+  {
+    title: '모임이 취소되었습니다.',
+    imageUrl: '/images/dummy_image.png',
+    date: new Date(Date.now() - 86400000 * 2).toISOString(),
+    isRead: false,
+  },
+  {
+    title: '신규 인원이 회원 님의 모임에 지원하였습니다.',
+    imageUrl: '/images/dummy_image.png',
+    date: new Date(Date.now() - 86400000 * 20).toISOString(),
+    isRead: true,
+  },
+];
 
 export default function NotificationPage() {
-  return <NotificationHeader />;
+  return (
+    <>
+      <NotificationHeader />
+      <ItemList
+        data={DUMMY_DATA}
+        renderItem={(data) => <NotiCard notiData={data} />}
+        hasDivider={false}
+        renderEmpty={() => (
+          <Flex className="justify-center py-20 text-sign-secondary">알림이 없습니다.</Flex>
+        )}
+      />
+    </>
+  );
 }
