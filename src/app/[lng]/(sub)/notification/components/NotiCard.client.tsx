@@ -10,16 +10,16 @@ import { enUS, ko } from 'date-fns/esm/locale';
 import Image from 'next/image';
 
 function foramtDate(locale: Locale, date: string) {
-  const d = new Date(date);
+  const notiDate = new Date(date);
   const now = Date.now();
-  const diff = (now - d.getTime()) / 1000;
+  const diff = (now - notiDate.getTime()) / 1000;
   if (diff < 60 * 1) {
     return locale.code === 'ko' ? '방금 전' : 'just now';
   }
   if (diff < 60 * 60 * 24 * 3) {
-    return formatDistanceToNowStrict(d, { addSuffix: true, locale });
+    return formatDistanceToNowStrict(notiDate, { addSuffix: true, locale });
   }
-  return format(d, locale.code === 'ko' ? 'yyyy년 MM월 dd일' : 'dd MMM yyyy');
+  return format(notiDate, locale.code === 'ko' ? 'yyyy년 MM월 dd일' : 'dd MMM yyyy');
 }
 
 interface NotiCardProps {
