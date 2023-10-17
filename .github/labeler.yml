@@ -36,6 +36,6 @@ labels:
   'Test':
     include:
       - '\bTest\b'
-  'Featuring':
+  'Feature':
     include:
-      - '\bFeaturing\b'
+      - '\bFeature\b'

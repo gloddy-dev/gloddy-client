@@ -1,24 +1,26 @@
-const { colors, pxToRemTailwind, animations } = require('./style/theme');
+const {
+  colors,
+  boxShadow,
+  pxToRemTailwind,
+  keyframes,
+  animation,
+  fontSize,
+} = require('./src/style/theme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       ...pxToRemTailwind,
       colors,
-      keyframes: animations,
-      animation: {
-        slideUp: 'slideUp 0.5s ease-in-out',
+      boxShadow,
+      keyframes,
+      animation,
+      fontSize,
+      zIndex: {
+        modal: '10000000',
       },
-    },
-    fontWeight: {
-      100: '100',
-      300: '300',
-      350: '350',
-      400: '400',
-      700: '700',
-      900: '900',
     },
   },
 };
