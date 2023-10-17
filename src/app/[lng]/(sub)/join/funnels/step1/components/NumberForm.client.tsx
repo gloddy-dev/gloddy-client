@@ -66,15 +66,9 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
       );
       return;
     }
-    mutateSMS(
-      { number: phoneNumberWithoutHyphen },
-      {
-        onSuccess: () => {
-          openToast(() => <Toast>인증 번호가 전송되었습니다.</Toast>);
-          setInputStatus('afterSend');
-        },
-      }
-    );
+    mutateSMS({ number: phoneNumberWithoutHyphen });
+    openToast(() => <Toast>인증 번호가 전송되었습니다.</Toast>);
+    setInputStatus('afterSend');
   };
 
   return (
