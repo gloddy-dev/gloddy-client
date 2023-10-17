@@ -1,0 +1,45 @@
+{
+  "headerTitle": "Matching",
+  "create": {
+    "headerTitle": "Create Group",
+    "title": {
+      "label": "Group Title",
+      "placeholder": "Please input the title."
+    },
+    "content": {
+      "label": "Group Info",
+      "placeholder": "Please write an introduction for the activity."
+    },
+    "meetDate": {
+      "label": "Date and Time",
+      "placeholder": "Set the date and time for the meeting.",
+      "year": "Year",
+      "month": "Month"
+    },
+    "time": {
+      "label": "Start time",
+      "am": "AM",
+      "pm": "PM",
+      "hour": "Hour",
+      "minute": "Minute"
+    },
+    "place": {
+      "label": "Location",
+      "placeholder": "Please set the location for the meeting.",
+      "noResult": "No results found."
+    },
+    "maxUser": {
+      "label": "Number of Participants"
+    },
+    "error": {
+      "time": "Please set a time later than the current time."
+    },
+    "continue": "Continue",
+    "submit": {
+      "label": "Submit",
+      "message": "No changes can be made after creating the group.\nDo you wish to continue?",
+      "ok": "Yes",
+      "cancel": "No"
+    }
+  }
+}

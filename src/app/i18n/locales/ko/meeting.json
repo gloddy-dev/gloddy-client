@@ -1,0 +1,57 @@
+{
+  "home": {
+    "joinedGroup": "참여 모임",
+    "favoritedGroup": "찜한 모임",
+
+    "participating": "참여중",
+    "waiting": "대기중",
+    "evaluation": "평가",
+
+    "memberGroup": "멤버로 참여중인 모임",
+    "hostingGroup": "내가 호스팅한 모임",
+    "newApplications": "신규 지원",
+    "awaitingApproval": "승인 대기중인 모임",
+    "underReview": "심사 중",
+    "rejected": "거절됨",
+    "rejectedGroups": "거절된 모임",
+    "mutualEvaluationRequired": "상호평가가 필요한 모임",
+    "evaluateGroup": "모임 평가하기",
+    "enjoyedGroup": "모임은 즐거우셨나요?",
+    "complimentMembers": "함께했던 멤버들을 칭찬해주세요!",
+    "move": "이동하기",
+    "cancel": "취소",
+    "rejectedApplication": "아쉽지만 모임에 반려되었습니다",
+    "excitingActivities1": "다른 재밌는 모임 활동들이",
+    "excitingActivities2": "회원님을 기다리고 있어요!",
+    "applyOtherGroups": "다른 모임 지원하러 가기",
+    "noParticipatingGroups": "참여중인 모임이 없어요.",
+    "noHostingGroups": "내가 진행하는 모임이 없어요.",
+    "noPendingGroups": "아직 대기중인 모임이 없어요.",
+    "noRejectedGroups": "거절된 모임이 없어요",
+    "noMutualEvaluationGroups": "상호평가가 필요한 모임이 없어요",
+    "noFavoritedGroups": "아직 찜한 모임이 없어요.",
+    "noReview": "작성한 후기가 없습니다."
+  },
+  "evaluation": {
+    "evaluateGroup": "모임 평가하기",
+    "howWasGroup": "모임에서 어땠나요?",
+    "traits": {
+      "calm": "차분함",
+      "kind": "친절함",
+      "active": "적극적",
+      "witty": "유머러스"
+    },
+    "absence": "Gloddy님이 모임에 불참하셨나요?",
+    "bestPartner": "최고의 짝꿍",
+    "whoBestPartner": "최고의 짝꿍은 누구였나요?",
+    "reasonBestPartner1": "최고의 짝꿍으로",
+    "reasonBestPartner2": "선정한 이유는 무엇인가요?",
+    "leaveReview": "최고의 짝꿍에게 후기를 남겨주세요.",
+    "evaluationComplete": "모임 평가를 완료했습니다.",
+    "excitingGroups1": "다른 재미있는 모임이",
+    "excitingGroups2": "회원님을 기다리고 있어요!",
+    "evaluationHelp1": "멤버 평가는 앞으로의 매칭에",
+    "evaluationHelp2": "많은 도움이 됩니다!",
+    "reallyNotEvaluate": "정말 안 해주실 건가요?"
+  }
+}
