@@ -19,11 +19,11 @@ export default function GroupingHeader() {
         >
           <Icon id="24-comments" />
         </IconButton>
-        <Link href="/notification">
+        {/* <Link href="/notification">
           <IconButton size="large">
             <Icon id="24-notification" />
           </IconButton>
-        </Link>
+        </Link> */}
       </Header.Right>
     </Header>
   );
