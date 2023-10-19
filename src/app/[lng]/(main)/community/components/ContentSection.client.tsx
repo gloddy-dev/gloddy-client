@@ -1,6 +1,11 @@
 'use client';
 
+import AllContent from './AllContent.client';
+import DailyContent from './DailyContent.client';
+import LanguageContent from './LanguageContent.client';
+import QuestionContent from './QuestionContent.client';
 import { Tabs } from '@/components/Tabs';
+import { Suspense } from 'react';
 
 export default function ContentSection() {
   return (
@@ -12,16 +17,24 @@ export default function ContentSection() {
         <Tabs.Tab text="언어 교환" value="language" />
       </Tabs.List>
       <Tabs.Panel value="all">
-        <p>전체</p>
+        <Suspense>
+          <AllContent />
+        </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="daily">
-        <p>일상 톡톡</p>
+        <Suspense>
+          <DailyContent />
+        </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="question">
-        <p>궁금해요</p>
+        <Suspense>
+          <QuestionContent />
+        </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="language">
-        <p>언어 교환</p>
+        <Suspense>
+          <LanguageContent />
+        </Suspense>
       </Tabs.Panel>
     </Tabs>
   );
