@@ -12,7 +12,7 @@ interface CardHeaderProps {
   name: string;
   date: string;
   isWriterCertifiedStudent: boolean;
-  isWriterCaptain: boolean;
+  isWriterCaptain?: boolean;
   writerReliabilityLevel: ReliabilityType;
   showMoreIcon?: boolean;
   onMoreClick?: () => void;
