@@ -15,8 +15,8 @@ export default async function ApplyPage({ params: { lng } }: GroupingApplyPagePr
 
   return (
     <main className="px-20">
-      <ApplyHeader />
       <PageAnimation>
+        <ApplyHeader />
         <Spacing size={32} />
         <h4 className="text-h4 text-sign-cto">{t('apply.description')}</h4>
         <Spacing size={36} />
