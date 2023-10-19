@@ -1,4 +1,7 @@
+'use client';
+
 import { Article } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Button } from '@/components/Button';
 import { CardHeader } from '@/components/Card';
 import { Flex } from '@/components/Layout';
@@ -6,7 +9,6 @@ import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
 
 interface ArticleItemProps {
   article: Article;
@@ -38,7 +40,7 @@ export default function ArticleItem({ article }: ArticleItemProps) {
         </Flex>
       )}
       <Spacing size={16} />
-      <Button variant="solid-secondary" as="a" href={`community/${articleId}`}>
+      <Button variant="solid-secondary" as="a" href={`/community/${articleId}`}>
         {t('board.commentCount', { commentCount })}
       </Button>
       <Spacing size={24} />
