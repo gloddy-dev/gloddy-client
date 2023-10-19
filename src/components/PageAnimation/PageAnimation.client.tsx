@@ -15,7 +15,7 @@ export default function PageAnimation({
   ...props
 }: StrictPropsWithChildren<PageAnimationProps>) {
   return (
-    <motion.div {...fadeInVariants()} className={cn('flex-grow', className)} {...props}>
+    <motion.div {...fadeInVariants()} className={cn('contents flex-grow', className)} {...props}>
       {children}
     </motion.div>
   );
