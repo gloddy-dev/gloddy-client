@@ -29,7 +29,7 @@ const tabList: TabType[] = [
     id: '3',
     name: 'community',
     title: '커뮤니티',
-    url: '/community',
+    url: '/community?tab=all',
   },
   {
     id: '4',
