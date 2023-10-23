@@ -2,11 +2,12 @@
 
 import ArticleItem from './ArticleItem.client';
 import Empty from './Empty';
-import { useGetArticles } from '@/apis/groups';
 import { ItemList } from '@/components/List';
 
+import type { Article } from '@/apis/groups';
+
 export default function AllContent() {
-  const { data: articleData } = useGetArticles(55);
+  const articleData: Article[] = [];
 
   return (
     <ItemList
