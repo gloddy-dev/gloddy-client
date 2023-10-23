@@ -34,7 +34,11 @@ const renderTabElement = (
   }
 
   return (
-    <div className={cn('flex h-50 border-b border-border-default', { 'gap-20 px-20': !isStretch })}>
+    <div
+      className={cn('flex h-50 border-b border-border-default bg-white', {
+        'gap-20 px-20': !isStretch,
+      })}
+    >
       {elements.map((element, index) => {
         return cloneElement(element, {
           className: cn(props[index].className, { 'flex-1 justify-center': isStretch }),
@@ -46,9 +50,10 @@ const renderTabElement = (
 
 interface ListProps {
   isStretch?: boolean;
+  isSticky?: boolean;
 }
 
-function List({ isStretch = true, children }: StrictPropsWithChildren<ListProps>) {
+function List({ isStretch = true, isSticky = true, children }: StrictPropsWithChildren<ListProps>) {
   const validChildren = Children.toArray(children).filter((child) =>
     isValidElement(child)
   ) as ReactElement[];
@@ -69,7 +74,11 @@ function List({ isStretch = true, children }: StrictPropsWithChildren<ListProps>
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <>{renderTabElement(validChildren, props, isStretch)}</>;
+  return (
+    <div className={cn({ 'sticky left-0 top-48 z-[100]': isSticky })}>
+      {renderTabElement(validChildren, props, isStretch)}
+    </div>
+  );
 }
 
 interface TabProps {
@@ -106,6 +115,8 @@ function Tab({ value, text, queryString, className, disabled = false }: TabProps
       {text}
       {isActive && (
         <motion.span
+          layout
+          layoutRoot
           layoutId="underline"
           className="absolute bottom-0 left-0 w-full border-b-1 border-primary text-subtitle-2 text-primary"
         />
