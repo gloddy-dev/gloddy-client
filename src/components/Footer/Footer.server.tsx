@@ -25,14 +25,14 @@ const tabList: TabType[] = [
     title: '나의모임',
     url: '/meeting/participate?tab=participating',
   },
+  // {
+  //   id: '3',
+  //   name: 'community',
+  //   title: '커뮤니티',
+  //   url: '/community?tab=all',
+  // },
   {
     id: '3',
-    name: 'community',
-    title: '커뮤니티',
-    url: '/community?tab=all',
-  },
-  {
-    id: '4',
     name: 'profile',
     title: '프로필',
     url: '/profile',
