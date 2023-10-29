@@ -3,15 +3,15 @@ import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import { useRouter } from 'next/navigation';
+import useAppRouter from '@/hooks/useAppRouter';
 
 export default function InformationHeader() {
   const { t } = useTranslation('profile');
-  const router = useRouter();
+  const { back } = useAppRouter();
   return (
     <Header>
       <Header.Left className="px-4">
-        <IconButton size="large" onClick={() => router.back()}>
+        <IconButton size="large" onClick={back}>
           <Icon id="24-close" />
         </IconButton>
         <p className="text-subtitle-1">{t('settings.customerService')}</p>
