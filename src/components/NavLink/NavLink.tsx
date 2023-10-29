@@ -1,7 +1,6 @@
 'use client';
 
 import useAppRouter from '@/hooks/useAppRouter';
-import cn from '@/utils/cn';
 import { MouseEvent, PropsWithChildren } from 'react';
 
 interface NavLinkProps {
@@ -24,7 +23,7 @@ export default function NavLink({
   };
 
   return (
-    <span onClick={handleClick} {...props} className={cn('cursor-pointer', className)}>
+    <span onClick={handleClick} {...props} className={className}>
       {children}
     </span>
   );
