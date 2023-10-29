@@ -6,8 +6,6 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useTimer } from '@/hooks/useTimer';
-import { t } from 'i18next';
-import { useRouter } from 'next/navigation';
 import { memo } from 'react';
 
 import type { VerifyType } from '../type';

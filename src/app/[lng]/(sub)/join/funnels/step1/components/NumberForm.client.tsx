@@ -11,7 +11,6 @@ import { regexr } from '@/constants/regexr';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
-import { useRouter } from 'next/navigation';
 import { ElementType, KeyboardEventHandler } from 'react';
 
 import type { SignUpState } from '../../../type';

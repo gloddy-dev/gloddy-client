@@ -8,14 +8,13 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 interface MemberSectionProps extends GroupDetailResponse {}
 
 export default function MemberSection({ memberCount, maxMemberCount }: MemberSectionProps) {
   const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
-  const router = useRouter();
   const pathname = usePathname();
   const { push } = useAppRouter();
 

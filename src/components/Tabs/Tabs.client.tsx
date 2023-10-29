@@ -4,7 +4,7 @@ import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 import { LayoutGroup, motion } from 'framer-motion';
 import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import {
   Children,
   type PropsWithChildren,

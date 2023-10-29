@@ -5,7 +5,6 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
-import { useRouter } from 'next/navigation';
 
 interface NoticeItemProps {
   notice: Notice;

@@ -19,7 +19,6 @@ import FeedbackCompleteModal from '@/app/[lng]/(main)/meeting/participate/feedba
 import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 export const usePostCreateGroup = () => {
   const { replace } = useAppRouter();

@@ -2,8 +2,8 @@
 'use client';
 
 import useAppRouter from './useAppRouter';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Children, isValidElement, useEffect } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { Children, isValidElement } from 'react';
 
 type NonEmptyArray<T> = [T, ...T[]];
 
