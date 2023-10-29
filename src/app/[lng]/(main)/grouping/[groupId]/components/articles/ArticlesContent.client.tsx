@@ -2,8 +2,8 @@ import ArticleSection from './ArticleSection.client';
 import NoticeSection from './NoticeSection.client';
 import { useGetGroupDetail } from '@/apis/groups';
 import { FloatAddButton } from '@/components/Button';
+import { NavLink } from '@/components/NavLink';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function ArticlesContent() {
@@ -17,9 +17,9 @@ export default function ArticlesContent() {
       <NoticeSection {...groupDetailData} />
       <ArticleSection {...groupDetailData} />
       <div className="bottom-fixed flex justify-end">
-        <Link href={`${pathname}/write`}>
+        <NavLink href={`${pathname}/write`}>
           <FloatAddButton />
-        </Link>
+        </NavLink>
       </div>
     </>
   );

@@ -1,10 +1,9 @@
-name: CD-feature branch
+name: CD-master branch
 
 on:
   push:
     branches:
-      - 'feature/**'
-      - 'hotfix/**'
+      - 'master/**'
 
 jobs:
   build:
@@ -23,6 +22,6 @@ jobs:
           destination-repository-name: gloddy-client-publishing
           user-email: gueit214@naver.com
           commit-message: ${{ github.event.commits[0].message }}
-          target-branch: feature
+          target-branch: master
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
