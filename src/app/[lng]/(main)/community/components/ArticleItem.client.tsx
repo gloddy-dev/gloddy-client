@@ -1,13 +1,16 @@
 'use client';
 
+import ArticleBadge from './ArticleBadge.client';
 import { Article } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
-import { Button } from '@/components/Button';
-import { CardHeader } from '@/components/Card';
+import { Avatar } from '@/components/Avatar';
+import { Divider } from '@/components/Divider';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks/useModal';
+import { currentKoreaTime } from '@/utils/date';
+import { formatDistanceStrict } from 'date-fns';
+import { enUS, ko } from 'date-fns/locale';
 import Image from 'next/image';
 
 interface ArticleItemProps {
@@ -15,35 +18,69 @@ interface ArticleItemProps {
 }
 
 export default function ArticleItem({ article }: ArticleItemProps) {
-  const { open, exit } = useModal();
-  const { t } = useTranslation('groupDetail');
-  const { content, images, articleId, commentCount } = article;
+  const { t, i18n } = useTranslation('community');
+  const {
+    content,
+    images,
+    commentCount,
+    date,
+    userImageUrl,
+    name,
+    isWriterCertifiedStudent,
+    writerReliabilityLevel,
+  } = article;
+
+  const locale = i18n.language === 'ko' ? ko : enUS;
+  const likeCount = 0;
+  const articleType = 'question';
 
   return (
-    <div className="mx-20 mb-24 mt-16 px-4">
-      <CardHeader showMoreIcon onMoreClick={() => {}} {...article} />
-      <Spacing size={16} />
-      <div className="break-words text-paragraph-1 text-sign-primary">{content}</div>
-      {images.length > 0 && (
-        <Flex className="my-16 h-160 gap-4 overflow-x-scroll">
-          {images.map((imageUrl, index) => (
-            <div
-              key={imageUrl + index}
-              className="relative h-160 w-160 shrink-0"
-              onClick={() =>
-                open(() => <ImageModal images={images} currentImage={imageUrl} onClose={exit} />)
-              }
-            >
-              <Image src={imageUrl} alt="article_image" className="object-cover" fill />
-            </div>
-          ))}
+    <div className="p-20">
+      <Flex justify="between" align="center">
+        <ArticleBadge type={articleType}>{t(articleType)}</ArticleBadge>
+        <p className="text-caption text-sign-tertiary">
+          {formatDistanceStrict(new Date(date), currentKoreaTime, { addSuffix: true, locale })}
+        </p>
+      </Flex>
+      <Spacing size={12} />
+      <Flex justify="between" className="gap-6">
+        <div>
+          <p className="text-subtitle-1"></p>
+          <Spacing size={4} />
+          <p className="line-clamp-2 break-words text-paragraph-2">{content}</p>
+        </div>
+        <div className="relative h-80 w-80 shrink-0 overflow-hidden rounded-8">
+          <Image src={images[0]} alt="이미지" fill className="object-cover" />
+        </div>
+      </Flex>
+      <Divider className="my-12" />
+      <Flex justify="between" align="center">
+        <Flex align="center" className="gap-6">
+          <Avatar
+            imageUrl={userImageUrl}
+            size="x-small"
+            iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
+          />
+          <p className="text-paragraph-2">{name}</p>
+          <Icon
+            id={`16-reliability-${writerReliabilityLevel.toLowerCase()}`}
+            width={16}
+            height={16}
+          />
         </Flex>
-      )}
-      <Spacing size={16} />
-      <Button variant="solid-secondary" as="a" href={`/community/${articleId}`}>
-        {t('board.commentCount', { commentCount })}
-      </Button>
-      <Spacing size={24} />
+        <Flex align="center" className="gap-8">
+          <Flex align="center" className="gap-4">
+            <Icon id="16-favorite_fill" width={16} height={16} />
+            <p className="text-caption text-warning">{likeCount.toString().padStart(2, '0')}</p>
+          </Flex>
+          <Flex align="center" className="gap-4">
+            <Icon id="16-comment_fill" width={16} height={16} />
+            <p className="text-caption text-sign-brand">
+              {commentCount.toString().padStart(2, '0')}
+            </p>
+          </Flex>
+        </Flex>
+      </Flex>
     </div>
   );
 }
