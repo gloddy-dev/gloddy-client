@@ -24,7 +24,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
   }
 ) {
   const searchParams = useSearchParams();
-  const { push, back, replace } = useRouter();
+  const { push, back, replace } = useAppRouter();
   const pathname = usePathname();
   const initialStep = options?.initialStep ?? steps[0];
   const queryKey = options?.stepQueryKey ?? 'step';
@@ -73,11 +73,11 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
     return currentStep === name ? <>{children}</> : null;
   };
 
-  useEffect(() => {
-    if (currentStep === initialStep) {
-      replace(`${pathname}?${queryKey}=${initialStep}`);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (currentStep === initialStep) {
+  //     replace(`${pathname}?${queryKey}=${initialStep}`);
+  //   }
+  // }, []);
 
   Funnel.Step = Step;
 
