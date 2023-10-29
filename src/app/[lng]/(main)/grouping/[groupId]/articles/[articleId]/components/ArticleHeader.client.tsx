@@ -6,18 +6,17 @@ import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { PageAnimation } from '@/components/PageAnimation';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
 export default function ArticleHeader() {
   const { t } = useTranslation('groupDetail');
-  const router = useRouter();
-
+  const { back } = useAppRouter();
   return (
     <Header className="px-4">
       <Header.Left>
-        <IconButton size="large" onClick={() => router.back()}>
+        <IconButton size="large" onClick={back}>
           <Icon id="24-arrow_back" />
         </IconButton>
         <p>{t('article.headerTitle')}</p>

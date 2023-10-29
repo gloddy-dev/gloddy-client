@@ -4,8 +4,8 @@ import { useGetProfile } from '@/apis/profile';
 import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { NavLink } from '@/components/NavLink';
 import { Spacing } from '@/components/Spacing';
-import Link from 'next/link';
 
 export default function ProfileSection() {
   const { data: profileData } = useGetProfile();
@@ -27,9 +27,9 @@ export default function ProfileSection() {
             {reliabilityLevel}
           </p>
         </div>
-        <Link href="/profile/setting/edit" className="ml-auto">
+        <NavLink href="/profile/setting/edit" className="ml-auto">
           <Icon id="24-settings" />
-        </Link>
+        </NavLink>
       </Flex>
     </section>
   );

@@ -8,9 +8,9 @@ import { useTimerContext } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
-import { useRouter } from 'next/navigation';
 import { ElementType, KeyboardEventHandler } from 'react';
 
 import type { SignUpState } from '../../../type';
@@ -30,7 +30,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   const { start: timerStart, status: timerStatus } = useTimerContext();
   const { open: openToast } = useModal({ delay: 2000 });
   const { mutate: mutateLogin } = useLoginMutation();
-  const router = useRouter();
+  const { refresh, replace } = useAppRouter();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -59,8 +59,8 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
               refreshToken: response.token.refreshToken,
               userId: response.userId,
             });
-            router.refresh();
-            router.replace('/grouping');
+            refresh();
+            replace('/grouping');
           },
         }
       );

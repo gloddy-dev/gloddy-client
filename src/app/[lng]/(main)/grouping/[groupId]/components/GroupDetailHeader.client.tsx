@@ -9,20 +9,20 @@ import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
-import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
 export default function GroupDetailHeader() {
-  const router = useRouter();
+  const { back } = useAppRouter();
   const { groupId } = useNumberParams<['groupId']>();
 
   return (
     <Header className="px-4">
       <Header.Left>
-        <IconButton size="large" onClick={() => router.back()}>
+        <IconButton size="large" onClick={() => back()}>
           <Icon id="24-arrow_back" />
         </IconButton>
         <Suspense>
@@ -51,13 +51,13 @@ function TitleAction({ groupId }: ActionProps) {
 }
 
 function ManageButtonAction({ groupId }: ActionProps) {
-  const router = useRouter();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { isCaptain, isExistNewApply } = groupDetailData;
+  const { push } = useAppRouter();
 
   return (
     isCaptain && (
-      <IconButton size="large" onClick={() => router.push(`/grouping/${groupId}/manage`)}>
+      <IconButton size="large" onClick={() => push(`/grouping/${groupId}/manage`)}>
         <Icon id={`24-application${isExistNewApply ? '_notification' : ''}`} />
       </IconButton>
     )
@@ -66,7 +66,7 @@ function ManageButtonAction({ groupId }: ActionProps) {
 
 function MoreButtonAction({ groupId }: ActionProps) {
   const { t } = useTranslation('groupDetail');
-  const router = useRouter();
+  const { replace, back } = useAppRouter();
   const { setBlockId } = useBlockStore();
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
   const { open: openItemModal, exit: exitItemModal } = useModal();
@@ -88,8 +88,8 @@ function MoreButtonAction({ groupId }: ActionProps) {
       <ReportDoneModal
         onOkClick={() => {
           exitDoneModal();
-          router.replace('/grouping');
-          router.back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
+          replace('/grouping');
+          back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
         }}
       />
     ));
@@ -103,8 +103,8 @@ function MoreButtonAction({ groupId }: ActionProps) {
       <BlockDoneModal
         onOkClick={() => {
           exitDoneModal();
-          router.replace('/grouping');
-          router.back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
+          replace('/grouping');
+          back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
         }}
       />
     ));

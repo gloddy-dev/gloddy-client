@@ -2,15 +2,15 @@
 import { useTranslation } from '@/app/i18n/client';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
+import useAppRouter from '@/hooks/useAppRouter';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 interface FeedbackModalProps {
   onClose: () => void;
   groupId: number;
 }
 export default function FeedbackModal({ onClose, groupId }: FeedbackModalProps) {
-  const router = useRouter();
+  const { push } = useAppRouter();
   const { t } = useTranslation('meeting');
   return (
     <Modal
@@ -18,7 +18,7 @@ export default function FeedbackModal({ onClose, groupId }: FeedbackModalProps) 
       okText={t('home.move')}
       cancelText={t('home.cancel')}
       onCancelClick={onClose}
-      onOkClick={() => router.push(`/meeting/participate/feedback/${groupId}`)}
+      onOkClick={() => push(`/meeting/participate/feedback/${groupId}`)}
     >
       <Spacing size={28} />
       <Image src="/images/approve_character.png" width={130} height={130} alt="approve" />
