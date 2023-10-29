@@ -22,39 +22,39 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 export const usePostCreateGroup = () => {
-  const router = useRouter();
+  const { replace } = useAppRouter();
   const queryClient = useQueryClient();
 
   return useMutation(postCreateGroup, {
     onSuccess: (data) => {
       queryClient.resetQueries(GroupsKeys.getGroups());
-      router.replace(`/grouping/${data.groupId}`);
+      replace(`/grouping/${data.groupId}`);
     },
   });
 };
 
 export const usePostArticle = (groupId: number) => {
-  const router = useRouter();
+  const { replace } = useAppRouter();
   const queryClient = useQueryClient();
 
   return useMutation(postArticle, {
     onSuccess: (data) => {
       queryClient.invalidateQueries(GroupsKeys.getArticles(groupId));
       queryClient.invalidateQueries(GroupsKeys.getNotices(groupId));
-      router.replace(`/grouping/${groupId}/articles/${data.articleId}`);
+      replace(`/grouping/${groupId}/articles/${data.articleId}`);
     },
   });
 };
 
 export const useDeleteArticle = (groupId: number) => {
-  const router = useRouter();
+  const { replace } = useAppRouter();
   const queryClient = useQueryClient();
 
   return useMutation(deleteArticle, {
     onSuccess: () => {
       queryClient.invalidateQueries(GroupsKeys.getArticles(groupId));
       queryClient.invalidateQueries(GroupsKeys.getNotices(groupId));
-      router.replace(`/grouping/${groupId}?tab=articles`);
+      replace(`/grouping/${groupId}?tab=articles`);
     },
   });
 };
@@ -82,14 +82,14 @@ export const useDeleteComment = (groupId: number, articleId: number) => {
 };
 
 export const usePostApply = (groupId: number) => {
-  const router = useRouter();
+  const { replace } = useAppRouter();
   const queryClient = useQueryClient();
 
   return useMutation(postApply, {
     onSuccess: () => {
       queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
       queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
-      router.replace('/meeting/participate?tab=waiting');
+      replace('/meeting/participate?tab=waiting');
     },
   });
 };

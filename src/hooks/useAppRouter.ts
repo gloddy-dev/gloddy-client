@@ -12,6 +12,7 @@ const useAppRouter = () => {
         type: 'ROUTER_EVENT',
         data: {
           path,
+          type: 'PUSH',
         },
       });
     return router.push(path, { scroll });
@@ -22,7 +23,7 @@ const useAppRouter = () => {
       return sendMessageToReactNative({
         type: 'ROUTER_EVENT',
         data: {
-          path: 'back',
+          type: 'BACK',
         },
       });
     return router.back();
@@ -34,23 +35,24 @@ const useAppRouter = () => {
         type: 'ROUTER_EVENT',
         data: {
           path,
+          type: 'REPLACE',
         },
       });
     return router.replace(path);
   };
 
-  const reload = () => {
+  const refresh = () => {
     if (isApp)
       return sendMessageToReactNative({
         type: 'ROUTER_EVENT',
         data: {
-          path: 'reload',
+          type: 'REFRESH',
         },
       });
     return router.refresh();
   };
 
-  return { push, back, replace, reload };
+  return { push, back, replace, refresh };
 };
 
 export default useAppRouter;
