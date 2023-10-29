@@ -2,7 +2,7 @@
 'use client';
 
 import useAppRouter from './useAppRouter';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Children, isValidElement, useEffect } from 'react';
 
 type NonEmptyArray<T> = [T, ...T[]];
@@ -24,7 +24,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
   }
 ) {
   const searchParams = useSearchParams();
-  const { push, back, replace } = useAppRouter();
+  const { push, back, replace } = useRouter();
   const pathname = usePathname();
   const initialStep = options?.initialStep ?? steps[0];
   const queryKey = options?.stepQueryKey ?? 'step';
@@ -77,7 +77,6 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
     if (currentStep === initialStep) {
       replace(`${pathname}?${queryKey}=${initialStep}`);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   Funnel.Step = Step;
