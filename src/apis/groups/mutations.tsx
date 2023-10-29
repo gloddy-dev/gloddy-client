@@ -16,6 +16,7 @@ import { GroupDetailResponse } from './type';
 import { MeetingScrapResponse } from '../meeting';
 import { Keys as MeetingKeys } from '../meeting/keys';
 import FeedbackCompleteModal from '@/app/[lng]/(main)/meeting/participate/feedback/[groupId]/funnels/step3/FeedbackCompleteModal.client';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -176,26 +177,26 @@ export const useDeleteScrapMeeting = (groupId: number) => {
 
 export const useDeleteGroupMember = (groupId: number) => {
   const queryClient = useQueryClient();
-  const router = useRouter();
+  const { push } = useAppRouter();
 
   return useMutation(deleteGroupMember, {
     onSuccess: () => {
       queryClient.resetQueries(GroupsKeys.getGroups());
       queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
       queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
-      router.push('/grouping');
+      push('/grouping');
     },
   });
 };
 
 export const usePostEstimate = () => {
-  const router = useRouter();
+  const { push } = useAppRouter();
   const { open } = useModal({ isUnmountExit: false });
 
   return useMutation(postEstimate, {
     onSuccess: () => {
       open(({ exit }) => <FeedbackCompleteModal onClose={exit} />);
-      router.push('/meeting/participate?tab=participating');
+      push('/meeting/participate?tab=participating');
     },
   });
 };

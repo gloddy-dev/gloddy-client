@@ -5,8 +5,8 @@ import { IconButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
+import { NavLink } from '@/components/NavLink';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import Link from 'next/link';
 
 export default function MemeberList() {
   const { groupId } = useNumberParams<['groupId']>();
@@ -23,7 +23,7 @@ interface MemberItemProps {
 function MemberItem({ member }: MemberItemProps) {
   const { userId, imageUrl, nickName, isCaptain, isCertifiedStudent, reliabilityLevel } = member;
   return (
-    <Link href={`/profile/${userId}`} scroll={false}>
+    <NavLink href={`/profile/${userId}`} scroll={false}>
       <Flex align="center" className="mx-20 my-8 flex-auto gap-12 py-4">
         <Avatar imageUrl={imageUrl} iconVariant={isCertifiedStudent ? 'education' : 'none'} />
         <div className="min-w-0 grow">
@@ -40,6 +40,6 @@ function MemberItem({ member }: MemberItemProps) {
           <Icon id="24-navigate_next" />
         </IconButton>
       </Flex>
-    </Link>
+    </NavLink>
   );
 }

@@ -3,6 +3,7 @@ import { type Notice, useDeleteArticle } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useRouter } from 'next/navigation';
 
@@ -15,7 +16,7 @@ interface NoticeItemProps {
 export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemProps) {
   const { t } = useTranslation('groupDetail');
   const { content, noticeId } = notice;
-  const router = useRouter();
+  const { push } = useAppRouter();
   const { open, exit } = useModal();
   const { mutate: mutateDeleteArticle } = useDeleteArticle(groupId);
 
@@ -56,7 +57,7 @@ export default function NoticeItem({ notice, groupId, isCaptain }: NoticeItemPro
       <Icon
         id="24-navigate_next"
         className="shrink-0"
-        onClick={() => router.push(`/grouping/${groupId}/articles/${noticeId}`)}
+        onClick={() => push(`/grouping/${groupId}/articles/${noticeId}`)}
       />
     </Flex>
   );

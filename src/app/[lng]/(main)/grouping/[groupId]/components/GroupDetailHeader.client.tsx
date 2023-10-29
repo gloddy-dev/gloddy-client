@@ -9,6 +9,7 @@ import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
@@ -51,13 +52,13 @@ function TitleAction({ groupId }: ActionProps) {
 }
 
 function ManageButtonAction({ groupId }: ActionProps) {
-  const router = useRouter();
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { isCaptain, isExistNewApply } = groupDetailData;
+  const { push } = useAppRouter();
 
   return (
     isCaptain && (
-      <IconButton size="large" onClick={() => router.push(`/grouping/${groupId}/manage`)}>
+      <IconButton size="large" onClick={() => push(`/grouping/${groupId}/manage`)}>
         <Icon id={`24-application${isExistNewApply ? '_notification' : ''}`} />
       </IconButton>
     )

@@ -6,6 +6,7 @@ import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -16,6 +17,7 @@ export default function MemberSection({ memberCount, maxMemberCount }: MemberSec
   const { groupId } = useNumberParams<['groupId']>();
   const router = useRouter();
   const pathname = usePathname();
+  const { push } = useAppRouter();
 
   const { data: groupMembersData } = useGetGroupMembers(groupId);
   const { groupMembers } = groupMembersData;
@@ -28,7 +30,7 @@ export default function MemberSection({ memberCount, maxMemberCount }: MemberSec
         </p>
         <div
           className="flex cursor-pointer items-center text-caption text-sign-caption"
-          onClick={() => router.push(`${pathname}/members`, { scroll: false })}
+          onClick={() => push(`${pathname}/members`, false)}
         >
           <p>{t('details.viewAll')}</p>
           <Icon id="24-navigate_next" />

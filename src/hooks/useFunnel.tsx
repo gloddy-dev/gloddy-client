@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 'use client';
 
+import useAppRouter from './useAppRouter';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Children, isValidElement, useEffect } from 'react';
 
@@ -24,6 +25,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
 ) {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { push } = useAppRouter();
   const pathname = usePathname();
   const initialStep = options?.initialStep ?? steps[0];
   const queryKey = options?.stepQueryKey ?? 'step';
@@ -37,7 +39,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
     const currentIndex = steps.indexOf(currentStep);
 
     if (currentIndex < steps.length - 1) {
-      router.push(`${pathname}?${queryKey}=${steps[currentIndex + 1]}`);
+      push(`${pathname}?${queryKey}=${steps[currentIndex + 1]}`);
     }
   };
 
@@ -50,7 +52,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
 
   const setStep = (step: Steps[number]) => {
     if (steps.includes(step)) {
-      router.push(`${pathname}?${queryKey}=${step}`);
+      push(`${pathname}?${queryKey}=${step}`);
     }
   };
 
