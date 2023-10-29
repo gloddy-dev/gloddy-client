@@ -5,6 +5,7 @@ import WarningModal from '../components/WarningModal.client';
 import { useDeleteArticle, useDeleteComment } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useBlockStore } from '@/store/useBlockStore';
 import { useRouter } from 'next/navigation';
@@ -28,7 +29,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
   commentId,
 }: MoreSheetProps<T> & CommentId<T>) {
   const { t } = useTranslation('groupDetail');
-  const router = useRouter();
+  const { replace } = useAppRouter();
   const { setBlockId } = useBlockStore();
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
   const { open: openItemModal, exit: exitItemModal } = useModal();
@@ -73,7 +74,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
           setBlockId(blockId, type);
           exitDoneModal();
           if (type !== 'comment') {
-            router.replace(`/grouping/${groupId}?tab=articles`);
+            replace(`/grouping/${groupId}?tab=articles`);
           }
         }}
       />
@@ -91,7 +92,7 @@ export function useMoreSheet<T extends 'article' | 'comment' | 'notice'>({
           setBlockId(blockId, type);
           exitDoneModal();
           if (type !== 'comment') {
-            router.replace(`/grouping/${groupId}?tab=articles`);
+            replace(`/grouping/${groupId}?tab=articles`);
           }
         }}
       />

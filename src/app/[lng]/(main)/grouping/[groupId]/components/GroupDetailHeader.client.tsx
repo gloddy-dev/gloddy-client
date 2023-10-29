@@ -67,7 +67,7 @@ function ManageButtonAction({ groupId }: ActionProps) {
 
 function MoreButtonAction({ groupId }: ActionProps) {
   const { t } = useTranslation('groupDetail');
-  const router = useRouter();
+  const { replace, back } = useAppRouter();
   const { setBlockId } = useBlockStore();
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
   const { open: openItemModal, exit: exitItemModal } = useModal();
@@ -89,8 +89,8 @@ function MoreButtonAction({ groupId }: ActionProps) {
       <ReportDoneModal
         onOkClick={() => {
           exitDoneModal();
-          router.replace('/grouping');
-          router.back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
+          replace('/grouping');
+          back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
         }}
       />
     ));
@@ -104,8 +104,8 @@ function MoreButtonAction({ groupId }: ActionProps) {
       <BlockDoneModal
         onOkClick={() => {
           exitDoneModal();
-          router.replace('/grouping');
-          router.back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
+          replace('/grouping');
+          back(); // tab에 의해 스택이 두개가 쌓여있어 한번 더 뒤로가기
         }}
       />
     ));

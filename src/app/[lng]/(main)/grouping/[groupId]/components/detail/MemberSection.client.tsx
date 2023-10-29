@@ -43,7 +43,7 @@ export default function MemberSection({ memberCount, maxMemberCount }: MemberSec
             key={member.userId}
             imageUrl={member.imageUrl ?? '/images/dummy_avatar.png'}
             iconVariant={member.isCertifiedStudent ? 'education' : 'none'}
-            onClick={() => router.prefetch(`${pathname}/members`)}
+            onClick={() => push(`${pathname}/members`)}
           >
             <Flex justify="center" align="center" className="w-full">
               {member.isCaptain && (

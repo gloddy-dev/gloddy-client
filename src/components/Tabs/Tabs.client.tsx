@@ -1,5 +1,6 @@
 'use client';
 import { PageAnimation } from '../PageAnimation';
+import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 import { LayoutGroup, motion } from 'framer-motion';
 import Link from 'next/link';
@@ -65,12 +66,12 @@ function List({ isStretch = true, isSticky = true, children }: StrictPropsWithCh
   const props = validChildren.map((child) => child.props as React.ComponentProps<typeof Tab>);
 
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const { replace } = useAppRouter();
   const pathname = usePathname();
 
   useEffect(() => {
     const tab = searchParams.get('tab');
-    if (!tab) router.replace(`${pathname}?tab=${props[0].value}`);
+    if (!tab) replace(`${pathname}?tab=${props[0].value}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

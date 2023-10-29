@@ -9,7 +9,7 @@ import { afterDay60 } from '@/utils/date';
 
 export default function Home() {
   const { i18n } = useTranslation('common');
-  const { push } = useAppRouter();
+  const { replace } = useAppRouter();
 
   useDidMount(async () => {
     const cookieLanguage = getLocalCookie(cookieName);
@@ -19,7 +19,7 @@ export default function Home() {
     setLocalCookie(cookieName, browserLanguage, { expires: afterDay60 });
     await i18n.changeLanguage(browserLanguage);
 
-    if (hasToken()) push(`/${browserLanguage}/grouping`);
-    else push(`/${browserLanguage}/join?step=1`);
+    if (hasToken()) replace(`/${browserLanguage}/grouping`);
+    else replace(`/${browserLanguage}/join?step=1`);
   });
 }

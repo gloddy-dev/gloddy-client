@@ -8,8 +8,8 @@ import { LayerLoading } from '@/components/Loading';
 import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
+import useAppRouter from '@/hooks/useAppRouter';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
-import { useRouter } from 'next/navigation';
 
 import type { SignUpState } from '../../../type';
 import type { SubmitHandler } from 'react-hook-form';
@@ -20,7 +20,7 @@ interface NumberVerifyFormProps {
 
 export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormProps) {
   const { t } = useTranslation('join');
-  const router = useRouter();
+  const { refresh, replace } = useAppRouter();
   const hookForm = useJoinContext();
   const { handleSubmit, setError, register, watch, resetField } = hookForm;
   const { time, reset, start } = useTimerContext();
@@ -77,8 +77,8 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
                   refreshToken: response.token.refreshToken,
                   userId: response.userId,
                 });
-                router.refresh();
-                router.replace('/grouping');
+                refresh();
+                replace('/grouping');
               },
             }
           );
