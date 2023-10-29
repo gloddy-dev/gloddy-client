@@ -3,11 +3,12 @@
 import ArticleItem from './ArticleItem.client';
 import Empty from './Empty';
 import { ItemList } from '@/components/List';
+import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
 
 import type { Article } from '@/apis/groups';
 
 export default function QuestionContent() {
-  const articleData: Article[] = [];
+  const articleData: Article[] = [...DUMMY_ARTICLES_DATA];
 
   return (
     <ItemList
