@@ -75,7 +75,7 @@ function List({ isStretch = true, isSticky = true, children }: StrictPropsWithCh
   }, []);
 
   return (
-    <div className={cn({ 'sticky left-0 top-48 z-[100]': isSticky })}>
+    <div className={cn({ 'sticky left-0 top-47 z-40': isSticky })}>
       {renderTabElement(validChildren, props, isStretch)}
     </div>
   );
