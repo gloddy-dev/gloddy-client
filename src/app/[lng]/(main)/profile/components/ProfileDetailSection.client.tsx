@@ -5,16 +5,17 @@ import { Avatar } from '@/components/Avatar';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { NavLink } from '@/components/NavLink';
 import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
 import { TextField } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
+import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
 interface ProfileDetailProps {
   profileData: ReturnType<typeof useGetProfileById>['data'];
@@ -23,7 +24,7 @@ interface ProfileDetailProps {
 export default function ProfileDetailSection({ profileData }: ProfileDetailProps) {
   const pathname = usePathname();
   const params = useParams();
-  const router = useRouter();
+  const { push } = useAppRouter();
   const isPrivateProfile = !params.userId;
   const { t } = useTranslation('profile');
   const { t: tc } = useTranslation('common');
@@ -62,7 +63,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 align="center"
                 justify="center"
                 className="absolute bottom-0 whitespace-nowrap rounded-8 border border-warning bg-warning-color px-2 py-4 text-caption text-warning"
-                onClick={() => isPrivateProfile && router.push('/profile/verify')}
+                onClick={() => isPrivateProfile && push('/profile/verify')}
               >
                 {t('재학생 인증 필요')}
               </Flex>
@@ -166,7 +167,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
               </h4>
             </div>
             <Divider direction="vertical" className="h-12" />
-            <Link
+            <NavLink
               className="flex flex-grow flex-col items-center text-center"
               href={isPrivateProfile ? `${pathname}/praise` : ''}
               scroll={false}
@@ -176,9 +177,9 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 {praiseCount}
                 {tc('time')}
               </h4>
-            </Link>
+            </NavLink>
             <Divider direction="vertical" className="h-12" />
-            <Link
+            <NavLink
               className="flex flex-grow flex-col items-center"
               href={isPrivateProfile ? `${pathname}/mates` : ''}
               scroll={false}
@@ -188,7 +189,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
                 {reviewCount}
                 {tc('time')}
               </h4>
-            </Link>
+            </NavLink>
           </Flex>
           <Spacing size={32} />
         </Flex>
