@@ -1,11 +1,11 @@
 import { useTranslation } from '@/app/i18n/client';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { sendMessageToReactNative } from '@/utils/sendMessageToReactNative';
+import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 
 export default function DeleteCompleteModal() {
   const handleDeleteAccount = () => {
-    sendMessageToReactNative('signout');
+    sendMessageToReactNative({ type: 'SIGN_OUT' });
   };
   const { t } = useTranslation('profile');
 

@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 export default function MeetingParticipateHeader() {
   const { t } = useTranslation('meeting');
+
   return (
     <Header>
       <Header.Left>

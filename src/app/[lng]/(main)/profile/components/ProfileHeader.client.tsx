@@ -2,17 +2,17 @@
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import Link from 'next/link';
+import { NavLink } from '@/components/NavLink';
 
 export default function ProfileHeader() {
   return (
     <Header>
       <Header.Right>
-        <Link href="/profile/setting">
+        <NavLink href="/profile/setting">
           <IconButton size="large">
             <Icon id="24-settings" />
           </IconButton>
-        </Link>
+        </NavLink>
       </Header.Right>
     </Header>
   );
