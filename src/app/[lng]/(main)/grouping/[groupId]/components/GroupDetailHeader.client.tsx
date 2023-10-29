@@ -17,13 +17,13 @@ import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
 export default function GroupDetailHeader() {
-  const router = useRouter();
+  const { back } = useAppRouter();
   const { groupId } = useNumberParams<['groupId']>();
 
   return (
     <Header className="px-4">
       <Header.Left>
-        <IconButton size="large" onClick={() => router.back()}>
+        <IconButton size="large" onClick={() => back()}>
           <Icon id="24-arrow_back" />
         </IconButton>
         <Suspense>
