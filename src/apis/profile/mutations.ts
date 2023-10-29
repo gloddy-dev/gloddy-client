@@ -1,15 +1,14 @@
 import { Keys, deleteMate, patchProfile, patchSignOut, postEmailVerify } from '.';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 export const usePatchProfile = () => {
-  const router = useRouter();
   const queryClient = useQueryClient();
-
+  const { back } = useAppRouter();
   return useMutation(patchProfile, {
     onSuccess: () => {
       queryClient.invalidateQueries(Keys.getProfile());
-      router.back();
+      back();
     },
   });
 };

@@ -6,12 +6,13 @@ import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useRouter } from 'next/navigation';
 
 export default function WriteHeader() {
   const { t } = useTranslation('groupDetail');
-  const router = useRouter();
+  const { back } = useAppRouter();
   const { open, exit } = useModal();
 
   return (
@@ -27,7 +28,7 @@ export default function WriteHeader() {
                   onCancelClick={exit}
                   onOkClick={() => {
                     exit();
-                    router.back();
+                    back();
                   }}
                 />
               ))
