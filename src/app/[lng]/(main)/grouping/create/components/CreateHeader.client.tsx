@@ -3,7 +3,6 @@ import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useRouter } from 'next/navigation';
 
 interface CreateHeaderProps {
   currentStep: 'main' | 'meetDate';
@@ -11,7 +10,6 @@ interface CreateHeaderProps {
 
 export default function CreateHeader({ currentStep }: CreateHeaderProps) {
   const { t } = useTranslation('grouping');
-  const router = useRouter();
   const { back } = useAppRouter();
 
   return (

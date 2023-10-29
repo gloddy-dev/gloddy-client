@@ -8,7 +8,6 @@ import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useBlockStore } from '@/store/useBlockStore';
-import { useRouter } from 'next/navigation';
 
 type CommentId<T> = T extends 'comment' ? { commentId: number } : { commentId?: never };
 

@@ -13,7 +13,6 @@ import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
-import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
 export default function GroupDetailHeader() {
