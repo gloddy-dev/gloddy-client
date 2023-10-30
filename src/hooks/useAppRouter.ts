@@ -52,6 +52,7 @@ const useAppRouter = () => {
           type: 'RESET',
         },
       });
+    return router.replace('/');
   };
 
   return { push, back, replace, refresh, reset };
