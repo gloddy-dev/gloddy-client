@@ -30,14 +30,6 @@ const useAppRouter = () => {
   };
 
   const replace = (path: string) => {
-    if (isApp)
-      return sendMessageToReactNative({
-        type: 'ROUTER_EVENT',
-        data: {
-          path,
-          type: 'REPLACE',
-        },
-      });
     return router.replace(path);
   };
 
