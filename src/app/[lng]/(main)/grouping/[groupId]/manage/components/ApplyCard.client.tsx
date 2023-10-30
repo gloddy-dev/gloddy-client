@@ -9,8 +9,8 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
-import { useRouter } from 'next/navigation';
 
 interface ApplyCardProps {
   apply: Apply;
@@ -30,7 +30,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
     reason,
   } = apply;
 
-  const router = useRouter();
+  const { push } = useAppRouter();
   const { open, exit } = useModal();
   const { mutate: mutatePatchApply } = usePatchApply(groupId);
 
@@ -58,7 +58,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
         <Avatar
           imageUrl={userImageUrl}
           size="small"
-          onClick={() => router.push(`/profile/${userId}`)}
+          onClick={() => push(`/profile/${userId}`)}
           iconVariant={isCertifiedStudent ? 'education' : 'none'}
         />
         <div className="grow">

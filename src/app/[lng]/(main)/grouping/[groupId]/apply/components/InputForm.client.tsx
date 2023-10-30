@@ -32,6 +32,7 @@ export default function InputForm() {
   const { register, handleSubmit, formState } = hookForm;
 
   const onSubmit: SubmitHandler<ApplyFormType> = (apply) => {
+    exit();
     mutatePostApply({
       params: { groupId },
       apply,
@@ -69,8 +70,8 @@ export default function InputForm() {
         >
           {t('apply.submit.label')}
         </Button>
-        <LayerLoading isLoading={status === 'loading' || status === 'success'} />
       </ButtonGroup>
+      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
     </>
   );
 }
