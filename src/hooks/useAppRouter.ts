@@ -30,14 +30,6 @@ const useAppRouter = () => {
   };
 
   const replace = (path: string) => {
-    if (isApp)
-      return sendMessageToReactNative({
-        type: 'ROUTER_EVENT',
-        data: {
-          path,
-          type: 'REPLACE',
-        },
-      });
     return router.replace(path);
   };
 
@@ -52,7 +44,18 @@ const useAppRouter = () => {
     return router.refresh();
   };
 
-  return { push, back, replace, refresh };
+  const reset = () => {
+    if (isApp)
+      return sendMessageToReactNative({
+        type: 'ROUTER_EVENT',
+        data: {
+          type: 'RESET',
+        },
+      });
+    return router.replace('/');
+  };
+
+  return { push, back, replace, refresh, reset };
 };
 
 export default useAppRouter;
