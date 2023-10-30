@@ -19,9 +19,9 @@ export default function InputSection() {
           hookForm={hookForm}
           register={register('title', {
             required: true,
-            maxLength: 30,
+            maxLength: 60,
           })}
-          maxCount={30}
+          maxCount={60}
         />
       </div>
 
@@ -32,11 +32,11 @@ export default function InputSection() {
           placeholder={t('create.content.placeholder')}
           register={register('content', {
             required: true,
-            maxLength: 500,
+            maxLength: 700,
           })}
           hookForm={hookForm}
           as="textarea"
-          maxCount={500}
+          maxCount={700}
         />
       </div>
     </section>
