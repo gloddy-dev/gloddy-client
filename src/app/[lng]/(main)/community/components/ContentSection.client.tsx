@@ -4,17 +4,20 @@ import AllContent from './AllContent.client';
 import DailyContent from './DailyContent.client';
 import LanguageContent from './LanguageContent.client';
 import QuestionContent from './QuestionContent.client';
+import { useTranslation } from '@/app/i18n/client';
 import { Tabs } from '@/components/Tabs';
 import { Suspense } from 'react';
 
 export default function ContentSection() {
+  const { t } = useTranslation('community');
+
   return (
     <Tabs>
       <Tabs.List>
-        <Tabs.Tab text="전체" value="all" />
-        <Tabs.Tab text="일상 톡톡" value="daily" />
-        <Tabs.Tab text="궁금해요" value="question" />
-        <Tabs.Tab text="언어 교환" value="language" />
+        <Tabs.Tab text={t('all')} value="all" />
+        <Tabs.Tab text={t('daily')} value="daily" />
+        <Tabs.Tab text={t('question')} value="question" />
+        <Tabs.Tab text={t('language')} value="language" />
       </Tabs.List>
       <Tabs.Panel value="all">
         <Suspense>
