@@ -25,6 +25,12 @@ const tabList: TabType[] = [
     title: '나의모임',
     url: '/meeting/participate?tab=participating',
   },
+  // {
+  //   id: '3',
+  //   name: 'community',
+  //   title: '커뮤니티',
+  //   url: '/community?tab=all',
+  // },
   {
     id: '3',
     name: 'profile',
@@ -49,6 +55,7 @@ export default async function Footer({ lng, page, isSpacing = true, spacingColor
       <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 touch-pan-x rounded-t-24 bg-white pb-8 pt-12 shadow-navigation">
         {tabList.map((tab: TabType) => (
           <Link
+            replace
             href={tab.url}
             key={tab.id}
             className={cn('flex w-full flex-col items-center text-center text-caption', {

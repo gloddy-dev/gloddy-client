@@ -2,7 +2,7 @@ import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { Flex } from '../Layout';
 import { Spacing } from '../Spacing';
-import { useRouter } from 'next/navigation';
+import useAppRouter from '@/hooks/useAppRouter';
 
 import type { ReliabilityType } from '@/types';
 
@@ -12,7 +12,7 @@ interface CardHeaderProps {
   name: string;
   date: string;
   isWriterCertifiedStudent: boolean;
-  isWriterCaptain: boolean;
+  isWriterCaptain?: boolean;
   writerReliabilityLevel: ReliabilityType;
   showMoreIcon?: boolean;
   onMoreClick?: () => void;
@@ -29,7 +29,7 @@ export default function CardHeader({
   showMoreIcon = false,
   onMoreClick,
 }: CardHeaderProps) {
-  const router = useRouter();
+  const { push } = useAppRouter();
 
   return (
     <Flex align="center" className="gap-12 pb-4 pt-6">
@@ -37,7 +37,7 @@ export default function CardHeader({
         imageUrl={userImageUrl}
         size="small"
         iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
-        onClick={() => router.push(`/profile/${userId}`)}
+        onClick={() => push(`/profile/${userId}`)}
       />
       <div className="grow overflow-hidden">
         <Flex align="center">

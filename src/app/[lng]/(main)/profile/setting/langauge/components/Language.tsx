@@ -1,28 +1,30 @@
 'use client';
 
+import { cookieName } from '@/app/i18n/settings';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
+import useAppRouter from '@/hooks/useAppRouter';
 import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
 import { afterDay60 } from '@/utils/date';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function Language() {
   const { t, i18n } = useTranslation('common');
-  const router = useRouter();
+  const { refresh, push, reset } = useAppRouter();
 
-  const [language, setLanguage] = useState(getLocalCookie('i18next') || 'en');
+  const prevLanguage = getLocalCookie(cookieName);
+  const [language, setLanguage] = useState(prevLanguage || i18n.language || 'en');
 
   const handleSubmit = () => {
-    setLocalCookie('i18next', language, {
+    setLocalCookie(cookieName, language, {
       expires: afterDay60,
     });
     i18n.changeLanguage(language);
-    router.refresh();
-    router.replace(`/${language}/grouping`);
+    refresh();
+    reset();
   };
 
   return (
@@ -38,7 +40,9 @@ export default function Language() {
         <span>English</span>
       </Flex>
       <ButtonGroup>
-        <Button onClick={handleSubmit}>{t('confirm')}</Button>
+        <Button onClick={handleSubmit} disabled={prevLanguage === language}>
+          {t('confirm')}
+        </Button>
       </ButtonGroup>
     </Flex>
   );

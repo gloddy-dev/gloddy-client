@@ -8,9 +8,9 @@ import {
   postSMSVerify,
   postSignUp,
 } from '.';
+import useAppRouter from '@/hooks/useAppRouter';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 export const useLoginMutation = () => useMutation(postLogin);
 
@@ -28,7 +28,7 @@ export const useEmailMutation = () => useMutation(postEmail);
 export const useEmailVerifyMutation = () => useMutation(postEmailVerify);
 
 export const useSignUpMutation = () => {
-  const router = useRouter();
+  const { push } = useAppRouter();
   return useMutation(postSignUp, {
     onSuccess: (data: SignUpResponse) => {
       const {
@@ -36,7 +36,7 @@ export const useSignUpMutation = () => {
         token: { accessToken, refreshToken },
       } = data;
       setTokenAtCookie({ accessToken, refreshToken, userId });
-      router.push('/grouping');
+      push('/grouping');
     },
   });
 };

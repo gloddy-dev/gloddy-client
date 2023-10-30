@@ -5,11 +5,12 @@ import { useDeleteScrapMeeting } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
+import useAppRouter from '@/hooks/useAppRouter';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
 import cn from '@/utils/cn';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 import type { Grouping } from '@/apis/groups/type';
 import type { HTMLAttributes, PropsWithChildren } from 'react';
@@ -51,7 +52,7 @@ export default function GroupingCard({
     placeId,
   } = groupingData;
   const { lng } = useParams() as { lng: string };
-  const router = useRouter();
+  const { push } = useAppRouter();
   const { place } = usePlaceDetails({
     placeId,
     fields: ['formatted_address'],
@@ -65,16 +66,7 @@ export default function GroupingCard({
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
-      <Flex
-        onClick={
-          onClick ||
-          (() =>
-            router.push(`/grouping/${groupId}`, {
-              scroll: false,
-            }))
-        }
-        align="center"
-      >
+      <Flex onClick={onClick || (() => push(`/grouping/${groupId}`, false))} align="center">
         <section className="relative h-96 w-96 shrink-0">
           {imageUrl ? (
             <Image fill src={imageUrl} alt="group" className="rounded-8 object-cover" />
