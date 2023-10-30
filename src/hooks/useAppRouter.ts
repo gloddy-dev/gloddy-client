@@ -44,7 +44,17 @@ const useAppRouter = () => {
     return router.refresh();
   };
 
-  return { push, back, replace, refresh };
+  const reset = () => {
+    if (isApp)
+      return sendMessageToReactNative({
+        type: 'ROUTER_EVENT',
+        data: {
+          type: 'RESET',
+        },
+      });
+  };
+
+  return { push, back, replace, refresh, reset };
 };
 
 export default useAppRouter;
