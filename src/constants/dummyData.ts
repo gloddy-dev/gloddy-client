@@ -104,7 +104,7 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
   {
     articleId: 2,
     userId: 2,
-    images: ['/images/dummy_image.png'],
+    images: [],
     notice: false,
     userImageUrl: '/images/dummy_avatar.png',
     name: 'Kim',
