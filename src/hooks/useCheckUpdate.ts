@@ -5,6 +5,7 @@ export function useCheckUpdate(version: number) {
   const cookies = getLocalCookie('didUpdated_' + version);
   const mobileDevice = getMobileDivce();
 
+  if (typeof window === 'undefined') return false;
   if (cookies === 'true') return false;
   else if (confirm('새로운 업데이트가 있습니다. 업데이트를 진행하시겠습니까?')) {
     setLocalCookie('didUpdated_' + version, 'true', {
