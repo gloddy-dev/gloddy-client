@@ -106,7 +106,7 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
           },
         })}
         maxLength={6}
-        type="text"
+        type="tel"
         pattern="\d*"
         timer={time}
         autoComplete="one-time-code"
