@@ -31,6 +31,7 @@ export default function ArticleItem({ article }: ArticleItemProps) {
   } = article;
 
   const locale = i18n.language === 'ko' ? ko : enUS;
+  const title = '홍대가는 방법';
   const likeCount = 0;
   const articleType = 'question';
 
@@ -45,13 +46,15 @@ export default function ArticleItem({ article }: ArticleItemProps) {
       <Spacing size={12} />
       <Flex justify="between" className="gap-6">
         <div>
-          <p className="text-subtitle-1"></p>
+          <p className="text-subtitle-1">{title}</p>
           <Spacing size={4} />
           <p className="line-clamp-2 break-words text-paragraph-2">{content}</p>
         </div>
-        <div className="relative h-80 w-80 shrink-0 overflow-hidden rounded-8">
-          <Image src={images[0]} alt="이미지" fill className="object-cover" />
-        </div>
+        {!!images?.length && (
+          <div className="relative h-80 w-80 shrink-0 overflow-hidden rounded-8">
+            <Image src={images[0]} alt="이미지" fill className="object-cover" />
+          </div>
+        )}
       </Flex>
       <Divider className="my-12" />
       <Flex justify="between" align="center">
