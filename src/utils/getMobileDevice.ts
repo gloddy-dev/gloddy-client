@@ -1,4 +1,5 @@
 export function getMobileDivce() {
+  if (typeof window === 'undefined') return 'other';
   const userAgent = navigator.userAgent.toLowerCase();
   if (userAgent.indexOf('android') > -1) return 'android';
   if (
