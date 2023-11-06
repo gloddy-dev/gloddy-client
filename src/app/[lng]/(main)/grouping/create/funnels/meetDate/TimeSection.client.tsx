@@ -77,7 +77,7 @@ export default function TimeSection({ control }: TimeSectionProps) {
         <div className="flex-1">
           <TextField
             as="input"
-            type="tel"
+            type="number"
             placeholder={t('create.time.hour')}
             value={time.value.fromHour}
             onChange={(e) =>
@@ -92,7 +92,7 @@ export default function TimeSection({ control }: TimeSectionProps) {
         <div className="flex-1">
           <TextField
             as="input"
-            type="tel"
+            type="number"
             placeholder={t('create.time.minute')}
             value={time.value.fromMin}
             onChange={(e) =>
