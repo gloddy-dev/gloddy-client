@@ -8,6 +8,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Toast } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
+import useBrowser from '@/hooks/useBrowser';
 import { useModal } from '@/hooks/useModal';
 import { format } from 'date-fns';
 
@@ -15,14 +16,15 @@ import type { CreateGroupContextValue } from '../../type';
 import type { TimeType } from '@/types';
 import type { SubmitHandler } from 'react-hook-form';
 
-function validateDate(date: Date, time: TimeType) {
+function validateDate(date: Date, time: TimeType, browser: string) {
   if (!date || !time.fromHour || !time.fromMin || !time.fromAmPm) {
     return false;
   }
+  const formatDateForm = browser === 'safari' ? 'yyyy/MM/dd' : 'yyyy-MM-dd';
 
   const currentDate = new Date();
   const meetDate = new Date(
-    format(date, 'yyyy-MM-dd') +
+    format(date, formatDateForm) +
       ' ' +
       (+time.fromHour + (time.fromAmPm === 'AM' ? 0 : 12)) +
       ':' +
@@ -40,6 +42,7 @@ interface MainStepProps {
 export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepProps) {
   const hookForm = useCreateGroupContext();
   const { handleSubmit, watch, control } = hookForm;
+  const browser = useBrowser();
 
   const { t } = useTranslation('grouping');
   const { open: openCreateModal, exit: exitCreateModal } = useModal();
@@ -53,7 +56,7 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
   });
 
   const handleCreateClick = () => {
-    if (!validateDate(watch('meetDate'), watch('time'))) {
+    if (!validateDate(watch('meetDate'), watch('time'), browser)) {
       openToast(() => <Toast>{t('create.error.time')}</Toast>);
       return;
     }
