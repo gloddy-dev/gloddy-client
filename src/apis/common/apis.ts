@@ -18,5 +18,9 @@ export const postFiles = ({ fileList }: FilesRequest) => {
 };
 
 export const postFCMToken = ({ token }: FCMTokenRequest) => {
-  return privateApi.post('/notification/tokens', { token });
+  return privateApi.post('/notifications/tokens', { token });
+};
+
+export const getNotification = () => {
+  return privateApi.get('/notifications');
 };
