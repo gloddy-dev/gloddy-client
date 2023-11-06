@@ -76,7 +76,7 @@ function List({ isStretch = true, isSticky = true, children }: StrictPropsWithCh
   }, []);
 
   return (
-    <div className={cn({ 'sticky left-0 top-48 z-[100]': isSticky })}>
+    <div className={cn({ 'sticky left-0 top-47 z-40': isSticky })}>
       {renderTabElement(validChildren, props, isStretch)}
     </div>
   );
@@ -117,9 +117,9 @@ function Tab({ value, text, queryString, className, disabled = false }: TabProps
       {isActive && (
         <motion.span
           layout
-          layoutRoot
           layoutId="underline"
-          className="absolute bottom-0 left-0 w-full border-b-1 border-primary text-subtitle-2 text-primary"
+          style={{ originY: '0px' }}
+          className=" absolute bottom-0 left-0 w-full border-b-1 border-primary text-subtitle-2 text-primary"
         />
       )}
     </Link>
