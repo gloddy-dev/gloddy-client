@@ -1,6 +1,7 @@
+import privateApi from '../config/privateApi';
 import publicApi from '../config/publicApi';
 
-import type { FilesRequest, FilesResponse } from './type';
+import type { FCMTokenRequest, FilesRequest, FilesResponse } from '.';
 
 export const postFiles = ({ fileList }: FilesRequest) => {
   const formData = new FormData();
@@ -14,4 +15,8 @@ export const postFiles = ({ fileList }: FilesRequest) => {
       'Content-Type': 'multipart/form-data',
     },
   });
+};
+
+export const postFCMToken = ({ token }: FCMTokenRequest) => {
+  return privateApi.post('/notification/tokens', { token });
 };
