@@ -1,4 +1,5 @@
-import { FCMTokenRequest } from '../common';
+import { FCMTokenRequest } from '.';
+import { NotificationResponse } from '.';
 import { privateApiNotification } from '../config/privateApiNotification';
 
 export const postFCMToken = ({ token }: FCMTokenRequest) => {
@@ -6,5 +7,5 @@ export const postFCMToken = ({ token }: FCMTokenRequest) => {
 };
 
 export const getNotification = () => {
-  return privateApiNotification.get('/notifications');
+  return privateApiNotification.get<NotificationResponse>('/notifications');
 };
