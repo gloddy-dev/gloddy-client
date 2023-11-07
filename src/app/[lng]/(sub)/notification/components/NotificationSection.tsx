@@ -1,6 +1,6 @@
 'use client';
 import NotiCard from './NotiCard.client';
-import { getNotification, useGetNotifications } from '@/apis/notifications';
+import { NotificationResponse, getNotification, useGetNotifications } from '@/apis/notifications';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
@@ -8,36 +8,36 @@ import { ItemList } from '@/components/List';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import { ComponentProps } from 'react';
 
-const DUMMY_DATA: Array<ComponentProps<typeof NotiCard>['notiData']> = [
+const DUMMY_DATA: NotificationResponse[] = [
   {
-    title: '모임 참여 인원으로 승인되었습니다.',
-    imageUrl: '/images/dummy_image.png',
-    date: new Date().toISOString(),
-    isRead: false,
+    userId: 1,
+    redirectId: 1,
+    content: '알림이 도착했어요',
+    type: 'APPLY_APPROVE',
   },
   {
-    title: '1시간 뒤 모임이 진행됩니다. 준비는 되었나요?',
-    imageUrl: '/images/dummy_image.png',
-    date: new Date(Date.now() - 6000000).toISOString(),
-    isRead: true,
+    userId: 1,
+    redirectId: 1,
+    content: '알림이 도착했어요',
+    type: 'APPLY_APPROVE',
   },
   {
-    title: '모임이 취소되었습니다.',
-    imageUrl: '/images/dummy_image.png',
-    date: new Date(Date.now() - 86400000 * 2).toISOString(),
-    isRead: false,
+    userId: 1,
+    redirectId: 1,
+    content: '알림이 도착했어요',
+    type: 'APPLY_APPROVE',
   },
   {
-    title: '신규 인원이 회원 님의 모임에 지원하였습니다.',
-    imageUrl: '/images/dummy_image.png',
-    date: new Date(Date.now() - 86400000 * 20).toISOString(),
-    isRead: true,
+    userId: 1,
+    redirectId: 1,
+    content: '알림이 도착했어요',
+    type: 'APPLY_APPROVE',
   },
 ];
 
 export default function NotificationSection() {
   const { i18n } = useTranslation('common');
-  const { data } = useGetNotifications();
+  // const { data } = useGetNotifications();
 
   return (
     <ItemList
