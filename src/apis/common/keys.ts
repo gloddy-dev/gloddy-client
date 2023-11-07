@@ -1,3 +1,1 @@
-export const Keys = {
-  getNotifications: () => ['notifications'],
-} as const;
+export const Keys = {} as const;
