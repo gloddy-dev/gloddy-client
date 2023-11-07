@@ -1,7 +1,7 @@
 'use client';
 import { useTranslation } from '../i18n/client';
 import { cookieName } from '../i18n/settings';
-import { postFCMToken, usePostFCMToken } from '@/apis/common';
+import { usePostFCMToken } from '@/apis/notifications';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import useAppRouter from '@/hooks/useAppRouter';
 import { hasToken } from '@/utils/auth/tokenController';
