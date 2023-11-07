@@ -9,6 +9,7 @@ const privatePages = /\/(?:en|ko)\/(grouping|meeting|profile)/;
 const excludePages = [
   /\/(?:en|ko)\/profile\/setting\/information/,
   /\/(?:en|ko)\/profile\/setting\/service/,
+  /\/(?:en|ko)\/notification/,
 ];
 
 const isPrivatePage = (path: string) =>
