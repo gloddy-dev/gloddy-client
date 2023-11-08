@@ -1,10 +1,10 @@
 import { CustomInstance } from './type';
-import { BASE_API_URL_NOTIFICATION } from '@/constants';
+import { BASE_API_URL } from '@/constants';
 import { getTokenFromCookie } from '@/utils/auth/tokenController';
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 const privateApiNotification: CustomInstance = axios.create({
-  baseURL: `${BASE_API_URL_NOTIFICATION}/api/v1`,
+  baseURL: `${BASE_API_URL}/api/v1`,
   withCredentials: true,
 });
 
