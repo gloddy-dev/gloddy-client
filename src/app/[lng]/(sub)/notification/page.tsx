@@ -4,7 +4,6 @@ import { serverTranslation } from '@/app/i18n';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
-
 import { ComponentProps } from 'react';
 
 const DUMMY_DATA: Array<ComponentProps<typeof NotiCard>['notiData']> = [
