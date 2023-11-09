@@ -23,9 +23,7 @@ export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
         rejectedFallback={RejectedFallback}
         pendingFallback={<Loading className="h-[calc(100dvh-178px)]" />}
       >
-        <PageAnimation>
-          <GroupingCardList />
-        </PageAnimation>
+        <GroupingCardList />
       </QueryAsyncBoundary>
       <CreateGroupButton />
       <Spacing size={60} />

@@ -23,22 +23,20 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
         rejectedFallback={RejectedFallback}
         pendingFallback={<Loading className="h-[calc(100dvh-48px)]" />}
       >
-        <PageAnimation>
-          <HydrationProvider
-            queryMultipleFn={[
-              () => getGroupDetail(groupId),
-              () => getGroupMembers(groupId),
-              () => getNotices(groupId),
-            ]}
-            queryMultipleKey={[
-              Keys.getGroupDetail(groupId),
-              Keys.getGroupMembers(groupId),
-              Keys.getNotices(groupId),
-            ]}
-          >
-            <GroupDetailPage />
-          </HydrationProvider>
-        </PageAnimation>
+        <HydrationProvider
+          queryMultipleFn={[
+            () => getGroupDetail(groupId),
+            () => getGroupMembers(groupId),
+            () => getNotices(groupId),
+          ]}
+          queryMultipleKey={[
+            Keys.getGroupDetail(groupId),
+            Keys.getGroupMembers(groupId),
+            Keys.getNotices(groupId),
+          ]}
+        >
+          <GroupDetailPage />
+        </HydrationProvider>
       </QueryAsyncBoundary>
     </>
   );
