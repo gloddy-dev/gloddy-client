@@ -4,7 +4,6 @@ import { Keys, getProfile } from '@/apis/profile';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
-import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
@@ -23,12 +22,10 @@ export default function Profile({ params: { lng } }: ProfilePageProps) {
         rejectedFallback={RejectedFallback}
         pendingFallback={<Loading className="h-[calc(100dvh-118px)]" />}
       >
-        <PageAnimation className="bg-sub">
-          <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
-            <ProfileDetail />
-            <Spacing size={70} />
-          </HydrationProvider>
-        </PageAnimation>
+        <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
+          <ProfileDetail />
+          <Spacing size={70} />
+        </HydrationProvider>
       </QueryAsyncBoundary>
       <Footer page="profile" isSpacing={false} lng={lng} />
     </>

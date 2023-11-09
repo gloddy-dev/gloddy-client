@@ -4,7 +4,7 @@ import { serverTranslation } from '@/app/i18n';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
-import { PageAnimation } from '@/components/PageAnimation';
+
 import { ComponentProps } from 'react';
 
 const DUMMY_DATA: Array<ComponentProps<typeof NotiCard>['notiData']> = [
@@ -46,21 +46,20 @@ export default async function NotificationPage({ params: { lng } }: Notification
   return (
     <>
       <NotificationHeader />
-      <PageAnimation>
-        <ItemList
-          data={DUMMY_DATA}
-          renderItem={(data) => <NotiCard notiData={data} />}
-          hasDivider={false}
-          renderEmpty={() => (
-            <Flex direction="column" justify="center" align="center" className="my-80 gap-8">
-              <Icon id="48-cancel" width={48} height={48} />
-              <p className="text-sign-tertiary">
-                {i18n.language === 'ko' ? '알림이 없습니다.' : 'No notifications.'}
-              </p>
-            </Flex>
-          )}
-        />
-      </PageAnimation>
+
+      <ItemList
+        data={DUMMY_DATA}
+        renderItem={(data) => <NotiCard notiData={data} />}
+        hasDivider={false}
+        renderEmpty={() => (
+          <Flex direction="column" justify="center" align="center" className="my-80 gap-8">
+            <Icon id="48-cancel" width={48} height={48} />
+            <p className="text-sign-tertiary">
+              {i18n.language === 'ko' ? '알림이 없습니다.' : 'No notifications.'}
+            </p>
+          </Flex>
+        )}
+      />
     </>
   );
 }

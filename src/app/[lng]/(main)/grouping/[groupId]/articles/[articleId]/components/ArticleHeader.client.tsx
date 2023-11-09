@@ -5,7 +5,6 @@ import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import { PageAnimation } from '@/components/PageAnimation';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { Suspense } from 'react';
@@ -23,9 +22,7 @@ export default function ArticleHeader() {
       </Header.Left>
       <Header.Right>
         <Suspense>
-          <PageAnimation>
-            <IconButtonAction />
-          </PageAnimation>
+          <IconButtonAction />
         </Suspense>
       </Header.Right>
     </Header>

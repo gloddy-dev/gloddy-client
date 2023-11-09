@@ -3,7 +3,6 @@ import ManageHeader from './components/ManageHeader.client';
 import { Keys, getApplies } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
-import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
@@ -20,14 +19,9 @@ export default function GroupingManagePage({ params }: GroupingManagePageProps) 
     <>
       <ManageHeader />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
-        <PageAnimation>
-          <HydrationProvider
-            queryFn={() => getApplies(groupId)}
-            queryKey={Keys.getApplies(groupId)}
-          >
-            <ManageDetail />
-          </HydrationProvider>
-        </PageAnimation>
+        <HydrationProvider queryFn={() => getApplies(groupId)} queryKey={Keys.getApplies(groupId)}>
+          <ManageDetail />
+        </HydrationProvider>
       </QueryAsyncBoundary>
     </>
   );

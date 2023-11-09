@@ -3,7 +3,6 @@ import WriteHeader from './components/WriteHeader.client';
 import { Keys, getGroupDetail } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
-import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
@@ -17,7 +16,7 @@ export default function WritePage({ params }: WritePageProps) {
   const groupId = Number(params.groupId);
 
   return (
-    <PageAnimation className="flex h-full flex-col">
+    <main className="flex h-full flex-col">
       <WriteHeader />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
         <HydrationProvider
@@ -27,6 +26,6 @@ export default function WritePage({ params }: WritePageProps) {
           <InputForm />
         </HydrationProvider>
       </QueryAsyncBoundary>
-    </PageAnimation>
+    </main>
   );
 }
