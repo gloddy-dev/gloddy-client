@@ -46,7 +46,7 @@ export default function NotificationSection() {
 
   return (
     <ItemList
-      data={DUMMY_DATA}
+      data={data.data.notifications}
       renderItem={(data) => <NotiCard notiData={data} />}
       hasDivider={false}
       renderEmpty={() => (
