@@ -46,7 +46,7 @@ export default function NotificationSection() {
 
   return (
     <ItemList
-      data={data.data.notifications}
+      data={[...data.data.notifications].reverse()}
       renderItem={(data) => <NotiCard notiData={data} />}
       hasDivider={false}
       renderEmpty={() => (
