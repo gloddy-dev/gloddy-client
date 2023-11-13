@@ -1,6 +1,6 @@
 import publicApi from '../config/publicApi';
 
-import type { FilesRequest, FilesResponse } from './type';
+import type { FilesRequest, FilesResponse } from '.';
 
 export const postFiles = ({ fileList }: FilesRequest) => {
   const formData = new FormData();
