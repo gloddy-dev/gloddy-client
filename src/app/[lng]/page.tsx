@@ -21,7 +21,7 @@ export default function Home() {
       const { data, type } = JSON.parse(event.data);
       switch (type) {
         case 'FCM_TOKEN':
-          postFCMToken({ token: data }).then((res) => alert(1));
+          postFCMToken({ token: data });
       }
     };
 
