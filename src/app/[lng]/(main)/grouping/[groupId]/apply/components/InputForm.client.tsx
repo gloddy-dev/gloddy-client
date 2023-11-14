@@ -67,6 +67,8 @@ export default function InputForm() {
             open(() => <ApplyModal onOkClick={handleSubmit(onSubmit)} onCancelClick={exit} />)
           }
           disabled={!formState.isValid}
+          actionType="debounce"
+          debounceDelay={1000}
         >
           {t('apply.submit.label')}
         </Button>
