@@ -12,6 +12,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    optimizePackageImports: ['my-lib'],
+  },
 };
 
 const sentryWebpackPluginOptions = {
