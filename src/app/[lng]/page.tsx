@@ -20,7 +20,6 @@ export default function Home() {
     if (!isapp) return;
     const listener = async (event: any) => {
       const { data, type } = JSON.parse(event.data);
-      await copyToClipboard(data);
       switch (type) {
         case 'FCM_TOKEN':
           postFCMToken({ token: data });
