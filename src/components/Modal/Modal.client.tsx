@@ -5,6 +5,7 @@ import { Spacing } from '../Spacing';
 import { useTranslation } from '@/app/i18n/client';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
+import { useState } from 'react';
 
 export interface ModalProps {
   onOkClick?: () => void;
@@ -42,6 +43,11 @@ export function Modal({
   isLoading,
 }: StrictPropsWithChildren<ModalProps>) {
   const { t } = useTranslation('common');
+  const [isDisabled, setIsDisabled] = useState(false);
+  const onOkClickHandler = () => {
+    setIsDisabled(true);
+    onOkClick?.();
+  };
 
   return (
     <ModalWrapper onClose={onCancelClick}>
@@ -58,8 +64,8 @@ export function Modal({
               variant={variantMap[variant].ok}
               className="w-full"
               size="small"
-              onClick={onOkClick}
-              disabled={okDisabled}
+              onClick={onOkClickHandler}
+              disabled={isDisabled}
               isLoading={isLoading}
               actionType="throttle"
             >
