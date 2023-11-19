@@ -5,21 +5,6 @@ import Image from 'next/image';
 
 import type { ApplyStatusType } from '@/types';
 
-const modalText = {
-  APPROVE: {
-    description: '서로에 대한 존중으로\n건전한 모임 문화를 만들어요!',
-    content: '지원서를 승인하시겠어요?',
-    variant: 'success',
-    image: '/images/approve_character.png',
-  },
-  REFUSE: {
-    description: '성급한 거절로\n적합한 지원자를 놓칠 수 있어요',
-    content: '지원서를 거절하시겠어요?',
-    variant: 'warning',
-    image: '/images/refuse_character.png',
-  },
-} as const;
-
 interface ManageModalProps {
   type: ApplyStatusType;
   onOkClick: () => void;
