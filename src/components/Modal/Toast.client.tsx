@@ -10,7 +10,7 @@ export default function Toast({ children }: StrictPropsWithChildren) {
   return (
     <motion.div
       {...fadeInVariants()}
-      className="fixed inset-x-0 bottom-40 z-modal mx-auto inline-flex max-w-340 justify-center rounded-4 bg-zinc-900 bg-opacity-80 px-16 py-12 text-paragraph-2 text-white"
+      className="fixed inset-x-0 bottom-40 z-modal mx-auto inline-flex max-w-340 justify-center rounded-4 bg-zinc-900 bg-opacity-80 px-16 py-12 text-center text-paragraph-2 text-white"
       ref={ref}
     >
       {children}
