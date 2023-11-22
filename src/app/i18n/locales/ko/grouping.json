@@ -32,7 +32,8 @@
       "label": "모임 인원"
     },
     "error": {
-      "time": "현재 시간 이후로 설정해주세요."
+      "time": "현재 시간 이후로 설정해주세요.",
+      "image": "An error occurred during image upload. Please try uploading again"
     },
     "continue": "완료",
     "submit": {

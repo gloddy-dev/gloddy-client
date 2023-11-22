@@ -1,5 +1,5 @@
 import { usePostFiles } from '@/apis/common';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 interface UseImageUploadProps {
   /**
@@ -23,6 +23,7 @@ export function useFileUpload(
   options?: UseImageUploadProps['options']
 ) {
   const { mutate, isLoading } = usePostFiles();
+  const [fileList, setFileList] = useState<FileList | null>(null);
 
   const handleFileUploadClick = useCallback(() => {
     const input = document.createElement('input');
@@ -30,6 +31,7 @@ export function useFileUpload(
     input.accept = options?.accept || 'image/*';
     input.multiple = options?.multiple || false;
     input.onchange = (event) => {
+      setFileList((event.target as HTMLInputElement).files);
       const { files } = event.target as HTMLInputElement;
       if (!files) return;
 
@@ -48,5 +50,6 @@ export function useFileUpload(
   return {
     handleFileUploadClick,
     isLoading,
+    fileList,
   };
 }
