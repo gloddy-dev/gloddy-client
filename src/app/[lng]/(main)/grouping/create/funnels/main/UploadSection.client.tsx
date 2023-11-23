@@ -4,7 +4,7 @@ import { Flex } from '@/components/Layout';
 import { Loading } from '@/components/Loading';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import Image from 'next/image';
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Control, useController } from 'react-hook-form';
 
 import type { CreateGroupContextValue } from '../../type';
@@ -19,7 +19,7 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
     control,
   });
 
-  const { handleFileUploadClick, isLoading } = useFileUpload((files) => {
+  const { handleFileUploadClick, previewImage } = useFileUpload((files) => {
     field.onChange(files[0]);
   });
 
@@ -30,14 +30,14 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
       className="relative mx-20 aspect-[8/5] overflow-hidden rounded-8 bg-sub"
       onClick={handleFileUploadClick}
     >
-      <RenderImage isLoading={isLoading} imageUrl={field.value} />
+      <RenderImage imageUrl={previewImage} />
     </Flex>
   );
 }
 
 interface RenderImageProps {
-  isLoading: boolean;
-  imageUrl: string;
+  isLoading?: boolean;
+  imageUrl?: string | null;
 }
 
 const RenderImage = memo(function ({ isLoading, imageUrl }: RenderImageProps) {

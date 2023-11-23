@@ -1,5 +1,3 @@
-import { notifications } from '@/constants/notifications';
-
 export interface FCMTokenRequest {
   token: string;
 }
@@ -14,7 +12,5 @@ export type Notification = {
 };
 
 export interface NotificationResponse {
-  data: {
-    notifications: Notification[];
-  };
+  notifications: Notification[];
 }
