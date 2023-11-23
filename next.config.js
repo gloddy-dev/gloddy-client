@@ -8,7 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*',
+        hostname: 'gloddy.s3.ap-northeast-2.amazonaws.com',
       },
     ],
   },
