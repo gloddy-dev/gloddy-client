@@ -56,10 +56,6 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
   });
 
   const handleCreateClick = () => {
-    if (watch('imageUrl').includes('http')) {
-      openToast(() => <Toast>{t('create.error.image')}</Toast>);
-      return;
-    }
     if (!validateDate(watch('meetDate'), watch('time'), browser)) {
       openToast(() => <Toast>{t('create.error.time')}</Toast>);
       return;
