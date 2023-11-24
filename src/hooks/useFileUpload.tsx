@@ -23,7 +23,7 @@ export function useFileUpload(
   options?: UseImageUploadProps['options']
 ) {
   const { mutate, isLoading } = usePostFiles();
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [fileList, setFileList] = useState<FileList | null>(null);
 
   const handleFileUploadClick = useCallback(() => {
     const input = document.createElement('input');
@@ -31,13 +31,9 @@ export function useFileUpload(
     input.accept = options?.accept || 'image/*';
     input.multiple = options?.multiple || false;
     input.onchange = (event) => {
-      const reader = new FileReader();
+      setFileList((event.target as HTMLInputElement).files);
       const { files } = event.target as HTMLInputElement;
       if (!files) return;
-      reader.readAsDataURL(files[0]);
-      reader.onload = () => {
-        setPreviewImage(reader.result as string);
-      };
 
       mutate(
         { fileList: Array.from(files) },
@@ -54,6 +50,6 @@ export function useFileUpload(
   return {
     handleFileUploadClick,
     isLoading,
-    previewImage,
+    fileList,
   };
 }

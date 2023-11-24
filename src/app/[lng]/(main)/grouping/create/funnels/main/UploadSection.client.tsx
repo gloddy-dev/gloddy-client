@@ -19,9 +19,18 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
     control,
   });
 
-  const { handleFileUploadClick, previewImage } = useFileUpload((files) => {
+  const { handleFileUploadClick, fileList } = useFileUpload((files) => {
     field.onChange(files[0]);
   });
+
+  useEffect(() => {
+    const reader = new FileReader();
+    if (!fileList) return;
+    reader.readAsDataURL(fileList[0]);
+    reader.onload = () => {
+      field.onChange(reader.result);
+    };
+  }, [fileList]);
 
   return (
     <Flex
@@ -30,14 +39,14 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
       className="relative mx-20 aspect-[8/5] overflow-hidden rounded-8 bg-sub"
       onClick={handleFileUploadClick}
     >
-      <RenderImage imageUrl={previewImage} />
+      <RenderImage imageUrl={field.value} />
     </Flex>
   );
 }
 
 interface RenderImageProps {
   isLoading?: boolean;
-  imageUrl?: string | null;
+  imageUrl: string;
 }
 
 const RenderImage = memo(function ({ isLoading, imageUrl }: RenderImageProps) {
