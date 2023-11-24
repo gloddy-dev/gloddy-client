@@ -32,8 +32,7 @@
       "label": "Number of Participants"
     },
     "error": {
-      "time": "Please set a time later than the current time.",
-      "image": "An error occurred during image upload. Please try uploading again."
+      "time": "Please set a time later than the current time."
     },
     "continue": "Continue",
     "submit": {
