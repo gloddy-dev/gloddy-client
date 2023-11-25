@@ -13,11 +13,10 @@ export default function ButtonAnimation({
   return (
     <motion.div
       {...props}
-      whileHover="hover" // hover상태 일 때 hover animation발생
+      whileHover="hover"
       whileTap="pressed"
       variants={{
         hover: (clicked) => ({
-          // 클릭된 버튼은 scale이 커지지 않는다.
           scale: clicked ? 1 : 1.1,
         }),
         pressed: {
