@@ -13,9 +13,9 @@ export default async function NotificationPage() {
       <NotificationHeader />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
         <PageAnimation>
-          {/* <HydrationProvider queryFn={getNotification} queryKey={Keys.getNotifications()}> */}
-          <NotificationSection />
-          {/* </HydrationProvider> */}
+          <HydrationProvider queryFn={getNotification} queryKey={Keys.getNotifications()}>
+            <NotificationSection />
+          </HydrationProvider>
         </PageAnimation>
       </QueryAsyncBoundary>
     </>
