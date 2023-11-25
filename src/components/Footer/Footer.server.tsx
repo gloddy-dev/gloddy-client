@@ -1,3 +1,4 @@
+import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
 import { serverTranslation } from '@/app/i18n';
 import cn from '@/utils/cn';
@@ -54,23 +55,22 @@ export default async function Footer({ lng, page, isSpacing = true, spacingColor
     <>
       <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 touch-pan-x rounded-t-24 bg-white pb-8 pt-12 shadow-navigation">
         {tabList.map((tab: TabType) => (
-          <Link
-            replace
-            href={tab.url}
+          <ButtonAnimation
             key={tab.id}
             className={cn('flex w-full flex-col items-center text-center text-caption', {
               'text-sign-brand': isSelected(tab),
               'text-sign-tertiary': !isSelected(tab),
             })}
-            scroll={false}
           >
-            <Icon
-              id={`32-footer-${tab.name}${isSelected(tab) ? '_selected' : '_default'}`}
-              width={32}
-              height={32}
-            />
-            <p>{t(tab.name)}</p>
-          </Link>
+            <Link replace href={tab.url} scroll={false}>
+              <Icon
+                id={`32-footer-${tab.name}${isSelected(tab) ? '_selected' : '_default'}`}
+                width={32}
+                height={32}
+              />
+              <p>{t(tab.name)}</p>
+            </Link>
+          </ButtonAnimation>
         ))}
       </footer>
       {isSpacing && <div className="h-70" style={{ backgroundColor: spacingColor }} />}
