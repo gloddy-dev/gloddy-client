@@ -1,4 +1,7 @@
 const { withSentryConfig } = require('@sentry/nextjs');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 /**
  * @type {import('next').NextConfig}
@@ -23,4 +26,4 @@ const sentryWebpackPluginOptions = {
   project: 'javascript-nextjs',
 };
 
-module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
+module.exports = withBundleAnalyzer(withSentryConfig(nextConfig, sentryWebpackPluginOptions));
