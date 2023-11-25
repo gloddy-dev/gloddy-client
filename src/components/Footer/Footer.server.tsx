@@ -57,7 +57,7 @@ export default async function Footer({ lng, page, isSpacing = true, spacingColor
         {tabList.map((tab: TabType) => (
           <ButtonAnimation
             key={tab.id}
-            className={cn('flex w-full flex-col items-center text-center text-caption', {
+            className={cn('flex w-full flex-col text-center text-caption', {
               'text-sign-brand': isSelected(tab),
               'text-sign-tertiary': !isSelected(tab),
             })}
@@ -67,6 +67,7 @@ export default async function Footer({ lng, page, isSpacing = true, spacingColor
                 id={`32-footer-${tab.name}${isSelected(tab) ? '_selected' : '_default'}`}
                 width={32}
                 height={32}
+                className="mx-auto"
               />
               <p>{t(tab.name)}</p>
             </Link>
