@@ -5,9 +5,10 @@ import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import { notifications } from '@/constants/notifications';
 import useAppRouter from '@/hooks/useAppRouter';
+import { useNotificationRoute } from '@/hooks/useNotificationRoute';
 import cn from '@/utils/cn';
+import { getNotificationPath } from '@/utils/getNotificationPath';
 import { format, formatDistanceToNowStrict } from 'date-fns';
 import { enUS, ko } from 'date-fns/esm/locale';
 import Image from 'next/image';
@@ -35,17 +36,7 @@ export default function NotiCard({ notiData }: NotiCardProps) {
   const { push } = useAppRouter();
 
   const locale = i18n.language === 'ko' ? ko : enUS;
-
-  const handleNotiCard = () => {
-    switch (type) {
-      case 'APPLY_CREATE':
-        push(`/grouping/${redirectId}/manage`);
-        break;
-      case 'APPLY_APPROVE':
-        push(`/grouping/${redirectId}`);
-        break;
-    }
-  };
+  const path = getNotificationPath(type, redirectId);
 
   return (
     <Flex
@@ -53,7 +44,7 @@ export default function NotiCard({ notiData }: NotiCardProps) {
       className={cn('px-20 py-16', {
         // 'bg-brand-color': !isRead,
       })}
-      onClick={handleNotiCard}
+      onClick={() => push(path)}
     >
       {/* <div className="relative h-48 w-48 overflow-hidden rounded-8">
         <Image src={imageUrl} alt="thumbnail" className="object-cover" fill />
