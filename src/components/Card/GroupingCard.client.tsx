@@ -69,7 +69,14 @@ export default function GroupingCard({
       <Flex onClick={onClick || (() => push(`/grouping/${groupId}`, false))} align="center">
         <section className="relative h-96 w-96 shrink-0">
           {imageUrl ? (
-            <Image fill src={imageUrl} alt="group" className="rounded-8 object-cover" />
+            <Image
+              fill
+              src={imageUrl}
+              priority
+              alt="group"
+              sizes="16px"
+              className="rounded-8 object-cover"
+            />
           ) : (
             <div className="h-full rounded-8 bg-white3" />
           )}
