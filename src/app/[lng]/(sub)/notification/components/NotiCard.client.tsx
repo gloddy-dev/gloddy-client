@@ -6,7 +6,6 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useNotificationRoute } from '@/hooks/useNotificationRoute';
 import cn from '@/utils/cn';
 import { getNotificationPath } from '@/utils/getNotificationPath';
 import { format, formatDistanceToNowStrict } from 'date-fns';
