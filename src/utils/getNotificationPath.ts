@@ -5,7 +5,7 @@ export const getNotificationPath = (type: string, redirectId: number) => {
       path = `/grouping/${redirectId}/manage`;
       break;
     case 'APPLY_APPROVE':
-      path = `/grouping/${redirectId}`;
+      path = `/grouping/${redirectId}?tab=articles`;
       break;
   }
   return path;
