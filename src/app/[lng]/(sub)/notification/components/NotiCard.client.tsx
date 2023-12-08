@@ -30,7 +30,7 @@ interface NotiCardProps {
 }
 
 export default function NotiCard({ notiData }: NotiCardProps) {
-  const { userId, redirectId, content, type } = notiData;
+  const { userId, redirectId, content, type, groupImage, createdAt } = notiData;
   const { i18n } = useTranslation('common');
   const { push } = useAppRouter();
 
@@ -38,23 +38,27 @@ export default function NotiCard({ notiData }: NotiCardProps) {
   const path = getNotificationPath(type, redirectId);
 
   return (
-    <Flex
-      align="center"
-      className={cn('px-20 py-16', {
-        // 'bg-brand-color': !isRead,
-      })}
-      onClick={() => push(path)}
-    >
-      {/* <div className="relative h-48 w-48 overflow-hidden rounded-8">
-        <Image src={imageUrl} alt="thumbnail" className="object-cover" fill />
-      </div> */}
-      <Spacing direction="horizontal" size={16} />
-      <div>
+    <Flex align="center" className={cn('px-20 py-16')} onClick={() => push(path)}>
+      <div className="w-full">
         <p className="text-paragraph-2 text-sign-secondary">{content}</p>
+        <Spacing size={8} />
         <Flex align="center" gap={4}>
-          {/* <Icon id="16-date_range" width={16} height={16} /> */}
-          {/* <p className="text-caption text-sign-tertiary">{foramtDate(locale, date)}</p> */}
+          <Icon id="16-date_range" width={16} height={16} />
+          <p className="text-caption text-sign-tertiary">{foramtDate(locale, createdAt)}</p>
         </Flex>
+      </div>
+
+      <Spacing size={16} direction="horizontal" />
+
+      <div className="relative flex h-48 w-48 items-center justify-center rounded-4">
+        <Image
+          src={groupImage || '/images/approve_character.png'}
+          alt="thumbnail"
+          width={48}
+          height={48}
+          layout="responsive"
+          className="rounded-4"
+        />
       </div>
     </Flex>
   );
