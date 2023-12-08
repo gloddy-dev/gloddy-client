@@ -9,6 +9,8 @@ export type Notification = {
   redirectId: number;
   content: string;
   type: NotificationType;
+  groupImage: string;
+  createdAt: string;
 };
 
 export interface NotificationResponse {
