@@ -30,7 +30,7 @@ interface NotiCardProps {
 }
 
 export default function NotiCard({ notiData }: NotiCardProps) {
-  const { userId, redirectId, content, type, groupImage, createdAt, title } = notiData;
+  const { userId, redirectId, content, type, image, createdAt, title } = notiData;
   const { i18n } = useTranslation('common');
   const { push } = useAppRouter();
 
@@ -41,6 +41,7 @@ export default function NotiCard({ notiData }: NotiCardProps) {
     <Flex align="center" className={cn('px-20 py-16')} onClick={() => push(path)}>
       <div className="w-full">
         <p className="text-paragraph-2 font-bold text-sign-secondary">{title}</p>
+
         <Spacing size={2} />
         <p className="text-paragraph-2 text-sign-tertiary">{content}</p>
         <Spacing size={8} />
@@ -54,7 +55,7 @@ export default function NotiCard({ notiData }: NotiCardProps) {
 
       <div className="relative flex h-48 w-48 items-center justify-center rounded-4">
         <Image
-          src={groupImage || '/images/approve_character.png'}
+          src={image || '/images/approve_character.png'}
           alt="thumbnail"
           width={48}
           height={48}
