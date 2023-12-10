@@ -24,12 +24,12 @@ export default function Home() {
       }
     };
 
-    // document.addEventListener('message', listener);
-    // window.addEventListener('message', listener);
-    // return () => {
-    //   document.removeEventListener('message', listener);
-    //   window.removeEventListener('message', listener);
-    // };
+    document.addEventListener('message', listener);
+    window.addEventListener('message', listener);
+    return () => {
+      document.removeEventListener('message', listener);
+      window.removeEventListener('message', listener);
+    };
   });
 
   useDidMount(async () => {
