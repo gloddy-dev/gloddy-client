@@ -11,6 +11,7 @@ export type Notification = {
   type: NotificationType;
   groupImage: string;
   createdAt: string;
+  title: string;
 };
 
 export interface NotificationResponse {

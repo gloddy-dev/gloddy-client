@@ -12,7 +12,7 @@ import { format, formatDistanceToNowStrict } from 'date-fns';
 import { enUS, ko } from 'date-fns/esm/locale';
 import Image from 'next/image';
 
-function foramtDate(locale: Locale, date: string) {
+function formatDate(locale: Locale, date: string) {
   const notiDate = new Date(date);
   const now = Date.now();
   const diff = (now - notiDate.getTime()) / 1000;
@@ -30,7 +30,7 @@ interface NotiCardProps {
 }
 
 export default function NotiCard({ notiData }: NotiCardProps) {
-  const { userId, redirectId, content, type, groupImage, createdAt } = notiData;
+  const { userId, redirectId, content, type, groupImage, createdAt, title } = notiData;
   const { i18n } = useTranslation('common');
   const { push } = useAppRouter();
 
@@ -40,11 +40,13 @@ export default function NotiCard({ notiData }: NotiCardProps) {
   return (
     <Flex align="center" className={cn('px-20 py-16')} onClick={() => push(path)}>
       <div className="w-full">
-        <p className="text-paragraph-2 text-sign-secondary">{content}</p>
+        <p className="text-paragraph-2 font-bold text-sign-secondary">{title}</p>
+        <Spacing size={2} />
+        <p className="text-paragraph-2 text-sign-tertiary">{content}</p>
         <Spacing size={8} />
         <Flex align="center" gap={4}>
           <Icon id="16-date_range" width={16} height={16} />
-          <p className="text-caption text-sign-tertiary">{foramtDate(locale, createdAt)}</p>
+          <p className="text-caption text-sign-tertiary">{formatDate(locale, createdAt)}</p>
         </Flex>
       </div>
 
