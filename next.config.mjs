@@ -10,7 +10,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'gloddy.s3.ap-northeast-2.amazonaws.com',
+        hostname: [
+          'gloddy.s3.ap-northeast-2.amazonaws.com',
+          'opendata.mofa.go.kr:8444/fileDownload/images/country_images',
+        ],
       },
     ],
   },

@@ -56,7 +56,7 @@ export default function CountryBotoomSheet({ isOpen, onClose }: CountryBotoomShe
             className="py-12 text-subtitle-2"
             onClick={() => handleCountry(country.countryEN)}
           >
-            {/* <Image src={country.image} width={24} height={24} alt={country.countryEN} /> */}
+            <Image src={country.image} width={24} height={24} alt={country.countryEN} />
             {country.countryEN}
           </li>
         ))}
