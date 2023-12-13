@@ -53,14 +53,14 @@ export default function NotiCard({ notiData }: NotiCardProps) {
 
       <Spacing size={16} direction="horizontal" />
 
-      <div className="relative flex h-48 w-48 items-center justify-center rounded-4">
+      <div className="relative h-48 w-48 shrink-0 rounded-4">
         <Image
           src={image || '/images/approve_character.png'}
           alt="thumbnail"
-          width={48}
-          height={48}
-          layout="responsive"
-          className="rounded-4"
+          className="rounded-4 object-cover"
+          priority
+          sizes="16px"
+          fill
         />
       </div>
     </Flex>
