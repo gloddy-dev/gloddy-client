@@ -11,6 +11,7 @@ export default function CreateGroupContextProvider({ children }: StrictPropsWith
   const methods = useForm<CreateGroupContextValue>({
     defaultValues: {
       imageUrl: '',
+      previewImage: '',
       title: '',
       content: '',
       meetDate: new Date(),
