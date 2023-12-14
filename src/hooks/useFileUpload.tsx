@@ -7,7 +7,7 @@ interface UseImageUploadProps {
    * 파일 업로드가 완료되었을 때 실행할 함수를 지정합니다.
    */
   handleFileChange: (fileUrlList: string[]) => void;
-  previewImageField: ControllerRenderProps<TFieldValues, TName>;
+  previewImageField: ControllerRenderProps<any, any>;
   options?: {
     /**
      * 업로드할 파일의 타입을 지정합니다. (default: image/*)
@@ -22,7 +22,7 @@ interface UseImageUploadProps {
 
 export function useFileUpload(
   handleFileChange: UseImageUploadProps['handleFileChange'],
-  previewImageField: UseImageUploadProps['previewImageField'],
+  previewImageField?: UseImageUploadProps['previewImageField'],
   options?: UseImageUploadProps['options']
 ) {
   const { mutate, isLoading } = usePostFiles();
@@ -38,7 +38,8 @@ export function useFileUpload(
       if (!files) return;
       const reader = new FileReader();
       reader.onload = () => {
-        previewImageField.onChange((prev) => [...prev, reader.result as string]);
+        previewImageField &&
+          previewImageField.onChange((prev: any) => [...prev, reader.result as string]);
       };
       reader.readAsDataURL(files[0]);
 
