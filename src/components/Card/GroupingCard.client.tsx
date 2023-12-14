@@ -73,7 +73,6 @@ export default function GroupingCard({
               fill
               src={imageUrl}
               alt="group"
-              sizes="16px"
               className="rounded-8 object-cover"
               loading="lazy"
               placeholder="blur"
