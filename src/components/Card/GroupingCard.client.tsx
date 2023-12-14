@@ -1,6 +1,7 @@
 'use client';
 
 import { Icon } from '../Icon';
+import ImageSample from '../Image/ImageSample';
 import { useDeleteScrapMeeting } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
@@ -79,7 +80,7 @@ export default function GroupingCard({
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
             />
           ) : (
-            <div className="h-full rounded-8 bg-white3" />
+            <ImageSample width={96} height={96} />
           )}
           <MemberCountBadge maxMemeberCount={maxMemberCount} memberCount={memberCount} />
         </section>
