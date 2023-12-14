@@ -72,10 +72,12 @@ export default function GroupingCard({
             <Image
               fill
               src={imageUrl}
-              priority
               alt="group"
               sizes="16px"
               className="rounded-8 object-cover"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
             />
           ) : (
             <div className="h-full rounded-8 bg-white3" />
