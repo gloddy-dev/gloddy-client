@@ -45,17 +45,13 @@ export default function CreateFunnel() {
       <CreateHeader currentStep={currentStep} />
       <Funnel>
         <Funnel.Step name="main">
-          <PageAnimation>
-            <MainStep
-              onCreateSubmit={handleCreateSubmit}
-              onSelectMeetDate={() => setStep('meetDate')}
-            />
-          </PageAnimation>
+          <MainStep
+            onCreateSubmit={handleCreateSubmit}
+            onSelectMeetDate={() => setStep('meetDate')}
+          />
         </Funnel.Step>
         <Funnel.Step name="meetDate">
-          <PageAnimation>
-            <MeetDateStep onDone={prevStep} />
-          </PageAnimation>
+          <MeetDateStep onDone={prevStep} />
         </Funnel.Step>
       </Funnel>
       <LayerLoading isLoading={status === 'loading' || status === 'success'} />

@@ -25,7 +25,6 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
   const { handleFileUploadClick } = useFileUpload(async (files) => {
     field.onChange(files[0]);
   }, previewImageField);
-  console.log(previewImageField.value);
 
   return (
     <Flex
@@ -34,7 +33,7 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
       className="relative mx-20 aspect-[8/5] overflow-hidden rounded-8 bg-sub"
       onClick={handleFileUploadClick}
     >
-      <RenderImage previewImage={previewImageField.value[0]} />
+      <RenderImage previewImage={previewImageField.value} />
     </Flex>
   );
 }
