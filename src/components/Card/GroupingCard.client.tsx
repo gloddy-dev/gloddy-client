@@ -51,6 +51,7 @@ export default function GroupingCard({
     placeAddress,
     placeId,
   } = groupingData;
+
   const { lng } = useParams() as { lng: string };
   const { push } = useAppRouter();
   const { place } = usePlaceDetails({
@@ -60,9 +61,7 @@ export default function GroupingCard({
     region: 'KR',
   });
 
-  let status = '';
-  if (isNew) status = 'NEW';
-  if (isExistNewApply) status = '신규 지원';
+  const status = isNew ? 'NEW' : isExistNewApply ? '신규 지원' : '';
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
