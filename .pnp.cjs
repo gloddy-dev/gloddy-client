@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-typescript", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.22.5"],\
             ["@hookform/devtools", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:4.3.1"],\
             ["@next/bundle-analyzer", "npm:14.0.3"],\
+            ["@plaiceholder/next", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:3.0.0"],\
             ["@react-google-maps/api", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:2.19.2"],\
             ["@sentry/cli", "npm:2.20.4"],\
             ["@sentry/nextjs", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.62.0"],\
@@ -3899,6 +3900,36 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["open", "npm:9.1.0"],\
             ["picocolors", "npm:1.0.0"],\
             ["tslib", "npm:2.6.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@plaiceholder/next", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/@plaiceholder-next-npm-3.0.0-67a960fdc9-07c51fad8f.zip/node_modules/@plaiceholder/next/",\
+          "packageDependencies": [\
+            ["@plaiceholder/next", "npm:3.0.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:3.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/@plaiceholder-next-virtual-764778364e/0/cache/@plaiceholder-next-npm-3.0.0-67a960fdc9-07c51fad8f.zip/node_modules/@plaiceholder/next/",\
+          "packageDependencies": [\
+            ["@plaiceholder/next", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:3.0.0"],\
+            ["@types/next", null],\
+            ["@types/plaiceholder", null],\
+            ["@types/sharp", null],\
+            ["next", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:13.5.6"],\
+            ["plaiceholder", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:3.0.0"],\
+            ["sharp", "npm:0.32.5"]\
+          ],\
+          "packagePeers": [\
+            "@types/next",\
+            "@types/plaiceholder",\
+            "@types/sharp",\
+            "next",\
+            "plaiceholder",\
+            "sharp"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9310,6 +9341,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-typescript", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.22.5"],\
             ["@hookform/devtools", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:4.3.1"],\
             ["@next/bundle-analyzer", "npm:14.0.3"],\
+            ["@plaiceholder/next", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:3.0.0"],\
             ["@react-google-maps/api", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:2.19.2"],\
             ["@sentry/cli", "npm:2.20.4"],\
             ["@sentry/nextjs", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.62.0"],\

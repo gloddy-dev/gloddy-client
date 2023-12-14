@@ -2390,6 +2390,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@plaiceholder/next@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@plaiceholder/next@npm:3.0.0"
+  peerDependencies:
+    next: ">= 10.0.0"
+    plaiceholder: ">=3.0.0"
+    sharp: ">= 0.30.6"
+  checksum: 07c51fad8fa886b6afbb8e86e5100ab21da67c2d613f354215c27afb0452fc798fe208b35a79c53975ed2792ff6b145f3608d94c29a2a5a727e57e225ae56027
+  languageName: node
+  linkType: hard
+
 "@polka/url@npm:^1.0.0-next.20":
   version: 1.0.0-next.23
   resolution: "@polka/url@npm:1.0.0-next.23"
@@ -6712,6 +6723,7 @@ __metadata:
     "@babel/preset-typescript": ^7.22.5
     "@hookform/devtools": ^4.3.1
     "@next/bundle-analyzer": ^14.0.3
+    "@plaiceholder/next": ^3.0.0
     "@react-google-maps/api": ^2.19.2
     "@sentry/cli": ^2.20.4
     "@sentry/nextjs": ^7.62.0

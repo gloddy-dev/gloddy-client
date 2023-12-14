@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.0.3",
+    "@plaiceholder/next": "^3.0.0",
     "@react-google-maps/api": "^2.19.2",
     "@sentry/cli": "^2.20.4",
     "@sentry/nextjs": "^7.62.0",
