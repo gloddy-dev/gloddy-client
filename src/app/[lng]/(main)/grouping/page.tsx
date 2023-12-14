@@ -18,11 +18,7 @@ export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
   return (
     <>
       <GroupingHeader />
-
-      <QueryAsyncBoundary
-        rejectedFallback={RejectedFallback}
-        pendingFallback={<Loading className="h-[calc(100dvh-178px)]" />}
-      >
+      <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
         <GroupingCardList />
       </QueryAsyncBoundary>
       <CreateGroupButton />
