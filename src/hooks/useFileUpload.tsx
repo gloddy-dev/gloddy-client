@@ -26,7 +26,6 @@ export function useFileUpload(
   options?: UseImageUploadProps['options']
 ) {
   const { mutate, isLoading } = usePostFiles();
-  const [previewImageList, setPreviewImageList] = useState<string[]>([]);
 
   const handleFileUploadClick = useCallback(() => {
     const input = document.createElement('input');
@@ -38,8 +37,7 @@ export function useFileUpload(
       if (!files) return;
       const reader = new FileReader();
       reader.onload = () => {
-        previewImageField &&
-          previewImageField.onChange((prev: any) => [...prev, reader.result as string]);
+        previewImageField && previewImageField.onChange(reader.result);
       };
       reader.readAsDataURL(files[0]);
 
