@@ -1,4 +1,6 @@
-const { withSentryConfig } = require('@sentry/nextjs');
+import withPlaiceholder from '@plaiceholder/next';
+
+import { withSentryConfig } from '@sentry/nextjs';
 
 /**
  * @type {import('next').NextConfig}
@@ -23,4 +25,4 @@ const sentryWebpackPluginOptions = {
   project: 'javascript-nextjs',
 };
 
-module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
+export default withPlaiceholder(withSentryConfig(nextConfig, sentryWebpackPluginOptions));

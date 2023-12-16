@@ -24,25 +24,23 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
       <MeetingParticipateHeader />
-      <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
-        <PageAnimation>
-          <HydrationProvider
-            queryMultipleFn={[
-              getMeetingParticipating,
-              getMeetingHosting,
-              getMeetingRejected,
-              getMeetingNotEstimated,
-            ]}
-            queryMultipleKey={[
-              Keys.getMeetingParticipating(),
-              Keys.getMeetingHosting(),
-              Keys.getMeetingRejected(),
-              Keys.getMeetingNotEstimated(),
-            ]}
-          >
-            <ContentSection />
-          </HydrationProvider>
-        </PageAnimation>
+      <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
+        <HydrationProvider
+          queryMultipleFn={[
+            getMeetingParticipating,
+            getMeetingHosting,
+            getMeetingRejected,
+            getMeetingNotEstimated,
+          ]}
+          queryMultipleKey={[
+            Keys.getMeetingParticipating(),
+            Keys.getMeetingHosting(),
+            Keys.getMeetingRejected(),
+            Keys.getMeetingNotEstimated(),
+          ]}
+        >
+          <ContentSection />
+        </HydrationProvider>
       </QueryAsyncBoundary>
       <Footer page="meeting" lng={lng} />
     </>

@@ -1,6 +1,7 @@
 'use client';
 
 import { Icon } from '../Icon';
+import ImageSample from '../Image/ImageSample';
 import { useDeleteScrapMeeting } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
@@ -51,6 +52,7 @@ export default function GroupingCard({
     placeAddress,
     placeId,
   } = groupingData;
+
   const { lng } = useParams() as { lng: string };
   const { push } = useAppRouter();
   const { place } = usePlaceDetails({
@@ -60,18 +62,24 @@ export default function GroupingCard({
     region: 'KR',
   });
 
-  let status = '';
-  if (isNew) status = 'NEW';
-  if (isExistNewApply) status = '신규 지원';
+  const status = isNew ? 'NEW' : isExistNewApply ? '신규 지원' : '';
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
       <Flex onClick={onClick || (() => push(`/grouping/${groupId}`, false))} align="center">
         <section className="relative h-96 w-96 shrink-0">
           {imageUrl ? (
-            <Image fill src={imageUrl} alt="group" className="rounded-8 object-cover" />
+            <Image
+              fill
+              src={imageUrl}
+              alt="group"
+              className="rounded-8 object-cover"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+            />
           ) : (
-            <div className="h-full rounded-8 bg-white3" />
+            <ImageSample width={96} height={96} />
           )}
           <MemberCountBadge maxMemeberCount={maxMemberCount} memberCount={memberCount} />
         </section>

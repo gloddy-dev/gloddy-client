@@ -24,6 +24,7 @@ export default function LocationSection({
     language: lng,
     region: 'KR',
   });
+  console.log(place?.url);
 
   if (typeof google === 'undefined') return null;
 
@@ -34,7 +35,7 @@ export default function LocationSection({
       <div className="relative overflow-hidden rounded-8 bg-divider">
         <div
           className="absolute left-0 top-0 z-[2] aspect-video w-full cursor-pointer opacity-0"
-          onClick={() => window.open(place?.url, '_blank')}
+          onClick={() => place?.url && window.open(place?.url, '_blank')}
         />
         <div className="aspect-video w-full">
           <GoogleMap
@@ -53,7 +54,6 @@ export default function LocationSection({
         <div className="p-16">
           <p>
             <span className="text-subtitle-2">{place?.name || placeName}</span>
-            {/* <span className="pl-4 text-caption text-sign-sub">호프, 요리주점</span> */}
           </p>
           <Spacing size={2} />
           <p className="text-paragraph-2 text-sign-secondary">
