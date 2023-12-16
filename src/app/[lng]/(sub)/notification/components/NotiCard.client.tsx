@@ -5,14 +5,14 @@ import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import { notifications } from '@/constants/notifications';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
+import { getNotificationPath } from '@/utils/getNotificationPath';
 import { format, formatDistanceToNowStrict } from 'date-fns';
 import { enUS, ko } from 'date-fns/esm/locale';
 import Image from 'next/image';
 
-function foramtDate(locale: Locale, date: string) {
+function formatDate(locale: Locale, date: string) {
   const notiDate = new Date(date);
   const now = Date.now();
   const diff = (now - notiDate.getTime()) / 1000;
@@ -30,41 +30,38 @@ interface NotiCardProps {
 }
 
 export default function NotiCard({ notiData }: NotiCardProps) {
-  const { userId, redirectId, content, type } = notiData;
+  const { userId, redirectId, content, type, image, createdAt, title } = notiData;
   const { i18n } = useTranslation('common');
   const { push } = useAppRouter();
 
   const locale = i18n.language === 'ko' ? ko : enUS;
-
-  const handleNotiCard = () => {
-    switch (type) {
-      case 'APPLY_CREATE':
-        push(`/grouping/${redirectId}/manage`);
-        break;
-      case 'APPLY_APPROVE':
-        push(`/grouping/${redirectId}`);
-        break;
-    }
-  };
+  const path = getNotificationPath(type, redirectId);
 
   return (
-    <Flex
-      align="center"
-      className={cn('px-20 py-16', {
-        // 'bg-brand-color': !isRead,
-      })}
-      onClick={handleNotiCard}
-    >
-      {/* <div className="relative h-48 w-48 overflow-hidden rounded-8">
-        <Image src={imageUrl} alt="thumbnail" className="object-cover" fill />
-      </div> */}
-      <Spacing direction="horizontal" size={16} />
-      <div>
-        <p className="text-paragraph-2 text-sign-secondary">{content}</p>
+    <Flex align="center" className={cn('px-20 py-16')} onClick={() => push(path)}>
+      <div className="w-full">
+        <p className="text-paragraph-2 font-bold text-sign-secondary">{title}</p>
+
+        <Spacing size={2} />
+        <p className="text-paragraph-2 text-sign-tertiary">{content}</p>
+        <Spacing size={8} />
         <Flex align="center" gap={4}>
-          {/* <Icon id="16-date_range" width={16} height={16} /> */}
-          {/* <p className="text-caption text-sign-tertiary">{foramtDate(locale, date)}</p> */}
+          <Icon id="16-date_range" width={16} height={16} />
+          <p className="text-caption text-sign-tertiary">{formatDate(locale, createdAt)}</p>
         </Flex>
+      </div>
+
+      <Spacing size={16} direction="horizontal" />
+
+      <div className="relative h-48 w-48 shrink-0 rounded-4">
+        <Image
+          src={image || '/images/approve_character.png'}
+          alt="thumbnail"
+          className="rounded-4 object-cover"
+          priority
+          sizes="16px"
+          fill
+        />
       </div>
     </Flex>
   );

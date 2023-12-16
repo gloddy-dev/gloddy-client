@@ -1,7 +1,6 @@
 'use client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import { Loading } from '@/components/Loading';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import Image from 'next/image';
 import { memo } from 'react';
@@ -18,10 +17,14 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
     name: 'imageUrl',
     control,
   });
-
-  const { handleFileUploadClick, isLoading } = useFileUpload((files) => {
-    field.onChange(files[0]);
+  const { field: previewImageField } = useController({
+    name: 'previewImage',
+    control,
   });
+
+  const { handleFileUploadClick } = useFileUpload(async (files) => {
+    field.onChange(files[0]);
+  }, previewImageField);
 
   return (
     <Flex
@@ -30,23 +33,18 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
       className="relative mx-20 aspect-[8/5] overflow-hidden rounded-8 bg-sub"
       onClick={handleFileUploadClick}
     >
-      <RenderImage isLoading={isLoading} imageUrl={field.value} />
+      <RenderImage previewImage={previewImageField.value} />
     </Flex>
   );
 }
 
 interface RenderImageProps {
-  isLoading: boolean;
-  imageUrl: string;
+  previewImage: string;
 }
 
-const RenderImage = memo(function ({ isLoading, imageUrl }: RenderImageProps) {
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (imageUrl) {
-    return <Image src={imageUrl} alt="group_image" className="object-cover" fill />;
+const RenderImage = memo(function ({ previewImage }: RenderImageProps) {
+  if (previewImage) {
+    return <Image src={previewImage} alt="group_image" className="object-cover" fill />;
   }
 
   return <Icon id="48-add_photo_white" width={48} height={48} />;

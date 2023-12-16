@@ -19,16 +19,11 @@ export default function Profile({ params: { lng } }: ProfilePageProps) {
   return (
     <>
       <ProfileHeader />
-      <QueryAsyncBoundary
-        rejectedFallback={RejectedFallback}
-        pendingFallback={<Loading className="h-[calc(100dvh-118px)]" />}
-      >
-        <PageAnimation className="bg-sub">
-          <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
-            <ProfileDetail />
-            <Spacing size={70} />
-          </HydrationProvider>
-        </PageAnimation>
+      <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
+        <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
+          <ProfileDetail />
+          <Spacing size={70} />
+        </HydrationProvider>
       </QueryAsyncBoundary>
       <Footer page="profile" isSpacing={false} lng={lng} />
     </>

@@ -2,6 +2,7 @@ import type { TimeType } from '@/types';
 
 export interface CreateGroupContextValue {
   imageUrl: string;
+  previewImage: string;
   title: string;
   content: string;
   meetDate: Date;
