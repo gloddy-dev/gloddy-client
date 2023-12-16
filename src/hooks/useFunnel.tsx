@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 'use client';
 
-import useAppRouter from './useAppRouter';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Children, isValidElement } from 'react';
 
