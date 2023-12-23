@@ -8,8 +8,10 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Toast } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
+import { useDidMount } from '@/hooks/common/useDidMount';
 import useBrowser from '@/hooks/useBrowser';
 import { useModal } from '@/hooks/useModal';
+import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 import { format } from 'date-fns';
 
 import type { CreateGroupContextValue } from '../../type';
@@ -71,6 +73,13 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
       />
     ));
   };
+
+  useDidMount(() => {
+    sendMessageToReactNative({
+      type: 'GET_PERMISSION',
+      data: 'IMAGE',
+    });
+  });
 
   return (
     <>
