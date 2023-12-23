@@ -3,8 +3,6 @@ import GroupingCardList from './components/GroupingCardList.client';
 import GroupingHeader from './components/GroupingHeader';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Footer } from '@/components/Footer';
-import { Loading } from '@/components/Loading';
-import { PageAnimation } from '@/components/PageAnimation';
 import { Spacing } from '@/components/Spacing';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
