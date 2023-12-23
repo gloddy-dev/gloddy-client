@@ -1,6 +1,6 @@
 import Service from './components/Service';
 import ServiceHeader from './components/ServiceHeader';
-import { PageAnimation } from '@/components/PageAnimation';
+
 
 interface PageProps {
   params: {
@@ -12,9 +12,8 @@ export default function page({ params: { lng } }: PageProps) {
   return (
     <>
       <ServiceHeader />
-      <PageAnimation>
-        <Service lng={lng} />
-      </PageAnimation>
+
+      <Service lng={lng} />
     </>
   );
 }
