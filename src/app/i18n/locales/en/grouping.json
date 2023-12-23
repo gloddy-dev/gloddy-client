@@ -41,5 +41,6 @@
       "ok": "Yes",
       "cancel": "No"
     }
-  }
+  },
+  "noGroup": "No groups found."
 }
