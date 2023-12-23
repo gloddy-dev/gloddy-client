@@ -69,7 +69,7 @@ export default function RootLayout({
       <Script
         defer
         src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places&callback=initMap`}
-      ></Script>
+      />
     </Layout>
   );
 }
