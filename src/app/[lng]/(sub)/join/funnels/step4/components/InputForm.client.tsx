@@ -12,8 +12,10 @@ import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
+import { useDidMount } from '@/hooks/common/useDidMount';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
+import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 
 import type { ElementType, KeyboardEventHandler } from 'react';
 
@@ -70,6 +72,13 @@ export default function InputForm() {
     }
   };
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
+
+  useDidMount(() => {
+    sendMessageToReactNative({
+      type: 'GET_PERMISSION',
+      data: 'IMAGE',
+    });
+  });
 
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)}>
