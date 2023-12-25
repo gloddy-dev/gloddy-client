@@ -2,5 +2,26 @@
   "all": "전체",
   "daily": "일상톡톡",
   "question": "궁금해요",
-  "language": "언어교환"
+  "language": "언어교환",
+
+  "create": {
+    "headerTitle": "게시글 작성",
+    "category": {
+      "name": "카테고리",
+
+      "kpop": "K-POP",
+      "qna": "궁금해요",
+      "lang": "언어교환"
+    },
+    "title": {
+      "placeholder": "게시글 제목"
+    },
+    "content": {
+      "placeholder": "최소 20글자 이상의 게시글을 작성해보세요."
+    },
+    "submit": {
+      "label": "글쓰기",
+      "content": "게시글을 등록하시겠습니까?"
+    }
+  }
 }
