@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, createContext, useContext, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 import ListBox from '@/components/ListBox/ListBox';
@@ -10,9 +10,25 @@ interface ListBoxControllerProps {
   register: UseFormRegisterReturn;
 }
 
-const ListBoxController: React.FC<ListBoxControllerProps> = ({ name, options, register }) => {
-  const [selectedValue, setSelectedValue] = useState<string>(name);
+interface ListBoxProviderProps {
+  children: ReactNode;
+}
+
+const ListBoxContext = createContext({
+  open: false,
+  setOpen: (open: boolean) => {},
+});
+
+export const useListBoxContext = () => useContext(ListBoxContext);
+
+const ListBoxProvider = ({ children }: ListBoxProviderProps) => {
   const [open, setOpen] = useState(false);
+
+  return <ListBoxContext.Provider value={{ open, setOpen }}>{children}</ListBoxContext.Provider>;
+};
+
+export default function ListBoxController({ name, options, register }: ListBoxControllerProps) {
+  const [selectedValue, setSelectedValue] = useState<string>(name);
 
   const handleSelect = (value: string) => {
     setSelectedValue(value);
@@ -22,10 +38,10 @@ const ListBoxController: React.FC<ListBoxControllerProps> = ({ name, options, re
   };
 
   return (
-    <ListBox name={selectedValue} open={open} setOpen={setOpen}>
-      <ListBoxOptions options={options} onSelect={handleSelect} setOpen={setOpen} />
-    </ListBox>
+    <ListBoxProvider>
+      <ListBox name={selectedValue}>
+        <ListBoxOptions options={options} onSelect={handleSelect} />
+      </ListBox>
+    </ListBoxProvider>
   );
-};
-
-export default ListBoxController;
+}

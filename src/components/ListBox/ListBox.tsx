@@ -1,15 +1,16 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { Icon } from '@/components/Icon';
+import { useListBoxContext } from '@/components/ListBox/ListBoxController';
 
 interface ListBoxProps {
   name: string;
   children: React.ReactNode;
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const ListBox: React.FC<ListBoxProps> = ({ name, children, open, setOpen }) => {
+export default function ListBox({ name, children }: ListBoxProps) {
+  const { open, setOpen } = useListBoxContext();
+
   return (
     <>
       <div
@@ -17,11 +18,9 @@ const ListBox: React.FC<ListBoxProps> = ({ name, children, open, setOpen }) => {
         onClick={() => setOpen(!open)}
       >
         <div>{name}</div>
-        <Icon id="24-navigate_next" className="rotate-90" />
+        <Icon id="24-navigate_next" className={`rotate-90 ${open ? 'rotate-180' : ''}`} />
       </div>
       {open && <div className="block">{children}</div>}
     </>
   );
-};
-
-export default ListBox;
+}
