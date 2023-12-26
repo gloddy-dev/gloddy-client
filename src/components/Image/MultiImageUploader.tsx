@@ -12,7 +12,7 @@ interface MultiImageUploaderProps<T extends FieldValues> {
   name: Path<T>;
 }
 
-export default function MultiImageUploader<T extends Record<string, any>>({
+export default function MultiImageUploader<T extends FieldValues>({
   name,
   control,
 }: MultiImageUploaderProps<T>) {
