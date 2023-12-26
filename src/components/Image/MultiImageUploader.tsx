@@ -7,7 +7,7 @@ import { Flex } from '@/components/Layout';
 import { Loading } from '@/components/Loading';
 import { useFileUpload } from '@/hooks/useFileUpload';
 
-interface ImageSectionProps<T extends FieldValues> {
+interface MultiImageUploaderProps<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
 }
@@ -15,7 +15,7 @@ interface ImageSectionProps<T extends FieldValues> {
 export default function MultiImageUploader<T extends Record<string, any>>({
   name,
   control,
-}: ImageSectionProps<T>) {
+}: MultiImageUploaderProps<T>) {
   const {
     field: { value, onChange },
   } = useController<T>({
