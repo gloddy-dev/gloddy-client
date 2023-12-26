@@ -1,11 +1,11 @@
 'use client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import ImageSection from '@/app/[lng]/(main)/community/write/components/ImageSection';
-import WriteModal from '@/app/[lng]/(main)/community/write/components/WriteModal';
-import { WriteFormType } from '@/app/[lng]/(main)/community/write/type';
+import WriteModal from '../components/WriteModal';
+import { WriteFormType } from '../type';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
+import MultiImageUploader from '@/components/Image/MultiImageUploader';
 import ListBoxController from '@/components/ListBox/ListBoxController';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
@@ -72,14 +72,16 @@ export default function InputSection() {
         />
       </div>
 
-      <ImageSection control={control} />
+      <MultiImageUploader<WriteFormType> control={control} name={'images'} />
 
       <Spacing size={60} />
       <ButtonGroup>
         <Button
           onClick={() => {
             handleSubmit(onSubmit);
-            open(() => <WriteModal onOkClick={handleSubmit(onSubmit)} onCancelClick={exit} />);
+            open(() => (
+              <WriteModal onOkClick={handleSubmit(onSubmit)} onCancelClick={exit} type={'write'} />
+            ));
           }}
           disabled={!formState.isValid}
         >
