@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React from 'react';
 
 import { Icon } from '@/components/Icon';
 import { useListBoxContext } from '@/components/ListBox/ListBoxController';
