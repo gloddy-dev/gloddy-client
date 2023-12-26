@@ -25,12 +25,12 @@ export default function WriteModal({ type, onOkClick, onCancelClick }: WriteModa
     write: {
       variant: 'success',
       iconId: '48-check',
-      content: t('submit.content'),
+      content: t('create.submit.content'),
     },
     cancel: {
       variant: 'warning',
       iconId: '48-warning',
-      content: t('cancel.content'),
+      content: t('create.cancel.content'),
     },
   };
   const { variant, iconId, content } = modalStyle[type];
