@@ -18,7 +18,7 @@ export default function ListBox({ name, children }: ListBoxProps) {
         onClick={() => setOpen(!open)}
       >
         <div>{name}</div>
-        <Icon id="24-navigate_next" className={`rotate-90 ${open ? 'rotate-180' : ''}`} />
+        <Icon id="24-navigate_next" className={`rotate-90 ${open ? '-rotate-90' : ''}`} />
       </div>
       {open && <div className="block">{children}</div>}
     </>
