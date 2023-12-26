@@ -5,7 +5,7 @@ import { Spacing } from '@/components/Spacing';
 
 import type { ComponentProps } from 'react';
 
-type ModalStyle = {
+type ModalStyleType = {
   [key in WriteModalProps['type']]: {
     variant: NonNullable<ComponentProps<typeof Modal>['variant']>;
     iconId: string;
@@ -21,7 +21,7 @@ interface WriteModalProps {
 
 export default function WriteModal({ type, onOkClick, onCancelClick }: WriteModalProps) {
   const { t } = useTranslation('community');
-  const modalStyle: ModalStyle = {
+  const modalStyle: ModalStyleType = {
     write: {
       variant: 'success',
       iconId: '48-check',

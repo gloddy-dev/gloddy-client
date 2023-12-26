@@ -2,25 +2,27 @@ import React from 'react';
 
 import { Icon } from '@/components/Icon';
 import { useListBoxContext } from '@/components/ListBox/ListBoxController';
+import cn from '@/utils/cn';
+
+import type { StrictPropsWithChildren } from '@/types';
 
 interface ListBoxProps {
   name: string;
-  children: React.ReactNode;
 }
 
-export default function ListBox({ name, children }: ListBoxProps) {
+export default function ListBox({ name, children }: StrictPropsWithChildren<ListBoxProps>) {
   const { open, setOpen } = useListBoxContext();
 
   return (
     <>
       <div
-        className="flex w-full cursor-pointer items-center justify-between rounded-8 border-1 border-transparent bg-sub p-16 text-primary"
+        className="flex w-full cursor-pointer items-center justify-between rounded-8 border border-transparent bg-sub p-16 text-primary"
         onClick={() => setOpen(!open)}
       >
         <div>{name}</div>
-        <Icon id="24-navigate_next" className={`rotate-90 ${open ? '-rotate-90' : ''}`} />
+        <Icon id="24-navigate_next" className={cn('rotate-90', { '-rotate-90': open })} />
       </div>
-      {open && <div className="block">{children}</div>}
+      {open && <div>{children}</div>}
     </>
   );
 }
