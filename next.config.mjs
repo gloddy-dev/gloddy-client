@@ -1,5 +1,4 @@
 import withPlaiceholder from '@plaiceholder/next';
-
 import { withSentryConfig } from '@sentry/nextjs';
 
 /**
@@ -10,10 +9,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: [
-          'gloddy.s3.ap-northeast-2.amazonaws.com',
-          'opendata.mofa.go.kr:8444/fileDownload/images/country_images',
-        ],
+        hostname: 'gloddy.s3.ap-northeast-2.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'opendata.mofa.go.kr',
       },
     ],
   },
