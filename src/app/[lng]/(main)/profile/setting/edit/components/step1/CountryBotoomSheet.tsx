@@ -1,9 +1,7 @@
-import { Step1Props } from './Step1.client';
 import { ProfileEditState } from '../../type';
 import { BottomSheet } from '@/components/Modal';
 import countaryList from '@/constants/countary.json';
 import Image from 'next/image';
-import { useState } from 'react';
 import { Control, useController } from 'react-hook-form';
 
 interface CountryBotoomSheetProps {
@@ -13,9 +11,7 @@ interface CountryBotoomSheetProps {
 }
 
 export default function CountryBotoomSheet({ isOpen, onClose, control }: CountryBotoomSheetProps) {
-  const [country, setCountry] = useState<string>('Korea');
-
-  const { field, fieldState } = useController({
+  const { field } = useController({
     name: 'country',
     control,
     rules: {
