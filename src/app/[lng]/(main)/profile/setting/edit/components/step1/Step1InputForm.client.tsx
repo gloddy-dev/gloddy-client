@@ -8,7 +8,6 @@ import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import { BottomSheet } from '@/components/Modal';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
@@ -49,11 +48,6 @@ export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
   };
 
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
-  const handleCountry = () => {
-    openBottomSheet(({ isOpen }) => (
-      <CountryBotoomSheet isOpen={isOpen} onClose={closeBottomSheet} />
-    ));
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-20">
@@ -117,7 +111,12 @@ export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
         hookForm={hookForm}
         register={register('country')}
         readOnly
-        onClick={handleCountry}
+        value={watch('country')}
+        onClick={() =>
+          openBottomSheet(({ isOpen }) => (
+            <CountryBotoomSheet isOpen={isOpen} onClose={closeBottomSheet} control={control} />
+          ))
+        }
       />
 
       <p className="text-subtitle-3">{t('personality')}</p>
