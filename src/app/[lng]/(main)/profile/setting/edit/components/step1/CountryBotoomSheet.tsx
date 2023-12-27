@@ -1,46 +1,33 @@
+import { Step1Props } from './Step1.client';
+import { ProfileEditState } from '../../type';
 import { BottomSheet } from '@/components/Modal';
+import countaryList from '@/constants/countary.json';
 import Image from 'next/image';
 import { useState } from 'react';
+import { Control, useController } from 'react-hook-form';
 
 interface CountryBotoomSheetProps {
   isOpen: boolean;
   onClose: () => void;
+  control: Control<ProfileEditState>;
 }
 
-interface Country {
-  countryKR: string;
-  countryEN: string;
-  image: string;
-}
-
-const COUNTRY_DUMMY_DATA: Country[] = [
-  {
-    countryEN: 'Korea',
-    countryKR: '대한민국',
-    image:
-      'https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/36/20220318_164831540.gif',
-  },
-  {
-    countryEN: 'Korea',
-    countryKR: '대한민국',
-    image:
-      'https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/36/20220318_164831540.gif',
-  },
-  {
-    countryEN: 'Korea',
-    countryKR: '대한민국',
-    image:
-      'https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/36/20220318_164831540.gif',
-  },
-];
-
-export default function CountryBotoomSheet({ isOpen, onClose }: CountryBotoomSheetProps) {
+export default function CountryBotoomSheet({ isOpen, onClose, control }: CountryBotoomSheetProps) {
   const [country, setCountry] = useState<string>('Korea');
 
+  const { field, fieldState } = useController({
+    name: 'country',
+    control,
+    rules: {
+      required: true,
+    },
+  });
   const handleCountry = (country: string) => {
-    setCountry(country);
+    console.log(country);
+    field.onChange(country);
     onClose();
   };
+
   return (
     <BottomSheet
       onClose={onClose}
@@ -48,16 +35,22 @@ export default function CountryBotoomSheet({ isOpen, onClose }: CountryBotoomShe
       snapPoints={[800, 0]}
       isTapOutsideToClose
       disableDrag
+      title="출신 국가"
     >
-      <ul>
-        {COUNTRY_DUMMY_DATA.map((country, index) => (
+      <ul className="overflow-scroll">
+        {countaryList.map((country, index) => (
           <li
             key={index}
-            className="py-12 text-subtitle-2"
-            onClick={() => handleCountry(country.countryEN)}
+            className="flex gap-8 py-12 text-subtitle-2"
+            onClick={() => handleCountry(country.countaryNameInEnglish)}
           >
-            <Image src={country.image} width={24} height={24} alt={country.countryEN} />
-            {country.countryEN}
+            <Image
+              src={country.countaryImage}
+              width={24}
+              height={24}
+              alt={country.countaryNameInEnglish}
+            />
+            {country.countaryNameInEnglish}
           </li>
         ))}
       </ul>
