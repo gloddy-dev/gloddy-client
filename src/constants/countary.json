@@ -1,0 +1,427 @@
+[
+  {
+    "countaryNameInKorean": "가나",
+    "countaryNameInEnglish": "Ghana",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/15/20220318_161935687.gif"
+  },
+  {
+    "countaryNameInKorean": "가봉",
+    "countaryNameInEnglish": "Gabon",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/16/20220318_161654097.gif"
+  },
+  {
+    "countaryNameInKorean": "과테말라",
+    "countaryNameInEnglish": "Guatemala",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/21/20220318_162216873.gif"
+  },
+  {
+    "countaryNameInKorean": "그리스",
+    "countaryNameInEnglish": "Greece",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/24/20220720_160223089.gif"
+  },
+  {
+    "countaryNameInKorean": "나이지리아",
+    "countaryNameInEnglish": "Nigeria",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/30/20220318_164733974.gif"
+  },
+  {
+    "countaryNameInKorean": "네덜란드",
+    "countaryNameInEnglish": "Netherlands",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/33/20220318_164807920.gif"
+  },
+  {
+    "countaryNameInKorean": "노르웨이",
+    "countaryNameInEnglish": "Norway",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/36/20220318_164831540.gif"
+  },
+  {
+    "countaryNameInKorean": "뉴질랜드",
+    "countaryNameInEnglish": "New Zealand",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/38/20220318_165002661.gif"
+  },
+  {
+    "countaryNameInKorean": "대만",
+    "countaryNameInEnglish": "Taiwan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/211/20220329_142127768.gif"
+  },
+  {
+    "countaryNameInKorean": "덴마크",
+    "countaryNameInEnglish": "Denmark",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/42/20220318_160957995.gif"
+  },
+  {
+    "countaryNameInKorean": "독일",
+    "countaryNameInEnglish": "Germany",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/45/20220318_160907982.gif"
+  },
+  {
+    "countaryNameInKorean": "라오스",
+    "countaryNameInEnglish": "Laos",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/47/20220318_163332591.gif"
+  },
+  {
+    "countaryNameInKorean": "러시아",
+    "countaryNameInEnglish": "Russia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/50/20220729_092800113.png"
+  },
+  {
+    "countaryNameInKorean": "루마니아",
+    "countaryNameInEnglish": "Romania",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/54/20220318_165414526.gif"
+  },
+  {
+    "countaryNameInKorean": "르완다",
+    "countaryNameInEnglish": "Rwanda",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/56/20220318_165509439.gif"
+  },
+  {
+    "countaryNameInKorean": "리투아니아",
+    "countaryNameInEnglish": "Lithuania",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/58/20220318_163553668.gif"
+  },
+  {
+    "countaryNameInKorean": "말레이시아",
+    "countaryNameInEnglish": "Malaysia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/66/20220318_164600046.gif"
+  },
+  {
+    "countaryNameInKorean": "멕시코",
+    "countaryNameInEnglish": "Mexico",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/69/20220318_164538562.gif"
+  },
+  {
+    "countaryNameInKorean": "모로코",
+    "countaryNameInEnglish": "Morocco",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/71/20220318_163711153.gif"
+  },
+  {
+    "countaryNameInKorean": "몽골",
+    "countaryNameInEnglish": "Mongolia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/80/20220318_164338924.gif"
+  },
+  {
+    "countaryNameInKorean": "미얀마",
+    "countaryNameInEnglish": "Myanmar",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/82/20220318_164314751.gif"
+  },
+  {
+    "countaryNameInKorean": "미국",
+    "countaryNameInEnglish": "United States of America",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/81/20220504_170107685.jpg"
+  },
+  {
+    "countaryNameInKorean": "방글라데시",
+    "countaryNameInEnglish": "Bangladesh",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/88/20220318_155428211.gif"
+  },
+  {
+    "countaryNameInKorean": "벨기에",
+    "countaryNameInEnglish": "Belgium",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/93/20220318_155559315.gif"
+  },
+  {
+    "countaryNameInKorean": "벨라루스",
+    "countaryNameInEnglish": "Belarus",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/94/20220318_160027564.gif"
+  },
+  {
+    "countaryNameInKorean": "볼리비아",
+    "countaryNameInEnglish": "Bolivia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/98/20220318_155840717.gif"
+  },
+  {
+    "countaryNameInKorean": "불가리아",
+    "countaryNameInEnglish": "Bulgaria",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/104/20220318_155644008.gif"
+  },
+  {
+    "countaryNameInKorean": "브라질",
+    "countaryNameInEnglish": "Brazil",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/105/20220318_155901021.gif"
+  },
+  {
+    "countaryNameInKorean": "브루나이",
+    "countaryNameInEnglish": "Brunei",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/106/20220318_155818223.gif"
+  },
+  {
+    "countaryNameInKorean": "사우디아라비아",
+    "countaryNameInEnglish": "Saudi Arabia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/108/20220318_165528053.gif"
+  },
+  {
+    "countaryNameInKorean": "수단",
+    "countaryNameInEnglish": "Sudan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/123/20220318_165622650.gif"
+  },
+  {
+    "countaryNameInKorean": "스리랑카",
+    "countaryNameInEnglish": "Sri Lanka",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/125/20220318_163456971.gif"
+  },
+  {
+    "countaryNameInKorean": "스웨덴",
+    "countaryNameInEnglish": "Sweden",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/126/20220318_165639907.gif"
+  },
+  {
+    "countaryNameInKorean": "스위스",
+    "countaryNameInEnglish": "Swiss",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/127/20220318_160311962.gif"
+  },
+  {
+    "countaryNameInKorean": "스페인",
+    "countaryNameInEnglish": "Spain",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/128/20220318_161418873.gif"
+  },
+  {
+    "countaryNameInKorean": "싱가포르",
+    "countaryNameInEnglish": "Singapore",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/133/20220318_165655208.gif"
+  },
+  {
+    "countaryNameInKorean": "아르메니아",
+    "countaryNameInEnglish": "Armenia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/136/20220318_154859591.gif"
+  },
+  {
+    "countaryNameInKorean": "아르헨티나",
+    "countaryNameInEnglish": "Argentina",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/137/20220318_155042415.gif"
+  },
+  {
+    "countaryNameInKorean": "아일랜드",
+    "countaryNameInEnglish": "Ireland",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/140/20220318_162604484.gif"
+  },
+  {
+    "countaryNameInKorean": "아제르바이잔",
+    "countaryNameInEnglish": "Azerbaijan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/141/20220318_155301025.gif"
+  },
+  {
+    "countaryNameInKorean": "아프가니스탄",
+    "countaryNameInEnglish": "Afghanistan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/142/20220318_154306906.gif"
+  },
+  {
+    "countaryNameInKorean": "알제리",
+    "countaryNameInEnglish": "Algeria",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/145/20220318_161209334.gif"
+  },
+  {
+    "countaryNameInKorean": "에콰도르",
+    "countaryNameInEnglish": "Ecuador",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/152/20220318_161233228.gif"
+  },
+  {
+    "countaryNameInKorean": "에티오피아",
+    "countaryNameInEnglish": "ETC",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/153/20220318_161440363.gif"
+  },
+  {
+    "countaryNameInKorean": "엘살바도르",
+    "countaryNameInEnglish": "El Salvador",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/154/20220318_170034642.bmp"
+  },
+  {
+    "countaryNameInKorean": "영국",
+    "countaryNameInEnglish": "United Kingdom",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/155/20220318_161717544.gif"
+  },
+  {
+    "countaryNameInKorean": "예멘",
+    "countaryNameInEnglish": "Yemen",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/159/20220318_170906846.gif"
+  },
+  {
+    "countaryNameInKorean": "오스트리아",
+    "countaryNameInEnglish": "Austria",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/161/20220318_155125077.gif"
+  },
+  {
+    "countaryNameInKorean": "요르단",
+    "countaryNameInEnglish": "Jordan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/164/20220318_162932491.gif"
+  },
+  {
+    "countaryNameInKorean": "우간다",
+    "countaryNameInEnglish": "Uganda",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/165/20220318_170547309.gif"
+  },
+  {
+    "countaryNameInKorean": "우즈베키스탄",
+    "countaryNameInEnglish": "Uzbekistan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/167/20220318_170638365.gif"
+  },
+  {
+    "countaryNameInKorean": "우크라이나",
+    "countaryNameInEnglish": "Ukraine",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/168/20220729_092922428.gif"
+  },
+  {
+    "countaryNameInKorean": "이란",
+    "countaryNameInEnglish": "Iran",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/170/20220318_162755203.gif"
+  },
+  {
+    "countaryNameInKorean": "이스라엘",
+    "countaryNameInEnglish": "Israel",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/171/20220318_162634203.gif"
+  },
+  {
+    "countaryNameInKorean": "이집트",
+    "countaryNameInEnglish": "Egypt",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/172/20220318_161328692.gif"
+  },
+  {
+    "countaryNameInKorean": "이탈리아",
+    "countaryNameInEnglish": "Italia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/173/20220318_162836837.gif"
+  },
+  {
+    "countaryNameInKorean": "인도",
+    "countaryNameInEnglish": "India",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/174/20220318_162705650.gif"
+  },
+  {
+    "countaryNameInKorean": "인도네시아",
+    "countaryNameInEnglish": "Indonesia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/175/20220318_162536716.gif"
+  },
+  {
+    "countaryNameInKorean": "일본",
+    "countaryNameInEnglish": "Japan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/176/20220318_162955741.gif"
+  },
+  {
+    "countaryNameInKorean": "조지아",
+    "countaryNameInEnglish": "Georgia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/181/20220318_161818196.gif"
+  },
+  {
+    "countaryNameInKorean": "중국",
+    "countaryNameInEnglish": "China",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/182/20220329_151915812.gif"
+  },
+  {
+    "countaryNameInKorean": "체코",
+    "countaryNameInEnglish": "Czech",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/188/20220318_160834593.gif"
+  },
+  {
+    "countaryNameInKorean": "칠레",
+    "countaryNameInEnglish": "Chile",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/189/20220318_160418259.gif"
+  },
+  {
+    "countaryNameInKorean": "카자흐스탄",
+    "countaryNameInEnglish": "Kazakhstan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/192/20220318_163310295.gif"
+  },
+  {
+    "countaryNameInKorean": "캄보디아",
+    "countaryNameInEnglish": "Cambodia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/194/20220318_163118134.jpg"
+  },
+  {
+    "countaryNameInKorean": "캐나다",
+    "countaryNameInEnglish": "Canada",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/195/20220318_160107913.gif"
+  },
+  {
+    "countaryNameInKorean": "케냐",
+    "countaryNameInEnglish": "Kenya",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/196/20220318_163022023.png"
+  },
+  {
+    "countaryNameInKorean": "코스타리카",
+    "countaryNameInEnglish": "Costa Rica",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/200/20220329_145838618.png"
+  },
+  {
+    "countaryNameInKorean": "콜롬비아",
+    "countaryNameInEnglish": "Colombia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/202/20220318_160540028.gif"
+  },
+  {
+    "countaryNameInKorean": "키르기스스탄",
+    "countaryNameInEnglish": "Kyrgyz",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/209/20220318_163048531.gif"
+  },
+  {
+    "countaryNameInKorean": "타지키스탄",
+    "countaryNameInEnglish": "Tajikistan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/212/20220318_170239649.gif"
+  },
+  {
+    "countaryNameInKorean": "탄자니아",
+    "countaryNameInEnglish": "Tanzania",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/213/20220318_170507002.gif"
+  },
+  {
+    "countaryNameInKorean": "태국",
+    "countaryNameInEnglish": "Thailand",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/214/20220318_170222070.gif"
+  },
+  {
+    "countaryNameInKorean": "투르크메니스탄",
+    "countaryNameInEnglish": "Turkmenistan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/219/20220318_170314338.gif"
+  },
+  {
+    "countaryNameInKorean": "튀니지",
+    "countaryNameInEnglish": "Tunisia",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/221/20220318_170333269.gif"
+  },
+  {
+    "countaryNameInKorean": "파나마",
+    "countaryNameInEnglish": "Panama",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/223/20220318_165042149.gif"
+  },
+  {
+    "countaryNameInKorean": "파키스탄",
+    "countaryNameInEnglish": "Pakistan",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/225/20220318_165158778.gif"
+  },
+  {
+    "countaryNameInKorean": "페루",
+    "countaryNameInEnglish": "Peru",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/229/20220318_165102133.gif"
+  },
+  {
+    "countaryNameInKorean": "포르투갈",
+    "countaryNameInEnglish": "Portugal",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/230/20220318_165302991.gif"
+  },
+  {
+    "countaryNameInKorean": "폴란드",
+    "countaryNameInEnglish": "Poland",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/231/20220318_165216491.png"
+  },
+  {
+    "countaryNameInKorean": "프랑스",
+    "countaryNameInEnglish": "France",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/232/20220318_161621275.gif"
+  },
+  {
+    "countaryNameInKorean": "핀란드",
+    "countaryNameInEnglish": "Finland",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/236/20220318_161502305.gif"
+  },
+  {
+    "countaryNameInKorean": "필리핀",
+    "countaryNameInEnglish": "Philippines",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/237/20220318_165139676.gif"
+  },
+  {
+    "countaryNameInKorean": "헝가리",
+    "countaryNameInEnglish": "Hungary",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/239/20220318_162505062.gif"
+  },
+  {
+    "countaryNameInKorean": "홍콩",
+    "countaryNameInEnglish": "Hongkong",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/250/20220224_233512982.gif"
+  }
+]
