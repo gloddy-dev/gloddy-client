@@ -13,7 +13,11 @@ export default function ProfileEdit() {
 
   return (
     <EditProvider
-      defaultValues={{ ...defaultProfileData, name: defaultProfileData.nickname, country: 'korea' }}
+      defaultValues={{
+        ...defaultProfileData,
+        name: defaultProfileData.nickname,
+        countryName: 'korea',
+      }}
     >
       <ModalProvider>
         {step === 1 && <Step1 onPrev={() => setStep(2)} />}

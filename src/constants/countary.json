@@ -45,6 +45,11 @@
     "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/211/20220329_142127768.gif"
   },
   {
+    "countaryNameInKorean": "대한민국",
+    "countaryNameInEnglish": "Korea",
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/250/20220224_233512982.gif"
+  },
+  {
     "countaryNameInKorean": "덴마크",
     "countaryNameInEnglish": "Denmark",
     "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/42/20220318_160957995.gif"

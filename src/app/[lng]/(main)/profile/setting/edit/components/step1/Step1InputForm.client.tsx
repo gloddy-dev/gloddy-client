@@ -2,7 +2,7 @@ import CountryBotoomSheet from './CountryBotoomSheet';
 import { Step1Props } from './Step1.client';
 import { formatBirthDTO } from '../../util';
 import { useEditContext } from '../EditProvider.client';
-import { ProfileRequest, ProfileResponse, usePatchProfile } from '@/apis/profile';
+import { ProfileRequest, usePatchProfile } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -16,8 +16,6 @@ import { personalityList } from '@/constants/personalityList';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
 import { useController } from 'react-hook-form';
-
-import type { ProfileEditState } from '../../type';
 
 interface Step1InputFormProps extends Step1Props {}
 
