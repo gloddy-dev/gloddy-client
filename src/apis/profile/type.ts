@@ -17,6 +17,8 @@ export interface ProfileResponse {
   participatedGroupCount: 0;
   praiseCount: number;
   reviewCount: number;
+  countryName: string;
+  countryImage: string;
 }
 
 export interface ProfileRequest {
