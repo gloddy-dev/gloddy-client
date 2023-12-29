@@ -22,11 +22,12 @@ export interface ProfileResponse {
 export interface ProfileRequest {
   imageUrl: string;
   name: string;
-  birth: string;
   gender: 'MAIL' | 'FEMAIL';
   introduce: string;
-  country: string;
   personalities: Array<PersonalityType['keywordDTO']>;
+  countryName: string;
+  countryImage: string;
+  birth: string;
 }
 
 export interface PraisesResponse {
