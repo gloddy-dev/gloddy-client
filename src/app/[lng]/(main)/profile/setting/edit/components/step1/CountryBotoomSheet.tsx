@@ -7,7 +7,7 @@ import { Control, useController } from 'react-hook-form';
 interface CountryBotoomSheetProps {
   isOpen: boolean;
   onClose: () => void;
-  control: Control<ProfileEditState>;
+  control: Control<any>;
 }
 
 interface Country {
