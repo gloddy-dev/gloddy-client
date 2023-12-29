@@ -2,7 +2,7 @@ import CountryBotoomSheet from './CountryBotoomSheet';
 import { Step1Props } from './Step1.client';
 import { formatBirthDTO } from '../../util';
 import { useEditContext } from '../EditProvider.client';
-import { usePatchProfile } from '@/apis/profile';
+import { ProfileRequest, ProfileResponse, usePatchProfile } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -39,12 +39,26 @@ export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
 
   const isAllTyped = formState.isValid && !!watch('gender');
 
-  const onSubmit = (data: ProfileEditState) => {
-    const { birth } = data;
-
+  const onSubmit = (data: ProfileRequest) => {
     if (!isAllTyped) return;
 
-    mutate({ ...data, birth: formatBirthDTO(birth) });
+    const makeProfileEditDTO = (data: ProfileRequest) => {
+      const { imageUrl, name, gender, introduce, personalities, countryName, countryImage, birth } =
+        data;
+
+      return {
+        imageUrl,
+        name,
+        gender,
+        introduce,
+        personalities,
+        countryName,
+        countryImage,
+        birth: formatBirthDTO(birth),
+      };
+    };
+
+    mutate(makeProfileEditDTO({ ...data }));
   };
 
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();
@@ -109,9 +123,9 @@ export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
       <TextFieldController
         label="국가"
         hookForm={hookForm}
-        register={register('country')}
+        register={register('countryName')}
         readOnly
-        value={watch('country')}
+        value={watch('countryName')}
         onClick={() =>
           openBottomSheet(({ isOpen }) => (
             <CountryBotoomSheet isOpen={isOpen} onClose={closeBottomSheet} control={control} />

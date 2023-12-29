@@ -10,17 +10,31 @@ interface CountryBotoomSheetProps {
   control: Control<ProfileEditState>;
 }
 
+interface Country {
+  countaryNameInEnglish: string;
+  countaryNameInKorean: string;
+  countaryImage: string;
+}
+
 export default function CountryBotoomSheet({ isOpen, onClose, control }: CountryBotoomSheetProps) {
-  const { field } = useController({
-    name: 'country',
+  const { field: fieldCountryName } = useController({
+    name: 'countryName',
     control,
     rules: {
       required: true,
     },
   });
-  const handleCountry = (country: string) => {
+  const { field: fieldCountryImage } = useController({
+    name: 'countryImage',
+    control,
+    rules: {
+      required: true,
+    },
+  });
+  const handleCountry = (country: Country) => {
     console.log(country);
-    field.onChange(country);
+    fieldCountryName.onChange(country.countaryNameInEnglish);
+    fieldCountryImage.onChange(country.countaryImage);
     onClose();
   };
 
@@ -38,7 +52,7 @@ export default function CountryBotoomSheet({ isOpen, onClose, control }: Country
           <li
             key={index}
             className="flex gap-8 py-12 text-subtitle-2"
-            onClick={() => handleCountry(country.countaryNameInEnglish)}
+            onClick={() => handleCountry(country)}
           >
             <Image
               src={country.countaryImage}
