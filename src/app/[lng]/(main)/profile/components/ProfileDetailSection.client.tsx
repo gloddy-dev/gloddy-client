@@ -48,7 +48,6 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
     countryImage,
   } = profileData;
 
-  console.log(countryImage);
   return (
     <>
       <section className="rounded-b-24 bg-white shadow-float">
