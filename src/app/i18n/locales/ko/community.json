@@ -26,5 +26,10 @@
     "cancel": {
       "content": "게시글 작성을 취소하시겠습니"
     }
+  },
+
+  "detail": {
+    "likeCount": "{{likeCount}}개",
+    "commentCount": "댓글 {{commentCount}}개"
   }
 }

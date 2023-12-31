@@ -105,7 +105,7 @@ export const DUMMY_ARTICLES_DATA: CommunityArticle[] = [
     writerReliabilityLevel: 'HOOD',
   },
   {
-    title: '카리나 개이쁘다 ㅇㅈ?',
+    title: '카리나 이쁘다 ㅇㅈ?',
     articleType: 'kpop',
     likeCount: 7,
     articleId: 2,

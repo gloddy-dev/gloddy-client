@@ -5,15 +5,13 @@ import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useNumberParams } from '@/hooks/useNumberParams';
 
 interface ArticleDetailHeaderProps {
-  titleCategory: string;
+  title: string;
 }
 
-export default function ArticleDetailHeader({ titleCategory }: ArticleDetailHeaderProps) {
+export default function ArticleDetailHeader({ title }: ArticleDetailHeaderProps) {
   const { back } = useAppRouter();
-  const { groupId } = useNumberParams<['groupId']>();
 
   return (
     <Header className="px-4">
@@ -22,15 +20,22 @@ export default function ArticleDetailHeader({ titleCategory }: ArticleDetailHead
           <Icon id="24-arrow_back" />
         </IconButton>
         <Suspense>
-          <p className="w-full truncate">{titleCategory}</p>
+          <p className="w-full truncate">{title}</p>
         </Suspense>
       </Header.Left>
       <Header.Right>
         <Suspense>
-          {/*<ManageButtonAction groupId={groupId} />*/}
-          {/*<MoreButtonAction groupId={groupId} />*/}
+          <IconButtonAction />
         </Suspense>
       </Header.Right>
     </Header>
+  );
+}
+
+function IconButtonAction() {
+  return (
+    <IconButton size="large">
+      <Icon id="24-more" />
+    </IconButton>
   );
 }
