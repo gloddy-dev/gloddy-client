@@ -1,12 +1,12 @@
-import type {
+import {
   Apply,
-  Article,
+  CommunityArticle,
   CreateGroupRequest,
-  EstimateResponse,
   GroupDetailResponse,
   GroupMember,
   Grouping,
 } from '@/apis/groups';
+
 import type { MatesResponse } from '@/apis/profile';
 
 export const DUMMY_GROUPING_DATA: Grouping[] = [
@@ -84,8 +84,11 @@ export const DUMMY_SIGN_UP_DATA = {
   personalities: ['OUTGOING'],
 };
 
-export const DUMMY_ARTICLES_DATA: Article[] = [
+export const DUMMY_ARTICLES_DATA: CommunityArticle[] = [
   {
+    title: '홍대 가는법',
+    articleType: 'question',
+    likeCount: 10,
     articleId: 1,
     userId: 1,
     images: ['/images/dummy_avatar.png', '/images/dummy_image.png'],
@@ -102,6 +105,9 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
     writerReliabilityLevel: 'HOOD',
   },
   {
+    title: '카리나 개이쁘다 ㅇㅈ?',
+    articleType: 'kpop',
+    likeCount: 7,
     articleId: 2,
     userId: 2,
     images: [],
@@ -117,6 +123,9 @@ export const DUMMY_ARTICLES_DATA: Article[] = [
     writerReliabilityLevel: 'HOOD',
   },
   {
+    title: '한국어 너무 어렵내요.',
+    articleType: 'language',
+    likeCount: 3,
     articleId: 3,
     userId: 2,
     images: ['/images/dummy_image.png', '/images/dummy_image.png', '/images/dummy_image.png'],
