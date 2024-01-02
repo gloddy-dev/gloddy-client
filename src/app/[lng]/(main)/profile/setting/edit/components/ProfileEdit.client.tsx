@@ -16,7 +16,7 @@ export default function ProfileEdit() {
       defaultValues={{
         ...defaultProfileData,
         name: defaultProfileData.nickname,
-        countryName: 'korea',
+        countryName: defaultProfileData.countryName,
       }}
     >
       <ModalProvider>
