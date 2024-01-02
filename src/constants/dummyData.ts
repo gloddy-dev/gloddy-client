@@ -1,5 +1,6 @@
 import {
   Apply,
+  Comment,
   CommunityArticle,
   CreateGroupRequest,
   GroupDetailResponse,
@@ -243,10 +244,11 @@ export const MEMBER_DUMMY_DATA: GroupMember[] = [
   },
 ];
 
-export const DUMMY_COMMENTS_DATA = [
+export const DUMMY_COMMENTS_DATA: Comment[] = [
   {
     commentId: 1,
     userImageUrl: '/images/dummy_avatar.png',
+    userId: 1,
     name: '김지환',
     content:
       '안녕하세요! 모임에 가입해주셔서 감사드립니다.\n오늘 19:00에 있을 모임 참여 전 모임에 필요한 공지 및 전달사항 확인 부탁드리겠습니다.',
@@ -260,6 +262,7 @@ export const DUMMY_COMMENTS_DATA = [
   {
     commentId: 2,
     userImageUrl: '/images/dummy_avatar.png',
+    userId: 2,
     name: 'david',
     content: 'hello',
     date: '2021.09.01',
@@ -271,6 +274,7 @@ export const DUMMY_COMMENTS_DATA = [
   {
     commentId: 3,
     userImageUrl: '/images/dummy_avatar.png',
+    userId: 3,
     name: 'alice',
     content: '안녕하세요',
     date: '2021.09.01',
