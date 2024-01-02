@@ -10,7 +10,7 @@ interface DetailContentProps {
 }
 
 export default function ArticleDetail({ articleData }: DetailContentProps) {
-  const { title, likeCount, articleId, content, images, commentCount } = articleData;
+  const { commentCount } = articleData;
   const { t } = useTranslation('community');
 
   return (

@@ -13,7 +13,7 @@ interface ArticleItemProps {
 
 export default function ArticleItem({ article }: ArticleItemProps) {
   const { open, exit } = useModal();
-  const { title, content, articleId, commentCount, images, isWriter } = article;
+  const { title, content, images } = article;
 
   return (
     <div className="mx-20 mb-24 mt-16 px-4">

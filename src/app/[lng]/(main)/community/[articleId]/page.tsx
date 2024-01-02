@@ -2,6 +2,7 @@
 import { CommunityArticle } from '@/apis/groups';
 import ArticleDetail from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetail';
 import ArticleDetailHeader from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetailHeader';
+import CommentForm from '@/app/[lng]/(main)/community/[articleId]/components/CommentForm';
 import { useTranslation } from '@/app/i18n/client';
 import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
 
@@ -28,6 +29,7 @@ export default function CommunityArticlePage({ params }: CommunityArticlePagePro
     <>
       <ArticleDetailHeader title={t(articleType)} />
       <ArticleDetail articleData={dummyData} />
+      <CommentForm />
     </>
   );
 }

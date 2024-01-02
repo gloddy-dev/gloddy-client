@@ -21,6 +21,7 @@ export default function CommentList() {
         <CommentItem comment={comment} groupId={groupId} articleId={articleId} isCaptain={true} />
       )}
       renderEmpty={() => <EmptyComment />}
+      className={'pb-102'}
     />
   );
 }
