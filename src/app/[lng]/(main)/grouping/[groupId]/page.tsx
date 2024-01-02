@@ -3,7 +3,6 @@ import GroupDetailHeader from './components/GroupDetailHeader.client';
 import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
-import { PageAnimation } from '@/components/PageAnimation';
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 

@@ -34,10 +34,10 @@ Gloddy는 국적에 상관없이 자유롭게 모임을 형성하고 원하는 �
   </tr>
   <tr>
     <td align="center">
-      <a href="https://play.google.com/store/apps/details?id=com.goodcode.gloddy&pcampaignid=web_share"><img src="https://github.com/gloddy-dev/gloddy-client/assets/23312485/7c02379a-4c8f-4428-b3fd-686d34a0b220" width="400px" /></a>  
+      <a href="https://apps.apple.com/kr/app/gloddy/id6463738953"><img src="https://github.com/gloddy-dev/gloddy-client/assets/23312485/7c02379a-4c8f-4428-b3fd-686d34a0b220" width="400px" /></a>  
     </td>
     <td align="center">
-      <a href="https://apps.apple.com/kr/app/gloddy/id6463738953"><img src="https://github.com/gloddy-dev/gloddy-client/assets/23312485/9971e47d-cf65-4df5-80d7-0dfaf7640909" width="400px" /></a>
+      <a href="https://play.google.com/store/apps/details?id=com.goodcode.gloddy&pcampaignid=web_share"><img src="https://github.com/gloddy-dev/gloddy-client/assets/23312485/9971e47d-cf65-4df5-80d7-0dfaf7640909" width="400px" /></a>
     </td>
   </tr>
 </table>
