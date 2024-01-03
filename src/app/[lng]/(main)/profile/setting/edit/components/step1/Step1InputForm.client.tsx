@@ -1,6 +1,8 @@
+import CountryBotoomSheet from './CountryBotoomSheet';
+import { Step1Props } from './Step1.client';
 import { formatBirthDTO } from '../../util';
 import { useEditContext } from '../EditProvider.client';
-import { usePatchProfile } from '@/apis/profile';
+import { ProfileRequest, usePatchProfile } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -12,14 +14,12 @@ import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { useFileUpload } from '@/hooks/useFileUpload';
+import { useModal } from '@/hooks/useModal';
 import { useController } from 'react-hook-form';
 
-import type { ProfileEditState } from '../../type';
+interface Step1InputFormProps extends Step1Props {}
 
-interface Step1InputFormProps {
-  onNext: () => void;
-}
-export default function Step1InputForm({ onNext }: Step1InputFormProps) {
+export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
   const { t: tc } = useTranslation('common');
   const { t } = useTranslation('profile');
   const { mutate } = usePatchProfile();
@@ -37,13 +37,29 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
 
   const isAllTyped = formState.isValid && !!watch('gender');
 
-  const onSubmit = (data: ProfileEditState) => {
-    const { birth } = data;
-
+  const onSubmit = (data: ProfileRequest) => {
     if (!isAllTyped) return;
 
-    mutate({ ...data, birth: formatBirthDTO(birth) });
+    const makeProfileEditDTO = (data: ProfileRequest) => {
+      const { imageUrl, name, gender, introduce, personalities, countryName, countryImage, birth } =
+        data;
+
+      return {
+        imageUrl,
+        name,
+        gender,
+        introduce,
+        personalities,
+        countryName,
+        countryImage,
+        birth: formatBirthDTO(birth),
+      };
+    };
+
+    mutate(makeProfileEditDTO({ ...data }));
   };
+
+  const { open: openBottomSheet, close: closeBottomSheet } = useModal();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-20">
@@ -101,6 +117,20 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
         maxCount={100}
       />
 
+      <p className="text-subtitle-3">출신 국가</p>
+      <TextFieldController
+        label="국가"
+        hookForm={hookForm}
+        register={register('countryName')}
+        readOnly
+        value={watch('countryName')}
+        onClick={() =>
+          openBottomSheet(({ isOpen }) => (
+            <CountryBotoomSheet isOpen={isOpen} onClose={closeBottomSheet} control={control} />
+          ))
+        }
+      />
+
       <p className="text-subtitle-3">{t('personality')}</p>
       <Spacing size={4} />
       <Flex className="flex-wrap gap-4" align="center">
@@ -114,7 +144,7 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
           </Tag>
         ))}
 
-        <div className="rounded-full bg-sign-brand" onClick={onNext}>
+        <div className="rounded-full bg-sign-brand" onClick={onPrev}>
           <Icon id="24-add" />
         </div>
       </Flex>

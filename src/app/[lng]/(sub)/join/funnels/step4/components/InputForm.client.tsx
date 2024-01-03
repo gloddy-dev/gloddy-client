@@ -3,6 +3,7 @@ import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatBirthBackspace, formatBirthTyping } from '../util';
 import { useGetNicknameDuplicate } from '@/apis/auth';
+import CountryBotoomSheet from '@/app/[lng]/(main)/profile/setting/edit/components/step1/CountryBotoomSheet';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -13,6 +14,7 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import { useFileUpload } from '@/hooks/useFileUpload';
+import { useModal } from '@/hooks/useModal';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 
 import type { ElementType, KeyboardEventHandler } from 'react';
@@ -21,7 +23,7 @@ export default function InputForm() {
   const { t } = useTranslation('join');
   const { t: tc } = useTranslation('common');
   const hookForm = useJoinContext();
-  const { watch, handleSubmit, setValue, register, setError, clearErrors } = hookForm;
+  const { watch, handleSubmit, setValue, register, setError, clearErrors, control } = hookForm;
   const { nextStep } = useFunnelContext();
   const { refetch, isDuplicateChecked, setIsDuplicateChecked } = useGetNicknameDuplicate({
     nickname: watch('nickname'),
@@ -69,6 +71,14 @@ export default function InputForm() {
       setValue('birth', formatBirthTyping(birthWithoutSlash));
     }
   };
+  const { open: openBottomSheet, close: closeBottomSheet } = useModal();
+
+  useDidMount(() => {
+    sendMessageToReactNative({
+      type: 'GET_PERMISSION',
+      data: 'IMAGE',
+    });
+  });
 
   useDidMount(() => {
     sendMessageToReactNative({
@@ -162,6 +172,18 @@ export default function InputForm() {
             <SegmentGroup.Segment value="FEMAIL" label={tc('female')} />
           </SegmentGroup>
         </Flex>
+        <TextFieldController
+          label="국가"
+          hookForm={hookForm}
+          register={register('countryName')}
+          readOnly
+          value={watch('countryName')}
+          onClick={() =>
+            openBottomSheet(({ isOpen }) => (
+              <CountryBotoomSheet isOpen={isOpen} onClose={closeBottomSheet} control={control} />
+            ))
+          }
+        />
       </Flex>
       <ButtonGroup>
         <Button type="submit" disabled={!isAllTyped}>
