@@ -1,12 +1,11 @@
-import Image from 'next/image';
-import { memo, useCallback } from 'react';
-import { Control, useController } from 'react-hook-form';
-
 import { WriteFormType } from '../type';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Loading } from '@/components/Loading';
 import { useFileUpload } from '@/hooks/useFileUpload';
+import Image from 'next/image';
+import { memo, useCallback } from 'react';
+import { Control, useController } from 'react-hook-form';
 
 interface ImageSectionProps {
   control: Control<WriteFormType>;

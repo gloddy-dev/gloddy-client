@@ -1,8 +1,7 @@
-import React, { ReactNode, createContext, useContext, useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
-
 import ListBox from '@/components/ListBox/ListBox';
 import ListBoxOptions from '@/components/ListBox/ListBoxOptions';
+import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface ListBoxControllerProps {
   name: string;

@@ -1,8 +1,7 @@
-import React from 'react';
-
 import { Icon } from '@/components/Icon';
 import { useListBoxContext } from '@/components/ListBox/ListBoxController';
 import cn from '@/utils/cn';
+import React from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 

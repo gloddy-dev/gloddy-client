@@ -1,5 +1,4 @@
 'use client';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 import WriteModal from '../components/WriteModal';
 import { WriteFormType } from '../type';
@@ -10,6 +9,7 @@ import ListBoxController from '@/components/ListBox/ListBoxController';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 export default function InputSection() {
   const { open, exit } = useModal();

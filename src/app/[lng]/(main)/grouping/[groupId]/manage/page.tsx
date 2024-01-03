@@ -3,7 +3,6 @@ import ManageHeader from './components/ManageHeader.client';
 import { Keys, getApplies } from '@/apis/groups';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
-
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
