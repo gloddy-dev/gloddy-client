@@ -1,5 +1,3 @@
-import React, { Dispatch, SetStateAction } from 'react';
-
 import { useListBoxContext } from '@/components/ListBox/ListBoxController';
 
 interface ListBoxOptionsProps {
