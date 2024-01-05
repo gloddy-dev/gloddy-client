@@ -80,6 +80,13 @@ export default function InputForm() {
     });
   });
 
+  useDidMount(() => {
+    sendMessageToReactNative({
+      type: 'GET_PERMISSION',
+      data: 'IMAGE',
+    });
+  });
+
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)}>
       <Flex className="py-20" justify="center">
