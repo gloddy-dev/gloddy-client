@@ -5,6 +5,7 @@ import { GoogleAnalytics } from '@/components/Analytics';
 import { InitMap } from '@/components/Map';
 import { QueryProvider } from '@/components/Provider';
 import QueryProviderWrapModal from '@/components/Provider/QueryProviderWrapModal.client';
+import ToastProvider from '@/components/Provider/ToastProvider';
 import { BASE_WEB_URL, GOOGLE_API_KEY } from '@/constants';
 import ModalProvider from '@/hooks/useModal/ModalProvider';
 import { dir } from 'i18next';
@@ -57,14 +58,14 @@ export default function RootLayout({
 }: StrictPropsWithChildren<RootLayoutProps>) {
   return (
     <Layout lng={lng}>
-      <QueryProviderWrapModal>
-        <ModalProvider>
-          <QueryProvider>
+      <ToastProvider>
+        <QueryProvider>
+          <ModalProvider>
             <GoogleAnalytics />
             {children}
-          </QueryProvider>
-        </ModalProvider>
-      </QueryProviderWrapModal>
+          </ModalProvider>
+        </QueryProvider>
+      </ToastProvider>
       <InitMap />
       <Script
         defer
