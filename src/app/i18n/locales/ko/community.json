@@ -1,6 +1,6 @@
 {
   "all": "전체",
-  "daily": "일상톡톡",
+  "kpop": "K-POP",
   "question": "궁금해요",
   "language": "언어교환",
 
@@ -26,5 +26,10 @@
     "cancel": {
       "content": "게시글 작성을 취소하시겠습니"
     }
+  },
+
+  "detail": {
+    "likeCount": "{{likeCount}}개",
+    "commentCount": "댓글 {{commentCount}}개"
   }
 }

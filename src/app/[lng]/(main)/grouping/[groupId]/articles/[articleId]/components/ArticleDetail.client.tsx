@@ -1,7 +1,7 @@
 'use client';
 
-import CommentList from './CommentList.client';
 import { useGetArticle, useGetGroupDetail } from '@/apis/groups';
+import CommentList from '@/app/[lng]/(main)/community/[articleId]/components/CommentList';
 import ArticleItem from '@/app/[lng]/(main)/grouping/components/ArticleItem.client';
 import { useTranslation } from '@/app/i18n/client';
 import { Divider } from '@/components/Divider';
