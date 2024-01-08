@@ -1,7 +1,6 @@
 import Information from './components/Information';
 import InformationHeader from './components/InformationHeader';
 
-
 interface PageProps {
   params: {
     lng: string;

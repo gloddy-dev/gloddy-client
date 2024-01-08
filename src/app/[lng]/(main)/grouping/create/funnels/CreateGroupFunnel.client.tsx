@@ -5,7 +5,6 @@ import MeetDateStep from './meetDate/MeetDateStep.client';
 import CreateHeader from '../components/CreateHeader.client';
 import { usePostCreateGroup } from '@/apis/groups';
 import { LayerLoading } from '@/components/Loading';
-
 import { useFunnel } from '@/hooks/useFunnel';
 import { format } from 'date-fns';
 

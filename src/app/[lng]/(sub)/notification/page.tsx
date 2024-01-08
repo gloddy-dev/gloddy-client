@@ -3,7 +3,6 @@ import NotificationSection from './components/NotificationSection';
 import { Keys, getNotification } from '@/apis/notifications';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
-
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 

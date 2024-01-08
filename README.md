@@ -11,7 +11,8 @@
 <br />
 
 ## 📌 서비스 소개
-Gloddy는 국적에 상관없이 자유롭게 모임을 형성하고 원하는 사람들과 공유할 수 있는 소모임 서비스입니다. 
+
+Gloddy는 국적에 상관없이 자유롭게 모임을 형성하고 원하는 사람들과 공유할 수 있는 소모임 서비스입니다.
 
 <br />
 
@@ -41,14 +42,13 @@ Gloddy는 국적에 상관없이 자유롭게 모임을 형성하고 원하는 �
     </td>
   </tr>
 </table>
-    
+
 
 ## 🛠️ 기술 스택
 
 <div align='center'>
   <img src="https://github.com/gloddy-dev/gloddy-client/assets/23312485/b703b5bd-0c93-4a61-b612-c366231056db" width="40%" />
 </div>
-
 
 ## 📖 기능 소개
 
@@ -65,12 +65,7 @@ Gloddy는 국적에 상관없이 자유롭게 모임을 형성하고 원하는 �
 
 <img src="https://github.com/gloddy-dev/gloddy-client/assets/23312485/355bdba9-5535-4293-b931-a3b0133cb711" width="50%" />
 
-
-
 </div>
-
-
-
 
 ## 프론트엔드 멤버
 

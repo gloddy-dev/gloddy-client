@@ -64,6 +64,8 @@ export interface SignUpRequest {
   birth: string;
   gender: GenderType;
   personalities: string[];
+  countryName: string;
+  countryImage: string;
 }
 
 export interface SignUpResponse {

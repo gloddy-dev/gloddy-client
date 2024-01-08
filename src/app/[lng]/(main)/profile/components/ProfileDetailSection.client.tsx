@@ -15,6 +15,7 @@ import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useParams, usePathname } from 'next/navigation';
 
 interface ProfileDetailProps {
@@ -44,6 +45,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
     isCertifiedStudent,
     participatedGroupCount,
     introduce,
+    countryImage,
   } = profileData;
 
   return (
@@ -70,8 +72,11 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             )}
           </Avatar>
           <Spacing size={16} />
-          <h4 className="relative text-h4">
-            {nickname}
+          <h4 className="relative flex items-center gap-5 text-h4">
+            <div className="relative h-16 w-24">
+              <Image src={countryImage} fill className="object-fill" alt="국가" />
+            </div>
+            <span>{nickname}</span>
             <Icon
               id={`16-reliability-${reliabilityLevel.toLowerCase()}`}
               className="absolute -right-22 top-0"

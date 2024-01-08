@@ -217,3 +217,9 @@ export type PraiseInfoType = {
   userId: number;
   praiseValue?: string;
 };
+
+export interface CommunityArticle extends Article {
+  title: string;
+  likeCount: number;
+  articleType: 'kpop' | 'question' | 'language';
+}

@@ -3,7 +3,6 @@ import ProfilePraiseDetail from './components/ProfilePraiseDetail.client';
 import { Keys, getPraises } from '@/apis/profile';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
-
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 

@@ -4,7 +4,6 @@ import { Keys, getMeetingScrap } from '@/apis/meeting';
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
-
 import { HydrationProvider } from '@/components/Provider';
 import { QueryAsyncBoundary } from '@suspensive/react-query';
 
