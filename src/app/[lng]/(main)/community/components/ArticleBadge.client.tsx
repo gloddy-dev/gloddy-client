@@ -6,13 +6,13 @@ import cn from '@/utils/cn';
 const badgeColor: {
   [key in ArticleBadgeProps['type']]: string;
 } = {
-  daily: 'bg-warning-color border-warning text-warning',
+  kpop: 'bg-warning-color border-warning text-warning',
   question: 'bg-brand-color border-sign-brand text-sign-brand',
   language: 'bg-sub border-sign-tertiary text-sign-tertiary',
 } as const;
 
 interface ArticleBadgeProps {
-  type: 'daily' | 'question' | 'language';
+  type: 'kpop' | 'question' | 'language';
 }
 
 export default function ArticleBadge({
