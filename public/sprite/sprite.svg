@@ -536,7 +536,7 @@
 </g>
 
 </symbol><symbol id="4-dot" viewBox="0 0 4 4">
-<rect width="4" height="4" rx="2" fill="#858899"/>
+<rect width="4" height="4" rx="2" fill="currentcolor"/>
 </symbol><symbol id="48-active" viewBox="0 0 48 48">
 <g id="active">
 <circle id="bg" cx="24" cy="23.5898" r="16" fill="white"/>
