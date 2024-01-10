@@ -56,8 +56,8 @@ export default function CountryBotoomSheet({ isOpen, onClose, control }: Country
           >
             <Image
               src={country.countaryImage}
-              width={24}
-              height={24}
+              width={28}
+              height={20}
               alt={country.countaryNameInEnglish}
             />
             {country.countaryNameInEnglish}
