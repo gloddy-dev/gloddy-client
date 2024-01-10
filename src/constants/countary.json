@@ -39,15 +39,11 @@
     "countaryNameInEnglish": "New Zealand",
     "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/38/20220318_165002661.gif"
   },
-  {
-    "countaryNameInKorean": "대만",
-    "countaryNameInEnglish": "Taiwan",
-    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/211/20220329_142127768.gif"
-  },
+
   {
     "countaryNameInKorean": "대한민국",
     "countaryNameInEnglish": "Korea",
-    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/250/20220224_233512982.gif"
+    "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/241/20220224_233513043.gif"
   },
   {
     "countaryNameInKorean": "덴마크",
