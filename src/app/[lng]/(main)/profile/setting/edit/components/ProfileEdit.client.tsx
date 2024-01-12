@@ -2,7 +2,6 @@
 import EditProvider from './EditProvider.client';
 import Step1 from './step1/Step1.client';
 import Step2 from './step2/Step2.client';
-import Step3 from './step3/Step3.client';
 import { useGetProfile } from '@/apis/profile';
 import { ModalProvider } from '@/hooks/useModal';
 import { useState } from 'react';
