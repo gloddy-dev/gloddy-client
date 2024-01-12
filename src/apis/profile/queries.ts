@@ -14,7 +14,8 @@ export const useGetProfile = () =>
           'https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/241/20220224_233513043.gif',
       };
     },
-    staleTime: Infinity,
+    staleTime: 0,
+    refetchOnWindowFocus: true,
   });
 
 export const useGetProfileById = (userId: number) =>
