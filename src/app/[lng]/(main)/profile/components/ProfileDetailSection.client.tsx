@@ -1,4 +1,8 @@
 'use client';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useParams, usePathname } from 'next/navigation';
+
 import { useGetProfileById } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
@@ -13,10 +17,6 @@ import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
-import { format } from 'date-fns';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useParams, usePathname } from 'next/navigation';
 
 interface ProfileDetailProps {
   profileData: ReturnType<typeof useGetProfileById>['data'];
@@ -47,6 +47,17 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
     introduce,
     countryImage,
   } = profileData;
+
+  function formatDate(dateList: number[]) {
+    const year = dateList[0];
+    const month = formatNumber(dateList[1]);
+    const day = formatNumber(dateList[2]);
+    return `${year}.${month}.${day}`;
+  }
+
+  function formatNumber(num: number) {
+    return num < 10 ? '0' + num : num;
+  }
 
   return (
     <>
@@ -127,7 +138,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           <Flex className="w-full px-4" align="end">
             <span className="text-secondary text-subtitle-3">{t('home.trustScore')} </span>
             <span className="text-caption text-sign-caption">
-              {format(new Date(joinAt), '(yyyy.MM.dd ') + `${t('home.joined')})`}
+              {joinAt && `(${formatDate(joinAt)} ${t('home.joined')})`}
             </span>
           </Flex>
           <Spacing size={8} />

@@ -11,7 +11,7 @@ export interface ProfileResponse {
   school: string;
   introduce: string;
   personalities: Array<PersonalityType['keywordDTO']>;
-  joinAt: string;
+  joinAt: number[];
   reliabilityLevel: ReliabilityType;
   reliabilityScore: 0;
   participatedGroupCount: 0;
