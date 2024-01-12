@@ -14,6 +14,7 @@ export const useGetProfile = () =>
           'https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/241/20220224_233513043.gif',
       };
     },
+    staleTime: Infinity,
   });
 
 export const useGetProfileById = (userId: number) =>
@@ -25,6 +26,7 @@ export const useGetProfileById = (userId: number) =>
 
       return { ...data, introduce: defaultIntroduce };
     },
+    staleTime: Infinity,
   });
 
 export const useGetPraises = () => useSuspenseQuery(Keys.getPraises(), getPraises);
