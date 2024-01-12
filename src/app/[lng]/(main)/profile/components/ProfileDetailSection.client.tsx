@@ -50,10 +50,15 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
 
   function formatDate(dateList: number[]) {
     const year = dateList[0];
-    const month = dateList[1] < 10 ? `0${dateList[1]}` : dateList[1];
-    const day = dateList[2] < 10 ? `0${dateList[2]}` : dateList[2];
+    const month = formatNumber(dateList[1]);
+    const day = formatNumber(dateList[2]);
     return `${year}.${month}.${day}`;
   }
+
+  function formatNumber(num: number) {
+    return num < 10 ? '0' + num : num;
+  }
+
   return (
     <>
       <section className="rounded-b-24 bg-white shadow-float">
