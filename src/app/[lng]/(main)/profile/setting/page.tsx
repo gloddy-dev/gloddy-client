@@ -16,8 +16,8 @@ export default function page({ params: { lng } }: PageParams) {
       <SettingHeader />
       <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
         <ProfileSection />
-        <LinkSection lng={lng} />
       </QueryAsyncBoundary>
+      <LinkSection lng={lng} />
     </>
   );
 }
