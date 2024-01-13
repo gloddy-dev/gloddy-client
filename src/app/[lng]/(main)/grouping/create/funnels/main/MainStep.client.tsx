@@ -55,7 +55,6 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
   });
 
   const formatDateForm = browser === 'safari' ? 'yyyy/MM/dd' : 'yyyy-MM-dd';
-  console.log(watch('meetDate'), watch('time'), format(watch('meetDate'), formatDateForm));
 
   const handleCreateClick = () => {
     if (!validateDate(watch('meetDate'), watch('time'), browser)) {
