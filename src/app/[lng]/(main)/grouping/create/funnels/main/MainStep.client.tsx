@@ -53,8 +53,6 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
     return !!value;
   });
 
-  const formatDateForm = browser === 'safari' ? 'yyyy/MM/dd' : 'yyyy-MM-dd';
-
   const handleCreateClick = () => {
     if (!validateDate(watch('meetDate'), watch('time'), browser)) {
       openToast(() => <Toast>{t('create.error.time')}</Toast>);
