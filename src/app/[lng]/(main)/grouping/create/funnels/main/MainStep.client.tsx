@@ -23,15 +23,13 @@ function validateDate(date: Date, time: TimeType, browser: string) {
   const formatDateForm = browser === 'safari' ? 'yyyy/MM/dd' : 'yyyy-MM-dd';
 
   const currentDate = new Date();
-  const meetDate = new Date(
-    format(date, formatDateForm) +
-      ' ' +
-      (+time.fromHour + (time.fromAmPm === 'AM' ? 0 : 12)) +
-      ':' +
-      time.fromMin
-  );
+  const meetDate = format(date, formatDateForm);
+  let meetHour = +time.fromHour + (time.fromAmPm === 'AM' ? 0 : 12);
+  if (meetHour === 24) meetHour = 0;
+  const meetMinute = +time.fromMin;
 
-  return currentDate < meetDate;
+  const meetDateObj = new Date(meetDate + ' ' + meetHour + ':' + meetMinute);
+  return currentDate < meetDateObj;
 }
 
 interface MainStepProps {
@@ -54,6 +52,9 @@ export default function MainStep({ onSelectMeetDate, onCreateSubmit }: MainStepP
     }
     return !!value;
   });
+
+  const formatDateForm = browser === 'safari' ? 'yyyy/MM/dd' : 'yyyy-MM-dd';
+  console.log(watch('meetDate'), watch('time'), format(watch('meetDate'), formatDateForm));
 
   const handleCreateClick = () => {
     if (!validateDate(watch('meetDate'), watch('time'), browser)) {
