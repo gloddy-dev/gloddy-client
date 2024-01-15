@@ -10,22 +10,26 @@ export interface ProfileResponse {
   birth: string;
   school: string;
   introduce: string;
-  personalities: Array<PersonalityType['keywordInEnglish']>;
-  joinAt: string;
+  personalities: Array<PersonalityType['keywordDTO']>;
+  joinAt: number[];
   reliabilityLevel: ReliabilityType;
   reliabilityScore: 0;
   participatedGroupCount: 0;
   praiseCount: number;
   reviewCount: number;
+  countryName: string;
+  countryImage: string;
 }
 
 export interface ProfileRequest {
   imageUrl: string;
   name: string;
-  birth: string;
   gender: 'MAIL' | 'FEMAIL';
   introduce: string;
-  personalities: Array<PersonalityType['keywordInEnglish']>;
+  personalities: Array<PersonalityType['keywordDTO']>;
+  countryName: string;
+  countryImage: string;
+  birth: string;
 }
 
 export interface PraisesResponse {

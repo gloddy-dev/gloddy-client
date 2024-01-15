@@ -1,3 +1,5 @@
+'use client';
+import { fadeInVariants } from '@/constants/motions';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import cn from '@/utils/cn';
 import { motion } from 'framer-motion';
@@ -8,12 +10,14 @@ import type { StrictPropsWithChildren } from '@/types';
 interface ModalWrapperProps {
   onClose?: () => void;
   className?: string;
+  layerNumber?: number;
 }
 
 export default function ModalWrapper({
   onClose = () => {},
   className,
   children,
+  layerNumber = 0,
 }: StrictPropsWithChildren<ModalWrapperProps>) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -21,10 +25,9 @@ export default function ModalWrapper({
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed left-1/2 top-0 z-modal h-full w-full max-w-450 -translate-x-1/2 bg-[rgba(0,0,0,0.4)]"
+      {...fadeInVariants()}
+      className="fixed left-1/2 top-0 h-full w-full max-w-450 -translate-x-1/2 bg-[rgba(0,0,0,0.4)]"
+      style={{ zIndex: 10000000 + layerNumber * 10 }}
     >
       <div
         ref={modalRef}

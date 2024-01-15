@@ -39,9 +39,9 @@ export default function NumberSwipePicker({ numberValue, setNumberValue }: Picke
           {({ isActive, isPrev, isNext }) => (
             <div
               className={clsx({
-                'font-700 pt-10 text-66 text-black2': isActive,
-                'font-500 pt-30 text-50 text-gray3': isPrev || isNext,
-                'font-500 pt-50 text-35 text-gray8': !isActive && !isPrev && !isNext,
+                'font-700 text-66 pt-10 text-black2': isActive,
+                'font-500 text-50 pt-30 text-gray3': isPrev || isNext,
+                'font-500 text-35 pt-50 text-gray8': !isActive && !isPrev && !isNext,
               })}
             >
               {slideContent}

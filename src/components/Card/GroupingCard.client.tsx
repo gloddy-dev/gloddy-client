@@ -1,14 +1,17 @@
 'use client';
 
-import { IconButton } from '../Button';
 import { Icon } from '../Icon';
+import ImageSample from '../Image/ImageSample';
 import { useDeleteScrapMeeting } from '@/apis/groups';
+import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
+import useAppRouter from '@/hooks/useAppRouter';
+import usePlaceDetails from '@/hooks/usePlaceDetails';
 import cn from '@/utils/cn';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 import type { Grouping } from '@/apis/groups/type';
 import type { HTMLAttributes, PropsWithChildren } from 'react';
@@ -47,52 +50,61 @@ export default function GroupingCard({
     maxMemberCount,
     meetDate,
     placeAddress,
+    placeId,
   } = groupingData;
-  const router = useRouter();
 
-  let status = '';
-  if (isNew) status = 'NEW';
-  if (isExistNewApply) status = '신규 지원';
+  const { lng } = useParams() as { lng: string };
+  const { push } = useAppRouter();
+  const { place } = usePlaceDetails({
+    placeId,
+    fields: ['formatted_address'],
+    language: lng,
+    region: 'KR',
+  });
+
+  const status = isNew ? 'NEW' : isExistNewApply ? '신규 지원' : '';
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
-      <Flex
-        onClick={() =>
-          onClick ||
-          router.push(`/grouping/${groupId}`, {
-            scroll: false,
-          })
-        }
-        align="center"
-      >
-        <section className="relative h-96 w-96">
+      <Flex onClick={onClick || (() => push(`/grouping/${groupId}`, false))} align="center">
+        <section className="relative h-96 w-96 shrink-0">
           {imageUrl ? (
-            <Image fill src={imageUrl} alt="group" className="rounded-8 object-cover" />
+            <Image
+              fill
+              src={imageUrl}
+              alt="group"
+              className="rounded-8 object-cover"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+            />
           ) : (
-            <div className="h-full rounded-8 bg-white3" />
+            <ImageSample width={96} height={96} />
           )}
           <MemberCountBadge maxMemeberCount={maxMemberCount} memberCount={memberCount} />
         </section>
 
         <Spacing size={12} direction="horizontal" />
 
-        <section className="relative grow">
-          <p className="w-250 truncate text-subtitle-1">{title}</p>
-          <p className="w-250 truncate text-paragraph-2 text-sign-secondary">{content}</p>
+        <section className="relative grow overflow-hidden">
+          <Flex align="center">
+            <p className="grow truncate text-subtitle-1">{title}</p>
+            {isScrapped && <ScrapBadge groupId={groupId} />}
+            {status && <StatusBadge status={status} />}
+          </Flex>
+          <p className="truncate text-paragraph-2 text-sign-secondary">{content}</p>
           <Spacing size={8} />
-          <div className="flex text-caption text-sign-tertiary">
+          <Flex align="center" className="text-caption text-sign-tertiary">
             <Icon id="16-location" width={16} height={16} />
             <Spacing size={4} direction="horizontal" />
-            {placeAddress}
-          </div>
+            <p className="truncate">{place?.formatted_address || placeAddress}</p>
+          </Flex>
           <Spacing size={4} />
-          <div className="flex text-caption text-sign-tertiary">
+          <Flex align="center" className="text-caption text-sign-tertiary">
             <Icon id="16-date_range" width={16} height={16} />
             <Spacing size={4} direction="horizontal" />
-            {formatMeetingDate(meetDate, startTime)}
-          </div>
-          {isScrapped && <ScrapBadge groupId={groupId} />}
-          {status && <StatusBadge status={status} />}
+            <p className="truncate">{formatMeetingDate(meetDate, startTime)}</p>
+          </Flex>
         </section>
       </Flex>
       {children}
@@ -111,7 +123,7 @@ function MemberCountBadge({ maxMemeberCount, memberCount }: MemberCountBadgeProp
   return (
     <Flex
       align="center"
-      className={cn('absolute bottom-0 left-0 h-22 w-45 rounded-4 p-4', {
+      className={cn('absolute bottom-0 left-0 h-22 rounded-4 p-4', {
         'bg-brand-color': leftUser >= 2,
         'bg-warning-color': leftUser === 1,
         'bg-sub': leftUser === 0,
@@ -144,18 +156,17 @@ interface StatusBadgeProps {
 }
 
 function StatusBadge({ status }: StatusBadgeProps) {
+  const { t } = useTranslation('profile');
+
   return (
     <Flex
-      className={cn(
-        'absolute right-0 top-2 inline h-22 rounded-4 border-1 px-4 py-2 text-caption',
-        {
-          'border-warning bg-warning-color text-warning': warningBadge.includes(status),
-          'border-sign-tertiary bg-sub text-sign-tertiary': grayBadge.includes(status),
-          'border-primary bg-brand-color text-primary': blueBadge.includes(status),
-        }
-      )}
+      className={cn('h-22 shrink-0 rounded-4 border-1 px-4 py-2 text-caption', {
+        'border-warning bg-warning-color text-warning': warningBadge.includes(status),
+        'border-sign-tertiary bg-sub text-sign-tertiary': grayBadge.includes(status),
+        'border-primary bg-brand-color text-primary': blueBadge.includes(status),
+      })}
     >
-      {status}
+      {t(status)}
     </Flex>
   );
 }
@@ -167,15 +178,13 @@ interface ScrapBadgeProps {
 function ScrapBadge({ groupId }: ScrapBadgeProps) {
   const { mutate: mutateDeleteScrap } = useDeleteScrapMeeting(groupId);
   return (
-    <IconButton
-      size="medium"
-      className="absolute right-0 top-0"
+    <Icon
+      id="24-scrap_fixed"
       onClick={(e) => {
         e.stopPropagation();
         mutateDeleteScrap({ params: { groupId } });
       }}
-    >
-      <Icon id="24-scrap_fixed" />
-    </IconButton>
+      className="mx-12"
+    />
   );
 }

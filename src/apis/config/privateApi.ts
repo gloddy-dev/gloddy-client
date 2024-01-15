@@ -36,17 +36,26 @@ privateApi.interceptors.response.use(
   async (error: AxiosError<ErrorType, InternalAxiosRequestConfig>) => {
     try {
       if (!error.response) return Promise.reject(error);
+      /* 서버 내부 오류 */
+      if (error.response.status === AUTH_ERROR_CODES.SERVER_INTERNAL_ERROR) {
+        return Promise.reject(error.response.data.reason);
+      }
+      /* 토큰이 잘못된 경우 */
       if (
-        error.response.status === AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR ||
-        error.response.status === AUTH_ERROR_CODES.TOKEN_ERROR
+        error.response.status === AUTH_ERROR_CODES.UNAUTHORIZED ||
+        error.response.status === AUTH_ERROR_CODES.NOT_FOUND
       ) {
+        window.location.href = '/join?step=1';
+      }
+      /* 토큰 재발급이 필요한 경우 */
+      if (error.response.status === AUTH_ERROR_CODES.TOKEN_ERROR) {
         try {
           const { refreshToken, accessToken } = await getTokenFromCookie();
           if (!refreshToken || !accessToken) {
             throw new ApiError(
               '에러 발생',
               '토큰이 없습니다.',
-              AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
+              AUTH_ERROR_CODES.UNAUTHORIZED,
               new Date()
             );
           }
@@ -62,7 +71,7 @@ privateApi.interceptors.response.use(
             throw new ApiError(
               '에러 발생',
               'accessToken 발급 중 오류가 발생했습니다.',
-              AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
+              AUTH_ERROR_CODES.UNAUTHORIZED,
               new Date()
             );
           }
@@ -72,18 +81,18 @@ privateApi.interceptors.response.use(
             throw new ApiError(
               '에러 발생',
               '이전 정보가 없습니다.',
-              AUTH_ERROR_CODES.EXPIRED_TOKEN_ERROR,
+              AUTH_ERROR_CODES.UNAUTHORIZED,
               new Date()
             );
           }
 
           prevRequest.headers['X-AUTH-TOKEN'] = reIssuedAccessToken;
-          Promise.reject(new Error('요청 도중 에러 발생'));
+          return privateApi(prevRequest);
         } catch (e) {
           return Promise.reject(e);
         }
       }
-      return Promise.reject(new Error('요청 도중 에러 발생'));
+      return Promise.reject(error.response.data.reason);
     } catch (e) {
       return Promise.reject(e);
     }

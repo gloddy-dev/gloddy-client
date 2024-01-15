@@ -1,11 +1,14 @@
 import publicApi from '../config/publicApi';
+import { compressImage } from '@/utils/compressImage';
 
-import type { FilesRequest, FilesResponse } from './type';
+import type { FilesRequest, FilesResponse } from '.';
 
-export const postFiles = ({ fileList }: FilesRequest) => {
+export const postFiles = async ({ fileList }: FilesRequest) => {
   const formData = new FormData();
 
-  fileList.forEach((file) => {
+  const compressedFileList = await Promise.all(fileList.map((file) => compressImage(file)));
+
+  compressedFileList.forEach((file) => {
     formData.append('fileList', file);
   });
 

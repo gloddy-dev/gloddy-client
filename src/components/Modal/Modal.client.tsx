@@ -2,6 +2,7 @@
 import ModalWrapper from './ModalWrapper.client';
 import { Button } from '../Button';
 import { Spacing } from '../Spacing';
+import { useTranslation } from '@/app/i18n/client';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
 import { useEffect, useRef } from 'react';
@@ -32,15 +33,16 @@ const variantMap = {
 export function Modal({
   children,
   onOkClick,
-  okText = '네',
+  okText,
   okDisabled = false,
   onCancelClick,
-  cancelText = '아니오',
+  cancelText,
   variant,
   className,
   okMessage,
   isLoading,
 }: StrictPropsWithChildren<ModalProps>) {
+
   const pageRef = useRef(false);
   useEffect(() => {
     const goBack = () => {
@@ -57,6 +59,7 @@ export function Modal({
     };
   }, [onCancelClick]);
 
+
   return (
     <ModalWrapper onClose={onCancelClick}>
       <div
@@ -72,11 +75,12 @@ export function Modal({
               variant={variantMap[variant].ok}
               className="w-full"
               size="small"
-              onClick={onOkClick}
-              disabled={okDisabled}
+              onClick={onOkClickHandler}
+              disabled={isDisabled}
               isLoading={isLoading}
+              actionType="throttle"
             >
-              {okText}
+              {okText || t('yes')}
             </Button>
             <Spacing size={8} />
             <Button
@@ -85,13 +89,13 @@ export function Modal({
               size="small"
               onClick={onCancelClick}
             >
-              {cancelText}
+              {cancelText || t('no')}
             </Button>
           </div>
         )}
         {variant === 'ok' && (
           <div className="w-full py-12">
-            <Button onClick={onOkClick}>{okMessage}</Button>
+            <Button onClick={onOkClick}>{okMessage || t('confirm')}</Button>
           </div>
         )}
       </div>

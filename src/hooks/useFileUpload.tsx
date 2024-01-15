@@ -1,11 +1,13 @@
 import { usePostFiles } from '@/apis/common';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { ControllerRenderProps, Field } from 'react-hook-form';
 
 interface UseImageUploadProps {
   /**
    * 파일 업로드가 완료되었을 때 실행할 함수를 지정합니다.
    */
   handleFileChange: (fileUrlList: string[]) => void;
+  previewImageField: ControllerRenderProps<any, any>;
   options?: {
     /**
      * 업로드할 파일의 타입을 지정합니다. (default: image/*)
@@ -20,6 +22,7 @@ interface UseImageUploadProps {
 
 export function useFileUpload(
   handleFileChange: UseImageUploadProps['handleFileChange'],
+  previewImageField?: UseImageUploadProps['previewImageField'],
   options?: UseImageUploadProps['options']
 ) {
   const { mutate, isLoading } = usePostFiles();
@@ -29,10 +32,14 @@ export function useFileUpload(
     input.type = 'file';
     input.accept = options?.accept || 'image/*';
     input.multiple = options?.multiple || false;
-    input.click();
     input.onchange = (event) => {
       const { files } = event.target as HTMLInputElement;
       if (!files) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        previewImageField && previewImageField.onChange(reader.result);
+      };
+      reader.readAsDataURL(files[0]);
 
       mutate(
         { fileList: Array.from(files) },
@@ -43,6 +50,7 @@ export function useFileUpload(
         }
       );
     };
+    input.click();
   }, [handleFileChange, mutate, options?.accept, options?.multiple]);
 
   return {

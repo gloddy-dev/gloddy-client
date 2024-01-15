@@ -1,18 +1,37 @@
 import { postReissue } from './apis/auth';
+import { cookieName, languages } from './app/i18n/settings';
 import { AUTH_KEYS } from './constants/token';
-import { afterDay1, afterDay60, currentTime, day1, day60 } from './utils/date';
+import { afterDay1, afterDay60 } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
 
-const privatePages = /^\/(grouping|meeting|profile)/;
+const privatePages = /\/(?:en|ko)\/(grouping|meeting|profile)/;
+
+const excludePages = [
+  /\/(?:en|ko)\/profile\/setting\/information/,
+  /\/(?:en|ko)\/profile\/setting\/service/,
+  /\/(?:en|ko)\/notification/,
+];
+
+const isPrivatePage = (path: string) =>
+  !excludePages.some((it) => it.test(path)) && privatePages.test(path);
+
+const PUBLIC_FILE = /\.(.*)$/;
 
 const middleware = async (request: NextRequest) => {
+  if (
+    request.nextUrl.pathname.startsWith('/_next') ||
+    request.nextUrl.pathname.includes('/api/') ||
+    PUBLIC_FILE.test(request.nextUrl.pathname)
+  ) {
+    return;
+  }
   const pathname = request.nextUrl.pathname;
-  if (privatePages.test(pathname)) {
+  if (isPrivatePage(pathname)) {
     const accessToken = request.cookies.get(AUTH_KEYS.accessToken)?.value as string;
     const refreshToken = request.cookies.get(AUTH_KEYS.refreshToken)?.value as string;
     const accessTokenExpireTime = request.cookies.get(AUTH_KEYS.accessTokenExpireTime)
       ?.value as string;
-    if (!accessTokenExpireTime || Number(accessTokenExpireTime) < new Date().getTime()) {
+    if (!accessTokenExpireTime) {
       try {
         const {
           token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },
@@ -27,7 +46,7 @@ const middleware = async (request: NextRequest) => {
         });
 
         response.cookies.set(AUTH_KEYS.accessTokenExpireTime, String(afterDay1.getTime()), {
-          expires: afterDay60,
+          expires: afterDay1,
         });
 
         response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
@@ -37,11 +56,36 @@ const middleware = async (request: NextRequest) => {
         console.log('token reissued');
         return response;
       } catch (e) {
-        alert('로그인이 필요합니다.');
         return NextResponse.redirect(new URL('/join', request.nextUrl.origin));
       }
     }
   }
+
+  if (
+    request.nextUrl.pathname.indexOf('icon') > -1 ||
+    request.nextUrl.pathname.indexOf('chrome') > -1
+  )
+    return NextResponse.next();
+
+  const response = NextResponse.next();
+
+  const lng = request.cookies.get(cookieName)?.value || 'en';
+
+  /* 새로운 페이지 접속 시 */
+  if (
+    !languages.some((loc: string) => request.nextUrl.pathname.startsWith(`/${loc}`)) &&
+    !request.nextUrl.pathname.startsWith('/_next')
+  ) {
+    const searchParams = request.nextUrl.searchParams.toString();
+    return NextResponse.redirect(
+      new URL(
+        `/${lng}${request.nextUrl.pathname}${searchParams ? `?${searchParams}` : ''}`,
+        request.url
+      )
+    );
+  }
+
+  return response;
 };
 
 const config = {

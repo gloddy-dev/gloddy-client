@@ -5,3 +5,5 @@ export const BASE_WEB_URL = process.env.NEXT_PUBLIC_BASE_WEB_URL ?? 'http://loca
 export const INSTAGRAM_URL = 'https://www.instagram.com/gloddykorea';
 export const DAY_OF_WEEK = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 export const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY;
+export const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN || '';
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ID;

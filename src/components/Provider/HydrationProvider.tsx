@@ -25,10 +25,13 @@ export default async function HydrationProvider({
   const queryClient = getQueryClient();
 
   if (queryMultipleFn && queryMultipleKey) {
-    queryMultipleFn.forEach(async (queryFn, index) => {
-      await queryClient.prefetchQuery(queryMultipleKey[index], queryFn);
-    });
+    await Promise.all(
+      queryMultipleFn.map((queryFn, index) => {
+        return queryClient.prefetchQuery(queryMultipleKey[index], queryFn);
+      })
+    );
   }
+
   if (queryFn && queryKey) {
     if (isInfiniteQuery) await queryClient.prefetchInfiniteQuery(queryKey, queryFn);
     else await queryClient.prefetchQuery(queryKey, queryFn);

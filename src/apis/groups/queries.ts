@@ -71,7 +71,7 @@ export const useGetGroupMembers = (groupId: number) => {
 };
 
 export const useGetNotices = (groupId: number) => {
-  return useSuspenseQuery(Keys.getNotice(groupId), () => getNotices(groupId));
+  return useSuspenseQuery(Keys.getNotices(groupId), () => getNotices(groupId));
 };
 
 export const useGetApplies = (groupId: number) => {

@@ -65,7 +65,7 @@ function Bar() {
 
 function MiddleText({ children }: StrictPropsWithChildren) {
   return (
-    <div className="font-700 z-10 flex grow items-center whitespace-nowrap text-20 text-gray">
+    <div className="font-700 text-20 z-10 flex grow items-center whitespace-nowrap text-gray">
       {children}
     </div>
   );
