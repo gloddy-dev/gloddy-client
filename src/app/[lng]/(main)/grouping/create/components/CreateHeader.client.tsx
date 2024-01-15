@@ -15,7 +15,7 @@ export default function CreateHeader({ currentStep }: CreateHeaderProps) {
   return (
     <Header className="px-4">
       <Header.Left>
-        <IconButton size="large" onClick={() => back()}>
+        <IconButton size="large" onClick={back}>
           <Icon id="24-close" />
         </IconButton>
         {currentStep === 'main' && <p>{t('create.headerTitle')}</p>}
