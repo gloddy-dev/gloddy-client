@@ -1,4 +1,8 @@
 'use client';
+import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import { useParams, usePathname } from 'next/navigation';
+
 import { useGetProfileById } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
@@ -13,9 +17,6 @@ import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
-import { format } from 'date-fns';
-import { motion } from 'framer-motion';
-import { useParams, usePathname } from 'next/navigation';
 
 interface ProfileDetailProps {
   profileData: ReturnType<typeof useGetProfileById>['data'];
@@ -86,7 +87,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
               <Icon id="16-male" width={16} height={16} />
-              <span>{gender === 'MAIL' ? t('home.gender.male') : t('home.gender.female')}</span>
+              <span>{gender === 'MALE' ? t('home.gender.male') : t('home.gender.female')}</span>
             </Flex>
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
