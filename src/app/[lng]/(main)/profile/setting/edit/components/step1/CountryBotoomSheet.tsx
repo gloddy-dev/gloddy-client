@@ -1,8 +1,8 @@
-import { ProfileEditState } from '../../type';
-import { BottomSheet } from '@/components/Modal';
-import countaryList from '@/constants/countary.json';
 import Image from 'next/image';
 import { Control, useController } from 'react-hook-form';
+
+import { BottomSheet } from '@/components/Modal';
+import countaryList from '@/constants/countary.json';
 
 interface CountryBotoomSheetProps {
   isOpen: boolean;

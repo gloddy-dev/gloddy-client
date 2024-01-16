@@ -385,6 +385,11 @@
     "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/214/20220318_170222070.gif"
   },
   {
+    "countaryNameInKorean": "대만",
+    "countaryNameInEnglish": "Taiwan",
+    "countaryImage": "https://gloddy.s3.ap-northeast-2.amazonaws.com/file/image+(3).png"
+  },
+  {
     "countaryNameInKorean": "튀니지",
     "countaryNameInEnglish": "Tunisia",
     "countaryImage": "https://opendata.mofa.go.kr:8444/fileDownload/images/country_images/flags/221/20220318_170333269.gif"
