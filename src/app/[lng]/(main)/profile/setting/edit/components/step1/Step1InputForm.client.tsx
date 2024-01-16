@@ -1,3 +1,5 @@
+import { useController } from 'react-hook-form';
+
 import { formatBirthDTO } from '../../util';
 import { useEditContext } from '../EditProvider.client';
 import { usePatchProfile } from '@/apis/profile';
@@ -12,7 +14,6 @@ import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import { useController } from 'react-hook-form';
 
 import type { ProfileEditState } from '../../type';
 
@@ -78,8 +79,8 @@ export default function Step1InputForm({ onNext }: Step1InputFormProps) {
           selectedValue={watch('gender')}
           onChange={(value) => setValue('gender', value)}
         >
-          <SegmentGroup.Segment value={'MAIL'} label={tc('male')} />
-          <SegmentGroup.Segment value={'FEMAIL'} label={tc('female')} />
+          <SegmentGroup.Segment value={'MALE'} label={tc('male')} />
+          <SegmentGroup.Segment value={'FEMALE'} label={tc('female')} />
         </SegmentGroup>
       </section>
 
