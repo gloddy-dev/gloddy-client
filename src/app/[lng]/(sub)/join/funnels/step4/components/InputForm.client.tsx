@@ -165,18 +165,22 @@ export default function InputForm() {
             <SegmentGroup.Segment value="FEMAIL" label={tc('female')} />
           </SegmentGroup>
         </Flex>
-        <TextFieldController
-          label="국가"
-          hookForm={hookForm}
-          register={register('countryName')}
-          readOnly
-          value={watch('countryName')}
-          onClick={() =>
-            openBottomSheet(({ isOpen }) => (
-              <CountryBotoomSheet isOpen={isOpen} onClose={closeBottomSheet} control={control} />
-            ))
-          }
-        />
+
+        <Flex direction="column" gap={4}>
+          <p className="text-subtitle-3">{t('country')}</p>
+          <TextFieldController
+            label="국가"
+            hookForm={hookForm}
+            register={register('countryName')}
+            readOnly
+            value={watch('countryName')}
+            onClick={() =>
+              openBottomSheet(({ isOpen }) => (
+                <CountryBotoomSheet isOpen={isOpen} onClose={closeBottomSheet} control={control} />
+              ))
+            }
+          />
+        </Flex>
       </Flex>
       <ButtonGroup>
         <Button type="submit" disabled={!isAllTyped}>
