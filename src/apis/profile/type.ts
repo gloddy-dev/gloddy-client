@@ -5,7 +5,7 @@ export interface ProfileResponse {
   isCertifiedStudent: boolean;
   imageUrl: string;
   nickname: string;
-  gender: 'MAIL' | 'FEMAIL';
+  gender: 'MALE' | 'FEMALE';
   age: number;
   birth: string;
   school: string;
@@ -24,7 +24,7 @@ export interface ProfileResponse {
 export interface ProfileRequest {
   imageUrl: string;
   name: string;
-  gender: 'MAIL' | 'FEMAIL';
+  gender: 'MALE' | 'FEMALE';
   introduce: string;
   personalities: Array<PersonalityType['keywordDTO']>;
   countryName: string;

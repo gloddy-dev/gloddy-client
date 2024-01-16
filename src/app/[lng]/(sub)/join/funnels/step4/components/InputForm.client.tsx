@@ -161,8 +161,8 @@ export default function InputForm() {
             selectedValue={watch('gender')}
             onChange={(value) => setValue('gender', value)}
           >
-            <SegmentGroup.Segment value="MAIL" label={tc('male')} />
-            <SegmentGroup.Segment value="FEMAIL" label={tc('female')} />
+            <SegmentGroup.Segment value="MALE" label={tc('male')} />
+            <SegmentGroup.Segment value="FEMALE" label={tc('female')} />
           </SegmentGroup>
         </Flex>
         <TextFieldController
