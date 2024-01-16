@@ -1,5 +1,9 @@
 'use client';
 
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useParams, usePathname } from 'next/navigation';
+
 import { useGetProfileById } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
@@ -14,9 +18,6 @@ import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useParams, usePathname } from 'next/navigation';
 
 interface ProfileDetailProps {
   profileData: ReturnType<typeof useGetProfileById>['data'];
@@ -84,9 +85,11 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           </Avatar>
           <Spacing size={16} />
           <h4 className="relative flex items-center gap-5 text-h4">
-            <div className="relative h-16 w-24">
-              <Image src={countryImage} fill className="object-fill" alt="국가" />
-            </div>
+            {countryImage && (
+              <div className="relative h-16 w-24">
+                <Image src={countryImage} fill className="object-fill" alt="국가" />
+              </div>
+            )}
             <span>{nickname}</span>
             <Icon
               id={`16-reliability-${reliabilityLevel.toLowerCase()}`}
