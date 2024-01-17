@@ -1,5 +1,7 @@
 'use client';
 
+import { SubmitHandler, useForm } from 'react-hook-form';
+
 import WriteModal from '../components/WriteModal';
 import { WriteFormType } from '../type';
 import { useTranslation } from '@/app/i18n/client';
@@ -9,7 +11,6 @@ import ListBoxController from '@/components/ListBox/ListBoxController';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 export default function InputSection() {
   const { open, exit } = useModal();
@@ -17,7 +18,7 @@ export default function InputSection() {
   const hookForm = useForm<WriteFormType>({
     mode: 'onChange',
     defaultValues: {
-      category: 'NONE',
+      categoryId: null,
       title: '',
       content: '',
       images: [],
@@ -30,7 +31,11 @@ export default function InputSection() {
     console.log(formData);
   };
 
-  const options = [t('create.category.kpop'), t('create.category.qna'), t('create.category.lang')];
+  const options = [
+    { id: 1, name: t('create.category.kpop') },
+    { id: 2, name: t('create.category.qna') },
+    { id: 3, name: t('create.category.lang') },
+  ];
 
   return (
     <section>
@@ -39,9 +44,9 @@ export default function InputSection() {
         <ListBoxController
           name={t('create.category.name')}
           options={options}
-          register={register('category', {
+          register={register('categoryId', {
             required: true,
-            validate: (value) => value !== 'NONE',
+            validate: (value) => value !== null,
           })}
         />
 
@@ -63,11 +68,12 @@ export default function InputSection() {
           placeholder={t('create.content.placeholder')}
           register={register('content', {
             required: true,
-            maxLength: 300,
+            maxLength: 700,
+            validate: (value) => value.length >= 20,
           })}
           hookForm={hookForm}
           as="textarea"
-          maxCount={300}
+          maxCount={700}
           className={'h-339'}
         />
       </div>
