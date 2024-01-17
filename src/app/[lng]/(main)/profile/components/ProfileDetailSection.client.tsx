@@ -1,4 +1,5 @@
 'use client';
+
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useParams, usePathname } from 'next/navigation';
@@ -84,9 +85,11 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           </Avatar>
           <Spacing size={16} />
           <h4 className="relative flex items-center gap-5 text-h4">
-            <div className="relative h-16 w-24">
-              <Image src={countryImage} fill className="object-fill" alt="국가" />
-            </div>
+            {countryImage && (
+              <div className="relative h-16 w-24">
+                <Image src={countryImage} fill className="object-fill" alt="국가" />
+              </div>
+            )}
             <span>{nickname}</span>
             <Icon
               id={`16-reliability-${reliabilityLevel.toLowerCase()}`}
@@ -102,7 +105,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
               <Icon id="16-male" width={16} height={16} />
-              <span>{gender === 'MAIL' ? t('home.gender.male') : t('home.gender.female')}</span>
+              <span>{gender === 'MALE' ? t('home.gender.male') : t('home.gender.female')}</span>
             </Flex>
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">

@@ -12,7 +12,7 @@ import type {
   Comment,
   CommentDeleteRequest,
   CommentRequest,
-  CommentsReponse,
+  CommentsResponse,
   CreateGroupRequest,
   CreateGroupResponse,
   EstimateRequest,
@@ -54,7 +54,7 @@ export const deleteArticle = ({ params: { groupId, articleId } }: ArticleDeleteR
 };
 
 export const getComments = (groupId: number, articleId: number) => {
-  return privateApi.get<CommentsReponse>(`/groups/${groupId}/articles/${articleId}/comments`);
+  return privateApi.get<CommentsResponse>(`/groups/${groupId}/articles/${articleId}/comments`);
 };
 
 export const postComment = ({ params: { groupId, articleId }, payload }: CommentRequest) => {

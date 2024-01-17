@@ -81,7 +81,7 @@ export const DUMMY_SIGN_UP_DATA = {
   },
   nickname: '박규리',
   birth: '2000-02-14',
-  gender: 'MAIL',
+  gender: 'MALE',
   personalities: ['OUTGOING'],
 };
 
