@@ -11,13 +11,17 @@ import { DUMMY_COMMENTS_DATA } from '@/constants/dummyData';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
 
-export default function CommentList() {
+interface CommentListProps {
+  commentList: Comment[];
+}
+
+export default function CommentList({ commentList }: CommentListProps) {
   const { articleId, groupId } = useNumberParams<['articleId', 'groupId']>();
 
   return (
     <ItemList
-      data={DUMMY_COMMENTS_DATA}
-      renderItem={(comment) => (
+      data={commentList}
+      renderItem={(comment: Comment) => (
         <CommentItem comment={comment} groupId={groupId} articleId={articleId} isCaptain={true} />
       )}
       renderEmpty={() => <EmptyComment />}

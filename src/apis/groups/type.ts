@@ -146,7 +146,7 @@ export interface CommentDeleteRequest {
   };
 }
 
-export interface CommentsReponse {
+export interface CommentsResponse {
   comments: Comment[];
 }
 
