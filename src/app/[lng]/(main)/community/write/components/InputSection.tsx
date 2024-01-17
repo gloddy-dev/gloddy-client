@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import WriteModal from '../components/WriteModal';
 import { WriteFormType } from '../type';
+import { usePostCommunityArticle } from '@/apis/community/mutations';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import MultiImageUploader from '@/components/Image/MultiImageUploader';
@@ -15,6 +16,7 @@ import { useModal } from '@/hooks/useModal';
 export default function InputSection() {
   const { open, exit } = useModal();
   const { t } = useTranslation('community');
+  const { mutate: mutateArticle } = usePostCommunityArticle();
   const hookForm = useForm<WriteFormType>({
     mode: 'onChange',
     defaultValues: {
@@ -27,8 +29,15 @@ export default function InputSection() {
 
   const { register, handleSubmit, formState, control } = hookForm;
 
-  const onSubmit: SubmitHandler<WriteFormType> = (formData) => {
+  const onSubmit: SubmitHandler<WriteFormType> = async (formData) => {
     console.log(formData);
+    exit();
+    mutateArticle({
+      title: formData.title,
+      content: formData.content,
+      categoryId: formData.categoryId,
+      images: formData.images,
+    });
   };
 
   const options = [
