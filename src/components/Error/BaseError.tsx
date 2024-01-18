@@ -1,5 +1,7 @@
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
+import { removeToken } from '@/utils/auth/tokenController';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export interface BaseErrorProps {
@@ -8,9 +10,15 @@ export interface BaseErrorProps {
 }
 
 export default function BaseError({ error, reset }: BaseErrorProps) {
+  const router = useRouter();
   useEffect(() => {
     console.error(error);
   }, [error]);
+
+  const handleLogOut = () => {
+    router.push('/join');
+    removeToken();
+  };
 
   return (
     <Flex align="center" justify="center" className="h-full text-sign-tertiary " direction="column">
@@ -29,6 +37,12 @@ export default function BaseError({ error, reset }: BaseErrorProps) {
         onClick={reset}
       >
         다시 불러오기
+      </button>
+      <button
+        className="bg-grey-200 text-13 mt-16 block rounded-lg px-12 py-8 font-bold text-red-300"
+        onClick={handleLogOut}
+      >
+        로그아웃하기
       </button>
     </Flex>
   );
