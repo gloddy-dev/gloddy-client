@@ -7,7 +7,8 @@ import type { StrictPropsWithChildren } from '@/types';
 const defaultValues = {
   phoneNumber: '',
   verifyNumber: '',
-  imageUrl: '',
+  imageUrl:
+    'https://gloddy.s3.ap-northeast-2.amazonaws.com/file/5619c043-060b-4ce0-8797-d9bc2a94a18f.png',
   schoolInfo: {
     school: '',
     email: '',
