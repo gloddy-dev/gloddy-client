@@ -61,3 +61,7 @@ export const hasToken = () => {
 
   return accessToken || refreshToken;
 };
+
+export const removeToken = () => {
+  setTokenAtCookie({ accessToken: '', refreshToken: '', userId: 0 });
+};
