@@ -12,7 +12,7 @@ import useAppRouter from '@/hooks/useAppRouter';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { useMutation } from '@tanstack/react-query';
 
-export const useLoginMutation = () => useMutation(postLogin);
+export const useLoginMutation = () => useMutation({ mutationFn: postLogin });
 
 export const useReissueMutation = () => useMutation(postReissue);
 
