@@ -1,13 +1,13 @@
 'use client';
 import { Keys, NicknameDuplicateResponse, getNicknameDuplicate, getSchoolSearch } from '.';
-import { useSuspenseQuery } from '@suspensive/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { UseFormClearErrors, UseFormSetError } from 'react-hook-form';
 
-export const useGetSearchSchool = (searchWord: string) =>
-  useSuspenseQuery(Keys.getSchoolSearch(searchWord), () => getSchoolSearch(searchWord), {
-    enabled: !!searchWord,
-  });
+// export const useGetSearchSchool = (searchWord: string) =>
+//   useSuspenseQuery(Keys.getSchoolSearch(searchWord), () => getSchoolSearch(searchWord), {
+//     enabled: !!searchWord,
+//   });
 
 type InputType = { nickname: string };
 interface UseGetNicknameDuplicateProps {
@@ -35,16 +35,13 @@ export const useGetNicknameDuplicate = ({
   };
 
   return {
-    ...useSuspenseQuery<NicknameDuplicateResponse>(
-      Keys.getNicknameDuplicate(nickname),
-      () => getNicknameDuplicate(nickname),
-      {
-        enabled: false,
-        onSuccess: (data) => {
-          checkNicknameDuplicate(data.isExistNickname);
-        },
-      }
-    ),
+    ...useSuspenseQuery<NicknameDuplicateResponse>({
+      queryKey: Keys.getNicknameDuplicate(nickname),
+      queryFn: () => getNicknameDuplicate(nickname),
+      // onSuccess: (data: any) => {
+      // checkNicknameDuplicate(data.isExistNickname);
+      // },
+    }),
     isDuplicateChecked,
     setIsDuplicateChecked,
   };

@@ -2735,29 +2735,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@suspensive/react-query@npm:^1.25.0":
-  version: 1.25.0
-  resolution: "@suspensive/react-query@npm:1.25.0"
-  peerDependencies:
-    "@suspensive/react": ^1.25.0
-    "@tanstack/react-query": ^4
-    react: ^16.8 || ^17 || ^18
-  peerDependenciesMeta:
-    "@suspensive/react":
-      optional: true
-  checksum: b1dcd79112cd2c7d80838632ac7bdce3d67cb803e1c37407a67a872f3a341d276f8c1d47a46c679d816a6973cefdb4c53e09db26f56ee4ecaf92ea5cd5c5b301
-  languageName: node
-  linkType: hard
-
-"@suspensive/react@npm:^1.25.0":
-  version: 1.25.0
-  resolution: "@suspensive/react@npm:1.25.0"
-  peerDependencies:
-    react: ^16.8 || ^17 || ^18
-  checksum: d4fa7ac5c5e5251d7399c35cb72f3cb4c9876c7318f085f9f5d39d344c49fe3c69d81f0bca7650da8ae4406685d4b409f89c37a556c33e7ea698514cc5184aad
-  languageName: node
-  linkType: hard
-
 "@swc/helpers@npm:0.5.2":
   version: 0.5.2
   resolution: "@swc/helpers@npm:0.5.2"
@@ -6624,8 +6601,6 @@ __metadata:
     "@sentry/cli": ^2.20.4
     "@sentry/nextjs": ^7.62.0
     "@sentry/utils": ^7.62.0
-    "@suspensive/react": ^1.25.0
-    "@suspensive/react-query": ^1.25.0
     "@tanstack/react-query": ^5.17.15
     "@tanstack/react-query-devtools": ^5.17.18
     "@testing-library/jest-dom": ^5.17.0
