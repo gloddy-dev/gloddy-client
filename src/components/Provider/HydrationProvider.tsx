@@ -1,4 +1,4 @@
-import { Hydrate, QueryClient, dehydrate } from '@tanstack/react-query';
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
 import { cache } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
@@ -27,17 +27,17 @@ export default async function HydrationProvider({
   if (queryMultipleFn && queryMultipleKey) {
     await Promise.all(
       queryMultipleFn.map((queryFn, index) => {
-        return queryClient.prefetchQuery(queryMultipleKey[index], queryFn);
+        return queryClient.prefetchQuery({ queryKey: queryMultipleKey[index], queryFn });
       })
     );
   }
 
   if (queryFn && queryKey) {
-    if (isInfiniteQuery) await queryClient.prefetchInfiniteQuery(queryKey, queryFn);
-    else await queryClient.prefetchQuery(queryKey, queryFn);
+    if (isInfiniteQuery) await queryClient.prefetchInfiniteQuery({ queryKey, queryFn });
+    else await queryClient.prefetchQuery({ queryKey, queryFn });
   }
 
   const dehydratedState = dehydrate(queryClient);
 
-  return <Hydrate state={dehydratedState}>{children}</Hydrate>;
+  return <HydrationBoundary state={dehydratedState}>{children}</HydrationBoundary>;
 }

@@ -14,10 +14,12 @@ interface ProfilePageProps {
 export default function Profile({ params: { lng } }: ProfilePageProps) {
   return (
     <>
-      {/* <ProfileHeader /> */}
-      <ProfileDetail />
-      {/* <Spacing size={70} /> */}
-      {/* <Footer page="profile" isSpacing={false} lng={lng} /> */}
+      <ProfileHeader />
+      <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
+        <ProfileDetail />
+        <Spacing size={70} />
+      </HydrationProvider>
+      <Footer page="profile" isSpacing={false} lng={lng} />
     </>
   );
 }
