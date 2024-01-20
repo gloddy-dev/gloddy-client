@@ -5,7 +5,6 @@ import { formatBirthBackspace, formatBirthTyping } from '../util';
 import { useGetNicknameDuplicate } from '@/apis/auth';
 import CountryBotoomSheet from '@/app/[lng]/(main)/profile/setting/edit/components/step1/CountryBotoomSheet';
 import { useTranslation } from '@/app/i18n/client';
-import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
@@ -16,6 +15,7 @@ import { useDidMount } from '@/hooks/common/useDidMount';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
+import Image from 'next/image';
 import { type ElementType, type KeyboardEventHandler, useState } from 'react';
 
 export default function InputForm() {
@@ -80,7 +80,8 @@ export default function InputForm() {
 
   return (
     <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)}>
-      <Flex className="py-20" justify="center">
+      <Image src="/images/road_character.jpg" alt="메인 로고" height={400} width={400} />
+      {/* <Flex className="py-20" justify="center">
         <Avatar
           imageUrl={watch('imageUrl') || ''}
           size="large"
@@ -88,7 +89,7 @@ export default function InputForm() {
           isPending={isPending}
           onClick={handleFileUploadClick}
         />
-      </Flex>
+      </Flex>*/}
       <Spacing size={8} />
 
       <Flex direction="column" gap={16}>
