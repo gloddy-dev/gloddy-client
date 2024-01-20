@@ -5,22 +5,22 @@ import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 
 interface LayerLoadingProps {
-  isLoading: boolean;
+  isPending: boolean;
   layerNumber?: number;
 }
 
-export default function LayerLoading({ isLoading, layerNumber = 1 }: LayerLoadingProps) {
+export default function LayerLoading({ isPending, layerNumber = 1 }: LayerLoadingProps) {
   useEffect(() => {
-    document.body.style.overflow = isLoading ? 'hidden' : 'unset';
+    document.body.style.overflow = isPending ? 'hidden' : 'unset';
 
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isLoading]);
+  }, [isPending]);
 
   return (
     <AnimatePresence>
-      {isLoading && (
+      {isPending && (
         <ModalWrapper layerNumber={layerNumber}>
           <Loading />
         </ModalWrapper>

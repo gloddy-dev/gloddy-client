@@ -117,7 +117,7 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
         </Button>
         <Button type="submit">{t('complete')}</Button>
       </ButtonGroup>
-      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
+      <LayerLoading isPending={status === 'pending' || status === 'success'} />
     </form>
   );
 }

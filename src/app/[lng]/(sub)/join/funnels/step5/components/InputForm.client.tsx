@@ -36,7 +36,7 @@ export default function InputForm() {
           {t('complete')}
         </Button>
       </ButtonGroup>
-      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
+      <LayerLoading isPending={status === 'pending' || status === 'success'} />
     </form>
   );
 }
