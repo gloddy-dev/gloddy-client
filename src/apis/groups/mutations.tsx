@@ -24,9 +24,10 @@ export const usePostCreateGroup = () => {
   const { replace } = useAppRouter();
   const queryClient = useQueryClient();
 
-  return useMutation(postCreateGroup, {
+  return useMutation({
+    mutationFn: postCreateGroup,
     onSuccess: (data) => {
-      queryClient.resetQueries(GroupsKeys.getGroups());
+      queryClient.resetQueries({ queryKey: GroupsKeys.getGroups() });
       replace(`/grouping/${data.groupId}`);
     },
   });
@@ -36,10 +37,11 @@ export const usePostArticle = (groupId: number) => {
   const { replace } = useAppRouter();
   const queryClient = useQueryClient();
 
-  return useMutation(postArticle, {
+  return useMutation({
+    mutationFn: postArticle,
     onSuccess: (data) => {
-      queryClient.invalidateQueries(GroupsKeys.getArticles(groupId));
-      queryClient.invalidateQueries(GroupsKeys.getNotices(groupId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getArticles(groupId) });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getNotices(groupId) });
       replace(`/grouping/${groupId}/articles/${data.articleId}`);
     },
   });
@@ -49,10 +51,11 @@ export const useDeleteArticle = (groupId: number) => {
   const { replace } = useAppRouter();
   const queryClient = useQueryClient();
 
-  return useMutation(deleteArticle, {
+  return useMutation({
+    mutationFn: deleteArticle,
     onSuccess: () => {
-      queryClient.invalidateQueries(GroupsKeys.getArticles(groupId));
-      queryClient.invalidateQueries(GroupsKeys.getNotices(groupId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getArticles(groupId) });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getNotices(groupId) });
       replace(`/grouping/${groupId}?tab=articles`);
     },
   });
@@ -61,10 +64,11 @@ export const useDeleteArticle = (groupId: number) => {
 export const usePostComment = (groupId: number, articleId: number) => {
   const queryClient = useQueryClient();
 
-  return useMutation(postComment, {
+  return useMutation({
+    mutationFn: postComment,
     onSuccess: () => {
-      queryClient.invalidateQueries(GroupsKeys.getComments(groupId, articleId));
-      queryClient.invalidateQueries(GroupsKeys.getArticle(groupId, articleId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getComments(groupId, articleId) });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getArticle(groupId, articleId) });
     },
   });
 };
@@ -72,10 +76,11 @@ export const usePostComment = (groupId: number, articleId: number) => {
 export const useDeleteComment = (groupId: number, articleId: number) => {
   const queryClient = useQueryClient();
 
-  return useMutation(deleteComment, {
+  return useMutation({
+    mutationFn: deleteComment,
     onSuccess: () => {
-      queryClient.invalidateQueries(GroupsKeys.getComments(groupId, articleId));
-      queryClient.invalidateQueries(GroupsKeys.getArticle(groupId, articleId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getComments(groupId, articleId) });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getArticle(groupId, articleId) });
     },
   });
 };
@@ -84,10 +89,11 @@ export const usePostApply = (groupId: number) => {
   const { replace } = useAppRouter();
   const queryClient = useQueryClient();
 
-  return useMutation(postApply, {
+  return useMutation({
+    mutationFn: postApply,
     onSuccess: () => {
-      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
-      queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupDetail(groupId) });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupMembers(groupId) });
       replace('/meeting/participate?tab=waiting');
     },
   });
@@ -96,20 +102,22 @@ export const usePostApply = (groupId: number) => {
 export const usePatchApply = (groupId: number) => {
   const queryClient = useQueryClient();
 
-  return useMutation(patchApply, {
+  return useMutation({
+    mutationFn: patchApply,
     onSuccess: () => {
-      queryClient.invalidateQueries(GroupsKeys.getApplies(groupId));
-      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
-      queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getApplies(groupId) });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupDetail(groupId) });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupMembers(groupId) });
     },
   });
 };
 
 export const usePostScrap = (groupId: number) => {
   const queryClient = useQueryClient();
-  return useMutation(postScrap, {
+  return useMutation({
+    mutationFn: postScrap,
     onMutate: async () => {
-      await queryClient.cancelQueries(GroupsKeys.getGroupDetail(groupId));
+      await queryClient.cancelQueries({ queryKey: GroupsKeys.getGroupDetail(groupId) });
       const previousData = queryClient.getQueryData<GroupDetailResponse>(
         GroupsKeys.getGroupDetail(groupId)
       );
@@ -121,7 +129,7 @@ export const usePostScrap = (groupId: number) => {
       return { previousData };
     },
     onSettled: () => {
-      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupDetail(groupId) });
     },
   });
 };
@@ -129,9 +137,10 @@ export const usePostScrap = (groupId: number) => {
 export const useDeleteScrapGroups = (groupId: number) => {
   const queryClient = useQueryClient();
 
-  return useMutation(deleteScrap, {
+  return useMutation({
+    mutationFn: deleteScrap,
     onMutate: async () => {
-      await queryClient.cancelQueries(GroupsKeys.getGroupDetail(groupId));
+      await queryClient.cancelQueries({ queryKey: GroupsKeys.getGroupDetail(groupId) });
 
       const previousData = queryClient.getQueryData<GroupDetailResponse>(
         GroupsKeys.getGroupDetail(groupId)
@@ -145,7 +154,7 @@ export const useDeleteScrapGroups = (groupId: number) => {
       return { previousData };
     },
     onSettled: () => {
-      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupDetail(groupId) });
     },
   });
 };
@@ -153,9 +162,10 @@ export const useDeleteScrapGroups = (groupId: number) => {
 export const useDeleteScrapMeeting = (groupId: number) => {
   const queryClient = useQueryClient();
 
-  return useMutation(deleteScrap, {
+  return useMutation({
+    mutationFn: deleteScrap,
     onMutate: async () => {
-      await queryClient.cancelQueries(MeetingKeys.getMeetingScraps());
+      await queryClient.cancelQueries({ queryKey: MeetingKeys.getMeetingScraps() });
 
       const previousData = queryClient.getQueryData<MeetingScrapResponse>(
         MeetingKeys.getMeetingScraps()
@@ -169,7 +179,7 @@ export const useDeleteScrapMeeting = (groupId: number) => {
       return { previousData };
     },
     onSettled: () => {
-      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupDetail(groupId) });
     },
   });
 };
@@ -178,11 +188,12 @@ export const useDeleteGroupMember = (groupId: number) => {
   const queryClient = useQueryClient();
   const { push } = useAppRouter();
 
-  return useMutation(deleteGroupMember, {
+  return useMutation({
+    mutationFn: deleteGroupMember,
     onSuccess: () => {
-      queryClient.resetQueries(GroupsKeys.getGroups());
-      queryClient.invalidateQueries(GroupsKeys.getGroupDetail(groupId));
-      queryClient.invalidateQueries(GroupsKeys.getGroupMembers(groupId));
+      queryClient.resetQueries({ queryKey: GroupsKeys.getGroups() });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupDetail(groupId) });
+      queryClient.invalidateQueries({ queryKey: GroupsKeys.getGroupMembers(groupId) });
       push('/grouping');
     },
   });
@@ -192,7 +203,8 @@ export const usePostEstimate = () => {
   const { push } = useAppRouter();
   const { open } = useModal({ isUnmountExit: false });
 
-  return useMutation(postEstimate, {
+  return useMutation({
+    mutationFn: postEstimate,
     onSuccess: () => {
       open(({ exit }) => <FeedbackCompleteModal onClose={exit} />);
       push('/meeting/participate?tab=participating');
