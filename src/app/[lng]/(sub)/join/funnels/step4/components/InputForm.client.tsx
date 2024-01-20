@@ -16,8 +16,7 @@ import { useDidMount } from '@/hooks/common/useDidMount';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
-
-import type { ElementType, KeyboardEventHandler } from 'react';
+import { type ElementType, type KeyboardEventHandler, useState } from 'react';
 
 export default function InputForm() {
   const { t } = useTranslation('join');
@@ -25,11 +24,10 @@ export default function InputForm() {
   const hookForm = useJoinContext();
   const { watch, handleSubmit, setValue, register, setError, clearErrors, control } = hookForm;
   const { nextStep } = useFunnelContext();
-  const { refetch, isDuplicateChecked, setIsDuplicateChecked } = useGetNicknameDuplicate({
+  const { refetch } = useGetNicknameDuplicate({
     nickname: watch('nickname'),
-    setError,
-    clearErrors,
   });
+  const [isDuplicateChecked, setIsDuplicateChecked] = useState(false);
 
   const { handleFileUploadClick, isLoading } = useFileUpload((files) =>
     setValue('imageUrl', files[0])
@@ -127,7 +125,20 @@ export default function InputForm() {
                   });
                   return;
                 }
-                await refetch();
+                const { data } = await refetch();
+                if (!data) return;
+                const { isExistNickname } = data;
+                if (isExistNickname) {
+                  setError('nickname', {
+                    type: 'duplicate',
+                    message: '이미 사용중인 닉네임입니다.',
+                  });
+                } else {
+                  setIsDuplicateChecked(true);
+                  clearErrors('nickname');
+                }
+
+                console.log(isExistNickname);
               }}
               type="button"
             >
