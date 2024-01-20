@@ -1,8 +1,8 @@
 import LinkSection from './components/LinkSection.server';
 import ProfileSection from './components/ProfileSection.client';
 import SettingHeader from './components/SettingHeader.client';
-import { RejectedFallback } from '@/components/ErrorBoundary';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Loading } from '@/components/Loading';
+import { Suspense } from 'react';
 
 interface PageParams {
   params: {
@@ -14,9 +14,9 @@ export default function page({ params: { lng } }: PageParams) {
   return (
     <>
       <SettingHeader />
-      <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
+      <Suspense fallback={<Loading />}>
         <ProfileSection />
-      </QueryAsyncBoundary>
+      </Suspense>
       <LinkSection lng={lng} />
     </>
   );

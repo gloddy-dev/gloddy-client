@@ -1,10 +1,9 @@
 import MemeberList from './components/MemberList.client';
 import MembersHeader from './components/MembersHeader.client';
 import { Keys, getGroupMembers } from '@/apis/groups';
-import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Suspense } from 'react';
 
 interface GroupingMembersPageProps {
   params: {
@@ -18,14 +17,14 @@ export default function GroupingMembersPage({ params }: GroupingMembersPageProps
   return (
     <>
       <MembersHeader />
-      <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
         <HydrationProvider
           queryFn={() => getGroupMembers(groupId)}
           queryKey={Keys.getGroupMembers(groupId)}
         >
           <MemeberList />
         </HydrationProvider>
-      </QueryAsyncBoundary>
+      </Suspense>
     </>
   );
 }

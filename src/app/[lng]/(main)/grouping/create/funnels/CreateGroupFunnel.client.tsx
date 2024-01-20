@@ -53,7 +53,7 @@ export default function CreateFunnel() {
           <MeetDateStep onDone={prevStep} />
         </Funnel.Step>
       </Funnel>
-      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
+      <LayerLoading isPending={status === 'pending' || status === 'success'} />
     </>
   );
 }

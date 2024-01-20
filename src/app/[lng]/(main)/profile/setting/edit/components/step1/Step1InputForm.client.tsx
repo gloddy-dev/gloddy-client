@@ -33,7 +33,7 @@ export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
     name: 'imageUrl',
     control,
   });
-  const { handleFileUploadClick, isLoading } = useFileUpload((files) => onChange(files[0]));
+  const { handleFileUploadClick, isPending } = useFileUpload((files) => onChange(files[0]));
 
   const isAllTyped = formState.isValid && !!watch('gender');
 
@@ -68,7 +68,7 @@ export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
           imageUrl={value}
           size="large"
           iconVariant="draft_orders"
-          isLoading={isLoading}
+          isPending={isPending}
           onClick={handleFileUploadClick}
         />
       </Flex>

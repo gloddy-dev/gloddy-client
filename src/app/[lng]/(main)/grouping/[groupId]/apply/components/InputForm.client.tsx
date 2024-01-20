@@ -71,7 +71,7 @@ export default function InputForm() {
           {t('apply.submit.label')}
         </Button>
       </ButtonGroup>
-      <LayerLoading isLoading={status === 'loading' || status === 'success'} />
+      <LayerLoading isPending={status === 'pending' || status === 'success'} />
     </>
   );
 }

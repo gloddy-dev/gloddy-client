@@ -10,18 +10,17 @@ import {
   getNotices,
 } from './apis';
 import { Keys } from './keys';
-import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@suspensive/react-query';
+import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
 export const useGetGroups = () => {
-  const { data, ...rest } = useSuspenseInfiniteQuery(
-    Keys.getGroups(),
-    ({ pageParam = 0 }) => getGroups(pageParam),
-    {
-      getNextPageParam: (lastPage) =>
-        lastPage.totalPage !== lastPage.currentPage ? lastPage.currentPage + 1 : undefined,
-    }
-  );
+  const { data, ...rest } = useSuspenseInfiniteQuery({
+    queryKey: Keys.getGroups(),
+    queryFn: ({ pageParam = 0 }) => getGroups(pageParam),
+    getNextPageParam: (lastPage) =>
+      lastPage.totalPage !== lastPage.currentPage ? lastPage.currentPage + 1 : undefined,
+    initialPageParam: 0,
+  });
 
   const mergeData = useMemo(() => data.pages?.flatMap((page) => page.contents), [data.pages]);
 
@@ -32,17 +31,19 @@ export const useGetGroups = () => {
 };
 
 export const useGetGroupDetail = (groupId: number) => {
-  return useSuspenseQuery(Keys.getGroupDetail(groupId), () => getGroupDetail(groupId));
+  return useSuspenseQuery({
+    queryKey: Keys.getGroupDetail(groupId),
+    queryFn: () => getGroupDetail(groupId),
+  });
 };
 
 export const useGetArticles = (groupId: number) => {
-  const { data, ...rest } = useSuspenseInfiniteQuery(
-    Keys.getArticles(groupId),
-    ({ pageParam = 0 }) => getArticles(groupId, pageParam),
-    {
-      getNextPageParam: (lastPage) => lastPage.currentPage + 1,
-    }
-  );
+  const { data, ...rest } = useSuspenseInfiniteQuery({
+    queryKey: Keys.getArticles(groupId),
+    queryFn: ({ pageParam = 0 }) => getArticles(groupId, pageParam),
+    getNextPageParam: (lastPage) => lastPage.currentPage + 1,
+    initialPageParam: 0,
+  });
 
   return {
     data: data.pages?.flatMap((page) => page.contents),
@@ -51,32 +52,40 @@ export const useGetArticles = (groupId: number) => {
 };
 
 export const useGetArticle = (groupId: number, articleId: number) => {
-  return useSuspenseQuery(
-    Keys.getArticle(groupId, articleId),
-    () => getArticle(groupId, articleId),
-    {
-      cacheTime: 0,
-    }
-  );
+  return useSuspenseQuery({
+    queryKey: Keys.getArticle(groupId, articleId),
+    queryFn: () => getArticle(groupId, articleId),
+    gcTime: 0,
+  });
 };
 
 export const useGetComments = (groupId: number, articleId: number) => {
-  return useSuspenseQuery(Keys.getComments(groupId, articleId), () =>
-    getComments(groupId, articleId)
-  );
+  return useSuspenseQuery({
+    queryKey: Keys.getComments(groupId, articleId),
+    queryFn: () => getComments(groupId, articleId),
+  });
 };
 
 export const useGetGroupMembers = (groupId: number) => {
-  return useSuspenseQuery(Keys.getGroupMembers(groupId), () => getGroupMembers(groupId));
+  return useSuspenseQuery({
+    queryKey: Keys.getGroupMembers(groupId),
+    queryFn: () => getGroupMembers(groupId),
+  });
 };
 
 export const useGetNotices = (groupId: number) => {
-  return useSuspenseQuery(Keys.getNotices(groupId), () => getNotices(groupId));
+  return useSuspenseQuery({
+    queryKey: Keys.getNotices(groupId),
+    queryFn: () => getNotices(groupId),
+  });
 };
 
 export const useGetApplies = (groupId: number) => {
-  return useSuspenseQuery(Keys.getApplies(groupId), () => getApplies(groupId));
+  return useSuspenseQuery({
+    queryKey: Keys.getApplies(groupId),
+    queryFn: () => getApplies(groupId),
+  });
 };
 
 export const useGetEstimate = (groupId: number) =>
-  useSuspenseQuery(Keys.getEstimate(groupId), () => getEstimate(groupId));
+  useSuspenseQuery({ queryKey: Keys.getEstimate(groupId), queryFn: () => getEstimate(groupId) });

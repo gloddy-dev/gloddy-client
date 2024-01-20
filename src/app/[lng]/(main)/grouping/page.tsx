@@ -1,10 +1,10 @@
 import CreateGroupButton from './components/CreateGroupButton.client';
 import GroupingCardList from './components/GroupingCardList.client';
 import GroupingHeader from './components/GroupingHeader';
-import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Footer } from '@/components/Footer';
+import { Loading } from '@/components/Loading';
 import { Spacing } from '@/components/Spacing';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Suspense } from 'react';
 
 interface GroupingPageProps {
   params: {
@@ -16,9 +16,9 @@ export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
   return (
     <>
       <GroupingHeader />
-      <QueryAsyncBoundary rejectedFallback={RejectedFallback}>
+      <Suspense fallback={<Loading />}>
         <GroupingCardList />
-      </QueryAsyncBoundary>
+      </Suspense>
       <CreateGroupButton />
       <Spacing size={60} />
       <Footer page="grouping" lng={lng} />

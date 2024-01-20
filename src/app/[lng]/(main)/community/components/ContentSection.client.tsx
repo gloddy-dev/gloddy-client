@@ -1,13 +1,12 @@
 'use client';
 
-import { Suspense } from 'react';
-
 import AllContent from './AllContent.client';
 import KpopContent from './KpopContent';
 import LanguageContent from './LanguageContent.client';
 import QuestionContent from './QuestionContent.client';
 import { useTranslation } from '@/app/i18n/client';
 import { Tabs } from '@/components/Tabs';
+import { Suspense } from 'react';
 
 export default function ContentSection() {
   const { t } = useTranslation('community');
