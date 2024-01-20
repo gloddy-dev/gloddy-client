@@ -8,15 +8,15 @@ export const usePatchProfile = () => {
   return useMutation({
     mutationFn: patchProfile,
     onSuccess: () => {
-      queryClient.invalidateQueries(Keys.getProfile());
+      queryClient.invalidateQueries({ queryKey: Keys.getProfile() });
       back();
     },
   });
 };
 
-export const useDeleteMate = () => useMutation(deleteMate);
+export const useDeleteMate = () => useMutation({ mutationFn: deleteMate });
 
-export const useEmailVerifyMutation = () => useMutation(postEmailVerify);
+export const useEmailVerifyMutation = () => useMutation({ mutationFn: postEmailVerify });
 
 export const usePatchSignOut = () => {
   const queryClient = useQueryClient();
