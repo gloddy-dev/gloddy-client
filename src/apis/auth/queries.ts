@@ -1,13 +1,14 @@
-'use client';
 import { Keys, NicknameDuplicateResponse, getNicknameDuplicate, getSchoolSearch } from '.';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { UseFormClearErrors, UseFormSetError } from 'react-hook-form';
 
-// export const useGetSearchSchool = (searchWord: string) =>
-//   useSuspenseQuery(Keys.getSchoolSearch(searchWord), () => getSchoolSearch(searchWord), {
-//     enabled: !!searchWord,
-//   });
+export const useGetSearchSchool = (searchWord: string) =>
+  useSuspenseQuery({
+    queryKey: Keys.getSchoolSearch(searchWord),
+    queryFn: () => getSchoolSearch(searchWord),
+    // enabled: !!searchWord,
+  });
 
 type InputType = { nickname: string };
 interface UseGetNicknameDuplicateProps {
