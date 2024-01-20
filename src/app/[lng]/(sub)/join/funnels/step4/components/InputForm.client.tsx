@@ -126,9 +126,7 @@ export default function InputForm() {
                   return;
                 }
                 const { data } = await refetch();
-                if (!data) return;
-                const { isExistNickname } = data;
-                if (isExistNickname) {
+                if (data?.isExistNickname) {
                   setError('nickname', {
                     type: 'duplicate',
                     message: '이미 사용중인 닉네임입니다.',
@@ -137,8 +135,6 @@ export default function InputForm() {
                   setIsDuplicateChecked(true);
                   clearErrors('nickname');
                 }
-
-                console.log(isExistNickname);
               }}
               type="button"
             >
