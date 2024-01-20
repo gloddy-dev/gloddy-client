@@ -1,10 +1,10 @@
 'use client';
-import { Suspense } from 'react';
 
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
+import { Suspense } from 'react';
 
 interface ArticleDetailHeaderProps {
   title: string;

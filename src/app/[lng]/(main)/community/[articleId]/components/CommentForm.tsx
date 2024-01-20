@@ -1,12 +1,11 @@
 'use client';
 
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
-
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
 import cn from '@/utils/cn';
+import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 export type CommentFormType = {
   content: string;

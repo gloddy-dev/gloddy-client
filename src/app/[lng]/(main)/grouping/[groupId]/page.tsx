@@ -4,7 +4,7 @@ import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups
 import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Suspense } from 'react';
 
 interface GroupingDetailPageProps {
   params: {
@@ -18,10 +18,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
   return (
     <>
       <GroupDetailHeader />
-      <QueryAsyncBoundary
-        rejectedFallback={RejectedFallback}
-        pendingFallback={<Loading className="h-[calc(100dvh-48px)]" />}
-      >
+      <Suspense fallback={<Loading className="h-[calc(100dvh-48px)]" />}>
         <HydrationProvider
           queryMultipleFn={[
             () => getGroupDetail(groupId),
@@ -36,7 +33,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
         >
           <GroupDetailPage />
         </HydrationProvider>
-      </QueryAsyncBoundary>
+      </Suspense>
     </>
   );
 }

@@ -1,10 +1,9 @@
 import InputForm from './components/InputForm.client';
 import WriteHeader from './components/WriteHeader.client';
 import { Keys, getGroupDetail } from '@/apis/groups';
-import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Suspense } from 'react';
 
 interface WritePageProps {
   params: {
@@ -18,14 +17,14 @@ export default function WritePage({ params }: WritePageProps) {
   return (
     <div className="flex h-full flex-col">
       <WriteHeader />
-      <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
         <HydrationProvider
           queryFn={() => getGroupDetail(groupId)}
           queryKey={Keys.getGroupDetail(groupId)}
         >
           <InputForm />
         </HydrationProvider>
-      </QueryAsyncBoundary>
+      </Suspense>
     </div>
   );
 }

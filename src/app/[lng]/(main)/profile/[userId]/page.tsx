@@ -1,10 +1,9 @@
 import ProfileByIdDetail from './components/ProfileByIdDetail.client';
 import ProfileByIdHeader from './components/ProfileByIdHeader';
 import { Keys, getProfileById } from '@/apis/profile';
-import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Suspense } from 'react';
 
 interface PageProps {
   params: {
@@ -16,7 +15,7 @@ export default function page({ params }: PageProps) {
   const userId = Number(params.userId);
 
   return (
-    <QueryAsyncBoundary rejectedFallback={RejectedFallback} pendingFallback={<Loading />}>
+    <Suspense fallback={<Loading />}>
       <HydrationProvider
         queryFn={() => getProfileById(userId)}
         queryKey={Keys.getProfileById(userId)}
@@ -24,6 +23,6 @@ export default function page({ params }: PageProps) {
         <ProfileByIdHeader />
         <ProfileByIdDetail />
       </HydrationProvider>
-    </QueryAsyncBoundary>
+    </Suspense>
   );
 }

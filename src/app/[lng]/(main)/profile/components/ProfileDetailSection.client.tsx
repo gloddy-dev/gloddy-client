@@ -1,9 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useParams, usePathname } from 'next/navigation';
-
 import { useGetProfileById } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
@@ -18,6 +14,9 @@ import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useParams, usePathname } from 'next/navigation';
 
 interface ProfileDetailProps {
   profileData: ReturnType<typeof useGetProfileById>['data'];
