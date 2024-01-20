@@ -72,7 +72,7 @@ function MoreButtonAction({ groupId }: ActionProps) {
   const { open: openItemModal, exit: exitItemModal } = useModal();
   const { open: openDoneModal, exit: exitDoneModal } = useModal();
 
-  const { mutate: mutateExitGroup, isLoading: isExitGroupLoading } = useDeleteGroupMember(groupId);
+  const { mutate: mutateExitGroup, isPending: isExitGroupLoading } = useDeleteGroupMember(groupId);
   const { data: groupDetailData } = useGetGroupDetail(groupId);
   const { isCaptain, myGroup } = groupDetailData;
 

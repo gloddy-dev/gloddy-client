@@ -16,7 +16,7 @@ export interface ModalProps {
   variant?: 'warning' | 'success' | 'ok';
   className?: string;
   okMessage?: string;
-  isLoading?: boolean;
+  isPending?: boolean;
 }
 
 const variantMap = {
@@ -40,7 +40,7 @@ export function Modal({
   variant,
   className,
   okMessage,
-  isLoading,
+  isPending,
 }: StrictPropsWithChildren<ModalProps>) {
   const { t } = useTranslation('common');
   const [isDisabled, setIsDisabled] = useState(false);
@@ -66,7 +66,7 @@ export function Modal({
               size="small"
               onClick={onOkClickHandler}
               disabled={isDisabled}
-              isLoading={isLoading}
+              isPending={isPending}
               actionType="throttle"
             >
               {okText || t('yes')}

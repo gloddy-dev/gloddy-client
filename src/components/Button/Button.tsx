@@ -28,7 +28,7 @@ interface ButtonProps<T extends React.ElementType> extends React.HTMLAttributes<
   /**
    * 로딩 중임을 표시합니다. (default: false)
    */
-  isLoading?: boolean;
+  isPending?: boolean;
   /**
    * 클릭 이벤트를 설정합니다.
    */
@@ -50,7 +50,7 @@ export default function Button<T extends React.ElementType>({
   disabled,
   children,
   onClick,
-  isLoading = false,
+  isPending = false,
   size = 'medium',
   variant = 'solid-primary',
   fullWidth = true,
@@ -101,10 +101,10 @@ export default function Button<T extends React.ElementType>({
           ? handleThrottleClick
           : onClick
       }
-      disabled={disabled || isLoading}
+      disabled={disabled || isPending}
       {...props}
     >
-      {isLoading ? <Loading /> : children}
+      {isPending ? <Loading /> : children}
     </Element>
   );
 }

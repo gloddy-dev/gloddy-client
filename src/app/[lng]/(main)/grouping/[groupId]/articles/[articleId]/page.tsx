@@ -2,11 +2,10 @@ import ArticleDetail from './components/ArticleDetail.client';
 import ArticleHeader from './components/ArticleHeader.client';
 import CommentForm from './components/CommentForm';
 import { Keys, getArticle } from '@/apis/groups';
-import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
-import { QueryAsyncBoundary } from '@suspensive/react-query';
+import { Suspense } from 'react';
 
 interface ArticleDetailPageProps {
   params: {
@@ -22,17 +21,14 @@ export default function ArticlePage({ params }: ArticleDetailPageProps) {
   return (
     <>
       <ArticleHeader />
-      <QueryAsyncBoundary
-        rejectedFallback={RejectedFallback}
-        pendingFallback={<Loading className="h-[calc(100dvh-250px)]" />}
-      >
+      <Suspense fallback={<Loading className="h-[calc(100dvh-250px)]" />}>
         <HydrationProvider
           queryFn={() => getArticle(groupId, articleId)}
           queryKey={Keys.getArticle(groupId, articleId)}
         >
           <ArticleDetail />
         </HydrationProvider>
-      </QueryAsyncBoundary>
+      </Suspense>
       <Spacing size={100} />
       <CommentForm />
       <Spacing size={60} />

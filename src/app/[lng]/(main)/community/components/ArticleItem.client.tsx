@@ -1,9 +1,5 @@
 'use client';
 
-import { formatDistanceStrict } from 'date-fns';
-import { enUS, ko } from 'date-fns/locale';
-import Image from 'next/image';
-
 import ArticleBadge from './ArticleBadge.client';
 import { CommunityArticle } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
@@ -14,6 +10,9 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import { currentKoreaTime } from '@/utils/date';
+import { formatDistanceStrict } from 'date-fns';
+import { enUS, ko } from 'date-fns/locale';
+import Image from 'next/image';
 
 interface ArticleItemProps {
   article: CommunityArticle;
