@@ -43,7 +43,6 @@ Gloddy는 국적에 상관없이 자유롭게 모임을 형성하고 원하는 �
   </tr>
 </table>
 
-
 ## 🛠️ 기술 스택
 
 <div align='center'>

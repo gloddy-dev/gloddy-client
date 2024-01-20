@@ -1,11 +1,10 @@
-import Image from 'next/image';
-
 import { CommunityArticle } from '@/apis/groups';
 import { CardHeader } from '@/components/Card';
 import { Flex } from '@/components/Layout';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
+import Image from 'next/image';
 
 interface ArticleItemProps {
   article: CommunityArticle;
