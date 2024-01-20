@@ -19,6 +19,7 @@ export const useGetGroups = () => {
     queryFn: ({ pageParam = 0 }) => getGroups(pageParam),
     getNextPageParam: (lastPage) =>
       lastPage.totalPage !== lastPage.currentPage ? lastPage.currentPage + 1 : undefined,
+    initialPageParam: 0,
   });
 
   const mergeData = useMemo(() => data.pages?.flatMap((page) => page.contents), [data.pages]);
@@ -41,6 +42,7 @@ export const useGetArticles = (groupId: number) => {
     queryKey: Keys.getArticles(groupId),
     queryFn: ({ pageParam = 0 }) => getArticles(groupId, pageParam),
     getNextPageParam: (lastPage) => lastPage.currentPage + 1,
+    initialPageParam: 0,
   });
 
   return {
