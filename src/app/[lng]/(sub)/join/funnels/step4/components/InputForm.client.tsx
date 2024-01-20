@@ -5,7 +5,6 @@ import { formatBirthBackspace, formatBirthTyping } from '../util';
 import { useGetNicknameDuplicate } from '@/apis/auth';
 import CountryBotoomSheet from '@/app/[lng]/(main)/profile/setting/edit/components/step1/CountryBotoomSheet';
 import { useTranslation } from '@/app/i18n/client';
-import { Avatar } from '@/components/Avatar';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
@@ -18,8 +17,6 @@ import { useModal } from '@/hooks/useModal';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 import Image from 'next/image';
 import { type ElementType, type KeyboardEventHandler, useState } from 'react';
-
-import type { ElementType, KeyboardEventHandler } from 'react';
 
 export default function InputForm() {
   const { t } = useTranslation('join');
