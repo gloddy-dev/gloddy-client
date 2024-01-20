@@ -51,7 +51,7 @@ export function useFileUpload(
       );
     };
     input.click();
-  }, [handleFileChange, mutate, options?.accept, options?.multiple]);
+  }, [handleFileChange, mutate, options?.accept, options?.multiple, previewImageField]);
 
   return {
     handleFileUploadClick,
