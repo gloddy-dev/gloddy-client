@@ -29,7 +29,7 @@ export default function InputForm() {
   });
   const [isDuplicateChecked, setIsDuplicateChecked] = useState(false);
 
-  const { handleFileUploadClick, isLoading } = useFileUpload((files) =>
+  const { handleFileUploadClick, isPending } = useFileUpload((files) =>
     setValue('imageUrl', files[0])
   );
 
@@ -85,7 +85,7 @@ export default function InputForm() {
           imageUrl={watch('imageUrl') || ''}
           size="large"
           iconVariant="add"
-          isLoading={isLoading}
+          isPending={isPending}
           onClick={handleFileUploadClick}
         />
       </Flex>

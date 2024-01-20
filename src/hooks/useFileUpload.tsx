@@ -25,7 +25,7 @@ export function useFileUpload(
   previewImageField?: UseImageUploadProps['previewImageField'],
   options?: UseImageUploadProps['options']
 ) {
-  const { mutate, isLoading } = usePostFiles();
+  const { mutate, isPending } = usePostFiles();
 
   const handleFileUploadClick = useCallback(() => {
     const input = document.createElement('input');
@@ -55,6 +55,6 @@ export function useFileUpload(
 
   return {
     handleFileUploadClick,
-    isLoading,
+    isPending,
   };
 }

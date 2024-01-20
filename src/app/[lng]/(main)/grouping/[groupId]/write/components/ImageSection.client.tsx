@@ -20,7 +20,7 @@ export default function ImageSection({ control }: ImageSectionProps) {
     control,
   });
 
-  const { handleFileUploadClick, isLoading } = useFileUpload((files) => {
+  const { handleFileUploadClick, isPending } = useFileUpload((files) => {
     onChange([...value, ...files]);
   });
 
@@ -35,7 +35,7 @@ export default function ImageSection({ control }: ImageSectionProps) {
         {value.map((imageUrl, index) => (
           <ImageThumbnail key={imageUrl + index} imageUrl={imageUrl} onClick={handleDeleteClick} />
         ))}
-        {isLoading && (
+        {isPending && (
           <Flex
             direction="column"
             justify="center"
@@ -45,7 +45,7 @@ export default function ImageSection({ control }: ImageSectionProps) {
             <Loading />
           </Flex>
         )}
-        {value.length < 3 && !(isLoading && value.length === 2) && (
+        {value.length < 3 && !(isPending && value.length === 2) && (
           <AddImageButton imageCount={value.length} onClick={handleFileUploadClick} />
         )}
       </Flex>

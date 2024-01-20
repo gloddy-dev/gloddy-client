@@ -10,7 +10,7 @@ interface AvatarProps {
    * 아바타의 이미지 URL을 지정합니다. (필수)
    */
   imageUrl: string;
-  isLoading?: boolean;
+  isPending?: boolean;
   /**
    * 아바타의 크기를 지정합니다. small: 40x40, medium: 56x56, large: 96x96 (기본값: medium)
    */
@@ -24,7 +24,7 @@ interface AvatarProps {
 }
 export default function Avatar({
   imageUrl,
-  isLoading,
+  isPending,
   size = 'medium',
   iconVariant = 'none',
   className,
@@ -46,7 +46,7 @@ export default function Avatar({
       onClick={onClick}
     >
       <div className="relative flex w-full before:block before:pb-[100%]">
-        <AvatarImage imageUrl={imageUrl} isLoading={isLoading} />
+        <AvatarImage imageUrl={imageUrl} isPending={isPending} />
         {iconVariant !== 'none' && (
           <Icon
             id={`32-${iconVariant}`}
@@ -76,9 +76,9 @@ export default function Avatar({
 
 const AvatarImage = memo(function ({
   imageUrl,
-  isLoading,
-}: Pick<AvatarProps, 'imageUrl' | 'isLoading'>) {
-  if (isLoading) {
+  isPending,
+}: Pick<AvatarProps, 'imageUrl' | 'isPending'>) {
+  if (isPending) {
     return (
       <Flex direction="column" justify="center" align="center" className="h-full w-full">
         <Loading />
