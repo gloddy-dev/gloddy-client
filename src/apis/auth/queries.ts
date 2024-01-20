@@ -7,7 +7,6 @@ export const useGetSearchSchool = (searchWord: string) =>
   useSuspenseQuery({
     queryKey: Keys.getSchoolSearch(searchWord),
     queryFn: () => getSchoolSearch(searchWord),
-    // enabled: !!searchWord,
   });
 
 type InputType = { nickname: string };
