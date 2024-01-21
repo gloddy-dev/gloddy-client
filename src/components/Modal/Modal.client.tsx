@@ -43,9 +43,7 @@ export function Modal({
   isPending,
 }: StrictPropsWithChildren<ModalProps>) {
   const { t } = useTranslation('common');
-  const [isDisabled, setIsDisabled] = useState(false);
   const onOkClickHandler = () => {
-    setIsDisabled(true);
     onOkClick?.();
   };
 
@@ -65,7 +63,6 @@ export function Modal({
               className="w-full"
               size="small"
               onClick={onOkClickHandler}
-              disabled={isDisabled}
               isPending={isPending}
               actionType="throttle"
             >
