@@ -78,6 +78,9 @@
   "humorous": "Humorous",
   "country": "country",
 
+  "personality_later_title": "Would you like to skip the personality type?",
+  "personality_later": "You can choose your personality in your personal profile after signing up.",
+
   "재학생 인증을 건너뛰시겠습니까?": "Would you like to skip student verification?",
   "재학생 인증을 진행하면": "If you proceed with student verification,",
   "인증마크": "verification badge",

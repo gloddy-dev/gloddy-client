@@ -1,3 +1,5 @@
+import { useController } from 'react-hook-form';
+
 import CountryBotoomSheet from './CountryBotoomSheet';
 import { Step1Props } from './Step1.client';
 import { formatBirthDTO } from '../../util';
@@ -15,7 +17,6 @@ import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
-import { useController } from 'react-hook-form';
 
 interface Step1InputFormProps extends Step1Props {}
 
@@ -35,7 +36,7 @@ export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
   });
   const { handleFileUploadClick, isPending } = useFileUpload((files) => onChange(files[0]));
 
-  const isAllTyped = formState.isValid && !!watch('gender');
+  const isAllTyped = formState.isValid && !!watch('gender') && personalities.length;
 
   const onSubmit = (data: ProfileRequest) => {
     if (!isAllTyped) return;
