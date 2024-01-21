@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import WriteModal from '../components/WriteModal';
 import { WriteFormType } from '../type';
+import { CreateArticleRequest, GetArticlesRequest } from '@/apis/community';
 import { usePostCommunityArticle } from '@/apis/community/mutations';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -30,20 +31,21 @@ export default function InputSection() {
   const { register, handleSubmit, formState, control } = hookForm;
 
   const onSubmit: SubmitHandler<WriteFormType> = async (formData) => {
-    console.log(formData);
-    exit();
+    if (!formData.categoryId) throw new Error();
+
     mutateArticle({
       title: formData.title,
       content: formData.content,
       categoryId: formData.categoryId,
       images: formData.images,
     });
+    exit();
   };
 
   const options = [
-    { id: 1, name: t('create.category.kpop') },
-    { id: 2, name: t('create.category.qna') },
-    { id: 3, name: t('create.category.lang') },
+    { id: 1, name: t('create.category.K-POP') },
+    { id: 2, name: t('create.category.Q&A') },
+    { id: 3, name: t('create.category.Language') },
   ];
 
   return (

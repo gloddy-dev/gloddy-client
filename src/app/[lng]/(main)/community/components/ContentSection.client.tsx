@@ -1,12 +1,11 @@
 'use client';
 
-import AllContent from './AllContent.client';
-import KpopContent from './KpopContent';
-import LanguageContent from './LanguageContent.client';
-import QuestionContent from './QuestionContent.client';
-import { useTranslation } from '@/app/i18n/client';
-import { Tabs } from '@/components/Tabs';
 import { Suspense } from 'react';
+
+import AllContent from '@/app/[lng]/(main)/community/components/AllContent.client';
+import { useTranslation } from '@/app/i18n/client';
+import { Loading } from '@/components/Loading';
+import { Tabs } from '@/components/Tabs';
 
 export default function ContentSection() {
   const { t } = useTranslation('community');
@@ -14,29 +13,29 @@ export default function ContentSection() {
   return (
     <Tabs>
       <Tabs.List>
-        <Tabs.Tab text={t('all')} value="all" />
-        <Tabs.Tab text={t('kpop')} value="kpop" />
-        <Tabs.Tab text={t('question')} value="question" />
-        <Tabs.Tab text={t('language')} value="language" />
+        <Tabs.Tab text={t('category.All')} value="all" />
+        <Tabs.Tab text={t('category.K-POP')} value="kpop" />
+        <Tabs.Tab text={t('category.Q&A')} value="question" />
+        <Tabs.Tab text={t('category.Language')} value="language" />
       </Tabs.List>
       <Tabs.Panel value="all">
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <AllContent />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="kpop">
-        <Suspense>
-          <KpopContent />
+        <Suspense fallback={<Loading />}>
+          <div></div>
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="question">
-        <Suspense>
-          <QuestionContent />
+        <Suspense fallback={<Loading />}>
+          <div></div>
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="language">
-        <Suspense>
-          <LanguageContent />
+        <Suspense fallback={<Loading />}>
+          <div></div>
         </Suspense>
       </Tabs.Panel>
     </Tabs>
