@@ -5,14 +5,13 @@ import { Keys } from '@/apis/community/keys';
 import useAppRouter from '@/hooks/useAppRouter';
 
 export const usePostCommunityArticle = () => {
-  const { replace } = useAppRouter();
+  const { back } = useAppRouter();
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: postCreateCommunityArticle,
     onSuccess: (data) => {
-      queryClient.resetQueries({ queryKey: Keys.getCommunityArticles() });
-      replace('/community');
+      back()
     },
   });
 };

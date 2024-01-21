@@ -6,6 +6,9 @@ import AllContent from '@/app/[lng]/(main)/community/components/AllContent.clien
 import { useTranslation } from '@/app/i18n/client';
 import { Loading } from '@/components/Loading';
 import { Tabs } from '@/components/Tabs';
+import KpopContent from "@/app/[lng]/(main)/community/components/KpopContent";
+import QuestionContent from "@/app/[lng]/(main)/community/components/QuestionContent.client";
+import LanguageContent from "@/app/[lng]/(main)/community/components/LanguageContent.client";
 
 export default function ContentSection() {
   const { t } = useTranslation('community');
@@ -25,17 +28,17 @@ export default function ContentSection() {
       </Tabs.Panel>
       <Tabs.Panel value="kpop">
         <Suspense fallback={<Loading />}>
-          <div></div>
+          <KpopContent />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="question">
         <Suspense fallback={<Loading />}>
-          <div></div>
+          <QuestionContent />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="language">
         <Suspense fallback={<Loading />}>
-          <div></div>
+          <LanguageContent />
         </Suspense>
       </Tabs.Panel>
     </Tabs>

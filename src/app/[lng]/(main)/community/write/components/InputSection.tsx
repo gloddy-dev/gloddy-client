@@ -31,15 +31,15 @@ export default function InputSection() {
   const { register, handleSubmit, formState, control } = hookForm;
 
   const onSubmit: SubmitHandler<WriteFormType> = async (formData) => {
-    if (!formData.categoryId) throw new Error();
+    if (formData.categoryId == null) throw new Error();
 
+    exit();
     mutateArticle({
       title: formData.title,
       content: formData.content,
       categoryId: formData.categoryId,
       images: formData.images,
     });
-    exit();
   };
 
   const options = [

@@ -2,20 +2,27 @@
 
 import ArticleItem from './ArticleItem.client';
 import Empty from './Empty';
-import { CommunityArticle } from '@/apis/groups';
 import { ItemList } from '@/components/List';
-import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
+import {useInView} from "react-intersection-observer";
+import {useGetCommunityArticles} from "@/apis/community/queries";
+import {useEffect} from "react";
 
 export default function LanguageContent() {
-  const articleData: CommunityArticle[] = [...DUMMY_ARTICLES_DATA].filter(
-    (article) => article.articleType === 'language'
-  );
+  const { ref, inView } = useInView();
+  const { data: articleList, fetchNextPage } = useGetCommunityArticles(3);
+
+  useEffect(() => {
+    if (inView) fetchNextPage();
+  }, [inView, fetchNextPage]);
 
   return (
-    <ItemList
-      data={articleData}
-      renderItem={(article) => <ArticleItem article={article} />}
-      renderEmpty={() => <Empty />}
-    />
+    <>
+      <ItemList
+        data={articleList}
+        renderItem={(articleData) => <ArticleItem articleData={articleData} />}
+        renderEmpty={() => <Empty />}
+      />
+      <div ref={ref} />
+    </>
   );
 }

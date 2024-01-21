@@ -3,13 +3,26 @@
 import ArticleItem from './ArticleItem.client';
 import Empty from './Empty';
 import { ItemList } from '@/components/List';
+import {useInView} from "react-intersection-observer";
+import {useGetCommunityArticles} from "@/apis/community/queries";
+import {useEffect} from "react";
 
 export default function QuestionContent() {
+  const { ref, inView } = useInView();
+  const { data: articleList, fetchNextPage } = useGetCommunityArticles(2);
+
+  useEffect(() => {
+    if (inView) fetchNextPage();
+  }, [inView, fetchNextPage]);
+
   return (
-    <ItemList
-      data={articleData}
-      renderItem={(article) => <ArticleItem article={article} />}
-      renderEmpty={() => <Empty />}
-    />
+    <>
+      <ItemList
+        data={articleList}
+        renderItem={(articleData) => <ArticleItem articleData={articleData} />}
+        renderEmpty={() => <Empty />}
+      />
+      <div ref={ref} />
+    </>
   );
 }
