@@ -57,7 +57,8 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
       <Flex justify="between" align="center">
         <ArticleBadge type={category.name}>{t(`category.${category.name}`)}</ArticleBadge>
         <p className="text-caption text-sign-tertiary">
-          {formatDistanceStrict(new Date(createdAt), currentKoreaTime, { addSuffix: true, locale })}
+          {/*{formatDistanceStrict(new Date(createdAt), currentKoreaTime, { addSuffix: true, locale })}*/}
+
         </p>
       </Flex>
       <Spacing size={12} />

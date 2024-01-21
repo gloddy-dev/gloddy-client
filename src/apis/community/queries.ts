@@ -5,7 +5,7 @@ import { Keys } from '@/apis/community/keys';
 
 export const useGetCommunityArticles = (categoryId?: number) => {
   const { data, ...rest } = useSuspenseInfiniteQuery({
-    queryKey: Keys.getCommunityArticles(),
+    queryKey: Keys.getCommunityArticles(categoryId),
     queryFn: ({ pageParam = 0 }) => getCommunityArticles({ categoryId, pageParam }),
     getNextPageParam: (lastPage) =>
       lastPage.data.currentPage ? lastPage.data.currentPage + 1 : undefined,

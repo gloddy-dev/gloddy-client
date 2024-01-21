@@ -1,3 +1,3 @@
 export const Keys = Object.freeze({
-  getCommunityArticles: () => ['getCommunityArticles'],
+  getCommunityArticles: (categoryId?: number) => ['getCommunityArticles', categoryId],
 });
