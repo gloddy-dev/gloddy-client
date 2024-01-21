@@ -12,7 +12,6 @@ interface CommunityArticlePageProps {
   };
 }
 
-
 export default function CommunityArticlePage({ params }: CommunityArticlePageProps) {
   const { t } = useTranslation('community');
 
