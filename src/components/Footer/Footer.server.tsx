@@ -1,8 +1,9 @@
+import Link from 'next/link';
+
 import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
 import { serverTranslation } from '@/app/i18n';
 import cn from '@/utils/cn';
-import Link from 'next/link';
 
 import type { PageType } from '@/types';
 
@@ -26,12 +27,12 @@ const tabList: TabType[] = [
     title: '나의모임',
     url: '/meeting/participate?tab=participating',
   },
-  // {
-  //   id: '3',
-  //   name: 'community',
-  //   title: '커뮤니티',
-  //   url: '/community?tab=all',
-  // },
+  {
+    id: '3',
+    name: 'community',
+    title: '커뮤니티',
+    url: '/community?tab=all',
+  },
   {
     id: '3',
     name: 'profile',
