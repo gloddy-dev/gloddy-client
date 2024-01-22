@@ -15,7 +15,7 @@ export default function ArticleDetail() {
 
   return (
     <>
-      <ArticleItem article={articleData} />
+      <ArticleItem article={articleData.data} />
       <Divider thickness="thick" />
       <Spacing size={20} />
       <p className="px-24">{t('detail.commentCount')}</p>

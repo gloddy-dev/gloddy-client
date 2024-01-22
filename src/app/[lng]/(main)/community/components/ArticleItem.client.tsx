@@ -13,7 +13,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
-import {currentKoreaTime, currentTime} from '@/utils/date';
+import { currentKoreaTime, currentTime } from '@/utils/date';
 
 interface ArticleItemProps {
   articleData: CommunityArticle;

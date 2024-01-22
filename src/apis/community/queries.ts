@@ -19,12 +19,8 @@ export const useGetCommunityArticles = (categoryId?: number) => {
 };
 
 export const useGetCommunityArticleDetail = (articleId: number) => {
-  const { data } = useSuspenseQuery({
+  return useSuspenseQuery({
     queryKey: Keys.getCommunityArticleDetail(articleId),
     queryFn: () => getCommunityArticleDetail(articleId),
   });
-
-  return {
-    data: data.data,
-  };
 };
