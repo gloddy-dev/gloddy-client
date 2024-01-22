@@ -4,8 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import WriteModal from '../components/WriteModal';
 import { WriteFormType } from '../type';
-import { CreateArticleRequest, GetArticlesRequest } from '@/apis/community';
-import { usePostCommunityArticle } from '@/apis/community/mutations';
+import { usePostCreateCommunityArticle } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import MultiImageUploader from '@/components/Image/MultiImageUploader';
@@ -17,7 +16,7 @@ import { useModal } from '@/hooks/useModal';
 export default function InputSection() {
   const { open, exit } = useModal();
   const { t } = useTranslation('community');
-  const { mutate: mutateArticle } = usePostCommunityArticle();
+  const { mutate: mutateArticle } = usePostCreateCommunityArticle();
   const hookForm = useForm<WriteFormType>({
     mode: 'onChange',
     defaultValues: {

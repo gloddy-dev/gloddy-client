@@ -1,6 +1,36 @@
 {
-  "all": "All",
-  "daliy": "Daily",
-  "question": "Q&A",
-  "language": "language"
+  "category": {
+    "All": "All",
+    "K-POP": "K-POP",
+    "Q&A": "Q&A",
+    "Language": "Language"
+  },
+
+  "create": {
+    "headerTitle": "Create Post",
+    "category": {
+      "name": "Category",
+      "K-POP": "K-POP",
+      "Q&A": "Q&A",
+      "Language": "Language"
+    },
+    "title": {
+      "placeholder": "Post Title"
+    },
+    "content": {
+      "placeholder": "Write a post of at least 20 characters."
+    },
+    "submit": {
+      "label": "Post",
+      "content": "Do you want to submit the post?"
+    },
+    "cancel": {
+      "content": "Cancel post creation"
+    }
+  },
+
+  "detail": {
+    "likeCount": "Likes",
+    "commentCount": "Comments {{commentCount}}"
+  }
 }

@@ -1,24 +1,29 @@
 import Image from 'next/image';
 
-import { CommunityArticle } from '@/apis/community';
+import { CommunityArticle, usePostCommunityArticleLike } from '@/apis/community';
+import { useTranslation } from '@/app/i18n/client';
 import { CardHeader } from '@/components/Card';
+import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
+import cn from '@/utils/cn';
 
 interface ArticleItemProps {
   article: CommunityArticle;
 }
 
 export default function ArticleItem({ article }: ArticleItemProps) {
+  const { t } = useTranslation('community');
   const { open, exit } = useModal();
+
   const {
     title,
     content,
     images,
     category,
-    id,
+    id: articleId,
     userId,
     thumbnail,
     isLiked,
@@ -38,6 +43,12 @@ export default function ArticleItem({ article }: ArticleItemProps) {
     reliabilityLevel,
   } = article.writer;
 
+  const { mutate: mutateLike } = usePostCommunityArticleLike(articleId);
+
+  const handleLikeClick = () => {
+    mutateLike();
+  };
+
   return (
     <div className="mx-20 mb-24 mt-16 px-4">
       <CardHeader
@@ -47,11 +58,12 @@ export default function ArticleItem({ article }: ArticleItemProps) {
         userImageUrl={profileImage}
         isWriterCertifiedStudent={isCertifiedStudent}
         writerReliabilityLevel={reliabilityLevel}
+        isWriterCaptain={isWriter}
         date={createdAt}
       />
       <Spacing size={16} />
       <div className={'text-2xl font-semibold'}>{title}</div>
-      <Spacing size={4} />
+      <Spacing size={6} />
       <div className="break-words text-paragraph-1 text-sign-primary">{content}</div>
       {images.length > 0 && (
         <Flex className="my-16 h-160 gap-4 overflow-x-scroll">
@@ -68,6 +80,18 @@ export default function ArticleItem({ article }: ArticleItemProps) {
           ))}
         </Flex>
       )}
+      <Spacing size={6} />
+      <Flex align="center" className="gap-4" onClick={handleLikeClick}>
+        <Icon
+          id="16-favorite_fill"
+          className={cn(isLiked ? 'text-warning' : 'text-sign-caption')}
+          width={27}
+          height={27}
+        />
+        <p className={cn(isLiked ? 'text-warning' : 'text-sign-caption') + ' text-subtitle-3'}>
+          {likeCount.toString().padStart(2, '0') + t('detail.likeCount')}
+        </p>
+      </Flex>
     </div>
   );
 }

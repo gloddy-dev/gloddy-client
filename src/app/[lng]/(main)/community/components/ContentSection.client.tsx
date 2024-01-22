@@ -9,7 +9,6 @@ import QuestionContent from '@/app/[lng]/(main)/community/components/QuestionCon
 import { useTranslation } from '@/app/i18n/client';
 import { FloatAddButton } from '@/components/Button';
 import { Loading } from '@/components/Loading';
-import { NavLink } from '@/components/NavLink';
 import { Tabs } from '@/components/Tabs';
 import useAppRouter from '@/hooks/useAppRouter';
 
