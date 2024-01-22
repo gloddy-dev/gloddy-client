@@ -29,3 +29,7 @@ export const postCreateCommunityArticle = (CreateCommunityData: CreateArticleReq
 export const postCommunityArticleLike = (articleId: number) => {
   return privateApi.post(`/communities/articles/${articleId}/like`);
 };
+
+export const postDeleteCommunityArticle = (articleId: number) => {
+  return privateApi.post(`/communities/articles/${articleId}/delete`);
+};
