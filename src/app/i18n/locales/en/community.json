@@ -30,7 +30,11 @@
   },
 
   "detail": {
-    "likeCount": "Likes",
-    "commentCount": "Comments {{commentCount}}"
+    "likeCount": "",
+    "commentCount": "Comments {{commentCount}}",
+
+    "block": "Block",
+    "report": "Report",
+    "delete": "Delete"
   }
 }

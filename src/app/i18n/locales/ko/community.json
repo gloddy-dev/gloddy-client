@@ -31,6 +31,10 @@
 
   "detail": {
     "likeCount": "개",
-    "commentCount": "댓글 {{commentCount}}개"
+    "commentCount": "댓글 {{commentCount}}개",
+
+    "block": "게시물 차단",
+    "report": "게시물 신고",
+    "delete": "게시물 삭제"
   }
 }
