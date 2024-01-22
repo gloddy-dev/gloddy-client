@@ -1,3 +1,5 @@
+import type { ReliabilityType } from '@/types';
+
 export interface CreateArticleRequest {
   categoryId: number;
   title: string;
@@ -60,7 +62,7 @@ export interface CommunityArticle {
     nickName: string;
     countryName: string;
     countryImage: string;
-    reliabilityLevel: string;
+    reliabilityLevel: ReliabilityType;
   };
 }
 

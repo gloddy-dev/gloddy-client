@@ -1,3 +1,5 @@
+'use client';
+
 import { Suspense } from 'react';
 
 import { Keys, getCommunityArticleDetail } from '@/apis/community';
@@ -21,13 +23,12 @@ export default function CommunityArticlePage({ params }: CommunityArticlePagePro
       <ArticleDetailHeader title={'게시판'} />
       <Suspense fallback={<Loading className="h-[calc(100dvh-48px)]" />}>
         <HydrationProvider
-          queryFn={() => getCommunityArticleDetail(articleId)}
-          queryKey={Keys.getCommunityArticleDetail(articleId)}
+          queryFn={() => getCommunityArticleDetail(params.articleId)}
+          queryKey={Keys.getCommunityArticleDetail(params.articleId)}
         >
           <ArticleDetail />
         </HydrationProvider>
       </Suspense>
-      <CommentForm />
     </>
   );
 }
