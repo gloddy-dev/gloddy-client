@@ -5,12 +5,14 @@ import ArticleItem from '@/app/[lng]/(main)/community/[articleId]/components/Art
 import { useTranslation } from '@/app/i18n/client';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
-import { useNumberParams } from '@/hooks/useNumberParams';
 
-export default function ArticleDetail() {
+interface ArticleDetailProps {
+  articleId: number;
+}
+
+export default function ArticleDetail({ articleId }: ArticleDetailProps) {
   const { t } = useTranslation('community');
 
-  const { articleId } = useNumberParams<['articleId']>();
   const { data: articleData } = useGetCommunityArticleDetail(articleId);
 
   return (
