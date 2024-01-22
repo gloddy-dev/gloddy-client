@@ -38,6 +38,7 @@ export default function ArticleDetailHeader() {
 }
 
 function IconButtonAction() {
+  const { t } = useTranslation('community');
   const { articleId } = useNumberParams<['articleId']>();
   const { data: articleData } = useGetCommunityArticleDetail(articleId);
   const { mutate: mutateDelete } = usePostDeleteCommunityArticle(articleId);
@@ -52,13 +53,17 @@ function IconButtonAction() {
 
   const options: DropDownOptionType[] = [
     {
-      name: '게시물 차단',
+      name: t('detail.block'),
+      onClick: handleBlockArticle,
+    },
+    {
+      name: t('detail.report'),
       onClick: handleBlockArticle,
     },
     ...(articleData.data.article.isWriter
       ? [
           {
-            name: '게시물 삭제',
+            name: t('detail.delete'),
             onClick: handleDeleteArticle,
           },
         ]
