@@ -30,7 +30,7 @@
   },
 
   "detail": {
-    "likeCount": "{{likeCount}}개",
+    "likeCount": "개",
     "commentCount": "댓글 {{commentCount}}개"
   }
 }

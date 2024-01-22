@@ -1,17 +1,24 @@
 'use client';
 
+import { Suspense } from 'react';
+
+import { useGetCommunityArticleDetail } from '@/apis/community';
+import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
-import { Suspense } from 'react';
 
 interface ArticleDetailHeaderProps {
-  title: string;
+  articleId: number;
 }
 
-export default function ArticleDetailHeader({ title }: ArticleDetailHeaderProps) {
+export default function ArticleDetailHeader({ articleId }: ArticleDetailHeaderProps) {
   const { back } = useAppRouter();
+  const { t } = useTranslation('community');
+  const { data: articleData } = useGetCommunityArticleDetail(articleId);
+
+  const title = articleData.data.article.category.name;
 
   return (
     <Header className="px-4">
@@ -20,7 +27,7 @@ export default function ArticleDetailHeader({ title }: ArticleDetailHeaderProps)
           <Icon id="24-arrow_back" />
         </IconButton>
         <Suspense>
-          <p className="w-full truncate">{title}</p>
+          <p className="w-full truncate">{t(`category.${title}`)}</p>
         </Suspense>
       </Header.Left>
       <Header.Right>

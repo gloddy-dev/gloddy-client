@@ -13,7 +13,8 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
-import { currentKoreaTime, currentTime } from '@/utils/date';
+import cn from '@/utils/cn';
+import { currentKoreaTime } from '@/utils/date';
 
 interface ArticleItemProps {
   articleData: CommunityArticle;
@@ -62,10 +63,10 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
       </Flex>
       <Spacing size={12} />
       <Flex justify="between" className="gap-6">
-        <div>
+        <div className={'w-full'}>
           <p className="text-subtitle-1">{title}</p>
           <Spacing size={4} />
-          <p className="line-clamp-2 break-words text-paragraph-2">{content}</p>
+          <p className="line-clamp-2 whitespace-pre-wrap break-words text-paragraph-2">{content}</p>
         </div>
         {!!images?.length && (
           <div className="relative h-80 w-80 shrink-0 overflow-hidden rounded-8">
@@ -86,8 +87,15 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
         </Flex>
         <Flex align="center" className="gap-8">
           <Flex align="center" className="gap-4">
-            <Icon id="16-favorite_fill" width={16} height={16} />
-            <p className="text-caption text-warning">{likeCount.toString().padStart(2, '0')}</p>
+            <Icon
+              id="16-favorite_fill"
+              width={16}
+              height={16}
+              className={cn(isLiked ? 'text-warning' : 'text-sign-caption')}
+            />
+            <p className={cn(isLiked ? 'text-warning' : 'text-sign-caption') + ' text-subtitle-3'}>
+              {likeCount.toString().padStart(2, '0')}
+            </p>
           </Flex>
           <Flex align="center" className="gap-4">
             <Icon id="16-comment_fill" width={16} height={16} />
