@@ -1,19 +1,24 @@
 'use client';
 
+import { useCallback } from 'react';
+
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useSignUpMutation } from '@/apis/auth';
+import CertificateSkipModal from '@/app/[lng]/(sub)/join/funnels/step5/components/CertificateSkipModal';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { LayerLoading } from '@/components/Loading';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
+import { useModal } from '@/hooks/useModal';
 import { formatDateDTO } from '@/utils/formatDateDTO';
-import { useCallback } from 'react';
 
 import type { SignUpState } from '../../../type';
 
 export default function InputForm() {
   const { t } = useTranslation('join');
+
+  const { open: openSkipModal, exit: exitSkipModal } = useModal();
 
   const { handleSubmit, watch } = useJoinContext();
   const { mutate: mutateSignUp, status } = useSignUpMutation();
@@ -28,10 +33,19 @@ export default function InputForm() {
     mutateSignUp(signUpRequest);
   };
 
+  const handleSkipClick = () => {
+    openSkipModal(() => (
+      <CertificateSkipModal onOkClick={handleSubmit(onSubmit)} onCancelClick={exitSkipModal} />
+    ));
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <PersonalitySection />
-      <ButtonGroup>
+      <ButtonGroup isSpacing={false}>
+        <Button type="button" onClick={handleSkipClick}>
+          {t('건너뛰기')}
+        </Button>
         <Button disabled={watch('personalityIdList').length !== 3} type="submit">
           {t('complete')}
         </Button>
