@@ -1,5 +1,7 @@
 import {
   CreateArticleRequest,
+  CreateArticleResponse,
+  GetArticleDetail,
   GetArticlesRequest,
   GetArticlesResponse,
 } from '@/apis/community/type';
@@ -13,6 +15,13 @@ export const getCommunityArticles = ({ categoryId, pageParam }: GetArticlesReque
   );
 };
 
+export const getCommunityArticleDetail = (articleId: number) => {
+  return privateApi.get<GetArticleDetail>(`/communities/articles/${articleId}`);
+};
+
 export const postCreateCommunityArticle = (CreateCommunityData: CreateArticleRequest) => {
-  return privateApi.post<CreateArticleRequest>('/communities/articles/create', CreateCommunityData);
+  return privateApi.post<CreateArticleResponse>(
+    '/communities/articles/create',
+    CreateCommunityData
+  );
 };

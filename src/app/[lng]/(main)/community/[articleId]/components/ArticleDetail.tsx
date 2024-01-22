@@ -1,27 +1,26 @@
-import { CommunityArticle } from '@/apis/groups';
+'use client';
+
+import { useGetCommunityArticleDetail } from '@/apis/community';
 import ArticleItem from '@/app/[lng]/(main)/community/[articleId]/components/ArticleItem';
-import CommentList from '@/app/[lng]/(main)/community/[articleId]/components/CommentList';
 import { useTranslation } from '@/app/i18n/client';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
-import { DUMMY_COMMENTS_DATA } from '@/constants/dummyData';
+import { useNumberParams } from '@/hooks/useNumberParams';
 
-interface DetailContentProps {
-  articleData: CommunityArticle;
-}
-
-export default function ArticleDetail({ articleData }: DetailContentProps) {
-  const { commentCount } = articleData;
+export default function ArticleDetail() {
   const { t } = useTranslation('community');
+
+  const { articleId } = useNumberParams<['articleId']>();
+  const { data: articleData } = useGetCommunityArticleDetail(articleId);
 
   return (
     <>
       <ArticleItem article={articleData} />
       <Divider thickness="thick" />
       <Spacing size={20} />
-      <p className="px-24">{t('detail.commentCount', { commentCount })}</p>
+      <p className="px-24">{t('detail.commentCount')}</p>
       <Spacing size={8} />
-      <CommentList commentList={DUMMY_COMMENTS_DATA} />
+      {/*<CommentList commentList={DUMMY_COMMENTS_DATA} />*/}
     </>
   );
 }

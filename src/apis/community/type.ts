@@ -5,6 +5,16 @@ export interface CreateArticleRequest {
   images: string[];
 }
 
+export interface CreateArticleResponse {
+  meta: {
+    statusCode: number;
+    message: string;
+  };
+  data: {
+    articleId: number;
+  };
+}
+
 export interface GetArticlesRequest {
   categoryId?: number;
   pageParam: number;
@@ -13,7 +23,7 @@ export interface GetArticlesRequest {
 export interface GetArticlesResponse {
   meta: {
     statusCode: number;
-    message: 'string';
+    message: string;
   };
   data: {
     totalCount: number;
@@ -42,6 +52,7 @@ export interface CommunityArticle {
     commentCount: number;
     createdAt: string;
   };
+
   writer: {
     id: number;
     isCertifiedStudent: boolean;
@@ -51,6 +62,14 @@ export interface CommunityArticle {
     countryImage: string;
     reliabilityLevel: string;
   };
+}
+
+export interface GetArticleDetail {
+  meta: {
+    statusCode: number;
+    message: string;
+  };
+  data: CommunityArticle;
 }
 
 export type CategoryType = 'K-POP' | 'Q&A' | 'Language';
