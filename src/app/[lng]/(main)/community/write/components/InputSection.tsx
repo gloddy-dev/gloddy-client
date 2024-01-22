@@ -21,7 +21,7 @@ export default function InputSection() {
   const hookForm = useForm<WriteFormType>({
     mode: 'onChange',
     defaultValues: {
-      categoryId: null,
+      categoryId: 0,
       title: '',
       content: '',
       images: [],
@@ -31,8 +31,6 @@ export default function InputSection() {
   const { register, handleSubmit, formState, control } = hookForm;
 
   const onSubmit: SubmitHandler<WriteFormType> = async (formData) => {
-    if (formData.categoryId == null) throw new Error();
-
     exit();
     mutateArticle({
       title: formData.title,
@@ -57,7 +55,7 @@ export default function InputSection() {
           options={options}
           register={register('categoryId', {
             required: true,
-            validate: (value) => value !== null,
+            validate: (value) => value !== 0,
           })}
         />
 

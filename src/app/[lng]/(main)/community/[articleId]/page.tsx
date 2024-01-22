@@ -1,26 +1,33 @@
-'use client';
+import { Suspense } from 'react';
 
+import { Keys, getCommunityArticleDetail } from '@/apis/community';
 import ArticleDetail from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetail';
 import ArticleDetailHeader from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetailHeader';
 import CommentForm from '@/app/[lng]/(main)/community/[articleId]/components/CommentForm';
-import { useTranslation } from '@/app/i18n/client';
-import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
+import { Loading } from '@/components/Loading';
+import { HydrationProvider } from '@/components/Provider';
 
 interface CommunityArticlePageProps {
   params: {
-    articleId: string;
+    articleId: number;
   };
 }
 
 export default function CommunityArticlePage({ params }: CommunityArticlePageProps) {
-  const { t } = useTranslation('community');
+  const articleId = Number(params.articleId);
 
   return (
     <>
-      {/*<ArticleDetailHeader title={t()} />*/}
-      {/*<ArticleDetail articleData={dummyData} />*/}
-      {/*<CommentForm />*/}
-      <div></div>
+      <ArticleDetailHeader title={'게시판'} />
+      <Suspense fallback={<Loading className="h-[calc(100dvh-48px)]" />}>
+        <HydrationProvider
+          queryFn={() => getCommunityArticleDetail(articleId)}
+          queryKey={Keys.getCommunityArticleDetail(articleId)}
+        >
+          <ArticleDetail />
+        </HydrationProvider>
+      </Suspense>
+      <CommentForm />
     </>
   );
 }
