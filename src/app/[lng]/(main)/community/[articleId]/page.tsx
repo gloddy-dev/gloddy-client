@@ -24,7 +24,7 @@ export default function CommunityArticlePage({ params }: CommunityArticlePagePro
           queryFn={() => getCommunityArticleDetail(articleId)}
           queryKey={Keys.getCommunityArticleDetail(articleId)}
         >
-          <ArticleDetailHeader articleId={articleId} />
+          <ArticleDetailHeader />
           <ArticleDetail articleId={articleId} />
         </HydrationProvider>
       </Suspense>

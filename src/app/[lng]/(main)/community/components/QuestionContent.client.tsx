@@ -1,11 +1,12 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+
 import ArticleItem from './ArticleItem.client';
 import Empty from './Empty';
+import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
-import {useInView} from "react-intersection-observer";
-import {useGetCommunityArticles} from "@/apis/community/queries";
-import {useEffect} from "react";
 
 export default function QuestionContent() {
   const { ref, inView } = useInView();
