@@ -6,6 +6,7 @@ import {
   getMeetingNotEstimated,
   getMeetingParticipating,
   getMeetingRejected,
+  getMeetingWaiting,
 } from '@/apis/meeting';
 import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
@@ -29,12 +30,14 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
             getMeetingHosting,
             getMeetingRejected,
             getMeetingNotEstimated,
+            getMeetingWaiting,
           ]}
           queryMultipleKey={[
             Keys.getMeetingParticipating(),
             Keys.getMeetingHosting(),
             Keys.getMeetingRejected(),
             Keys.getMeetingNotEstimated(),
+            Keys.getMeetingWaiting(),
           ]}
         >
           <ContentSection />
