@@ -16,7 +16,7 @@ import { useMemo } from 'react';
 export const useGetGroups = () => {
   const { data, ...rest } = useSuspenseInfiniteQuery({
     queryKey: Keys.getGroups(),
-    queryFn: ({ pageParam = 0 }) => getGroups(pageParam),
+    queryFn: ({ pageParam }) => getGroups(pageParam),
     getNextPageParam: (lastPage) =>
       lastPage.totalPage !== lastPage.currentPage ? lastPage.currentPage + 1 : undefined,
     initialPageParam: 0,

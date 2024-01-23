@@ -7,6 +7,7 @@ interface NavLinkProps {
   href: string;
   className?: string;
   scroll?: boolean;
+  isReplace?: boolean;
 }
 
 export default function NavLink({
@@ -14,12 +15,14 @@ export default function NavLink({
   href,
   className,
   scroll,
+  isReplace = false,
   ...props
 }: PropsWithChildren<NavLinkProps>) {
-  const { push } = useAppRouter();
+  const { push, replace } = useAppRouter();
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    push(href);
+    if (isReplace) replace(href);
+    else push(href, scroll);
   };
 
   return (
