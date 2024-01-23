@@ -23,11 +23,21 @@ export default async function HydrationProvider({
   const queryClient = new QueryClient();
 
   if (queryMultipleFn && queryMultipleKey) {
-    await Promise.all(
-      queryMultipleFn.map((queryFn, index) => {
-        return queryClient.prefetchQuery({ queryKey: queryMultipleKey[index], queryFn });
-      })
-    );
+    if (isInfiniteQuery)
+      await Promise.all(
+        queryMultipleFn.map((queryFn, index) => {
+          return queryClient.prefetchInfiniteQuery({
+            queryKey: queryMultipleKey[index],
+            initialPageParam: 0,
+          });
+        })
+      );
+    else
+      await Promise.all(
+        queryMultipleFn.map((queryFn, index) => {
+          return queryClient.prefetchQuery({ queryKey: queryMultipleKey[index], queryFn });
+        })
+      );
   }
 
   if (queryFn && queryKey) {
