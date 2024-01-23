@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { CommunityArticle, usePostCommunityArticleLike } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { CardHeader } from '@/components/Card';
@@ -9,6 +7,7 @@ import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import cn from '@/utils/cn';
+import Image from 'next/image';
 
 interface ArticleItemProps {
   article: CommunityArticle;
@@ -43,7 +42,7 @@ export default function ArticleItem({ article }: ArticleItemProps) {
     reliabilityLevel,
   } = article.writer;
 
-  const { mutate: mutateLike } = usePostCommunityArticleLike(articleId);
+  const { mutate: mutateLike } = usePostCommunityArticleLike(articleId, category.id);
 
   const handleLikeClick = () => {
     mutateLike();
