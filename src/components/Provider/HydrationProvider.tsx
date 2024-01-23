@@ -31,7 +31,8 @@ export default async function HydrationProvider({
   }
 
   if (queryFn && queryKey) {
-    if (isInfiniteQuery) await queryClient.prefetchInfiniteQuery({ queryKey, initialPageParam: 0 });
+    if (isInfiniteQuery)
+      await queryClient.prefetchInfiniteQuery({ queryKey, queryFn, initialPageParam: 0 as never });
     else await queryClient.prefetchQuery({ queryKey, queryFn });
   }
 
