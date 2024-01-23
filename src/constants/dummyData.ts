@@ -1,7 +1,6 @@
 import {
   Apply,
   Comment,
-  CommunityArticle,
   CreateGroupRequest,
   GroupDetailResponse,
   GroupMember,
@@ -85,7 +84,7 @@ export const DUMMY_SIGN_UP_DATA = {
   personalities: ['OUTGOING'],
 };
 
-export const DUMMY_ARTICLES_DATA: CommunityArticle[] = [
+export const DUMMY_ARTICLES_DATA = [
   {
     title: '홍대 가는법',
     articleType: 'question',

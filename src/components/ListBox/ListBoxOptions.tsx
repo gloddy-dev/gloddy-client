@@ -1,9 +1,10 @@
-import { useListBoxContext } from '@/components/ListBox/ListBoxController';
 import React, { Dispatch, SetStateAction } from 'react';
 
+import { OptionType, useListBoxContext } from '@/components/ListBox/ListBoxController';
+
 interface ListBoxOptionsProps {
-  options: string[];
-  onSelect: (value: string) => void;
+  options: OptionType[];
+  onSelect: (id: number) => void;
 }
 
 export default function ListBoxOptions({ options, onSelect }: ListBoxOptionsProps) {
@@ -13,14 +14,14 @@ export default function ListBoxOptions({ options, onSelect }: ListBoxOptionsProp
     <div className="rounded-8 border-1 border-primary bg-white">
       {options.map((option) => (
         <div
-          key={option}
+          key={option.id}
           onClick={() => {
-            onSelect(option);
+            onSelect(option.id);
             setOpen(false);
           }}
           className={'p-16'}
         >
-          {option}
+          {option.name}
         </div>
       ))}
     </div>
