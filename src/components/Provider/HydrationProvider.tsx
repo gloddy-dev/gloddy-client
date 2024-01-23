@@ -20,9 +20,7 @@ export default async function HydrationProvider({
   queryMultipleFn,
   isInfiniteQuery = false,
 }: StrictPropsWithChildren<HydrationProviderProps>) {
-  const getQueryClient = cache(() => new QueryClient());
-
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
 
   if (queryMultipleFn && queryMultipleKey) {
     await Promise.all(
