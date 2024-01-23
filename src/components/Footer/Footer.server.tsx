@@ -1,5 +1,6 @@
 import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
+import { NavLink } from '../NavLink';
 import { serverTranslation } from '@/app/i18n';
 import cn from '@/utils/cn';
 import Link from 'next/link';
@@ -62,7 +63,7 @@ export default async function Footer({ lng, page, isSpacing = true, spacingColor
               'text-sign-tertiary': !isSelected(tab),
             })}
           >
-            <Link replace href={tab.url} scroll={false}>
+            <NavLink isReplace href={tab.url} scroll={false}>
               <Icon
                 id={`32-footer-${tab.name}${isSelected(tab) ? '_selected' : '_default'}`}
                 width={32}
@@ -70,7 +71,7 @@ export default async function Footer({ lng, page, isSpacing = true, spacingColor
                 className="mx-auto"
               />
               <p>{t(tab.name)}</p>
-            </Link>
+            </NavLink>
           </ButtonAnimation>
         ))}
       </footer>
