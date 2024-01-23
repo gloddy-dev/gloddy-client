@@ -10,14 +10,14 @@ import { useInView } from 'react-intersection-observer';
 
 export default function GroupingCardList() {
   const { blockGroupIds } = useBlockStore();
-  const { data: groupList, fetchNextPage, hasNextPage } = useGetGroups();
+  const { data: groupList, fetchNextPage } = useGetGroups();
   const { t } = useTranslation('grouping');
 
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (inView && hasNextPage) fetchNextPage();
-  }, [inView, fetchNextPage, hasNextPage]);
+    if (inView) fetchNextPage();
+  }, [inView, fetchNextPage]);
 
   return (
     <>
