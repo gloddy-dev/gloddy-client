@@ -1,7 +1,5 @@
 'use client';
 
-import { Suspense } from 'react';
-
 import { useGetCommunityArticleDetail, usePostDeleteCommunityArticle } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
@@ -11,6 +9,7 @@ import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useNumberParams } from '@/hooks/useNumberParams';
+import { Suspense } from 'react';
 
 export default function ArticleDetailHeader() {
   const { back } = useAppRouter();
@@ -41,7 +40,10 @@ function IconButtonAction() {
   const { t } = useTranslation('community');
   const { articleId } = useNumberParams<['articleId']>();
   const { data: articleData } = useGetCommunityArticleDetail(articleId);
-  const { mutate: mutateDelete } = usePostDeleteCommunityArticle(articleId);
+  const { mutate: mutateDelete } = usePostDeleteCommunityArticle(
+    articleId,
+    articleData.data.article.category.id
+  );
 
   const handleBlockArticle = () => {
     console.log('block');
