@@ -1,21 +1,29 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+
 import ArticleItem from './ArticleItem.client';
 import Empty from './Empty';
-import { CommunityArticle } from '@/apis/groups';
+import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
-import { DUMMY_ARTICLES_DATA } from '@/constants/dummyData';
 
 export default function KpopContent() {
-  const articleData: CommunityArticle[] = [...DUMMY_ARTICLES_DATA].filter(
-    (article) => article.articleType === 'kpop'
-  );
+  const { ref, inView } = useInView();
+  const { data: articleList, fetchNextPage } = useGetCommunityArticles(1);
+
+  useEffect(() => {
+    if (inView) fetchNextPage();
+  }, [inView, fetchNextPage]);
 
   return (
-    <ItemList
-      data={articleData}
-      renderItem={(article) => <ArticleItem article={article} />}
-      renderEmpty={() => <Empty />}
-    />
+    <>
+      <ItemList
+        data={articleList}
+        renderItem={(articleData) => <ArticleItem articleData={articleData} />}
+        renderEmpty={() => <Empty />}
+      />
+      <div ref={ref} />
+    </>
   );
 }

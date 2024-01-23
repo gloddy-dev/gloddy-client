@@ -4,7 +4,7 @@ import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
 import { type NextRequest, NextResponse } from 'next/server';
 
-const privatePages = /\/(?:en|ko)\/(grouping|meeting|profile)/;
+const privatePages = /\/(?:en|ko)\/(grouping|meeting|profile|community)/;
 
 const excludePages = [
   /\/(?:en|ko)\/profile\/setting\/information/,

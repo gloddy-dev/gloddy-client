@@ -1,17 +1,18 @@
 {
-  "all": "전체",
-  "kpop": "K-POP",
-  "question": "궁금해요",
-  "language": "언어교환",
+  "category": {
+    "All": "전체",
+    "K-POP": "K-POP",
+    "Q&A": "궁금해요",
+    "Language": "언어교환"
+  },
 
   "create": {
     "headerTitle": "게시글 작성",
     "category": {
       "name": "카테고리",
-
-      "kpop": "K-POP",
-      "qna": "궁금해요",
-      "lang": "언어교환"
+      "K-POP": "K-POP",
+      "Q&A": "궁금해요",
+      "Language": "언어교환"
     },
     "title": {
       "placeholder": "게시글 제목"
@@ -29,7 +30,11 @@
   },
 
   "detail": {
-    "likeCount": "{{likeCount}}개",
-    "commentCount": "댓글 {{commentCount}}개"
+    "likeCount": "개",
+    "commentCount": "댓글 {{commentCount}}개",
+
+    "block": "게시물 차단",
+    "report": "게시물 신고",
+    "delete": "게시물 삭제"
   }
 }
