@@ -24,9 +24,6 @@ export default function LocationSection({
     language: lng,
     region: 'KR',
   });
-  console.log(place?.url);
-
-  if (typeof google === 'undefined') return null;
 
   return (
     <section className="p-20 pb-8">
