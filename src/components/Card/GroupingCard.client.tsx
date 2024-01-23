@@ -1,12 +1,10 @@
-'use client';
-
 import { Icon } from '../Icon';
 import ImageSample from '../Image/ImageSample';
+import { NavLink } from '../NavLink';
 import { useDeleteScrapMeeting } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import useAppRouter from '@/hooks/useAppRouter';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
 import cn from '@/utils/cn';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
@@ -54,7 +52,6 @@ export default function GroupingCard({
   } = groupingData;
 
   const { lng } = useParams() as { lng: string };
-  const { push } = useAppRouter();
   const { place } = usePlaceDetails({
     placeId,
     fields: ['formatted_address'],
@@ -66,7 +63,7 @@ export default function GroupingCard({
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
-      <Flex onClick={onClick || (() => push(`/grouping/${groupId}`, false))} align="center">
+      <NavLink href={`/grouping/${groupId}`} className="flex items-center">
         <section className="relative h-96 w-96 shrink-0">
           {imageUrl ? (
             <Image
@@ -106,7 +103,7 @@ export default function GroupingCard({
             <p className="truncate">{formatMeetingDate(meetDate, startTime)}</p>
           </Flex>
         </section>
-      </Flex>
+      </NavLink>
       {children}
     </Flex>
   );
