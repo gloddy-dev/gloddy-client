@@ -1,28 +1,21 @@
-import { useQueryClient, useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { getCommunityArticleDetail, getCommunityArticles } from '@/apis/community/apis';
 import { Keys } from '@/apis/community/keys';
 
-export const useGetCommunityArticles = (categoryId?: number) => {
-  const queryClient = useQueryClient();
-
+export const useGetCommunityArticles = (categoryId: number) => {
   const { data, ...rest } = useSuspenseInfiniteQuery({
-    queryKey: Keys.getCommunityArticles(categoryId || 0),
+    queryKey: Keys.getCommunityArticles(categoryId),
     queryFn: ({ pageParam = 0 }) => getCommunityArticles({ categoryId, pageParam }),
-    getNextPageParam: (lastPage) => lastPage.data.currentPage + 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.data.totalPage !== lastPage.data.currentPage
+        ? lastPage.data.currentPage + 1
+        : undefined,
     initialPageParam: 0,
   });
 
-  const resetAllCategory = () => {
-    queryClient.resetQueries({ queryKey: Keys.getCommunityArticles(0) });
-    queryClient.resetQueries({ queryKey: Keys.getCommunityArticles(1) });
-    queryClient.resetQueries({ queryKey: Keys.getCommunityArticles(2) });
-    queryClient.resetQueries({ queryKey: Keys.getCommunityArticles(3) });
-  };
-
   return {
     data: data.pages?.flatMap((page) => page.data.contents),
-    resetAllCategory,
     ...rest,
   };
 };

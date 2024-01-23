@@ -34,7 +34,7 @@ const tabList: TabType[] = [
     url: '/community?tab=all',
   },
   {
-    id: '3',
+    id: '4',
     name: 'profile',
     title: '프로필',
     url: '/profile',

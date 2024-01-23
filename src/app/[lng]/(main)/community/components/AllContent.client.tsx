@@ -10,7 +10,7 @@ import { ItemList } from '@/components/List';
 
 export default function AllContent() {
   const { ref, inView } = useInView();
-  const { data: articleList, fetchNextPage } = useGetCommunityArticles();
+  const { data: articleList, fetchNextPage } = useGetCommunityArticles(0);
 
   useEffect(() => {
     if (inView) fetchNextPage();
