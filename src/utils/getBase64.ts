@@ -1,10 +1,8 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-
+import { getBufferFromS3Url } from './getBufferFromS3Url';
 import { getPlaiceholder } from 'plaiceholder';
 
 const getBase64 = async (src: string) => {
-  const buffer = await fs.readFile(path.join('./public', src));
+  const buffer = await getBufferFromS3Url(src);
 
   const {
     metadata: { height, width },
