@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import {
   postCommunityArticleLike,
+  postCommunityCommentLike,
   postCreateCommunityArticle,
   postCreateCommunityComment,
   postDeleteCommunityArticle,
@@ -83,6 +84,37 @@ export const usePostCreateComment = (articleId: number) => {
     mutationFn: postCreateCommunityComment,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticleDetail(articleId) });
+      queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
+    },
+  });
+};
+
+export const usePostCommunityCommentLike = (articleId: number, commentId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: () => postCommunityCommentLike(articleId, commentId),
+    onMutate: async () => {
+      // 이전 상태를 저장
+      const previousArticle = queryClient.getQueryData(Keys.getCommunityComments(articleId));
+
+      // 낙관적 업데이트를 위해 쿼리 데이터를 즉시 변경
+      queryClient.setQueryData(
+        Keys.getCommunityComments(articleId),
+        (oldData: CommunityArticle) => {
+          return { ...oldData, article: { ...oldData.article, isLiked: true } };
+        }
+      );
+
+      return { previousArticle };
+    },
+    // 에러가 발생하면 이전 상태로 되돌림
+    onError: (error, variables, context) => {
+      if (context?.previousArticle) {
+        queryClient.setQueryData(Keys.getCommunityComments(articleId), context.previousArticle);
+      } else throw new Error('No previous Data');
+    },
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
     },
   });

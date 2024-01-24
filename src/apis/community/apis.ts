@@ -48,3 +48,7 @@ export const postCreateCommunityComment = ({
 }: CreateCommentRequest) => {
   return privateApi.post(`/communities/articles/${articleId}/comments`, payload);
 };
+
+export const postCommunityCommentLike = (articleId: number, commentId: number) => {
+  return privateApi.post(`/communities/articles/${articleId}/comments/${commentId}/like`);
+};
