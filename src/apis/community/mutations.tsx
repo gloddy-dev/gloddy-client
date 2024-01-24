@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import {
+  deleteCommunityCommentLike,
   postCommunityArticleLike,
   postCommunityCommentLike,
   postCreateCommunityArticle,
@@ -114,6 +115,17 @@ export const usePostCommunityCommentLike = (articleId: number, commentId: number
         queryClient.setQueryData(Keys.getCommunityComments(articleId), context.previousArticle);
       } else throw new Error('No previous Data');
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
+    },
+  });
+};
+
+export const useDeleteCommunityComment = (articleId: number, commentId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: () => deleteCommunityCommentLike(articleId, commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
     },

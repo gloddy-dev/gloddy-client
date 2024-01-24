@@ -52,3 +52,7 @@ export const postCreateCommunityComment = ({
 export const postCommunityCommentLike = (articleId: number, commentId: number) => {
   return privateApi.post(`/communities/articles/${articleId}/comments/${commentId}/like`);
 };
+
+export const deleteCommunityCommentLike = (articleId: number, commentId: number) => {
+  return privateApi.delete(`/communities/articles/${articleId}/comments/${commentId}`);
+};

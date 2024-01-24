@@ -1,5 +1,5 @@
 'use client';
-import { usePostCommunityCommentLike } from '@/apis/community';
+import { useDeleteCommunityComment, usePostCommunityCommentLike } from '@/apis/community';
 import { Comment } from '@/apis/community/type';
 import CardHeader from '@/app/[lng]/(main)/community/[articleId]/components/CardHeader';
 import { useTranslation } from '@/app/i18n/client';
@@ -64,12 +64,9 @@ function CommentItem({ comment, articleId, isCaptain, articleWriterId }: Comment
     nickName,
   } = comment.writer;
   const { mutate: mutateLike } = usePostCommunityCommentLike(articleId, commentId);
+  const { mutate: mutateDelete } = useDeleteCommunityComment(articleId, commentId);
 
   const handleBlockArticle = () => {
-    console.log('block');
-  };
-
-  const handleDeleteArticle = () => {
     console.log('block');
   };
 
@@ -78,10 +75,14 @@ function CommentItem({ comment, articleId, isCaptain, articleWriterId }: Comment
       name: t('comment.block.label'),
       onClick: handleBlockArticle,
     },
-    {
-      name: t('comment.delete.label'),
-      onClick: handleBlockArticle,
-    },
+    ...(isWriter
+      ? [
+          {
+            name: t('comment.delete.label'),
+            onClick: () => mutateDelete(),
+          },
+        ]
+      : []),
   ];
 
   const handleLikeClick = () => {
