@@ -1,8 +1,10 @@
 'use client';
 import { useDeleteCommunityComment, usePostCommunityCommentLike } from '@/apis/community';
 import { Comment } from '@/apis/community/type';
-import CardHeader from '@/app/[lng]/(main)/community/[articleId]/components/CardHeader';
 import { useTranslation } from '@/app/i18n/client';
+import { IconButton } from '@/components/Button';
+import { CardHeader } from '@/components/Card';
+import { DropDown } from '@/components/DropDown';
 import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
@@ -99,9 +101,13 @@ function CommentItem({ comment, articleId, isCaptain, articleWriterId }: Comment
         userId={userId}
         name={nickName}
         isWriterCaptain={articleWriterId === userId}
-        showMoreIcon={true}
-        options={options}
-      />
+      >
+        <DropDown options={options}>
+          <IconButton size="large">
+            <Icon id="24-more_secondary" />
+          </IconButton>
+        </DropDown>
+      </CardHeader>
       <Spacing size={10} />
       <div className="break-words text-paragraph-2 text-sign-primary">{content}</div>
       <Flex align="center" className="gap-8">

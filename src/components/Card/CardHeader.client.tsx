@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { Flex } from '../Layout';
@@ -16,6 +18,7 @@ interface CardHeaderProps {
   writerReliabilityLevel: ReliabilityType;
   showMoreIcon?: boolean;
   onMoreClick?: () => void;
+  children?: ReactNode;
 }
 
 export default function CardHeader({
@@ -28,6 +31,7 @@ export default function CardHeader({
   writerReliabilityLevel,
   showMoreIcon = false,
   onMoreClick,
+  children,
 }: CardHeaderProps) {
   const { push } = useAppRouter();
 
@@ -54,6 +58,7 @@ export default function CardHeader({
         <p className="text-caption text-sign-tertiary">{date}</p>
       </div>
       {showMoreIcon && <Icon id="24-more_secondary" onClick={onMoreClick} />}
+      {children && children}
     </Flex>
   );
 }
