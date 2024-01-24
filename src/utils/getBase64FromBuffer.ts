@@ -1,7 +1,7 @@
 import { getBufferFromS3Url } from './getBufferFromS3Url';
 import { getPlaiceholder } from 'plaiceholder';
 
-const getBase64 = async (src: string) => {
+const getBase64FromBuffer = async (src: string) => {
   const buffer = await getBufferFromS3Url(src);
 
   const {
@@ -15,4 +15,4 @@ const getBase64 = async (src: string) => {
   };
 };
 
-export default getBase64;
+export default getBase64FromBuffer;
