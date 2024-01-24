@@ -74,4 +74,38 @@ export interface GetArticleDetail {
   data: CommunityArticle;
 }
 
+export interface GetCommunityArticleComments {
+  meta: {
+    statusCode: number;
+    message: string;
+  };
+  data: {
+    comments: Comment[];
+  };
+}
+
+export interface Comment {
+  comment: {
+    id: number;
+    isWriter: boolean;
+    isLiked: boolean;
+    userId: number;
+    articleId: number;
+    content: string;
+    likeCount: number;
+    commentCount: number;
+    createdAt: string;
+    updatedAt: string;
+  };
+  writer: {
+    id: number;
+    isCertifiedStudent: boolean;
+    profileImage: string;
+    nickName: string;
+    countryName: string;
+    countryImage: string;
+    reliabilityLevel: ReliabilityType;
+  };
+}
+
 export type CategoryType = 'K-POP' | 'Q&A' | 'Language';

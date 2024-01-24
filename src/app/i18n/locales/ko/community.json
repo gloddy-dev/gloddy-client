@@ -36,5 +36,24 @@
     "block": "게시물 차단",
     "report": "게시물 신고",
     "delete": "게시물 삭제"
+  },
+
+  "comment": {
+    "placeholder": "댓글 쓰기",
+    "commentLengthError": "* 최대 150자 이하로 작성해주세요.",
+    "firstComment": "첫 댓글을 남겨보세요!",
+    "blockComment": "차단된 댓글입니다.",
+    "delete": {
+      "label": "삭제하기",
+      "content": "해당 댓글을 삭제하시겠습니까?"
+    },
+    "report": {
+      "label": "신고하기",
+      "content": "해당 댓글을 신고하시겠습니까?"
+    },
+    "block": {
+      "label": "차단하기",
+      "content": "해당 댓글을 차단하시겠습니까?"
+    }
   }
 }

@@ -4,6 +4,7 @@ import {
   GetArticleDetail,
   GetArticlesRequest,
   GetArticlesResponse,
+  GetCommunityArticleComments,
 } from '@/apis/community/type';
 import privateApi from '@/apis/config/privateApi';
 
@@ -32,4 +33,8 @@ export const postCommunityArticleLike = (articleId: number) => {
 
 export const postDeleteCommunityArticle = (articleId: number) => {
   return privateApi.post(`/communities/articles/${articleId}/delete`);
+};
+
+export const getCommunityArticleComments = (articleId: number) => {
+  return privateApi.get<GetCommunityArticleComments>(`/communities/articles/${articleId}/comments`);
 };

@@ -36,5 +36,24 @@
     "block": "Block",
     "report": "Report",
     "delete": "Delete"
+  },
+
+  "comment": {
+    "placeholder": "Write a comment",
+    "commentLengthError": "* Comments are limited to 150 characters.",
+    "firstComment": "Be the first to leave a comment!",
+    "blockComment": "It's a blocked comment.",
+    "delete": {
+      "label": "Delete",
+      "content": "Would you like to delete this comment?"
+    },
+    "report": {
+      "label": "Report",
+      "content": "Do you want to report this comment?"
+    },
+    "block": {
+      "label": "Block",
+      "content": "Would you like to block this comment?"
+    }
   }
 }
