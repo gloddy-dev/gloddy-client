@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetCommunityArticleComments, useGetCommunityArticleDetail } from '@/apis/community';
+import { useGetCommunityArticleDetail, useGetCommunityComments } from '@/apis/community';
 import ArticleItem from '@/app/[lng]/(main)/community/[articleId]/components/ArticleItem';
 import CommentList from '@/app/[lng]/(main)/community/[articleId]/components/CommentList';
 import { useTranslation } from '@/app/i18n/client';
@@ -15,7 +15,7 @@ export default function ArticleDetail({ articleId }: ArticleDetailProps) {
   const { t } = useTranslation('community');
 
   const { data: articleData } = useGetCommunityArticleDetail(articleId);
-  const { data: articleComments } = useGetCommunityArticleComments(articleId);
+  const { data: articleComments } = useGetCommunityComments(articleId);
   const commentCount = articleData.data.article.commentCount;
   const commentsList = articleComments.data.comments;
 

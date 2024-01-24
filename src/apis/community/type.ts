@@ -74,13 +74,20 @@ export interface GetArticleDetail {
   data: CommunityArticle;
 }
 
-export interface GetCommunityArticleComments {
+export interface GetCommunityCommentsResponse {
   meta: {
     statusCode: number;
     message: string;
   };
   data: {
     comments: Comment[];
+  };
+}
+
+export interface CreateCommentRequest {
+  params: { articleId: number };
+  payload: {
+    content: string;
   };
 }
 

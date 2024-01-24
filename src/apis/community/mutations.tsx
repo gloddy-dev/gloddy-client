@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   postCommunityArticleLike,
   postCreateCommunityArticle,
+  postCreateCommunityComment,
   postDeleteCommunityArticle,
 } from '@/apis/community/apis';
 import { Keys } from '@/apis/community/keys';
@@ -71,6 +72,18 @@ export const usePostDeleteCommunityArticle = (articleId: number, categoryId: num
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(0) });
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(categoryId) });
       back();
+    },
+  });
+};
+
+export const usePostCreateComment = (articleId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postCreateCommunityComment,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticleDetail(articleId) });
+      queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
     },
   });
 };

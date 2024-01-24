@@ -61,7 +61,7 @@ function CommentItem({ comment, articleId, isCaptain, articleWriterId }: Comment
         userImageUrl={profileImage}
         userId={userId}
         name={nickName}
-        isWriterCaptain={articleWriterId == userId}
+        isWriterCaptain={articleWriterId === userId}
       />
       <Spacing size={10} />
       <div className="break-words text-paragraph-2 text-sign-primary">{content}</div>

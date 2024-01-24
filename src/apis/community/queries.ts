@@ -1,9 +1,9 @@
 import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import {
-  getCommunityArticleComments,
   getCommunityArticleDetail,
   getCommunityArticles,
+  getCommunityComments,
 } from '@/apis/community/apis';
 import { Keys } from '@/apis/community/keys';
 
@@ -31,9 +31,9 @@ export const useGetCommunityArticleDetail = (articleId: number) => {
   });
 };
 
-export const useGetCommunityArticleComments = (articleId: number) => {
+export const useGetCommunityComments = (articleId: number) => {
   return useSuspenseQuery({
-    queryKey: Keys.getCommunityArticleComments(articleId),
-    queryFn: () => getCommunityArticleComments(articleId),
+    queryKey: Keys.getCommunityComments(articleId),
+    queryFn: () => getCommunityComments(articleId),
   });
 };

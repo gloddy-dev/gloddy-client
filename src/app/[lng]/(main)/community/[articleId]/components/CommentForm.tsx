@@ -1,20 +1,24 @@
 'use client';
 
-import { useTranslation } from '@/app/i18n/client';
-import { Icon } from '@/components/Icon';
-import { TextFieldController } from '@/components/TextField';
-import cn from '@/utils/cn';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-export type CommentFormType = {
+import { usePostCreateComment } from '@/apis/community';
+import { useTranslation } from '@/app/i18n/client';
+import { Icon } from '@/components/Icon';
+import { TextFieldController } from '@/components/TextField';
+import { useNumberParams } from '@/hooks/useNumberParams';
+import cn from '@/utils/cn';
+
+export type CreateCommentRequest = {
   content: string;
 };
 
 export default function CommentForm() {
-  const { t } = useTranslation('groupDetail');
-
-  const hookForm = useForm<CommentFormType>({
+  const { t } = useTranslation('community');
+  const { articleId } = useNumberParams<['articleId']>();
+  const { mutate: mutateComment } = usePostCreateComment(articleId);
+  const hookForm = useForm<CreateCommentRequest>({
     mode: 'onChange',
     defaultValues: {
       content: '',
@@ -24,8 +28,9 @@ export default function CommentForm() {
 
   const { handleSubmit, reset, watch, register } = hookForm;
 
-  const onSubmit = ({ content }: CommentFormType) => {
+  const onSubmit = ({ content }: CreateCommentRequest) => {
     reset();
+    mutateComment({ params: { articleId }, payload: { content } });
   };
 
   return (
