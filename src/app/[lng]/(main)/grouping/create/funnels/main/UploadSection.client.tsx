@@ -17,14 +17,10 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
     name: 'imageUrl',
     control,
   });
-  const { field: previewImageField } = useController({
-    name: 'previewImage',
-    control,
-  });
 
-  const { handleFileUploadClick } = useFileUpload(async (files) => {
+  const { handleFileUploadClick, previewImage } = useFileUpload(async (files) => {
     field.onChange(files[0]);
-  }, previewImageField);
+  });
 
   return (
     <Flex
@@ -33,13 +29,13 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
       className="relative mx-20 aspect-[8/5] overflow-hidden rounded-8 bg-sub"
       onClick={handleFileUploadClick}
     >
-      <RenderImage previewImage={previewImageField.value} />
+      <RenderImage previewImage={previewImage} />
     </Flex>
   );
 }
 
 interface RenderImageProps {
-  previewImage: string;
+  previewImage: string | undefined;
 }
 
 const RenderImage = memo(function ({ previewImage }: RenderImageProps) {
