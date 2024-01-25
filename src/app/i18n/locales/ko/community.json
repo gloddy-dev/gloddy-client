@@ -39,7 +39,8 @@
   },
 
   "comment": {
-    "placeholder": "댓글 쓰기",
+    "placeholder_comment": "댓글 쓰기",
+    "placeholder_reply": "대댓글 쓰기",
     "commentLengthError": "* 최대 150자 이하로 작성해주세요.",
     "firstComment": "첫 댓글을 남겨보세요!",
     "blockComment": "차단된 댓글입니다.",

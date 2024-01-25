@@ -1,7 +1,8 @@
 'use client';
+import { forwardRef, useEffect, useState } from 'react';
+
 import { Spacing } from '../Spacing';
 import cn from '@/utils/cn';
-import { forwardRef, useEffect, useState } from 'react';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -49,6 +50,8 @@ function TextField<T extends React.ElementType = 'input'>(
   const Element = as || 'input';
 
   const [id, setId] = useState<number | null>(null);
+
+  console.log(isFocus);
 
   useEffect(() => {
     setId(elementId++);

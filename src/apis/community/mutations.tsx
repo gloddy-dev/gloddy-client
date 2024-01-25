@@ -1,15 +1,17 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import {
   deleteCommunityCommentLike,
   postCommunityArticleLike,
   postCommunityCommentLike,
   postCreateCommunityArticle,
   postCreateCommunityComment,
+  postCreateCommunityReply,
   postDeleteCommunityArticle,
 } from '@/apis/community/apis';
 import { Keys } from '@/apis/community/keys';
 import { CommunityArticle } from '@/apis/community/type';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePostCreateCommunityArticle = () => {
   const queryClient = useQueryClient();
@@ -127,6 +129,17 @@ export const useDeleteCommunityComment = (articleId: number, commentId: number) 
 
   return useMutation({
     mutationFn: () => deleteCommunityCommentLike(articleId, commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
+    },
+  });
+};
+
+export const useCreateCommunityReply = (articleId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postCreateCommunityReply,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
     },
