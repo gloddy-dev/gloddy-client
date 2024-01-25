@@ -1,10 +1,10 @@
-import Link from 'next/link';
-
 import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
 import { NavLink } from '../NavLink';
 import { serverTranslation } from '@/app/i18n';
 import cn from '@/utils/cn';
+import { getIsApp } from '@/utils/getIsApp';
+import Link from 'next/link';
 
 import type { PageType } from '@/types';
 
@@ -53,30 +53,34 @@ export default async function Footer({ lng, page, isSpacing = true, spacingColor
   const { t } = await serverTranslation(lng, 'common');
   const isSelected = (tab: TabType) => tab.name === page;
 
-  return (
-    <>
-      <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 touch-pan-x rounded-t-24 bg-white pb-8 pt-12 shadow-navigation">
-        {tabList.map((tab: TabType) => (
-          <ButtonAnimation
-            key={tab.id}
-            className={cn('flex w-full flex-col text-center text-caption', {
-              'text-sign-brand': isSelected(tab),
-              'text-sign-tertiary': !isSelected(tab),
-            })}
-          >
-            <NavLink isReplace href={tab.url} scroll={false}>
-              <Icon
-                id={`32-footer-${tab.name}${isSelected(tab) ? '_selected' : '_default'}`}
-                width={32}
-                height={32}
-                className="mx-auto"
-              />
-              <p>{t(tab.name)}</p>
-            </NavLink>
-          </ButtonAnimation>
-        ))}
-      </footer>
-      {isSpacing && <div className="h-70" style={{ backgroundColor: spacingColor }} />}
-    </>
-  );
+  const isApp = getIsApp();
+
+  if (isApp) return null;
+  else
+    return (
+      <>
+        <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 touch-pan-x rounded-t-24 bg-white pb-8 pt-12 shadow-navigation">
+          {tabList.map((tab: TabType) => (
+            <ButtonAnimation
+              key={tab.id}
+              className={cn('flex w-full flex-col text-center text-caption', {
+                'text-sign-brand': isSelected(tab),
+                'text-sign-tertiary': !isSelected(tab),
+              })}
+            >
+              <NavLink isReplace href={tab.url} scroll={false}>
+                <Icon
+                  id={`32-footer-${tab.name}${isSelected(tab) ? '_selected' : '_default'}`}
+                  width={32}
+                  height={32}
+                  className="mx-auto"
+                />
+                <p>{t(tab.name)}</p>
+              </NavLink>
+            </ButtonAnimation>
+          ))}
+        </footer>
+        {isSpacing && <div className="h-70" style={{ backgroundColor: spacingColor }} />}
+      </>
+    );
 }
