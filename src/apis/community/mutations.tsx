@@ -1,5 +1,3 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import {
   deleteCommunityCommentLike,
   postCommunityArticleLike,
@@ -11,6 +9,7 @@ import {
 import { Keys } from '@/apis/community/keys';
 import { CommunityArticle } from '@/apis/community/type';
 import useAppRouter from '@/hooks/useAppRouter';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePostCreateCommunityArticle = () => {
   const queryClient = useQueryClient();
@@ -34,6 +33,8 @@ export const usePostCommunityArticleLike = (articleId: number, categoryId: numbe
   return useMutation({
     mutationFn: () => postCommunityArticleLike(articleId),
     onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: Keys.getCommunityArticleDetail(articleId) });
+
       // 이전 상태를 저장
       const previousArticle = queryClient.getQueryData(Keys.getCommunityArticleDetail(articleId));
 
@@ -56,7 +57,7 @@ export const usePostCommunityArticleLike = (articleId: number, categoryId: numbe
         );
       } else throw new Error('No previous Data');
     },
-    onSuccess: () => {
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticleDetail(articleId) });
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(0) });
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(categoryId) });
