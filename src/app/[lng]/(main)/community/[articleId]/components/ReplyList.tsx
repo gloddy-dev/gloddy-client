@@ -13,6 +13,7 @@ export default function ReplyList({ replyList, articleWriterId }: ReplyListProps
       data={replyList}
       renderItem={(reply: Reply) => <ReplyItem reply={reply} articleWriterId={articleWriterId} />}
       renderEmpty={() => <div></div>}
+      className={'w-full'}
     />
   );
 }

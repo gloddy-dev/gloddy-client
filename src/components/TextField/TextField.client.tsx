@@ -51,8 +51,6 @@ function TextField<T extends React.ElementType = 'input'>(
 
   const [id, setId] = useState<number | null>(null);
 
-  console.log(isFocus);
-
   useEffect(() => {
     setId(elementId++);
   }, []);

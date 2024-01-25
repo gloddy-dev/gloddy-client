@@ -52,41 +52,41 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
   ];
 
   return (
-    <Flex direction={'row'} className="bg-sub py-20 pr-24">
-      <div className={'ml-20 mr-10 mt-15'}>
-        <Icon id={'24-arrow_back'} className={'-rotate-45 text-black'} />
-      </div>
-      <Flex direction="column" className={'w-full'}>
-        <CardHeader
-          date={format(parseISO(createdAt), 'yyyy.MM.dd HH:mm')}
-          isWriterCertifiedStudent={isCertifiedStudent}
-          writerReliabilityLevel={reliabilityLevel}
-          userImageUrl={profileImage}
-          userId={userId}
-          name={nickName}
-          isWriterCaptain={articleWriterId === userId}
-          countryImage={countryImage}
-        >
-          <DropDown options={options}>
-            <IconButton size="large">
-              <Icon id="24-more_secondary" />
-            </IconButton>
-          </DropDown>
-        </CardHeader>
-        <Spacing size={10} />
-        <div className="break-words text-paragraph-2 text-sign-primary">{content}</div>
-        <Flex align="center" className="gap-4">
-          <Icon
-            id="16-favorite_fill"
-            className={cn(isLiked ? 'text-warning' : 'text-sign-caption')}
-            width={16}
-            height={16}
-          />
-          <p className={cn(isLiked ? 'text-warning' : 'text-sign-caption') + ' text-subtitle-3'}>
-            {likeCount.toString().padStart(2, '0')}
-          </p>
+    <div className={'w-full bg-sub'}>
+      <Flex direction={'row'} className=" m-20 px-4" gap={10}>
+        <Icon id={'24-arrow_back'} className={'mt-15 -rotate-45 text-black'} />
+        <Flex direction="column" className={'w-full'}>
+          <CardHeader
+            date={format(parseISO(createdAt), 'yyyy.MM.dd HH:mm')}
+            isWriterCertifiedStudent={isCertifiedStudent}
+            writerReliabilityLevel={reliabilityLevel}
+            userImageUrl={profileImage}
+            userId={userId}
+            name={nickName}
+            isWriterCaptain={articleWriterId === userId}
+            countryImage={countryImage}
+          >
+            <DropDown options={options}>
+              <IconButton size="large">
+                <Icon id="24-more_secondary" />
+              </IconButton>
+            </DropDown>
+          </CardHeader>
+          <Spacing size={10} />
+          <div className="break-all text-paragraph-2 text-sign-primary">{content}</div>
+          <Flex align="center" className="gap-4">
+            <Icon
+              id="16-favorite_fill"
+              className={cn(isLiked ? 'text-warning' : 'text-sign-caption')}
+              width={16}
+              height={16}
+            />
+            <p className={cn(isLiked ? 'text-warning' : 'text-sign-caption') + ' text-subtitle-3'}>
+              {likeCount.toString().padStart(2, '0')}
+            </p>
+          </Flex>
         </Flex>
       </Flex>
-    </Flex>
+    </div>
   );
 }

@@ -124,7 +124,9 @@ export default function CommentItem({
           </Flex>
         </Flex>
       </Flex>
-      <ReplyList replyList={replyDataList.data.childComments} articleWriterId={articleWriterId} />
+      <Flex direction="column">
+        <ReplyList replyList={replyDataList.data.childComments} articleWriterId={articleWriterId} />
+      </Flex>
     </>
   );
 }
