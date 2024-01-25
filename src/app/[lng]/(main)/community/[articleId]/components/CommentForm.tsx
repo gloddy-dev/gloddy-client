@@ -18,6 +18,7 @@ export type CreateCommentRequest = {
 export default function CommentForm() {
   const { t } = useTranslation('community');
   const { articleId } = useNumberParams<['articleId']>();
+  const { commentType, commentId, setCommentType } = useComment();
   const { mutate: mutateComment } = usePostCreateComment(articleId);
   const { mutate: mutateReply } = useCreateCommunityReply(articleId);
   const hookForm = useForm<CreateCommentRequest>({
@@ -27,7 +28,6 @@ export default function CommentForm() {
     },
   });
   const textareaRef = useRef<HTMLInputElement>(null);
-  const { commentType, commentId, setCommentType } = useComment();
 
   const { handleSubmit, reset, watch, register } = hookForm;
 

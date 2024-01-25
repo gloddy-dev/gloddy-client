@@ -117,8 +117,8 @@ export interface Comment {
 
 export interface GetReplyResponse {
   meta: {
-    statusCode: 0;
-    message: 'string';
+    statusCode: number;
+    message: string;
   };
   data: {
     childComments: Reply[];

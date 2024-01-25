@@ -21,7 +21,6 @@ export const usePostCreateCommunityArticle = () => {
     mutationFn: postCreateCommunityArticle,
     onSuccess: (data, variables) => {
       const { categoryId } = variables;
-      console.log(categoryId);
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(0) }); // 전체 카테고리
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(categoryId) }); // 작성한 게시글 카테고리
       back();
@@ -140,7 +139,11 @@ export const useCreateCommunityReply = (articleId: number) => {
 
   return useMutation({
     mutationFn: postCreateCommunityReply,
-    onSuccess: () => {
+    onSuccess: (data, variables) => {
+      const { params } = variables;
+      queryClient.invalidateQueries({
+        queryKey: Keys.getCommunityReply(articleId, params.commentId),
+      });
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
     },
   });

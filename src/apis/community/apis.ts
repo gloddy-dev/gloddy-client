@@ -2,10 +2,12 @@ import {
   CreateArticleRequest,
   CreateArticleResponse,
   CreateCommentRequest,
+  CreateReplyRequest,
   GetArticleDetail,
   GetArticlesRequest,
   GetArticlesResponse,
   GetCommunityCommentsResponse,
+  GetReplyResponse,
 } from '@/apis/community/type';
 import privateApi from '@/apis/config/privateApi';
 
@@ -55,4 +57,17 @@ export const postCommunityCommentLike = (articleId: number, commentId: number) =
 
 export const deleteCommunityCommentLike = (articleId: number, commentId: number) => {
   return privateApi.delete(`/communities/articles/${articleId}/comments/${commentId}`);
+};
+
+export const getCommunityReply = (articleId: number, commentId: number) => {
+  return privateApi.get<GetReplyResponse>(
+    `/communities/articles/${articleId}/comments/${commentId}/child`
+  );
+};
+
+export const postCreateCommunityReply = ({
+  params: { articleId, commentId },
+  payload,
+}: CreateReplyRequest) => {
+  return privateApi.post(`/communities/articles/${articleId}/comments/${commentId}/child`, payload);
 };

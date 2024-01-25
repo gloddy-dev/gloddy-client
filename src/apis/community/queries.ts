@@ -4,6 +4,7 @@ import {
   getCommunityArticleDetail,
   getCommunityArticles,
   getCommunityComments,
+  getCommunityReply,
 } from '@/apis/community/apis';
 import { Keys } from '@/apis/community/keys';
 
@@ -35,5 +36,12 @@ export const useGetCommunityComments = (articleId: number) => {
   return useSuspenseQuery({
     queryKey: Keys.getCommunityComments(articleId),
     queryFn: () => getCommunityComments(articleId),
+  });
+};
+
+export const useGetCommunityReply = (articleId: number, commentId: number) => {
+  return useSuspenseQuery({
+    queryKey: Keys.getCommunityReply(articleId, commentId),
+    queryFn: () => getCommunityReply(articleId, commentId),
   });
 };
