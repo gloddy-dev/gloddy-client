@@ -1,12 +1,13 @@
 'use client';
-import { Icon } from '@/components/Icon';
-import { Flex } from '@/components/Layout';
-import { useFileUpload } from '@/hooks/useFileUpload';
 import Image from 'next/image';
 import { memo } from 'react';
 import { Control, useController } from 'react-hook-form';
 
 import type { CreateGroupContextValue } from '../../type';
+
+import { Icon } from '@/components/Icon';
+import { Flex } from '@/components/Layout';
+import { useFileUpload } from '@/hooks/useFileUpload';
 
 interface ImageThumbnailProps {
   control: Control<CreateGroupContextValue>;
@@ -18,7 +19,7 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
     control,
   });
 
-  const { handleFileUploadClick } = useFileUpload(async (files) => {
+  const { handleFileUploadClick, previewImage } = useFileUpload(async (files) => {
     field.onChange(files[0]);
   });
 
