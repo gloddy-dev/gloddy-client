@@ -1,13 +1,13 @@
 import { format, parseISO } from 'date-fns';
 
+import { useCommentContext } from './CommentProvider';
+import ReplyList from './ReplyList';
 import {
   Comment,
   useDeleteCommunityComment,
   useGetCommunityReply,
   usePostCommunityCommentLike,
 } from '@/apis/community';
-import { useComment } from '@/app/[lng]/(main)/community/[articleId]/components/CommentSection';
-import ReplyList from '@/app/[lng]/(main)/community/[articleId]/components/ReplyList';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { CardHeader } from '@/components/Card';
@@ -53,7 +53,7 @@ export default function CommentItem({
   const { mutate: mutateLike } = usePostCommunityCommentLike(articleId, commentId);
   const { mutate: mutateDelete } = useDeleteCommunityComment(articleId, commentId);
   const { data: replyDataList } = useGetCommunityReply(articleId, commentId);
-  const { setCommentType, setCommentId } = useComment();
+  const { setCommentType, setCommentId } = useCommentContext();
 
   const handleBlockArticle = () => {
     console.log('block');

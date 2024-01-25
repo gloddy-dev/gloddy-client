@@ -3,8 +3,8 @@
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useCommentContext } from './CommentProvider';
 import { useCreateCommunityReply, usePostCreateComment } from '@/apis/community';
-import { useComment } from '@/app/[lng]/(main)/community/[articleId]/components/CommentSection';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
@@ -18,7 +18,7 @@ export type CreateCommentRequest = {
 export default function CommentForm() {
   const { t } = useTranslation('community');
   const { articleId } = useNumberParams<['articleId']>();
-  const { commentType, commentId, setCommentType } = useComment();
+  const { commentType, commentId, setCommentType } = useCommentContext();
   const { mutate: mutateComment } = usePostCreateComment(articleId);
   const { mutate: mutateReply } = useCreateCommunityReply(articleId);
   const hookForm = useForm<CreateCommentRequest>({
@@ -47,7 +47,7 @@ export default function CommentForm() {
 
   return (
     <div className="bottom-fixed bg-white">
-      <form className="flex items-start gap-8">
+      <form className="flex items-start gap-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="grow">
           <TextFieldController
             ref={textareaRef}
@@ -75,10 +75,9 @@ export default function CommentForm() {
         </div>
 
         <button
-          type="button"
+          type="submit"
           className="flex h-48 w-48 shrink-0 items-center justify-center rounded-full bg-primary"
           onMouseDown={(e) => e.preventDefault()}
-          onClick={handleSubmit(onSubmit)}
         >
           <Icon id="24-send" />
         </button>
