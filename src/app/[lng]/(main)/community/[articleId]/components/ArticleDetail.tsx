@@ -1,10 +1,10 @@
 'use client';
 
+import ArticleItem from './ArticleItem';
+import CommentForm from './CommentForm';
+import CommentList from './CommentList';
+import CommentProvider from './CommentProvider';
 import { useGetCommunityArticleDetail, useGetCommunityComments } from '@/apis/community';
-import ArticleItem from '@/app/[lng]/(main)/community/[articleId]/components/ArticleItem';
-import CommentForm from '@/app/[lng]/(main)/community/[articleId]/components/CommentForm';
-import CommentList from '@/app/[lng]/(main)/community/[articleId]/components/CommentList';
-import CommentSection from '@/app/[lng]/(main)/community/[articleId]/components/CommentProvider';
 import { useTranslation } from '@/app/i18n/client';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
@@ -30,12 +30,12 @@ export default function ArticleDetail({ articleId }: ArticleDetailProps) {
         {t('detail.commentCount', { commentCount })}
       </p>
       <Spacing size={8} />
-      <CommentSection>
+      <CommentProvider>
         <CommentList commentList={commentList} articleWriterId={articleData.data.writer.id} />
         <Spacing size={100} />
         <CommentForm />
         <Spacing size={60} />
-      </CommentSection>
+      </CommentProvider>
     </>
   );
 }
