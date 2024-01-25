@@ -8,11 +8,12 @@ import {
   getMeetingRejected,
   getMeetingWaiting,
 } from '@/apis/meeting';
-import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
+import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
+const Footer = dynamic(() => import('@/components/Footer/Footer.server'), { ssr: false });
 interface MeetingPageProps {
   params: {
     lng: string;

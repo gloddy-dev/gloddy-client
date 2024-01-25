@@ -1,13 +1,13 @@
-import { Suspense } from 'react';
-
 import CommunityHeader from './components/CommunityHeader';
 import ContentSection from './components/ContentSection.client';
 import { Keys, getCommunityArticles } from '@/apis/community';
-import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 
+const Footer = dynamic(() => import('@/components/Footer/Footer.server'), { ssr: false });
 interface CommunityPageProps {
   params: {
     lng: string;
