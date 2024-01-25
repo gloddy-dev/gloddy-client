@@ -39,7 +39,8 @@
   },
 
   "comment": {
-    "placeholder": "Write a comment",
+    "placeholder_comment": "Write a comment",
+    "placeholder_reply": "Write a Reply",
     "commentLengthError": "* Comments are limited to 150 characters.",
     "firstComment": "Be the first to leave a comment!",
     "blockComment": "It's a blocked comment.",
