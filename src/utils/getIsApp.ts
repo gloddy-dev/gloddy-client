@@ -1,6 +1,10 @@
+import { getIsServer } from './getIsServer';
+
 export const getIsApp = () => {
   let isApp = false;
-  if (typeof window !== 'undefined' && window.ReactNativeWebView) {
+  const isServer = getIsServer();
+
+  if (!isServer && window.ReactNativeWebView) {
     isApp = true;
   }
   return isApp;
