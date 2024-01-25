@@ -1,10 +1,11 @@
+'use client';
 import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
 import { NavLink } from '../NavLink';
-import { serverTranslation } from '@/app/i18n';
 import cn from '@/utils/cn';
-import { getIsApp } from '@/utils/getIsApp';
-import Link from 'next/link';
+import { getIsAndroid } from '@/utils/getIsAndroid';
+import { getIsIOS } from '@/utils/getIsIOS';
+import { useTranslation } from 'react-i18next';
 
 import type { PageType } from '@/types';
 
@@ -49,13 +50,14 @@ interface FooterProps {
   spacingColor?: string;
 }
 
-export default async function Footer({ lng, page, isSpacing = true, spacingColor }: FooterProps) {
-  const { t } = await serverTranslation(lng, 'common');
+export default function Footer({ page, isSpacing = true, spacingColor }: FooterProps) {
+  const { t } = useTranslation('common');
   const isSelected = (tab: TabType) => tab.name === page;
 
-  const isApp = getIsApp();
+  const isIOS = getIsIOS();
+  const isAndroid = getIsAndroid();
 
-  if (isApp) return null;
+  if (isIOS || isAndroid) return null;
   else
     return (
       <>

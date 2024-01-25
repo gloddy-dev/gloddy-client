@@ -7,7 +7,7 @@ import { Spacing } from '@/components/Spacing';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
-const Footer = dynamic(() => import('@/components/Footer/Footer.server'), { ssr: false });
+const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 interface CommunityPageProps {
   params: {
     lng: string;

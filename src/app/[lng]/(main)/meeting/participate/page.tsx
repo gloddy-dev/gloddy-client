@@ -13,7 +13,7 @@ import { HydrationProvider } from '@/components/Provider';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
-const Footer = dynamic(() => import('@/components/Footer/Footer.server'), { ssr: false });
+const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 interface MeetingPageProps {
   params: {
     lng: string;
