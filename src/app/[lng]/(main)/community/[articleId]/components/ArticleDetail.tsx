@@ -4,7 +4,7 @@ import { useGetCommunityArticleDetail, useGetCommunityComments } from '@/apis/co
 import ArticleItem from '@/app/[lng]/(main)/community/[articleId]/components/ArticleItem';
 import CommentForm from '@/app/[lng]/(main)/community/[articleId]/components/CommentForm';
 import CommentList from '@/app/[lng]/(main)/community/[articleId]/components/CommentList';
-import CommentSection from '@/app/[lng]/(main)/community/[articleId]/components/CommentSection';
+import CommentSection from '@/app/[lng]/(main)/community/[articleId]/components/CommentProvider';
 import { useTranslation } from '@/app/i18n/client';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
@@ -19,7 +19,7 @@ export default function ArticleDetail({ articleId }: ArticleDetailProps) {
   const { data: articleData } = useGetCommunityArticleDetail(articleId);
   const { data: articleComments } = useGetCommunityComments(articleId);
   const commentCount = articleData.data.article.commentCount;
-  const commentsList = articleComments.data.comments;
+  const commentList = articleComments.data.comments;
 
   return (
     <>
@@ -31,7 +31,7 @@ export default function ArticleDetail({ articleId }: ArticleDetailProps) {
       </p>
       <Spacing size={8} />
       <CommentSection>
-        <CommentList commentList={commentsList} articleWriterId={articleData.data.writer.id} />
+        <CommentList commentList={commentList} articleWriterId={articleData.data.writer.id} />
         <Spacing size={100} />
         <CommentForm />
         <Spacing size={60} />
