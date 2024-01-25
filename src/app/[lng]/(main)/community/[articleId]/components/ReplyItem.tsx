@@ -81,7 +81,7 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
               width={16}
               height={16}
             />
-            <p className={cn(isLiked ? 'text-warning' : 'text-sign-caption') + ' text-subtitle-3'}>
+            <p className={cn(isLiked ? 'text-warning' : 'text-sign-caption', 'text-subtitle-3')}>
               {likeCount.toString().padStart(2, '0')}
             </p>
           </Flex>
