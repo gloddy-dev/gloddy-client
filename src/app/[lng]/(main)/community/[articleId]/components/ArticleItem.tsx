@@ -61,6 +61,7 @@ export default function ArticleItem({ article }: ArticleItemProps) {
         writerReliabilityLevel={reliabilityLevel}
         isWriterCaptain={true}
         date={format(parseISO(createdAt), 'yyyy.MM.dd HH:mm')}
+        countryImage={countryImage}
       />
       <Spacing size={16} />
       <div className={'text-2xl font-semibold'}>{title}</div>

@@ -65,6 +65,7 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
           userId={userId}
           name={nickName}
           isWriterCaptain={articleWriterId === userId}
+          countryImage={countryImage}
         >
           <DropDown options={options}>
             <IconButton size="large">

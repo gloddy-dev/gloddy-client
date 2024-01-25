@@ -94,6 +94,7 @@ export default function CommentItem({
           userId={userId}
           name={nickName}
           isWriterCaptain={articleWriterId === userId}
+          countryImage={countryImage}
         >
           <DropDown options={options}>
             <IconButton size="large">

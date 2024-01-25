@@ -19,6 +19,7 @@ interface CardHeaderProps {
   showMoreIcon?: boolean;
   onMoreClick?: () => void;
   children?: ReactNode;
+  countryImage?: string;
 }
 
 export default function CardHeader({
@@ -32,6 +33,7 @@ export default function CardHeader({
   showMoreIcon = false,
   onMoreClick,
   children,
+  countryImage,
 }: CardHeaderProps) {
   const { push } = useAppRouter();
 
@@ -39,6 +41,7 @@ export default function CardHeader({
     <Flex align="center" className="gap-12 pb-4 pt-6">
       <Avatar
         imageUrl={userImageUrl}
+        countryImage={countryImage}
         size="small"
         iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
         onClick={() => push(`/profile/${userId}`)}
