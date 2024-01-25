@@ -17,19 +17,21 @@ export default function CommentList({ commentList, articleWriterId }: CommentLis
   const { articleId } = useNumberParams<['articleId']>();
 
   return (
-    <ItemList
-      data={commentList}
-      renderItem={(comment: Comment) => (
-        <CommentItem
-          comment={comment}
-          articleId={articleId}
-          articleWriterId={articleWriterId}
-          isCaptain={true}
-        />
-      )}
-      renderEmpty={() => <EmptyComment />}
-      className={'pb-102'}
-    />
+    <>
+      <ItemList
+        data={commentList}
+        renderItem={(comment: Comment) => (
+          <CommentItem
+            comment={comment}
+            articleId={articleId}
+            articleWriterId={articleWriterId}
+            isCaptain={true}
+          />
+        )}
+        renderEmpty={() => <EmptyComment />}
+      />
+      <Spacing size={102} />
+    </>
   );
 }
 
