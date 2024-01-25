@@ -1,5 +1,3 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import {
   deleteCommunityCommentLike,
   postCommunityArticleLike,
@@ -12,6 +10,7 @@ import {
 import { Keys } from '@/apis/community/keys';
 import { CommunityArticle } from '@/apis/community/type';
 import useAppRouter from '@/hooks/useAppRouter';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePostCreateCommunityArticle = () => {
   const queryClient = useQueryClient();
