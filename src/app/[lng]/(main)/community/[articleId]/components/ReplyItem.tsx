@@ -1,3 +1,5 @@
+import { format, parseISO } from 'date-fns';
+
 import { Reply } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
@@ -56,7 +58,7 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
       </div>
       <Flex direction="column" className={'w-full'}>
         <CardHeader
-          date={createdAt}
+          date={format(parseISO(createdAt), 'yyyy.MM.dd HH:mm')}
           isWriterCertifiedStudent={isCertifiedStudent}
           writerReliabilityLevel={reliabilityLevel}
           userImageUrl={profileImage}

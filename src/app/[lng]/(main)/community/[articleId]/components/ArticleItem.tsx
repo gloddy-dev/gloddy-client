@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns';
 import Image from 'next/image';
 
 import { CommunityArticle, usePostCommunityArticleLike } from '@/apis/community';
@@ -59,7 +60,7 @@ export default function ArticleItem({ article }: ArticleItemProps) {
         isWriterCertifiedStudent={isCertifiedStudent}
         writerReliabilityLevel={reliabilityLevel}
         isWriterCaptain={true}
-        date={createdAt}
+        date={format(parseISO(createdAt), 'yyyy.MM.dd HH:mm')}
       />
       <Spacing size={16} />
       <div className={'text-2xl font-semibold'}>{title}</div>

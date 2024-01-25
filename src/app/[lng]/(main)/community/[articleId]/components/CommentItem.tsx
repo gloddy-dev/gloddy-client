@@ -1,3 +1,5 @@
+import { format, parseISO } from 'date-fns';
+
 import {
   Comment,
   useDeleteCommunityComment,
@@ -85,7 +87,7 @@ export default function CommentItem({
     <>
       <Flex direction="column" className="m-20 mb-20 px-4">
         <CardHeader
-          date={createdAt}
+          date={format(parseISO(createdAt), 'yyyy.MM.dd HH:mm')}
           isWriterCertifiedStudent={isCertifiedStudent}
           writerReliabilityLevel={reliabilityLevel}
           userImageUrl={profileImage}
