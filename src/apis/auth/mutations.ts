@@ -10,6 +10,7 @@ import {
 } from '.';
 import useAppRouter from '@/hooks/useAppRouter';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
+import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 import { useMutation } from '@tanstack/react-query';
 
 export const useLoginMutation = () => useMutation({ mutationFn: postLogin });
@@ -29,6 +30,7 @@ export const useSignUpMutation = () => {
   return useMutation({
     mutationFn: postSignUp,
     onSuccess: (data: SignUpResponse) => {
+      sendMessageToReactNative({ type: 'SIGN_IN', data: 'LOGIN_SUCCESS' });
       const {
         userId,
         token: { accessToken, refreshToken },
