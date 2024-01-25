@@ -11,16 +11,24 @@ interface CommentContext {
   setCommentId: (commentId: number) => void;
 }
 
-const CommentContext = createContext<CommentContext>({
+export const CommentContext = createContext<CommentContext>({
   commentType: 'comment',
   commentId: null,
   setCommentType: (commentType: CommentType) => {},
   setCommentId: (commentId: number) => {},
 });
 
-export const useComment = () => useContext(CommentContext);
+export const useCommentContext = () => {
+  const context = useContext(CommentContext);
 
-export default function CommentSection({ children }: StrictPropsWithChildren) {
+  if (context == null) {
+    throw new Error('useModal is only available within ModalProvider.');
+  }
+
+  return context;
+};
+
+export default function CommentProvider({ children }: StrictPropsWithChildren) {
   const [commentType, setCommentType] = useState<CommentType>('comment');
   const [commentId, setCommentId] = useState<number | null>(null);
 
