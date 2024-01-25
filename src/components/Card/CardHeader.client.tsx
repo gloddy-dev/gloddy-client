@@ -61,7 +61,7 @@ export default function CardHeader({
         <p className="text-caption text-sign-tertiary">{date}</p>
       </div>
       {showMoreIcon && <Icon id="24-more_secondary" onClick={onMoreClick} />}
-      {children && children}
+      {children}
     </Flex>
   );
 }
