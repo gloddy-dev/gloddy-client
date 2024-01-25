@@ -1,10 +1,11 @@
-import { getIsAndroid } from './getIsAndroid';
-import { getIsIOS } from './getIsIOS';
+import { getIsServer } from './getIsServer';
 
 export const getIsApp = () => {
-  const isIOS = getIsIOS();
-  const isAndroid = getIsAndroid();
-  if (isIOS || isAndroid) return true;
+  let isApp = false;
+  const isServer = getIsServer();
 
-  return false;
+  if (!isServer && window.ReactNativeWebView) {
+    isApp = true;
+  }
+  return isApp;
 };
