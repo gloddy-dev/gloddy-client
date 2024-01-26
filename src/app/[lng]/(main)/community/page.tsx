@@ -1,11 +1,10 @@
 import CommunityHeader from './components/CommunityHeader';
 import ContentSection from './components/ContentSection.client';
 import { Keys, getCommunityArticles } from '@/apis/community';
-import { Loading } from '@/components/Loading';
+import LocalApiAsyncBoundary from '@/components/ErrorBoundary/LocalApiAsyncBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 
 const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 interface CommunityPageProps {
@@ -18,7 +17,7 @@ export default function CommunityPage({ params: { lng } }: CommunityPageProps) {
   return (
     <>
       <CommunityHeader lng={lng} />
-      <Suspense fallback={<Loading />}>
+      <LocalApiAsyncBoundary>
         <HydrationProvider
           queryMultipleFn={[
             () => getCommunityArticles({ categoryId: 0, pageParam: 0 }),
@@ -36,7 +35,7 @@ export default function CommunityPage({ params: { lng } }: CommunityPageProps) {
         >
           <ContentSection />
         </HydrationProvider>
-      </Suspense>
+      </LocalApiAsyncBoundary>
       <Spacing size={60} />
       <Footer page="community" lng={lng} />
     </>

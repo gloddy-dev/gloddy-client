@@ -8,10 +8,9 @@ import {
   getMeetingRejected,
   getMeetingWaiting,
 } from '@/apis/meeting';
-import { Loading } from '@/components/Loading';
+import LocalApiAsyncBoundary from '@/components/ErrorBoundary/LocalApiAsyncBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 
 const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 interface MeetingPageProps {
@@ -24,7 +23,7 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
       <MeetingParticipateHeader />
-      <Suspense fallback={<Loading />}>
+      <LocalApiAsyncBoundary>
         <HydrationProvider
           queryMultipleFn={[
             getMeetingParticipating,
@@ -43,7 +42,7 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
         >
           <ContentSection />
         </HydrationProvider>
-      </Suspense>
+      </LocalApiAsyncBoundary>
       <Footer page="meeting" lng={lng} />
     </>
   );

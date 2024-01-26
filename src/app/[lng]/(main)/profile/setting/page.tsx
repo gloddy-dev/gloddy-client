@@ -1,8 +1,7 @@
 import LinkSection from './components/LinkSection.server';
 import ProfileSection from './components/ProfileSection.client';
 import SettingHeader from './components/SettingHeader.client';
-import { Loading } from '@/components/Loading';
-import { Suspense } from 'react';
+import LocalApiAsyncBoundary from '@/components/ErrorBoundary/LocalApiAsyncBoundary';
 
 interface PageParams {
   params: {
@@ -14,9 +13,9 @@ export default function page({ params: { lng } }: PageParams) {
   return (
     <>
       <SettingHeader />
-      <Suspense fallback={<Loading />}>
+      <LocalApiAsyncBoundary>
         <ProfileSection />
-      </Suspense>
+      </LocalApiAsyncBoundary>
       <LinkSection lng={lng} />
     </>
   );

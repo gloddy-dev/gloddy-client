@@ -19,6 +19,7 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
             retry: 0,
             refetchOnWindowFocus: false,
             staleTime: 1000 * 60,
+            throwOnError: true,
           },
           mutations: {
             onError: (error) => {
