@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react';
+
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { Flex } from '../Layout';
@@ -16,6 +18,7 @@ interface CardHeaderProps {
   writerReliabilityLevel: ReliabilityType;
   showMoreIcon?: boolean;
   onMoreClick?: () => void;
+  countryImage?: string;
 }
 
 export default function CardHeader({
@@ -28,13 +31,16 @@ export default function CardHeader({
   writerReliabilityLevel,
   showMoreIcon = false,
   onMoreClick,
-}: CardHeaderProps) {
+  children,
+  countryImage,
+}: PropsWithChildren<CardHeaderProps>) {
   const { push } = useAppRouter();
 
   return (
     <Flex align="center" className="gap-12 pb-4 pt-6">
       <Avatar
         imageUrl={userImageUrl}
+        countryImage={countryImage}
         size="small"
         iconVariant={isWriterCertifiedStudent ? 'education' : 'none'}
         onClick={() => push(`/profile/${userId}`)}
@@ -54,6 +60,7 @@ export default function CardHeader({
         <p className="text-caption text-sign-tertiary">{date}</p>
       </div>
       {showMoreIcon && <Icon id="24-more_secondary" onClick={onMoreClick} />}
+      {children}
     </Flex>
   );
 }

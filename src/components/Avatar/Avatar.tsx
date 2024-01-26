@@ -1,9 +1,10 @@
+import Image from 'next/image';
+import { type PropsWithChildren, memo } from 'react';
+
 import { Icon } from '../Icon';
 import { Flex } from '../Layout';
 import { Loading } from '../Loading';
 import cn from '@/utils/cn';
-import Image from 'next/image';
-import { type PropsWithChildren, memo } from 'react';
 
 interface AvatarProps {
   /**
@@ -21,6 +22,7 @@ interface AvatarProps {
   iconVariant?: 'none' | 'add' | 'draft_orders' | 'education';
   className?: string;
   onClick?: () => void;
+  countryImage?: string;
 }
 export default function Avatar({
   imageUrl,
@@ -30,6 +32,7 @@ export default function Avatar({
   className,
   onClick,
   children,
+  countryImage,
 }: PropsWithChildren<AvatarProps>) {
   return (
     <span
@@ -68,6 +71,9 @@ export default function Avatar({
             })}
           />
         )}
+        <div className="absolute bottom-0 h-8 w-12">
+          {countryImage && <Image src={countryImage} fill className="object-fill" alt="국가" />}
+        </div>
       </div>
       {children}
     </span>
