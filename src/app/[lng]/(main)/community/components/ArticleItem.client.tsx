@@ -81,6 +81,7 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
             imageUrl={profileImage}
             size="x-small"
             iconVariant={isCertifiedStudent ? 'education' : 'none'}
+            countryImage={countryImage}
           />
           <p className="text-paragraph-2">{nickName}</p>
           <Icon id={`16-reliability-${reliabilityLevel.toLowerCase()}`} width={16} height={16} />
