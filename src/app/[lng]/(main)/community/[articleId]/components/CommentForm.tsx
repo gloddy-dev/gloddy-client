@@ -51,7 +51,7 @@ export default function CommentForm() {
         <div className="grow">
           <TextFieldController
             ref={textareaRef}
-            as="input"
+            as="textarea"
             hookForm={hookForm}
             register={register('content', {
               required: true,
