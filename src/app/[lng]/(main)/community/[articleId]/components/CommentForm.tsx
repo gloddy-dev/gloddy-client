@@ -1,20 +1,27 @@
 'use client';
 
-import { useTranslation } from '@/app/i18n/client';
-import { Icon } from '@/components/Icon';
-import { TextFieldController } from '@/components/TextField';
-import cn from '@/utils/cn';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-export type CommentFormType = {
+import { useCommentContext } from './CommentProvider';
+import { useCreateCommunityReply, usePostCreateComment } from '@/apis/community';
+import { useTranslation } from '@/app/i18n/client';
+import { Icon } from '@/components/Icon';
+import { TextFieldController } from '@/components/TextField';
+import { useNumberParams } from '@/hooks/useNumberParams';
+import cn from '@/utils/cn';
+
+export type CreateCommentRequest = {
   content: string;
 };
 
 export default function CommentForm() {
-  const { t } = useTranslation('groupDetail');
-
-  const hookForm = useForm<CommentFormType>({
+  const { t } = useTranslation('community');
+  const { articleId } = useNumberParams<['articleId']>();
+  const { commentType, commentId, setCommentType } = useCommentContext();
+  const { mutate: mutateComment } = usePostCreateComment(articleId);
+  const { mutate: mutateReply } = useCreateCommunityReply(articleId);
+  const hookForm = useForm<CreateCommentRequest>({
     mode: 'onChange',
     defaultValues: {
       content: '',
@@ -24,13 +31,23 @@ export default function CommentForm() {
 
   const { handleSubmit, reset, watch, register } = hookForm;
 
-  const onSubmit = ({ content }: CommentFormType) => {
+  const onSubmit = ({ content }: CreateCommentRequest) => {
     reset();
+    if (commentId && commentType === 'reply') {
+      mutateReply({ params: { articleId, commentId }, payload: { content } });
+    } else if (commentType === 'comment') {
+      console.log(commentType, commentId);
+      mutateComment({ params: { articleId }, payload: { content } });
+    }
+  };
+
+  const handleBlur = () => {
+    setCommentType('comment');
   };
 
   return (
     <div className="bottom-fixed bg-white">
-      <form className="flex items-start gap-8">
+      <form className="flex items-start gap-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="grow">
           <TextFieldController
             ref={textareaRef}
@@ -43,19 +60,24 @@ export default function CommentForm() {
                 message: t('comment.commentLengthError'),
               },
             })}
-            placeholder={t('comment.placeholder')}
+            placeholder={
+              commentType === 'comment'
+                ? t('comment.placeholder_comment')
+                : t('comment.placeholder_reply')
+            }
             maxCount={150}
             className={cn('transition-all', {
               'h-60': watch('content')?.length === 0,
               '': watch('content')?.length > 0,
             })}
+            onBlur={handleBlur}
           />
         </div>
 
         <button
-          type="button"
+          type="submit"
           className="flex h-48 w-48 shrink-0 items-center justify-center rounded-full bg-primary"
-          onClick={handleSubmit(onSubmit)}
+          onMouseDown={(e) => e.preventDefault()}
         >
           <Icon id="24-send" />
         </button>
