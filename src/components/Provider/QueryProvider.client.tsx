@@ -31,8 +31,6 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
       })
   );
 
-  // const queryClient = useQueryClient(queryClientInstance);
-
   return (
     <QueryClientProvider client={queryClient}>
       {children}
