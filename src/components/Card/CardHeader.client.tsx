@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
@@ -18,7 +18,6 @@ interface CardHeaderProps {
   writerReliabilityLevel: ReliabilityType;
   showMoreIcon?: boolean;
   onMoreClick?: () => void;
-  children?: ReactNode;
   countryImage?: string;
 }
 
@@ -34,7 +33,7 @@ export default function CardHeader({
   onMoreClick,
   children,
   countryImage,
-}: CardHeaderProps) {
+}: PropsWithChildren<CardHeaderProps>) {
   const { push } = useAppRouter();
 
   return (
