@@ -1,13 +1,12 @@
+import { getBase64FromImage } from './getBase64FromImage';
 import { usePostFiles } from '@/apis/common';
-import { useCallback, useState } from 'react';
-import { ControllerRenderProps, Field } from 'react-hook-form';
+import { useState } from 'react';
 
 interface UseImageUploadProps {
   /**
    * 파일 업로드가 완료되었을 때 실행할 함수를 지정합니다.
    */
   handleFileChange: (fileUrlList: string[]) => void;
-  previewImageField: ControllerRenderProps<any, any>;
   options?: {
     /**
      * 업로드할 파일의 타입을 지정합니다. (default: image/*)
@@ -22,24 +21,24 @@ interface UseImageUploadProps {
 
 export function useFileUpload(
   handleFileChange: UseImageUploadProps['handleFileChange'],
-  previewImageField?: UseImageUploadProps['previewImageField'],
   options?: UseImageUploadProps['options']
 ) {
   const { mutate, isPending } = usePostFiles();
+  const [previewImage, setPreviewImage] = useState<string | undefined>();
 
-  const handleFileUploadClick = useCallback(() => {
+  const handleFileUploadClick = async () => {
     const input = document.createElement('input');
+    input.style.display = 'none';
     input.type = 'file';
     input.accept = options?.accept || 'image/*';
     input.multiple = options?.multiple || false;
-    input.onchange = (event) => {
+    document.body.appendChild(input);
+    input.addEventListener('change', async (event) => {
       const { files } = event.target as HTMLInputElement;
       if (!files) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        previewImageField && previewImageField.onChange(reader.result);
-      };
-      reader.readAsDataURL(files[0]);
+
+      const base64 = await getBase64FromImage(files[0]);
+      setPreviewImage(base64);
 
       mutate(
         { fileList: Array.from(files) },
@@ -49,12 +48,13 @@ export function useFileUpload(
           },
         }
       );
-    };
+    });
     input.click();
-  }, [handleFileChange, mutate, options?.accept, options?.multiple, previewImageField]);
+  };
 
   return {
     handleFileUploadClick,
     isPending,
+    previewImage,
   };
 }
