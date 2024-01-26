@@ -1,7 +1,6 @@
 import GroupDetailPage from './components/GroupDetail.client';
 import GroupDetailHeader from './components/GroupDetailHeader.client';
 import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
-import { RejectedFallback } from '@/components/ErrorBoundary';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
 import { Suspense } from 'react';
