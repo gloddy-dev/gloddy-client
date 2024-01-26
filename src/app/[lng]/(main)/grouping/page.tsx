@@ -2,7 +2,7 @@ import CreateGroupButton from './components/CreateGroupButton.client';
 import GroupingCardList from './components/GroupingCardList.client';
 import GroupingHeader from './components/GroupingHeader';
 import { Keys, getGroups } from '@/apis/groups';
-import LocalApiAsyncBoundary from '@/components/ErrorBoundary/LocalApiAsyncBoundary';
+import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import dynamic from 'next/dynamic';
@@ -19,11 +19,11 @@ export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
   return (
     <>
       <GroupingHeader />
-      <LocalApiAsyncBoundary>
+      <LocalErrorSuspenseBoundary>
         <HydrationProvider queryFn={() => getGroups(0)} queryKey={Keys.getGroups()} isInfiniteQuery>
           <GroupingCardList />
         </HydrationProvider>
-      </LocalApiAsyncBoundary>
+      </LocalErrorSuspenseBoundary>
       <CreateGroupButton />
       <Spacing size={60} />
       <Footer page="grouping" lng={lng} />

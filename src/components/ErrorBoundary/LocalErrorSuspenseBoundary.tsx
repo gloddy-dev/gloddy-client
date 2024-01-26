@@ -6,10 +6,10 @@ import { captureException } from '@sentry/nextjs';
 import { PropsWithChildren, Suspense, useCallback, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-interface LocalApiAsyncBoundaryProps {}
-export default function LocalApiAsyncBoundary({
+interface LocalErrorSuspenseBoundaryProps {}
+export default function LocalErrorSuspenseBoundaryBoundary({
   children,
-}: StrictPropsWithChildren<LocalApiAsyncBoundaryProps>) {
+}: StrictPropsWithChildren<LocalErrorSuspenseBoundaryProps>) {
   return (
     <ErrorBoundary fallbackRender={Fallback}>
       <Suspense fallback={<Loading />}>{children}</Suspense>
@@ -23,9 +23,8 @@ interface FallbackProps {
 }
 
 export function Fallback({ error, resetErrorBoundary }: PropsWithChildren<FallbackProps>) {
-  console.log(error);
   useEffect(() => {
-    captureException(new Error('LocalApiAsyncBoundary'));
+    captureException(new Error('LocalErrorSuspenseBoundary'));
   }, []);
   return (
     <BaseError

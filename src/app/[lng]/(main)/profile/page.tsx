@@ -1,7 +1,7 @@
 import ProfileDetail from './components/ProfileDetail.client';
 import ProfileHeader from './components/ProfileHeader.client';
 import { Keys, getProfile } from '@/apis/profile';
-import LocalApiAsyncBoundary from '@/components/ErrorBoundary/LocalApiAsyncBoundary';
+import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
 import { Footer } from '@/components/Footer';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
@@ -22,11 +22,11 @@ export default function Profile({ params: { lng } }: ProfilePageProps) {
   return (
     <>
       <ProfileHeader />
-      <LocalApiAsyncBoundary>
+      <LocalErrorSuspenseBoundary>
         <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
           <ProfileDetail />
         </HydrationProvider>
-      </LocalApiAsyncBoundary>
+      </LocalErrorSuspenseBoundary>
       <Footer page="profile" isSpacing={false} lng={lng} />
     </>
   );

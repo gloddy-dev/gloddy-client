@@ -1,7 +1,7 @@
 import CommunityHeader from './components/CommunityHeader';
 import ContentSection from './components/ContentSection.client';
 import { Keys, getCommunityArticles } from '@/apis/community';
-import LocalApiAsyncBoundary from '@/components/ErrorBoundary/LocalApiAsyncBoundary';
+import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import dynamic from 'next/dynamic';
@@ -17,7 +17,7 @@ export default function CommunityPage({ params: { lng } }: CommunityPageProps) {
   return (
     <>
       <CommunityHeader lng={lng} />
-      <LocalApiAsyncBoundary>
+      <LocalErrorSuspenseBoundary>
         <HydrationProvider
           queryMultipleFn={[
             () => getCommunityArticles({ categoryId: 0, pageParam: 0 }),
@@ -35,7 +35,7 @@ export default function CommunityPage({ params: { lng } }: CommunityPageProps) {
         >
           <ContentSection />
         </HydrationProvider>
-      </LocalApiAsyncBoundary>
+      </LocalErrorSuspenseBoundary>
       <Spacing size={60} />
       <Footer page="community" lng={lng} />
     </>

@@ -1,7 +1,7 @@
 import InputForm from './components/InputForm.client';
 import WriteHeader from './components/WriteHeader.client';
 import { Keys, getGroupDetail } from '@/apis/groups';
-import LocalApiAsyncBoundary from '@/components/ErrorBoundary/LocalApiAsyncBoundary';
+import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface WritePageProps {
@@ -16,14 +16,14 @@ export default function WritePage({ params }: WritePageProps) {
   return (
     <div className="flex h-full flex-col">
       <WriteHeader />
-      <LocalApiAsyncBoundary>
+      <LocalErrorSuspenseBoundary>
         <HydrationProvider
           queryFn={() => getGroupDetail(groupId)}
           queryKey={Keys.getGroupDetail(groupId)}
         >
           <InputForm />
         </HydrationProvider>
-      </LocalApiAsyncBoundary>
+      </LocalErrorSuspenseBoundary>
     </div>
   );
 }
