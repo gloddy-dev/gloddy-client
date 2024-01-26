@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useCommentContext } from './CommentProvider';
@@ -29,7 +29,13 @@ export default function CommentForm() {
   });
   const textareaRef = useRef<HTMLInputElement>(null);
 
-  const { handleSubmit, reset, watch, register } = hookForm;
+  const { handleSubmit, reset, watch, register, setFocus } = hookForm;
+
+  useEffect(() => {
+    if (commentType === 'reply') {
+      setFocus('content');
+    }
+  }, [commentType, setFocus]);
 
   const onSubmit = ({ content }: CreateCommentRequest) => {
     reset();
