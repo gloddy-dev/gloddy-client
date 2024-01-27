@@ -2,8 +2,7 @@
 import BaseError from '../Error/BaseError';
 import { Loading } from '../Loading';
 import { StrictPropsWithChildren } from '@/types';
-import { captureException } from '@sentry/nextjs';
-import { PropsWithChildren, Suspense, useCallback, useEffect } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 interface LocalErrorSuspenseBoundaryProps {}
@@ -23,13 +22,5 @@ interface FallbackProps {
 }
 
 export function Fallback({ error, resetErrorBoundary }: PropsWithChildren<FallbackProps>) {
-  useEffect(() => {
-    captureException(new Error('LocalErrorSuspenseBoundary'));
-  }, []);
-  return (
-    <BaseError
-      error={error}
-      reset={useCallback(() => resetErrorBoundary(), [resetErrorBoundary])}
-    />
-  );
+  return <BaseError error={error} reset={resetErrorBoundary} />;
 }
