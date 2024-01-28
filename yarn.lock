@@ -2712,13 +2712,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.62.0":
-  version: 7.62.0
-  resolution: "@sentry/types@npm:7.62.0"
-  checksum: 8b702f99895a814709c6b2f4917a9b4a7224eea108eefc108088df0edf60a16ca37dcb44a078ef8dd4a52fadd5ed227818cd87467901c6496e467aea8d4e2035
-  languageName: node
-  linkType: hard
-
 "@sentry/types@npm:7.98.0":
   version: 7.98.0
   resolution: "@sentry/types@npm:7.98.0"
@@ -2726,22 +2719,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.98.0":
+"@sentry/utils@npm:7.98.0, @sentry/utils@npm:^7.98.0":
   version: 7.98.0
   resolution: "@sentry/utils@npm:7.98.0"
   dependencies:
     "@sentry/types": 7.98.0
   checksum: 9fe60afc0b65be72020b1d889d939d608a1a3dfd03a8ab7460538d3353a12e50133fdcfe7205376ef084e094c4cfe8b4cdb64e5d99cb74ab6239b02df459da18
-  languageName: node
-  linkType: hard
-
-"@sentry/utils@npm:^7.62.0":
-  version: 7.62.0
-  resolution: "@sentry/utils@npm:7.62.0"
-  dependencies:
-    "@sentry/types": 7.62.0
-    tslib: ^2.4.1 || ^1.9.3
-  checksum: 324d8561ff2d394f92d670b11e5d4ef9e8df2c87a4f90f25a8c85a73c049f8f83fb29b6bcfc59c0de42f7ba66c332b92698b9ef9c66f25091601c7a8f940f34f
   languageName: node
   linkType: hard
 
@@ -6669,7 +6652,7 @@ __metadata:
     "@react-google-maps/api": ^2.19.2
     "@sentry/cli": ^2.20.4
     "@sentry/nextjs": ^7.93.0
-    "@sentry/utils": ^7.62.0
+    "@sentry/utils": ^7.98.0
     "@tanstack/react-query": ^5.17.15
     "@tanstack/react-query-devtools": ^5.17.18
     "@testing-library/jest-dom": ^5.17.0
@@ -11995,7 +11978,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.4.0, tslib@npm:^2.4.1 || ^1.9.3, tslib@npm:^2.5.0, tslib@npm:^2.6.0":
+"tslib@npm:^2.4.0, tslib@npm:^2.5.0, tslib@npm:^2.6.0":
   version: 2.6.1
   resolution: "tslib@npm:2.6.1"
   checksum: b0d176d176487905b66ae4d5856647df50e37beea7571c53b8d10ba9222c074b81f1410fb91da13debaf2cbc970663609068bdebafa844ea9d69b146527c38fe

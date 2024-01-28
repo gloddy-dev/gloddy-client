@@ -37,7 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@react-google-maps/api", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:2.19.2"],\
             ["@sentry/cli", "npm:2.20.4"],\
             ["@sentry/nextjs", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.98.0"],\
-            ["@sentry/utils", "npm:7.62.0"],\
+            ["@sentry/utils", "npm:7.98.0"],\
             ["@tanstack/react-query", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:5.17.15"],\
             ["@tanstack/react-query-devtools", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:5.17.18"],\
             ["@testing-library/jest-dom", "npm:5.17.0"],\
@@ -4369,13 +4369,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@sentry/types", [\
-        ["npm:7.62.0", {\
-          "packageLocation": "./.yarn/cache/@sentry-types-npm-7.62.0-ca88f2d4a4-8b702f9989.zip/node_modules/@sentry/types/",\
-          "packageDependencies": [\
-            ["@sentry/types", "npm:7.62.0"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:7.98.0", {\
           "packageLocation": "./.yarn/cache/@sentry-types-npm-7.98.0-f025acb8ce-f767857049.zip/node_modules/@sentry/types/",\
           "packageDependencies": [\
@@ -4385,15 +4378,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@sentry/utils", [\
-        ["npm:7.62.0", {\
-          "packageLocation": "./.yarn/cache/@sentry-utils-npm-7.62.0-ca03f9bd11-324d8561ff.zip/node_modules/@sentry/utils/",\
-          "packageDependencies": [\
-            ["@sentry/utils", "npm:7.62.0"],\
-            ["@sentry/types", "npm:7.62.0"],\
-            ["tslib", "npm:2.6.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:7.98.0", {\
           "packageLocation": "./.yarn/cache/@sentry-utils-npm-7.98.0-fb8ed7102b-9fe60afc0b.zip/node_modules/@sentry/utils/",\
           "packageDependencies": [\
@@ -9243,7 +9227,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@react-google-maps/api", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:2.19.2"],\
             ["@sentry/cli", "npm:2.20.4"],\
             ["@sentry/nextjs", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:7.98.0"],\
-            ["@sentry/utils", "npm:7.62.0"],\
+            ["@sentry/utils", "npm:7.98.0"],\
             ["@tanstack/react-query", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:5.17.15"],\
             ["@tanstack/react-query-devtools", "virtual:adf4a978b7b219aa3420c5fabee99244f74214f8f162e8cb44ca740031807ac9d0f3b09dd2b886862b1a271495a9f33acc3eb07d1170cb6af25d456a63d4a46f#npm:5.17.18"],\
             ["@testing-library/jest-dom", "npm:5.17.0"],\
