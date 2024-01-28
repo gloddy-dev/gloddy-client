@@ -5,6 +5,7 @@ import ReplyList from './ReplyList';
 import {
   Comment,
   useDeleteCommunityComment,
+  useGetCommunityArticleDetail,
   useGetCommunityReply,
   usePostCommunityCommentLike,
 } from '@/apis/community';
@@ -50,8 +51,9 @@ export default function CommentItem({
     profileImage,
     nickName,
   } = comment.writer;
+  const categoryId = useGetCommunityArticleDetail(articleId).data.data.article.category.id;
   const { mutate: mutateLike } = usePostCommunityCommentLike(articleId, commentId);
-  const { mutate: mutateDelete } = useDeleteCommunityComment(articleId, commentId);
+  const { mutate: mutateDelete } = useDeleteCommunityComment(articleId, commentId, categoryId);
   const { data: replyDataList } = useGetCommunityReply(articleId, commentId);
   const { setCommentType, setCommentId } = useCommentContext();
 
