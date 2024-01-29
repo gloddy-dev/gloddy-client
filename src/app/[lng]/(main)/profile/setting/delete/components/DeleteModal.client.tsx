@@ -4,9 +4,8 @@ import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { AUTH_KEYS } from '@/constants/token';
+import useLogout from '@/hooks/token/useLogout';
 import { useModal } from '@/hooks/useModal';
-import { removeLocalCookie } from '@/utils/cookieController';
 
 interface DeleteModalProps {
   onCancelClick: () => void;
@@ -16,11 +15,10 @@ export default function DeleteModal({ onCancelClick }: DeleteModalProps) {
   const { open } = useModal();
   const { t } = useTranslation('profile');
   const { mutate } = usePatchSignOut();
+  const { logout } = useLogout();
   const handleDeleteClick = () => {
     mutate();
-    removeLocalCookie(AUTH_KEYS.accessToken);
-    removeLocalCookie(AUTH_KEYS.refreshToken);
-    removeLocalCookie(AUTH_KEYS.userId);
+    logout();
     open(() => <DeleteCompleteModal />);
   };
 
