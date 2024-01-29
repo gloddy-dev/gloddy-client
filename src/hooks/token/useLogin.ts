@@ -10,8 +10,8 @@ interface LoginProps {
 export default function useLogin() {
   const { refresh, replace } = useAppRouter();
 
-  const login = ({ accessToken, refreshToken, userId }: LoginProps) => {
-    setTokenAtCookie({ accessToken, refreshToken, userId });
+  const login = async ({ accessToken, refreshToken, userId }: LoginProps) => {
+    await setTokenAtCookie({ accessToken, refreshToken, userId });
     sendMessageToReactNative({ type: 'AUTH', data: 'LOG_IN' });
     refresh();
     replace('/grouping');

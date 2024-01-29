@@ -14,10 +14,11 @@ import { useMutation } from '@tanstack/react-query';
 
 export const useLoginMutation = () => {
   const { login } = useLogin();
+
   return useMutation({
     mutationFn: postLogin,
     onSuccess: async (response: LoginResponse) => {
-      login({
+      await login({
         accessToken: response.token.accessToken,
         refreshToken: response.token.refreshToken,
         userId: response.userId,
@@ -25,6 +26,7 @@ export const useLoginMutation = () => {
     },
   });
 };
+
 export const useReissueMutation = () => useMutation({ mutationFn: postReissue });
 
 export const useSMSMutation = () => useMutation({ mutationFn: postSMS });
@@ -37,6 +39,7 @@ export const useEmailVerifyMutation = () => useMutation({ mutationFn: postEmailV
 
 export const useSignUpMutation = () => {
   const { login } = useLogin();
+
   return useMutation({
     mutationFn: postSignUp,
     onSuccess: async (data: SignUpResponse) => {
