@@ -1,13 +1,12 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { formatNumber, formatNumberBackSpace } from '../util';
-import { LoginResponse, useLoginMutation, useSMSMutation } from '@/apis/auth';
+import { useLoginMutation, useSMSMutation } from '@/apis/auth';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { useTimerContext } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import useLogin from '@/hooks/token/useLogin';
 import { useToast } from '@/hooks/useModal';
 import { ElementType, KeyboardEventHandler } from 'react';
 
@@ -28,7 +27,6 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
   const { start: timerStart, status: timerStatus } = useTimerContext();
   const { openToast } = useToast();
   const { mutate: mutateLogin } = useLoginMutation();
-  const { login } = useLogin();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
@@ -48,18 +46,7 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     timerStart();
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
     if (phoneNumberWithoutHyphen === '01089695610') {
-      mutateLogin(
-        { phoneNumber: data.phoneNumber },
-        {
-          onSuccess: async (response: LoginResponse) => {
-            login({
-              accessToken: response.token.accessToken,
-              refreshToken: response.token.refreshToken,
-              userId: response.userId,
-            });
-          },
-        }
-      );
+      mutateLogin({ phoneNumber: data.phoneNumber });
       return;
     }
     mutateSMS({ number: phoneNumberWithoutHyphen });

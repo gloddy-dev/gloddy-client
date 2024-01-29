@@ -1,4 +1,5 @@
 import {
+  LoginResponse,
   SignUpResponse,
   postEmail,
   postEmailVerify,
@@ -11,8 +12,19 @@ import {
 import useLogin from '@/hooks/token/useLogin';
 import { useMutation } from '@tanstack/react-query';
 
-export const useLoginMutation = () => useMutation({ mutationFn: postLogin });
-
+export const useLoginMutation = () => {
+  const { login } = useLogin();
+  return useMutation({
+    mutationFn: postLogin,
+    onSuccess: async (response: LoginResponse) => {
+      login({
+        accessToken: response.token.accessToken,
+        refreshToken: response.token.refreshToken,
+        userId: response.userId,
+      });
+    },
+  });
+};
 export const useReissueMutation = () => useMutation({ mutationFn: postReissue });
 
 export const useSMSMutation = () => useMutation({ mutationFn: postSMS });
