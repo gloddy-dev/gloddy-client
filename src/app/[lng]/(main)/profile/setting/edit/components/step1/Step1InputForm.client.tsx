@@ -43,23 +43,9 @@ export default function Step1InputForm({ onPrev }: Step1InputFormProps) {
   const onSubmit = (data: ProfileRequest) => {
     if (!isAllTyped) return;
 
-    const makeProfileEditDTO = (data: ProfileRequest) => {
-      const { imageUrl, name, gender, introduce, personalities, countryName, countryImage, birth } =
-        data;
+    const { birth } = data;
 
-      return {
-        imageUrl,
-        name,
-        gender,
-        introduce,
-        personalities,
-        countryName,
-        countryImage,
-        birth: formatBirthDTO(birth),
-      };
-    };
-
-    mutate(makeProfileEditDTO({ ...data }));
+    mutate({ ...data, birth: formatBirthDTO(birth) });
   };
 
   const { open: openBottomSheet, close: closeBottomSheet } = useModal();

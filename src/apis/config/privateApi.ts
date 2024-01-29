@@ -1,8 +1,7 @@
-import { ApiError } from './customError';
-import { postReissue } from '../auth';
 import { BASE_API_URL } from '@/constants';
 import { AUTH_ERROR_CODES } from '@/constants/errorCode';
 import { getTokenFromCookie } from '@/utils/auth/tokenController';
+import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 import axios, { AxiosError, AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 
 import type { CustomInstance, ErrorType } from './type';
@@ -45,6 +44,7 @@ privateApi.interceptors.response.use(
         error.response.status === AUTH_ERROR_CODES.UNAUTHORIZED ||
         error.response.status === AUTH_ERROR_CODES.NOT_FOUND
       ) {
+        sendMessageToReactNative({ type: 'AUTH', data: 'LOG_OUT' });
         window.location.href = '/join?step=1';
       }
       return Promise.reject(error.response.data.reason);
