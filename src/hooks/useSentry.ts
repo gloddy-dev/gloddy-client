@@ -1,12 +1,13 @@
+import { SENTRY_DSN } from '@/constants';
 import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
 
-export const useSentry = ({ dsn, allowUrls }: { dsn: string; allowUrls: string[] }) => {
+export const useSentry = () => {
   useEffect(() => {
     Sentry.init({
-      dsn,
+      dsn: SENTRY_DSN,
       enabled: process.env.STAGE === 'production',
-      allowUrls,
+      allowUrls: ['https://gloddy.vercel.app'],
     });
-  }, [allowUrls, dsn]);
+  }, []);
 };
