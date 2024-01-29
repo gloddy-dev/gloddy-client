@@ -8,9 +8,7 @@ import { LayerLoading } from '@/components/Loading';
 import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import useAppRouter from '@/hooks/useAppRouter';
-import { setTokenAtCookie } from '@/utils/auth/tokenController';
-import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
+import useLogin from '@/hooks/token/useLogin';
 
 import type { SignUpState } from '../../../type';
 import type { SubmitHandler } from 'react-hook-form';
@@ -21,10 +19,10 @@ interface NumberVerifyFormProps {
 
 export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormProps) {
   const { t } = useTranslation('join');
-  const { refresh, replace } = useAppRouter();
   const hookForm = useJoinContext();
   const { handleSubmit, setError, register, watch, resetField } = hookForm;
   const { time, reset, start } = useTimerContext();
+  const { login } = useLogin();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
@@ -73,14 +71,11 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
                   return;
                 }
 
-                sendMessageToReactNative({ type: 'SIGN_IN', data: 'LOGIN_SUCCESS' });
-                await setTokenAtCookie({
+                await login({
                   accessToken: response.token.accessToken,
                   refreshToken: response.token.refreshToken,
                   userId: response.userId,
                 });
-                refresh();
-                replace('/grouping');
               },
             }
           );
