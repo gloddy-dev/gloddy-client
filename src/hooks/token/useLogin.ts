@@ -13,6 +13,14 @@ export default function useLogin() {
   const login = async ({ accessToken, refreshToken, userId }: LoginProps) => {
     await setTokenAtCookie({ accessToken, refreshToken, userId });
     sendMessageToReactNative({ type: 'AUTH', data: 'LOG_IN' });
+    sendMessageToReactNative({
+      type: 'TOKEN',
+      data: {
+        accessToken,
+        refreshToken,
+        userId,
+      },
+    });
     refresh();
     replace('/grouping');
   };
