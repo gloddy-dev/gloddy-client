@@ -8,7 +8,7 @@ import {
   getMeetingRejected,
   getMeetingWaiting,
 } from '@/apis/meeting';
-import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
+import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import dynamic from 'next/dynamic';
 
@@ -23,7 +23,7 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
       <MeetingParticipateHeader />
-      <LocalErrorSuspenseBoundary>
+      <LocalSuspenseErrorBoundary>
         <HydrationProvider
           queryMultipleFn={[
             getMeetingParticipating,
@@ -42,7 +42,7 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
         >
           <ContentSection />
         </HydrationProvider>
-      </LocalErrorSuspenseBoundary>
+      </LocalSuspenseErrorBoundary>
       <Footer page="meeting" lng={lng} />
     </>
   );

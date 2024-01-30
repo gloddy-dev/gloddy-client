@@ -1,7 +1,7 @@
 import ProfileByIdDetail from './components/ProfileByIdDetail.client';
 import ProfileByIdHeader from './components/ProfileByIdHeader';
 import { Keys, getProfileById } from '@/apis/profile';
-import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
+import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface PageProps {
@@ -14,7 +14,7 @@ export default function page({ params }: PageProps) {
   const userId = Number(params.userId);
 
   return (
-    <LocalErrorSuspenseBoundary>
+    <LocalSuspenseErrorBoundary>
       <HydrationProvider
         queryFn={() => getProfileById(userId)}
         queryKey={Keys.getProfileById(userId)}
@@ -22,6 +22,6 @@ export default function page({ params }: PageProps) {
         <ProfileByIdHeader />
         <ProfileByIdDetail />
       </HydrationProvider>
-    </LocalErrorSuspenseBoundary>
+    </LocalSuspenseErrorBoundary>
   );
 }

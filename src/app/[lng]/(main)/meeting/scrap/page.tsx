@@ -1,7 +1,7 @@
 import ContentSection from './components/ContentSection.client';
 import MeetingScrapHeader from './components/MeetingScrapHeader';
 import { Keys, getMeetingScrap } from '@/apis/meeting';
-import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
+import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { Footer } from '@/components/Footer';
 import { HydrationProvider } from '@/components/Provider';
 
@@ -15,11 +15,11 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
       <MeetingScrapHeader />
-      <LocalErrorSuspenseBoundary>
+      <LocalSuspenseErrorBoundary>
         <HydrationProvider queryFn={getMeetingScrap} queryKey={Keys.getMeetingScraps()}>
           <ContentSection />
         </HydrationProvider>
-      </LocalErrorSuspenseBoundary>
+      </LocalSuspenseErrorBoundary>
       <Footer page="meeting" lng={lng} />
     </>
   );

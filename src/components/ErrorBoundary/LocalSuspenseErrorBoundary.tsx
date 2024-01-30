@@ -5,10 +5,10 @@ import { StrictPropsWithChildren } from '@/types';
 import { PropsWithChildren, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-interface LocalErrorSuspenseBoundaryProps {}
-export default function LocalErrorSuspenseBoundaryBoundary({
+interface LocalSuspenseErrorBoundaryProps {}
+export default function LocalSuspenseErrorBoundary({
   children,
-}: StrictPropsWithChildren<LocalErrorSuspenseBoundaryProps>) {
+}: StrictPropsWithChildren<LocalSuspenseErrorBoundaryProps>) {
   return (
     <ErrorBoundary fallbackRender={Fallback}>
       <Suspense fallback={<Loading />}>{children}</Suspense>

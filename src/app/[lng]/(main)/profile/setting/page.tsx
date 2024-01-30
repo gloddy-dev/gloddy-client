@@ -1,7 +1,7 @@
 import LinkSection from './components/LinkSection.server';
 import ProfileSection from './components/ProfileSection.client';
 import SettingHeader from './components/SettingHeader.client';
-import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
+import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 
 interface PageParams {
   params: {
@@ -13,9 +13,9 @@ export default function page({ params: { lng } }: PageParams) {
   return (
     <>
       <SettingHeader />
-      <LocalErrorSuspenseBoundary>
+      <LocalSuspenseErrorBoundary>
         <ProfileSection />
-      </LocalErrorSuspenseBoundary>
+      </LocalSuspenseErrorBoundary>
       <LinkSection lng={lng} />
     </>
   );

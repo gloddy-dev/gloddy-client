@@ -1,7 +1,7 @@
 import FeedbackFunnel from './components/FeedbackFunnel.client';
 import FeedbackProvider from './components/FeedbackProvider.client';
 import { Keys, getEstimate } from '@/apis/groups';
-import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
+import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface PageProps {
@@ -14,12 +14,12 @@ export default function page({ params }: PageProps) {
   const groupId = Number(params.groupId);
 
   return (
-    <LocalErrorSuspenseBoundary>
+    <LocalSuspenseErrorBoundary>
       <HydrationProvider queryKey={Keys.getEstimate(groupId)} queryFn={() => getEstimate(groupId)}>
         <FeedbackProvider>
           <FeedbackFunnel />
         </FeedbackProvider>
       </HydrationProvider>
-    </LocalErrorSuspenseBoundary>
+    </LocalSuspenseErrorBoundary>
   );
 }

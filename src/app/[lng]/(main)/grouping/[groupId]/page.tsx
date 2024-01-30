@@ -1,7 +1,7 @@
 import GroupDetailPage from './components/GroupDetail.client';
 import GroupDetailHeader from './components/GroupDetailHeader.client';
 import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
-import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
+import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface GroupingDetailPageProps {
@@ -16,7 +16,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
   return (
     <>
       <GroupDetailHeader />
-      <LocalErrorSuspenseBoundary>
+      <LocalSuspenseErrorBoundary>
         <HydrationProvider
           queryMultipleFn={[
             () => getGroupDetail(groupId),
@@ -31,7 +31,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
         >
           <GroupDetailPage />
         </HydrationProvider>
-      </LocalErrorSuspenseBoundary>
+      </LocalSuspenseErrorBoundary>
     </>
   );
 }

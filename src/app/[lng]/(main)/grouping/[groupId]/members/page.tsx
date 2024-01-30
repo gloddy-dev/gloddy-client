@@ -1,7 +1,7 @@
 import MemeberList from './components/MemberList.client';
 import MembersHeader from './components/MembersHeader.client';
 import { Keys, getGroupMembers } from '@/apis/groups';
-import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
+import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface GroupingMembersPageProps {
@@ -16,14 +16,14 @@ export default function GroupingMembersPage({ params }: GroupingMembersPageProps
   return (
     <>
       <MembersHeader />
-      <LocalErrorSuspenseBoundary>
+      <LocalSuspenseErrorBoundary>
         <HydrationProvider
           queryFn={() => getGroupMembers(groupId)}
           queryKey={Keys.getGroupMembers(groupId)}
         >
           <MemeberList />
         </HydrationProvider>
-      </LocalErrorSuspenseBoundary>
+      </LocalSuspenseErrorBoundary>
     </>
   );
 }
