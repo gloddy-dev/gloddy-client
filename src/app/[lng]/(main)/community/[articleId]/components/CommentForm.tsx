@@ -1,15 +1,18 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-
 import { useCommentContext } from './CommentProvider';
-import { useCreateCommunityReply, usePostCreateComment } from '@/apis/community';
+import {
+  useCreateCommunityReply,
+  useGetCommunityArticleDetail,
+  usePostCreateComment,
+} from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import cn from '@/utils/cn';
+import { useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 export type CreateCommentRequest = {
   content: string;
@@ -19,7 +22,8 @@ export default function CommentForm() {
   const { t } = useTranslation('community');
   const { articleId } = useNumberParams<['articleId']>();
   const { commentType, commentId, setCommentType } = useCommentContext();
-  const { mutate: mutateComment } = usePostCreateComment(articleId);
+  const categoryId = useGetCommunityArticleDetail(articleId).data.data.article.category.id;
+  const { mutate: mutateComment } = usePostCreateComment(articleId, categoryId);
   const { mutate: mutateReply } = useCreateCommunityReply(articleId);
   const hookForm = useForm<CreateCommentRequest>({
     mode: 'onChange',

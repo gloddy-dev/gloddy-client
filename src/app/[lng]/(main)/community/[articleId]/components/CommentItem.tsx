@@ -1,5 +1,3 @@
-import { format, parseISO } from 'date-fns';
-
 import { useCommentContext } from './CommentProvider';
 import ReplyList from './ReplyList';
 import {
@@ -18,6 +16,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import cn from '@/utils/cn';
+import { format, parseISO } from 'date-fns';
 
 interface CommentItemProps {
   comment: Comment;
