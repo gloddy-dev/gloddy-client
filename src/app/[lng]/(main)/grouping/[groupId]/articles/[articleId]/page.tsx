@@ -2,6 +2,7 @@ import ArticleDetail from './components/ArticleDetail.client';
 import ArticleHeader from './components/ArticleHeader.client';
 import CommentForm from './components/CommentForm';
 import { Keys, getArticle } from '@/apis/groups';
+import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
@@ -21,14 +22,14 @@ export default function ArticlePage({ params }: ArticleDetailPageProps) {
   return (
     <>
       <ArticleHeader />
-      <Suspense fallback={<Loading className="h-[calc(100dvh-250px)]" />}>
+      <LocalErrorSuspenseBoundary>
         <HydrationProvider
           queryFn={() => getArticle(groupId, articleId)}
           queryKey={Keys.getArticle(groupId, articleId)}
         >
           <ArticleDetail />
         </HydrationProvider>
-      </Suspense>
+      </LocalErrorSuspenseBoundary>
       <Spacing size={100} />
       <CommentForm />
       <Spacing size={60} />

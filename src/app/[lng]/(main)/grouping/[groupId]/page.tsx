@@ -1,9 +1,8 @@
 import GroupDetailPage from './components/GroupDetail.client';
 import GroupDetailHeader from './components/GroupDetailHeader.client';
 import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
-import { Loading } from '@/components/Loading';
+import LocalErrorSuspenseBoundary from '@/components/ErrorBoundary/LocalErrorSuspenseBoundary';
 import { HydrationProvider } from '@/components/Provider';
-import { Suspense } from 'react';
 
 interface GroupingDetailPageProps {
   params: {
@@ -17,7 +16,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
   return (
     <>
       <GroupDetailHeader />
-      <Suspense fallback={<Loading className="h-[calc(100dvh-48px)]" />}>
+      <LocalErrorSuspenseBoundary>
         <HydrationProvider
           queryMultipleFn={[
             () => getGroupDetail(groupId),
@@ -32,7 +31,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
         >
           <GroupDetailPage />
         </HydrationProvider>
-      </Suspense>
+      </LocalErrorSuspenseBoundary>
     </>
   );
 }
