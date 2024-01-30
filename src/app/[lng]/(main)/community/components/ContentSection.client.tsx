@@ -8,7 +8,7 @@ import QuestionContent from './QuestionContent.client';
 import { Keys } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { Tabs } from '@/components/Tabs';
-import { useBroadcastChannel } from '@/hooks/useBoradcast';
+import { useBroadcastChannel } from '@/hooks/useBroadcast';
 import { useQueryClient } from '@tanstack/react-query';
 import { Suspense } from 'react';
 

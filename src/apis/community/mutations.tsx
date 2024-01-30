@@ -11,7 +11,7 @@ import { Keys } from '@/apis/community/keys';
 import { CommunityArticle } from '@/apis/community/type';
 import { CommunityChannelMessage } from '@/app/[lng]/(main)/community/components/ContentSection.client';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useBroadcastChannel } from '@/hooks/useBoradcast';
+import { useBroadcastChannel } from '@/hooks/useBroadcast';
 import { getIsAndroid } from '@/utils/getIsAndroid';
 import { getIsIOS } from '@/utils/getIsIOS';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
