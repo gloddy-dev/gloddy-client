@@ -1361,6 +1361,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:7.23.4":
+  version: 7.23.4
+  resolution: "@babel/runtime@npm:7.23.4"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: 8eb6a6b2367f7d60e7f7dd83f477cc2e2fdb169e5460694d7614ce5c730e83324bcf29251b70940068e757ad1ee56ff8073a372260d90cad55f18a825caf97cd
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.21.0":
   version: 7.22.6
   resolution: "@babel/runtime@npm:7.22.6"
@@ -4051,6 +4060,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"broadcast-channel@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "broadcast-channel@npm:7.0.0"
+  dependencies:
+    "@babel/runtime": 7.23.4
+    oblivious-set: 1.4.0
+    p-queue: 6.6.2
+    unload: 2.4.1
+  checksum: 6285d0796d01541f36a845dcea828f6eabd67a3bca0995c48d8bea35bc583abe23db609284a5f990fad4394c695587e6cb9c9e25afbbc82444b9f2b74a88ff7d
+  languageName: node
+  linkType: hard
+
 "browser-image-compression@npm:^2.0.2":
   version: 2.0.2
   resolution: "browser-image-compression@npm:2.0.2"
@@ -5900,6 +5921,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eventemitter3@npm:^4.0.4":
+  version: 4.0.7
+  resolution: "eventemitter3@npm:4.0.7"
+  checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
+  languageName: node
+  linkType: hard
+
 "exec-sh@npm:^0.3.2":
   version: 0.3.6
   resolution: "exec-sh@npm:0.3.6"
@@ -6622,6 +6650,7 @@ __metadata:
     autoprefixer: ^10.4.14
     axios: ^1.4.0
     babel-jest: ^29.6.2
+    broadcast-channel: ^7.0.0
     browser-image-compression: ^2.0.2
     clsx: ^1.2.1
     cssnano: ^6.0.1
@@ -6640,7 +6669,6 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-testing-library: ^5.11.1
     framer-motion: ^10.16.4
-    https: ^1.0.0
     husky: ^8.0.0
     i18next: ^23.5.1
     i18next-browser-languagedetector: ^7.1.0
@@ -6889,13 +6917,6 @@ __metadata:
     agent-base: 6
     debug: 4
   checksum: 571fccdf38184f05943e12d37d6ce38197becdd69e58d03f43637f7fa1269cf303a7d228aa27e5b27bbd3af8f09fd938e1c91dcfefff2df7ba77c20ed8dfc765
-  languageName: node
-  linkType: hard
-
-"https@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "https@npm:1.0.0"
-  checksum: ccea8a8363a018d4b241db7748cff3a85c9f5b71bf80639e9c37dc6823f590f35dda098b80b726930e9f945387c8bfd6b1461df25cab5bf65a31903d81875b5d
   languageName: node
   linkType: hard
 
@@ -9328,6 +9349,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"oblivious-set@npm:1.4.0":
+  version: 1.4.0
+  resolution: "oblivious-set@npm:1.4.0"
+  checksum: 4503772b19eda65d18afca528a35f73b68956833f88b64c528516159a190f61c5c0c5f7f33a7882aad267ecec67097c11729e497b0bbb34e093a3aa84679cc33
+  languageName: node
+  linkType: hard
+
 "once@npm:^1.3.0, once@npm:^1.3.1, once@npm:^1.4.0":
   version: 1.4.0
   resolution: "once@npm:1.4.0"
@@ -9439,6 +9467,25 @@ __metadata:
   dependencies:
     aggregate-error: ^3.0.0
   checksum: cb0ab21ec0f32ddffd31dfc250e3afa61e103ef43d957cc45497afe37513634589316de4eb88abdfd969fe6410c22c0b93ab24328833b8eb1ccc087fc0442a1c
+  languageName: node
+  linkType: hard
+
+"p-queue@npm:6.6.2":
+  version: 6.6.2
+  resolution: "p-queue@npm:6.6.2"
+  dependencies:
+    eventemitter3: ^4.0.4
+    p-timeout: ^3.2.0
+  checksum: 832642fcc4ab6477b43e6d7c30209ab10952969ed211c6d6f2931be8a4f9935e3578c72e8cce053dc34f2eb6941a408a2c516a54904e989851a1a209cf19761c
+  languageName: node
+  linkType: hard
+
+"p-timeout@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "p-timeout@npm:3.2.0"
+  dependencies:
+    p-finally: ^1.0.0
+  checksum: 3dd0eaa048780a6f23e5855df3dd45c7beacff1f820476c1d0d1bcd6648e3298752ba2c877aa1c92f6453c7dd23faaf13d9f5149fc14c0598a142e2c5e8d649c
   languageName: node
   linkType: hard
 
@@ -12093,6 +12140,13 @@ __metadata:
   version: 0.2.0
   resolution: "universalify@npm:0.2.0"
   checksum: e86134cb12919d177c2353196a4cc09981524ee87abf621f7bc8d249dbbbebaec5e7d1314b96061497981350df786e4c5128dbf442eba104d6e765bc260678b5
+  languageName: node
+  linkType: hard
+
+"unload@npm:2.4.1":
+  version: 2.4.1
+  resolution: "unload@npm:2.4.1"
+  checksum: a6f92d176e2718af3cb4bf087a338f21f2ded32e81c052d97d020c5b402e4a2925784efd8808827c149d35fddf49dad0a01035ecc6a69941f2c8eae90d33dc12
   languageName: node
   linkType: hard
 
