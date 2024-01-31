@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages":[
+      "packages/*"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "web": "yarn workspace @gloddy/web",
