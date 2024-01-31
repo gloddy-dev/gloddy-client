@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "849154861047",
+    "project_id": "gloddy-e6b23",
+    "storage_bucket": "gloddy-e6b23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849154861047:android:dfe2fe8261bd845cb7f0f2",
+        "android_client_info": {
+          "package_name": "com.goodcode.gloddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFRh_FnugALmNHIL2CVxKhkoxZahpGL-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,28 @@
+# yarn berry
+.yarn/*
+!.yarn/releases
+!.yarn/patches
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+!.yarn/cache
+
+# testing
+/coverage
+
+# etc
+/node_modules
+/.pnp
+.pnp.js
+/.next/
+/build
+.DS_Store
+.env
+coverage
+
+# sentry
+.sentryclirc
+
+.idea/*
+# Sentry Config File
+.sentryclirc
