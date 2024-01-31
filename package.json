@@ -1,0 +1,23 @@
+{
+  "name": "gloddy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "yarn workspace @gloddy/web"
+  },
+  "repository": "git+https://github.com/gloddy-dev/gloddy-client.git",
+  "keywords": [],
+  "author": "Kuesung Park <gueit214@naver.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gloddy-dev/gloddy-client/issues"
+  },
+  "homepage": "https://github.com/gloddy-dev/gloddy-client#readme",
+  "packageManager": "yarn@3.6.4"
+}
