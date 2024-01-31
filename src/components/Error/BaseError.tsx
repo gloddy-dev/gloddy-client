@@ -25,7 +25,6 @@ export default function BaseError({ error, reset }: BaseErrorProps) {
         <br />
         잠시 후 다시 시도해 주세요.
       </p>
-      <p>{error.message}</p>
       <button
         className="bg-grey-200 text-13 mt-16 block rounded-lg px-12 py-8 font-bold"
         onClick={reset}
