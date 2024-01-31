@@ -5,8 +5,11 @@
   "main": "index.js",
   "private": true,
   "workspaces": {
-    "packages":[
+    "packages": [
       "packages/*"
+    ],
+    "nohoist": [
+      "/packages/app/**"
     ]
   },
   "scripts": {
@@ -22,7 +25,7 @@
     "url": "https://github.com/gloddy-dev/gloddy-client/issues"
   },
   "homepage": "https://github.com/gloddy-dev/gloddy-client#readme",
-  "packageManager": "yarn@3.6.4",
+  "packageManager": "yarn@1.22.19",
   "devDependencies": {
     "husky": "^9.0.7"
   }
