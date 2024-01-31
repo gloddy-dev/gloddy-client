@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GloddyStaging</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">G293LJmwTP6Zpxp1RkOx3llXNzO9yuL0e7v2A</string>
+</resources>
