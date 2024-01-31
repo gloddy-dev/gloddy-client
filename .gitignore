@@ -22,7 +22,3 @@ coverage
 
 # sentry
 .sentryclirc
-
-.idea/*
-# Sentry Config File
-.sentryclirc
