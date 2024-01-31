@@ -79,7 +79,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-testing-library", "virtual:59a6c0c67fd2393322504e9ea719ccb37709a3fed5fe363d9c93747512373689ff665431a875cf35eafce85e977ad68a629cf8e02a2b0a903063bc5f04a37db2#npm:5.11.1"],\
             ["framer-motion", "virtual:59a6c0c67fd2393322504e9ea719ccb37709a3fed5fe363d9c93747512373689ff665431a875cf35eafce85e977ad68a629cf8e02a2b0a903063bc5f04a37db2#npm:10.16.4"],\
             ["https", "npm:1.0.0"],\
-            ["husky", "npm:8.0.3"],\
             ["i18next", "npm:23.5.1"],\
             ["i18next-browser-languagedetector", "npm:7.1.0"],\
             ["i18next-resources-to-backend", "npm:1.1.4"],\
@@ -3295,7 +3294,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-testing-library", "virtual:59a6c0c67fd2393322504e9ea719ccb37709a3fed5fe363d9c93747512373689ff665431a875cf35eafce85e977ad68a629cf8e02a2b0a903063bc5f04a37db2#npm:5.11.1"],\
             ["framer-motion", "virtual:59a6c0c67fd2393322504e9ea719ccb37709a3fed5fe363d9c93747512373689ff665431a875cf35eafce85e977ad68a629cf8e02a2b0a903063bc5f04a37db2#npm:10.16.4"],\
             ["https", "npm:1.0.0"],\
-            ["husky", "npm:8.0.3"],\
             ["i18next", "npm:23.5.1"],\
             ["i18next-browser-languagedetector", "npm:7.1.0"],\
             ["i18next-resources-to-backend", "npm:1.1.4"],\
@@ -9583,15 +9581,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["humanize-ms", "npm:1.2.1"],\
             ["ms", "npm:2.1.3"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["husky", [\
-        ["npm:8.0.3", {\
-          "packageLocation": "./.yarn/cache/husky-npm-8.0.3-b0b59c5127-837bc7e441.zip/node_modules/husky/",\
-          "packageDependencies": [\
-            ["husky", "npm:8.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\

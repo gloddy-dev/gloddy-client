@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["husky", "npm:9.0.7"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -3203,7 +3204,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-testing-library", "virtual:4ce1d6e739d075a7a935b20f8a468ece21aab5358e297ce10d2779be947e1f1620fca5c76e7b7c0966d56c63108c33bedaa23e9ca93cfc3bcd295d3590773568#npm:5.11.1"],\
             ["framer-motion", "virtual:4ce1d6e739d075a7a935b20f8a468ece21aab5358e297ce10d2779be947e1f1620fca5c76e7b7c0966d56c63108c33bedaa23e9ca93cfc3bcd295d3590773568#npm:10.18.0"],\
             ["https", "npm:1.0.0"],\
-            ["husky", "npm:8.0.3"],\
             ["i18next", "npm:23.8.1"],\
             ["i18next-browser-languagedetector", "npm:7.2.0"],\
             ["i18next-resources-to-backend", "npm:1.2.0"],\
@@ -9274,7 +9274,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         ["workspace:.", {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["gloddy", "workspace:."]\
+            ["gloddy", "workspace:."],\
+            ["husky", "npm:9.0.7"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -9551,10 +9552,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["husky", [\
-        ["npm:8.0.3", {\
-          "packageLocation": "./.yarn/cache/husky-npm-8.0.3-b0b59c5127-837bc7e441.zip/node_modules/husky/",\
+        ["npm:9.0.7", {\
+          "packageLocation": "./.yarn/cache/husky-npm-9.0.7-b26fc41da3-42fc1b869a.zip/node_modules/husky/",\
           "packageDependencies": [\
-            ["husky", "npm:8.0.3"]\
+            ["husky", "npm:9.0.7"]\
           ],\
           "linkType": "HARD"\
         }]\
