@@ -25,6 +25,7 @@
     "@tanstack/react-query-devtools": "^5.17.18",
     "accept-language": "^3.0.18",
     "axios": "^1.4.0",
+    "broadcast-channel": "^7.0.0",
     "browser-image-compression": "^2.0.2",
     "clsx": "^1.2.1",
     "cssnano": "^6.0.1",
