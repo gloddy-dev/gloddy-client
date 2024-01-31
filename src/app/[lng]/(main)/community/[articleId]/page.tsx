@@ -1,10 +1,9 @@
-import { Suspense } from 'react';
-
 import { Keys, getCommunityArticleDetail } from '@/apis/community';
 import ArticleDetail from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetail';
 import ArticleDetailHeader from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetailHeader';
 import { Loading } from '@/components/Loading';
 import { HydrationProvider } from '@/components/Provider';
+import { Suspense } from 'react';
 
 interface CommunityArticlePageProps {
   params: {

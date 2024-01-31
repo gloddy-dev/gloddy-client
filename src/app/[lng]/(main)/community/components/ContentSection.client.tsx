@@ -1,39 +1,57 @@
 'use client';
 
-import AllContent from '@/app/[lng]/(main)/community/components/AllContent.client';
-import CreateArticleButton from '@/app/[lng]/(main)/community/components/CreateArticleButton';
-import KpopContent from '@/app/[lng]/(main)/community/components/KpopContent';
-import LanguageContent from '@/app/[lng]/(main)/community/components/LanguageContent.client';
-import QuestionContent from '@/app/[lng]/(main)/community/components/QuestionContent.client';
+import AllContent from './AllContent.client';
+import CreateArticleButton from './CreateArticleButton';
+import KpopContent from './KpopContent';
+import LanguageContent from './LanguageContent.client';
+import QuestionContent from './QuestionContent.client';
+import { Keys } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { Tabs } from '@/components/Tabs';
+import { useBroadcastChannel } from '@/hooks/useBroadcast';
+import { useQueryClient } from '@tanstack/react-query';
+import { Suspense } from 'react';
+
+export interface CommunityChannelMessage {
+  categoryId: number;
+}
 
 export default function ContentSection() {
   const { t } = useTranslation('community');
+  const queryClient = useQueryClient();
+  const { postMessage } = useBroadcastChannel<CommunityChannelMessage>('community', (message) => {
+    queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(0) });
+    queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(message.categoryId) });
+  });
 
   return (
-    <>
-      <Tabs>
-        <Tabs.List>
-          <Tabs.Tab text={t('category.All')} value="all" />
-          <Tabs.Tab text={t('category.K-POP')} value="kpop" />
-          <Tabs.Tab text={t('category.Q&A')} value="question" />
-          <Tabs.Tab text={t('category.Language')} value="language" />
-        </Tabs.List>
-        <Tabs.Panel value="all">
+    <Tabs>
+      <Tabs.List>
+        <Tabs.Tab text={t('all')} value="all" />
+        <Tabs.Tab text={t('kpop')} value="kpop" />
+        <Tabs.Tab text={t('question')} value="question" />
+        <Tabs.Tab text={t('language')} value="language" />
+      </Tabs.List>
+      <Tabs.Panel value="all">
+        <Suspense>
           <AllContent />
-        </Tabs.Panel>
-        <Tabs.Panel value="kpop">
+        </Suspense>
+      </Tabs.Panel>
+      <Tabs.Panel value="kpop">
+        <Suspense>
           <KpopContent />
-        </Tabs.Panel>
-        <Tabs.Panel value="question">
+        </Suspense>
+      </Tabs.Panel>
+      <Tabs.Panel value="question">
+        <Suspense>
           <QuestionContent />
-        </Tabs.Panel>
-        <Tabs.Panel value="language">
+        </Suspense>
+      </Tabs.Panel>
+      <Tabs.Panel value="language">
+        <Suspense>
           <LanguageContent />
-        </Tabs.Panel>
-      </Tabs>
-      <CreateArticleButton />
-    </>
+        </Suspense>
+      </Tabs.Panel>
+    </Tabs>
   );
 }
