@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "web": "yarn workspace @gloddy/web"
+    "web": "yarn workspace @gloddy/web",
+    "app": "yarn workspace @gloddy/app"
   },
   "repository": "git+https://github.com/gloddy-dev/gloddy-client.git",
   "keywords": [],
