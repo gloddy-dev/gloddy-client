@@ -1,10 +1,11 @@
 import ContentSection from './components/ContentSection.client';
 import MeetingScrapHeader from './components/MeetingScrapHeader';
 import { Keys, getMeetingScrap } from '@/apis/meeting';
-import { Footer } from '@/components/Footer';
-import { Loading } from '@/components/Loading';
+import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
-import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+
+const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 
 interface MeetingPageProps {
   params: {
@@ -16,11 +17,11 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
       <MeetingScrapHeader />
-      <Suspense fallback={<Loading />}>
+      <LocalSuspenseErrorBoundary>
         <HydrationProvider queryFn={getMeetingScrap} queryKey={Keys.getMeetingScraps()}>
           <ContentSection />
         </HydrationProvider>
-      </Suspense>
+      </LocalSuspenseErrorBoundary>
       <Footer page="meeting" lng={lng} />
     </>
   );
