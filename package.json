@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "packageManager": "yarn@3.6.0",
   "private": true,
   "workspaces": {
     "packages": [
@@ -25,7 +26,6 @@
     "url": "https://github.com/gloddy-dev/gloddy-client/issues"
   },
   "homepage": "https://github.com/gloddy-dev/gloddy-client#readme",
-  "packageManager": "yarn@3.6.0",
   "devDependencies": {
     "husky": "^9.0.7"
   }
