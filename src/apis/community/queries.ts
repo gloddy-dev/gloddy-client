@@ -1,5 +1,3 @@
-import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
-
 import {
   getCommunityArticleDetail,
   getCommunityArticles,
@@ -7,6 +5,7 @@ import {
   getCommunityReply,
 } from '@/apis/community/apis';
 import { Keys } from '@/apis/community/keys';
+import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 export const useGetCommunityArticles = (categoryId: number) => {
   const { data, ...rest } = useSuspenseInfiniteQuery({

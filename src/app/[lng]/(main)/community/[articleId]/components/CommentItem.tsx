@@ -1,10 +1,9 @@
-import { format, parseISO } from 'date-fns';
-
 import { useCommentContext } from './CommentProvider';
 import ReplyList from './ReplyList';
 import {
   Comment,
   useDeleteCommunityComment,
+  useGetCommunityArticleDetail,
   useGetCommunityReply,
   usePostCommunityCommentLike,
 } from '@/apis/community';
@@ -17,6 +16,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import cn from '@/utils/cn';
+import { format, parseISO } from 'date-fns';
 
 interface CommentItemProps {
   comment: Comment;
@@ -50,8 +50,9 @@ export default function CommentItem({
     profileImage,
     nickName,
   } = comment.writer;
+  const categoryId = useGetCommunityArticleDetail(articleId).data.data.article.category.id;
   const { mutate: mutateLike } = usePostCommunityCommentLike(articleId, commentId);
-  const { mutate: mutateDelete } = useDeleteCommunityComment(articleId, commentId);
+  const { mutate: mutateDelete } = useDeleteCommunityComment(articleId, commentId, categoryId);
   const { data: replyDataList } = useGetCommunityReply(articleId, commentId);
   const { setCommentType, setCommentId } = useCommentContext();
 

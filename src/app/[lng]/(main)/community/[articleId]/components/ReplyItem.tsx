@@ -1,5 +1,3 @@
-import { format, parseISO } from 'date-fns';
-
 import { Reply } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
@@ -10,6 +8,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import cn from '@/utils/cn';
+import { format, parseISO } from 'date-fns';
 
 interface ReplyItemProps {
   reply: Reply;

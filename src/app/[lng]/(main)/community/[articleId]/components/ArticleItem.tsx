@@ -1,6 +1,3 @@
-import { format, parseISO } from 'date-fns';
-import Image from 'next/image';
-
 import { CommunityArticle, usePostCommunityArticleLike } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { CardHeader } from '@/components/Card';
@@ -10,6 +7,8 @@ import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import cn from '@/utils/cn';
+import { format, parseISO } from 'date-fns';
+import Image from 'next/image';
 
 interface ArticleItemProps {
   article: CommunityArticle;
