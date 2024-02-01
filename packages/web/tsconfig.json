@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
