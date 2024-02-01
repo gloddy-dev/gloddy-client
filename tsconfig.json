@@ -5,7 +5,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "strict": true,
-    "target": "es6",
+    "target": "es5",
     "lib": ["ES5", "ES6", "ESNext", "DOM"],
     "skipLibCheck": true,
     "baseUrl": ".",
@@ -13,18 +13,5 @@
     "module": "esnext",
     "isolatedModules": true
   },
-  /* // 각 프로젝트에 오버라이드할 tsconfig 파일이 있다면 추가
-  "references": [
-    { 
-      "path": "packages/common-components"
-    },
-    {
-      "path": "packages/common-styles"
-    },
-    {
-      "path": "packages/common-utils"
-    },
-  ],
-  */
   "exclude": ["packages/**/dist/**"]
 }
