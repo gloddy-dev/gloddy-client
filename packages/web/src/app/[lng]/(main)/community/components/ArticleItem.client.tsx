@@ -11,7 +11,7 @@ import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 import { currentKoreaTime } from '@/utils/date';
-import { formatDistanceStrict } from 'date-fns';
+import { format, formatDistanceStrict, formatDistanceToNow } from 'date-fns';
 import { enUS, ko } from 'date-fns/locale';
 import Image from 'next/image';
 
@@ -52,13 +52,24 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
 
   const locale = i18n.language === 'ko' ? ko : enUS;
 
+  const formatDate = (date: string) => {
+    const d = new Date(date);
+    const now = Date.now();
+    const diff = (now - d.getTime()) / 1000;
+    if (diff < 60 * 1) {
+      return '방금 전';
+    }
+    if (diff < 60 * 60 * 24 * 3) {
+      return formatDistanceToNow(d, { addSuffix: true, locale });
+    }
+    return format(d, 'MM/dd', { locale });
+  };
+
   return (
     <div className="p-20" onClick={onClick || (() => push(`/community/${articleId}`, false))}>
       <Flex justify="between" align="center">
         <ArticleBadge type={category.name}>{t(`category.${category.name}`)}</ArticleBadge>
-        <p className="text-caption text-sign-tertiary">
-          {formatDistanceStrict(new Date(createdAt), currentKoreaTime, { addSuffix: true, locale })}
-        </p>
+        <p className="text-caption text-sign-tertiary">{formatDate(createdAt)}</p>
       </Flex>
       <Spacing size={12} />
       <Flex justify="between" className="gap-6">
