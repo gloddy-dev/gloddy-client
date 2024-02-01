@@ -15,6 +15,19 @@ import { format, formatDistanceStrict, formatDistanceToNow } from 'date-fns';
 import { enUS, ko } from 'date-fns/locale';
 import Image from 'next/image';
 
+const formatDate = (date: string, locale: Locale) => {
+  const d = new Date(date);
+  const now = Date.now();
+  const diff = (now - d.getTime()) / 1000;
+  if (diff < 60 * 1) {
+    return '방금 전';
+  }
+  if (diff < 60 * 60 * 24 * 3) {
+    return formatDistanceToNow(d, { addSuffix: true, locale });
+  }
+  return format(d, 'MM/dd', { locale });
+};
+
 interface ArticleItemProps {
   articleData: CommunityArticle;
   onClick?: () => void;
@@ -52,24 +65,11 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
 
   const locale = i18n.language === 'ko' ? ko : enUS;
 
-  const formatDate = (date: string) => {
-    const d = new Date(date);
-    const now = Date.now();
-    const diff = (now - d.getTime()) / 1000;
-    if (diff < 60 * 1) {
-      return '방금 전';
-    }
-    if (diff < 60 * 60 * 24 * 3) {
-      return formatDistanceToNow(d, { addSuffix: true, locale });
-    }
-    return format(d, 'MM/dd', { locale });
-  };
-
   return (
     <div className="p-20" onClick={onClick || (() => push(`/community/${articleId}`, false))}>
       <Flex justify="between" align="center">
         <ArticleBadge type={category.name}>{t(`category.${category.name}`)}</ArticleBadge>
-        <p className="text-caption text-sign-tertiary">{formatDate(createdAt)}</p>
+        <p className="text-caption text-sign-tertiary">{formatDate(createdAt, locale)}</p>
       </Flex>
       <Spacing size={12} />
       <Flex justify="between" className="gap-6">
