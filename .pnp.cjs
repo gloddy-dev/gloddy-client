@@ -20,6 +20,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:packages/app"\
       },\
       {\
+        "name": "@gloddy/common",\
+        "reference": "workspace:packages/common"\
+      },\
+      {\
         "name": "@gloddy/web",\
         "reference": "workspace:packages/web"\
       }\
@@ -28,6 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
       ["@gloddy/app", ["workspace:packages/app"]],\
+      ["@gloddy/common", ["workspace:packages/common"]],\
       ["@gloddy/web", ["workspace:packages/web"]],\
       ["gloddy", ["workspace:."]]\
     ],\
@@ -3757,6 +3762,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-native-swiper-flatlist", "virtual:12e2c0d5ef5c3b7f15d7dd02022b4e5175a2b2a1d095d30f3718efb7edcfa361d26d1100e0d625cacd97f98000119e73376094466931083a4cc572c2df5f2cb5#npm:3.2.3"],\
             ["react-native-webview", "virtual:12e2c0d5ef5c3b7f15d7dd02022b4e5175a2b2a1d095d30f3718efb7edcfa361d26d1100e0d625cacd97f98000119e73376094466931083a4cc572c2df5f2cb5#npm:13.6.4"],\
             ["react-test-renderer", "virtual:12e2c0d5ef5c3b7f15d7dd02022b4e5175a2b2a1d095d30f3718efb7edcfa361d26d1100e0d625cacd97f98000119e73376094466931083a4cc572c2df5f2cb5#npm:18.2.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["@gloddy/common", [\
+        ["workspace:packages/common", {\
+          "packageLocation": "./packages/common/",\
+          "packageDependencies": [\
+            ["@gloddy/common", "workspace:packages/common"]\
           ],\
           "linkType": "SOFT"\
         }]\

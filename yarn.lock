@@ -2107,6 +2107,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@gloddy/common@workspace:packages/common":
+  version: 0.0.0-use.local
+  resolution: "@gloddy/common@workspace:packages/common"
+  languageName: unknown
+  linkType: soft
+
 "@gloddy/web@workspace:packages/web":
   version: 0.0.0-use.local
   resolution: "@gloddy/web@workspace:packages/web"
