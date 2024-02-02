@@ -10,7 +10,7 @@ type BlockState = {
   blockNoticeIds: number[];
   blockCommunityArticleIds: number[];
   blockCommunityCommentIds: number[];
-  blockCommunityReply: number[];
+  blockCommunityReplyIds: number[];
   setBlockId: (id: number, type: BlockType) => void;
 };
 
@@ -23,7 +23,7 @@ export const useBlockStore = create(
       blockNoticeIds: [],
       blockCommunityArticleIds: [],
       blockCommunityCommentIds: [],
-      blockCommunityReply: [],
+      blockCommunityReplyIds: [],
       setBlockId: (id: number, type: BlockType) => {
         set((state) => {
           const capitalizedState = ('block' +

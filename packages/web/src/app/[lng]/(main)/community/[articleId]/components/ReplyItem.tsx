@@ -48,7 +48,7 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
     openModal(() => (
       <CommunityModal
         onOkClick={() => {
-          setBlockId(replyId, 'communityComment');
+          setBlockId(replyId, 'communityReply');
           closeModal();
         }}
         onCancelClick={closeModal}
