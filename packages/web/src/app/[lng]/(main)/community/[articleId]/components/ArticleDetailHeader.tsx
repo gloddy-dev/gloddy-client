@@ -66,8 +66,33 @@ function IconButtonAction() {
     ));
   };
 
+  const handleReportArticle = () => {
+    openModal(() => (
+      <CommunityModal
+        onOkClick={() => {
+          setBlockId(articleId, 'communityArticle');
+          closeModal();
+          back();
+        }}
+        onCancelClick={closeModal}
+        variant='warning'
+        message={t('detail.report_content')}
+      />
+    ));
+  };
+
   const handleDeleteArticle = () => {
-    mutateDelete();
+    openModal(() => (
+      <CommunityModal
+        onOkClick={() => {
+          closeModal();
+          mutateDelete();
+        }}
+        onCancelClick={closeModal}
+        variant='warning'
+        message={t('detail.delete_content')}
+      />
+    ));
   };
 
   const options: DropDownOptionType[] = [
@@ -77,7 +102,7 @@ function IconButtonAction() {
     },
     {
       name: t('detail.report'),
-      onClick: handleBlockArticle,
+      onClick: handleReportArticle,
     },
     ...(articleData.data.article.isWriter
       ? [
