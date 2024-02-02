@@ -34,8 +34,10 @@
     "commentCount": "댓글 {{commentCount}}개",
 
     "block": "게시물 차단",
+    "block_content": "게시글을 차단하시겠습니까?",
     "report": "게시물 신고",
-    "delete": "게시물 삭제"
+    "delete": "게시물 삭제",
+    "delete_content": "게시글을 삭제하시겠습니까?"
   },
 
   "comment": {

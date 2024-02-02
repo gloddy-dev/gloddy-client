@@ -8,8 +8,11 @@ import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
+import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
+import { useBlockStore } from '@/store/useBlockStore';
 import { Suspense } from 'react';
+import CommunityModal from './CommunityModal';
 
 export default function ArticleDetailHeader() {
   const { back } = useAppRouter();
@@ -39,14 +42,28 @@ export default function ArticleDetailHeader() {
 function IconButtonAction() {
   const { t } = useTranslation('community');
   const { articleId } = useNumberParams<['articleId']>();
+  const { setBlockId } = useBlockStore();
+  const { back } = useAppRouter();
   const { data: articleData } = useGetCommunityArticleDetail(articleId);
+  const { open: openModal, exit: closeModal } = useModal();
   const { mutate: mutateDelete } = usePostDeleteCommunityArticle(
     articleId,
     articleData.data.article.category.id
   );
 
   const handleBlockArticle = () => {
-    console.log('block');
+    openModal(() => (
+      <CommunityModal
+        onOkClick={() => {
+          setBlockId(articleId, 'communityArticle');
+          closeModal();
+          back();
+        }}
+        onCancelClick={closeModal}
+        variant='warning'
+        message={t('detail.block_content')}
+      />
+    ));
   };
 
   const handleDeleteArticle = () => {
