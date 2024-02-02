@@ -63,9 +63,9 @@ export default function ArticleItem({ article }: ArticleItemProps) {
         countryImage={countryImage}
       />
       <Spacing size={16} />
-      <div className={'text-2xl font-semibold'}>{title}</div>
+      <div className={'break-words text-2xl font-semibold'}>{title}</div>
       <Spacing size={6} />
-      <div className="break-words text-paragraph-1 text-sign-primary">{content}</div>
+      <div className="select-auto break-words text-paragraph-1 text-sign-primary">{content}</div>
       {images.length > 0 && (
         <Flex className="my-16 h-160 gap-4 overflow-x-scroll">
           {images.map((imageUrl, index) => (
