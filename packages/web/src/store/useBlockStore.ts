@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-export type BlockType = 'group' | 'article' | 'comment' | 'notice' | 'communityArticle' | 'communityComment'
+export type BlockType = 'group' | 'article' | 'comment' | 'notice' | 'communityArticle' | 'communityComment' | 'communityReply'
 
 type BlockState = {
   blockGroupIds: number[];
@@ -10,6 +10,7 @@ type BlockState = {
   blockNoticeIds: number[];
   blockCommunityArticleIds: number[];
   blockCommunityCommentIds: number[];
+  blockCommunityReply: number[];
   setBlockId: (id: number, type: BlockType) => void;
 };
 
@@ -22,6 +23,7 @@ export const useBlockStore = create(
       blockNoticeIds: [],
       blockCommunityArticleIds: [],
       blockCommunityCommentIds: [],
+      blockCommunityReply: [],
       setBlockId: (id: number, type: BlockType) => {
         set((state) => {
           const capitalizedState = ('block' +

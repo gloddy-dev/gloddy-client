@@ -7,8 +7,11 @@ import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
+import { useModal } from '@/hooks/useModal';
+import { useBlockStore } from '@/store/useBlockStore';
 import cn from '@/utils/cn';
 import { format, parseISO } from 'date-fns';
+import CommunityModal from './CommunityModal';
 
 interface ReplyItemProps {
   reply: Reply;
@@ -17,6 +20,8 @@ interface ReplyItemProps {
 
 export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
   const { t } = useTranslation('community');
+  const { setBlockId } = useBlockStore();
+  const { open: openModal, exit: closeModal } = useModal();
   const {
     content,
     id: replyId,
@@ -39,14 +44,24 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
     countryImage,
   } = reply.writer;
 
-  const handleBlockArticle = () => {
-    console.log('block');
+  const handleBlockReply = () => {
+    openModal(() => (
+      <CommunityModal
+        onOkClick={() => {
+          setBlockId(replyId, 'communityComment');
+          closeModal();
+        }}
+        onCancelClick={closeModal}
+        variant='warning'
+        message={t('comment.block.content')}
+      />
+    ));
   };
 
   const options: DropDownOptionType[] = [
     {
       name: t('comment.block.label'),
-      onClick: handleBlockArticle,
+      onClick: handleBlockReply,
     },
   ];
 

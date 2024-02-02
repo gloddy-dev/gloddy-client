@@ -27,7 +27,6 @@ export default function CommunityArticlePage({ params }: CommunityArticlePagePro
           <CommentForm />
         </HydrationProvider>
       </LocalSuspenseErrorBoundary>
-      <Spacing size={100} />
       <Spacing size={60} />
     </>
   );

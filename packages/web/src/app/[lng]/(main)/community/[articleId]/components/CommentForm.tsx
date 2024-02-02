@@ -36,6 +36,7 @@ export default function CommentForm() {
   const { handleSubmit, reset, watch, register, setFocus } = hookForm;
 
   useEffect(() => {
+    console.log(commentType);
     if (commentType === 'reply') {
       setFocus('content');
     }
