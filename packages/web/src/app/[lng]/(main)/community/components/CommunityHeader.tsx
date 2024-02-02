@@ -14,13 +14,13 @@ export default async function CommunityHeader({ lng }: CommunityHeaderProps) {
   return (
     <Header>
       <Header.Left className="pl-20">{t('community')}</Header.Left>
-      <Header.Right className="pr-4">
+      {/* <Header.Right className="pr-4">
         <NavLink href="/community/search">
           <IconButton size="large">
             <Icon id="24-search" />
           </IconButton>
         </NavLink>
-      </Header.Right>
+      </Header.Right> */}
     </Header>
   );
 }

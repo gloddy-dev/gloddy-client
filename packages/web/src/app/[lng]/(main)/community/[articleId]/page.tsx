@@ -24,10 +24,10 @@ export default function CommunityArticlePage({ params }: CommunityArticlePagePro
         >
           <ArticleDetailHeader />
           <ArticleDetail articleId={articleId} />
+          <CommentForm />
         </HydrationProvider>
       </LocalSuspenseErrorBoundary>
       <Spacing size={100} />
-      <CommentForm />
       <Spacing size={60} />
     </>
   );

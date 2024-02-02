@@ -1,5 +1,6 @@
 import CommunityHeader from './components/CommunityHeader';
 import ContentSection from './components/ContentSection.client';
+import CreateArticleButton from './components/CreateArticleButton';
 import { Keys, getCommunityArticles } from '@/apis/community';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
@@ -36,6 +37,7 @@ export default function CommunityPage({ params: { lng } }: CommunityPageProps) {
           <ContentSection />
         </HydrationProvider>
       </LocalSuspenseErrorBoundary>
+      <CreateArticleButton />
       <Spacing size={60} />
       <Footer page="community" lng={lng} />
     </>
