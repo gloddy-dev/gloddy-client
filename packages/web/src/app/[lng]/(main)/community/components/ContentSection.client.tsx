@@ -27,10 +27,10 @@ export default function ContentSection() {
   return (
     <Tabs>
       <Tabs.List>
-        <Tabs.Tab text={t('all')} value="all" />
-        <Tabs.Tab text={t('kpop')} value="kpop" />
-        <Tabs.Tab text={t('question')} value="question" />
-        <Tabs.Tab text={t('language')} value="language" />
+        <Tabs.Tab text={t('category.All')} value="all" />
+        <Tabs.Tab text={t('category.K-POP')} value="kpop" />
+        <Tabs.Tab text={t('category.Q&A')} value="question" />
+        <Tabs.Tab text={t('category.Language')} value="language" />
       </Tabs.List>
       <Tabs.Panel value="all">
         <Suspense>

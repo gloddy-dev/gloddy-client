@@ -1,9 +1,5 @@
 'use client';
 
-import { formatDistanceStrict } from 'date-fns';
-import { enUS, ko } from 'date-fns/locale';
-import Image from 'next/image';
-
 import { CommunityArticle } from '@/apis/community';
 import ArticleBadge from '@/app/[lng]/(main)/community/components/ArticleBadge.client';
 import { useTranslation } from '@/app/i18n/client';
@@ -15,6 +11,22 @@ import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 import { currentKoreaTime } from '@/utils/date';
+import { format, formatDistanceStrict, formatDistanceToNow } from 'date-fns';
+import { enUS, ko } from 'date-fns/locale';
+import Image from 'next/image';
+
+const formatDate = (date: string, locale: Locale) => {
+  const d = new Date(date);
+  const now = Date.now();
+  const diff = (now - d.getTime()) / 1000;
+  if (diff < 60 * 1) {
+    return '방금 전';
+  }
+  if (diff < 60 * 60 * 24 * 3) {
+    return formatDistanceToNow(d, { addSuffix: true, locale });
+  }
+  return format(d, 'MM/dd', { locale });
+};
 
 interface ArticleItemProps {
   articleData: CommunityArticle;
@@ -57,14 +69,12 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
     <div className="p-20" onClick={onClick || (() => push(`/community/${articleId}`, false))}>
       <Flex justify="between" align="center">
         <ArticleBadge type={category.name}>{t(`category.${category.name}`)}</ArticleBadge>
-        <p className="text-caption text-sign-tertiary">
-          {formatDistanceStrict(new Date(createdAt), currentKoreaTime, { addSuffix: true, locale })}
-        </p>
+        <p className="text-caption text-sign-tertiary">{formatDate(createdAt, locale)}</p>
       </Flex>
       <Spacing size={12} />
       <Flex justify="between" className="gap-6">
         <div className={'w-full'}>
-          <p className="text-subtitle-1">{title}</p>
+          <p className="line-clamp-1 break-words text-subtitle-1">{title}</p>
           <Spacing size={4} />
           <p className="line-clamp-2 whitespace-pre-wrap break-words text-paragraph-2">{content}</p>
         </div>
