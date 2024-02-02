@@ -51,6 +51,7 @@
     "sharp": "^0.32.5",
     "swiper": "^9.4.1",
     "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.4.1",
     "use-places-autocomplete": "^4.0.1",
     "zustand": "^4.3.8"
   },
@@ -87,7 +88,6 @@
     "supports-color": "8.1.1",
     "svgstore": "^3.0.1",
     "svgstore-cli": "^2.0.1",
-    "tailwindcss": "^3.3.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.3"
   },
