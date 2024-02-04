@@ -8,7 +8,7 @@ const badgeColor: {
   [key in ArticleBadgeProps['type']]: string;
 } = {
   'K-POP': 'bg-warning-color border-warning text-warning',
-  'Q&A': 'bg-brand-color border-sign-brand text-sign-brand',
+  'Q&A': 'bg-brand-color borderwsign-brand text-sign-brand',
   Language: 'bg-sub border-sign-tertiary text-sign-tertiary',
 } as const;
 
@@ -24,7 +24,7 @@ export default function ArticleBadge({
     <Flex
       justify="center"
       align="center"
-      className={cn('rounded-24 border px-8 py-2 text-caption', badgeColor[type])}
+      className={cn('rounded-24 text-caption border px-8 py-2', badgeColor[type])}
     >
       {children}
     </Flex>

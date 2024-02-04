@@ -74,12 +74,12 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
       <Spacing size={12} />
       <Flex justify="between" className="gap-6">
         <div className={'w-full'}>
-          <p className="line-clamp-1 break-words text-subtitle-1">{title}</p>
+          <p className="text-subtitle-1 line-clamp-1 break-words">{title}</p>
           <Spacing size={4} />
-          <p className="line-clamp-2 whitespace-pre-wrap break-words text-paragraph-2">{content}</p>
+          <p className="text-paragraph-2 line-clamp-2 whitespace-pre-wrap break-words">{content}</p>
         </div>
         {!!images?.length && (
-          <div className="relative h-80 w-80 shrink-0 overflow-hidden rounded-8">
+          <div className="rounded-8 relative h-80 w-80 shrink-0 overflow-hidden">
             <Image src={images[0]} alt="이미지" fill className="object-cover" />
           </div>
         )}

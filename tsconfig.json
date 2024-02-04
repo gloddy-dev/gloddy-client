@@ -13,5 +13,10 @@
     "module": "esnext",
     "isolatedModules": true
   },
+  "references": [
+    {
+      "path": "packages/web"
+    },
+  ],
   "exclude": ["packages/**/dist/**"]
 }
