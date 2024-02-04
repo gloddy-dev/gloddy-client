@@ -60,12 +60,12 @@ export default function SwipePicker<T extends string | number>({
 }
 
 function Bar() {
-  return <div className="absolute inset-y-0 my-auto h-60 w-full rounded-8 bg-[#f8f8f8]" />;
+  return <div className="rounded-8 absolute inset-y-0 my-auto h-60 w-full bg-[#f8f8f8]" />;
 }
 
 function MiddleText({ children }: StrictPropsWithChildren) {
   return (
-    <div className="font-700 text-20 z-10 flex grow items-center whitespace-nowrap text-gray">
+    <div className="font-700 text-20 text-gray z-10 flex grow items-center whitespace-nowrap">
       {children}
     </div>
   );

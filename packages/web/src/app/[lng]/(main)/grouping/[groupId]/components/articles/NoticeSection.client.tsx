@@ -1,6 +1,7 @@
 'use client';
 
 import NoticeItem from './NoticeItem.client';
+
 import { GroupDetailResponse, useGetNotices } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
@@ -23,7 +24,7 @@ export default function NoticeSection({ isCaptain }: NoticeSectionProps) {
 
   return (
     <section className="p-20 pb-8">
-      <div className="rounded-8 bg-card-ui p-16 text-subtitle-3 text-sign-secondary">
+      <div className="rounded-8 bg-card-ui text-subtitle-3 text-sign-secondary p-16">
         <p className="pl-4">{t('board.notice')}</p>
         <Spacing size={6} />
         <ItemList

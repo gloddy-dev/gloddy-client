@@ -19,7 +19,7 @@ interface DateSwipePickerProps {
 
 export default function DateSwipePicker({ dateValue, setDateValue }: DateSwipePickerProps) {
   return (
-    <div className="relative flex h-180">
+    <div className="h-180 relative flex">
       <SwipePicker.Bar />
       <SwipePicker
         selectList={yearList}

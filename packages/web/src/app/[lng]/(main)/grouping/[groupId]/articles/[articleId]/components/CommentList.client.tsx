@@ -61,7 +61,7 @@ function CommentItem({ comment, articleId, groupId, isCaptain }: CommentItemProp
     <Flex direction="column" className="m-20 mb-20 px-4">
       <CardHeader onMoreClick={handleMoreClick} showMoreIcon={!isBlocked} {...comment} />
       <Spacing size={8} />
-      <div className="break-words text-paragraph-2 text-sign-primary">
+      <div className="text-paragraph-2 text-sign-primary break-words">
         {isBlocked ? t('comment.blockComment') : content}
       </div>
     </Flex>

@@ -1,20 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useEffect, useRef, useState} from 'react';
-import {
-  Alert,
-  Animated,
-  Dimensions,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {ExpandingDot} from 'react-native-animated-pagination-dots';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Alert, Animated, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
+import { ExpandingDot } from 'react-native-animated-pagination-dots';
 import * as RNLocalize from 'react-native-localize';
 import SplashScreen from 'react-native-splash-screen';
-import {SwiperFlatList} from 'react-native-swiper-flatlist';
-import {useNavigation} from '@react-navigation/native';
-import {SOURCE_URL} from '@/config';
+import { SwiperFlatList } from 'react-native-swiper-flatlist';
+
 import Bubble1SVG from '../../image/bubble1.svg';
 import Bubble1enSVG from '../../image/bubble1en.svg';
 import Bubble2SVG from '../../image/bubble2.svg';
@@ -24,12 +16,14 @@ import Text1enSVG from '../../image/text1en.svg';
 import Text2SVG from '../../image/text2.svg';
 import Text2enSVG from '../../image/text2en.svg';
 
+import { SOURCE_URL } from '@/config';
+
 const deviceWidth = Dimensions.get('window').width;
 
 const imageDataList = [
-  {no: 1, uri: require('../../image/character_edit.png')},
-  {no: 2, uri: require('../../image/character_edit2.png')},
-  {no: 3, uri: require('../../image/start.png')},
+  { no: 1, uri: require('../../image/character_edit.png') },
+  { no: 2, uri: require('../../image/character_edit2.png') },
+  { no: 3, uri: require('../../image/start.png') },
 ];
 
 export default function OnBoarding() {
@@ -67,33 +61,32 @@ export default function OnBoarding() {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
-      }}>
+      }}
+    >
       <SwiperFlatList
         initialScrollIndex={0}
         paginationDefaultColor="gray"
         paginationActiveColor="rgb(75,133,247)"
         showPagination={false}
         pagingEnabled
-        paginationStyle={{bottom: 100}}
-        onChangeIndex={e => setpageIndex(e.index)}
+        paginationStyle={{ bottom: 100 }}
+        onChangeIndex={(e) => setpageIndex(e.index)}
         horizontal
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {x: scrollX}}}],
-          {
-            useNativeDriver: false,
-          },
-        )}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+          useNativeDriver: false,
+        })}
         data={imageDataList}
-        renderItem={({item, index}) => {
+        renderItem={({ item, index }) => {
           return (
             <View
               style={{
                 width: deviceWidth,
                 alignItems: 'center',
                 justifyContent: 'center',
-              }}>
+              }}
+            >
               {index === 0 ? (
-                <View style={{alignItems: 'center'}}>
+                <View style={{ alignItems: 'center' }}>
                   {lang === 'ko' ? <Bubble1SVG /> : <Bubble1enSVG />}
                   <Image
                     style={{
@@ -107,7 +100,7 @@ export default function OnBoarding() {
                   {lang === 'ko' ? <Text1SVG /> : <Text1enSVG />}
                 </View>
               ) : index === 1 ? (
-                <View style={{alignItems: 'center'}}>
+                <View style={{ alignItems: 'center' }}>
                   {lang === 'ko' ? <Bubble2SVG /> : <Bubble2enSVG />}
                   <Image
                     style={{
@@ -147,13 +140,15 @@ export default function OnBoarding() {
                     backgroundColor: 'rgb(75,133,247)',
                     justifyContent: 'center',
                     alignItems: 'center',
-                  }}>
+                  }}
+                >
                   <Text
                     style={{
                       color: 'white',
                       fontSize: 20,
                       fontWeight: 'bold',
-                    }}>
+                    }}
+                  >
                     {lang === 'ko' ? '시작하기' : 'START'}
                   </Text>
                 </TouchableOpacity>

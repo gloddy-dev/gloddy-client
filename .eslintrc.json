@@ -179,6 +179,12 @@
   "settings": {
     "next": {
       "rootDir": ["packages/web/"]
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {}
     }
   }
 }

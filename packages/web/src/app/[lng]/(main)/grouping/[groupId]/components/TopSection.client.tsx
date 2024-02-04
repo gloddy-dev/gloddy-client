@@ -1,4 +1,6 @@
 'use client';
+import Image from 'next/image';
+
 import { useDeleteScrapGroups, useGetGroupDetail, usePostScrap } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
@@ -8,7 +10,6 @@ import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useShowMore } from '@/hooks/useShowMore';
-import Image from 'next/image';
 
 export default function TopSection() {
   const { t } = useTranslation('groupDetail');
@@ -64,7 +65,7 @@ export default function TopSection() {
         <div className="overflow-hidden">
           <div
             ref={contentRef}
-            className="overflow-hidden break-words text-paragraph-2 text-sign-secondary"
+            className="text-paragraph-2 text-sign-secondary overflow-hidden break-words"
           >
             {showFullText ? content : content.split('\n').slice(0, 6).join('\n')}
           </div>
@@ -72,7 +73,7 @@ export default function TopSection() {
         <Spacing size={4} />
         {shouldShowButton && (
           <button
-            className="p-2 text-subtitle-2 text-sign-sub"
+            className="text-subtitle-2 text-sign-sub p-2"
             onClick={() => toggleShowFullText()}
           >
             {t(showFullText ? 'fold' : 'more')}

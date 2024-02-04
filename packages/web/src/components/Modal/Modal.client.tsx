@@ -1,11 +1,13 @@
 'use client';
+import { useState } from 'react';
+
 import ModalWrapper from './ModalWrapper.client';
 import { Button } from '../Button';
 import { Spacing } from '../Spacing';
+
 import { useTranslation } from '@/app/i18n/client';
 import { StrictPropsWithChildren } from '@/types';
 import cn from '@/utils/cn';
-import { useState } from 'react';
 
 export interface ModalProps {
   onOkClick?: () => void;
@@ -51,7 +53,7 @@ export function Modal({
     <ModalWrapper onClose={onCancelClick}>
       <div
         className={cn(
-          'flex w-300 flex-col items-center rounded-16 bg-white px-16 text-center',
+          'w-300 rounded-16 flex flex-col items-center bg-white px-16 text-center',
           className
         )}
       >

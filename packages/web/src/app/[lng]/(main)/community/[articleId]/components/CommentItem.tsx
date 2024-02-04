@@ -1,5 +1,8 @@
+import { format, parseISO } from 'date-fns';
+
 import { useCommentContext } from './CommentProvider';
 import ReplyList from './ReplyList';
+
 import {
   Comment,
   useDeleteCommunityComment,
@@ -16,7 +19,6 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import cn from '@/utils/cn';
-import { format, parseISO } from 'date-fns';
 
 interface CommentItemProps {
   comment: Comment;
@@ -104,7 +106,7 @@ export default function CommentItem({
           </DropDown>
         </CardHeader>
         <Spacing size={10} />
-        <div className="break-words text-paragraph-2 text-sign-primary">{content}</div>
+        <div className="text-paragraph-2 text-sign-primary break-words">{content}</div>
         <Flex align="center" className="gap-8">
           <Flex align="center" className="gap-4" onClick={handleLikeClick}>
             <Icon

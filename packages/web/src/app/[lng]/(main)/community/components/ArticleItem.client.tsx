@@ -1,5 +1,9 @@
 'use client';
 
+import { format, formatDistanceStrict, formatDistanceToNow } from 'date-fns';
+import { enUS, ko } from 'date-fns/locale';
+import Image from 'next/image';
+
 import { CommunityArticle } from '@/apis/community';
 import ArticleBadge from '@/app/[lng]/(main)/community/components/ArticleBadge.client';
 import { useTranslation } from '@/app/i18n/client';
@@ -11,9 +15,6 @@ import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 import { currentKoreaTime } from '@/utils/date';
-import { format, formatDistanceStrict, formatDistanceToNow } from 'date-fns';
-import { enUS, ko } from 'date-fns/locale';
-import Image from 'next/image';
 
 const formatDate = (date: string, locale: Locale) => {
   const d = new Date(date);

@@ -18,7 +18,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ['my-lib'],
+    externalDir: true,
   },
 };
 

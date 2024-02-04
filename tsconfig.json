@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "strict": true,
@@ -13,10 +13,5 @@
     "module": "esnext",
     "isolatedModules": true
   },
-  "references": [
-    {
-      "path": "packages/web"
-    },
-  ],
   "exclude": ["packages/**/dist/**"]
 }

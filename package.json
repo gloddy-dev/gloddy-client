@@ -8,9 +8,6 @@
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "/packages/app/**"
     ]
   },
   "scripts": {
@@ -27,12 +24,14 @@
   },
   "homepage": "https://github.com/gloddy-dev/gloddy-client#readme",
   "devDependencies": {
+    "@babel/core": "^7.23.9",
     "@next/eslint-plugin-next": "^14.1.0",
     "@react-native-community/eslint-config": "^3.2.0",
     "@react-native/eslint-config": "^0.73.2",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.20.0",
-    "eslint": "^8.0.1",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "^14.1.0",
     "eslint-config-prettier": "^9.1.0",

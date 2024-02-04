@@ -1,11 +1,12 @@
 'use client';
 
+import { GoogleMap, Marker } from '@react-google-maps/api';
+import { useParams } from 'next/navigation';
+
 import { GroupDetailResponse } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Spacing } from '@/components/Spacing';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
-import { GoogleMap, Marker } from '@react-google-maps/api';
-import { useParams } from 'next/navigation';
 
 interface LocationSectionProps extends GroupDetailResponse {}
 
@@ -27,9 +28,9 @@ export default function LocationSection({
 
   return (
     <section className="p-20 pb-8">
-      <h2 className="pl-4 text-subtitle-3 text-sign-secondary">{t('details.place')}</h2>
+      <h2 className="text-subtitle-3 text-sign-secondary pl-4">{t('details.place')}</h2>
       <Spacing size={4} />
-      <div className="relative overflow-hidden rounded-8 bg-divider">
+      <div className="rounded-8 bg-divider relative overflow-hidden">
         <div
           className="absolute left-0 top-0 z-[2] aspect-video w-full cursor-pointer opacity-0"
           onClick={() => place?.url && window.open(place?.url, '_blank')}

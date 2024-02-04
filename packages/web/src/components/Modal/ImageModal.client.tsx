@@ -1,10 +1,11 @@
 'use client';
-import ModalWrapper from './ModalWrapper.client';
-import { Flex } from '../Layout';
-import { Spacing } from '../Spacing';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import ModalWrapper from './ModalWrapper.client';
+import { Flex } from '../Layout';
+import { Spacing } from '../Spacing';
 import 'swiper/css';
 
 interface ImageModalProps {
@@ -37,7 +38,7 @@ export default function ImageModal({ images, currentImage, onClose }: ImageModal
         ))}
         <Spacing size={12} />
         <Flex justify="center">
-          <span className="rounded-20 bg-white px-6 py-2 text-caption text-sign-sub">
+          <span className="rounded-20 text-caption text-sign-sub bg-white px-6 py-2">
             {currentImageIndex + 1}/{images.length}
           </span>
         </Flex>

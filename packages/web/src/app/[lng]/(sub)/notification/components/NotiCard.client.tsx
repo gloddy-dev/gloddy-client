@@ -1,5 +1,9 @@
 'use client';
 
+import { format, formatDistanceToNowStrict } from 'date-fns';
+import { enUS, ko } from 'date-fns/esm/locale';
+import Image from 'next/image';
+
 import { Notification, NotificationResponse } from '@/apis/notifications';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
@@ -8,9 +12,6 @@ import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 import { getNotificationPath } from '@/utils/getNotificationPath';
-import { format, formatDistanceToNowStrict } from 'date-fns';
-import { enUS, ko } from 'date-fns/esm/locale';
-import Image from 'next/image';
 
 function formatDate(locale: Locale, date: string) {
   const notiDate = new Date(date);
@@ -40,7 +41,7 @@ export default function NotiCard({ notiData }: NotiCardProps) {
   return (
     <Flex align="center" className={cn('px-20 py-16')} onClick={() => push(path)}>
       <div className="w-full">
-        <p className="text-paragraph-2 font-bold text-sign-secondary">{title}</p>
+        <p className="text-paragraph-2 text-sign-secondary font-bold">{title}</p>
 
         <Spacing size={2} />
         <p className="text-paragraph-2 text-sign-tertiary">{content}</p>
@@ -53,7 +54,7 @@ export default function NotiCard({ notiData }: NotiCardProps) {
 
       <Spacing size={16} direction="horizontal" />
 
-      <div className="relative h-48 w-48 shrink-0 rounded-4">
+      <div className="rounded-4 relative h-48 w-48 shrink-0">
         <Image
           src={image || '/images/approve_character.png'}
           alt="thumbnail"

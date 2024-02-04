@@ -1,13 +1,15 @@
+import { useController } from 'react-hook-form';
+
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
 import LocationBottomSheet from '../../components/LocationBottomSheet.client';
 import { displayDate } from '../../util';
+
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Spacing } from '@/components/Spacing';
 import { SpinBox } from '@/components/SpinBox';
 import { TextField } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
-import { useController } from 'react-hook-form';
 
 interface SettingSectionProps {
   onSelectMeetDate: () => void;
@@ -29,7 +31,7 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
   return (
     <section id="setting">
       <section className="px-20 pb-8 pt-20">
-        <p className="px-4 text-subtitle-3 text-sign-secondary">{t('create.meetDate.label')}</p>
+        <p className="text-subtitle-3 text-sign-secondary px-4">{t('create.meetDate.label')}</p>
         <Spacing size={4} />
         <TextField
           value={displayDate(watch('meetDate'), watch('time'))}
@@ -41,7 +43,7 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
       </section>
 
       <section className="px-20 py-8">
-        <p className="px-4 text-subtitle-3 text-sign-secondary">{t('create.place.label')}</p>
+        <p className="text-subtitle-3 text-sign-secondary px-4">{t('create.place.label')}</p>
         <Spacing size={4} />
         <TextField
           onClick={() =>
@@ -57,7 +59,7 @@ export default function SettingSection({ onSelectMeetDate }: SettingSectionProps
       </section>
 
       <section className="px-20 py-8">
-        <p className="px-4 text-subtitle-3 text-sign-secondary">{t('create.maxUser.label')}</p>
+        <p className="text-subtitle-3 text-sign-secondary px-4">{t('create.maxUser.label')}</p>
         <Spacing size={4} />
         <SpinBox value={maxUser.value} min={3} max={20} onChange={maxUser.onChange} />
       </section>
