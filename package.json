@@ -5,6 +5,7 @@
   "main": "index.js",
   "packageManager": "yarn@3.6.4",
   "private": true,
+  "nmHoistingLimits": "workspaces",
   "workspaces": {
     "packages": [
       "packages/*"

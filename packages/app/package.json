@@ -2,6 +2,9 @@
   "name": "@gloddy/app",
   "version": "0.0.1",
   "private": true,
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "scripts": {
     "start-android:dev": "react-native run-android --mode=developmentdebug",
     "start-android:staging": "react-native run-android --mode=stagingdebug",

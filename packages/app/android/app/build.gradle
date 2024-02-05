@@ -2,9 +2,6 @@ apply plugin: "com.android.application"
 apply plugin: 'com.google.gms.google-services' 
 apply plugin: "com.facebook.react"
 
-apply plugin: "com.android.application"
-
-
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need tox apply any configuration, just uncomment the lines you need.
@@ -114,7 +111,7 @@ android {
     }
     buildTypes {
         debug {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
             resValue "string", "CodePushDeploymentKey", CODEPUSH_DEPLOYMENT_KEY_DEBUG
             matchingFallbacks = ['debug', 'release']
         }
