@@ -9,7 +9,6 @@ export default function useListenMessageToReactNative() {
     if (!isapp) return;
     const listener = async (event: any) => {
       const { type, data } = JSON.parse(event.data);
-      alert('test');
       switch (type) {
         case 'FCM_TOKEN':
           postFCMToken({ token: data });
