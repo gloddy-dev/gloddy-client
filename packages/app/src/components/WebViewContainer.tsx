@@ -74,6 +74,7 @@ export default function WebViewContainer() {
       return false;
     }
   };
+
   const onShouldStartLoadWithRequest = (navState) => {
     if (!navState.url.includes(SOURCE_URL)) {
       Linking.openURL(navState.url).catch((err) => {});
@@ -194,7 +195,7 @@ export default function WebViewContainer() {
         source={{ uri: url }}
         overScrollMode="never"
         pullToRefreshEnabled
-        thirdPartyCookiesEnabled
+        thirdPartyCookiesEnabled={true}
         sharedCookiesEnabled={true}
         androidHardwareAccelerationDisabled
         onNavigationStateChange={onNavigationStateChange}
