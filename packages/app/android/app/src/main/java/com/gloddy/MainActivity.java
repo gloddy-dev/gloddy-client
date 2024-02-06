@@ -1,10 +1,9 @@
 package com.goodcode.gloddy;
 
+import android.webkit.WebView;
 
 import android.os.Bundle;
 import org.devio.rn.splashscreen.SplashScreen;
-
-
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -14,7 +13,8 @@ import com.facebook.react.defaults.DefaultReactActivityDelegate;
 public class MainActivity extends ReactActivity {
 
   /**
-   * Returns the name of the main component registered from JavaScript. This is used to schedule
+   * Returns the name of the main component registered from JavaScript. This is
+   * used to schedule
    * rendering of the component.
    */
   @Override
@@ -22,16 +22,18 @@ public class MainActivity extends ReactActivity {
     return "gloddy";
   }
 
-     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.show(this);  // here
-        super.onCreate(savedInstanceState);
-    }
-    
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    SplashScreen.show(this); // here
+    super.onCreate(savedInstanceState);
+    WebView.setWebContentsDebuggingEnabled(true);
+  }
 
   /**
-   * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link
-   * DefaultReactActivityDelegate} which allows you to easily enable Fabric and Concurrent React
+   * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util
+   * class {@link
+   * DefaultReactActivityDelegate} which allows you to easily enable Fabric and
+   * Concurrent React
    * (aka React 18) with two boolean flags.
    */
   @Override

@@ -1,7 +1,8 @@
 'use client';
+import { forwardRef } from 'react';
+
 import TextField, { type TextFieldProps } from './TextField.client';
 import { Icon } from '../Icon';
-import { forwardRef } from 'react';
 
 import type { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form';
 

@@ -27,7 +27,7 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
     <Flex
       justify="center"
       align="center"
-      className="relative mx-20 aspect-[8/5] overflow-hidden rounded-8 bg-sub"
+      className="rounded-8 bg-sub relative mx-20 aspect-[8/5] overflow-hidden"
       onClick={handleFileUploadClick}
     >
       <RenderImage previewImage={field.value} />

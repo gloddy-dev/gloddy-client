@@ -1,8 +1,9 @@
 import { getLocalCookie, setLocalCookie } from '../cookieController';
 import { afterDay1, afterDay60 } from '../date';
-import { AUTH_KEYS } from '@/constants/token';
 
 import type { CookieKeyType } from '@/types';
+
+import { AUTH_KEYS } from '@/constants/token';
 
 export const getTokenFromCookie = async () => {
   if (typeof window === 'undefined') {

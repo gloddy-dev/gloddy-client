@@ -24,7 +24,7 @@ export default function ArticleBadge({
     <Flex
       justify="center"
       align="center"
-      className={cn('rounded-24 border px-8 py-2 text-caption', badgeColor[type])}
+      className={cn('rounded-24 text-caption border px-8 py-2', badgeColor[type])}
     >
       {children}
     </Flex>

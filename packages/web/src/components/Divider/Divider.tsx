@@ -1,5 +1,6 @@
-import cn from '@/utils/cn';
 import { memo } from 'react';
+
+import cn from '@/utils/cn';
 
 interface DividerProps<T extends React.ElementType> {
   /**
@@ -37,7 +38,7 @@ export default memo(function Divider<T extends React.ElementType>({
   return (
     <Element
       className={cn(
-        'flex-none bg-divider',
+        'bg-divider flex-none',
         {
           'h-1 w-full': direction === 'horizontal' && thickness === 'thin',
           'h-8 w-full': direction === 'horizontal' && thickness === 'thick',

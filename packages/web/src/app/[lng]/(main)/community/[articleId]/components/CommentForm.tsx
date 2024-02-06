@@ -1,6 +1,10 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+
 import { useCommentContext } from './CommentProvider';
+
 import {
   useCreateCommunityReply,
   useGetCommunityArticleDetail,
@@ -11,8 +15,6 @@ import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import cn from '@/utils/cn';
-import { useEffect, useRef } from 'react';
-import { useForm } from 'react-hook-form';
 
 export type CreateCommentRequest = {
   content: string;
@@ -86,7 +88,7 @@ export default function CommentForm() {
 
         <button
           type="submit"
-          className="flex h-48 w-48 shrink-0 items-center justify-center rounded-full bg-primary"
+          className="bg-primary flex h-48 w-48 shrink-0 items-center justify-center rounded-full"
           onMouseDown={(e) => e.preventDefault()}
         >
           <Icon id="24-send" />

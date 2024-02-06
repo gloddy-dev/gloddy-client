@@ -1,5 +1,12 @@
+import { GoogleMap, Marker } from '@react-google-maps/api';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { Control, useController } from 'react-hook-form';
+import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
+
 import LocationItem from './LocationItem.client';
 import { CreateGroupContextValue } from '../type';
+
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Icon } from '@/components/Icon';
@@ -9,11 +16,6 @@ import { BottomSheet } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
 import { LatLng } from '@/types';
-import { GoogleMap, Marker } from '@react-google-maps/api';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { Control, useController } from 'react-hook-form';
-import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
 interface LocationBottomSheetProps {
   control: Control<CreateGroupContextValue>;
@@ -131,9 +133,9 @@ export default function LocationBottomSheet({
             </GoogleMap>
           </div>
           <Spacing size={20} />
-          <Flex direction="column" className="gap-2 rounded-8 bg-divider p-16">
-            <p className="truncate text-subtitle-2">{field.value.name}</p>
-            <p className="truncate text-paragraph-2 text-sign-secondary">{field.value.address}</p>
+          <Flex direction="column" className="rounded-8 bg-divider gap-2 p-16">
+            <p className="text-subtitle-2 truncate">{field.value.name}</p>
+            <p className="text-paragraph-2 text-sign-secondary truncate">{field.value.address}</p>
           </Flex>
         </>
       )}
