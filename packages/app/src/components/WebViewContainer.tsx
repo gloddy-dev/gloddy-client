@@ -195,7 +195,7 @@ export default function WebViewContainer() {
         overScrollMode="never"
         pullToRefreshEnabled
         thirdPartyCookiesEnabled
-        sharedCookiesEnabled
+        sharedCookiesEnabled={true}
         androidHardwareAccelerationDisabled
         onNavigationStateChange={onNavigationStateChange}
         onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}

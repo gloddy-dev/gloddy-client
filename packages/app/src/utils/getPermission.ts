@@ -25,8 +25,8 @@ const permissionPerOS = Platform.OS === 'ios' ? iosPermission : androidPermissio
 
 export const getPermission = async (
   permission: PossiblePermission,
-  onSuccess: () => void,
-  onFail: () => void,
+  onSuccess?: () => void,
+  onFail?: () => void,
   essential = false
 ): Promise<boolean> => {
   const needPermission = permissionPerOS[permission];
