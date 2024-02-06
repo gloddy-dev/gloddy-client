@@ -1,9 +1,10 @@
 import { Flex } from '../Layout';
 import { Spacing } from '../Spacing';
-import { StrictPropsWithChildren } from '@/types';
-import cn from '@/utils/cn';
 
 import type { HtmlHTMLAttributes, PropsWithChildren } from 'react';
+
+import { StrictPropsWithChildren } from '@/types';
+import cn from '@/utils/cn';
 
 interface HeaderProps extends HtmlHTMLAttributes<HTMLHeadElement> {
   leftNode?: React.ReactNode;
@@ -26,7 +27,7 @@ export default function Header({
     <>
       <header
         className={cn(
-          'fixed inset-x-0 top-0 z-50 mx-auto flex h-48 max-w-450 items-center justify-between bg-white text-subtitle-1 text-sign-primary',
+          'max-w-450 text-subtitle-1 text-sign-primary fixed inset-x-0 top-0 z-50 mx-auto flex h-48 items-center justify-between bg-white',
           className
         )}
         {...props}
@@ -44,7 +45,7 @@ interface SideProps {
 
 function Left({ children, className }: StrictPropsWithChildren<SideProps>) {
   return (
-    <Flex align="center" className={cn('mr-auto overflow-hidden text-subtitle-1', className)}>
+    <Flex align="center" className={cn('text-subtitle-1 mr-auto overflow-hidden', className)}>
       {children}
     </Flex>
   );
@@ -52,7 +53,7 @@ function Left({ children, className }: StrictPropsWithChildren<SideProps>) {
 
 function Right({ children, className }: StrictPropsWithChildren<SideProps>) {
   return (
-    <Flex align="center" className={cn('ml-auto justify-self-end text-subtitle-1', className)}>
+    <Flex align="center" className={cn('text-subtitle-1 ml-auto justify-self-end', className)}>
       {children}
     </Flex>
   );

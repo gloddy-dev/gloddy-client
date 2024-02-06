@@ -1,13 +1,14 @@
 'use client';
 
+import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
+
 import { usePostComment } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import cn from '@/utils/cn';
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
 
 export type CommentFormType = {
   content: string;
@@ -58,7 +59,7 @@ export default function CommentForm() {
 
         <button
           type="button"
-          className="flex h-48 w-48 shrink-0 items-center justify-center rounded-full bg-primary"
+          className="bg-primary flex h-48 w-48 shrink-0 items-center justify-center rounded-full"
           onClick={handleSubmit(onSubmit)}
         >
           <Icon id="24-send" />

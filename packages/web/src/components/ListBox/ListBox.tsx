@@ -1,9 +1,10 @@
-import { Icon } from '@/components/Icon';
-import { useListBoxContext } from '@/components/ListBox/ListBoxController';
-import cn from '@/utils/cn';
 import React from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
+
+import { Icon } from '@/components/Icon';
+import { useListBoxContext } from '@/components/ListBox/ListBoxController';
+import cn from '@/utils/cn';
 
 interface ListBoxProps {
   name: string;
@@ -15,7 +16,7 @@ export default function ListBox({ name, children }: StrictPropsWithChildren<List
   return (
     <>
       <div
-        className="flex w-full cursor-pointer items-center justify-between rounded-8 border border-transparent bg-sub p-16 text-primary"
+        className="rounded-8 bg-sub text-primary flex w-full cursor-pointer items-center justify-between border border-transparent p-16"
         onClick={() => setOpen(!open)}
       >
         <div>{name}</div>

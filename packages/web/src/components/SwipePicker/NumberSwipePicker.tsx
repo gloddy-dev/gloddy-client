@@ -20,7 +20,7 @@ export default function NumberSwipePicker({ numberValue, setNumberValue }: Picke
         enabled: true,
         sticky: true,
       }}
-      className="relative h-150 w-full bg-white"
+      className="h-150 relative w-full bg-white"
       slidesPerView={5}
       spaceBetween={40}
       slideToClickedSlide
@@ -39,7 +39,7 @@ export default function NumberSwipePicker({ numberValue, setNumberValue }: Picke
           {({ isActive, isPrev, isNext }) => (
             <div
               className={clsx({
-                'font-700 text-66 pt-10 text-black2': isActive,
+                'font-700 text-66 text-black2 pt-10': isActive,
                 'font-500 text-50 pt-30 text-gray3': isPrev || isNext,
                 'font-500 text-35 pt-50 text-gray8': !isActive && !isPrev && !isNext,
               })}
@@ -49,7 +49,7 @@ export default function NumberSwipePicker({ numberValue, setNumberValue }: Picke
           )}
         </SwiperSlide>
       ))}
-      <div className="z-100 absolute -bottom-55 left-1/2 h-134 w-134  -translate-x-1/2 -translate-y-1/2 rounded-200 bg-white4"></div>
+      <div className="z-100 -bottom-55 h-134 w-134 rounded-200 bg-white4  absolute left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
     </Swiper>
   );
 }

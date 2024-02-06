@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
+
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useLogout from '@/hooks/token/useLogout';
-import { useEffect } from 'react';
 
 export interface BaseErrorProps {
   error: Error;
@@ -15,12 +16,12 @@ export default function BaseError({ error, reset }: BaseErrorProps) {
   }, [error]);
 
   return (
-    <Flex align="center" justify="center" className="h-full text-sign-tertiary " direction="column">
-      <p className="text-30 flex h-48 w-48 items-center justify-center rounded-full bg-sign-caption text-white">
+    <Flex align="center" justify="center" className="text-sign-tertiary h-full " direction="column">
+      <p className="text-30 bg-sign-caption flex h-48 w-48 items-center justify-center rounded-full text-white">
         X
       </p>
       <Spacing size={20} />
-      <p className="text-center text-subtitle-1">
+      <p className="text-subtitle-1 text-center">
         오류가 발생했습니다.
         <br />
         잠시 후 다시 시도해 주세요.

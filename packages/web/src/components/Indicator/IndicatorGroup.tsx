@@ -1,4 +1,5 @@
 import { Flex } from '../Layout';
+
 import cn from '@/utils/cn';
 
 interface IndicatorGroupProps {
@@ -23,8 +24,8 @@ export function Indicator({ isFocus }: IndicatorProps) {
   return (
     <div
       className={cn('h-8 rounded-full', {
-        'w-24 bg-sign-caption': isFocus,
-        'w-8 bg-sign-brand': !isFocus,
+        'bg-sign-caption w-24': isFocus,
+        'bg-sign-brand w-8': !isFocus,
       })}
     />
   );

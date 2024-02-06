@@ -1,7 +1,8 @@
-import { BottomSheet } from '@/components/Modal';
-import countaryList from '@/constants/countary.json';
 import Image from 'next/image';
 import { Control, useController } from 'react-hook-form';
+
+import { BottomSheet } from '@/components/Modal';
+import countaryList from '@/constants/countary.json';
 
 interface CountryBotoomSheetProps {
   isOpen: boolean;
@@ -50,7 +51,7 @@ export default function CountryBotoomSheet({ isOpen, onClose, control }: Country
         {countaryList.map((country, index) => (
           <li
             key={index}
-            className="flex gap-8 py-12 text-subtitle-2"
+            className="text-subtitle-2 flex gap-8 py-12"
             onClick={() => handleCountry(country)}
           >
             <Image

@@ -1,6 +1,7 @@
 'use client';
 
 import ManageModal from './ManageModal';
+
 import { Apply, usePatchApply } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
@@ -53,7 +54,7 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
   };
 
   return (
-    <div className="w-full shrink-0 rounded-8 bg-white p-16 shadow-card-ui">
+    <div className="rounded-8 shadow-card-ui w-full shrink-0 bg-white p-16">
       <Flex justify="between" align="center" className="my-4 gap-12">
         <Avatar
           imageUrl={userImageUrl}
@@ -74,11 +75,11 @@ export default function ApplyCard({ apply, groupId }: ApplyCardProps) {
         </IconButton>
       </Flex>
       <Spacing size={16} />
-      <p className="px-4 text-sign-secondary">{t('apply.introduce')}</p>
+      <p className="text-sign-secondary px-4">{t('apply.introduce')}</p>
       <Spacing size={4} />
       <TextField as="textarea" value={introduce} readOnly />
       <Spacing size={16} />
-      <p className="px-4 text-sign-secondary">{t('apply.reason')}</p>
+      <p className="text-sign-secondary px-4">{t('apply.reason')}</p>
       <TextField as="textarea" value={reason} readOnly />
       <Spacing size={16} />
       <ButtonGroup position="contents" hasDivider={false}>

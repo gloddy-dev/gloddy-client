@@ -1,5 +1,7 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 import { GroupDetailResponse, useGetGroupMembers } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
@@ -8,7 +10,6 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { usePathname } from 'next/navigation';
 
 interface MemberSectionProps extends GroupDetailResponse {}
 
@@ -24,11 +25,11 @@ export default function MemberSection({ memberCount, maxMemberCount }: MemberSec
   return (
     <section className="p-20 pb-16">
       <div className="flex items-center justify-between">
-        <p className="pl-4 text-subtitle-3 text-sign-secondary">
+        <p className="text-subtitle-3 text-sign-secondary pl-4">
           {t('details.members', { memberCount, maxMemberCount })}
         </p>
         <div
-          className="flex cursor-pointer items-center text-caption text-sign-caption"
+          className="text-caption text-sign-caption flex cursor-pointer items-center"
           onClick={() => push(`${pathname}/members`, false)}
         >
           <p>{t('details.viewAll')}</p>
@@ -48,7 +49,7 @@ export default function MemberSection({ memberCount, maxMemberCount }: MemberSec
               {member.isCaptain && (
                 <Icon id="16-host" width={16} height={16} className="shrink-0" />
               )}
-              <p className="truncate text-caption text-sign-tertiary">{member.nickName}</p>
+              <p className="text-caption text-sign-tertiary truncate">{member.nickName}</p>
             </Flex>
           </Avatar>
         ))}

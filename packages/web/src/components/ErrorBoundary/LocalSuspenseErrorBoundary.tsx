@@ -1,9 +1,11 @@
 'use client';
-import BaseError from '../Error/BaseError';
-import { Loading } from '../Loading';
-import { StrictPropsWithChildren } from '@/types';
 import { PropsWithChildren, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+
+import BaseError from '../Error/BaseError';
+import { Loading } from '../Loading';
+
+import { StrictPropsWithChildren } from '@/types';
 
 interface LocalSuspenseErrorBoundaryProps {}
 export default function LocalSuspenseErrorBoundary({
