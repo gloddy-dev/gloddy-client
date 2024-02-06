@@ -31,7 +31,7 @@ export default function MatesModal({
       <Avatar imageUrl={mateImageUrl} size="large" />
       <Spacing size={8} />
       <p>
-        <span className="inline text-h4">{mateName}</span>
+        <span className="text-h4 inline">{mateName}</span>
         <span className="text-subtitle-2">님의</span>
       </p>
       <Spacing size={2} />

@@ -1,7 +1,8 @@
 'use client';
-import { useJoinContext } from '../../../components/JoinContext.client';
 import clsx from 'clsx';
 import { memo } from 'react';
+
+import { useJoinContext } from '../../../components/JoinContext.client';
 
 import type { PersonalityType } from '@/types';
 
@@ -31,10 +32,10 @@ export default memo(function PersonalityItem({
   return (
     <div
       className={clsx(
-        'text-16 flex h-50 w-4/12 flex-grow items-center justify-center rounded-full bg-blue',
+        'text-16 h-50 bg-blue flex w-4/12 flex-grow items-center justify-center rounded-full',
         {
           'bg-blue text-white': isSelected,
-          'border border-gray4 bg-white text-gray4': !isSelected,
+          'border-gray4 text-gray4 border bg-white': !isSelected,
         }
       )}
       onClick={onClick}

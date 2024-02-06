@@ -1,10 +1,11 @@
+import axios, { AxiosError, AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
+
+import type { CustomInstance, ErrorType } from './type';
+
 import { BASE_API_URL } from '@/constants';
 import { AUTH_ERROR_CODES } from '@/constants/errorCode';
 import { getTokenFromCookie } from '@/utils/auth/tokenController';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
-import axios, { AxiosError, AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
-
-import type { CustomInstance, ErrorType } from './type';
 
 const privateApi: CustomInstance = axios.create({
   baseURL: `${BASE_API_URL}/api/v1`,

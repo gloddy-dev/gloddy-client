@@ -1,6 +1,5 @@
 'use client';
 
-import cn from '@/utils/cn';
 import {
   Children,
   type ReactElement,
@@ -11,6 +10,8 @@ import {
 } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
+
+import cn from '@/utils/cn';
 
 type ValueType = string | number | null;
 
@@ -73,7 +74,7 @@ function SegmentGroup<T extends ValueType>({
       }}
     >
       <div
-        className={cn('flex overflow-hidden rounded-8 border border-border-default', className)}
+        className={cn('rounded-8 border-border-default flex overflow-hidden border', className)}
         {...props}
       >
         {renderElements(validChildren, selectedValue)}
@@ -106,10 +107,10 @@ function Segment<T extends ValueType>({ label, value, className }: SegmentProps<
   return (
     <button
       className={cn(
-        'flex-grow p-16 text-subtitle-2',
+        'text-subtitle-2 flex-grow p-16',
         {
           ' bg-primary text-sign-white': isSelected,
-          'border-r-1 border-border-default bg-white text-subtitle-2': !isSelected,
+          'border-r-1 border-border-default text-subtitle-2 bg-white': !isSelected,
         },
         className
       )}

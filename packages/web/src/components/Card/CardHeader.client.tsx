@@ -4,9 +4,10 @@ import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { Flex } from '../Layout';
 import { Spacing } from '../Spacing';
-import useAppRouter from '@/hooks/useAppRouter';
 
 import type { ReliabilityType } from '@/types';
+
+import useAppRouter from '@/hooks/useAppRouter';
 
 interface CardHeaderProps {
   userId: number;
@@ -47,7 +48,7 @@ export default function CardHeader({
       />
       <div className="grow overflow-hidden">
         <Flex align="center">
-          <p className="truncate text-paragraph-2 text-sign-secondary">{name}</p>
+          <p className="text-paragraph-2 text-sign-secondary truncate">{name}</p>
           <Spacing size={2} direction="horizontal" />
 
           {isWriterCaptain && <Icon id="16-host" width={16} height={16} />}

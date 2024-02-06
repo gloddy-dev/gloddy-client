@@ -1,6 +1,7 @@
 'use client';
 
 import WriteModal from '../components/WriteModal';
+
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';

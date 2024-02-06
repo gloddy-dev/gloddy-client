@@ -1,7 +1,11 @@
 'use client';
+import Image from 'next/image';
+import { type ElementType, type KeyboardEventHandler, useState } from 'react';
+
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatBirthBackspace, formatBirthTyping } from '../util';
+
 import { useGetNicknameDuplicate } from '@/apis/auth';
 import CountryBotoomSheet from '@/app/[lng]/(main)/profile/setting/edit/components/step1/CountryBotoomSheet';
 import { useTranslation } from '@/app/i18n/client';
@@ -15,8 +19,6 @@ import { useDidMount } from '@/hooks/common/useDidMount';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
-import Image from 'next/image';
-import { type ElementType, type KeyboardEventHandler, useState } from 'react';
 
 export default function InputForm() {
   const { t } = useTranslation('join');

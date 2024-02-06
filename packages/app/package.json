@@ -2,6 +2,9 @@
   "name": "@gloddy/app",
   "version": "0.0.1",
   "private": true,
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "scripts": {
     "start-android:dev": "react-native run-android --mode=developmentdebug",
     "start-android:staging": "react-native run-android --mode=stagingdebug",
@@ -62,6 +65,7 @@
     "@babel/core": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
     "@babel/runtime": "^7.23.9",
+    "@react-native-community/cli-debugger-ui": "^12.3.5",
     "@react-native/metro-config": "^0.73.3",
     "@tsconfig/react-native": "^3.0.3",
     "@types/react": "^18.2.48",
