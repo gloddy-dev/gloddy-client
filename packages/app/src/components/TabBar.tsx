@@ -1,11 +1,13 @@
-import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {useCallback} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {StyleSheet, View} from 'react-native';
-import {Shadow} from 'react-native-shadow-2';
-import theme from '@/styles/theme';
-import useTabBarPress from '@/hooks/useTabBarPress';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { useCallback } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Shadow } from 'react-native-shadow-2';
+
 import TabBarIcon from './TabBarIcon';
+
+import useTabBarPress from '@/hooks/useTabBarPress';
+import theme from '@/styles/theme';
 
 const ScreenIconName = {
   Matching: 'Matching',
@@ -19,11 +21,9 @@ export type ScreenIconNameKey = keyof typeof ScreenIconName;
 const isKeyScreenIconName = (value: string) => value in ScreenIconName;
 
 const getScreenIcon = (value: string) =>
-  isKeyScreenIconName(value)
-    ? ScreenIconName[value as ScreenIconNameKey]
-    : undefined;
+  isKeyScreenIconName(value) ? ScreenIconName[value as ScreenIconNameKey] : undefined;
 
-function TabBar({state, navigation, descriptors}: BottomTabBarProps) {
+function TabBar({ state, navigation, descriptors }: BottomTabBarProps) {
   const onPress = useTabBarPress();
   const renderTabBarButton = useCallback(
     (name: string, index: number) => (
@@ -31,11 +31,11 @@ function TabBar({state, navigation, descriptors}: BottomTabBarProps) {
         icon={getScreenIcon(name)}
         focused={index === state.index}
         text={state.routeNames[index]}
-        onPress={() => onPress({name, navigation})}
+        onPress={() => onPress({ name, navigation })}
         key={`${index}`}
       />
     ),
-    [state],
+    [state]
   );
 
   return (
@@ -44,11 +44,12 @@ function TabBar({state, navigation, descriptors}: BottomTabBarProps) {
       offset={[0, 0]}
       distance={4}
       style={styles.block}
-      containerStyle={styles.container}>
+      containerStyle={styles.container}
+    >
       <View style={styles.wrapper}>
         <SafeAreaView edges={['bottom']}>
           <View style={styles.row}>
-            {state.routes.map(({name}, i) => renderTabBarButton(name, i))}
+            {state.routes.map(({ name }, i) => renderTabBarButton(name, i))}
           </View>
         </SafeAreaView>
       </View>
@@ -57,8 +58,8 @@ function TabBar({state, navigation, descriptors}: BottomTabBarProps) {
 }
 
 const styles = StyleSheet.create({
-  block: {width: '100%'},
-  container: {backgroundColor: theme.colors.white},
+  block: { width: '100%' },
+  container: { backgroundColor: theme.colors.white },
   wrapper: {
     backgroundColor: theme.colors.white,
     borderTopStartRadius: 24,

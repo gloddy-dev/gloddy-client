@@ -2066,6 +2066,7 @@ __metadata:
     "@babel/runtime": ^7.23.9
     "@notifee/react-native": ^7.8.2
     "@react-native-async-storage/async-storage": ^1.21.0
+    "@react-native-community/cli-debugger-ui": ^12.3.5
     "@react-native-community/push-notification-ios": ^1.11.0
     "@react-native-firebase/analytics": ^18.8.0
     "@react-native-firebase/app": ^18.8.0
@@ -2935,6 +2936,15 @@ __metadata:
   dependencies:
     serve-static: ^1.13.1
   checksum: de58daa03cf9a94a8d99d7464d9604751703d357b1c09d9bcedbbb1650c792b7e3724f21467fa198b6a2fe94485e6e426a79a25e06e4579105957032c508eb8a
+  languageName: node
+  linkType: hard
+
+"@react-native-community/cli-debugger-ui@npm:^12.3.5":
+  version: 12.3.5
+  resolution: "@react-native-community/cli-debugger-ui@npm:12.3.5"
+  dependencies:
+    serve-static: ^1.13.1
+  checksum: f58442de631aecd635e4793cd4a09107e0c97ed1e7e6e46f35b4519bc56d2365d12da5b75d4e83cec780c95724e2ca213d9950e2ce45cd7b6cb92f87ab6c07f9
   languageName: node
   linkType: hard
 
