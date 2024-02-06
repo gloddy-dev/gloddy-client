@@ -1,8 +1,9 @@
 'use client';
-import { fadeInVariants } from '@/constants/motions';
-import { StrictPropsWithChildren } from '@/types';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
+
+import { fadeInVariants } from '@/constants/motions';
+import { StrictPropsWithChildren } from '@/types';
 
 export default function Toast({ children }: StrictPropsWithChildren) {
   const ref = useRef<HTMLDivElement>(null);
@@ -10,7 +11,7 @@ export default function Toast({ children }: StrictPropsWithChildren) {
   return (
     <motion.div
       {...fadeInVariants()}
-      className="fixed inset-x-0 bottom-40 z-modal mx-auto inline-flex max-w-340 justify-center rounded-4 bg-zinc-900 bg-opacity-80 px-16 py-12 text-center text-paragraph-2 text-white"
+      className="z-modal max-w-340 rounded-4 text-paragraph-2 fixed inset-x-0 bottom-40 mx-auto inline-flex justify-center bg-zinc-900 bg-opacity-80 px-16 py-12 text-center text-white"
       ref={ref}
     >
       {children}

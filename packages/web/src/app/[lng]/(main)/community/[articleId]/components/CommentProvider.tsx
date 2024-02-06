@@ -1,5 +1,6 @@
-import { StrictPropsWithChildren } from '@/types';
 import { createContext, useContext, useState } from 'react';
+
+import { StrictPropsWithChildren } from '@/types';
 
 export type CommentType = 'comment' | 'reply';
 

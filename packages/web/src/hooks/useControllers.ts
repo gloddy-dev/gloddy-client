@@ -16,17 +16,20 @@ export function useControllers<T extends FieldValues>(
 
   const values = getValues();
 
-  const forms = (options?.setDefaultFields ?? Object.keys(values)).reduce((acc, key) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const controller = useController<T>({
-      name: key as FieldPath<T>,
-      control,
-    });
+  const forms = (options?.setDefaultFields ?? Object.keys(values)).reduce(
+    (acc, key) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const controller = useController<T>({
+        name: key as FieldPath<T>,
+        control,
+      });
 
-    acc[key as FieldPath<T>] = controller;
+      acc[key as FieldPath<T>] = controller;
 
-    return acc;
-  }, {} as Record<FieldPath<T>, UseControllerReturn<T>>);
+      return acc;
+    },
+    {} as Record<FieldPath<T>, UseControllerReturn<T>>
+  );
 
   return forms;
 }

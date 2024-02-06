@@ -1,16 +1,18 @@
 import './globals.css';
 
+import { dir } from 'i18next';
+import Script from 'next/script';
+
 import { languages } from '../i18n/settings';
+
+import type { StrictPropsWithChildren } from '@/types';
+
 import { GoogleAnalytics } from '@/components/Analytics';
 import { InitMap } from '@/components/Map';
 import { QueryProvider } from '@/components/Provider';
 import ToastProvider from '@/components/Provider/ToastProvider';
 import { BASE_WEB_URL, GOOGLE_API_KEY } from '@/constants';
 import ModalProvider from '@/hooks/useModal/ModalProvider';
-import { dir } from 'i18next';
-import Script from 'next/script';
-
-import type { StrictPropsWithChildren } from '@/types';
 
 const DEFAULT_OG_TITLE = 'Gloddy';
 const DEFAULT_OG_DESC = '조금 더 믿을 만한 모임을 할 수 있도록 준비했어요!';
@@ -82,7 +84,7 @@ function Layout({ lng, children }: StrictPropsWithChildren<LayoutProps>) {
   return (
     <html lang={lng} dir={dir(lng)}>
       <body className="flex h-full min-h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
-        <div className="relative min-h-[100dvh] w-full max-w-450 bg-white text-sign-primary">
+        <div className="max-w-450 text-sign-primary relative min-h-[100dvh] w-full bg-white">
           {children}
         </div>
       </body>

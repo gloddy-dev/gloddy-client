@@ -1,6 +1,9 @@
 'use client';
 
+import { SubmitHandler, useForm } from 'react-hook-form';
+
 import ApplyModal from './ApplyModal.client';
+
 import { usePostApply } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -9,7 +12,6 @@ import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 type ApplyFormType = {
   introduce: string;
@@ -42,7 +44,7 @@ export default function InputForm() {
   return (
     <>
       <Spacing size={8} />
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">{t('apply.introduce')}</p>
+      <p className="text-subtitle-3 text-sign-secondary pl-4">{t('apply.introduce')}</p>
       <Spacing size={4} />
       <TextFieldController
         as="textarea"
@@ -52,7 +54,7 @@ export default function InputForm() {
         maxCount={150}
       />
       <Spacing size={18} />
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">{t('apply.reason')}</p>
+      <p className="text-subtitle-3 text-sign-secondary pl-4">{t('apply.reason')}</p>
       <Spacing size={4} />
       <TextFieldController
         as="textarea"

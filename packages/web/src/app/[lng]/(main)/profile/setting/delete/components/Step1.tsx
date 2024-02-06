@@ -1,4 +1,5 @@
 import { useDeleteContext } from './DeleteProvider.client';
+
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
@@ -27,7 +28,7 @@ export default function Step1({ onNextClick }: Step1Props) {
   return (
     <div>
       <Spacing size={32} />
-      <h3 className="px-20 text-h3">{t('settings.confirmDeletion')}</h3>
+      <h3 className="text-h3 px-20">{t('settings.confirmDeletion')}</h3>
       <Spacing size={16} />
       <div className="px-20">
         {infoList.map((info, index) => (

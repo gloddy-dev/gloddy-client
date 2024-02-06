@@ -6,7 +6,7 @@ export default function sendMessageToWebview(
   message: {
     type: string;
     data: any;
-  },
+  }
 ) {
   webViewRef.current?.postMessage(JSON.stringify(message));
 }
