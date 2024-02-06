@@ -1,5 +1,9 @@
 'use client';
 
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useParams, usePathname } from 'next/navigation';
+
 import { useGetProfileById } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
@@ -14,9 +18,6 @@ import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useParams, usePathname } from 'next/navigation';
 
 interface ProfileDetailProps {
   profileData: ReturnType<typeof useGetProfileById>['data'];
@@ -61,7 +62,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
 
   return (
     <>
-      <section className="rounded-b-24 bg-white shadow-float">
+      <section className="rounded-b-24 shadow-float bg-white">
         <Flex direction="column" align="center">
           <Spacing size={7} />
           <Avatar imageUrl={imageUrl} size="large">
@@ -75,7 +76,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
               <Flex
                 align="center"
                 justify="center"
-                className="absolute bottom-0 whitespace-nowrap rounded-8 border border-warning bg-warning-color px-2 py-4 text-caption text-warning"
+                className="rounded-8 border-warning bg-warning-color text-caption text-warning absolute bottom-0 whitespace-nowrap border px-2 py-4"
                 onClick={() => isPrivateProfile && push('/profile/verify')}
               >
                 {t('재학생 인증 필요')}
@@ -83,7 +84,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             )}
           </Avatar>
           <Spacing size={16} />
-          <h4 className="relative flex items-center gap-5 text-h4">
+          <h4 className="text-h4 relative flex items-center gap-5">
             {countryImage && (
               <div className="relative h-16 w-24">
                 <Image src={countryImage} fill className="object-fill" alt="국가" />
@@ -92,11 +93,11 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
             <span>{nickname}</span>
             <Icon
               id={`16-reliability-${reliabilityLevel.toLowerCase()}`}
-              className="absolute -right-22 top-0"
+              className="-right-22 absolute top-0"
             />
           </h4>
           <Spacing size={4} />
-          <Flex className="h-18 gap-4 text-caption text-sign-tertiary" align="start">
+          <Flex className="h-18 text-caption text-sign-tertiary gap-4" align="start">
             <Flex className="gap-4" align="center">
               <Icon id="16-school" width={16} height={16} />
               <span>{school}</span>
@@ -121,7 +122,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
               <Tag
                 key={personality}
                 size="small"
-                className="border-none bg-brand-color text-primary-dark"
+                className="bg-brand-color text-primary-dark border-none"
               >
                 {personalityList.find((it) => it.keywordDTO === personality)?.emoji + ' '}
                 {t(
@@ -146,12 +147,12 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           <Spacing size={8} />
           <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
             <Spacing size={16} />
-            <div className="h-16 overflow-hidden rounded-10 bg-white">
+            <div className="rounded-10 h-16 overflow-hidden bg-white">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${reliabilityScore / 2}%` }}
                 transition={{ duration: 0.5 }}
-                className="h-full rounded-10 bg-primary"
+                className="rounded-10 bg-primary h-full"
               />
             </div>
             <Spacing size={8} />
@@ -213,7 +214,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
         </Flex>
       </section>
       <section className="px-20 py-40">
-        <p className="px-4 text-subtitle-3 text-sign-secondary">{t('home.selfIntro')}</p>
+        <p className="text-subtitle-3 text-sign-secondary px-4">{t('home.selfIntro')}</p>
         <TextField
           as="textarea"
           readOnly

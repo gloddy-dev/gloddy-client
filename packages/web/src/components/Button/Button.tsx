@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Loading } from '../Loading';
-import cn from '@/utils/cn';
 import { debounce, throttle } from 'lodash';
 import { useCallback } from 'react';
 
+import { Loading } from '../Loading';
+
 import type { StrictPropsWithChildren } from '@/types';
+
+import cn from '@/utils/cn';
 
 interface ButtonProps<T extends React.ElementType> extends React.HTMLAttributes<T> {
   as?: T;
@@ -78,7 +80,7 @@ export default function Button<T extends React.ElementType>({
   return (
     <Element
       className={cn(
-        'flex items-center justify-center rounded-8 px-24 py-16 text-subtitle-2',
+        'rounded-8 text-subtitle-2 flex items-center justify-center px-24 py-16',
         {
           'h-56': size === 'medium',
           'h-48': size === 'small',
@@ -86,7 +88,7 @@ export default function Button<T extends React.ElementType>({
           'bg-button text-sign-secondary disabled:bg-sub disabled:text-sign-caption':
             variant === 'solid-default',
           'bg-brand-color text-sign-brand disabled:text-sign-white': variant === 'solid-secondary',
-          'border border-warning bg-warning-color text-warning disabled:border-warning-light disabled:bg-white disabled:text-warning-light':
+          'border-warning bg-warning-color text-warning disabled:border-warning-light disabled:text-warning-light border disabled:bg-white':
             variant === 'outline-warning',
           'bg-warning text-sign-white disabled:bg-sub disabled:text-sign-caption':
             variant === 'solid-warning',
@@ -98,8 +100,8 @@ export default function Button<T extends React.ElementType>({
         actionType === 'debounce'
           ? handleDebounceClick
           : actionType === 'throttle'
-          ? handleThrottleClick
-          : onClick
+            ? handleThrottleClick
+            : onClick
       }
       disabled={disabled || isPending}
       {...props}

@@ -1,12 +1,13 @@
 'use client';
+import { Fragment, PropsWithChildren } from 'react';
+
+import type { EstimateResponse } from '@/apis/groups';
+
 import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { StrictPropsWithChildren } from '@/types';
-import { Fragment, PropsWithChildren } from 'react';
-
-import type { EstimateResponse } from '@/apis/groups';
 
 interface MembercardProps {
   member: EstimateResponse['groupMemberList'][0];
@@ -42,7 +43,7 @@ export default function Membercard({ member, children }: PropsWithChildren<Membe
 
 function Right({ children }: StrictPropsWithChildren) {
   return (
-    <Flex align="center" className="ml-auto justify-self-end text-subtitle-1">
+    <Flex align="center" className="text-subtitle-1 ml-auto justify-self-end">
       {children}
     </Flex>
   );

@@ -1,11 +1,5 @@
-import {
-  check,
-  Permission,
-  PERMISSIONS,
-  request,
-  RESULTS,
-} from 'react-native-permissions';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
+import { PERMISSIONS, Permission, RESULTS, check, request } from 'react-native-permissions';
 
 type PossiblePermission = 'camera' | 'microphone' | 'photoLibrary';
 
@@ -13,12 +7,7 @@ type PermissionPerOS = {
   [key in PossiblePermission]: Permission;
 };
 
-type PermissionStatus =
-  | 'unavailable'
-  | 'granted'
-  | 'blocked'
-  | 'denied'
-  | 'limited';
+type PermissionStatus = 'unavailable' | 'granted' | 'blocked' | 'denied' | 'limited';
 
 const androidPermission: PermissionPerOS = {
   camera: PERMISSIONS.ANDROID.CAMERA,
@@ -32,14 +21,13 @@ const iosPermission: PermissionPerOS = {
   photoLibrary: PERMISSIONS.IOS.PHOTO_LIBRARY,
 };
 
-const permissionPerOS =
-  Platform.OS === 'ios' ? iosPermission : androidPermission;
+const permissionPerOS = Platform.OS === 'ios' ? iosPermission : androidPermission;
 
 export const getPermission = async (
   permission: PossiblePermission,
-  onSuccess: () => void,
-  onFail: () => void,
-  essential = false,
+  onSuccess?: () => void,
+  onFail?: () => void,
+  essential = false
 ): Promise<boolean> => {
   const needPermission = permissionPerOS[permission];
 

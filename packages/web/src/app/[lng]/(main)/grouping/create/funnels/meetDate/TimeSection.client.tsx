@@ -1,12 +1,13 @@
 'use client';
+import { Control, useController } from 'react-hook-form';
+
+import type { CreateGroupContextValue } from '../../type';
+
 import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
-import { Control, useController } from 'react-hook-form';
-
-import type { CreateGroupContextValue } from '../../type';
 
 interface TimeSectionProps {
   control: Control<CreateGroupContextValue>;
@@ -61,7 +62,7 @@ export default function TimeSection({ control }: TimeSectionProps) {
 
   return (
     <section className="p-20">
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">{t('create.time.label')}</p>
+      <p className="text-subtitle-3 text-sign-secondary pl-4">{t('create.time.label')}</p>
       <Spacing size={8} />
       <Flex align="center" className="flex-auto">
         <SegmentGroup

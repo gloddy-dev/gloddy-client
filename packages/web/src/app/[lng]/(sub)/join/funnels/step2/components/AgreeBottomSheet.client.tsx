@@ -1,9 +1,10 @@
+import { useState } from 'react';
+
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { BottomSheet } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { useState } from 'react';
 
 type AgreeCheckListType = {
   name: string;
@@ -71,7 +72,7 @@ export default function AgreeBottomSheet({ onClose, isOpen }: AgreeBottomSheetPr
         {agreeCheckList.map((agree) => (
           <div
             key={agree.name}
-            className="flex h-40 items-center gap-8 bg-sub px-8 text-paragraph-2 text-sign-secondary"
+            className="bg-sub text-paragraph-2 text-sign-secondary flex h-40 items-center gap-8 px-8"
             onClick={() => handleAgreeCheckList(agree.name)}
           >
             <CircleCheckbox key={agree.name} checked={agree.isAgreed} variant="outline" />

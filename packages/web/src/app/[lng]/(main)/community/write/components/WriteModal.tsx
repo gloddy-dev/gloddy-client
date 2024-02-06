@@ -1,9 +1,9 @@
+import type { ComponentProps } from 'react';
+
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-
-import type { ComponentProps } from 'react';
 
 type ModalStyleType = {
   [key in WriteModalProps['type']]: {

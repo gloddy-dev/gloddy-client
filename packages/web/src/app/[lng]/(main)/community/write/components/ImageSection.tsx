@@ -1,11 +1,13 @@
+import Image from 'next/image';
+import { memo, useCallback } from 'react';
+import { Control, useController } from 'react-hook-form';
+
 import { WriteFormType } from '../type';
+
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Loading } from '@/components/Loading';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import Image from 'next/image';
-import { memo, useCallback } from 'react';
-import { Control, useController } from 'react-hook-form';
 
 interface ImageSectionProps {
   control: Control<WriteFormType>;
@@ -39,7 +41,7 @@ export default function ImageSection({ control }: ImageSectionProps) {
             direction="column"
             justify="center"
             align="center"
-            className="h-96 w-96 rounded-8 bg-card-ui"
+            className="rounded-8 bg-card-ui h-96 w-96"
           >
             <Loading />
           </Flex>
@@ -63,7 +65,7 @@ function AddImageButton({ imageCount, onClick }: AddImageSectionProps) {
       direction="column"
       justify="center"
       align="center"
-      className="h-96 w-96 cursor-pointer rounded-8 bg-sub"
+      className="rounded-8 bg-sub h-96 w-96 cursor-pointer"
       onClick={onClick}
     >
       <Icon id="48-add_photo" width={48} height={48} />
