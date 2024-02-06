@@ -17,9 +17,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    externalDir: true,
-  },
 };
 
 const sentryWebpackPluginOptions = {
