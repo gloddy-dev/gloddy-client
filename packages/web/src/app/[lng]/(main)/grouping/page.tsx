@@ -1,11 +1,13 @@
+import dynamic from 'next/dynamic';
+
 import CreateGroupButton from './components/CreateGroupButton.client';
 import GroupingCardList from './components/GroupingCardList.client';
 import GroupingHeader from './components/GroupingHeader';
+
 import { Keys, getGroups } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
-import dynamic from 'next/dynamic';
 
 const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 

@@ -11,7 +11,7 @@ export default function TimeSection({ meetDate, startTime }: TimeSectionProps) {
 
   return (
     <section className="p-20 pb-8">
-      <p className="pl-4 text-subtitle-3 text-sign-secondary">{t('details.meetDate')}</p>
+      <p className="text-subtitle-3 text-sign-secondary pl-4">{t('details.meetDate')}</p>
       <Spacing size={4} />
       <TextField
         value={formatMeetingDate(meetDate, startTime)}

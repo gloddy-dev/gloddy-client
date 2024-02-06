@@ -1,5 +1,4 @@
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-import { cache } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 import type { QueryFunction, QueryKey } from '@tanstack/react-query';

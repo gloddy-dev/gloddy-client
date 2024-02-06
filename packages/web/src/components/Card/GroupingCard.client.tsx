@@ -1,6 +1,13 @@
+import Image from 'next/image';
+import { useParams } from 'next/navigation';
+
 import { Icon } from '../Icon';
 import ImageSample from '../Image/ImageSample';
 import { NavLink } from '../NavLink';
+
+import type { Grouping } from '@/apis/groups/type';
+import type { HTMLAttributes, PropsWithChildren } from 'react';
+
 import { useDeleteScrapMeeting } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
@@ -8,11 +15,6 @@ import { Spacing } from '@/components/Spacing';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
 import cn from '@/utils/cn';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
-import Image from 'next/image';
-import { useParams } from 'next/navigation';
-
-import type { Grouping } from '@/apis/groups/type';
-import type { HTMLAttributes, PropsWithChildren } from 'react';
 
 interface GroupingCardProps extends HTMLAttributes<HTMLDivElement> {
   groupingData: Grouping;
@@ -85,11 +87,11 @@ export default function GroupingCard({
 
         <section className="relative grow overflow-hidden">
           <Flex align="center">
-            <p className="grow truncate text-subtitle-1">{title}</p>
+            <p className="text-subtitle-1 grow truncate">{title}</p>
             {isScrapped && <ScrapBadge groupId={groupId} />}
             {status && <StatusBadge status={status} />}
           </Flex>
-          <p className="truncate text-paragraph-2 text-sign-secondary">{content}</p>
+          <p className="text-paragraph-2 text-sign-secondary truncate">{content}</p>
           <Spacing size={8} />
           <Flex align="center" className="text-caption text-sign-tertiary">
             <Icon id="16-location" width={16} height={16} />
@@ -120,7 +122,7 @@ function MemberCountBadge({ maxMemeberCount, memberCount }: MemberCountBadgeProp
   return (
     <Flex
       align="center"
-      className={cn('absolute bottom-0 left-0 h-22 rounded-4 p-4', {
+      className={cn('h-22 rounded-4 absolute bottom-0 left-0 p-4', {
         'bg-brand-color': leftUser >= 2,
         'bg-warning-color': leftUser === 1,
         'bg-sub': leftUser === 0,
@@ -157,7 +159,7 @@ function StatusBadge({ status }: StatusBadgeProps) {
 
   return (
     <Flex
-      className={cn('h-22 shrink-0 rounded-4 border-1 px-4 py-2 text-caption', {
+      className={cn('h-22 rounded-4 border-1 text-caption shrink-0 px-4 py-2', {
         'border-warning bg-warning-color text-warning': warningBadge.includes(status),
         'border-sign-tertiary bg-sub text-sign-tertiary': grayBadge.includes(status),
         'border-primary bg-brand-color text-primary': blueBadge.includes(status),

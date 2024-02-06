@@ -1,6 +1,7 @@
+import { Children, isValidElement } from 'react';
+
 import BottomSheet from './BottomSheet.client';
 import { Flex } from '../Layout';
-import { Children, isValidElement } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 
@@ -42,7 +43,7 @@ interface ListItemProps {
 function ListItem({ label, isShown, onClick }: ListItemProps) {
   return (
     isShown && (
-      <div className="h-48 py-12 text-subtitle-2 text-sign-secondary" onClick={onClick}>
+      <div className="text-subtitle-2 text-sign-secondary h-48 py-12" onClick={onClick}>
         {label}
       </div>
     )

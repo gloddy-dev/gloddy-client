@@ -1,3 +1,6 @@
+import { format, parseISO } from 'date-fns';
+import Image from 'next/image';
+
 import { CommunityArticle, usePostCommunityArticleLike } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { CardHeader } from '@/components/Card';
@@ -7,8 +10,6 @@ import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import cn from '@/utils/cn';
-import { format, parseISO } from 'date-fns';
-import Image from 'next/image';
 
 interface ArticleItemProps {
   article: CommunityArticle;
@@ -65,13 +66,13 @@ export default function ArticleItem({ article }: ArticleItemProps) {
       <Spacing size={16} />
       <div className={'break-words text-2xl font-semibold'}>{title}</div>
       <Spacing size={6} />
-      <div className="select-auto break-words text-paragraph-1 text-sign-primary">{content}</div>
+      <div className="text-paragraph-1 text-sign-primary select-auto break-words">{content}</div>
       {images.length > 0 && (
-        <Flex className="my-16 h-160 gap-4 overflow-x-scroll">
+        <Flex className="h-160 my-16 gap-4 overflow-x-scroll">
           {images.map((imageUrl, index) => (
             <div
               key={imageUrl + index}
-              className="relative h-160 w-160 shrink-0"
+              className="h-160 w-160 relative shrink-0"
               onClick={() =>
                 open(() => <ImageModal images={images} currentImage={imageUrl} onClose={exit} />)
               }

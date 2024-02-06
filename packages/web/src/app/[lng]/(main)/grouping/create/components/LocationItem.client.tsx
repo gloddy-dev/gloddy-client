@@ -13,11 +13,11 @@ export default function LocationItem({ place, onSelect }: LocationItemProps) {
   } = place;
 
   return (
-    <Flex align="start" className="gap-8 py-12 hover:bg-sub" onClick={() => onSelect(place)}>
+    <Flex align="start" className="hover:bg-sub gap-8 py-12" onClick={() => onSelect(place)}>
       <Icon id="24-location_on" className="shrink-0" />
       <div className="overflow-hidden">
-        <p className="truncate text-subtitle-2">{main_text}</p>
-        <p className="truncate text-paragraph-2 text-sign-tertiary">{secondary_text}</p>
+        <p className="text-subtitle-2 truncate">{main_text}</p>
+        <p className="text-paragraph-2 text-sign-tertiary truncate">{secondary_text}</p>
       </div>
     </Flex>
   );

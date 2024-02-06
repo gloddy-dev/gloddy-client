@@ -2,9 +2,10 @@
 import { forwardRef, useEffect, useState } from 'react';
 
 import { Spacing } from '../Spacing';
-import cn from '@/utils/cn';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
+
+import cn from '@/utils/cn';
 
 export interface TextFieldProps<T extends React.ElementType = 'input'>
   extends React.HTMLAttributes<T> {
@@ -59,12 +60,12 @@ function TextField<T extends React.ElementType = 'input'>(
     <label htmlFor={'' + id} className="relative">
       <section
         className={cn(
-          'w-full rounded-8 border-1 p-16',
+          'rounded-8 border-1 w-full p-16',
           {
             'border-border-pressed bg-white': isFocus,
-            'border-transparent bg-sub': !isFocus,
+            'bg-sub border-transparent': !isFocus,
             'border-warning bg-warning-color': isError,
-            'border-transparent bg-divider': readOnly,
+            'bg-divider border-transparent': readOnly,
             'h-142': as === 'textarea',
           },
           className
@@ -81,7 +82,7 @@ function TextField<T extends React.ElementType = 'input'>(
           <Element
             ref={ref}
             className={cn(
-              'w-full resize-none text-paragraph-1 outline-none placeholder:text-paragraph-1 placeholder:text-sign-caption',
+              'text-paragraph-1 placeholder:text-paragraph-1 placeholder:text-sign-caption w-full resize-none outline-none',
               {
                 'bg-white': isFocus,
                 'bg-sub': !isFocus,
@@ -89,7 +90,7 @@ function TextField<T extends React.ElementType = 'input'>(
                 'bg-divider placeholder:text-sign-tertiary': readOnly,
                 'indent-8': !!leftIcon,
                 'h-24': as === 'input',
-                'h-full scroll-my-100 overflow-y-scroll ': as === 'textarea',
+                'scroll-my-100 h-full overflow-y-scroll ': as === 'textarea',
               }
             )}
             onFocusCapture={() => !readOnly && setIsFocus(true)}
@@ -104,7 +105,7 @@ function TextField<T extends React.ElementType = 'input'>(
       </section>
       {(!!leftCaption || !!rightCaption) && (
         <section
-          className={cn('flex w-full justify-between px-8 pt-4 text-caption text-sign-tertiary', {
+          className={cn('text-caption text-sign-tertiary flex w-full justify-between px-8 pt-4', {
             absolute: !isSpacing,
           })}
         >
@@ -126,7 +127,7 @@ interface LabelProps {
 
 function Label({ text }: LabelProps) {
   if (!text) return;
-  return <p className="block text-caption text-sign-tertiary">{text}</p>;
+  return <p className="text-caption text-sign-tertiary block">{text}</p>;
 }
 
 interface LeftCaptionProps {

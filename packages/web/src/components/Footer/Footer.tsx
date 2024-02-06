@@ -1,13 +1,15 @@
 'use client';
+import { useTranslation } from 'react-i18next';
+
 import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
 import { NavLink } from '../NavLink';
+
+import type { PageType } from '@/types';
+
 import cn from '@/utils/cn';
 import { getIsAndroid } from '@/utils/getIsAndroid';
 import { getIsIOS } from '@/utils/getIsIOS';
-import { useTranslation } from 'react-i18next';
-
-import type { PageType } from '@/types';
 
 interface TabType {
   id: string;
@@ -61,11 +63,11 @@ export default function Footer({ page, isSpacing = true, spacingColor }: FooterP
   else
     return (
       <>
-        <footer className="fixed inset-x-0 bottom-0 mx-auto flex max-w-450 touch-pan-x rounded-t-24 bg-white pb-8 pt-12 shadow-navigation">
+        <footer className="max-w-450 rounded-t-24 shadow-navigation fixed inset-x-0 bottom-0 mx-auto flex touch-pan-x bg-white pb-8 pt-12">
           {tabList.map((tab: TabType) => (
             <ButtonAnimation
               key={tab.id}
-              className={cn('flex w-full flex-col text-center text-caption', {
+              className={cn('text-caption flex w-full flex-col text-center', {
                 'text-sign-brand': isSelected(tab),
                 'text-sign-tertiary': !isSelected(tab),
               })}

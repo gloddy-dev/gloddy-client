@@ -13,12 +13,12 @@ export default function ProfileSection() {
 
   return (
     <section className="px-20 py-8">
-      <Flex align="center" className="gap-12 rounded-8 bg-sub px-16 py-12">
+      <Flex align="center" className="rounded-8 bg-sub gap-12 px-16 py-12">
         <Avatar imageUrl={imageUrl} />
         <div>
           <p className="text-paragraph-1">{nickname}</p>
           <Spacing direction="horizontal" size={2} />
-          <p className="flex text-caption text-sign-tertiary">
+          <p className="text-caption text-sign-tertiary flex">
             <Icon
               id={`16-reliability-${reliabilityLevel.toLocaleLowerCase()}`}
               width={16}

@@ -1,17 +1,17 @@
-import {StackHeaderProps} from '@react-navigation/stack';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { StackHeaderProps } from '@react-navigation/stack';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Icon from './Icon';
 
 import theme from '@/styles/theme';
 
-function Header({navigation, route}: StackHeaderProps) {
-  const {top: topInset} = useSafeAreaInsets();
-  const {title, right} = route.params;
+function Header({ navigation, route }: StackHeaderProps) {
+  const { top: topInset } = useSafeAreaInsets();
+  const { title, right } = route.params;
 
   return (
-    <View style={[styles.wrapper, {paddingTop: topInset}]}>
+    <View style={[styles.wrapper, { paddingTop: topInset }]}>
       <View style={styles.layout}>
         <Pressable style={styles.iconButton} onPress={navigation.goBack}>
           <Icon name="ArrowBack" color={theme.signColors.signPrimary} />
