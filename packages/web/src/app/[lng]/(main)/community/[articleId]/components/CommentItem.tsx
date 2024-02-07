@@ -1,6 +1,7 @@
 import { format, parseISO } from 'date-fns';
 
 import { useCommentContext } from './CommentProvider';
+import CommunityModal from './CommunityModal';
 import ReplyList from './ReplyList';
 
 import {
@@ -18,6 +19,8 @@ import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
+import { useModal } from '@/hooks/useModal';
+import { useBlockStore } from '@/store/useBlockStore';
 import cn from '@/utils/cn';
 
 interface CommentItemProps {
@@ -53,19 +56,31 @@ export default function CommentItem({
     nickName,
   } = comment.writer;
   const categoryId = useGetCommunityArticleDetail(articleId).data.data.article.category.id;
+  const { setBlockId } = useBlockStore();
+  const { open: openModal, exit: closeModal } = useModal();
   const { mutate: mutateLike } = usePostCommunityCommentLike(articleId, commentId);
   const { mutate: mutateDelete } = useDeleteCommunityComment(articleId, commentId, categoryId);
   const { data: replyDataList } = useGetCommunityReply(articleId, commentId);
   const { setCommentType, setCommentId } = useCommentContext();
 
-  const handleBlockArticle = () => {
-    console.log('block');
+  const handleBlockComment = () => {
+    openModal(() => (
+      <CommunityModal
+        onOkClick={() => {
+          setBlockId(commentId, 'communityComment');
+          closeModal();
+        }}
+        onCancelClick={closeModal}
+        variant="warning"
+        message={t('comment.block.content')}
+      />
+    ));
   };
 
   const options: DropDownOptionType[] = [
     {
       name: t('comment.block.label'),
-      onClick: handleBlockArticle,
+      onClick: handleBlockComment,
     },
     ...(isWriter
       ? [
