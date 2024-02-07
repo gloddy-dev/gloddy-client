@@ -24,14 +24,17 @@ export default function CommentList({ commentList, articleWriterId }: CommentLis
       <ItemList
         data={commentList}
         renderItem={(comment: Comment) => {
-          return !blockCommunityCommentIds.includes(comment.comment.id) && (
-          <CommentItem
-            comment={comment}
-            articleId={articleId}
-            articleWriterId={articleWriterId}
-            isCaptain={true}
-          />
-        )}}
+          return (
+            !blockCommunityCommentIds.includes(comment.comment.id) && (
+              <CommentItem
+                comment={comment}
+                articleId={articleId}
+                articleWriterId={articleWriterId}
+                isCaptain={true}
+              />
+            )
+          );
+        }}
         renderEmpty={() => <EmptyComment />}
       />
       <Spacing size={102} />

@@ -1,7 +1,14 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-export type BlockType = 'group' | 'article' | 'comment' | 'notice' | 'communityArticle' | 'communityComment' | 'communityReply'
+export type BlockType =
+  | 'group'
+  | 'article'
+  | 'comment'
+  | 'notice'
+  | 'communityArticle'
+  | 'communityComment'
+  | 'communityReply';
 
 type BlockState = {
   blockGroupIds: number[];
