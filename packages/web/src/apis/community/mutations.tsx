@@ -15,6 +15,7 @@ import { useBroadcastChannel } from '@/hooks/useBroadcast';
 import { getIsAndroid } from '@/utils/getIsAndroid';
 import { getIsIOS } from '@/utils/getIsIOS';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useGetCommunityArticleDetail } from './queries';
 
 export const usePostCreateCommunityArticle = () => {
   const queryClient = useQueryClient();
