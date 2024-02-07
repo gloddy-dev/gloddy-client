@@ -7,7 +7,6 @@ import { getIsApp } from '@/utils/getIsApp';
 export default function useListenMessageToReactNative() {
   const isapp = getIsApp();
   useDidMount(() => {
-    console.log('siab');
     if (!isapp) return;
     const listener = async (event: any) => {
       const { type, data } = JSON.parse(event.data);
