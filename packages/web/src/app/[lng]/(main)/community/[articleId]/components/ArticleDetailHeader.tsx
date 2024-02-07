@@ -2,6 +2,8 @@
 
 import { Suspense } from 'react';
 
+import CommunityModal from './CommunityModal';
+
 import { useGetCommunityArticleDetail, usePostDeleteCommunityArticle } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
@@ -10,7 +12,9 @@ import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
+import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
+import { useBlockStore } from '@/store/useBlockStore';
 
 export default function ArticleDetailHeader() {
   const { back } = useAppRouter();
@@ -40,18 +44,57 @@ export default function ArticleDetailHeader() {
 function IconButtonAction() {
   const { t } = useTranslation('community');
   const { articleId } = useNumberParams<['articleId']>();
+  const { setBlockId } = useBlockStore();
+  const { back } = useAppRouter();
   const { data: articleData } = useGetCommunityArticleDetail(articleId);
+  const { open: openModal, exit: closeModal } = useModal();
   const { mutate: mutateDelete } = usePostDeleteCommunityArticle(
     articleId,
     articleData.data.article.category.id
   );
 
   const handleBlockArticle = () => {
-    console.log('block');
+    openModal(() => (
+      <CommunityModal
+        onOkClick={() => {
+          setBlockId(articleId, 'communityArticle');
+          closeModal();
+          back();
+        }}
+        onCancelClick={closeModal}
+        variant="warning"
+        message={t('detail.block_content')}
+      />
+    ));
+  };
+
+  const handleReportArticle = () => {
+    openModal(() => (
+      <CommunityModal
+        onOkClick={() => {
+          setBlockId(articleId, 'communityArticle');
+          closeModal();
+          back();
+        }}
+        onCancelClick={closeModal}
+        variant="warning"
+        message={t('detail.report_content')}
+      />
+    ));
   };
 
   const handleDeleteArticle = () => {
-    mutateDelete();
+    openModal(() => (
+      <CommunityModal
+        onOkClick={() => {
+          closeModal();
+          mutateDelete();
+        }}
+        onCancelClick={closeModal}
+        variant="warning"
+        message={t('detail.delete_content')}
+      />
+    ));
   };
 
   const options: DropDownOptionType[] = [
@@ -61,7 +104,7 @@ function IconButtonAction() {
     },
     {
       name: t('detail.report'),
-      onClick: handleBlockArticle,
+      onClick: handleReportArticle,
     },
     ...(articleData.data.article.isWriter
       ? [
