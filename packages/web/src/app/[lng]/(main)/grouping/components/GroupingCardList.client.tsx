@@ -1,12 +1,14 @@
 'use client';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+
 import NoMeeting from '../../meeting/components/NoMeeting';
+
 import { useGetGroups } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
 import { ItemList } from '@/components/List';
 import { useBlockStore } from '@/store/useBlockStore';
-import { useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
 
 export default function GroupingCardList() {
   const { blockGroupIds } = useBlockStore();

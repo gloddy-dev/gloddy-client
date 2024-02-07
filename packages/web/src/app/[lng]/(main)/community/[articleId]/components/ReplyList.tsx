@@ -10,13 +10,17 @@ interface ReplyListProps {
 
 export default function ReplyList({ replyList, articleWriterId }: ReplyListProps) {
   const { blockCommunityReplyIds } = useBlockStore();
-  
+
   return (
     <ItemList
       data={replyList}
       renderItem={(reply: Reply) => {
-      return !blockCommunityReplyIds.includes(reply.childComment.id) && (<ReplyItem reply={reply} articleWriterId={articleWriterId} />)
-    }}
+        return (
+          !blockCommunityReplyIds.includes(reply.childComment.id) && (
+            <ReplyItem reply={reply} articleWriterId={articleWriterId} />
+          )
+        );
+      }}
       renderEmpty={() => <div></div>}
       className={'w-full'}
     />

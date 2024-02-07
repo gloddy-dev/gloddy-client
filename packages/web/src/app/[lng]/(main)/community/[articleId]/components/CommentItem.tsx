@@ -1,5 +1,9 @@
+import { format, parseISO } from 'date-fns';
+
 import { useCommentContext } from './CommentProvider';
+import CommunityModal from './CommunityModal';
 import ReplyList from './ReplyList';
+
 import {
   Comment,
   useDeleteCommunityComment,
@@ -18,8 +22,6 @@ import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import { useBlockStore } from '@/store/useBlockStore';
 import cn from '@/utils/cn';
-import { format, parseISO } from 'date-fns';
-import CommunityModal from './CommunityModal';
 
 interface CommentItemProps {
   comment: Comment;
@@ -61,7 +63,6 @@ export default function CommentItem({
   const { data: replyDataList } = useGetCommunityReply(articleId, commentId);
   const { setCommentType, setCommentId } = useCommentContext();
 
-
   const handleBlockComment = () => {
     openModal(() => (
       <CommunityModal
@@ -70,12 +71,11 @@ export default function CommentItem({
           closeModal();
         }}
         onCancelClick={closeModal}
-        variant='warning'
+        variant="warning"
         message={t('comment.block.content')}
       />
     ));
   };
-
 
   const options: DropDownOptionType[] = [
     {
@@ -121,7 +121,7 @@ export default function CommentItem({
           </DropDown>
         </CardHeader>
         <Spacing size={10} />
-        <div className="break-words text-paragraph-2 text-sign-primary">{content}</div>
+        <div className="text-paragraph-2 text-sign-primary break-words">{content}</div>
         <Flex align="center" className="gap-8">
           <Flex align="center" className="gap-4" onClick={handleLikeClick}>
             <Icon

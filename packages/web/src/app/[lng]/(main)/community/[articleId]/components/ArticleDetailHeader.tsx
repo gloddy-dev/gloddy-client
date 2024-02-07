@@ -1,5 +1,9 @@
 'use client';
 
+import { Suspense } from 'react';
+
+import CommunityModal from './CommunityModal';
+
 import { useGetCommunityArticleDetail, usePostDeleteCommunityArticle } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
@@ -11,8 +15,6 @@ import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
-import { Suspense } from 'react';
-import CommunityModal from './CommunityModal';
 
 export default function ArticleDetailHeader() {
   const { back } = useAppRouter();
@@ -60,7 +62,7 @@ function IconButtonAction() {
           back();
         }}
         onCancelClick={closeModal}
-        variant='warning'
+        variant="warning"
         message={t('detail.block_content')}
       />
     ));
@@ -75,7 +77,7 @@ function IconButtonAction() {
           back();
         }}
         onCancelClick={closeModal}
-        variant='warning'
+        variant="warning"
         message={t('detail.report_content')}
       />
     ));
@@ -89,7 +91,7 @@ function IconButtonAction() {
           mutateDelete();
         }}
         onCancelClick={closeModal}
-        variant='warning'
+        variant="warning"
         message={t('detail.delete_content')}
       />
     ));

@@ -10,7 +10,7 @@ export default function SearchResultSection({ searchResultList }: SearchResultSe
   return (
     <section>
       {searchResultList.map((searchResult: SearchResultType) => (
-        <div key={searchResult.id} className="border-b-[0.5px] border-b-gray6 p-20">
+        <div key={searchResult.id} className="border-b-gray6 border-b-[0.5px] p-20">
           <div className="text-14">{searchResult.name}</div>
           <div className="text-12 text-gray2">{searchResult.address}</div>
         </div>

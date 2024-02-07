@@ -2,5 +2,5 @@
 import type { StrictPropsWithChildren } from '@/types';
 
 export default function TitleTextMessage({ children }: StrictPropsWithChildren) {
-  return <div className="pb-16 pt-32 text-h3 text-sign-cto">{children}</div>;
+  return <div className="text-h3 text-sign-cto pb-16 pt-32">{children}</div>;
 }

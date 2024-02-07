@@ -3,13 +3,18 @@ import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 
 interface BlockDoneModalProps {
-    message: string;
-    variant: 'warning' | 'success' | 'ok';
-    onOkClick: () => void;
-    onCancelClick: () => void;
+  message: string;
+  variant: 'warning' | 'success' | 'ok';
+  onOkClick: () => void;
+  onCancelClick: () => void;
 }
 
-export default function CommunityModal({ onOkClick, onCancelClick, message, variant}: BlockDoneModalProps) {
+export default function CommunityModal({
+  onOkClick,
+  onCancelClick,
+  message,
+  variant,
+}: BlockDoneModalProps) {
   return (
     <Modal variant={variant} onOkClick={onOkClick} onCancelClick={onCancelClick}>
       <Spacing size={32} />

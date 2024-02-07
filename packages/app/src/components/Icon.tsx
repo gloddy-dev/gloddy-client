@@ -1,6 +1,7 @@
-import {ColorValue} from 'react-native';
-import {SvgProps} from 'react-native-svg';
-import {ICON_SVG, ICON_SVG_KEY} from '../../image';
+import { ColorValue } from 'react-native';
+import { SvgProps } from 'react-native-svg';
+
+import { ICON_SVG, ICON_SVG_KEY } from '../../image';
 
 export type IconName = ICON_SVG_KEY;
 

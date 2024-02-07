@@ -1,7 +1,12 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
+
 import ImageSection from './ImageSection.client';
 import WriteModal from './WriteModal';
+
+import type { WriteFormValues } from '../type';
+
 import { useGetGroupDetail, usePostArticle } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -12,9 +17,6 @@ import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { useForm } from 'react-hook-form';
-
-import type { WriteFormValues } from '../type';
 
 export default function InputForm() {
   const { t } = useTranslation('groupDetail');

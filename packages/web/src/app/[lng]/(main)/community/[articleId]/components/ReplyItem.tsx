@@ -1,3 +1,7 @@
+import { format, parseISO } from 'date-fns';
+
+import CommunityModal from './CommunityModal';
+
 import { Reply } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
@@ -10,8 +14,6 @@ import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import { useBlockStore } from '@/store/useBlockStore';
 import cn from '@/utils/cn';
-import { format, parseISO } from 'date-fns';
-import CommunityModal from './CommunityModal';
 
 interface ReplyItemProps {
   reply: Reply;
@@ -52,7 +54,7 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
           closeModal();
         }}
         onCancelClick={closeModal}
-        variant='warning'
+        variant="warning"
         message={t('comment.block.content')}
       />
     ));
@@ -66,7 +68,7 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
   ];
 
   return (
-    <div className={'w-full bg-sub'}>
+    <div className={'bg-sub w-full'}>
       <Flex direction={'row'} className=" m-20 px-4" gap={10}>
         <Icon id={'24-arrow_back'} className={'mt-15 -rotate-45 text-black'} />
         <Flex direction="column" className={'w-full'}>
@@ -87,7 +89,7 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
             </DropDown>
           </CardHeader>
           <Spacing size={10} />
-          <div className="break-all text-paragraph-2 text-sign-primary">{content}</div>
+          <div className="text-paragraph-2 text-sign-primary break-all">{content}</div>
           <Flex align="center" className="gap-4">
             <Icon
               id="16-favorite_fill"

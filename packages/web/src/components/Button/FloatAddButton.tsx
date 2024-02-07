@@ -20,7 +20,7 @@ export default function FloatAddButton({ className, onClick, disabled }: FloatBu
   return (
     <button
       className={cn(
-        'flex h-60 w-60 items-center justify-center rounded-full bg-primary text-sign-white shadow-float active:bg-primary-dark disabled:bg-primary-light',
+        'bg-primary text-sign-white shadow-float active:bg-primary-dark disabled:bg-primary-light flex h-60 w-60 items-center justify-center rounded-full',
         className
       )}
       onClick={onClick}

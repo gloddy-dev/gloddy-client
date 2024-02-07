@@ -1,4 +1,5 @@
 import { useDidMount } from './common/useDidMount';
+
 import { postFCMToken } from '@/apis/notifications';
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
 import { getIsApp } from '@/utils/getIsApp';
@@ -9,7 +10,7 @@ export default function useListenMessageToReactNative() {
     if (!isapp) return;
     const listener = async (event: any) => {
       const { type, data } = JSON.parse(event.data);
-      alert('test');
+      console.log(data);
       switch (type) {
         case 'FCM_TOKEN':
           postFCMToken({ token: data });

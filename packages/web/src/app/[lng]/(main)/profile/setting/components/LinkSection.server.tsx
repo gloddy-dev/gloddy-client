@@ -13,7 +13,7 @@ export default async function LinkSection({ lng }: LinkSectionProps) {
     <section className="text-subtitle-2">
       <div className="flex px-20 py-12">
         <span>{t('settings.version')}</span>
-        <span className="ml-auto text-caption text-sign-caption">1.0.0v</span>
+        <span className="text-caption text-sign-caption ml-auto">1.0.0v</span>
       </div>
       <div className="px-20 py-12">
         <NavLink href="/profile/setting/service">{t('settings.termsOfService')}</NavLink>

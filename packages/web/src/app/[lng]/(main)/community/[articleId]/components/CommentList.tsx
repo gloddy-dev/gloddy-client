@@ -1,5 +1,6 @@
 'use client';
 import CommentItem from './CommentItem';
+
 import { Comment } from '@/apis/community/type';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';

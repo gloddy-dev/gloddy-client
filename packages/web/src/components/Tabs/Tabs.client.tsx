@@ -1,6 +1,4 @@
 'use client';
-import useAppRouter from '@/hooks/useAppRouter';
-import cn from '@/utils/cn';
 import { LayoutGroup, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -15,6 +13,9 @@ import {
 } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
+
+import useAppRouter from '@/hooks/useAppRouter';
+import cn from '@/utils/cn';
 
 let elementId = 1;
 
@@ -35,7 +36,7 @@ const renderTabElement = (
 
   return (
     <div
-      className={cn('flex h-50 border-b border-border-default bg-white', {
+      className={cn('h-50 border-border-default flex border-b bg-white', {
         'gap-20 px-20': !isStretch,
       })}
     >
@@ -75,7 +76,7 @@ function List({ isStretch = true, isSticky = true, children }: StrictPropsWithCh
   }, []);
 
   return (
-    <div className={cn({ 'sticky left-0 top-47 z-40': isSticky })}>
+    <div className={cn({ 'top-47 sticky left-0 z-40': isSticky })}>
       {renderTabElement(validChildren, props, isStretch)}
     </div>
   );
@@ -118,7 +119,7 @@ function Tab({ value, text, queryString, className, disabled = false }: TabProps
           layout
           layoutId="underline"
           style={{ originY: '0px' }}
-          className=" absolute bottom-0 left-0 w-full border-b-1 border-primary text-subtitle-2 text-primary"
+          className=" border-b-1 border-primary text-subtitle-2 text-primary absolute bottom-0 left-0 w-full"
         />
       )}
     </Link>

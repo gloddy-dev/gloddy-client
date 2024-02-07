@@ -1,10 +1,11 @@
 'use client';
+import { forwardRef } from 'react';
+import Sheet, { type SheetRef } from 'react-modal-sheet';
+
 import { IconButton } from '../Button';
 import { Header } from '../Header';
 import { Icon } from '../Icon';
 import { Spacing } from '../Spacing';
-import { forwardRef } from 'react';
-import Sheet, { type SheetRef } from 'react-modal-sheet';
 
 import type { StrictPropsWithChildren } from '@/types';
 import type { SheetProps } from 'react-modal-sheet/dist/types';
@@ -43,16 +44,16 @@ export default forwardRef(function BottomSheet(
         ease: 'easeInOut',
         duration: 0.5,
       }}
-      className="fixed inset-x-0 bottom-0 m-auto max-w-450"
+      className="max-w-450 fixed inset-x-0 bottom-0 m-auto"
       {...props}
     >
       <Sheet.Backdrop
-        className="fixed inset-x-0 mx-auto max-w-450 !bg-sign-cto/[.38]"
+        className="max-w-450 !bg-sign-cto/[.38] fixed inset-x-0 mx-auto"
         onTap={isTapOutsideToClose ? onClose : () => {}}
       />
       <Sheet.Container className="bg-dimmed-38 !rounded-t-24">
         <Sheet.Header>
-          <div className="absolute inset-x-0 top-4 mx-auto h-4 w-80 rounded-8 bg-sign-caption" />
+          <div className="rounded-8 bg-sign-caption absolute inset-x-0 top-4 mx-auto h-4 w-80" />
           <Spacing size={20} />
           <Header className="static bg-inherit" isSpacing={false}>
             <Header.Left className="pl-20">{title}</Header.Left>

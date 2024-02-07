@@ -1,9 +1,11 @@
-import Button from './Button';
-import { Spacing } from '@/components/Spacing';
-import cn from '@/utils/cn';
 import { Children, type ReactElement, cloneElement, isValidElement } from 'react';
 
+import Button from './Button';
+
 import type { StrictPropsWithChildren } from '@/types';
+
+import { Spacing } from '@/components/Spacing';
+import cn from '@/utils/cn';
 
 const renderElements = (
   elements: ReactElement[],
@@ -80,7 +82,7 @@ export default function ButtonGroup({
       {position === 'bottom' && isSpacing && <Spacing size={buttonHeight + 28} />}
       <div
         className={cn({
-          'fixed inset-x-0 bottom-0 z-50 mx-auto max-w-450 bg-white p-20 pt-7':
+          'max-w-450 fixed inset-x-0 bottom-0 z-50 mx-auto bg-white p-20 pt-7':
             position === 'bottom',
           'border-t-1 border-divider': hasDivider,
         })}

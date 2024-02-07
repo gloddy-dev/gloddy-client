@@ -22,10 +22,13 @@ export default function AllContent() {
     <>
       <ItemList
         data={articleList}
-        renderItem={(articleData) => { 
-        return !blockCommunityArticleIds.includes(articleData.article.id) && 
-          (<ArticleItem articleData={articleData} />
-        )}}
+        renderItem={(articleData) => {
+          return (
+            !blockCommunityArticleIds.includes(articleData.article.id) && (
+              <ArticleItem articleData={articleData} />
+            )
+          );
+        }}
         renderEmpty={() => <Empty />}
       />
       <div ref={ref} />

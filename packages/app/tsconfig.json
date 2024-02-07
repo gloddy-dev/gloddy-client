@@ -3,6 +3,7 @@
   "compilerOptions": {
     "skipLibCheck": true ,
     "baseUrl": ".",
+    "jsx": "preserve",
     "paths": {
       "@/*": ["src/*"],
       "@hooks/*": ["src/hooks/*"]
