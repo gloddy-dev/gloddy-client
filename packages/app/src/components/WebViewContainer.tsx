@@ -83,15 +83,15 @@ export default function WebViewContainer() {
     return true;
   };
 
-  const handleOnLoad = async () => {
-    const accessToken = await AsyncStorage.getItem('accessToken');
-    const refreshToken = await AsyncStorage.getItem('refreshToken');
-    const userId = await AsyncStorage.getItem('userId');
-    sendMessageToWebview(webViewRef, {
-      type: 'TOKEN',
-      data: { accessToken, refreshToken, userId },
-    });
-  };
+  // const handleOnLoad = async () => {
+  //   const accessToken = await AsyncStorage.getItem('accessToken');
+  //   const refreshToken = await AsyncStorage.getItem('refreshToken');
+  //   const userId = await AsyncStorage.getItem('userId');
+  //   sendMessageToWebview(webViewRef, {
+  //     type: 'TOKEN',
+  //     data: { accessToken, refreshToken, userId },
+  //   });
+  // };
 
   /* 페이지 이동 */
   const requestOnMessage = async (event) => {
@@ -160,13 +160,13 @@ export default function WebViewContainer() {
         }
         break;
       }
-      case 'TOKEN': {
-        const { accessToken, refreshToken, userId } = data;
-        await AsyncStorage.setItem('accessToken', accessToken);
-        await AsyncStorage.setItem('refreshToken', refreshToken);
-        await AsyncStorage.setItem('userId', `${userId}`);
-        break;
-      }
+      // case 'TOKEN': {
+      //   const { accessToken, refreshToken, userId } = data;
+      //   await AsyncStorage.setItem('accessToken', accessToken);
+      //   await AsyncStorage.setItem('refreshToken', refreshToken);
+      //   await AsyncStorage.setItem('userId', `${userId}`);
+      //   break;
+      // }
     }
   };
 
@@ -205,7 +205,7 @@ export default function WebViewContainer() {
         bounces={false}
         onError={onWebViewError}
         webviewDebuggingEnabled
-        onLoad={handleOnLoad}
+        // onLoad={handleOnLoad}
       />
     </SafeAreaView>
   );
@@ -214,8 +214,14 @@ export default function WebViewContainer() {
 const useAppError = () => {
   const [isError, setIsError] = useState(false);
 
-  const onWebViewError = () => {
-    setIsError(true);
+  const onWebViewError = (syntheticEvent) => {
+    const { nativeEvent } = syntheticEvent;
+    console.error('WebView error: ', nativeEvent);
+
+    // 사용자에게 오류 메시지를 표시
+    Alert.alert('Error', 'An error occurred while loading the page.');
+
+    // setIsError(true); // 오류 상태 업데이트
   };
 
   return { isError, setIsError, onWebViewError };
