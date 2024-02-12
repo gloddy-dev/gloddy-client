@@ -72,6 +72,7 @@ jobs:
       - name: Build
         if: steps.cache_built_packages.outputs.cache-hit == ''
         run: |
+          ls -al
           yarn workspace @gloddy/web build
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
