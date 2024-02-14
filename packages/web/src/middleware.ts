@@ -1,8 +1,9 @@
+import { type NextRequest, NextResponse } from 'next/server';
+
 import { postReissue } from './apis/auth';
 import { cookieName, languages } from './app/i18n/settings';
 import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
-import { type NextRequest, NextResponse } from 'next/server';
 
 const privatePages = /\/(?:en|ko)\/(grouping|meeting|profile|community)/;
 
@@ -39,6 +40,7 @@ const middleware = async (request: NextRequest) => {
           { accessToken, refreshToken },
           { headers: { 'X-AUTH-TOKEN': accessToken } }
         );
+
         const response = NextResponse.next();
 
         response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken, {

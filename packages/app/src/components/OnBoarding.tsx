@@ -45,9 +45,19 @@ export default function OnBoarding() {
     }
   };
 
+  // useEffect(() => {
+  //   const lang = RNLocalize.getLocales()[0].languageCode;
+  //   setlang(lang);
+  //   preloading();
+  //   setTimeout(() => {
+  //     SplashScreen.hide();
+  //   }, 500);
+  // }, []);
+
   useEffect(() => {
-    const lang = RNLocalize.getLocales()[0].languageCode;
-    setlang(lang);
+    const locales = RNLocalize.getLocales();
+    const languageCode = locales && locales.length > 0 ? locales[0].languageCode : 'en';
+    setlang(languageCode);
     preloading();
     setTimeout(() => {
       SplashScreen.hide();
