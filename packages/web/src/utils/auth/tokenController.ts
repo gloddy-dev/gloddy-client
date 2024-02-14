@@ -1,4 +1,4 @@
-import { getLocalCookie, setLocalCookie } from '../cookieController';
+import { getLocalCookie, removeLocalCookie, setLocalCookie } from '../cookieController';
 import { afterDay1, afterDay60 } from '../date';
 
 import type { CookieKeyType } from '@/types';
@@ -64,5 +64,8 @@ export const hasToken = () => {
 };
 
 export const removeToken = () => {
-  setTokenAtCookie({ accessToken: '', refreshToken: '', userId: 0 });
+  // setTokenAtCookie({ accessToken: '', refreshToken: '', userId: 0 });
+  removeLocalCookie(AUTH_KEYS.accessToken);
+  removeLocalCookie(AUTH_KEYS.refreshToken);
+  removeLocalCookie(AUTH_KEYS.accessTokenExpireTime);
 };

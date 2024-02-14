@@ -15,11 +15,6 @@ export default function useListenMessageToReactNative() {
         case 'FCM_TOKEN':
           postFCMToken({ token: data });
           break;
-        case 'TOKEN': {
-          const { accessToken, refreshToken, userId } = data;
-          setTokenAtCookie({ accessToken, refreshToken, userId });
-          break;
-        }
       }
     };
 

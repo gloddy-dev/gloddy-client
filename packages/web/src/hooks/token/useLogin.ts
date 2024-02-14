@@ -1,6 +1,9 @@
 import sendMessageToReactNative from '../../utils/sendMessageToReactNative';
 import useAppRouter from '../useAppRouter';
+
 import { setTokenAtCookie } from '@/utils/auth/tokenController';
+import { getIsAndroid } from '@/utils/getIsAndroid';
+import { getIsIOS } from '@/utils/getIsIOS';
 
 interface LoginProps {
   accessToken: string;
@@ -10,19 +13,18 @@ interface LoginProps {
 export default function useLogin() {
   const { refresh, replace } = useAppRouter();
 
+  const isIOS = getIsIOS();
+  const isAndroid = getIsAndroid();
+
   const login = async ({ accessToken, refreshToken, userId }: LoginProps) => {
     await setTokenAtCookie({ accessToken, refreshToken, userId });
-    sendMessageToReactNative({ type: 'AUTH', data: 'LOG_IN' });
-    sendMessageToReactNative({
-      type: 'TOKEN',
-      data: {
-        accessToken,
-        refreshToken,
-        userId,
-      },
-    });
-    refresh();
-    replace('/grouping');
+
+    if (isIOS || isAndroid) {
+      sendMessageToReactNative({ type: 'AUTH', data: 'LOG_IN' });
+    } else {
+      refresh();
+      replace('/grouping');
+    }
   };
 
   return { login };
