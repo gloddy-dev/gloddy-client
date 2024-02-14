@@ -83,16 +83,6 @@ export default function WebViewContainer() {
     return true;
   };
 
-  const handleOnLoad = async () => {
-    const accessToken = await AsyncStorage.getItem('accessToken');
-    const refreshToken = await AsyncStorage.getItem('refreshToken');
-    const userId = await AsyncStorage.getItem('userId');
-    sendMessageToWebview(webViewRef, {
-      type: 'TOKEN',
-      data: { accessToken, refreshToken, userId },
-    });
-  };
-
   /* 페이지 이동 */
   const requestOnMessage = async (event) => {
     const nativeEvent = JSON.parse(event.nativeEvent.data);
@@ -160,13 +150,6 @@ export default function WebViewContainer() {
         }
         break;
       }
-      case 'TOKEN': {
-        const { accessToken, refreshToken, userId } = data;
-        await AsyncStorage.setItem('accessToken', accessToken);
-        await AsyncStorage.setItem('refreshToken', refreshToken);
-        await AsyncStorage.setItem('userId', `${userId}`);
-        break;
-      }
     }
   };
 
@@ -205,7 +188,6 @@ export default function WebViewContainer() {
         bounces={false}
         onError={onWebViewError}
         webviewDebuggingEnabled
-        onLoad={handleOnLoad}
       />
     </SafeAreaView>
   );
