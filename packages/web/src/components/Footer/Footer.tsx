@@ -1,4 +1,3 @@
-'use client';
 import { useTranslation } from 'react-i18next';
 
 import { ButtonAnimation } from '../Animation';
@@ -7,6 +6,7 @@ import { NavLink } from '../NavLink';
 
 import type { PageType } from '@/types';
 
+import { serverTranslation } from '@/app/i18n';
 import cn from '@/utils/cn';
 
 interface TabType {
@@ -50,8 +50,8 @@ interface FooterProps {
   spacingColor?: string;
 }
 
-export default function Footer({ page, isSpacing = true, spacingColor }: FooterProps) {
-  const { t } = useTranslation('common');
+export default async function Footer({ lng, page, isSpacing = true, spacingColor }: FooterProps) {
+  const { t } = await serverTranslation(lng, 'common');
   const isSelected = (tab: TabType) => tab.name === page;
 
   return (
