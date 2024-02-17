@@ -5,15 +5,12 @@
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
-!.yarn/cache
 
 # testing
 /coverage
 
 # etc
 /node_modules
-/.pnp
-.pnp.js
 /.next/
 /build
 .DS_Store
