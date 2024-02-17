@@ -1,5 +1,6 @@
 import ManageDetail from './components/ManageDetail.client';
 import ManageHeader from './components/ManageHeader.client';
+
 import { Keys, getApplies } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
