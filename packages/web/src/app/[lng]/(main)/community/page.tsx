@@ -1,15 +1,13 @@
-import dynamic from 'next/dynamic';
-
 import CommunityHeader from './components/CommunityHeader';
 import ContentSection from './components/ContentSection.client';
 import CreateArticleButton from './components/CreateArticleButton';
 
 import { Keys, getCommunityArticles } from '@/apis/community';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { Footer } from '@/components/Footer';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 
-const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 interface CommunityPageProps {
   params: {
     lng: string;

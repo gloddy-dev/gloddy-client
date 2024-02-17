@@ -34,25 +34,16 @@ export default function OnBoarding() {
   const preloading = async () => {
     const isUserOnBoardSeen = await AsyncStorage.getItem('onBoarding');
     const isUserLogin = await AsyncStorage.getItem('isUserLogin');
-    if (isUserOnBoardSeen) {
-      if (isUserLogin === 'true') navigation.replace('BottomTab');
-      else
-        navigation.replace('WebViewContainer', {
-          url: `${SOURCE_URL}/join?step=1`,
-        });
-    } else {
-      // navigation.replace('OnBoarding');
-    }
+    if (!isUserOnBoardSeen) return;
+    if (isUserLogin === 'true')
+      navigation.replace('WebViewContainer', {
+        url: `${SOURCE_URL}/grouping`,
+      });
+    else
+      navigation.replace('WebViewContainer', {
+        url: `${SOURCE_URL}/join?step=1`,
+      });
   };
-
-  // useEffect(() => {
-  //   const lang = RNLocalize.getLocales()[0].languageCode;
-  //   setlang(lang);
-  //   preloading();
-  //   setTimeout(() => {
-  //     SplashScreen.hide();
-  //   }, 500);
-  // }, []);
 
   useEffect(() => {
     const locales = RNLocalize.getLocales();

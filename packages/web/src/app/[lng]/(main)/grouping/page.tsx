@@ -6,10 +6,9 @@ import GroupingHeader from './components/GroupingHeader';
 
 import { Keys, getGroups } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { Footer } from '@/components/Footer';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
-
-const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 
 interface GroupingPageProps {
   params: {
