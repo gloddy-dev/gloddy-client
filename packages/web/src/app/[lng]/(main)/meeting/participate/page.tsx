@@ -1,5 +1,6 @@
 import ContentSection from './components/ContentSection.client';
 import MeetingParticipateHeader from './components/MeetingParticipateHeader';
+
 import {
   Keys,
   getMeetingHosting,
@@ -9,10 +10,9 @@ import {
   getMeetingWaiting,
 } from '@/apis/meeting';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { Footer } from '@/components/Footer';
 import { HydrationProvider } from '@/components/Provider';
-import dynamic from 'next/dynamic';
 
-const Footer = dynamic(() => import('@/components/Footer/Footer'), { ssr: false });
 interface MeetingPageProps {
   params: {
     lng: string;
