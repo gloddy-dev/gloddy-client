@@ -1,6 +1,7 @@
 'use client';
 
 import ProfileDetailSection from './ProfileDetailSection.client';
+
 import { useGetProfile } from '@/apis/profile';
 
 export default function ProfileDetail() {
