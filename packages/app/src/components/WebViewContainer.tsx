@@ -134,22 +134,6 @@ export default function WebViewContainer() {
         }
         break;
       }
-      case 'AUTH': {
-        const { type, token } = data;
-        switch (data) {
-          case 'LOG_IN':
-            await AsyncStorage.setItem('isUserLogin', 'true');
-            navigation.replace('BottomTab');
-            break;
-          case 'LOG_OUT':
-            await AsyncStorage.setItem('isUserLogin', 'false');
-            navigation.replace('WebViewContainer', {
-              url: `${SOURCE_URL}/join?step=1`,
-            });
-            break;
-        }
-        break;
-      }
     }
   };
 
