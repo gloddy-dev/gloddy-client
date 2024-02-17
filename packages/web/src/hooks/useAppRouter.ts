@@ -1,9 +1,9 @@
-import { getIsApp } from '@/utils/getIsApp';
-import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 import { useRouter } from 'next/navigation';
 
+import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
+
 const useAppRouter = () => {
-  const isApp = getIsApp();
+  const isApp = false;
   const router = useRouter();
 
   const push = (path: string, scroll?: boolean) => {
