@@ -1,5 +1,8 @@
 type SetImageFunction = (imageData: string) => void;
-const saveImage = (setImage: SetImageFunction, imgRef: React.RefObject<HTMLInputElement>) => {
+export const saveImage = (
+  setImage: SetImageFunction,
+  imgRef: React.RefObject<HTMLInputElement>
+) => {
   if (imgRef.current && imgRef.current.files && imgRef.current.files.length > 0) {
     const file = imgRef.current.files[0];
     const reader = new FileReader();
@@ -15,5 +18,3 @@ const saveImage = (setImage: SetImageFunction, imgRef: React.RefObject<HTMLInput
     console.error('No file selected');
   }
 };
-
-export default saveImage;

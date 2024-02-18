@@ -2,7 +2,8 @@ interface SendMessageToReactNativeProps {
   type: string;
   data?: any;
 }
-const sendMessageToReactNative = ({ type, data }: SendMessageToReactNativeProps) => {
+
+export const sendMessageToReactNative = ({ type, data }: SendMessageToReactNativeProps) => {
   window.ReactNativeWebView &&
     window.ReactNativeWebView.postMessage(
       JSON.stringify({
@@ -11,5 +12,3 @@ const sendMessageToReactNative = ({ type, data }: SendMessageToReactNativeProps)
       })
     );
 };
-
-export default sendMessageToReactNative;
