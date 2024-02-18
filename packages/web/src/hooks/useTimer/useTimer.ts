@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useReducer } from 'react';
 
 import reducer from './reducer';

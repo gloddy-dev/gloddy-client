@@ -1,3 +1,5 @@
+'use client';
+
 import { useParams } from 'next/navigation';
 
 type NonEmptyArray<T> = [T, ...T[]];

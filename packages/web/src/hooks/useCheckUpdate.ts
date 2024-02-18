@@ -1,3 +1,5 @@
+'use client';
+
 import { getLocalCookie, getMobileDivce, setLocalCookie } from '@/utils';
 
 export default function useCheckUpdate(version: number) {

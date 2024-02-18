@@ -1,6 +1,8 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
-import { useDidMount } from './common/useDidMount';
+import useDidMount from './useDidMount';
 
 interface UseShowMoreProps {
   maxLines: number;

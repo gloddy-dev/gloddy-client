@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 
 import getBase64FromImage from './getBase64FromImage';

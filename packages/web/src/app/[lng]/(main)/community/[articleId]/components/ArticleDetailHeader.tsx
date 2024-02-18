@@ -12,7 +12,7 @@ import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { useAppRouter, useModal, useNumberParams } from '@/hooks';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useBlockStore } from '@/store';
 
 export default function ArticleDetailHeader() {
   const { back } = useAppRouter();

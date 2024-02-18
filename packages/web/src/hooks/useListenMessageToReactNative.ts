@@ -1,4 +1,6 @@
-import { useDidMount } from './common/useDidMount';
+'use client';
+
+import useDidMount from './useDidMount';
 
 import { postFCMToken } from '@/apis/notifications';
 import { getIsApp } from '@/utils';
