@@ -1,6 +1,7 @@
-import { SENTRY_DSN } from '@/constants';
 import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
+
+import { SENTRY_DSN } from '@/constants';
 
 export const useSentry = () => {
   useEffect(() => {
