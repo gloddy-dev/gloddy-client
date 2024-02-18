@@ -8,17 +8,14 @@
 .yarn/cache
 
 # testing
-/coverage
-
-# etc
-/node_modules
-/.pnp
-.pnp.js
-/.next/
-/build
-.DS_Store
-.env
 coverage
 
-# sentry
+# etc
+node_modules
+.env*
+.DS_Store
+
+
+# Web
 .sentryclirc
+.next

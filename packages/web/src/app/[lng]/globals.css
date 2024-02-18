@@ -7,9 +7,22 @@
   box-sizing: border-box;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-    Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
   white-space: pre-wrap;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -30,7 +43,7 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .bottom-fixed {
-  @apply fixed inset-x-0 bottom-0 mx-auto max-w-450 px-20 pb-20;
+  @apply max-w-450 fixed inset-x-0 bottom-0 mx-auto px-20 pb-20;
 }
 
 input:-webkit-autofill {
@@ -80,7 +93,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .react-datepicker .react-datepicker__day-name {
-  @apply m-0 flex h-32 w-32 items-center justify-center text-subtitle-3 text-sign-tertiary;
+  @apply text-subtitle-3 text-sign-tertiary m-0 flex h-32 w-32 items-center justify-center;
 }
 
 .react-datepicker .react-datepicker__month .react-datepicker__week {
@@ -88,24 +101,24 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .react-datepicker .react-datepicker__day {
-  @apply flex h-32 w-32 items-center justify-center text-paragraph-1 text-sign-secondary;
+  @apply text-paragraph-1 text-sign-secondary flex h-32 w-32 items-center justify-center;
 }
 
 .react-datepicker .react-datepicker__day:hover:not(.react-datepicker__day--disabled) {
-  @apply flex h-32 w-32 items-center justify-center rounded-full bg-primary text-white;
+  @apply bg-primary flex h-32 w-32 items-center justify-center rounded-full text-white;
 }
 
 .react-datepicker .react-datepicker__day--disabled {
-  @apply flex h-32 w-32 items-center justify-center text-paragraph-1 text-sign-caption;
+  @apply text-paragraph-1 text-sign-caption flex h-32 w-32 items-center justify-center;
 }
 
 .react-datepicker .react-datepicker__day--selected,
 .react-datepicker .react-datepicker__day--keyboard-selected {
-  @apply flex h-32 w-32 items-center justify-center rounded-full bg-primary text-white;
+  @apply bg-primary flex h-32 w-32 items-center justify-center rounded-full text-white;
 }
 
 .react-datepicker .react-datepicker__day--selected:hover {
-  @apply flex h-32 w-32 items-center justify-center rounded-full bg-primary text-white;
+  @apply bg-primary flex h-32 w-32 items-center justify-center rounded-full text-white;
 }
 
 .react-datepicker .react-datepicker__triangle {
