@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 
-import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
+import { sendMessageToReactNative } from '@/utils';
 
 const useAppRouter = () => {
   const isApp = false;

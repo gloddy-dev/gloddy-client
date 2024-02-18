@@ -17,4 +17,4 @@ export * from './gtag';
 export * from './makeFileToBlob';
 export * from './saveImage';
 export * from './sendMessageToReactNative';
-export * from './';
+export * from './tokenController';

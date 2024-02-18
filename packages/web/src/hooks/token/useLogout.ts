@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 
-import { removeToken } from '@/utils/auth/tokenController';
+import { removeToken } from '@/utils';
 
 export default function useLogout() {
   const router = useRouter();

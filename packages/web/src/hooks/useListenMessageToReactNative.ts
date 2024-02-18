@@ -1,7 +1,7 @@
 import { useDidMount } from './common/useDidMount';
 
 import { postFCMToken } from '@/apis/notifications';
-import { getIsApp } from '@/utils/getIsApp';
+import { getIsApp } from '@/utils';
 
 export default function useListenMessageToReactNative() {
   const isapp = getIsApp();

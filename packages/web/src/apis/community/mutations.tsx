@@ -1,3 +1,5 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import {
   deleteCommunityCommentLike,
   postCommunityArticleLike,
@@ -12,10 +14,7 @@ import { CommunityArticle } from '@/apis/community/type';
 import { CommunityChannelMessage } from '@/app/[lng]/(main)/community/components/ContentSection.client';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useBroadcastChannel } from '@/hooks/useBroadcast';
-import { getIsAndroid } from '@/utils/getIsAndroid';
-import { getIsIOS } from '@/utils/getIsIOS';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useGetCommunityArticleDetail } from './queries';
+import { getIsAndroid, getIsIOS } from '@/utils';
 
 export const usePostCreateCommunityArticle = () => {
   const queryClient = useQueryClient();

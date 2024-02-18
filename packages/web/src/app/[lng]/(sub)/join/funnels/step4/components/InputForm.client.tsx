@@ -18,7 +18,7 @@ import { regexr } from '@/constants/regexr';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { useModal } from '@/hooks/useModal';
-import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
+import { sendMessageToReactNative } from '@/utils';
 
 export default function InputForm() {
   const { t } = useTranslation('join');

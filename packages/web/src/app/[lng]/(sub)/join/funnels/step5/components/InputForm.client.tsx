@@ -14,7 +14,7 @@ import { LayerLoading } from '@/components/Loading';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
 import { useModal } from '@/hooks/useModal';
-import { formatDateDTO } from '@/utils/formatDateDTO';
+import { formatDateDTO } from '@/utils';
 
 export default function InputForm() {
   const { t } = useTranslation('join');

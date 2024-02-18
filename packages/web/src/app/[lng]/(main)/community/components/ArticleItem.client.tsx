@@ -14,7 +14,6 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import { cn } from '@/utils';
-import { currentKoreaTime } from '@/utils/date';
 
 const formatDate = (date: string, locale: Locale) => {
   const d = new Date(date);
