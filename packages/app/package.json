@@ -25,7 +25,8 @@
     "codepush-ios:production": "appcenter codepush release-react -a gueit214/gloddy -d Production -m",
     "lint": "eslint .",
     "lint:fix": "eslint '**/*.{js,jsx,ts,tsx}' --fix",
-    "format": "prettier --write --ignore-path .gitignore ."
+    "format": "prettier --write --ignore-path .gitignore .",
+    "pod-install": "pod-install"
   },
   "dependencies": {
     "@notifee/react-native": "^7.8.2",
