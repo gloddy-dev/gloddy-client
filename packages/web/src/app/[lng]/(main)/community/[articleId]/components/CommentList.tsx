@@ -7,7 +7,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
 import { Spacing } from '@/components/Spacing';
-import { useNumberParams } from '@/hooks/useNumberParams';
+import { useNumberParams } from '@/hooks';
 import { useBlockStore } from '@/store/useBlockStore';
 
 interface CommentListProps {

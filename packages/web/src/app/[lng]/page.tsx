@@ -2,8 +2,7 @@
 import { useTranslation } from '../i18n/client';
 import { cookieName } from '../i18n/settings';
 
-import { useDidMount } from '@/hooks/common/useDidMount';
-import useAppRouter from '@/hooks/useAppRouter';
+import { useAppRouter, useDidMount } from '@/hooks';
 import { afterDay60, getLocalCookie, hasToken, setLocalCookie } from '@/utils';
 
 export default function Home() {

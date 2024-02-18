@@ -6,7 +6,7 @@ import { Shadow } from 'react-native-shadow-2';
 
 import TabBarIcon from './TabBarIcon';
 
-import useTabBarPress from '@/hooks/useTabBarPress';
+import { useTabBarPress } from '@/hooks';
 import theme from '@/styles/theme';
 
 const ScreenIconName = {

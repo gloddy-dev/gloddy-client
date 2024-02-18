@@ -19,7 +19,7 @@ import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/hooks';
 import { useBlockStore } from '@/store/useBlockStore';
 import { cn } from '@/utils';
 

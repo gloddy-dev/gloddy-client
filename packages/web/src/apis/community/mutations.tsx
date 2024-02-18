@@ -12,8 +12,7 @@ import {
 import { Keys } from '@/apis/community/keys';
 import { CommunityArticle } from '@/apis/community/type';
 import { CommunityChannelMessage } from '@/app/[lng]/(main)/community/components/ContentSection.client';
-import useAppRouter from '@/hooks/useAppRouter';
-import { useBroadcastChannel } from '@/hooks/useBroadcast';
+import { useAppRouter, useBroadcastChannel } from '@/hooks';
 import { getIsAndroid, getIsIOS } from '@/utils';
 
 export const usePostCreateCommunityArticle = () => {

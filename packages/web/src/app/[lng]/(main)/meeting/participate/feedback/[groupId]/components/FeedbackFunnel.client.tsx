@@ -7,7 +7,7 @@ import Step3 from '../funnels/step3/Step3';
 import { useGetEstimate } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { useFunnel } from '@/hooks/useFunnel';
-import { useNumberParams } from '@/hooks/useNumberParams';
+import { useNumberParams } from '@/hooks';
 
 export default function FeedbackSection() {
   const { Funnel, prevStep, nextStep } = useFunnel(['1', '2', '3']);

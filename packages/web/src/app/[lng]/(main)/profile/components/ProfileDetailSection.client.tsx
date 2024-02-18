@@ -16,7 +16,7 @@ import { Tag } from '@/components/Tag';
 import { TextField } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
-import useAppRouter from '@/hooks/useAppRouter';
+import { useAppRouter } from '@/hooks';
 import { cn } from '@/utils';
 
 interface ProfileDetailProps {

@@ -12,7 +12,7 @@ import {
   postSignUp,
 } from '.';
 
-import useLogin from '@/hooks/useLogin';
+import { useLogin } from '@/hooks';
 
 export const useLoginMutation = () => {
   const { login } = useLogin();

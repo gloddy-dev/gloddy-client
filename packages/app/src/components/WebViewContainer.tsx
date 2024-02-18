@@ -9,8 +9,7 @@ import WebView from 'react-native-webview';
 import Error from './Error';
 import { SOURCE_URL } from '../config';
 
-import { useDidMount } from '@/hooks/useDidMount';
-import useWebViewNavigationSetUp from '@/hooks/useWebViewNavigationSetUp';
+import { useDidMount, useWebViewNavigationSetUp } from '@/hooks';
 import { sendFCMTokenToWebView } from '@/utils';
 
 const windowWidth = Dimensions.get('window').width;

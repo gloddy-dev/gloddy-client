@@ -13,7 +13,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { LayerLoading } from '@/components/Loading';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/hooks';
 import { formatDateDTO } from '@/utils';
 
 export default function InputForm() {

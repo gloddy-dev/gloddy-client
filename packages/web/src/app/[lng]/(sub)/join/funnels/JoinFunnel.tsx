@@ -6,7 +6,7 @@ import Step3Component from './step3/Step3Component.client';
 import Step4Component from './step4/Step4Component.client';
 import Step5Component from './step5/Step5Component.client';
 import JoinHeader from '../components/JoinHeader.client';
-import { useFunnel } from '@/hooks/useFunnel';
+import { useFunnel } from '@/hooks';
 import { createContext, useContext } from 'react';
 
 interface FunnelContextProps extends Pick<ReturnType<typeof useFunnel>, 'nextStep'> {}

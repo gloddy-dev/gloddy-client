@@ -7,7 +7,7 @@ import OnBoarding from './OnBoarding';
 import TabBarNavigator from './TabBarNavigator';
 import WebViewContainer from './WebViewContainer';
 
-import useDidMount from '@/hooks/useDidMount';
+import { useDidMount } from '@/hooks';
 import { setFcmAlert } from '@/utils';
 
 const Stack = createStackNavigator();

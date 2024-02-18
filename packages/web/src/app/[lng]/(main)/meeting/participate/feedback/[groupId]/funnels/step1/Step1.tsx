@@ -10,7 +10,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/hooks';
 
 import type { EstimateResponse } from '@/apis/groups';
 

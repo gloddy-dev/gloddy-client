@@ -12,7 +12,7 @@ import MultiImageUploader from '@/components/Image/MultiImageUploader';
 import ListBoxController from '@/components/ListBox/ListBoxController';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/hooks';
 
 export default function InputSection() {
   const { open, exit } = useModal();

@@ -8,7 +8,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import useAppRouter from '@/hooks/useAppRouter';
+import { useAppRouter } from '@/hooks';
 import { afterDay60, getLocalCookie, setLocalCookie } from '@/utils';
 
 export default function Language() {

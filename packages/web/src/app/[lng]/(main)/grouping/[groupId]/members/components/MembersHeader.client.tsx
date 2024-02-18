@@ -3,7 +3,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import useAppRouter from '@/hooks/useAppRouter';
+import { useAppRouter } from '@/hooks';
 
 export default function MembersHeader() {
   const { back } = useAppRouter();

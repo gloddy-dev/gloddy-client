@@ -9,7 +9,7 @@ import { Icon } from '@/components/Icon';
 import { Spacing } from '@/components/Spacing';
 import { SpinBox } from '@/components/SpinBox';
 import { TextField } from '@/components/TextField';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/hooks';
 
 interface SettingSectionProps {
   onSelectMeetDate: () => void;

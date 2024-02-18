@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { LoginResponse, useLoginMutation } from '@/apis/auth';
 import { Loading } from '@/components/Loading';
-import useAppRouter from '@/hooks/useAppRouter';
+import { useAppRouter } from '@/hooks';
 import { setTokenAtCookie } from '@/utils';
 
 export default function Login() {

@@ -1,16 +1,18 @@
 'use client';
 
+import { format } from 'date-fns';
+
 import MainStep from './main/MainStep.client';
 import MeetDateStep from './meetDate/MeetDateStep.client';
 import CreateHeader from '../components/CreateHeader.client';
-import { usePostCreateGroup } from '@/apis/groups';
-import { LayerLoading } from '@/components/Loading';
-import { useFunnel } from '@/hooks/useFunnel';
-import { format } from 'date-fns';
 
 import type { CreateGroupContextValue } from '../type';
 import type { TimeType } from '@/types';
 import type { SubmitHandler } from 'react-hook-form';
+
+import { usePostCreateGroup } from '@/apis/groups';
+import { LayerLoading } from '@/components/Loading';
+import { useFunnel } from '@/hooks';
 
 function formatTime(time: TimeType) {
   time.fromHour =

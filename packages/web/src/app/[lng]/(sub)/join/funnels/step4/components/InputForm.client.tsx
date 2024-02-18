@@ -15,9 +15,7 @@ import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import { useDidMount } from '@/hooks/common/useDidMount';
-import { useFileUpload } from '@/hooks/useFileUpload';
-import { useModal } from '@/hooks/useModal';
+import { useDidMount, useFileUpload, useModal } from '@/hooks';
 import { sendMessageToReactNative } from '@/utils';
 
 export default function InputForm() {

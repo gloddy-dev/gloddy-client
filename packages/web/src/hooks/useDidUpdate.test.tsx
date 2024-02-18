@@ -1,7 +1,8 @@
-import useDidUpdate from './useDidUpdate';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import { useState } from 'react';
+
+import useDidUpdate from './useDidUpdate';
 
 describe('useDidUpdate', () => {
   it('default export이여야 한다', () => {

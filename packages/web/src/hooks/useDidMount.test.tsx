@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import { useState } from 'react';
 
-import useDidMount from '../../common/useDidMount/useDidMount';
+import useDidMount from './useDidMount';
 
 describe('useDidMount', () => {
   it('default export이여야 한다', () => {

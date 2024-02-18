@@ -8,7 +8,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
 import { Tabs } from '@/components/Tabs';
-import { useNumberParams } from '@/hooks/useNumberParams';
+import { useNumberParams } from '@/hooks';
 import { Suspense } from 'react';
 
 export default function GroupDetailPage() {

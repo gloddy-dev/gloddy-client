@@ -3,8 +3,8 @@ import { type Notice, useDeleteArticle } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import { useAppRouter } from '@/hooks';
+import { useModal } from '@/hooks';
 
 interface NoticeItemProps {
   notice: Notice;

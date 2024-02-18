@@ -14,9 +14,8 @@ import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
-import { useDidMount } from '@/hooks/common/useDidMount';
-import useBrowser from '@/hooks/useBrowser';
-import { useModal, useToast } from '@/hooks/useModal';
+import { useBrowser, useDidMount, useModal } from '@/hooks';
+import { useToast } from '@/hooks/useModal';
 import { sendMessageToReactNative } from '@/utils';
 
 function validateDate(date: Date, time: TimeType, browser: string) {

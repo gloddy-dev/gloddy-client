@@ -2,7 +2,7 @@ import MatesDeleteModal from './MatesDeleteModal.client';
 
 import { Mate } from '@/apis/profile';
 import { BottomSheet } from '@/components/Modal';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/hooks';
 
 interface MoreBottomSheetProps {
   mateData: Mate;
