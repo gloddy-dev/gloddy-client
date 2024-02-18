@@ -10,7 +10,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 import { getNotificationPath } from '@/utils/getNotificationPath';
 
 function formatDate(locale: Locale, date: string) {

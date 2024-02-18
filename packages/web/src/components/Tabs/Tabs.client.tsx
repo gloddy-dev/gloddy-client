@@ -15,7 +15,7 @@ import {
 import type { StrictPropsWithChildren } from '@/types';
 
 import useAppRouter from '@/hooks/useAppRouter';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 let elementId = 1;
 

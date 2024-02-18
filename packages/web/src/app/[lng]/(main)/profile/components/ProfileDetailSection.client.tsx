@@ -17,7 +17,7 @@ import { TextField } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { reliabilities } from '@/constants/reliabilities';
 import useAppRouter from '@/hooks/useAppRouter';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 interface ProfileDetailProps {
   profileData: ReturnType<typeof useGetProfileById>['data'];

@@ -13,7 +13,7 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
 import { useBlockStore } from '@/store/useBlockStore';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 interface ReplyItemProps {
   reply: Reply;

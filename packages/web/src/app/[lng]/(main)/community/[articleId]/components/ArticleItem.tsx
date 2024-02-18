@@ -9,7 +9,7 @@ import { Flex } from '@/components/Layout';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks/useModal';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 interface ArticleItemProps {
   article: CommunityArticle;

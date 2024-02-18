@@ -13,7 +13,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import usePlaceDetails from '@/hooks/usePlaceDetails';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 
 interface GroupingCardProps extends HTMLAttributes<HTMLDivElement> {

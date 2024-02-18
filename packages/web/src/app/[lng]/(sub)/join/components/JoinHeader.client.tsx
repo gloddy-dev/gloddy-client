@@ -4,7 +4,7 @@ import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { Spacing } from '@/components/Spacing';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 interface JoinHeaderProps {
   onPrevClick?: () => void;

@@ -6,7 +6,7 @@ import { Loading } from '../Loading';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 interface ButtonProps<T extends React.ElementType> extends React.HTMLAttributes<T> {
   as?: T;

@@ -1,6 +1,6 @@
 import { Flex } from '../Layout';
 
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 interface IndicatorGroupProps {
   totalStep: number;

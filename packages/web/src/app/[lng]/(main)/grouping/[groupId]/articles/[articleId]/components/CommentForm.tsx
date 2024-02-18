@@ -8,7 +8,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 export type CommentFormType = {
   content: string;
