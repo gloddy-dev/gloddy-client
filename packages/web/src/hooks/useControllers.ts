@@ -6,7 +6,7 @@ import {
   useController,
 } from 'react-hook-form';
 
-export function useControllers<T extends FieldValues>(
+export default function useControllers<T extends FieldValues>(
   methods: UseFormReturn<T>,
   options?: {
     setDefaultFields?: Array<FieldPath<T>>;

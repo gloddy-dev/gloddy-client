@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const useDidMount = (callback: VoidFunction) => {
+export default function useDidMount(callback: VoidFunction) {
   const didMountRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -8,6 +8,4 @@ const useDidMount = (callback: VoidFunction) => {
     didMountRef.current = true;
     callback();
   }, []);
-};
-
-export default useDidMount;
+}

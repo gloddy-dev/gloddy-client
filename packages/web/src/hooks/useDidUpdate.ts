@@ -1,6 +1,6 @@
 import { DependencyList, useEffect, useRef } from 'react';
 
-const useDidUpdate = (callback: VoidFunction, dependencyList: DependencyList) => {
+export default function useDidUpdate(callback: VoidFunction, dependencyList: DependencyList) {
   const didMountRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -11,6 +11,4 @@ const useDidUpdate = (callback: VoidFunction, dependencyList: DependencyList) =>
 
     callback();
   }, [...dependencyList]);
-};
-
-export default useDidUpdate;
+}

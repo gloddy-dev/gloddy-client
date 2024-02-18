@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export function useDetectScroll(pixel: number) {
+export default function useDetectScroll(pixel: number) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {

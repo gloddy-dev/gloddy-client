@@ -1,9 +1,10 @@
-import reducer from './reducer';
 import { useCallback, useEffect, useReducer } from 'react';
+
+import reducer from './reducer';
 
 import type { ReturnType, UseTimerProps } from './type';
 
-const useTimer = ({
+export default function useTimer({
   autostart = false,
   endTime,
   initialStatus = 'STOPPED',
@@ -13,7 +14,7 @@ const useTimer = ({
   onTimeUpdate,
   step = 1,
   timerType = 'DECREMENTAL',
-}: Partial<UseTimerProps> = {}): ReturnType => {
+}: Partial<UseTimerProps> = {}): ReturnType {
   const [state, dispatch] = useReducer(reducer, {
     status: initialStatus,
     time: initialTime,
@@ -84,6 +85,4 @@ const useTimer = ({
   }, [status, step, timerType, interval, time]);
 
   return { advanceTime, pause, reset, start, status, time };
-};
-
-export default useTimer;
+}

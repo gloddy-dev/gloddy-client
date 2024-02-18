@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { SENTRY_DSN } from '@/constants';
 
-export const useSentry = () => {
+export default function useSentry() {
   useEffect(() => {
     Sentry.init({
       dsn: SENTRY_DSN,
@@ -11,4 +11,4 @@ export const useSentry = () => {
       allowUrls: ['https://gloddy.vercel.app'],
     });
   }, []);
-};
+}

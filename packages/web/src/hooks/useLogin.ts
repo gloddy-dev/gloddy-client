@@ -1,4 +1,4 @@
-import useAppRouter from '../useAppRouter';
+import useAppRouter from './useAppRouter';
 
 import { setTokenAtCookie } from '@/utils';
 
