@@ -23,7 +23,7 @@ const isKeyScreenIconName = (value: string) => value in ScreenIconName;
 const getScreenIcon = (value: string) =>
   isKeyScreenIconName(value) ? ScreenIconName[value as ScreenIconNameKey] : undefined;
 
-function TabBar({ state, navigation, descriptors }: BottomTabBarProps) {
+export default function TabBar({ state, navigation, descriptors }: BottomTabBarProps) {
   const onPress = useTabBarPress();
   const renderTabBarButton = useCallback(
     (name: string, index: number) => (
@@ -70,5 +70,3 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
 });
-
-export default TabBar;

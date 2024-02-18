@@ -6,7 +6,7 @@ import Icon from './Icon';
 
 import theme from '@/styles/theme';
 
-function Header({ navigation, route }: StackHeaderProps) {
+export default function Header({ navigation, route }: StackHeaderProps) {
   const { top: topInset } = useSafeAreaInsets();
   const { title, right } = route.params;
 
@@ -53,5 +53,3 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
-
-export default Header;
