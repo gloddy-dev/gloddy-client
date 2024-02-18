@@ -8,7 +8,7 @@ import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useBlockStore } from '@/store';
 
 interface CommentListProps {
   commentList: Comment[];

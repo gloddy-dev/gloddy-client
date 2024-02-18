@@ -13,7 +13,7 @@ import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
 import { useAppRouter, useModal, useNumberParams } from '@/hooks';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useBlockStore } from '@/store';
 
 export default function GroupDetailHeader() {
   const { back } = useAppRouter();

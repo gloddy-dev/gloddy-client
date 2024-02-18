@@ -20,7 +20,7 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { useModal } from '@/hooks';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useBlockStore } from '@/store';
 import { cn } from '@/utils';
 
 interface CommentItemProps {
