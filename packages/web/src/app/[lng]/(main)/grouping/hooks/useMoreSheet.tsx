@@ -5,9 +5,9 @@ import WarningModal from '../components/WarningModal.client';
 import { useDeleteArticle, useDeleteComment } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
-import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useAppRouter } from '@/hooks';
+import { useModal } from '@/hooks';
+import { useBlockStore } from '@/store';
 
 type CommentId<T> = T extends 'comment' ? { commentId: number } : { commentId?: never };
 

@@ -4,14 +4,13 @@ import { format, formatDistanceToNowStrict } from 'date-fns';
 import { enUS, ko } from 'date-fns/esm/locale';
 import Image from 'next/image';
 
-import { Notification, NotificationResponse } from '@/apis/notifications';
+import { Notification } from '@/apis/notifications';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import useAppRouter from '@/hooks/useAppRouter';
-import cn from '@/utils/cn';
-import { getNotificationPath } from '@/utils/getNotificationPath';
+import { useAppRouter } from '@/hooks';
+import { cn, getNotificationPath } from '@/utils';
 
 function formatDate(locale: Locale, date: string) {
   const notiDate = new Date(date);

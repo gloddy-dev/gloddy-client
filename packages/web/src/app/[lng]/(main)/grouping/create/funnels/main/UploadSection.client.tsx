@@ -7,7 +7,7 @@ import type { CreateGroupContextValue } from '../../type';
 
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import { useFileUpload } from '@/hooks/useFileUpload';
+import { useFileUpload } from '@/hooks';
 
 interface ImageThumbnailProps {
   control: Control<CreateGroupContextValue>;

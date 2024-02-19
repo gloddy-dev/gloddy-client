@@ -1,7 +1,7 @@
 'use client';
 import ProfileDetail from '../../components/ProfileDetailSection.client';
 import { useGetProfileById } from '@/apis/profile';
-import { useNumberParams } from '@/hooks/useNumberParams';
+import { useNumberParams } from '@/hooks';
 
 export default function ProfileById() {
   const { userId } = useNumberParams();

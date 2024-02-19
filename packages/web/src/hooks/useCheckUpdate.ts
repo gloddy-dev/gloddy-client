@@ -1,7 +1,8 @@
-import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
-import { getMobileDivce } from '@/utils/getMobileDevice';
+'use client';
 
-export function useCheckUpdate(version: number) {
+import { getLocalCookie, getMobileDivce, setLocalCookie } from '@/utils';
+
+export default function useCheckUpdate(version: number) {
   const cookies = getLocalCookie('didUpdated_' + version);
   const mobileDevice = getMobileDivce();
 

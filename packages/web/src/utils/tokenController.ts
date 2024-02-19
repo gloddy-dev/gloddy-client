@@ -1,5 +1,5 @@
-import { getLocalCookie, removeLocalCookie, setLocalCookie } from '../cookieController';
-import { afterDay1, afterDay60 } from '../date';
+import { getLocalCookie, removeLocalCookie, setLocalCookie } from './cookieController';
+import { afterDay1, afterDay60 } from './date';
 
 import type { CookieKeyType } from '@/types';
 

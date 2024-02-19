@@ -1,6 +1,8 @@
-import useAppRouter from '../useAppRouter';
+'use client';
 
-import { setTokenAtCookie } from '@/utils/auth/tokenController';
+import useAppRouter from './useAppRouter';
+
+import { setTokenAtCookie } from '@/utils';
 
 interface LoginProps {
   accessToken: string;

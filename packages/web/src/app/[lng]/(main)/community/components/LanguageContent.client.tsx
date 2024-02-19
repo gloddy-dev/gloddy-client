@@ -8,7 +8,7 @@ import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useBlockStore } from '@/store';
 
 export default function LanguageContent() {
   const { ref, inView } = useInView();

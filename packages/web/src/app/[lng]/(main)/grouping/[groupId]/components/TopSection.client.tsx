@@ -7,9 +7,7 @@ import { IconButton } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks/useModal';
-import { useNumberParams } from '@/hooks/useNumberParams';
-import { useShowMore } from '@/hooks/useShowMore';
+import { useModal, useNumberParams, useShowMore } from '@/hooks';
 
 export default function TopSection() {
   const { t } = useTranslation('groupDetail');

@@ -8,9 +8,8 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import useAppRouter from '@/hooks/useAppRouter';
-import { getLocalCookie, setLocalCookie } from '@/utils/cookieController';
-import { afterDay60 } from '@/utils/date';
+import { useAppRouter } from '@/hooks';
+import { afterDay60, getLocalCookie, setLocalCookie } from '@/utils';
 
 export default function Language() {
   const { t, i18n } = useTranslation('common');

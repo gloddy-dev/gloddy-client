@@ -7,7 +7,7 @@ import ArticleItem from '@/app/[lng]/(main)/grouping/components/ArticleItem.clie
 import { useTranslation } from '@/app/i18n/client';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
-import { useNumberParams } from '@/hooks/useNumberParams';
+import { useNumberParams } from '@/hooks';
 
 export default function ArticleDetail() {
   const { t } = useTranslation('groupDetail');

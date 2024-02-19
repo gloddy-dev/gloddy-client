@@ -2,7 +2,7 @@
 import { CategoryType } from '@/apis/community';
 import { Flex } from '@/components/Layout';
 import { StrictPropsWithChildren } from '@/types';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 const badgeColor: {
   [key in ArticleBadgeProps['type']]: string;

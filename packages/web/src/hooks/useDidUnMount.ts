@@ -1,11 +1,11 @@
+'use client';
+
 import { useEffect } from 'react';
 
-const useDidUnMount = (callback: VoidFunction) => {
+export default function useDidUnMount(callback: VoidFunction) {
   useEffect(() => {
     return () => {
       callback();
     };
   }, []);
-};
-
-export default useDidUnMount;
+}

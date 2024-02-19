@@ -7,7 +7,7 @@ import { useGetCommunityArticles } from '@/apis/community/queries';
 import ArticleItem from '@/app/[lng]/(main)/community/components/ArticleItem.client';
 import Empty from '@/app/[lng]/(main)/community/components/Empty';
 import { ItemList } from '@/components/List';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useBlockStore } from '@/store';
 
 export default function AllContent() {
   const { ref, inView } = useInView();

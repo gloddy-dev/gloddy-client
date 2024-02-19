@@ -7,7 +7,7 @@ import { Spacing } from '../Spacing';
 
 import type { ReliabilityType } from '@/types';
 
-import useAppRouter from '@/hooks/useAppRouter';
+import { useAppRouter } from '@/hooks';
 
 interface CardHeaderProps {
   userId: number;
