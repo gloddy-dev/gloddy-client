@@ -10,9 +10,7 @@ export interface IconProps extends SvgProps {
   color?: ColorValue;
 }
 
-const Icon = (props: IconProps) => {
+export default function Icon(props: IconProps) {
   const SVGIcon = ICON_SVG[props.name];
   return <SVGIcon {...props} />;
-};
-
-export default Icon;
+}

@@ -2,7 +2,7 @@ import { GroupDetailResponse } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
-import { formatMeetingDate } from '@/utils/formatMeetingDate';
+import { formatMeetingDate } from '@/utils';
 
 interface TimeSectionProps extends GroupDetailResponse {}
 

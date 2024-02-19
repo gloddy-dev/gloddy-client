@@ -8,7 +8,7 @@ import { useGetGroups } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
 import { ItemList } from '@/components/List';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useBlockStore } from '@/store';
 
 export default function GroupingCardList() {
   const { blockGroupIds } = useBlockStore();

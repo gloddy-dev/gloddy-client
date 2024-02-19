@@ -1,5 +1,7 @@
-import { useDidMount } from './common/useDidMount';
+'use client';
 import { useState } from 'react';
+
+import useDidMount from './useDidMount';
 
 export default function useBrowser() {
   const [browser, setBrowser] = useState('');

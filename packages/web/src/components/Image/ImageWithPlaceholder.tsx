@@ -1,12 +1,13 @@
-import getBase64 from '@/utils/getBase64FromBuffer';
 import Image from 'next/image';
+
+import { getBase64FromBuffer } from '@/utils';
 
 interface ImageWithPlaceholderProps {
   src: string;
 }
 
 export default async function ImageWithPlaceholder({ src }: ImageWithPlaceholderProps) {
-  const { base64, img } = await getBase64(src);
+  const { base64, img } = await getBase64FromBuffer(src);
 
   return (
     <Image

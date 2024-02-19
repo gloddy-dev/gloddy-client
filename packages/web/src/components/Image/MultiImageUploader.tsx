@@ -5,7 +5,7 @@ import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Loading } from '@/components/Loading';
-import { useFileUpload } from '@/hooks/useFileUpload';
+import { useFileUpload } from '@/hooks';
 
 interface MultiImageUploaderProps<T extends FieldValues> {
   control: Control<T>;

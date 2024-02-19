@@ -15,8 +15,8 @@ import { Flex } from '@/components/Layout';
 import LayerLoading from '@/components/Loading/LayerLoading.client';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
-import { useModal } from '@/hooks/useModal';
-import { useNumberParams } from '@/hooks/useNumberParams';
+import { useModal } from '@/hooks';
+import { useNumberParams } from '@/hooks';
 
 export default function InputForm() {
   const { t } = useTranslation('groupDetail');

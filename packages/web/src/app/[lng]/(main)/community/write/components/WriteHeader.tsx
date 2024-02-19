@@ -6,8 +6,8 @@ import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import { useAppRouter } from '@/hooks';
+import { useModal } from '@/hooks';
 
 export default function WriteHeader() {
   const { t } = useTranslation('community');

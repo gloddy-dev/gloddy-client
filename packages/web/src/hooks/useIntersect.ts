@@ -1,6 +1,8 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 
-const useIntersect = (callback: () => void, options?: IntersectionObserverInit) => {
+export default function useIntersect(callback: () => void, options?: IntersectionObserverInit) {
   const target = useRef(null);
 
   useEffect(() => {
@@ -11,6 +13,4 @@ const useIntersect = (callback: () => void, options?: IntersectionObserverInit) 
   }, [callback, options]);
 
   return target;
-};
-
-export default useIntersect;
+}

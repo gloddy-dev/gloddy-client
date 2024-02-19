@@ -3,8 +3,8 @@ import { useGetProfileById } from '@/apis/profile';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import useAppRouter from '@/hooks/useAppRouter';
-import { useNumberParams } from '@/hooks/useNumberParams';
+import { useAppRouter } from '@/hooks';
+import { useNumberParams } from '@/hooks';
 
 export default function ProfileByIdHeader() {
   const { userId } = useNumberParams();

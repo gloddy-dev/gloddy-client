@@ -11,7 +11,7 @@ import {
 
 import type { StrictPropsWithChildren } from '@/types';
 
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 type ValueType = string | number | null;
 

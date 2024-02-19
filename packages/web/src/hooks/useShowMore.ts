@@ -1,11 +1,14 @@
-import { useDidMount } from './common/useDidMount';
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
+
+import useDidMount from './useDidMount';
 
 interface UseShowMoreProps {
   maxLines: number;
 }
 
-export function useShowMore({ maxLines }: UseShowMoreProps) {
+export default function useShowMore({ maxLines }: UseShowMoreProps) {
   const [showFullText, setShowFullText] = useState(true);
   const [shouldShowButton, setShouldShowButton] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);

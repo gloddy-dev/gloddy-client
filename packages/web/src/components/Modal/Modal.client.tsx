@@ -7,7 +7,7 @@ import { Spacing } from '../Spacing';
 
 import { useTranslation } from '@/app/i18n/client';
 import { StrictPropsWithChildren } from '@/types';
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 export interface ModalProps {
   onOkClick?: () => void;

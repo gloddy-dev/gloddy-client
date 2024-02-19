@@ -8,8 +8,8 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
 import { Spacing } from '@/components/Spacing';
-import { useNumberParams } from '@/hooks/useNumberParams';
-import { useBlockStore } from '@/store/useBlockStore';
+import { useNumberParams } from '@/hooks';
+import { useBlockStore } from '@/store';
 
 export default function CommentList() {
   const { articleId, groupId } = useNumberParams<['articleId', 'groupId']>();

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import cn from '@/utils/cn';
+import { cn } from '@/utils';
 
 interface DividerProps<T extends React.ElementType> {
   /**

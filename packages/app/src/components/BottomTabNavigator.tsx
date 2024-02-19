@@ -6,7 +6,7 @@ import WebViewContainer from './WebViewContainer';
 
 const BottomTab = createBottomTabNavigator();
 
-function BottomTabNavigator({ children }: PropsWithChildren) {
+export default function BottomTabNavigator({ children }: PropsWithChildren) {
   const props = useMemo(
     () => ({
       tabBar: (props: BottomTabBarProps) => <TabBar {...props} />,
@@ -28,5 +28,3 @@ BottomTabNavigator.createScreen = ({ name, url }: { name: string; url: string })
     key={`bottom-tab-nav-${name}`}
   />
 );
-
-export default BottomTabNavigator;

@@ -12,9 +12,8 @@ import { useDeleteScrapMeeting } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import usePlaceDetails from '@/hooks/usePlaceDetails';
-import cn from '@/utils/cn';
-import { formatMeetingDate } from '@/utils/formatMeetingDate';
+import { usePlaceDetails } from '@/hooks';
+import { cn, formatMeetingDate } from '@/utils';
 
 interface GroupingCardProps extends HTMLAttributes<HTMLDivElement> {
   groupingData: Grouping;

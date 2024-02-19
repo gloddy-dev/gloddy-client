@@ -1,6 +1,9 @@
-import { getBase64FromImage } from './getBase64FromImage';
-import { usePostFiles } from '@/apis/common';
+'use client';
 import { useState } from 'react';
+
+import getBase64FromImage from './getBase64FromImage';
+
+import { usePostFiles } from '@/apis/common';
 
 interface UseImageUploadProps {
   /**
@@ -19,7 +22,7 @@ interface UseImageUploadProps {
   };
 }
 
-export function useFileUpload(
+export default function useFileUpload(
   handleFileChange: UseImageUploadProps['handleFileChange'],
   options?: UseImageUploadProps['options']
 ) {

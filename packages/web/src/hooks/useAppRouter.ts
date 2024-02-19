@@ -1,8 +1,10 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 
-import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
+import { sendMessageToReactNative } from '@/utils';
 
-const useAppRouter = () => {
+export default function useAppRouter() {
   const isApp = false;
   const router = useRouter();
 
@@ -56,6 +58,4 @@ const useAppRouter = () => {
   };
 
   return { push, back, replace, refresh, reset };
-};
-
-export default useAppRouter;
+}

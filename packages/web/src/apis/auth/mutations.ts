@@ -1,3 +1,5 @@
+import { useMutation } from '@tanstack/react-query';
+
 import {
   LoginResponse,
   SignUpResponse,
@@ -9,8 +11,8 @@ import {
   postSMSVerify,
   postSignUp,
 } from '.';
-import useLogin from '@/hooks/token/useLogin';
-import { useMutation } from '@tanstack/react-query';
+
+import { useLogin } from '@/hooks';
 
 export const useLoginMutation = () => {
   const { login } = useLogin();

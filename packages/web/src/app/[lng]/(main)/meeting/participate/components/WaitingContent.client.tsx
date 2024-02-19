@@ -7,7 +7,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/hooks';
 
 export default function WaitingContent() {
   const { t } = useTranslation('meeting');
