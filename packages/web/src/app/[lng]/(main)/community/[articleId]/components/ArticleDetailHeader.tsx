@@ -11,8 +11,10 @@ import { DropDown } from '@/components/DropDown';
 import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import { useAppRouter, useModal, useNumberParams } from '@/hooks';
-import { useBlockStore } from '@/store';
+import useAppRouter from '@/hooks/useAppRouter';
+import { useModal } from '@/hooks/useModal';
+import { useNumberParams } from '@/hooks/useNumberParams';
+import { useBlockStore } from '@/store/useBlockStore';
 
 export default function ArticleDetailHeader() {
   const { back } = useAppRouter();

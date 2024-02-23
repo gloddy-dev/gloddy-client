@@ -11,8 +11,10 @@ export const WEBVIEW_SCREENS = [
   { name: 'Profile', url: `${SOURCE_URL}/profile` },
 ];
 
-export default function TabBarNavigator() {
+function TabBarNavigator() {
   const Screens = useMemo(() => WEBVIEW_SCREENS.map(BottomTabNavigator.createScreen), []);
 
   return <BottomTabNavigator>{Screens}</BottomTabNavigator>;
 }
+
+export default TabBarNavigator;

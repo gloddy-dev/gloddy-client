@@ -2,7 +2,7 @@
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import { useAppRouter } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
 
 export default function VerifyHeader() {
   const { back } = useAppRouter();

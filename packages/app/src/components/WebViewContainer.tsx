@@ -1,6 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import messaging from '@react-native-firebase/messaging';
 import { StackActions, useNavigation, useRoute } from '@react-navigation/native';
-import { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Alert, BackHandler, Dimensions, Linking, Platform } from 'react-native';
 import RNRestart from 'react-native-restart'; // Import package from node modules
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,9 +9,12 @@ import WebView from 'react-native-webview';
 
 import Error from './Error';
 import { SOURCE_URL } from '../config';
+import { sendFCMTokenToWebView } from '../utils/sendFCMTokenToWebView';
 
-import { useDidMount, useWebViewNavigationSetUp } from '@/hooks';
-import { sendFCMTokenToWebView } from '@/utils';
+import { useDidMount } from '@/hooks/useDidMount';
+import useWebViewNavigationSetUp from '@/hooks/useWebViewNavigationSetUp';
+import { getPermission } from '@/utils/getPermission';
+import sendMessageToWebview from '@/utils/sendMessageToWebview';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

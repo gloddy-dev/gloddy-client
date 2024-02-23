@@ -11,7 +11,7 @@ export interface TabBarIconProps {
   onPress?(): void;
 }
 
-export default function TabBarIcon({ icon, text, focused, onPress }: TabBarIconProps) {
+function TabBarIcon({ icon, text, focused, onPress }: TabBarIconProps) {
   const color = focused ? theme.signColors.signBrand : theme.signColors.signTeriary;
   return (
     <Pressable style={styles.wrapper} onPress={onPress}>
@@ -35,3 +35,5 @@ const styles = StyleSheet.create({
   },
   label: { fontSize: 12, fontWeight: '500', lineHeight: 18, letterSpacing: 0.2 },
 });
+
+export default TabBarIcon;

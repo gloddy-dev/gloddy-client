@@ -1,6 +1,6 @@
 'use client';
 import { Flex } from '../Layout';
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 interface LoadingProps {
   className?: string;

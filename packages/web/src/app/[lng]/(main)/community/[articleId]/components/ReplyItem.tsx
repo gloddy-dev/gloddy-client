@@ -11,9 +11,9 @@ import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks';
-import { useBlockStore } from '@/store';
-import { cn } from '@/utils';
+import { useModal } from '@/hooks/useModal';
+import { useBlockStore } from '@/store/useBlockStore';
+import cn from '@/utils/cn';
 
 interface ReplyItemProps {
   reply: Reply;

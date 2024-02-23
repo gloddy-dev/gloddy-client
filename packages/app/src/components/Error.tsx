@@ -6,7 +6,7 @@ interface Props {
   reload: () => void;
 }
 
-export default function Error({ reload }: Props) {
+function Error({ reload }: Props) {
   return (
     <View
       style={{
@@ -39,3 +39,5 @@ export default function Error({ reload }: Props) {
     </View>
   );
 }
+
+export default Error;

@@ -8,7 +8,7 @@ import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
-import { useBlockStore } from '@/store';
+import { useBlockStore } from '@/store/useBlockStore';
 
 export default function KpopContent() {
   const { ref, inView } = useInView();

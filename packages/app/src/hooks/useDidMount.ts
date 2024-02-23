@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export default function useDidMount(callback: () => void) {
+export const useDidMount = (callback: () => void) => {
   const mounted = useRef(false);
   useEffect(() => {
     mounted.current = true;
@@ -9,4 +9,4 @@ export default function useDidMount(callback: () => void) {
       mounted.current = false;
     };
   }, []);
-}
+};

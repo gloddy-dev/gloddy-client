@@ -1,4 +1,4 @@
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 import { forwardRef } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';

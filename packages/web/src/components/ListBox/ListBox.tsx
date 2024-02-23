@@ -4,7 +4,7 @@ import type { StrictPropsWithChildren } from '@/types';
 
 import { Icon } from '@/components/Icon';
 import { useListBoxContext } from '@/components/ListBox/ListBoxController';
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 interface ListBoxProps {
   name: string;

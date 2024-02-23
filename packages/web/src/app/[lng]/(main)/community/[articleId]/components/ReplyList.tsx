@@ -1,7 +1,7 @@
 import { Reply } from '@/apis/community';
 import ReplyItem from '@/app/[lng]/(main)/community/[articleId]/components/ReplyItem';
 import { ItemList } from '@/components/List';
-import { useBlockStore } from '@/store';
+import { useBlockStore } from '@/store/useBlockStore';
 
 interface ReplyListProps {
   replyList: Reply[];

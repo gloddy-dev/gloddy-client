@@ -5,7 +5,7 @@ import Button from './Button';
 import type { StrictPropsWithChildren } from '@/types';
 
 import { Spacing } from '@/components/Spacing';
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 const renderElements = (
   elements: ReactElement[],

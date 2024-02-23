@@ -2,11 +2,11 @@
 import { BroadcastChannel, BroadcastChannelOptions } from 'broadcast-channel';
 import { useCallback, useEffect, useRef } from 'react';
 
-import useDidUpdate from './useDidUpdate';
+import useDidUpdate from './common/useDidUpdate/useDidUpdate';
 
 export interface UseBroadcastChannelOptions extends Omit<BroadcastChannelOptions, 'node'> {}
 
-export default function useBroadcastChannel<T>(
+export function useBroadcastChannel<T>(
   channelName: string,
   onMessage?: (message: T) => void,
   options?: UseBroadcastChannelOptions

@@ -8,7 +8,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import { useModal } from '@/hooks';
+import { useModal } from '@/hooks/useModal';
 import { memo } from 'react';
 
 import type { SignUpState } from '../../../type';

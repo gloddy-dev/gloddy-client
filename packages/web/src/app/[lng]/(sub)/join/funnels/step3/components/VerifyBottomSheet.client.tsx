@@ -1,9 +1,4 @@
-import { memo } from 'react';
-
 import { useJoinContext } from '../../../components/JoinContext.client';
-
-import type { SignUpState } from '../../../type';
-
 import { useEmailVerifyMutation } from '@/apis/auth';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -11,6 +6,9 @@ import { BottomSheet, type ModalProps } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useTimer } from '@/hooks/useTimer';
+import { memo } from 'react';
+
+import type { SignUpState } from '../../../type';
 
 interface VerifyBottomSheetProps extends ModalProps {
   onClose: () => void;

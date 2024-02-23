@@ -15,8 +15,10 @@ import { SegmentGroup } from '@/components/SegmentGroup';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import { useDidMount, useFileUpload, useModal } from '@/hooks';
-import { sendMessageToReactNative } from '@/utils';
+import { useDidMount } from '@/hooks/common/useDidMount';
+import { useFileUpload } from '@/hooks/useFileUpload';
+import { useModal } from '@/hooks/useModal';
+import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 
 export default function InputForm() {
   const { t } = useTranslation('join');

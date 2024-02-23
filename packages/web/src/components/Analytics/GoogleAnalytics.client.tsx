@@ -1,11 +1,10 @@
 'use client';
 
+import { GA_TRACKING_ID } from '@/constants';
+import { pageview } from '@/utils/gtag';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { useEffect } from 'react';
-
-import { GA_TRACKING_ID } from '@/constants';
-import { pageview } from '@/utils';
 
 export default function Analytics() {
   const pathname = usePathname();

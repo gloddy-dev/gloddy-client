@@ -8,8 +8,8 @@ import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks';
-import { cn } from '@/utils';
+import { useModal } from '@/hooks/useModal';
+import cn from '@/utils/cn';
 
 interface ArticleItemProps {
   article: CommunityArticle;

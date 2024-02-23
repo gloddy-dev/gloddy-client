@@ -6,7 +6,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { CircleCheckbox } from '@/components/Checkbox';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks';
+import { useModal } from '@/hooks/useModal';
 
 const infoList = [
   'noDesiredGroups',

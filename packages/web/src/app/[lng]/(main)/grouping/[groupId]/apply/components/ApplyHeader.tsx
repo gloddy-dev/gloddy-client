@@ -4,7 +4,7 @@ import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import { useAppRouter } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
 
 export default function ApplyHeader() {
   const { t } = useTranslation('groupDetail');

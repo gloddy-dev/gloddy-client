@@ -4,8 +4,8 @@ import { GroupDetailResponse } from '@/apis/groups';
 import { useGetArticles } from '@/apis/groups/queries';
 import ArticleItem from '@/app/[lng]/(main)/grouping/components/ArticleItem.client';
 import { ItemList } from '@/components/List';
-import { useNumberParams } from '@/hooks';
-import { useBlockStore } from '@/store';
+import { useNumberParams } from '@/hooks/useNumberParams';
+import { useBlockStore } from '@/store/useBlockStore';
 
 interface ArticlesContentProps extends GroupDetailResponse {}
 

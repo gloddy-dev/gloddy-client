@@ -1,5 +1,3 @@
-'use client';
-
 import {
   type FieldPath,
   type FieldValues,
@@ -8,7 +6,7 @@ import {
   useController,
 } from 'react-hook-form';
 
-export default function useControllers<T extends FieldValues>(
+export function useControllers<T extends FieldValues>(
   methods: UseFormReturn<T>,
   options?: {
     setDefaultFields?: Array<FieldPath<T>>;

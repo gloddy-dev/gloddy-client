@@ -1,5 +1,4 @@
 import useModal from './useModal';
-
 import { Toast } from '@/components/Modal';
 
 export default function useToast() {

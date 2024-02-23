@@ -1,12 +1,9 @@
-'use client';
-
-import { useCallback, useEffect, useReducer } from 'react';
-
 import reducer from './reducer';
+import { useCallback, useEffect, useReducer } from 'react';
 
 import type { ReturnType, UseTimerProps } from './type';
 
-export default function useTimer({
+const useTimer = ({
   autostart = false,
   endTime,
   initialStatus = 'STOPPED',
@@ -16,7 +13,7 @@ export default function useTimer({
   onTimeUpdate,
   step = 1,
   timerType = 'DECREMENTAL',
-}: Partial<UseTimerProps> = {}): ReturnType {
+}: Partial<UseTimerProps> = {}): ReturnType => {
   const [state, dispatch] = useReducer(reducer, {
     status: initialStatus,
     time: initialTime,
@@ -87,4 +84,6 @@ export default function useTimer({
   }, [status, step, timerType, interval, time]);
 
   return { advanceTime, pause, reset, start, status, time };
-}
+};
+
+export default useTimer;

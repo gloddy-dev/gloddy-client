@@ -1,13 +1,13 @@
 'use client';
 
 import WriteModal from './WriteModal';
-
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
-import { useAppRouter, useModal } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
+import { useModal } from '@/hooks/useModal';
 
 export default function WriteHeader() {
   const { t } = useTranslation('groupDetail');

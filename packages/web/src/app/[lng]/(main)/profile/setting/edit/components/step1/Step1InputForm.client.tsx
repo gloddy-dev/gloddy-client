@@ -16,8 +16,8 @@ import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
-import { useFileUpload } from '@/hooks';
-import { useModal } from '@/hooks';
+import { useFileUpload } from '@/hooks/useFileUpload';
+import { useModal } from '@/hooks/useModal';
 
 interface Step1InputFormProps extends Step1Props {}
 

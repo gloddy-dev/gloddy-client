@@ -13,7 +13,7 @@ import { CardHeader } from '@/components/Card';
 import { Flex } from '@/components/Layout';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks';
+import { useModal } from '@/hooks/useModal';
 
 interface ArticleItemProps {
   article: Article;

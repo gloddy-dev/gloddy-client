@@ -5,7 +5,7 @@ import { Spacing } from '../Spacing';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 export interface TextFieldProps<T extends React.ElementType = 'input'>
   extends React.HTMLAttributes<T> {

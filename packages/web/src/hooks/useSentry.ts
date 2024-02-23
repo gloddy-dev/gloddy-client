@@ -1,11 +1,9 @@
-'use client';
-
 import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
 
 import { SENTRY_DSN } from '@/constants';
 
-export default function useSentry() {
+export const useSentry = () => {
   useEffect(() => {
     Sentry.init({
       dsn: SENTRY_DSN,
@@ -13,4 +11,4 @@ export default function useSentry() {
       allowUrls: ['https://gloddy.vercel.app'],
     });
   }, []);
-}
+};

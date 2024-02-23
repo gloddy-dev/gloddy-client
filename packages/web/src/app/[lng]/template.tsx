@@ -1,10 +1,8 @@
 'use client';
-import {
-  useDisableScrollBounce,
-  useEasterEgg,
-  useListenMessageToReactNative,
-  useSentry,
-} from '@/hooks';
+import useDisableScrollBounce from '@/hooks/useDisableScrollBounce';
+import { useEasterEgg } from '@/hooks/useEasterEgg';
+import useListenMessageToReactNative from '@/hooks/useListenMessageToReactNative';
+import { useSentry } from '@/hooks/useSentry';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   useEasterEgg();

@@ -4,7 +4,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { BottomSheet, type ModalProps } from '@/components/Modal';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import { useAppRouter } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useTimer } from '@/hooks/useTimer';
 import { memo } from 'react';
 

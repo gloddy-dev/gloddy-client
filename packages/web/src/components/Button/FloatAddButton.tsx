@@ -1,5 +1,5 @@
 import { Icon } from '@/components/Icon';
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 interface FloatButtonProps {
   /**

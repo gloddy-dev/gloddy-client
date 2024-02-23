@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
 import { NavLink } from '../NavLink';
@@ -5,7 +7,7 @@ import { NavLink } from '../NavLink';
 import type { PageType } from '@/types';
 
 import { serverTranslation } from '@/app/i18n';
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 interface TabType {
   id: string;
