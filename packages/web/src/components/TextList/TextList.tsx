@@ -1,7 +1,7 @@
 import { Icon } from '../Icon';
 import { Spacing } from '../Spacing';
 import { StrictPropsWithChildren } from '@/types';
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 type VariantKeys = 'info' | 'info-no-icon' | 'caption' | 'subtitle' | 'grade';
 

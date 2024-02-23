@@ -9,7 +9,7 @@ import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks';
+import { useModal } from '@/hooks/useModal';
 
 export default function MatesDetail() {
   const { t } = useTranslation('meeting');

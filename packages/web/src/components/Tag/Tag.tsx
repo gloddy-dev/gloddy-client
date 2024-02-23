@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import { StrictPropsWithChildren } from '@/types';
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 interface TagProps<T> {
   id?: T;

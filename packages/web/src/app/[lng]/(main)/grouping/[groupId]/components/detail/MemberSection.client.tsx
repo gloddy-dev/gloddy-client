@@ -8,7 +8,8 @@ import { Avatar } from '@/components/Avatar';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import { useAppRouter, useNumberParams } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
+import { useNumberParams } from '@/hooks/useNumberParams';
 
 interface MemberSectionProps extends GroupDetailResponse {}
 

@@ -1,8 +1,6 @@
-'use client';
-
 import { DependencyList, useEffect, useRef } from 'react';
 
-export default function useDidUpdate(callback: VoidFunction, dependencyList: DependencyList) {
+const useDidUpdate = (callback: VoidFunction, dependencyList: DependencyList) => {
   const didMountRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -13,4 +11,6 @@ export default function useDidUpdate(callback: VoidFunction, dependencyList: Dep
 
     callback();
   }, [...dependencyList]);
-}
+};
+
+export default useDidUpdate;

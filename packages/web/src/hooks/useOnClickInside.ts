@@ -1,8 +1,6 @@
-'use client';
-
 import { useEffect } from 'react';
 
-export default function useOnClickInside<T extends HTMLElement = HTMLElement>(
+export function useOnClickInside<T extends HTMLElement = HTMLElement>(
   ref: React.RefObject<T>,
   handler: (event: MouseEvent | TouchEvent) => void
 ) {

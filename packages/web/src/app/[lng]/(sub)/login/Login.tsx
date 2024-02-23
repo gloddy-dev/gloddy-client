@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import { LoginResponse, useLoginMutation } from '@/apis/auth';
 import { Loading } from '@/components/Loading';
-import { useAppRouter } from '@/hooks';
-import { setTokenAtCookie } from '@/utils';
+import useAppRouter from '@/hooks/useAppRouter';
+import { setTokenAtCookie } from '@/utils/auth/tokenController';
+import { useEffect } from 'react';
 
 export default function Login() {
   const { mutate: mutateLogin } = useLoginMutation();

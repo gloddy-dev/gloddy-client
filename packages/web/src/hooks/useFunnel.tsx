@@ -15,7 +15,7 @@ interface StepProps<Steps extends NonEmptyArray<string>> {
   children: React.ReactNode;
 }
 
-export default function useFunnel<Steps extends NonEmptyArray<string>>(
+export function useFunnel<Steps extends NonEmptyArray<string>>(
   steps: Readonly<Steps>,
   options?: {
     initialStep?: Steps[number];

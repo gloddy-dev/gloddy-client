@@ -5,7 +5,7 @@ import { Icon } from '../Icon';
 import { Flex } from '../Layout';
 import { Loading } from '../Loading';
 
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 interface AvatarProps {
   /**

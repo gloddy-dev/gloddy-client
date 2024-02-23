@@ -3,8 +3,8 @@ import DeleteHeader from './DeleteHeader';
 import DeleteProvider from './DeleteProvider.client';
 import Step1 from './Step1';
 import Step2 from './Step2';
-import { useAppRouter } from '@/hooks';
-import { useFunnel } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
+import { useFunnel } from '@/hooks/useFunnel';
 
 export default function DeleteSection() {
   const { Funnel, nextStep, prevStep } = useFunnel(['1', '2']);

@@ -1,12 +1,11 @@
 import DeleteCompleteModal from './DeleteCompleteModal.client';
-
 import { usePatchSignOut } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import useLogout from '@/hooks/useLogout';
-import { useModal } from '@/hooks';
+import useLogout from '@/hooks/token/useLogout';
+import { useModal } from '@/hooks/useModal';
 
 interface DeleteModalProps {
   onCancelClick: () => void;

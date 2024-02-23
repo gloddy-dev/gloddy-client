@@ -7,7 +7,7 @@ import type { WriteFormValues } from '../type';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Loading } from '@/components/Loading';
-import { useFileUpload } from '@/hooks';
+import { useFileUpload } from '@/hooks/useFileUpload';
 
 interface ImageSectionProps {
   control: Control<WriteFormValues>;

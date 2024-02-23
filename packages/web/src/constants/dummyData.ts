@@ -1,5 +1,3 @@
-import type { MatesResponse } from '@/apis/profile';
-
 import {
   Apply,
   Comment,
@@ -8,6 +6,8 @@ import {
   GroupMember,
   Grouping,
 } from '@/apis/groups';
+
+import type { MatesResponse } from '@/apis/profile';
 
 export const DUMMY_GROUPING_DATA: Grouping[] = [
   {

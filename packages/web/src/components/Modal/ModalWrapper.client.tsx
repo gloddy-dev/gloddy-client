@@ -5,8 +5,8 @@ import { useRef } from 'react';
 import type { StrictPropsWithChildren } from '@/types';
 
 import { fadeInVariants } from '@/constants/motions';
-import { useOnClickOutside } from '@/hooks';
-import { cn } from '@/utils';
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
+import cn from '@/utils/cn';
 
 interface ModalWrapperProps {
   onClose?: () => void;

@@ -8,7 +8,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
-import { useNumberParams } from '@/hooks';
+import { useNumberParams } from '@/hooks/useNumberParams';
 
 interface Step3Props {
   groupMemberList: EstimateResponse['groupMemberList'];

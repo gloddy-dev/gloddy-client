@@ -7,7 +7,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { Button } from '@/components/Button';
 import { GroupingCard } from '@/components/Card';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks';
+import { useModal } from '@/hooks/useModal';
 
 export default function FeedbackContent() {
   const { t } = useTranslation('meeting');

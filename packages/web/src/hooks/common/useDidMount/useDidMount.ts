@@ -1,8 +1,6 @@
-'use client';
-
 import { useEffect, useRef } from 'react';
 
-export default function useDidMount(callback: VoidFunction) {
+const useDidMount = (callback: VoidFunction) => {
   const didMountRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -10,4 +8,6 @@ export default function useDidMount(callback: VoidFunction) {
     didMountRef.current = true;
     callback();
   }, []);
-}
+};
+
+export default useDidMount;

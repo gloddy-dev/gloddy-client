@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 import { GroupDetailResponse } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Spacing } from '@/components/Spacing';
-import { usePlaceDetails } from '@/hooks';
+import usePlaceDetails from '@/hooks/usePlaceDetails';
 
 interface LocationSectionProps extends GroupDetailResponse {}
 

@@ -1,8 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import { Keys, deleteMate, patchProfile, patchSignOut, postEmailVerify } from '.';
-
-import { useAppRouter } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePatchProfile = () => {
   const queryClient = useQueryClient();

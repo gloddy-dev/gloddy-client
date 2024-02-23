@@ -1,4 +1,4 @@
-import { cn } from '@/utils';
+import cn from '@/utils/cn';
 
 import type { StrictPropsWithChildren } from '@/types';
 import type { HTMLAttributes } from 'react';

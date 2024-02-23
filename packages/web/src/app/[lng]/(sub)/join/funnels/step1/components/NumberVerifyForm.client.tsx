@@ -1,10 +1,6 @@
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { useFunnelContext } from '../../JoinFunnel';
 import { formatWithoutHyphen } from '../util';
-
-import type { SignUpState } from '../../../type';
-import type { SubmitHandler } from 'react-hook-form';
-
 import { LoginResponse, useLoginMutation, useSMSMutation, useSMSVerifyMutation } from '@/apis/auth';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -12,7 +8,10 @@ import { LayerLoading } from '@/components/Loading';
 import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import useLogin from '@/hooks/useLogin';
+import useLogin from '@/hooks/token/useLogin';
+
+import type { SignUpState } from '../../../type';
+import type { SubmitHandler } from 'react-hook-form';
 
 interface NumberVerifyFormProps {
   setInputStatus: React.Dispatch<React.SetStateAction<'beforeSend' | 'afterSend'>>;

@@ -6,7 +6,8 @@ import type { CustomInstance, ErrorType } from './type';
 
 import { BASE_API_URL } from '@/constants';
 import { AUTH_ERROR_CODES } from '@/constants/errorCode';
-import { getTokenFromCookie, sendMessageToReactNative } from '@/utils';
+import { getTokenFromCookie } from '@/utils/auth/tokenController';
+import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 
 const privateApi: CustomInstance = axios.create({
   baseURL: `${BASE_API_URL}/api/v1`,

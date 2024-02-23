@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import useLogout from '@/hooks/useLogout';
+import useLogout from '@/hooks/token/useLogout';
 
 export interface BaseErrorProps {
   error: Error;

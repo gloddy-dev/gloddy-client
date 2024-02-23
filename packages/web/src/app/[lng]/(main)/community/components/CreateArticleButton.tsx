@@ -1,6 +1,6 @@
 'use client';
 import { FloatAddButton } from '@/components/Button';
-import { useAppRouter } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
 
 export default function CreateArticleButton() {
   const { push } = useAppRouter();

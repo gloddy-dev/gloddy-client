@@ -1,5 +1,3 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import {
   deleteArticle,
   deleteComment,
@@ -17,9 +15,10 @@ import { Keys as GroupsKeys } from './keys';
 import { GroupDetailResponse } from './type';
 import { MeetingScrapResponse } from '../meeting';
 import { Keys as MeetingKeys } from '../meeting/keys';
-
 import FeedbackCompleteModal from '@/app/[lng]/(main)/meeting/participate/feedback/[groupId]/funnels/step3/FeedbackCompleteModal.client';
-import { useAppRouter, useModal } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
+import { useModal } from '@/hooks/useModal';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePostCreateGroup = () => {
   const { replace } = useAppRouter();

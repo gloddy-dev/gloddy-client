@@ -5,8 +5,8 @@ import TimeSection from './TimeSection.client';
 import { useGetGroupDetail } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
-import { useAppRouter } from '@/hooks';
-import { useNumberParams } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
+import { useNumberParams } from '@/hooks/useNumberParams';
 import { usePathname } from 'next/navigation';
 
 export default function DetailContent() {

@@ -1,13 +1,13 @@
 'use client';
-import { Suspense } from 'react';
-
 import { useGetArticle, useGetGroupDetail } from '@/apis/groups';
 import { useMoreSheet } from '@/app/[lng]/(main)/grouping/hooks/useMoreSheet';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import { useAppRouter, useNumberParams } from '@/hooks';
+import useAppRouter from '@/hooks/useAppRouter';
+import { useNumberParams } from '@/hooks/useNumberParams';
+import { Suspense } from 'react';
 
 export default function ArticleHeader() {
   const { t } = useTranslation('groupDetail');

@@ -3,7 +3,7 @@ import FeedbackOutModal from '../funnels/step1/FeedbackOutModal.client';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
-import { useModal } from '@/hooks';
+import { useModal } from '@/hooks/useModal';
 
 interface FeedbackHeaderProps {
   message: string;

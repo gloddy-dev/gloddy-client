@@ -13,8 +13,8 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { LayerLoading } from '@/components/Loading';
 import { Tag } from '@/components/Tag';
 import { personalityList } from '@/constants/personalityList';
-import { useModal } from '@/hooks';
-import { formatDateDTO } from '@/utils';
+import { useModal } from '@/hooks/useModal';
+import { formatDateDTO } from '@/utils/formatDateDTO';
 
 export default function InputForm() {
   const { t } = useTranslation('join');
