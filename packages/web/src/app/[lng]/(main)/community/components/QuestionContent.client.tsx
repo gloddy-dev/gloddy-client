@@ -8,7 +8,7 @@ import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
-import { Loaㄴding } from '@/components/Loading';
+import { Loading } from '@/components/Loading';
 import { useBlockStore } from '@/store/useBlockStore';
 
 export default function QuestionContent() {
