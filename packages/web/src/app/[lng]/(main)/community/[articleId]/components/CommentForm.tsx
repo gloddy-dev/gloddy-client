@@ -24,8 +24,7 @@ export default function CommentForm() {
   const { t } = useTranslation('community');
   const { articleId } = useNumberParams<['articleId']>();
   const { commentType, commentId, setCommentType } = useCommentContext();
-  const categoryId = useGetCommunityArticleDetail(articleId).data.data.article.category.id;
-  const { mutate: mutateComment } = usePostCreateComment(articleId, categoryId);
+  const { mutate: mutateComment } = usePostCreateComment(articleId);
   const { mutate: mutateReply } = useCreateCommunityReply(articleId);
   const hookForm = useForm<CreateCommentRequest>({
     mode: 'onChange',

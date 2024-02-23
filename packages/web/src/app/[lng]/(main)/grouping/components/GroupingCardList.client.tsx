@@ -8,11 +8,12 @@ import { useGetGroups } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
 import { ItemList } from '@/components/List';
+import { Loading } from '@/components/Loading';
 import { useBlockStore } from '@/store/useBlockStore';
 
 export default function GroupingCardList() {
   const { blockGroupIds } = useBlockStore();
-  const { data: groupList, fetchNextPage } = useGetGroups();
+  const { data: groupList, fetchNextPage, isFetching } = useGetGroups();
   const { t } = useTranslation('grouping');
 
   const { ref, inView } = useInView();
@@ -31,6 +32,7 @@ export default function GroupingCardList() {
         renderEmpty={() => <NoMeeting message={t('noGroup')} />}
       />
       <div ref={ref} />
+      {isFetching && <Loading className="h-10" />}
     </>
   );
 }

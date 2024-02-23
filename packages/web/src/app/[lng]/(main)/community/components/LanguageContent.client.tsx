@@ -8,12 +8,13 @@ import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
+import { Loading } from '@/components/Loading';
 import { useBlockStore } from '@/store/useBlockStore';
 
 export default function LanguageContent() {
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
-  const { data: articleList, fetchNextPage } = useGetCommunityArticles(3);
+  const { data: articleList, fetchNextPage, isFetching } = useGetCommunityArticles(3);
 
   useEffect(() => {
     if (inView) fetchNextPage();
@@ -33,6 +34,7 @@ export default function LanguageContent() {
         renderEmpty={() => <Empty />}
       />
       <div ref={ref} />
+      {isFetching && <Loading className="h-10" />}
     </>
   );
 }

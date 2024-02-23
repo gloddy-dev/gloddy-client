@@ -20,15 +20,7 @@ privateApi.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     try {
       const { accessToken, refreshToken } = await getTokenFromCookie();
-      if (!accessToken || !refreshToken) return config;
-      const {
-        token: { accessToken: reIssuedAccessToken },
-      } = await postReissue(
-        { accessToken, refreshToken },
-        { headers: { 'X-AUTH-TOKEN': accessToken } }
-      );
-
-      config.headers['X-AUTH-TOKEN'] = reIssuedAccessToken;
+      config.headers['X-AUTH-TOKEN'] = accessToken;
       return config;
     } catch (error) {
       return Promise.reject(error);

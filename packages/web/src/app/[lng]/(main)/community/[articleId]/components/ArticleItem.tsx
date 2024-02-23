@@ -44,7 +44,7 @@ export default function ArticleItem({ article }: ArticleItemProps) {
     reliabilityLevel,
   } = article.writer;
 
-  const { mutate: mutateLike } = usePostCommunityArticleLike(articleId, category.id);
+  const { mutate: mutateLike } = usePostCommunityArticleLike(articleId);
 
   const handleLikeClick = () => {
     mutateLike();
