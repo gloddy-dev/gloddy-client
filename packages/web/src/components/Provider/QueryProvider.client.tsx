@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 'use client';
 
-import { useToast } from '@/hooks/useModal';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useState } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
+
+import { useToast } from '@/hooks/useModal';
 
 export default function QueryProvider({ children }: StrictPropsWithChildren) {
   const { openToast } = useToast();
@@ -17,8 +18,6 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
         defaultOptions: {
           queries: {
             retry: 0,
-            refetchOnWindowFocus: false,
-            staleTime: 1000 * 60,
             throwOnError: true,
           },
           mutations: {
