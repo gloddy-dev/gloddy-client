@@ -8,16 +8,16 @@ import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
-import { Loaㄴding } from '@/components/Loading';
+import { Loading } from '@/components/Loading';
 import { useBlockStore } from '@/store/useBlockStore';
 
 export default function QuestionContent() {
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
-  const { data: articleList, fetchNextPage, isFetching } = useGetCommunityArticles(2);
+  const { data: articleList, fetchNextPage, isFetching, hasNextPage } = useGetCommunityArticles(2);
 
   useEffect(() => {
-    if (inView) fetchNextPage();
+    if (inView && hasNextPage) fetchNextPage();
   }, [inView, fetchNextPage]);
 
   return (

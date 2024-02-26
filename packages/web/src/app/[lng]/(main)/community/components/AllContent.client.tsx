@@ -13,12 +13,11 @@ import { useBlockStore } from '@/store/useBlockStore';
 export default function AllContent() {
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
-  const { data: articleList, fetchNextPage, isFetching } = useGetCommunityArticles(0);
+  const { data: articleList, fetchNextPage, isFetching, hasNextPage } = useGetCommunityArticles(0);
 
   useEffect(() => {
-    if (inView) fetchNextPage();
+    if (inView && hasNextPage) fetchNextPage();
   }, [inView, fetchNextPage]);
-
   return (
     <>
       <ItemList
