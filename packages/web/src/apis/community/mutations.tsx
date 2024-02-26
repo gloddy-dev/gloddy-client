@@ -1,3 +1,5 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import {
   deleteCommunityCommentLike,
   postCommunityArticleLike,
@@ -9,44 +11,21 @@ import {
 } from '@/apis/community/apis';
 import { Keys } from '@/apis/community/keys';
 import { CommunityArticle } from '@/apis/community/type';
-import { CommunityChannelMessage } from '@/app/[lng]/(main)/community/components/ContentSection.client';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useBroadcastChannel } from '@/hooks/useBroadcast';
-import { getIsAndroid } from '@/utils/getIsAndroid';
-import { getIsIOS } from '@/utils/getIsIOS';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useGetCommunityArticleDetail } from './queries';
 
 export const usePostCreateCommunityArticle = () => {
-  const queryClient = useQueryClient();
   const { back } = useAppRouter();
-  const { postMessage } = useBroadcastChannel<CommunityChannelMessage>('community');
-
-  const isIOS = getIsIOS();
-  const isAndroid = getIsAndroid();
 
   return useMutation({
     mutationFn: postCreateCommunityArticle,
-    onSuccess: (data, variables) => {
-      const { categoryId } = variables;
-
-      if (isIOS || isAndroid) {
-        postMessage({ categoryId: Number(categoryId) });
-      } else {
-        queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(0) }); // 전체 카테고리
-        queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(categoryId) }); // 작성한 게시글 카테고리
-      }
+    onSuccess: () => {
       back();
     },
   });
 };
 
-export const usePostCommunityArticleLike = (articleId: number, categoryId: number) => {
+export const usePostCommunityArticleLike = (articleId: number) => {
   const queryClient = useQueryClient();
-  const { postMessage } = useBroadcastChannel<CommunityChannelMessage>('community');
-
-  const isIOS = getIsIOS();
-  const isAndroid = getIsAndroid();
 
   return useMutation({
     mutationFn: () => postCommunityArticleLike(articleId),
@@ -76,56 +55,28 @@ export const usePostCommunityArticleLike = (articleId: number, categoryId: numbe
       } else throw new Error('No previous Data');
     },
     onSettled: () => {
-      if (isIOS || isAndroid) {
-        postMessage({ categoryId });
-      } else {
-        queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(0) });
-        queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(categoryId) });
-      }
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticleDetail(articleId) });
     },
   });
 };
 
-export const usePostDeleteCommunityArticle = (articleId: number, categoryId: number) => {
-  const queryClient = useQueryClient();
+export const usePostDeleteCommunityArticle = (articleId: number) => {
   const { back } = useAppRouter();
-  const { postMessage } = useBroadcastChannel<CommunityChannelMessage>('community');
-
-  const isIOS = getIsIOS();
-  const isAndroid = getIsAndroid();
 
   return useMutation({
     mutationFn: () => postDeleteCommunityArticle(articleId),
     onSuccess: () => {
-      if (isIOS || isAndroid) {
-        postMessage({ categoryId });
-      } else {
-        queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(categoryId) });
-        queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(0) });
-      }
       back();
     },
   });
 };
 
-export const usePostCreateComment = (articleId: number, categoryId: number) => {
+export const usePostCreateComment = (articleId: number) => {
   const queryClient = useQueryClient();
-  const { postMessage } = useBroadcastChannel<CommunityChannelMessage>('community');
-
-  const isIOS = getIsIOS();
-  const isAndroid = getIsAndroid();
 
   return useMutation({
     mutationFn: postCreateCommunityComment,
     onSuccess: () => {
-      if (isIOS || isAndroid) {
-        postMessage({ categoryId });
-      } else {
-        queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(categoryId) });
-        queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticles(0) });
-      }
-      queryClient.invalidateQueries({ queryKey: Keys.getCommunityArticleDetail(articleId) });
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
     },
   });
@@ -168,17 +119,10 @@ export const useDeleteCommunityComment = (
   categoryId: number
 ) => {
   const queryClient = useQueryClient();
-  const { postMessage } = useBroadcastChannel<CommunityChannelMessage>('community');
-
-  const isIOS = getIsIOS();
-  const isAndroid = getIsAndroid();
 
   return useMutation({
     mutationFn: () => deleteCommunityCommentLike(articleId, commentId),
     onSuccess: () => {
-      if (isIOS || isAndroid) {
-        postMessage({ categoryId });
-      }
       queryClient.invalidateQueries({ queryKey: Keys.getCommunityComments(articleId) });
     },
   });

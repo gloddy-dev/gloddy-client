@@ -1,7 +1,6 @@
 import { Keys, getCommunityArticleDetail } from '@/apis/community';
 import ArticleDetail from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetail';
 import ArticleDetailHeader from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetailHeader';
-import CommentForm from '@/app/[lng]/(main)/community/[articleId]/components/CommentForm';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';

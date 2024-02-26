@@ -48,10 +48,7 @@ function IconButtonAction() {
   const { back } = useAppRouter();
   const { data: articleData } = useGetCommunityArticleDetail(articleId);
   const { open: openModal, exit: closeModal } = useModal();
-  const { mutate: mutateDelete } = usePostDeleteCommunityArticle(
-    articleId,
-    articleData.data.article.category.id
-  );
+  const { mutate: mutateDelete } = usePostDeleteCommunityArticle(articleId);
 
   const handleBlockArticle = () => {
     openModal(() => (
