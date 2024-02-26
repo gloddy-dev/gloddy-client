@@ -14,10 +14,10 @@ import { useBlockStore } from '@/store/useBlockStore';
 export default function KpopContent() {
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
-  const { data: articleList, fetchNextPage, isFetching } = useGetCommunityArticles(1);
+  const { data: articleList, fetchNextPage, isFetching, hasNextPage } = useGetCommunityArticles(1);
 
   useEffect(() => {
-    if (inView) fetchNextPage();
+    if (inView && hasNextPage) fetchNextPage();
   }, [inView, fetchNextPage]);
 
   return (
