@@ -89,7 +89,7 @@ export default function ReplyItem({ reply, articleWriterId }: ReplyItemProps) {
             </DropDown>
           </CardHeader>
           <Spacing size={10} />
-          <div className="text-paragraph-2 text-sign-primary break-all">{content}</div>
+          <div className="text-paragraph-2 text-sign-primary select-auto break-all">{content}</div>
           <Flex align="center" className="gap-4">
             <Icon
               id="16-favorite_fill"

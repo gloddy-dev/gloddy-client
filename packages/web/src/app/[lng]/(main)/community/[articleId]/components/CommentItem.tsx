@@ -121,7 +121,7 @@ export default function CommentItem({
           </DropDown>
         </CardHeader>
         <Spacing size={10} />
-        <div className="text-paragraph-2 text-sign-primary break-words">{content}</div>
+        <div className="text-paragraph-2 text-sign-primary select-auto break-words">{content}</div>
         <Flex align="center" className="gap-8">
           <Flex align="center" className="gap-4" onClick={handleLikeClick}>
             <Icon
