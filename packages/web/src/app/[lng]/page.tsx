@@ -14,7 +14,21 @@ export default function Home() {
 
   useDidMount(async () => {
     const cookieLanguage = getLocalCookie(cookieName);
-    const deviceLanguage = navigator.language === 'ko-KR' ? 'ko' : 'en';
+    let deviceLanguage;
+    switch (navigator.language) {
+      case 'ko-KR':
+        deviceLanguage = 'ko';
+        break;
+      case 'zh-CN':
+        deviceLanguage = 'zh-CN';
+        break;
+      case 'zh-TW':
+        deviceLanguage = 'zh-TW';
+        break;
+      default:
+        deviceLanguage = 'en';
+    }
+
     const browserLanguage = cookieLanguage || deviceLanguage;
 
     setLocalCookie(cookieName, browserLanguage, { expires: afterDay60 });
