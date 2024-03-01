@@ -13,18 +13,25 @@ export const usePostTranslateGPT = () => {
     content,
     targetLang,
   }: {
-    title: string;
+    title?: string;
     content: string;
     targetLang: string;
   }) => {
+    const userContent = title
+      ? `Translate the following text to ${targetLang} and format the output as requested: { title: "${title}", content: "${content}" }`
+      : `Translate the following text to ${targetLang} and format the output as requested: { content: "${content}" }`;
+
     const messages: ChatCompletionMessageParam[] = [
-      { role: 'system', content: 'You are a translator assistant that provides JSON output.' },
+      {
+        role: 'system',
+        content:
+          'You are a translator assistant that provides JSON output. Please ensure the translation output is in the format of {title: "translated text", content: "translated text"} if title is provided, otherwise just {content: "translated text"}.',
+      },
       {
         role: 'user',
-        content: `Translate the following text to ${targetLang}: title: ${title}, content: ${content}`,
+        content: userContent,
       },
     ];
-
     return mutateAsync(messages);
   };
 

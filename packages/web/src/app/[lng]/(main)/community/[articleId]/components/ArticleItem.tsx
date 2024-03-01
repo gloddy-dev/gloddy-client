@@ -49,8 +49,8 @@ export default function ArticleItem({ article }: ArticleItemProps) {
     reliabilityLevel,
   } = article.writer;
 
-  const [articleState, setArticleState] = useState({ title, content });
   const { mutate: mutateLike } = usePostCommunityArticleLike(articleId);
+  const [articleState, setArticleState] = useState({ title, content });
 
   const { postTranslate, isPending } = usePostTranslateGPT();
   const cookieLanguage = getLocalCookie(cookieName);
@@ -84,7 +84,7 @@ export default function ArticleItem({ article }: ArticleItemProps) {
           date={format(parseISO(createdAt), 'yyyy.MM.dd HH:mm')}
           countryImage={countryImage}
         />
-        <div onClick={handleTranslateClick} className="text-paragraph-1 text-sign-secondary">
+        <div onClick={handleTranslateClick} className="text-paragraph-2 text-sign-secondary">
           {t('detail.translate')}
         </div>
       </div>
