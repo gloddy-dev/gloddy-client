@@ -35,7 +35,8 @@
     "report": "举报帖子",
     "report_content": "您确定要举报这篇帖子吗？",
     "delete": "删除帖子",
-    "delete_content": "您确定要删除这篇帖子吗？"
+    "delete_content": "您确定要删除这篇帖子吗？",
+    "translate": "翻译"
   },
   "comment": {
     "placeholder_comment": "写评论",
