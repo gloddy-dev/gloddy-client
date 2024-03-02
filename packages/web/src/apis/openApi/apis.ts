@@ -1,11 +1,21 @@
-import { ChatCompletionMessageParam } from 'openai/resources';
+import axios from 'axios';
 
-export const postOpenAIAPI = async (messages: ChatCompletionMessageParam[]) => {
-  const response = await fetch('/api/openai', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ messages }),
-  });
+import { Message } from '.';
 
-  return response.json();
+export const postOpenAIAPI = async (messages: Message[]): Promise<string> => {
+  const response = await axios.post(
+    'https://api.openai.com/v1/chat/completions',
+    {
+      messages,
+      model: 'gpt-3.5-turbo',
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPEN_API}`,
+      },
+    }
+  );
+
+  return JSON.parse(response.data.choices[0].message.content);
 };

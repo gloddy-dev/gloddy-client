@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
-import { ChatCompletionMessageParam } from 'openai/resources';
 
+import { Message } from '.';
 import { postOpenAIAPI } from './apis';
 
 export const usePostTranslateGPT = () => {
@@ -21,7 +21,7 @@ export const usePostTranslateGPT = () => {
       ? `Translate the following text to ${targetLang} and format the output as requested: { title: "${title}", content: "${content}" }`
       : `Translate the following text to ${targetLang} and format the output as requested: { content: "${content}" }`;
 
-    const messages: ChatCompletionMessageParam[] = [
+    const messages: Message[] = [
       {
         role: 'system',
         content:
