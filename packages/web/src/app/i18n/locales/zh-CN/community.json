@@ -1,0 +1,60 @@
+{
+  "category": {
+    "All": "全部",
+    "K-POP": "K-POP",
+    "Q&A": "我想知道",
+    "Language": "语言交换"
+  },
+  "create": {
+    "headerTitle": "创建帖子",
+    "category": {
+      "name": "类别",
+      "K-POP": "K-POP",
+      "Q&A": "我想知道",
+      "Language": "语言交换"
+    },
+    "title": {
+      "placeholder": "帖子标题"
+    },
+    "content": {
+      "placeholder": "请至少写20个字符的帖子。"
+    },
+    "submit": {
+      "label": "发布",
+      "content": "您确定要发布这篇帖子吗？"
+    },
+    "cancel": {
+      "content": "您确定要取消写帖子吗？"
+    }
+  },
+  "detail": {
+    "likeCount": "个",
+    "commentCount": "评论 {{commentCount}}个",
+    "block": "屏蔽帖子",
+    "block_content": "您确定要屏蔽这篇帖子吗？",
+    "report": "举报帖子",
+    "report_content": "您确定要举报这篇帖子吗？",
+    "delete": "删除帖子",
+    "delete_content": "您确定要删除这篇帖子吗？",
+    "translate": "翻译"
+  },
+  "comment": {
+    "placeholder_comment": "写评论",
+    "placeholder_reply": "写回复",
+    "commentLengthError": "* 请写不超过150个字符。",
+    "firstComment": "来成为第一个评论的人吧！",
+    "blockComment": "这是一个被屏蔽的评论。",
+    "delete": {
+      "label": "删除",
+      "content": "您确定要删除这条评论吗？"
+    },
+    "report": {
+      "label": "举报",
+      "content": "您确定要举报这条评论吗？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您确定要屏蔽这条评论吗？"
+    }
+  }
+}
