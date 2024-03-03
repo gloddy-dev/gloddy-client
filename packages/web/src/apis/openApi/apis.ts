@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { Message } from '.';
 
-export const postOpenAIAPI = async (messages: Message[]): Promise<string> => {
+export const postOpenAIAPI = async (messages: Message[]) => {
   const response = await axios.post(
     'https://api.openai.com/v1/chat/completions',
     {
