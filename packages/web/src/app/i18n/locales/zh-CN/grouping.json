@@ -1,0 +1,46 @@
+{
+  "headerTitle": "匹配",
+  "create": {
+    "headerTitle": "创建小组",
+    "title": {
+      "label": "小组标题",
+      "placeholder": "请输入标题。"
+    },
+    "content": {
+      "label": "小组信息",
+      "placeholder": "请编写活动简介。"
+    },
+    "meetDate": {
+      "label": "日期和时间",
+      "placeholder": "设置会议的日期和时间。",
+      "year": "年",
+      "month": "月"
+    },
+    "time": {
+      "label": "开始时间",
+      "am": "上午",
+      "pm": "下午",
+      "hour": "小时",
+      "minute": "分钟"
+    },
+    "place": {
+      "label": "地点",
+      "placeholder": "请设置会议地点。",
+      "noResult": "未找到结果。"
+    },
+    "maxUser": {
+      "label": "参与人数"
+    },
+    "error": {
+      "time": "请设置一个比当前时间晚的时间。"
+    },
+    "continue": "继续",
+    "submit": {
+      "label": "提交",
+      "message": "创建小组后无法进行更改。\n您希望继续吗？",
+      "ok": "是",
+      "cancel": "否"
+    }
+  },
+  "noGroup": "未找到小组。"
+}

@@ -1,0 +1,20 @@
+{
+  "time": "次",
+  "nickname": "昵称",
+  "male": "男性",
+  "female": "女性",
+  "grouping": "匹配",
+  "meeting": "我的会议",
+  "profile": "个人资料",
+  "community": "社区",
+  "notification": "通知",
+  "yes": "是",
+  "no": "否",
+  "명": "人",
+  "next": "下一步",
+  "confirm": "确认",
+  "complete": "完成",
+  "reportMessage1": "举报已收到。",
+  "reportMessage2": "我们将尽快处理。",
+  "blockMessage": "屏蔽已完成。"
+}

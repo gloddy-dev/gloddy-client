@@ -77,7 +77,7 @@ Gloddy는 국적에 상관없이 자유롭게 모임을 형성하고 원하는 �
     </td>
     <td align="center" width="200px">
       <a href="https://github.com/kangju2000" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/23312485?v=4" alt="강주혁" />
+        <img src="https://avatars.githubusercontent.com/u/16986867?s=400&u=f7149ab3bdf5348647d4ff1ea96ac6747ec307c6&v=4" alt="강주혁" />
       </a>
     </td>
   </tr>
@@ -88,8 +88,8 @@ Gloddy는 국적에 상관없이 자유롭게 모임을 형성하고 원하는 �
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/kangju2000" target="_blank">
-        강주혁
+      <a href="https://github.com/dev-dong-su" target="_blank">
+        김희수
       </a>
     </td>
   </tr>
