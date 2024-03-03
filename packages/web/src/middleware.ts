@@ -5,12 +5,12 @@ import { cookieName, languages } from './app/i18n/settings';
 import { AUTH_KEYS } from './constants/token';
 import { afterDay1, afterDay60 } from './utils/date';
 
-const privatePages = /\/(?:en|ko)\/(grouping|meeting|profile|community)/;
+const privatePages = /\/(?:en|ko|zh-CN|zh-TW)\/(grouping|meeting|profile|community)/;
 
 const excludePages = [
-  /\/(?:en|ko)\/profile\/setting\/information/,
-  /\/(?:en|ko)\/profile\/setting\/service/,
-  /\/(?:en|ko)\/notification/,
+  /\/(?:en|ko|zh-CN|zh-TW)\/profile\/setting\/information/,
+  /\/(?:en|ko|zh-CN|zh-TW)\/profile\/setting\/service/,
+  /\/(?:en|ko|zh-CN|zh-TW)\/notification/,
 ];
 
 const isPrivatePage = (path: string) =>

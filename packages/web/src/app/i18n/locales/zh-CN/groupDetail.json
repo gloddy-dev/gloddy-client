@@ -1,0 +1,128 @@
+{
+  "more": "更多",
+  "fold": "折叠",
+  "group": {
+    "exit": {
+      "label": "退出群组",
+      "content": "您确定要退出该群组吗？",
+      "description1": "一旦退出群组，",
+      "description2": "信任分数",
+      "description3": "将被扣除。"
+    },
+    "report": {
+      "label": "举报",
+      "content": "您确定要举报该群组吗？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您确定要屏蔽该群组吗？"
+    }
+  },
+  "comment": {
+    "placeholder": "写评论",
+    "commentLengthError": "* 请限制在150字以内。",
+    "firstComment": "快来发表第一条评论吧！",
+    "blockComment": "这条评论已被屏蔽。",
+    "delete": {
+      "label": "删除",
+      "content": "您确定要删除这条评论吗？"
+    },
+    "report": {
+      "label": "举报",
+      "content": "您确定要举报这条评论吗？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您确定要屏蔽这条评论吗？"
+    }
+  },
+  "article": {
+    "headerTitle": "文章",
+    "delete": {
+      "label": "删除",
+      "content": "您确定要删除这篇文章吗？"
+    },
+    "report": {
+      "label": "举报",
+      "content": "您确定要举报这篇文章吗？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您确定要屏蔽这篇文章吗？"
+    }
+  },
+  "notice": {
+    "headerTitle": "公告",
+    "delete": {
+      "label": "删除",
+      "content": "您确定要删除这条公告吗？"
+    },
+    "report": {
+      "label": "举报",
+      "content": "您确定要举报这条公告吗？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您确定要屏蔽这条公告吗？"
+    }
+  },
+  "details": {
+    "tab": "详情",
+    "members": "群组成员 ({{memberCount}}/{{maxMemberCount}})",
+    "viewAll": "查看全部",
+    "meetDate": "聚会时间",
+    "place": "聚会地点",
+    "join": "加入聚会",
+    "wait": "等待批准"
+  },
+  "board": {
+    "tab": "留言板",
+    "notice": "公告",
+    "emptyNotice": "没有注册的公告。",
+    "commentCount": "评论 {{commentCount}}条"
+  },
+  "members": {
+    "headerTitle": "群组成员"
+  },
+  "manage": {
+    "headerTitle": "管理申请",
+    "empty": "还没有申请。",
+    "description": "请查看想要加入群组的成员申请",
+    "refuse": {
+      "label": "拒绝",
+      "description": "过于匆忙的拒绝可能会错过合适的申请者。",
+      "content": "您确定要拒绝这个申请吗？"
+    },
+    "approve": {
+      "label": "批准",
+      "description": "以相互尊重创建健康的群组文化！",
+      "content": "您确定要批准这个申请吗？"
+    }
+  },
+  "apply": {
+    "headerTitle": "填写申请",
+    "description": "请填写申请以加入群组。",
+    "introduce": "我是这样的人！",
+    "reason": "我想参加聚会的原因",
+    "placeholder": "请输入内容。",
+    "submit": {
+      "label": "申请",
+      "content": "您确定要提交申请吗？",
+      "description": "提交申请后无法再进行修改。"
+    }
+  },
+  "writeArticle": {
+    "headerTitle": "写文章",
+    "content": {
+      "placeholder": "请写至少20个字符的文章。"
+    },
+    "notice": "将此文章设置为公告。",
+    "submit": {
+      "label": "发布",
+      "content": "您确定要发布这篇文章吗？"
+    },
+    "cancel": {
+      "content": "您确定要取消写文章吗？"
+    }
+  }
+}
