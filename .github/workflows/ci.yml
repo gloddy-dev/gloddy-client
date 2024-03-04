@@ -74,6 +74,10 @@ jobs:
         run: |
           ls -al
           yarn workspace @gloddy/web build
+
+      - name: Output build cache key
+        run: echo "build_cache_key=${{ env.BUILD_CACHE_KEY }}" >> $GITHUB_OUTPUT
+
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 

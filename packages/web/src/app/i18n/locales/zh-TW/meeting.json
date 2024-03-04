@@ -1,0 +1,53 @@
+{
+  "home": {
+    "joinedGroup": "已加入群組",
+    "favoritedGroup": "已收藏群組",
+    "participating": "正在參與",
+    "waiting": "等待中",
+    "evaluation": "評價",
+    "memberGroup": "我是成員的群組",
+    "hostingGroup": "我主持的群組",
+    "newApplications": "申請",
+    "awaitingApproval": "等待批准的群組",
+    "underReview": "審核中",
+    "rejected": "已拒絕",
+    "rejectedGroups": "被拒絕的群組",
+    "mutualEvaluationRequired": "需要互相評價的群組",
+    "evaluateGroup": "評價群組",
+    "enjoyedGroup": "你喜歡這次聚會嗎？",
+    "complimentMembers": "請讚美你一起的成員！",
+    "move": "移動",
+    "cancel": "取消",
+    "rejectedApplication": "很遺憾，你的申請已被拒絕。",
+    "excitingActivities": "令人興奮的團體活動在等待著你！",
+    "applyOtherGroups": "申請其他群組。",
+    "noParticipatingGroups": "目前沒有正在參加的群組。",
+    "noHostingGroups": "你沒有主持任何群組。",
+    "noPendingGroups": "還沒有等待批准的群組。",
+    "noRejectedGroups": "沒有被拒絕的群組",
+    "noMutualEvaluationGroups": "沒有需要互相評價的群組。",
+    "noFavoritedGroups": "你還沒有收藏任何群組。",
+    "noReview": "還沒有評論。"
+  },
+  "evaluation": {
+    "evaluateGroup": "評價群組",
+    "howWasGroup": "聚會怎麼樣？",
+    "traits": {
+      "calm": "冷靜",
+      "kind": "友善",
+      "active": "活躍",
+      "witty": "機智"
+    },
+    "absence": "‘Gloddy’有沒有缺席聚會？",
+    "bestPartner": "最佳夥伴",
+    "whoBestPartner": "誰是你的最佳夥伴？",
+    "reasonBestPartner1": "選擇你的最佳夥伴的原因是什麼",
+    "reasonBestPartner2": "為什麼選擇你的最佳夥伴？",
+    "leaveReview": "請為你的最佳夥伴留下評價。",
+    "evaluationComplete": "你已完成群組評價。",
+    "excitingGroups": "還有其他令人興奮的群組在等待你！",
+    "evaluationHelp1": "成員評價將",
+    "evaluationHelp2": "大大幫助未來的配對！",
+    "reallyNotEvaluate": "你真的不打算提供評價嗎？"
+  }
+}
