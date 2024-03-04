@@ -1,0 +1,128 @@
+{
+  "more": "更多",
+  "fold": "折疊",
+  "group": {
+    "exit": {
+      "label": "退出群組",
+      "content": "您確定要退出該群組嗎？",
+      "description1": "一旦退出群組，",
+      "description2": "信任分數",
+      "description3": "將被扣除。"
+    },
+    "report": {
+      "label": "舉報",
+      "content": "您確定要舉報該群組嗎？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您確定要屏蔽該群組嗎？"
+    }
+  },
+  "comment": {
+    "placeholder": "寫評論",
+    "commentLengthError": "* 請限制在150字以內。",
+    "firstComment": "快來發表第一條評論吧！",
+    "blockComment": "這條評論已被屏蔽。",
+    "delete": {
+      "label": "刪除",
+      "content": "您確定要刪除這條評論嗎？"
+    },
+    "report": {
+      "label": "舉報",
+      "content": "您確定要舉報這條評論嗎？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您確定要屏蔽這條評論嗎？"
+    }
+  },
+  "article": {
+    "headerTitle": "文章",
+    "delete": {
+      "label": "刪除",
+      "content": "您確定要刪除這篇文章嗎？"
+    },
+    "report": {
+      "label": "舉報",
+      "content": "您確定要舉報這篇文章嗎？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您確定要屏蔽這篇文章嗎？"
+    }
+  },
+  "notice": {
+    "headerTitle": "公告",
+    "delete": {
+      "label": "刪除",
+      "content": "您確定要刪除這條公告嗎？"
+    },
+    "report": {
+      "label": "舉報",
+      "content": "您確定要舉報這條公告嗎？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您確定要屏蔽這條公告嗎？"
+    }
+  },
+  "details": {
+    "tab": "詳情",
+    "members": "群組成員 ({{memberCount}}/{{maxMemberCount}})",
+    "viewAll": "查看全部",
+    "meetDate": "聚會時間",
+    "place": "聚會地點",
+    "join": "加入聚會",
+    "wait": "等待批准"
+  },
+  "board": {
+    "tab": "留言板",
+    "notice": "公告",
+    "emptyNotice": "沒有註冊的公告。",
+    "commentCount": "評論 {{commentCount}}條"
+  },
+  "members": {
+    "headerTitle": "群組成員"
+  },
+  "manage": {
+    "headerTitle": "管理申請",
+    "empty": "還沒有申請。",
+    "description": "請查看想要加入群組的成員申請",
+    "refuse": {
+      "label": "拒絕",
+      "description": "過於匆忙的拒絕可能會錯過合適的申請者。",
+      "content": "您確定要拒絕這個申請嗎？"
+    },
+    "approve": {
+      "label": "批准",
+      "description": "以相互尊重創建健康的群組文化！",
+      "content": "您確定要批准這個申請嗎？"
+    }
+  },
+  "apply": {
+    "headerTitle": "填寫申請",
+    "description": "請填寫申請以加入群組。",
+    "introduce": "我是這樣的人！",
+    "reason": "我想參加聚會的原因",
+    "placeholder": "請輸入內容。",
+    "submit": {
+      "label": "申請",
+      "content": "您確定要提交申請嗎？",
+      "description": "提交申請後無法再進行修改。"
+    }
+  },
+  "writeArticle": {
+    "headerTitle": "寫文章",
+    "content": {
+      "placeholder": "請寫至少20個字符的文章。"
+    },
+    "notice": "將此文章設置為公告。",
+    "submit": {
+      "label": "發布",
+      "content": "您確定要發布這篇文章嗎？"
+    },
+    "cancel": {
+      "content": "您確定要取消寫文章嗎？"
+    }
+  }
+}
