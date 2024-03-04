@@ -83,6 +83,7 @@ jobs:
 
     outputs:
       dependency_cache_key: ${{ needs.job_install_dependencies.outputs.dependency_cache_key }}
+      build_cache_key: ${{ env.BUILD_CACHE_KEY }}
 
   job_continuous_integration:
     runs-on: ubuntu-latest
@@ -131,11 +132,12 @@ jobs:
         with:
           path: ${{ env.CACHED_DEPENDENCY_PATHS }}
           key: ${{ needs.job_build.outputs.dependency_cache_key }}
+
       - name: Check build cache
         uses: actions/cache@v3
         with:
           path: ${{ env.CACHED_BUILD_PATHS }}
-          key: ${{ env.BUILD_CACHE_KEY }}
+          key: ${{ needs.job_build.outputs.build_cache_key }}
 
       - name: Analyze bundle sizes
         uses: transferwise/actions-next-bundle-analyzer@master
