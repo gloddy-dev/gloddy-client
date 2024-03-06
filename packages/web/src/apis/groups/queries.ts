@@ -1,3 +1,6 @@
+import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
+
 import {
   getApplies,
   getArticle,
@@ -10,8 +13,6 @@ import {
   getNotices,
 } from './apis';
 import { Keys } from './keys';
-import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
 
 export const useGetGroups = () => {
   const { data, ...rest } = useSuspenseInfiniteQuery({
