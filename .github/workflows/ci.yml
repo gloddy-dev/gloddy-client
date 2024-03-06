@@ -105,15 +105,15 @@ jobs:
 
       - name: Check Lint
         if: github.event_name != 'push'
-        run: yarn lint
+        run: yarn web lint
 
       - name: fix Lint
         if: github.event_name != 'push'
-        run: yarn lint:fix
+        run: yarn web lint:fix
 
       - name: Run Prettier
         if: github.event_name != 'push'
-        run: yarn format
+        run: yarn web format
 
   # job_nextjs_bundle_analysis:
   #   name: Nextjs bundle analysis
