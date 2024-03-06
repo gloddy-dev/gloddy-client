@@ -14,7 +14,7 @@ import { useBlockStore } from '@/store/useBlockStore';
 export default function QuestionContent() {
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
-  const { data: articleList, fetchNextPage, isFetching, hasNextPage } = useGetCommunityArticles(2);
+  const { data: articleList, fetchNextPage, hasNextPage } = useGetCommunityArticles(2);
 
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
@@ -34,7 +34,6 @@ export default function QuestionContent() {
         renderEmpty={() => <Empty />}
       />
       <div ref={ref} />
-      {isFetching && <Loading className="h-10" />}
     </>
   );
 }
