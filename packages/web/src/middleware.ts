@@ -3,7 +3,6 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { postReissue } from './apis/auth';
 import { cookieName, languages } from './app/i18n/settings';
 import { AUTH_KEYS } from './constants/token';
-import { afterDay1, afterDay60 } from './utils/date';
 
 const privatePages = /\/(?:en|ko|zh-CN|zh-TW)\/(grouping|meeting|profile|community)/;
 
@@ -27,49 +26,6 @@ const middleware = async (request: NextRequest) => {
     return;
   }
   const pathname = request.nextUrl.pathname;
-  if (isPrivatePage(pathname)) {
-    const accessToken = request.cookies.get(AUTH_KEYS.accessToken)?.value as string;
-    const refreshToken = request.cookies.get(AUTH_KEYS.refreshToken)?.value as string;
-    const accessTokenExpireTime = request.cookies.get(AUTH_KEYS.accessTokenExpireTime)
-      ?.value as string;
-    if (!accessTokenExpireTime) {
-      try {
-        const {
-          token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },
-        } = await postReissue(
-          { accessToken, refreshToken },
-          { headers: { 'X-AUTH-TOKEN': accessToken } }
-        );
-
-        const response = NextResponse.next();
-
-        response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken, {
-          expires: afterDay60,
-        });
-
-        response.cookies.set(AUTH_KEYS.accessTokenExpireTime, String(afterDay1.getTime()), {
-          expires: afterDay1,
-        });
-
-        response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
-          expires: afterDay60,
-        });
-
-        console.log('token reissued');
-        return response;
-      } catch (e) {
-        return NextResponse.redirect(new URL('/join', request.nextUrl.origin));
-      }
-    }
-  }
-
-  if (
-    request.nextUrl.pathname.indexOf('icon') > -1 ||
-    request.nextUrl.pathname.indexOf('chrome') > -1
-  )
-    return NextResponse.next();
-
-  const response = NextResponse.next();
 
   const lng = request.cookies.get(cookieName)?.value || 'en';
 
@@ -86,6 +42,53 @@ const middleware = async (request: NextRequest) => {
       )
     );
   }
+
+  const response = NextResponse.next();
+
+  if (isPrivatePage(pathname)) {
+    const accessToken = request.cookies.get(AUTH_KEYS.accessToken)?.value as string;
+    const refreshToken = request.cookies.get(AUTH_KEYS.refreshToken)?.value as string;
+    const accessTokenExpireTime = request.cookies.get(AUTH_KEYS.accessTokenExpireTime)
+      ?.value as string;
+    if (!accessTokenExpireTime) {
+      try {
+        const {
+          token: { accessToken: reIssuedAccessToken, refreshToken: reIssuedRefreshToken },
+        } = await postReissue(
+          { accessToken, refreshToken },
+          { headers: { 'X-AUTH-TOKEN': accessToken } }
+        );
+
+        const currentTime = new Date();
+        const day1 = 1000 * 60 * 60 * 24;
+        const day60 = day1 * 60;
+        const afterDay1 = new Date(currentTime.getTime() + day1);
+        const afterDay60 = new Date(currentTime.getTime() + day60);
+
+        response.cookies.set(AUTH_KEYS.accessToken, reIssuedAccessToken, {
+          expires: afterDay60,
+        });
+
+        response.cookies.set(AUTH_KEYS.accessTokenExpireTime, String(afterDay1.getTime()), {
+          expires: afterDay1,
+        });
+
+        response.cookies.set(AUTH_KEYS.refreshToken, reIssuedRefreshToken, {
+          expires: afterDay60,
+        });
+
+        console.log('token reissued');
+      } catch (e) {
+        return NextResponse.redirect(new URL('/join', request.nextUrl.origin));
+      }
+    }
+  }
+
+  if (
+    request.nextUrl.pathname.indexOf('icon') > -1 ||
+    request.nextUrl.pathname.indexOf('chrome') > -1
+  )
+    return NextResponse.next();
 
   return response;
 };
