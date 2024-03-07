@@ -27,7 +27,8 @@ export default async function HydrationProvider({
         queryMultipleFn.map((queryFn, index) => {
           return queryClient.prefetchInfiniteQuery({
             queryKey: queryMultipleKey[index],
-            initialPageParam: 0,
+            queryFn,
+            initialPageParam: 0 as never,
           });
         })
       );

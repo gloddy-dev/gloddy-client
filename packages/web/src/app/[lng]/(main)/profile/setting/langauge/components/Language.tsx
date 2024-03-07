@@ -40,6 +40,18 @@ export default function Language() {
         <Spacing size={8} direction="horizontal" />
         <span>English</span>
       </Flex>
+      {/* Simplified Chinese */}
+      <Flex className="py-12" onClick={() => setLanguage('zh-CN')}>
+        <CircleCheckbox checked={language === 'zh-CN'} />
+        <Spacing size={8} direction="horizontal" />
+        <span>简体中文</span>
+      </Flex>
+      {/* Traditional Chinese */}
+      <Flex className="py-12" onClick={() => setLanguage('zh-TW')}>
+        <CircleCheckbox checked={language === 'zh-TW'} />
+        <Spacing size={8} direction="horizontal" />
+        <span>繁體中文</span>
+      </Flex>
       <ButtonGroup>
         <Button onClick={handleSubmit} disabled={prevLanguage === language}>
           {t('confirm')}
