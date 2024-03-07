@@ -8,13 +8,12 @@ import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
-import { Loading } from '@/components/Loading';
 import { useBlockStore } from '@/store/useBlockStore';
 
 export default function KpopContent() {
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
-  const { data: articleList, fetchNextPage, isFetching, hasNextPage } = useGetCommunityArticles(1);
+  const { data: articleList, fetchNextPage, hasNextPage } = useGetCommunityArticles(1);
 
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
@@ -34,7 +33,6 @@ export default function KpopContent() {
         renderEmpty={() => <Empty />}
       />
       <div ref={ref} />
-      {isFetching && <Loading className="h-10" />}
     </>
   );
 }

@@ -1,0 +1,46 @@
+{
+  "headerTitle": "匹配",
+  "create": {
+    "headerTitle": "創建群組",
+    "title": {
+      "label": "群組標題",
+      "placeholder": "請輸入標題。"
+    },
+    "content": {
+      "label": "群組資訊",
+      "placeholder": "請為活動撰寫介紹。"
+    },
+    "meetDate": {
+      "label": "日期和時間",
+      "placeholder": "設定會議的日期和時間。",
+      "year": "年",
+      "month": "月"
+    },
+    "time": {
+      "label": "開始時間",
+      "am": "上午",
+      "pm": "下午",
+      "hour": "小時",
+      "minute": "分鐘"
+    },
+    "place": {
+      "label": "地點",
+      "placeholder": "請設定會議的地點。",
+      "noResult": "未找到結果。"
+    },
+    "maxUser": {
+      "label": "參與人數"
+    },
+    "error": {
+      "time": "請設定一個比當前時間晚的時間。"
+    },
+    "continue": "繼續",
+    "submit": {
+      "label": "提交",
+      "message": "創建群組後無法進行更改。\n您希望繼續嗎？",
+      "ok": "是",
+      "cancel": "否"
+    }
+  },
+  "noGroup": "未找到群組。"
+}

@@ -1,0 +1,60 @@
+{
+  "category": {
+    "All": "全部",
+    "K-POP": "K-POP",
+    "Q&A": "我想知道",
+    "Language": "語言交換"
+  },
+  "create": {
+    "headerTitle": "創建帖子",
+    "category": {
+      "name": "類別",
+      "K-POP": "K-POP",
+      "Q&A": "我想知道",
+      "Language": "語言交換"
+    },
+    "title": {
+      "placeholder": "帖子標題"
+    },
+    "content": {
+      "placeholder": "請至少寫20個字符的帖子。"
+    },
+    "submit": {
+      "label": "發布",
+      "content": "您確定要發布這篇帖子嗎？"
+    },
+    "cancel": {
+      "content": "您確定要取消寫帖子嗎？"
+    }
+  },
+  "detail": {
+    "likeCount": "個",
+    "commentCount": "評論 {{commentCount}}個",
+    "block": "屏蔽帖子",
+    "block_content": "您確定要屏蔽這篇帖子嗎？",
+    "report": "舉報帖子",
+    "report_content": "您確定要舉報這篇帖子嗎？",
+    "delete": "刪除帖子",
+    "delete_content": "您確定要刪除這篇帖子嗎？",
+    "translate": "翻譯"
+  },
+  "comment": {
+    "placeholder_comment": "寫評論",
+    "placeholder_reply": "寫回復",
+    "commentLengthError": "* 請寫不超過150個字符。",
+    "firstComment": "來成為第一個評論的人吧！",
+    "blockComment": "這是一個被屏蔽的評論。",
+    "delete": {
+      "label": "刪除",
+      "content": "您確定要刪除這條評論嗎？"
+    },
+    "report": {
+      "label": "舉報",
+      "content": "您確定要舉報這條評論嗎？"
+    },
+    "block": {
+      "label": "屏蔽",
+      "content": "您確定要屏蔽這條評論嗎？"
+    }
+  }
+}

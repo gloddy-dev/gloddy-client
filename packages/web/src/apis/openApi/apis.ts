@@ -17,5 +17,7 @@ export const postOpenAIAPI = async (messages: Message[]) => {
     }
   );
 
+  console.log(response.data.choices[0].message.content);
+
   return JSON.parse(response.data.choices[0].message.content);
 };

@@ -24,6 +24,12 @@ export const getTokenFromCookie = async () => {
 };
 
 export const setTokenAtCookie = async ({ accessToken, refreshToken, userId }: CookieKeyType) => {
+  // const currentTime = new Date();
+  // const day1 = 1000 * 60 * 60 * 24;
+  // const day60 = day1 * 60;
+  // const afterDay1 = new Date(currentTime.getTime() + day1);
+  // const afterDay60 = new Date(currentTime.getTime() + day60);
+
   if (typeof window === 'undefined') {
     const { cookies } = await import('next/headers');
     const cookieStore = cookies();
