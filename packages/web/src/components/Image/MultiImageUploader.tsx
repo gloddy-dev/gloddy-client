@@ -23,9 +23,12 @@ export default function MultiImageUploader<T extends FieldValues>({
     control,
   });
 
-  const { handleFileUploadClick, isPending } = useFileUpload((files) => {
-    onChange([...value, ...files]);
-  });
+  const { handleFileUploadClick, isPending } = useFileUpload(
+    (files) => {
+      onChange([...value, ...files]);
+    },
+    { multiple: true }
+  );
 
   const handleDeleteClick = useCallback(
     (imageUrl: string) => onChange(value.filter((v: string) => v !== imageUrl)),
