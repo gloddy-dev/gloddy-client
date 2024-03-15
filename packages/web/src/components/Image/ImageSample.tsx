@@ -1,5 +1,6 @@
-import { sampleBlob64 } from '@/constants/sampleBlob64';
 import Image from 'next/image';
+
+import { sampleBlob64 } from '@/constants/sampleBlob64';
 
 interface ImageSampleProps {
   width: number;

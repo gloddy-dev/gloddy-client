@@ -1,5 +1,3 @@
-import { useTranslation } from 'react-i18next';
-
 import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
 import { NavLink } from '../NavLink';

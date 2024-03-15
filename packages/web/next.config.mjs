@@ -1,6 +1,5 @@
 import createBundleAnalyzer from '@next/bundle-analyzer';
 import withPlaiceholder from '@plaiceholder/next';
-import { withSentryConfig } from '@sentry/nextjs';
 
 const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -23,13 +22,4 @@ const nextConfig = {
     ],
   },
 };
-
-const sentryWebpackPluginOptions = {
-  silent: true,
-  org: 'gloddy',
-  project: 'javascript-nextjs',
-};
-
-export default withBundleAnalyzer(
-  withPlaiceholder(withSentryConfig(nextConfig, sentryWebpackPluginOptions))
-);
+export default withBundleAnalyzer(withPlaiceholder(nextConfig));

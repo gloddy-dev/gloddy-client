@@ -5,11 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { useCommentContext } from './CommentProvider';
 
-import {
-  useCreateCommunityReply,
-  useGetCommunityArticleDetail,
-  usePostCreateComment,
-} from '@/apis/community';
+import { useCreateCommunityReply, usePostCreateComment } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';

@@ -1,6 +1,7 @@
 import './globals.css';
 
 import { dir } from 'i18next';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 
 import { languages } from '../i18n/settings';
@@ -16,6 +17,18 @@ import ModalProvider from '@/hooks/useModal/ModalProvider';
 const DEFAULT_OG_TITLE = 'Gloddy';
 const DEFAULT_OG_DESC = '조금 더 믿을 만한 모임을 할 수 있도록 준비했어요!';
 const DEFAULT_OG_IMAGE = '/images/main_logo.png';
+
+const SansFont = localFont({
+  src: [
+    {
+      path: './fonts/Pretendard-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-pretendard',
+});
 
 export const metadata = {
   metadataBase: new URL(BASE_WEB_URL),
@@ -80,7 +93,7 @@ interface LayoutProps {
 
 function Layout({ lng, children }: StrictPropsWithChildren<LayoutProps>) {
   return (
-    <html lang={lng} dir={dir(lng)}>
+    <html lang={lng} dir={dir(lng)} className={`${SansFont.variable}`}>
       <body className="flex h-full min-h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
         <div className="max-w-450 text-sign-primary relative min-h-[100dvh] w-full bg-white">
           {children}
