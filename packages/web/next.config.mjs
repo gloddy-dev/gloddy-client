@@ -1,5 +1,10 @@
+import createBundleAnalyzer from '@next/bundle-analyzer';
 import withPlaiceholder from '@plaiceholder/next';
 import { withSentryConfig } from '@sentry/nextjs';
+
+const withBundleAnalyzer = createBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 /**
  * @type {import('next').NextConfig}
@@ -25,4 +30,6 @@ const sentryWebpackPluginOptions = {
   project: 'javascript-nextjs',
 };
 
-export default withPlaiceholder(withSentryConfig(nextConfig, sentryWebpackPluginOptions));
+export default withBundleAnalyzer(
+  withPlaiceholder(withSentryConfig(nextConfig, sentryWebpackPluginOptions))
+);

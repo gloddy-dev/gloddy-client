@@ -1,4 +1,3 @@
-import { GoogleMap, Marker } from '@react-google-maps/api';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Control, useController } from 'react-hook-form';
@@ -12,6 +11,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
+import { MapView } from '@/components/MapView';
 import { BottomSheet } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
@@ -93,7 +93,6 @@ export default function LocationBottomSheet({
     if (field.value.name) {
       setValue(field.value.name, false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -117,20 +116,7 @@ export default function LocationBottomSheet({
       {fieldState.isDirty && (
         <>
           <div className="aspect-video">
-            <GoogleMap
-              mapContainerStyle={{ width: '100%', height: '200px', borderRadius: '8px' }}
-              center={{
-                lat: latLng?.lat || 37.566,
-                lng: latLng?.lng || 126.978,
-              }}
-              zoom={15}
-              options={{
-                disableDefaultUI: true,
-                keyboardShortcuts: false,
-              }}
-            >
-              {latLng && <Marker position={latLng} />}
-            </GoogleMap>
+            <MapView latLng={latLng} />
           </div>
           <Spacing size={20} />
           <Flex direction="column" className="rounded-8 bg-divider gap-2 p-16">

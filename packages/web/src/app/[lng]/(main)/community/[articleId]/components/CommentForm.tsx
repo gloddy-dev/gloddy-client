@@ -90,7 +90,7 @@ export default function CommentForm() {
           className="bg-primary flex h-48 w-48 shrink-0 items-center justify-center rounded-full"
           onMouseDown={(e) => e.preventDefault()}
         >
-          <Icon id="24-send" />
+          <Icon id="24-send" className={'text-white'} />
         </button>
       </form>
     </div>

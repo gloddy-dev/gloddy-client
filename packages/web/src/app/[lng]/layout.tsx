@@ -8,7 +8,6 @@ import { languages } from '../i18n/settings';
 import type { StrictPropsWithChildren } from '@/types';
 
 import { GoogleAnalytics } from '@/components/Analytics';
-import { InitMap } from '@/components/Map';
 import { QueryProvider } from '@/components/Provider';
 import ToastProvider from '@/components/Provider/ToastProvider';
 import { BASE_WEB_URL, GOOGLE_API_KEY } from '@/constants';
@@ -67,7 +66,6 @@ export default function RootLayout({
           </ModalProvider>
         </QueryProvider>
       </ToastProvider>
-      <InitMap />
       <Script
         defer
         src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places&callback=initMap`}

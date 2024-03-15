@@ -12,7 +12,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "format": "prettier --write --ignore-path .gitignore .",
-    "make-sprite": "rm public/sprite/sprite.svg && svgstore -o public/sprite/sprite.svg public/sprite/icons/**/*.svg"
+    "make-sprite": "rm public/sprite/sprite.svg && svgstore -o public/sprite/sprite.svg public/sprite/icons/**/*.svg",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.0.3",
@@ -30,7 +31,6 @@
     "clsx": "^1.2.1",
     "cssnano": "^6.0.1",
     "date-fns": "^2.30.0",
-    "framer-motion": "^10.16.4",
     "https": "^1.0.0",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",

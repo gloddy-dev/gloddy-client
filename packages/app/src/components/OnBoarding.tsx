@@ -34,7 +34,7 @@ export default function OnBoarding() {
   const preloading = async () => {
     const isUserOnBoardSeen = await AsyncStorage.getItem('onBoarding');
     if (!isUserOnBoardSeen) return;
-    navigation.replace('WebViewContainer', {
+    navigation.replace('TabBarNavigator', {
       url: `${SOURCE_URL}`,
     });
   };

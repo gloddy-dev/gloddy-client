@@ -1,8 +1,8 @@
 'use client';
+import { useEffect } from 'react';
+
 import Loading from './Loading';
 import { ModalWrapper } from '../Modal';
-import { AnimatePresence } from 'framer-motion';
-import { useEffect } from 'react';
 
 interface LayerLoadingProps {
   isPending: boolean;
@@ -19,12 +19,12 @@ export default function LayerLoading({ isPending, layerNumber = 1 }: LayerLoadin
   }, [isPending]);
 
   return (
-    <AnimatePresence>
+    <>
       {isPending && (
         <ModalWrapper layerNumber={layerNumber}>
           <Loading />
         </ModalWrapper>
       )}
-    </AnimatePresence>
+    </>
   );
 }

@@ -69,7 +69,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .react-datepicker {
-  @apply w-full !border-none;
+  @apply w-full border-none;
 }
 
 .react-datepicker__month-container {
