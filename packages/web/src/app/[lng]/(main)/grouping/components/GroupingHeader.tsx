@@ -13,14 +13,17 @@ export default function GroupingHeader() {
     <Header>
       <Header.Left className="pl-20">{t('headerTitle')}</Header.Left>
       <Header.Right className="pr-4">
+        <IconButton
+          size="large"
+          onClick={() => window.open('https://forms.gle/YJvNzLniP8he4xv68', '_blank')}
+        >
+          <Icon id="24-comments" />
+        </IconButton>
         <NavLink href="/notification">
           <IconButton size="large">
-            <Icon id="24-notification" className={'text-sign-secondary'} />
+            <Icon id="24-notification" className={'text-primary'} />
           </IconButton>
         </NavLink>
-        <IconButton size="large">
-          <Icon id="24-send" className={'text-sign-secondary -rotate-45'} />
-        </IconButton>
       </Header.Right>
     </Header>
   );
