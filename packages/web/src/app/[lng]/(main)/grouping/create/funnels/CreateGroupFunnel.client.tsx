@@ -1,16 +1,19 @@
 'use client';
 
-import MainStep from './main/MainStep.client';
-import MeetDateStep from './meetDate/MeetDateStep.client';
-import CreateHeader from '../components/CreateHeader.client';
-import { usePostCreateGroup } from '@/apis/groups';
-import { LayerLoading } from '@/components/Loading';
-import { useFunnel } from '@/hooks/useFunnel';
 import { format } from 'date-fns';
+import dynamic from 'next/dynamic';
 
 import type { CreateGroupContextValue } from '../type';
 import type { TimeType } from '@/types';
 import type { SubmitHandler } from 'react-hook-form';
+
+import { usePostCreateGroup } from '@/apis/groups';
+import { LayerLoading } from '@/components/Loading';
+import { useFunnel } from '@/hooks/useFunnel';
+
+const MainStep = dynamic(() => import('./main/MainStep.client'));
+const MeetDateStep = dynamic(() => import('./meetDate/MeetDateStep.client'));
+const CreateHeader = dynamic(() => import('../components/CreateHeader.client'));
 
 function formatTime(time: TimeType) {
   time.fromHour =

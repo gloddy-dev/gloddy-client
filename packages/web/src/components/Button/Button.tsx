@@ -1,11 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { debounce, throttle } from 'lodash';
-import { useCallback } from 'react';
-
 import { Loading } from '../Loading';
 
 import type { StrictPropsWithChildren } from '@/types';
 
+import useDebouncedCallback from '@/hooks/useDebounceCallback';
 import cn from '@/utils/cn';
 
 interface ButtonProps<T extends React.ElementType> extends React.HTMLAttributes<T> {
@@ -51,7 +48,7 @@ export default function Button<T extends React.ElementType>({
   className,
   disabled,
   children,
-  onClick,
+  onClick = () => {},
   isPending = false,
   size = 'medium',
   variant = 'solid-primary',
@@ -63,19 +60,10 @@ export default function Button<T extends React.ElementType>({
 }: StrictPropsWithChildren<ButtonProps<T> & React.ComponentPropsWithoutRef<T>>) {
   const Element = as || 'button';
 
-  const handleDebounceClick = useCallback(
-    debounce((event) => {
-      onClick?.(event);
-    }, debounceDelay),
-    [onClick, debounceDelay]
-  );
-
-  const handleThrottleClick = useCallback(
-    throttle((event) => {
-      onClick?.(event);
-    }, throttleDelay),
-    [throttleDelay]
-  );
+  const debounceValue = useDebouncedCallback({
+    target: onClick,
+    delay: debounceDelay,
+  });
 
   return (
     <Element
@@ -96,13 +84,7 @@ export default function Button<T extends React.ElementType>({
         },
         className
       )}
-      onClick={
-        actionType === 'debounce'
-          ? handleDebounceClick
-          : actionType === 'throttle'
-            ? handleThrottleClick
-            : onClick
-      }
+      onClick={debounceValue}
       disabled={disabled || isPending}
       {...props}
     >

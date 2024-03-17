@@ -1,8 +1,11 @@
 'use client';
 
+import { Suspense } from 'react';
+
 import BlockDoneModal from '../../components/BlockDoneModal.client';
 import ReportDoneModal from '../../components/ReportDoneModal.client';
 import WarningModal from '../../components/WarningModal.client';
+
 import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { IconButton } from '@/components/Button';
@@ -13,7 +16,6 @@ import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
-import { Suspense } from 'react';
 
 export default function GroupDetailHeader() {
   const { back } = useAppRouter();
