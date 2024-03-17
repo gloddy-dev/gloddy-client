@@ -1,15 +1,17 @@
 'use client';
 
+import { useState } from 'react';
+import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import ApplyCard from './ApplyCard.client';
+
 import { useGetApplies } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { useState } from 'react';
-import { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function ManageDetail() {
   const { t } = useTranslation('groupDetail');

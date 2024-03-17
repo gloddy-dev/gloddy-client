@@ -1,4 +1,3 @@
-import { sampleBlob64 } from '@/constants/sampleBlob64';
 import Image from 'next/image';
 
 interface ImageSampleProps {
@@ -12,7 +11,9 @@ export default function ImageSample({ width, height }: ImageSampleProps) {
       width={width}
       height={height}
       alt="sample"
-      blurDataURL={sampleBlob64}
+      blurDataURL={
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=='
+      }
       placeholder="blur"
     />
   );

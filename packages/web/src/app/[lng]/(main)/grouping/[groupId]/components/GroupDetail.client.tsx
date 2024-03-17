@@ -1,15 +1,19 @@
 'use client';
 
-import ArticlesContent from './articles/ArticlesContent.client';
-import DetailContent from './detail/DetailContent.client';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
 import TopSection from './TopSection.client';
+
 import { useGetGroupDetail } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
 import { Tabs } from '@/components/Tabs';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { Suspense } from 'react';
+
+const DetailContent = dynamic(() => import('./detail/DetailContent.client'));
+const ArticlesContent = dynamic(() => import('./articles/ArticlesContent.client'));
 
 export default function GroupDetailPage() {
   const { t } = useTranslation('groupDetail');

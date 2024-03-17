@@ -13,6 +13,7 @@ import { CardHeader } from '@/components/Card';
 import { Flex } from '@/components/Layout';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
+import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 
 interface ArticleItemProps {
@@ -39,6 +40,11 @@ export default function ArticleItem({
     articleId,
   });
   const pathname = usePathname();
+  const { push } = useAppRouter();
+
+  const handleOnArticleClick = () => {
+    push(`${pathname}/articles/${articleId}`);
+  };
 
   return (
     <div className="mx-20 mb-24 mt-16 px-4">
@@ -63,13 +69,7 @@ export default function ArticleItem({
       {!isArticleDetailPage && (
         <>
           <Spacing size={16} />
-          <Button
-            variant="solid-secondary"
-            as="a"
-            href={`
-                ${pathname}/articles/${articleId}
-              `}
-          >
+          <Button variant="solid-secondary" as="a" onClick={handleOnArticleClick}>
             {t('board.commentCount', { commentCount })}
           </Button>
           <Spacing size={24} />

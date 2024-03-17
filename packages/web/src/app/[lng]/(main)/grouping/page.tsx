@@ -1,5 +1,3 @@
-import dynamic from 'next/dynamic';
-
 import CreateGroupButton from './components/CreateGroupButton.client';
 import GroupingCardList from './components/GroupingCardList.client';
 import GroupingHeader from './components/GroupingHeader';
