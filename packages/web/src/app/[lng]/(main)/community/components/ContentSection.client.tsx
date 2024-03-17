@@ -1,18 +1,15 @@
 'use client';
-
+import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
-import AllContent from './AllContent.client';
-import KpopContent from './KpopContent';
-import LanguageContent from './LanguageContent.client';
-import QuestionContent from './QuestionContent.client';
-
 import { useTranslation } from '@/app/i18n/client';
+import { Loading } from '@/components/Loading';
 import { Tabs } from '@/components/Tabs';
 
-export interface CommunityChannelMessage {
-  categoryId: number;
-}
+const AllContent = dynamic(() => import('./AllContent.client'));
+const KpopContent = dynamic(() => import('./KpopContent'));
+const LanguageContent = dynamic(() => import('./LanguageContent.client'));
+const QuestionContent = dynamic(() => import('./QuestionContent.client'));
 
 export default function ContentSection() {
   const { t } = useTranslation('community');
@@ -26,22 +23,22 @@ export default function ContentSection() {
         <Tabs.Tab text={t('category.Language')} value="language" />
       </Tabs.List>
       <Tabs.Panel value="all">
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <AllContent />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="kpop">
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <KpopContent />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="question">
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <QuestionContent />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="language">
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <LanguageContent />
         </Suspense>
       </Tabs.Panel>

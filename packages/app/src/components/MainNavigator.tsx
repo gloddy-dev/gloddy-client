@@ -1,4 +1,3 @@
-import { useFlipper } from '@react-navigation/devtools';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
@@ -14,7 +13,7 @@ const Stack = createStackNavigator();
 
 export default function MainNavigator() {
   const navigationRef = useNavigationContainerRef();
-  useFlipper(navigationRef);
+
   useDidMount(() => {
     setFcmAlert(navigationRef);
   });

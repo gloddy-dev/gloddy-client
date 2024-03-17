@@ -5,11 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { useCommentContext } from './CommentProvider';
 
-import {
-  useCreateCommunityReply,
-  useGetCommunityArticleDetail,
-  usePostCreateComment,
-} from '@/apis/community';
+import { useCreateCommunityReply, usePostCreateComment } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { TextFieldController } from '@/components/TextField';
@@ -90,7 +86,7 @@ export default function CommentForm() {
           className="bg-primary flex h-48 w-48 shrink-0 items-center justify-center rounded-full"
           onMouseDown={(e) => e.preventDefault()}
         >
-          <Icon id="24-send" />
+          <Icon id="24-send" className={'text-white'} />
         </button>
       </form>
     </div>

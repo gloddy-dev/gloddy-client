@@ -11,15 +11,14 @@ import { ItemList } from '@/components/List';
 import { useBlockStore } from '@/store/useBlockStore';
 
 export default function GroupingCardList() {
+  const { ref, inView } = useInView();
   const { blockGroupIds } = useBlockStore();
   const { data: groupList, fetchNextPage, hasNextPage } = useGetGroups();
   const { t } = useTranslation('grouping');
 
-  const { ref, inView } = useInView();
-
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
-  }, [inView, fetchNextPage]);
+  }, [inView, fetchNextPage, hasNextPage]);
 
   return (
     <>

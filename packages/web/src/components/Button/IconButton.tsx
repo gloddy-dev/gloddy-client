@@ -1,7 +1,7 @@
-import cn from '@/utils/cn';
-
 import type { StrictPropsWithChildren } from '@/types';
 import type { HTMLAttributes } from 'react';
+
+import cn from '@/utils/cn';
 
 interface IconButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**

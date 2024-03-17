@@ -1,6 +1,7 @@
+import { ComponentProps, Fragment } from 'react';
+
 import { Divider } from '../Divider';
 import { Flex } from '../Layout';
-import { ComponentProps, Fragment } from 'react';
 
 interface ItemListProps<T> extends Omit<ComponentProps<typeof Flex>, 'children'> {
   data: T[];

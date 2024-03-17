@@ -1,7 +1,8 @@
 'use client';
 
-import useAppRouter from '@/hooks/useAppRouter';
 import { MouseEvent, PropsWithChildren } from 'react';
+
+import useAppRouter from '@/hooks/useAppRouter';
 
 interface NavLinkProps {
   href: string;

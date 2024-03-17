@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
 
 import { Icon } from '../Icon';
 import ImageSample from '../Image/ImageSample';
@@ -12,7 +11,6 @@ import { useDeleteScrapMeeting } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import usePlaceDetails from '@/hooks/usePlaceDetails';
 import cn from '@/utils/cn';
 import { formatMeetingDate } from '@/utils/formatMeetingDate';
 
@@ -53,14 +51,6 @@ export default function GroupingCard({
     placeId,
   } = groupingData;
 
-  const { lng } = useParams() as { lng: string };
-  const { place } = usePlaceDetails({
-    placeId,
-    fields: ['formatted_address'],
-    language: lng,
-    region: 'KR',
-  });
-
   const status = isNew ? 'NEW' : isExistNewApply ? '신규 지원' : '';
 
   return (
@@ -96,7 +86,7 @@ export default function GroupingCard({
           <Flex align="center" className="text-caption text-sign-tertiary">
             <Icon id="16-location" width={16} height={16} />
             <Spacing size={4} direction="horizontal" />
-            <p className="truncate">{place?.formatted_address || placeAddress}</p>
+            <p className="truncate">{placeAddress}</p>
           </Flex>
           <Spacing size={4} />
           <Flex align="center" className="text-caption text-sign-tertiary">

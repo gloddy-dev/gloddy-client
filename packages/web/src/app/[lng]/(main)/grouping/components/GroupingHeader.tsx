@@ -21,7 +21,7 @@ export default function GroupingHeader() {
         </IconButton>
         <NavLink href="/notification">
           <IconButton size="large">
-            <Icon id="24-notification" />
+            <Icon id="24-notification" className={'text-primary'} />
           </IconButton>
         </NavLink>
       </Header.Right>
