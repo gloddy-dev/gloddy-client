@@ -25,7 +25,8 @@ local.properties
 .cxx/
 *.keystore
 !debug.keystore
-
+my-release-key.jks
+upload_certificate.pem
 # node.js
 npm-debug.log
 yarn-error.log

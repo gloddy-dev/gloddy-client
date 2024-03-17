@@ -1,8 +1,9 @@
 'use client';
-import Loading from './Loading';
-import { ModalWrapper } from '../Modal';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
+
+import Loading from './Loading';
+import { ModalWrapper } from '../Modal';
 
 interface LayerLoadingProps {
   isPending: boolean;

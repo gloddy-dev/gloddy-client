@@ -1,5 +1,6 @@
 import GroupDetailPage from './components/GroupDetail.client';
 import GroupDetailHeader from './components/GroupDetailHeader.client';
+
 import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';

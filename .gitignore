@@ -18,3 +18,4 @@ node_modules
 # Web
 .sentryclirc
 .next
+.idea

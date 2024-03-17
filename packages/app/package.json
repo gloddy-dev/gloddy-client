@@ -36,7 +36,6 @@
     "@react-native-firebase/messaging": "^18.8.0",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-navigation/bottom-tabs": "^6.5.11",
-    "@react-navigation/devtools": "^6.0.20",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/stack": "^6.3.20",
     "babel-plugin-module-resolver": "^5.0.0",
@@ -45,7 +44,6 @@
     "react-native-animated-pagination-dots": "^0.1.73",
     "react-native-code-push": "^8.2.1",
     "react-native-config": "^1.5.1",
-    "react-native-flipper": "^0.212.0",
     "react-native-gesture-handler": "^2.14.1",
     "react-native-localize": "^3.0.6",
     "react-native-permissions": "^4.1.0",
@@ -66,15 +64,15 @@
     "@babel/preset-env": "^7.23.9",
     "@babel/runtime": "^7.23.9",
     "@react-native-community/cli-debugger-ui": "^12.3.5",
-    "@react-native/metro-config": "^0.73.3",
+    "@react-native/metro-config": "^0.72.11",
     "@tsconfig/react-native": "^3.0.3",
     "@types/react-native-push-notification": "^8.1.4",
     "@types/react-test-renderer": "^18.0.7",
     "i": "^0.3.7",
-    "metro-react-native-babel-preset": "0.77.0",
+    "metro-react-native-babel-preset": "0.76.8",
     "react-test-renderer": "18.2.0"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   }
 }

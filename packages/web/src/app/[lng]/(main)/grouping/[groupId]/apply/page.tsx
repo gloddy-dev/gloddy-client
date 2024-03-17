@@ -1,5 +1,6 @@
 import ApplyHeader from './components/ApplyHeader';
 import InputForm from './components/InputForm.client';
+
 import { serverTranslation } from '@/app/i18n';
 import { Spacing } from '@/components/Spacing';
 

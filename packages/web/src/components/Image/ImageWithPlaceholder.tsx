@@ -1,5 +1,6 @@
-import getBase64 from '@/utils/getBase64FromBuffer';
 import Image from 'next/image';
+
+import getBase64 from '@/utils/getBase64FromBuffer';
 
 interface ImageWithPlaceholderProps {
   src: string;
