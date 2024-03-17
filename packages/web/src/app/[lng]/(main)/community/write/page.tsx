@@ -1,5 +1,5 @@
-import InputSection from '@/app/[lng]/(main)/community/write/components/InputSection';
-import WriteHeader from '@/app/[lng]/(main)/community/write/components/WriteHeader';
+import InputSection from './components/InputSection';
+import WriteHeader from './components/WriteHeader';
 
 export default function CommunityWritePage() {
   return (

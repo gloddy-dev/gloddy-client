@@ -1,4 +1,5 @@
 'use client';
+import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 
 import Loading from './Loading';
@@ -19,12 +20,12 @@ export default function LayerLoading({ isPending, layerNumber = 1 }: LayerLoadin
   }, [isPending]);
 
   return (
-    <>
+    <AnimatePresence>
       {isPending && (
         <ModalWrapper layerNumber={layerNumber}>
           <Loading />
         </ModalWrapper>
       )}
-    </>
+    </AnimatePresence>
   );
 }

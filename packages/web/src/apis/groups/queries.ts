@@ -1,5 +1,4 @@
 import { useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
 
 import {
   getApplies,
@@ -17,16 +16,14 @@ import { Keys } from './keys';
 export const useGetGroups = () => {
   const { data, ...rest } = useSuspenseInfiniteQuery({
     queryKey: Keys.getGroups(),
-    queryFn: ({ pageParam }) => getGroups(pageParam),
+    queryFn: ({ pageParam = 0 }) => getGroups(pageParam),
     getNextPageParam: (lastPage) =>
       lastPage.totalPage !== lastPage.currentPage ? lastPage.currentPage + 1 : undefined,
     initialPageParam: 0,
   });
 
-  const mergeData = useMemo(() => data.pages?.flatMap((page) => page.contents), [data.pages]);
-
   return {
-    data: mergeData,
+    data: data.pages?.flatMap((page) => page.contents),
     ...rest,
   };
 };

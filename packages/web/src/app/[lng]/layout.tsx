@@ -2,7 +2,7 @@ import './globals.css';
 
 import { dir } from 'i18next';
 import localFont from 'next/font/local';
-import Script from 'next/script';
+import { Suspense } from 'react';
 
 import { languages } from '../i18n/settings';
 
@@ -11,7 +11,7 @@ import type { StrictPropsWithChildren } from '@/types';
 import { GoogleAnalytics } from '@/components/Analytics';
 import { QueryProvider } from '@/components/Provider';
 import ToastProvider from '@/components/Provider/ToastProvider';
-import { BASE_WEB_URL, GOOGLE_API_KEY } from '@/constants';
+import { BASE_WEB_URL } from '@/constants';
 import ModalProvider from '@/hooks/useModal/ModalProvider';
 
 const DEFAULT_OG_TITLE = 'Gloddy';
@@ -74,15 +74,13 @@ export default function RootLayout({
       <ToastProvider>
         <QueryProvider>
           <ModalProvider>
-            <GoogleAnalytics />
+            <Suspense>
+              <GoogleAnalytics />
+            </Suspense>
             {children}
           </ModalProvider>
         </QueryProvider>
       </ToastProvider>
-      <Script
-        defer
-        src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places&callback=initMap`}
-      />
     </Layout>
   );
 }

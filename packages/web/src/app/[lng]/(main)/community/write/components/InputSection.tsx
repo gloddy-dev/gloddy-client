@@ -8,7 +8,7 @@ import { WriteFormType } from '../type';
 import { usePostCreateCommunityArticle } from '@/apis/community';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
-import { MultiImageUploader } from '@/components/Image';
+import MultiImageUploader from '@/components/Image/MultiImageUploader';
 import ListBoxController from '@/components/ListBox/ListBoxController';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';

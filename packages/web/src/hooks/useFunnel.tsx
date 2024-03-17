@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -71,12 +70,6 @@ export function useFunnel<Steps extends NonEmptyArray<string>>(
   const Step = ({ name, children }: StepProps<Steps>) => {
     return currentStep === name ? <>{children}</> : null;
   };
-
-  // useEffect(() => {
-  //   if (currentStep === initialStep) {
-  //     replace(`${pathname}?${queryKey}=${initialStep}`);
-  //   }
-  // }, []);
 
   Funnel.Step = Step;
 

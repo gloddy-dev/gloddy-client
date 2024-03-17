@@ -1,13 +1,15 @@
 'use client';
+import { usePathname } from 'next/navigation';
+
 import LocationSection from './LocationSection.client';
 import MemberSection from './MemberSection.client';
 import TimeSection from './TimeSection.client';
+
 import { useGetGroupDetail } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useNumberParams } from '@/hooks/useNumberParams';
-import { usePathname } from 'next/navigation';
 
 export default function DetailContent() {
   const { t } = useTranslation('groupDetail');
