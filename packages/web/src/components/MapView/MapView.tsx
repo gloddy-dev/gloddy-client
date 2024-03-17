@@ -1,10 +1,10 @@
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import { LatLng } from 'use-places-autocomplete';
+import { GoogleMap, Marker, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 
 import { GOOGLE_API_KEY } from '@/constants';
+import { LatLng } from '@/types';
 
 interface MapViewProps {
-  latLng?: LatLng;
+  latLng: LatLng;
 }
 
 export default function MapView({ latLng }: MapViewProps) {
@@ -17,8 +17,8 @@ export default function MapView({ latLng }: MapViewProps) {
     <GoogleMap
       mapContainerStyle={{ width: '100%', height: '200px', borderRadius: '8px' }}
       center={{
-        lat: latLng?.lat || 37.566,
-        lng: latLng?.lng || 126.978,
+        lat: latLng?.lat,
+        lng: latLng?.lng,
       }}
       zoom={15}
       options={{
@@ -26,7 +26,7 @@ export default function MapView({ latLng }: MapViewProps) {
         keyboardShortcuts: false,
       }}
     >
-      {latLng && <Marker position={latLng} />}
+      <MarkerF position={latLng} />
     </GoogleMap>
   ) : (
     <></>

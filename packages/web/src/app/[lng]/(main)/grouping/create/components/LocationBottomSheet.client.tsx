@@ -1,7 +1,7 @@
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import usePlacesService from 'react-google-autocomplete/lib/usePlacesAutocompleteService';
 import { Control, useController } from 'react-hook-form';
-import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
 import LocationItem from './LocationItem.client';
 import { CreateGroupContextValue } from '../type';
@@ -15,6 +15,7 @@ import { MapView } from '@/components/MapView';
 import { BottomSheet } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
+import { GOOGLE_API_KEY } from '@/constants';
 import { LatLng } from '@/types';
 
 interface LocationBottomSheetProps {
@@ -31,19 +32,13 @@ export default function LocationBottomSheet({
   const { lng } = useParams() as { lng: string };
   const { t } = useTranslation('grouping');
 
-  const {
-    ready,
-    value,
-    suggestions: { status, data },
-    setValue,
-    clearSuggestions,
-  } = usePlacesAutocomplete({
-    callbackName: 'initMap',
-    requestOptions: {
+  const [placeValue, setPlaceValue] = useState<string>('');
+
+  const { placesService, placePredictions, getPlacePredictions, isPlacePredictionsLoading } =
+    usePlacesService({
+      apiKey: GOOGLE_API_KEY,
       language: lng,
-      region: 'KR',
-    },
-  });
+    });
 
   const { field, fieldState } = useController({
     name: 'place',
@@ -70,30 +65,30 @@ export default function LocationBottomSheet({
       latitude: undefined,
       longitude: undefined,
     });
-    setValue(e.target.value);
+    setPlaceValue(e.target.value);
+    getPlacePredictions({ input: e.target.value });
     setLatLng(undefined);
   };
 
   const handleSelect = async (place: google.maps.places.AutocompletePrediction) => {
-    const geocode = await getGeocode({ address: place.description });
-    const latLng = getLatLng(geocode[0]);
-    setLatLng(latLng);
-    field.onChange({
-      id: place.place_id,
-      name: place.structured_formatting.main_text,
-      address: place.structured_formatting.secondary_text,
-      latitude: latLng.lat,
-      longitude: latLng.lng,
-    });
-    setValue(place.structured_formatting.main_text, false);
-    clearSuggestions();
-  };
+    placesService?.getDetails({ placeId: place.place_id }, (details) => {
+      const lat = details?.geometry?.location?.lat();
+      const lng = details?.geometry?.location?.lng();
 
-  useEffect(() => {
-    if (field.value.name) {
-      setValue(field.value.name, false);
-    }
-  }, []);
+      if (lat && lng) {
+        setLatLng({ lat, lng });
+        field.onChange({
+          id: place.place_id,
+          name: place.structured_formatting.main_text,
+          address: place.structured_formatting.secondary_text,
+          latitude: lat,
+          longitude: lng,
+        });
+      }
+    });
+
+    setPlaceValue(place.structured_formatting.main_text);
+  };
 
   return (
     <BottomSheet
@@ -108,16 +103,13 @@ export default function LocationBottomSheet({
         as="input"
         placeholder={t('create.place.placeholder')}
         leftIcon={<Icon id="24-search" width={24} height={24} />}
-        value={value}
+        value={placeValue}
         onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
-        readOnly={!ready}
       />
       <Spacing size={20} />
       {fieldState.isDirty && (
         <>
-          <div className="aspect-video">
-            <MapView latLng={latLng} />
-          </div>
+          <div className="aspect-video">{latLng && <MapView latLng={latLng} />}</div>
           <Spacing size={20} />
           <Flex direction="column" className="rounded-8 bg-divider gap-2 p-16">
             <p className="text-subtitle-2 truncate">{field.value.name}</p>
@@ -126,15 +118,17 @@ export default function LocationBottomSheet({
         </>
       )}
       <div className="scrollbar h-full overflow-hidden overflow-y-scroll">
-        {status === 'ZERO_RESULTS' && <p className="text-center">검색 결과가 없습니다.</p>}
-        {status === 'OK' && (
-          <ItemList
-            data={data}
-            renderItem={(place) => <LocationItem place={place} onSelect={handleSelect} />}
-            hasDivider={false}
-            className="py-8"
-          />
-        )}
+        {!isPlacePredictionsLoading &&
+          (placePredictions.length === 0 && placeValue !== '' ? (
+            <p className="text-sign-tertiary text-center">검색 결과가 없습니다.</p>
+          ) : (
+            <ItemList
+              data={placePredictions}
+              renderItem={(place) => <LocationItem place={place} onSelect={handleSelect} />}
+              hasDivider={false}
+              className="py-8"
+            />
+          ))}
       </div>
 
       <ButtonGroup>
