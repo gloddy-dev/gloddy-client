@@ -1,4 +1,3 @@
-'use client';
 import { LayoutGroup, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -8,21 +7,15 @@ import {
   ReactElement,
   cloneElement,
   isValidElement,
-  useEffect,
   useState,
 } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 
-import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
 
-let elementId = 1;
-
 export default function Tabs({ children }: StrictPropsWithChildren) {
-  const [id] = useState(() => String(elementId++));
-
-  return <LayoutGroup id={id}>{children}</LayoutGroup>;
+  return <LayoutGroup>{children}</LayoutGroup>;
 }
 
 const renderTabElement = (
@@ -64,15 +57,6 @@ function List({ isStretch = true, isSticky = true, children }: StrictPropsWithCh
   }
 
   const props = validChildren.map((child) => child.props as React.ComponentProps<typeof Tab>);
-
-  const searchParams = useSearchParams();
-  const { replace } = useAppRouter();
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const tab = searchParams.get('tab');
-    if (!tab) replace(`${pathname}?tab=${props[0].value}`);
-  }, []);
 
   return (
     <div className={cn({ 'top-47 sticky left-0 z-40': isSticky })}>

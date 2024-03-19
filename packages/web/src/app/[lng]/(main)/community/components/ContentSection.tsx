@@ -1,5 +1,4 @@
 'use client';
-
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
