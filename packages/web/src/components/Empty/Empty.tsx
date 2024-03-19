@@ -8,7 +8,7 @@ interface NoMeetingProps {
   lng: string;
   message: string;
 }
-export default async function NoMeeting({ lng, ns, message }: NoMeetingProps) {
+export default async function Empty({ lng, ns, message }: NoMeetingProps) {
   const { t } = await serverTranslation(lng, ns);
 
   return (
