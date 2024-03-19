@@ -1,9 +1,15 @@
 'use client';
-import FeedbackContent from './FeedbackContent.client';
-import ParticipatingContent from './ParticipatingContent.client';
-import WaitingContent from './WaitingContent.client';
+
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
 import { useTranslation } from '@/app/i18n/client';
+import { Loading } from '@/components/Loading';
 import { Tabs } from '@/components/Tabs';
+
+const ParticipatingContent = dynamic(() => import('./ParticipatingContent.client'));
+const WaitingContent = dynamic(() => import('./WaitingContent.client'));
+const FeedbackContent = dynamic(() => import('./FeedbackContent.client'));
 
 export default function ContentSection() {
   const { t } = useTranslation('meeting');
@@ -16,13 +22,19 @@ export default function ContentSection() {
         <Tabs.Tab value="feedback" text={t('home.evaluation')} />
       </Tabs.List>
       <Tabs.Panel value="participating">
-        <ParticipatingContent />
+        <Suspense fallback={<Loading />}>
+          <ParticipatingContent />
+        </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="waiting">
-        <WaitingContent />
+        <Suspense fallback={<Loading />}>
+          <WaitingContent />
+        </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="feedback">
-        <FeedbackContent />
+        <Suspense fallback={<Loading />}>
+          <FeedbackContent />
+        </Suspense>
       </Tabs.Panel>
     </Tabs>
   );

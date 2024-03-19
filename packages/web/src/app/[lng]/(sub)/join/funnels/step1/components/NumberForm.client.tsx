@@ -1,5 +1,12 @@
+import { ElementType, KeyboardEventHandler } from 'react';
+
 import { useJoinContext } from '../../../components/JoinContext.client';
 import { formatNumber, formatNumberBackSpace } from '../util';
+
+import type { SignUpState } from '../../../type';
+import type { StatusType } from '../type';
+import type { SubmitHandler } from 'react-hook-form';
+
 import { useLoginMutation, useSMSMutation } from '@/apis/auth';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -8,11 +15,6 @@ import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useToast } from '@/hooks/useModal';
-import { ElementType, KeyboardEventHandler } from 'react';
-
-import type { SignUpState } from '../../../type';
-import type { StatusType } from '../type';
-import type { SubmitHandler } from 'react-hook-form';
 
 interface NumberSectionProps {
   inputStatus: StatusType;
@@ -45,10 +47,6 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     if (timerStatus === 'RUNNING') return;
     timerStart();
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
-    if (phoneNumberWithoutHyphen === '01089695610') {
-      mutateLogin({ phoneNumber: data.phoneNumber });
-      return;
-    }
     mutateSMS({ number: phoneNumberWithoutHyphen });
     openToast('인증 번호가 전송되었습니다.');
     setInputStatus('afterSend');

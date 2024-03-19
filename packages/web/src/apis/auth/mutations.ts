@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
 import {
-  LoginResponse,
   SignUpResponse,
   postEmail,
   postEmailVerify,

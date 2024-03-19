@@ -1,4 +1,4 @@
-import ContentSection from './components/ContentSection.client';
+import ContentSection from './components/ContentSection';
 import MeetingScrapHeader from './components/MeetingScrapHeader';
 
 import { Keys, getMeetingScrap } from '@/apis/meeting';
@@ -15,10 +15,10 @@ interface MeetingPageProps {
 export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
-      <MeetingScrapHeader />
+      <MeetingScrapHeader lng={lng} />
       <LocalSuspenseErrorBoundary>
         <HydrationProvider queryFn={getMeetingScrap} queryKey={Keys.getMeetingScraps()}>
-          <ContentSection />
+          <ContentSection lng={lng} />
         </HydrationProvider>
       </LocalSuspenseErrorBoundary>
       <Footer page="meeting" lng={lng} />
