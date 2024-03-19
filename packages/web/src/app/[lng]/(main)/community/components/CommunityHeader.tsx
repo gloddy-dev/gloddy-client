@@ -1,8 +1,5 @@
 import { serverTranslation } from '@/app/i18n';
-import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
-import { Icon } from '@/components/Icon';
-import { NavLink } from '@/components/NavLink';
 
 interface CommunityHeaderProps {
   lng: string;

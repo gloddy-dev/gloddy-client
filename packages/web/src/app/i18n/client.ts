@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client';
 
-import { getOptions, languages } from './settings';
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { useParams } from 'next/navigation';
 import { initReactI18next, useTranslation as useTranslationOrg } from 'react-i18next';
+
+import { getOptions, languages } from './settings';
 // import LocizeBackend from 'i18next-locize-backend'
 
 const runsOnServerSide = typeof window === 'undefined';

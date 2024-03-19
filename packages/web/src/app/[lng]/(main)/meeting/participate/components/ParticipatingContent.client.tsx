@@ -1,6 +1,8 @@
 'use client';
+
 import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
+
 import { useGetMeetingHosting, useGetMeetingParticipating } from '@/apis/meeting';
 import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
@@ -24,6 +26,7 @@ export default function ParticipatingContent() {
       {meetingParticipatingData.length === 0 && (
         <NoMeeting message={t('home.noParticipatingGroups')} />
       )}
+
       {meetingParticipatingData.map((groupingData) => (
         <GroupingCard
           groupingData={groupingData.group}

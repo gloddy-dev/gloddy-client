@@ -5,7 +5,7 @@ import { enUS, ko } from 'date-fns/locale';
 import Image from 'next/image';
 
 import { CommunityArticle } from '@/apis/community';
-import ArticleBadge from '@/app/[lng]/(main)/community/components/ArticleBadge.client';
+import ArticleBadge from '@/app/[lng]/(main)/community/components/ArticleBadge';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
 import { Divider } from '@/components/Divider';
