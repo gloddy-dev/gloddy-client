@@ -1,5 +1,5 @@
 import CommunityHeader from './components/CommunityHeader';
-import ContentSection from './components/ContentSection.client';
+import ContentSection from './components/ContentSection';
 import CreateArticleButton from './components/CreateArticleButton';
 
 import { Keys, getCommunityArticles } from '@/apis/community';

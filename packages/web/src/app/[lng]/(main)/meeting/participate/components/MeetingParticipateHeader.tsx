@@ -1,10 +1,14 @@
-'use client';
-import { useTranslation } from '@/app/i18n/client';
-import { Header } from '@/components/Header';
 import Link from 'next/link';
 
-export default function MeetingParticipateHeader() {
-  const { t } = useTranslation('meeting');
+import { serverTranslation } from '@/app/i18n';
+import { Header } from '@/components/Header';
+
+interface MeetingParticipateHeaderProps {
+  lng: string;
+}
+
+export default async function MeetingParticipateHeader({ lng }: MeetingParticipateHeaderProps) {
+  const { t } = await serverTranslation(lng, 'meeting');
 
   return (
     <Header>

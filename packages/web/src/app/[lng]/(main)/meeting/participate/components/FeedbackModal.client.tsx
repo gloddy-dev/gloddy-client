@@ -1,9 +1,10 @@
 'use client';
+import Image from 'next/image';
+
 import { useTranslation } from '@/app/i18n/client';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
-import Image from 'next/image';
 
 interface FeedbackModalProps {
   onClose: () => void;

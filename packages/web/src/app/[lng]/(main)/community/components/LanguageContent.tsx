@@ -3,16 +3,17 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+import ArticleItem from './ArticleItem';
+import Empty from './Empty';
+
 import { useGetCommunityArticles } from '@/apis/community/queries';
-import ArticleItem from '@/app/[lng]/(main)/community/components/ArticleItem.client';
-import Empty from '@/app/[lng]/(main)/community/components/Empty';
 import { ItemList } from '@/components/List';
 import { useBlockStore } from '@/store/useBlockStore';
 
-export default function AllContent() {
+export default function LanguageContent() {
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
-  const { data: articleList, fetchNextPage, hasNextPage } = useGetCommunityArticles(0);
+  const { data: articleList, fetchNextPage, hasNextPage } = useGetCommunityArticles(3);
 
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
