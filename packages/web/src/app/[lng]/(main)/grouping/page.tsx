@@ -20,7 +20,7 @@ export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
       <GroupingHeader />
       <LocalSuspenseErrorBoundary>
         <HydrationProvider queryFn={() => getGroups(0)} queryKey={Keys.getGroups()} isInfiniteQuery>
-          <GroupingCardList />
+          <GroupingCardList lng={lng} />
         </HydrationProvider>
       </LocalSuspenseErrorBoundary>
       <CreateGroupButton />

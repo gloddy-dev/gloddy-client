@@ -1,15 +1,16 @@
 'use client';
+
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { useTranslation } from '@/app/i18n/client';
 import { Loading } from '@/components/Loading';
 import { Tabs } from '@/components/Tabs';
 
-const AllContent = dynamic(() => import('./AllContent.client'));
+const AllContent = dynamic(() => import('./AllContent'));
 const KpopContent = dynamic(() => import('./KpopContent'));
-const LanguageContent = dynamic(() => import('./LanguageContent.client'));
-const QuestionContent = dynamic(() => import('./QuestionContent.client'));
+const LanguageContent = dynamic(() => import('./LanguageContent'));
+const QuestionContent = dynamic(() => import('./QuestionContent'));
 
 export default function ContentSection() {
   const { t } = useTranslation('community');

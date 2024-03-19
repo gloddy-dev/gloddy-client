@@ -72,7 +72,6 @@ function List({ isStretch = true, isSticky = true, children }: StrictPropsWithCh
   useEffect(() => {
     const tab = searchParams.get('tab');
     if (!tab) replace(`${pathname}?tab=${props[0].value}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
