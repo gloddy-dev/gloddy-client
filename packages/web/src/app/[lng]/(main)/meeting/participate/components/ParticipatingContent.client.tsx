@@ -1,4 +1,5 @@
 'use client';
+
 import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
 

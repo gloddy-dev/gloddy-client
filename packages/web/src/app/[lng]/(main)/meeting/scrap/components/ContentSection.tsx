@@ -1,3 +1,5 @@
+'use client';
+
 import { useGetMeetingScrap } from '@/apis/meeting';
 import { GroupingCard } from '@/components/Card';
 import { Empty } from '@/components/Empty';
