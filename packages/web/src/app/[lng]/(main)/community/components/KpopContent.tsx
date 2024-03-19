@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import ArticleItem from './ArticleItem.client';
+import ArticleItem from './ArticleItem';
 import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';

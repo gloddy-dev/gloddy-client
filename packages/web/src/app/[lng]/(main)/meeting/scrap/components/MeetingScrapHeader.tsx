@@ -1,10 +1,14 @@
-'use client';
-import { useTranslation } from '@/app/i18n/client';
-import { Header } from '@/components/Header';
 import Link from 'next/link';
 
-export default function MeetingScrapHeader() {
-  const { t } = useTranslation('meeting');
+import { serverTranslation } from '@/app/i18n';
+import { Header } from '@/components/Header';
+
+interface MeetingScrapHeaderProps {
+  lng: string;
+}
+
+export default async function MeetingScrapHeader({ lng }: MeetingScrapHeaderProps) {
+  const { t } = await serverTranslation(lng, 'meeting');
 
   return (
     <Header>

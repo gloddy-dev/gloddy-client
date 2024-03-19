@@ -1,1 +1,1 @@
-export { default as Tabs } from './Tabs.client';
+export { default as Tabs } from './Tabs';

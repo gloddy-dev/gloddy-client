@@ -2,6 +2,7 @@
 import RejectModal from './RejectModal';
 import SubtitleSection from './SubtitleSection';
 import NoMeeting from '../../components/NoMeeting';
+
 import { useGetMeetingRejected, useGetMeetingWaiting } from '@/apis/meeting';
 import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';

@@ -22,7 +22,7 @@ interface MeetingPageProps {
 export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
-      <MeetingParticipateHeader />
+      <MeetingParticipateHeader lng={lng} />
       <LocalSuspenseErrorBoundary>
         <HydrationProvider
           queryMultipleFn={[
