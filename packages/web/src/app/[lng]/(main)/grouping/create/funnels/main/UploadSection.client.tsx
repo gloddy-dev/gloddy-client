@@ -7,6 +7,7 @@ import type { CreateGroupContextValue } from '../../type';
 
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Loading } from '@/components/Loading';
 import { useFileUpload } from '@/hooks/useFileUpload';
 
 interface ImageThumbnailProps {
@@ -19,7 +20,7 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
     control,
   });
 
-  const { handleFileUploadClick, previewImage } = useFileUpload(async (files) => {
+  const { handleFileUploadClick, previewImage, isPending } = useFileUpload(async (files) => {
     field.onChange(files[0]);
   });
 
@@ -30,16 +31,21 @@ export default function UploadSection({ control }: ImageThumbnailProps) {
       className="rounded-8 bg-sub relative mx-20 aspect-[8/5] overflow-hidden"
       onClick={handleFileUploadClick}
     >
-      <RenderImage previewImage={field.value} />
+      <RenderImage previewImage={previewImage} isPending={isPending} />
     </Flex>
   );
 }
 
 interface RenderImageProps {
   previewImage: string | undefined;
+  isPending: boolean;
 }
 
-const RenderImage = memo(function ({ previewImage }: RenderImageProps) {
+const RenderImage = memo(function ({ previewImage, isPending }: RenderImageProps) {
+  if (isPending) {
+    return <Loading />;
+  }
+
   if (previewImage) {
     return <Image src={previewImage} alt="group_image" className="object-cover" fill />;
   }
