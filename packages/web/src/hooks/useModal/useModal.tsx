@@ -1,9 +1,10 @@
 'use client';
+import { useUnmountEffect } from 'framer-motion';
+import { useContext, useMemo, useRef, useState } from 'react';
+
 import { ModalControlRef, ModalController } from './ModalController';
 import { ModalContext } from './ModalProvider';
 import { CreateModalElement } from './type';
-import { useUnmountEffect } from 'framer-motion';
-import { useContext, useMemo, useRef, useState } from 'react';
 
 let elementId = 1;
 

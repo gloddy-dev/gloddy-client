@@ -1,6 +1,8 @@
 'use client';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useRef } from 'react';
+
+import { Motion } from '../Motion';
 
 import type { StrictPropsWithChildren } from '@/types';
 
@@ -25,17 +27,19 @@ export default function ModalWrapper({
   useOnClickOutside(modalRef, onClose);
 
   return (
-    <motion.div
-      {...fadeInVariants()}
-      className="max-w-450 fixed left-1/2 top-0 h-full w-full -translate-x-1/2 bg-[rgba(0,0,0,0.4)]"
-      style={{ zIndex: 10000000 + layerNumber * 10 }}
-    >
-      <div
-        ref={modalRef}
-        className={cn('absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2', className)}
+    <Motion>
+      <m.div
+        {...fadeInVariants()}
+        className="max-w-450 fixed left-1/2 top-0 h-full w-full -translate-x-1/2 bg-[rgba(0,0,0,0.4)]"
+        style={{ zIndex: 10000000 + layerNumber * 10 }}
       >
-        {children}
-      </div>
-    </motion.div>
+        <div
+          ref={modalRef}
+          className={cn('absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2', className)}
+        >
+          {children}
+        </div>
+      </m.div>
+    </Motion>
   );
 }

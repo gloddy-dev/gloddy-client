@@ -1,12 +1,13 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useEffect, useState } from 'react';
+import Glider from 'react-glider';
 
 import ModalWrapper from './ModalWrapper.client';
 import { Flex } from '../Layout';
 import { Spacing } from '../Spacing';
-import 'swiper/css';
+
+import 'glider-js/glider.min.css';
 
 interface ImageModalProps {
   images: string[];
@@ -24,25 +25,32 @@ export default function ImageModal({ images, currentImage, onClose }: ImageModal
     };
   }, []);
 
+  const handleSlideChange = (event: any) => {
+    const newSlideIndex = event.detail.slide;
+    setCurrentImageIndex(newSlideIndex);
+  };
+
   return (
-    <ModalWrapper onClose={onClose} className="w-full">
-      <Swiper
-        slidesPerView={1}
-        initialSlide={currentImageIndex}
-        onSlideChange={(swiper) => setCurrentImageIndex(swiper.activeIndex)}
+    <ModalWrapper onClose={onClose} className="w-full px-[5%]">
+      <Glider
+        draggable
+        slidesToShow={1}
+        slidesToScroll={1}
+        scrollLock
+        onSlideVisible={handleSlideChange}
       >
         {images.map((image, index) => (
-          <SwiperSlide key={index} className="relative w-full before:block before:pb-[100%]">
-            <Image src={image} alt="fullImage" className="object-cover" fill />
-          </SwiperSlide>
+          <div key={index} className={'relative w-full before:block before:pb-[100%]'}>
+            <Image src={image} alt={`img-${index}`} layout="fill" objectFit="cover" />
+          </div>
         ))}
-        <Spacing size={12} />
-        <Flex justify="center">
-          <span className="rounded-20 text-caption text-sign-sub bg-white px-6 py-2">
-            {currentImageIndex + 1}/{images.length}
-          </span>
-        </Flex>
-      </Swiper>
+      </Glider>
+      <Spacing size={12} />
+      <Flex justify="center">
+        <span className="rounded-20 text-caption text-sign-sub bg-white px-6 py-2">
+          {currentImageIndex + 1}/{images.length}
+        </span>
+      </Flex>
     </ModalWrapper>
   );
 }

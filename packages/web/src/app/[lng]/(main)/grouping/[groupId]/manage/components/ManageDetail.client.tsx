@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Glider from 'react-glider';
 
 import ApplyCard from './ApplyCard.client';
 
@@ -13,6 +12,8 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 
+import 'glider-js/glider.min.css';
+
 export default function ManageDetail() {
   const { t } = useTranslation('groupDetail');
   const { groupId } = useNumberParams<['groupId']>();
@@ -21,6 +22,12 @@ export default function ManageDetail() {
   const { applies, totalCount } = appliesData;
 
   const [currentApplication, setCurrentApplication] = useState(1);
+
+  const handleSlideChange = (event: any) => {
+    const newSlideIndex = event.detail.slide;
+    console.log(newSlideIndex);
+    setCurrentApplication(newSlideIndex);
+  };
 
   if (!totalCount) {
     return (
@@ -39,24 +46,23 @@ export default function ManageDetail() {
         <Flex align="center">
           <Icon id="16-application" width={16} height={16} />
           <p className="text-caption text-sign-sub">
-            {currentApplication}/{totalCount}
+            {currentApplication + 1}/{totalCount}
           </p>
         </Flex>
       </Flex>
-      <Swiper
-        spaceBetween={8}
-        pagination={true}
-        modules={[Pagination]}
-        slidesPerView={1}
-        className="!p-20 !pr-40"
-        onSlideChange={(swiper) => setCurrentApplication(swiper.activeIndex + 1)}
+      <Glider
+        draggable
+        slidesToShow={1}
+        slidesToScroll={1}
+        scrollLock
+        onSlideVisible={handleSlideChange}
       >
         {applies.map((apply) => (
-          <SwiperSlide key={apply.userId}>
+          <div key={apply.userId}>
             <ApplyCard apply={apply} groupId={groupId} />
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </Glider>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { LayoutGroup, motion } from 'framer-motion';
+import { LayoutGroup, m } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import {
@@ -7,11 +7,11 @@ import {
   ReactElement,
   cloneElement,
   isValidElement,
-  useState,
 } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
 
+import { Motion } from '@/components/Motion';
 import cn from '@/utils/cn';
 
 export default function Tabs({ children }: StrictPropsWithChildren) {
@@ -98,12 +98,14 @@ function Tab({ value, text, queryString, className, disabled = false }: TabProps
     >
       {text}
       {isActive && (
-        <motion.span
-          layout
-          layoutId="underline"
-          style={{ originY: '0px' }}
-          className=" border-b-1 border-primary text-subtitle-2 text-primary absolute bottom-0 left-0 w-full"
-        />
+        <Motion>
+          <m.span
+            layout
+            layoutId="underline"
+            style={{ originY: '0px' }}
+            className=" border-b-1 border-primary text-subtitle-2 text-primary absolute bottom-0 left-0 w-full"
+          />
+        </Motion>
       )}
     </Link>
   );
