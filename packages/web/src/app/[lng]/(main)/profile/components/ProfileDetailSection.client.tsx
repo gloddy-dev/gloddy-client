@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { useParams, usePathname } from 'next/navigation';
 
@@ -10,6 +10,7 @@ import { Avatar } from '@/components/Avatar';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
+import { Motion } from '@/components/Motion';
 import { NavLink } from '@/components/NavLink';
 import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
@@ -148,12 +149,14 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           <Flex direction="column" className="h-70 rounded-8 bg-sub px-12">
             <Spacing size={16} />
             <div className="rounded-10 h-16 overflow-hidden bg-white">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${reliabilityScore / 2}%` }}
-                transition={{ duration: 0.5 }}
-                className="rounded-10 bg-primary h-full"
-              />
+              <Motion>
+                <m.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${reliabilityScore / 2}%` }}
+                  transition={{ duration: 0.5 }}
+                  className="rounded-10 bg-primary h-full"
+                />
+              </Motion>
             </div>
             <Spacing size={8} />
             <Flex className="text-caption" justify="between">
