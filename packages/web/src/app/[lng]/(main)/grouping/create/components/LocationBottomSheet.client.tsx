@@ -72,6 +72,8 @@ export default function LocationBottomSheet({
   };
 
   const handleSelect = async (place: google.maps.places.AutocompletePrediction) => {
+    if (!placesService) return;
+
     placesService?.getDetails({ placeId: place.place_id }, (details) => {
       const lat = details?.geometry?.location?.lat();
       const lng = details?.geometry?.location?.lng();
