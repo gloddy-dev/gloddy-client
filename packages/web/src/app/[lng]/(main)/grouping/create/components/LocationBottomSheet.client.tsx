@@ -1,3 +1,4 @@
+'use client';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import usePlacesService from 'react-google-autocomplete/lib/usePlacesAutocompleteService';
