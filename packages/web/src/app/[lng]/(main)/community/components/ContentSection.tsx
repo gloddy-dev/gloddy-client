@@ -1,8 +1,8 @@
 'use client';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
 
+import { useTranslation } from '@/app/i18n/client';
 import { Loading } from '@/components/Loading';
 import { Tabs } from '@/components/Tabs';
 
