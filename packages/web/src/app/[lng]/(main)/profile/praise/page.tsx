@@ -1,5 +1,6 @@
-import PraiseHeader from './components/PraiseHeader.client';
-import ProfilePraiseDetail from './components/ProfilePraiseDetail.client';
+import PraiseHeader from './components/PraiseHeader';
+import ProfilePraiseDetail from './components/ProfilePraiseDetail';
+
 import { Keys, getPraises } from '@/apis/profile';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';

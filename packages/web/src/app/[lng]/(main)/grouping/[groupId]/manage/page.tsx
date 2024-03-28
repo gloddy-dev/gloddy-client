@@ -1,5 +1,5 @@
-import ManageDetail from './components/ManageDetail.client';
-import ManageHeader from './components/ManageHeader.client';
+import ManageDetail from './components/ManageDetail';
+import ManageHeader from './components/ManageHeader';
 
 import { Keys, getApplies } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';

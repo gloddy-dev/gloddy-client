@@ -1,2 +1,2 @@
 export { default as Loading } from './Loading';
-export { default as LayerLoading } from './LayerLoading.client';
+export { default as LayerLoading } from './LayerLoading';

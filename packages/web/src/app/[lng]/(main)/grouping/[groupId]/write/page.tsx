@@ -1,5 +1,6 @@
-import InputForm from './components/InputForm.client';
-import WriteHeader from './components/WriteHeader.client';
+import InputForm from './components/InputForm';
+import WriteHeader from './components/WriteHeader';
+
 import { Keys, getGroupDetail } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';

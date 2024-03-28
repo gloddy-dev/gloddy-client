@@ -1,7 +1,8 @@
-import EmailForm from './components/EmailForm.client';
-import NoticeSection from './components/NoticeSection.client';
+import EmailForm from './components/EmailForm';
+import NoticeSection from './components/NoticeSection';
 import TitleTextMessage from './components/TitleTextMessage';
-import VerifyHeader from './components/VerifyHeader.client';
+import VerifyHeader from './components/VerifyHeader';
+
 import { serverTranslation } from '@/app/i18n';
 
 interface PageProps {

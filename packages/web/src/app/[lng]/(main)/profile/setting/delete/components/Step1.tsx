@@ -1,4 +1,4 @@
-import { useDeleteContext } from './DeleteProvider.client';
+import { useDeleteContext } from './DeleteProvider';
 
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';

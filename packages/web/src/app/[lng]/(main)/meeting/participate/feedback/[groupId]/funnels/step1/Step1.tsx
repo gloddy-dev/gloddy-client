@@ -1,8 +1,11 @@
-import NoShowModal from './NoShowModal.client';
+import NoShowModal from './NoShowModal';
 import { convertShowMember } from '../../../util';
-import { useFeedbackContext } from '../../components/FeedbackProvider.client';
-import Membercard from '../../components/Membercard.client';
+import { useFeedbackContext } from '../../components/FeedbackProvider';
+import Membercard from '../../components/Membercard';
 import TitleSection from '../../components/TitleSection';
+
+import type { EstimateResponse } from '@/apis/groups';
+
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
 import { Divider } from '@/components/Divider';
@@ -11,8 +14,6 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { Tag } from '@/components/Tag';
 import { useModal } from '@/hooks/useModal';
-
-import type { EstimateResponse } from '@/apis/groups';
 
 interface Step1Props {
   onNextClick: () => void;
