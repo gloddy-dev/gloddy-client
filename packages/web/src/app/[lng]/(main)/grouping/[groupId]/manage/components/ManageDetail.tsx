@@ -1,7 +1,7 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import Glider from 'react-glider';
 
 import ApplyCard from './ApplyCard';
 
@@ -12,7 +12,14 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 
-import 'glider-js/glider.min.css';
+const Glider = dynamic(
+  () =>
+    import('react-glider').then((mod) => {
+      require('glider-js/glider.min.css');
+      return mod;
+    }),
+  { ssr: false }
+);
 
 export default function ManageDetail() {
   const { t } = useTranslation('groupDetail');

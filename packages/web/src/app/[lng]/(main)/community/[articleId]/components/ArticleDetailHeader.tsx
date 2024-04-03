@@ -12,7 +12,7 @@ import { DropDownOptionType } from '@/components/DropDown/DropDown';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
 

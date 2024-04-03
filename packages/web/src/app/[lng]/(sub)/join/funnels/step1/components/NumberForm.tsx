@@ -14,7 +14,7 @@ import { useTimerContext } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import { useToast } from '@/hooks/useModal';
+import useToast from '@/hooks/useModal/useToast';
 
 interface NumberSectionProps {
   inputStatus: StatusType;

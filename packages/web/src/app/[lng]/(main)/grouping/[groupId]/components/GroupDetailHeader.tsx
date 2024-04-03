@@ -13,7 +13,7 @@ import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import MoreBottomSheet from '@/components/Modal/MoreBottomSheet';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 import { useBlockStore } from '@/store/useBlockStore';
 

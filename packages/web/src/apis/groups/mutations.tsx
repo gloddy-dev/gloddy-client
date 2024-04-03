@@ -20,7 +20,7 @@ import { Keys as MeetingKeys } from '../meeting/keys';
 
 import FeedbackCompleteModal from '@/app/[lng]/(main)/meeting/participate/feedback/[groupId]/funnels/step3/FeedbackCompleteModal';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 export const usePostCreateGroup = () => {
   const { replace } = useAppRouter();

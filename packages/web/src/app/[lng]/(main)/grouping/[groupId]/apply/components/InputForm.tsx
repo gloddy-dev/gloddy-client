@@ -10,7 +10,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { LayerLoading } from '@/components/Loading';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 
 type ApplyFormType = {

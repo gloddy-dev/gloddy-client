@@ -6,7 +6,7 @@ import Step1 from './step1/Step1';
 import Step2 from './step2/Step2';
 
 import { useGetProfile } from '@/apis/profile';
-import { ModalProvider } from '@/hooks/useModal';
+import ModalProvider from '@/hooks/useModal/ModalProvider';
 
 export default function ProfileEdit() {
   const [step, setStep] = useState(1);

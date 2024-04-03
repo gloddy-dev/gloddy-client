@@ -11,7 +11,7 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 interface ApplyCardProps {
   apply: Apply;

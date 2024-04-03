@@ -12,7 +12,7 @@ import { Flex } from '@/components/Layout';
 import { Loading } from '@/components/Loading';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 import cn from '@/utils/cn';
 import { getLocalCookie } from '@/utils/cookieController';
 

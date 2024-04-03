@@ -15,7 +15,7 @@ import { Flex } from '@/components/Layout';
 import LayerLoading from '@/components/Loading/LayerLoading';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 import { useNumberParams } from '@/hooks/useNumberParams';
 
 export default function InputForm() {

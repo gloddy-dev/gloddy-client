@@ -5,7 +5,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 interface NoticeItemProps {
   notice: Notice;

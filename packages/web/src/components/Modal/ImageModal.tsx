@@ -1,13 +1,20 @@
 'use client';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import Glider from 'react-glider';
 
 import ModalWrapper from './ModalWrapper';
 import { Flex } from '../Layout';
 import { Spacing } from '../Spacing';
 
-import 'glider-js/glider.min.css';
+const Glider = dynamic(
+  () =>
+    import('react-glider').then((mod) => {
+      require('glider-js/glider.min.css');
+      return mod;
+    }),
+  { ssr: false }
+);
 
 interface ImageModalProps {
   images: string[];
