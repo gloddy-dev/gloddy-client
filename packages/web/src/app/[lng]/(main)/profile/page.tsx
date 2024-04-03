@@ -1,5 +1,5 @@
-import ProfileDetail from './components/ProfileDetail.client';
-import ProfileHeader from './components/ProfileHeader.client';
+import ProfileDetail from './components/ProfileDetail';
+import ProfileHeader from './components/ProfileHeader';
 
 import { Keys, getProfile } from '@/apis/profile';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';

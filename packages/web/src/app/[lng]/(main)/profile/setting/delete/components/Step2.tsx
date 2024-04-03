@@ -1,5 +1,5 @@
-import DeleteModal from './DeleteModal.client';
-import { useDeleteContext } from './DeleteProvider.client';
+import DeleteModal from './DeleteModal';
+import { useDeleteContext } from './DeleteProvider';
 
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';

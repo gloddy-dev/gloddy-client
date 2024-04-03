@@ -1,5 +1,5 @@
-import GroupDetailPage from './components/GroupDetail.client';
-import GroupDetailHeader from './components/GroupDetailHeader.client';
+import GroupDetailPage from './components/GroupDetail';
+import GroupDetailHeader from './components/GroupDetailHeader';
 
 import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';

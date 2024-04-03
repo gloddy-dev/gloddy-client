@@ -1,5 +1,5 @@
-import ArticleDetail from './components/ArticleDetail.client';
-import ArticleHeader from './components/ArticleHeader.client';
+import ArticleDetail from './components/ArticleDetail';
+import ArticleHeader from './components/ArticleHeader';
 import CommentForm from './components/CommentForm';
 
 import { Keys, getArticle } from '@/apis/groups';

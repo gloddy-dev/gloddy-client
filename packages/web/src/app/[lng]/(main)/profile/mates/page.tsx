@@ -1,5 +1,6 @@
-import ProfileMatesDetail from './components/MatesDetail.client';
-import MatesHeader from './components/MatesHeader.client';
+import ProfileMatesDetail from './components/MatesDetail';
+import MatesHeader from './components/MatesHeader';
+
 import { Keys, getMates } from '@/apis/profile';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';

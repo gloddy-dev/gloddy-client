@@ -1,5 +1,6 @@
-import FeedbackFunnel from './components/FeedbackFunnel.client';
-import FeedbackProvider from './components/FeedbackProvider.client';
+import FeedbackFunnel from './components/FeedbackFunnel';
+import FeedbackProvider from './components/FeedbackProvider';
+
 import { Keys, getEstimate } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';

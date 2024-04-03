@@ -1,4 +1,5 @@
-import ProfileEdit from './components/ProfileEdit.client';
+import ProfileEdit from './components/ProfileEdit';
+
 import { Keys, getProfile } from '@/apis/profile';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';

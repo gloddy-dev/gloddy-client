@@ -1,6 +1,7 @@
-import LinkSection from './components/LinkSection.server';
-import ProfileSection from './components/ProfileSection.client';
-import SettingHeader from './components/SettingHeader.client';
+import LinkSection from './components/LinkSection';
+import ProfileSection from './components/ProfileSection';
+import SettingHeader from './components/SettingHeader';
+
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 
 interface PageParams {
