@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
 
-import InputSection from './InputSection.client';
-import SettingSection from './SettingSection.client';
-import UploadSection from './UploadSection.client';
+import InputSection from './InputSection';
+import SettingSection from './SettingSection';
+import UploadSection from './UploadSection';
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
-import CreateModal from '../../components/CreateModal.client';
+import CreateModal from '../../components/CreateModal';
 
 import type { CreateGroupContextValue } from '../../type';
 import type { TimeType } from '@/types';

@@ -1,5 +1,6 @@
 'use client';
-import NotiCard from './NotiCard.client';
+import NotiCard from './NotiCard';
+
 import { useGetNotifications } from '@/apis/notifications';
 import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';

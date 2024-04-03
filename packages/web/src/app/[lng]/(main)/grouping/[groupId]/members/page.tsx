@@ -1,5 +1,6 @@
-import MemeberList from './components/MemberList.client';
-import MembersHeader from './components/MembersHeader.client';
+import MemeberList from './components/MemberList';
+import MembersHeader from './components/MembersHeader';
+
 import { Keys, getGroupMembers } from '@/apis/groups';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';

@@ -1,10 +1,10 @@
 'use client';
-import BlockDoneModal from '../components/BlockDoneModal.client';
-import ReportDoneModal from '../components/ReportDoneModal.client';
-import WarningModal from '../components/WarningModal.client';
+import BlockDoneModal from '../components/BlockDoneModal';
+import ReportDoneModal from '../components/ReportDoneModal';
+import WarningModal from '../components/WarningModal';
 import { useDeleteArticle, useDeleteComment } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
-import MoreBottomSheet from '@/components/Modal/MoreBottomSheet.client';
+import MoreBottomSheet from '@/components/Modal/MoreBottomSheet';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useModal } from '@/hooks/useModal';
 import { useBlockStore } from '@/store/useBlockStore';

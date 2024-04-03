@@ -1,4 +1,4 @@
-import ContentSection from './components/ContentSection.client';
+import ContentSection from './components/ContentSection';
 import MeetingParticipateHeader from './components/MeetingParticipateHeader';
 
 import {

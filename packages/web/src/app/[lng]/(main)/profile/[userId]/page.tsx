@@ -1,4 +1,4 @@
-import ProfileByIdDetail from './components/ProfileByIdDetail.client';
+import ProfileByIdDetail from './components/ProfileByIdDetail';
 import ProfileByIdHeader from './components/ProfileByIdHeader';
 
 import { Keys, getProfileById } from '@/apis/profile';

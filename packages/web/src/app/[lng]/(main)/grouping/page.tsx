@@ -1,5 +1,5 @@
-import CreateGroupButton from './components/CreateGroupButton.client';
-import GroupingCardList from './components/GroupingCardList.client';
+import CreateGroupButton from './components/CreateGroupButton';
+import GroupingCardList from './components/GroupingCardList';
 import GroupingHeader from './components/GroupingHeader';
 
 import { Keys, getGroups } from '@/apis/groups';

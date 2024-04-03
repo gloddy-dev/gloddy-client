@@ -1,6 +1,6 @@
 'use client';
 import DeleteHeader from './DeleteHeader';
-import DeleteProvider from './DeleteProvider.client';
+import DeleteProvider from './DeleteProvider';
 import Step1 from './Step1';
 import Step2 from './Step2';
 
