@@ -8,13 +8,16 @@ import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';
 import { ItemList } from '@/components/List';
-import { Loading } from '@/components/Loading';
 import { useBlockStore } from '@/store/useBlockStore';
 
-export default function QuestionContent() {
+interface CommunityArticle {
+  categoryId: number;
+}
+
+export default function CommunityArticles({ categoryId }: CommunityArticle) {
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
-  const { data: articleList, fetchNextPage, hasNextPage } = useGetCommunityArticles(2);
+  const { data: articleList, fetchNextPage, hasNextPage } = useGetCommunityArticles(categoryId);
 
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();

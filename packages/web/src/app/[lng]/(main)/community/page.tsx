@@ -20,18 +20,8 @@ export default function CommunityPage({ params: { lng } }: CommunityPageProps) {
       <CommunityHeader lng={lng} />
       <LocalSuspenseErrorBoundary>
         <HydrationProvider
-          queryMultipleFn={[
-            () => getCommunityArticles({ categoryId: 0, pageParam: 0 }),
-            () => getCommunityArticles({ categoryId: 1, pageParam: 0 }),
-            () => getCommunityArticles({ categoryId: 2, pageParam: 0 }),
-            () => getCommunityArticles({ categoryId: 3, pageParam: 0 }),
-          ]}
-          queryMultipleKey={[
-            Keys.getCommunityArticles(0),
-            Keys.getCommunityArticles(1),
-            Keys.getCommunityArticles(2),
-            Keys.getCommunityArticles(3),
-          ]}
+          queryFn={() => getCommunityArticles({ categoryId: 0, pageParam: 0 })}
+          queryKey={Keys.getCommunityArticles(0)}
           isInfiniteQuery
         >
           <ContentSection />
