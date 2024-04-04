@@ -1,5 +1,5 @@
 'use client';
-import { useJoinContext } from '../../../components/JoinContext.client';
+import { useJoinContext } from '../../../components/JoinContext';
 import { formatAddress } from '../utils';
 import { SchoolSearchResponse, useGetSearchSchool } from '@/apis/auth';
 import { Icon } from '@/components/Icon';

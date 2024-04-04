@@ -1,8 +1,10 @@
-import ProfileByIdDetail from './components/ProfileByIdDetail.client';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import ProfileByIdDetail from './components/ProfileByIdDetail';
 import ProfileByIdHeader from './components/ProfileByIdHeader';
 
 import { Keys, getProfileById } from '@/apis/profile';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface PageProps {
@@ -15,7 +17,7 @@ export default function page({ params }: PageProps) {
   const userId = Number(params.userId);
 
   return (
-    <LocalSuspenseErrorBoundary>
+    <ErrorBoundary fallbackRender={ErrorFallback}>
       <HydrationProvider
         queryFn={() => getProfileById(userId)}
         queryKey={Keys.getProfileById(userId)}
@@ -23,6 +25,6 @@ export default function page({ params }: PageProps) {
         <ProfileByIdHeader />
         <ProfileByIdDetail />
       </HydrationProvider>
-    </LocalSuspenseErrorBoundary>
+    </ErrorBoundary>
   );
 }

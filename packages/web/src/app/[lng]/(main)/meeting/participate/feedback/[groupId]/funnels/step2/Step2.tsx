@@ -1,6 +1,6 @@
 import { convertShowMember } from '../../../util';
-import { useFeedbackContext } from '../../components/FeedbackProvider.client';
-import Membercard from '../../components/Membercard.client';
+import { useFeedbackContext } from '../../components/FeedbackProvider';
+import Membercard from '../../components/Membercard';
 import TitleSection from '../../components/TitleSection';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';

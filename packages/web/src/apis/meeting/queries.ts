@@ -1,3 +1,5 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
+
 import {
   getMeetingHosting,
   getMeetingNotEstimated,
@@ -7,7 +9,6 @@ import {
   getMeetingWaiting,
 } from '.';
 import { Keys } from './keys';
-import { useSuspenseQuery } from '@tanstack/react-query';
 
 export const useGetExample = () => {};
 

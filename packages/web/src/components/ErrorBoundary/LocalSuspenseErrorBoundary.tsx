@@ -1,28 +1,17 @@
 'use client';
-import { PropsWithChildren, Suspense } from 'react';
+
+import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import BaseError from '../Error/BaseError';
+import ErrorFallback from './ErrorFallback';
 import { Loading } from '../Loading';
 
 import { StrictPropsWithChildren } from '@/types';
 
-interface LocalSuspenseErrorBoundaryProps {}
-export default function LocalSuspenseErrorBoundary({
-  children,
-}: StrictPropsWithChildren<LocalSuspenseErrorBoundaryProps>) {
+export default function LocalSuspenseErrorBoundary({ children }: StrictPropsWithChildren) {
   return (
-    <ErrorBoundary fallbackRender={Fallback}>
+    <ErrorBoundary fallbackRender={ErrorFallback}>
       <Suspense fallback={<Loading />}>{children}</Suspense>
     </ErrorBoundary>
   );
-}
-
-interface FallbackProps {
-  error: Error;
-  resetErrorBoundary: (...args: unknown[]) => void;
-}
-
-export function Fallback({ error, resetErrorBoundary }: PropsWithChildren<FallbackProps>) {
-  return <BaseError error={error} reset={resetErrorBoundary} />;
 }

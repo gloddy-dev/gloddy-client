@@ -1,9 +1,10 @@
-import ProfileDetail from './components/ProfileDetail.client';
-import ProfileHeader from './components/ProfileHeader.client';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import ProfileDetail from './components/ProfileDetail';
+import ProfileHeader from './components/ProfileHeader';
 
 import { Keys, getProfile } from '@/apis/profile';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
-import { Footer } from '@/components/Footer';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface ProfilePageProps {
@@ -16,12 +17,11 @@ export default function Profile({ params: { lng } }: ProfilePageProps) {
   return (
     <>
       <ProfileHeader />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider queryFn={getProfile} queryKey={Keys.getProfile()}>
           <ProfileDetail />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
-      <Footer page="profile" isSpacing={false} lng={lng} />
+      </ErrorBoundary>
     </>
   );
 }

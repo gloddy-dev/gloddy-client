@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
 
-import InputSection from './InputSection.client';
-import SettingSection from './SettingSection.client';
-import UploadSection from './UploadSection.client';
+import InputSection from './InputSection';
+import SettingSection from './SettingSection';
+import UploadSection from './UploadSection';
 import { useCreateGroupContext } from '../../components/CreateGroupContext';
-import CreateModal from '../../components/CreateModal.client';
+import CreateModal from '../../components/CreateModal';
 
 import type { CreateGroupContextValue } from '../../type';
 import type { TimeType } from '@/types';
@@ -16,7 +16,8 @@ import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import useBrowser from '@/hooks/useBrowser';
-import { useModal, useToast } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
+import useToast from '@/hooks/useModal/useToast';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 
 function validateDate(date: Date, time: TimeType, browser: string) {

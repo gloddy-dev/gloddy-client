@@ -18,9 +18,9 @@ import { GroupDetailResponse } from './type';
 import { MeetingScrapResponse } from '../meeting';
 import { Keys as MeetingKeys } from '../meeting/keys';
 
-import FeedbackCompleteModal from '@/app/[lng]/(main)/meeting/participate/feedback/[groupId]/funnels/step3/FeedbackCompleteModal.client';
+import FeedbackCompleteModal from '@/app/[lng]/(main)/meeting/participate/feedback/[groupId]/funnels/step3/FeedbackCompleteModal';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 export const usePostCreateGroup = () => {
   const { replace } = useAppRouter();
@@ -30,7 +30,7 @@ export const usePostCreateGroup = () => {
     mutationFn: postCreateGroup,
     onSuccess: (data) => {
       queryClient.resetQueries({ queryKey: GroupsKeys.getGroups() });
-      replace(`/grouping/${data.groupId}?tab=detail`);
+      replace(`/grouping/detail/${data.groupId}?tab=detail`);
     },
   });
 };
