@@ -1,15 +1,14 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+
+import FeedbackContent from './FeedbackContent';
+import ParticipatingContent from './ParticipatingContent';
+import WaitingContent from './WaitingContent';
 
 import { useTranslation } from '@/app/i18n/client';
 import { Loading } from '@/components/Loading';
 import { Tabs } from '@/components/Tabs';
-
-const ParticipatingContent = dynamic(() => import('./ParticipatingContent'));
-const WaitingContent = dynamic(() => import('./WaitingContent'));
-const FeedbackContent = dynamic(() => import('./FeedbackContent'));
 
 export default function ContentSection() {
   const { t } = useTranslation('meeting');

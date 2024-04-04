@@ -4,13 +4,13 @@ import MoreBottomSheet from './MoreBottomSheet';
 import { formatRelativeDate } from '../util';
 
 import { type Mate, useGetMates } from '@/apis/profile';
-import NoMeeting from '@/app/[lng]/(main)/meeting/components/NoMeeting';
 import { useTranslation } from '@/app/i18n/client';
 import { Avatar } from '@/components/Avatar';
+import { Empty } from '@/components/Empty';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 export default function MatesDetail() {
   const { t } = useTranslation('meeting');
@@ -20,7 +20,7 @@ export default function MatesDetail() {
 
   return (
     <main>
-      {matesData.length === 0 && <NoMeeting message={t('home.noReview')} />}
+      {matesData.length === 0 && <Empty message={t('home.noReview')} />}
       {matesData.map((mateData) => (
         <Mates key={mateData.createdAt} mateData={mateData} />
       ))}

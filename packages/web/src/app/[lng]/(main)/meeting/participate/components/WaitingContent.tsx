@@ -1,14 +1,14 @@
 'use client';
 import RejectModal from './RejectModal';
 import SubtitleSection from './SubtitleSection';
-import NoMeeting from '../../components/NoMeeting';
 
 import { useGetMeetingRejected, useGetMeetingWaiting } from '@/apis/meeting';
 import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
 import { Divider } from '@/components/Divider';
+import { Empty } from '@/components/Empty';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 export default function WaitingContent() {
   const { t } = useTranslation('meeting');
@@ -26,7 +26,7 @@ export default function WaitingContent() {
       <Spacing size={20} />
       <SubtitleSection text={t('home.awaitingApproval')} />
 
-      {meetingWaitingData.length === 0 && <NoMeeting message={t('home.noPendingGroups')} />}
+      {meetingWaitingData.length === 0 && <Empty message={t('home.noPendingGroups')} />}
       {meetingWaitingData.map((groupingData) => (
         <GroupingCard groupingData={groupingData.group} key={groupingData.group.groupId} />
       ))}
@@ -37,7 +37,7 @@ export default function WaitingContent() {
 
       <SubtitleSection text={t('home.rejectedGroups')} />
 
-      {meetingRejectedData.length === 0 && <NoMeeting message={t('home.noRejectedGroups')} />}
+      {meetingRejectedData.length === 0 && <Empty message={t('home.noRejectedGroups')} />}
       {meetingRejectedData.map((groupingData) => (
         <GroupingCard
           groupingData={groupingData.group}

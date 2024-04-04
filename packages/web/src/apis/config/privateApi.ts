@@ -1,7 +1,5 @@
 import axios, { AxiosError, AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 
-import { postReissue } from '../auth';
-
 import type { CustomInstance, ErrorType } from './type';
 
 import { BASE_API_URL } from '@/constants';
@@ -19,7 +17,7 @@ privateApi.defaults.timeout = 2500;
 privateApi.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     try {
-      const { accessToken, refreshToken } = await getTokenFromCookie();
+      const { accessToken } = await getTokenFromCookie();
       config.headers['X-AUTH-TOKEN'] = accessToken;
       return config;
     } catch (error) {

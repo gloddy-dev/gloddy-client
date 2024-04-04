@@ -2,11 +2,10 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import NoMeeting from '../../meeting/components/NoMeeting';
-
 import { useGetGroups } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
+import { Empty } from '@/components/Empty';
 import { ItemList } from '@/components/List';
 import { useBlockStore } from '@/store/useBlockStore';
 
@@ -31,7 +30,7 @@ export default function GroupingCardList({ lng }: GroupingCardList) {
         renderItem={(group) => {
           return !blockGroupIds.includes(group.groupId) && <GroupingCard groupingData={group} />;
         }}
-        renderEmpty={() => <NoMeeting message={t('noGroup')} />}
+        renderEmpty={() => <Empty message={t('noGroup')} />}
       />
       <div ref={ref} />
     </>

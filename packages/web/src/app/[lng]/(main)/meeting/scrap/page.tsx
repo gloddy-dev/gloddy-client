@@ -1,9 +1,10 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
 import ContentSection from './components/ContentSection';
 import MeetingScrapHeader from './components/MeetingScrapHeader';
 
 import { Keys, getMeetingScrap } from '@/apis/meeting';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
-import { Footer } from '@/components/Footer';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface MeetingPageProps {
@@ -16,12 +17,11 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
       <MeetingScrapHeader lng={lng} />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider queryFn={getMeetingScrap} queryKey={Keys.getMeetingScraps()}>
-          <ContentSection lng={lng} />
+          <ContentSection />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
-      <Footer page="meeting" lng={lng} />
+      </ErrorBoundary>
     </>
   );
 }

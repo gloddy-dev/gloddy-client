@@ -1,15 +1,11 @@
 'use client';
-import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+
+import CommunityArticles from './CommunityArticles';
 
 import { useTranslation } from '@/app/i18n/client';
 import { Loading } from '@/components/Loading';
 import { Tabs } from '@/components/Tabs';
-
-const AllContent = dynamic(() => import('./AllContent'));
-const KpopContent = dynamic(() => import('./KpopContent'));
-const LanguageContent = dynamic(() => import('./LanguageContent'));
-const QuestionContent = dynamic(() => import('./QuestionContent'));
 
 export default function ContentSection() {
   const { t } = useTranslation('community');
@@ -24,22 +20,22 @@ export default function ContentSection() {
       </Tabs.List>
       <Tabs.Panel value="all">
         <Suspense fallback={<Loading />}>
-          <AllContent />
+          <CommunityArticles categoryId={0} />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="kpop">
         <Suspense fallback={<Loading />}>
-          <KpopContent />
+          <CommunityArticles categoryId={1} />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="question">
         <Suspense fallback={<Loading />}>
-          <QuestionContent />
+          <CommunityArticles categoryId={2} />
         </Suspense>
       </Tabs.Panel>
       <Tabs.Panel value="language">
         <Suspense fallback={<Loading />}>
-          <LanguageContent />
+          <CommunityArticles categoryId={3} />
         </Suspense>
       </Tabs.Panel>
     </Tabs>

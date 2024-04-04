@@ -1,16 +1,21 @@
-import 'react-datepicker/dist/react-datepicker.css';
-
 import { format } from 'date-fns';
 import { enUS, ko } from 'date-fns/esm/locale';
+import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
-import DatePicker from 'react-datepicker';
 
 import { Icon } from '../Icon';
 import { Spacing } from '../Spacing';
 
 import { IconButton } from '@/components/Button';
 import { Flex } from '@/components/Layout';
+
+const DatePicker = dynamic(() =>
+  import('react-datepicker').then((mod) => {
+    require('react-datepicker/dist/react-datepicker.css');
+    return mod;
+  })
+);
 
 interface CalendarProps {
   dateValue: Date | null;

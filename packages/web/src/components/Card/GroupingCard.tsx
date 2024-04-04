@@ -55,7 +55,7 @@ export default function GroupingCard({
 
   return (
     <Flex className="bg-white px-20 py-16" direction="column">
-      <NavLink href={`/grouping/${groupId}?tab=detail`} className="flex items-center">
+      <NavLink href={`/grouping/detail/${groupId}?tab=detail`} className="flex items-center">
         <section className="relative h-96 w-96 shrink-0">
           {imageUrl ? (
             <Image

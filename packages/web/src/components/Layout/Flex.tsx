@@ -1,7 +1,8 @@
-import cn from '@/utils/cn';
 import { forwardRef } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
+
+import cn from '@/utils/cn';
 
 interface FlexProps<T extends React.ElementType> extends React.HTMLAttributes<T> {
   as?: T;

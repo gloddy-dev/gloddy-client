@@ -14,7 +14,7 @@ import { Flex } from '@/components/Layout';
 import { ImageModal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 interface ArticleItemProps {
   article: Article;

@@ -17,7 +17,7 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 
 export default function InputForm() {

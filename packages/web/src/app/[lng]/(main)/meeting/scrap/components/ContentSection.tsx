@@ -1,15 +1,13 @@
 'use client';
 
 import { useGetMeetingScrap } from '@/apis/meeting';
+import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
 import { Empty } from '@/components/Empty';
 import { ItemList } from '@/components/List';
 
-interface ContentSectionProps {
-  lng: string;
-}
-
-export default function ContentSection({ lng }: ContentSectionProps) {
+export default function ContentSection() {
+  const { t } = useTranslation('meeting');
   const {
     data: { contents },
   } = useGetMeetingScrap();
@@ -18,7 +16,7 @@ export default function ContentSection({ lng }: ContentSectionProps) {
     <ItemList
       data={contents}
       renderItem={(content) => <GroupingCard groupingData={content} isScrapped />}
-      renderEmpty={() => <Empty lng={lng} ns={'meeting'} message={'home.noFavoritedGroups'} />}
+      renderEmpty={() => <Empty message={t('home.noFavoritedGroups')} />}
     />
   );
 }
