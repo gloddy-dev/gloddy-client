@@ -1,8 +1,10 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
 import ManageDetail from './components/ManageDetail';
 import ManageHeader from './components/ManageHeader';
 
 import { Keys, getApplies } from '@/apis/groups';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface GroupingManagePageProps {
@@ -17,11 +19,11 @@ export default function GroupingManagePage({ params }: GroupingManagePageProps) 
   return (
     <>
       <ManageHeader />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider queryFn={() => getApplies(groupId)} queryKey={Keys.getApplies(groupId)}>
           <ManageDetail />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
+      </ErrorBoundary>
     </>
   );
 }

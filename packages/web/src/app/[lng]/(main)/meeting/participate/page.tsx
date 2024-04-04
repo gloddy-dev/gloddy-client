@@ -1,3 +1,5 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
 import ContentSection from './components/ContentSection';
 import MeetingParticipateHeader from './components/MeetingParticipateHeader';
 
@@ -9,7 +11,7 @@ import {
   getMeetingRejected,
   getMeetingWaiting,
 } from '@/apis/meeting';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface MeetingPageProps {
@@ -22,7 +24,7 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
       <MeetingParticipateHeader lng={lng} />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider
           queryMultipleFn={[
             getMeetingParticipating,
@@ -41,7 +43,7 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
         >
           <ContentSection />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
+      </ErrorBoundary>
     </>
   );
 }

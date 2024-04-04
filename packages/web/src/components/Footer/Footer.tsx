@@ -45,9 +45,14 @@ interface FooterProps {
 }
 
 export default function Footer({ isSpacing = true, spacingColor }: FooterProps) {
-  const pathname = usePathname().split('/')[2];
+  const pathname = usePathname();
   const { t } = useTranslation('common');
-  const isSelected = (tab: TabType) => tab.name === pathname;
+  const isSelected = (tab: TabType) => tab.name === pathname.split('/')[2];
+
+  // `detail`이 경로에 포함되어 있을 경우 렌더링하지 않음
+  if (pathname.includes('/detail/')) {
+    return null;
+  }
 
   return (
     <>

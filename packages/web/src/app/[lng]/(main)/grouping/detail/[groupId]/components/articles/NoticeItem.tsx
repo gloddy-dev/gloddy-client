@@ -1,4 +1,4 @@
-import WarningModal from '../../../components/WarningModal';
+import WarningModal from '../../../../components/WarningModal';
 
 import { type Notice, useDeleteArticle } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';

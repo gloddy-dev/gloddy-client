@@ -2,9 +2,9 @@
 
 import { Suspense } from 'react';
 
-import BlockDoneModal from '../../components/BlockDoneModal';
-import ReportDoneModal from '../../components/ReportDoneModal';
-import WarningModal from '../../components/WarningModal';
+import BlockDoneModal from '../../../components/BlockDoneModal';
+import ReportDoneModal from '../../../components/ReportDoneModal';
+import WarningModal from '../../../components/WarningModal';
 
 import { useDeleteGroupMember, useGetGroupDetail } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
@@ -59,7 +59,7 @@ function ManageButtonAction({ groupId }: ActionProps) {
 
   return (
     isCaptain && (
-      <IconButton size="large" onClick={() => push(`/grouping/${groupId}/manage`)}>
+      <IconButton size="large" onClick={() => push(`/grouping/detail/${groupId}/manage`)}>
         <Icon id={`24-application${isExistNewApply ? '_notification' : ''}`} />
       </IconButton>
     )

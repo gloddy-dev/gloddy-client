@@ -1,8 +1,10 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
 import InputForm from './components/InputForm';
 import WriteHeader from './components/WriteHeader';
 
 import { Keys, getGroupDetail } from '@/apis/groups';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface WritePageProps {
@@ -17,14 +19,14 @@ export default function WritePage({ params }: WritePageProps) {
   return (
     <div className="flex h-full flex-col">
       <WriteHeader />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider
           queryFn={() => getGroupDetail(groupId)}
           queryKey={Keys.getGroupDetail(groupId)}
         >
           <InputForm />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
+      </ErrorBoundary>
     </div>
   );
 }

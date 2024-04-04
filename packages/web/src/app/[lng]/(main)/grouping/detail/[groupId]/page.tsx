@@ -1,8 +1,10 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
 import GroupDetailPage from './components/GroupDetail';
 import GroupDetailHeader from './components/GroupDetailHeader';
 
 import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
 interface GroupingDetailPageProps {
@@ -17,7 +19,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
   return (
     <>
       <GroupDetailHeader />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider
           queryMultipleFn={[
             () => getGroupDetail(groupId),
@@ -32,7 +34,7 @@ export default function GroupingDetailPage({ params }: GroupingDetailPageProps) 
         >
           <GroupDetailPage />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
+      </ErrorBoundary>
     </>
   );
 }

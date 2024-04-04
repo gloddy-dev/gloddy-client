@@ -66,7 +66,10 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
   const locale = i18n.language === 'ko' ? ko : enUS;
 
   return (
-    <div className="p-20" onClick={onClick || (() => push(`/community/${articleId}`, false))}>
+    <div
+      className="p-20"
+      onClick={onClick || (() => push(`/community/detail/${articleId}`, false))}
+    >
       <Flex justify="between" align="center">
         <ArticleBadge type={category.name}>{t(`category.${category.name}`)}</ArticleBadge>
         <p className="text-caption text-sign-tertiary">{formatDate(createdAt, locale)}</p>
@@ -80,7 +83,7 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
         </div>
         {!!images?.length && (
           <div className="rounded-8 relative h-80 w-80 shrink-0 overflow-hidden">
-            <Image src={images[0]} alt="이미지" fill className="object-cover" />
+            <Image src={images[0]} alt="이미지" sizes="80px" fill className="object-cover" />
           </div>
         )}
       </Flex>

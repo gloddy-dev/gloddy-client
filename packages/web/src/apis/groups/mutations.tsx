@@ -30,7 +30,7 @@ export const usePostCreateGroup = () => {
     mutationFn: postCreateGroup,
     onSuccess: (data) => {
       queryClient.resetQueries({ queryKey: GroupsKeys.getGroups() });
-      replace(`/grouping/${data.groupId}?tab=detail`);
+      replace(`/grouping/detail/${data.groupId}?tab=detail`);
     },
   });
 };

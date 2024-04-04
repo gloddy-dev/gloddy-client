@@ -1,7 +1,10 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
+import ArticleDetail from './components/ArticleDetail';
+import ArticleDetailHeader from './components/ArticleDetailHeader';
+
 import { Keys, getCommunityArticleDetail } from '@/apis/community';
-import ArticleDetail from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetail';
-import ArticleDetailHeader from '@/app/[lng]/(main)/community/[articleId]/components/ArticleDetailHeader';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 
@@ -16,7 +19,7 @@ export default function CommunityArticlePage({ params }: CommunityArticlePagePro
 
   return (
     <>
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider
           queryFn={() => getCommunityArticleDetail(articleId)}
           queryKey={Keys.getCommunityArticleDetail(articleId)}
@@ -24,7 +27,7 @@ export default function CommunityArticlePage({ params }: CommunityArticlePagePro
           <ArticleDetailHeader />
           <ArticleDetail articleId={articleId} />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
+      </ErrorBoundary>
       <Spacing size={60} />
     </>
   );
