@@ -1,7 +1,12 @@
-import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
+import {
+  HydrationBoundary,
+  QueryClient,
+  type QueryFunction,
+  type QueryKey,
+  dehydrate,
+} from '@tanstack/react-query';
 
 import type { StrictPropsWithChildren } from '@/types';
-import type { QueryFunction, QueryKey } from '@tanstack/react-query';
 
 interface HydrationProviderProps {
   queryKey?: QueryKey;

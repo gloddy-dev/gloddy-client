@@ -1,7 +1,8 @@
 import { PRAISE_VALUE_MAP } from '../../../constants';
-import { FeedbackRequestType, useFeedbackContext } from '../../components/FeedbackProvider.client';
-import Membercard from '../../components/Membercard.client';
+import { FeedbackRequestType, useFeedbackContext } from '../../components/FeedbackProvider';
+import Membercard from '../../components/Membercard';
 import TitleSection from '../../components/TitleSection';
+
 import { type EstimateResponse, usePostEstimate } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';

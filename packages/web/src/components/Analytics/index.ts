@@ -1,1 +1,1 @@
-export { default as GoogleAnalytics } from './GoogleAnalytics.client';
+export { default as GoogleAnalytics } from './GoogleAnalytics';

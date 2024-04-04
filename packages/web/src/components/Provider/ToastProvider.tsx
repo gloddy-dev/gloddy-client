@@ -1,4 +1,4 @@
-import { ModalProvider } from '@/hooks/useModal';
+import ModalProvider from '@/hooks/useModal/ModalProvider';
 import { StrictPropsWithChildren } from '@/types';
 
 export default function ToastProvider({ children }: StrictPropsWithChildren) {

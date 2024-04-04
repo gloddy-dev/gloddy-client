@@ -1,6 +1,6 @@
 'use client';
 
-import { useJoinContext } from '../../../components/JoinContext.client';
+import { useJoinContext } from '../../../components/JoinContext';
 import { useFunnelContext } from '../../JoinFunnel';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';

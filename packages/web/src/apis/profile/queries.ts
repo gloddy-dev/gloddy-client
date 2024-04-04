@@ -1,5 +1,6 @@
-import { Keys, getMates, getPraises, getProfile, getProfileById } from '.';
 import { useSuspenseQuery } from '@tanstack/react-query';
+
+import { Keys, getMates, getPraises, getProfile, getProfileById } from '.';
 
 export const useGetProfile = () =>
   useSuspenseQuery({

@@ -1,10 +1,11 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
 import CommunityHeader from './components/CommunityHeader';
 import ContentSection from './components/ContentSection';
 import CreateArticleButton from './components/CreateArticleButton';
 
 import { Keys, getCommunityArticles } from '@/apis/community';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
-import { Footer } from '@/components/Footer';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 
@@ -18,28 +19,17 @@ export default function CommunityPage({ params: { lng } }: CommunityPageProps) {
   return (
     <>
       <CommunityHeader lng={lng} />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider
-          queryMultipleFn={[
-            () => getCommunityArticles({ categoryId: 0, pageParam: 0 }),
-            () => getCommunityArticles({ categoryId: 1, pageParam: 0 }),
-            () => getCommunityArticles({ categoryId: 2, pageParam: 0 }),
-            () => getCommunityArticles({ categoryId: 3, pageParam: 0 }),
-          ]}
-          queryMultipleKey={[
-            Keys.getCommunityArticles(0),
-            Keys.getCommunityArticles(1),
-            Keys.getCommunityArticles(2),
-            Keys.getCommunityArticles(3),
-          ]}
+          queryFn={() => getCommunityArticles({ categoryId: 0, pageParam: 0 })}
+          queryKey={Keys.getCommunityArticles(0)}
           isInfiniteQuery
         >
           <ContentSection />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
+      </ErrorBoundary>
       <CreateArticleButton />
       <Spacing size={60} />
-      <Footer page="community" lng={lng} />
     </>
   );
 }

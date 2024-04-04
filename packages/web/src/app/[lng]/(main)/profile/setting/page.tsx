@@ -1,7 +1,10 @@
-import LinkSection from './components/LinkSection.server';
-import ProfileSection from './components/ProfileSection.client';
-import SettingHeader from './components/SettingHeader.client';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import LinkSection from './components/LinkSection';
+import ProfileSection from './components/ProfileSection';
+import SettingHeader from './components/SettingHeader';
+
+import { ErrorFallback } from '@/components/ErrorBoundary';
 
 interface PageParams {
   params: {
@@ -13,9 +16,9 @@ export default function page({ params: { lng } }: PageParams) {
   return (
     <>
       <SettingHeader />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <ProfileSection />
-      </LocalSuspenseErrorBoundary>
+      </ErrorBoundary>
       <LinkSection lng={lng} />
     </>
   );
