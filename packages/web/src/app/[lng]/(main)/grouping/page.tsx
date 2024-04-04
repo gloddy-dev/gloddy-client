@@ -1,10 +1,11 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
 import CreateGroupButton from './components/CreateGroupButton';
 import GroupingCardList from './components/GroupingCardList';
 import GroupingHeader from './components/GroupingHeader';
 
 import { Keys, getGroups } from '@/apis/groups';
-import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
-import { Footer } from '@/components/Footer';
+import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 
@@ -18,14 +19,13 @@ export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
   return (
     <>
       <GroupingHeader />
-      <LocalSuspenseErrorBoundary>
+      <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider queryFn={() => getGroups(0)} queryKey={Keys.getGroups()} isInfiniteQuery>
           <GroupingCardList lng={lng} />
         </HydrationProvider>
-      </LocalSuspenseErrorBoundary>
+      </ErrorBoundary>
       <CreateGroupButton />
       <Spacing size={60} />
-      <Footer page="grouping" lng={lng} />
     </>
   );
 }

@@ -1,14 +1,16 @@
+'use client';
+import { usePathname } from 'next/navigation';
+
 import { ButtonAnimation } from '../Animation';
 import { Icon } from '../Icon';
 import { NavLink } from '../NavLink';
 
 import type { PageType } from '@/types';
 
-import { serverTranslation } from '@/app/i18n';
+import { useTranslation } from '@/app/i18n/client';
 import cn from '@/utils/cn';
 
 interface TabType {
-  id: string;
   name: PageType;
   title: string;
   url: string;
@@ -16,25 +18,21 @@ interface TabType {
 
 const tabList: TabType[] = [
   {
-    id: '1',
     name: 'grouping',
     title: '매칭',
     url: '/grouping',
   },
   {
-    id: '2',
     name: 'meeting',
     title: '나의모임',
     url: '/meeting/participate?tab=participating',
   },
   {
-    id: '3',
     name: 'community',
     title: '커뮤니티',
     url: '/community?tab=all',
   },
   {
-    id: '4',
     name: 'profile',
     title: '프로필',
     url: '/profile',
@@ -42,22 +40,26 @@ const tabList: TabType[] = [
 ];
 
 interface FooterProps {
-  lng: string;
-  page?: PageType;
   isSpacing?: boolean;
   spacingColor?: string;
 }
 
-export default async function Footer({ lng, page, isSpacing = true, spacingColor }: FooterProps) {
-  const { t } = await serverTranslation(lng, 'common');
-  const isSelected = (tab: TabType) => tab.name === page;
+export default function Footer({ isSpacing = true, spacingColor }: FooterProps) {
+  const pathname = usePathname();
+  const { t } = useTranslation('common');
+  const isSelected = (tab: TabType) => tab.name === pathname.split('/')[2];
+
+  // `detail`이 경로에 포함되어 있을 경우 렌더링하지 않음
+  if (pathname.includes('/detail/')) {
+    return null;
+  }
 
   return (
     <>
       <footer className="max-w-450 rounded-t-24 shadow-navigation fixed inset-x-0 bottom-0 mx-auto flex touch-pan-x bg-white pb-8 pt-12">
-        {tabList.map((tab: TabType) => (
+        {tabList.map((tab: TabType, index) => (
           <ButtonAnimation
-            key={tab.id}
+            key={`${tab.name}-${index}`}
             className={cn('text-caption flex w-full flex-col text-center', {
               'text-sign-brand': isSelected(tab),
               'text-sign-tertiary': !isSelected(tab),

@@ -1,12 +1,12 @@
 'use client';
 
 import SubtitleSection from './SubtitleSection';
-import NoMeeting from '../../components/NoMeeting';
 
 import { useGetMeetingHosting, useGetMeetingParticipating } from '@/apis/meeting';
 import { useTranslation } from '@/app/i18n/client';
 import { GroupingCard } from '@/components/Card';
 import { Divider } from '@/components/Divider';
+import { Empty } from '@/components/Empty';
 import { Spacing } from '@/components/Spacing';
 
 export default function ParticipatingContent() {
@@ -23,9 +23,7 @@ export default function ParticipatingContent() {
       <Spacing size={20} />
       <SubtitleSection text={t('home.memberGroup')} />
 
-      {meetingParticipatingData.length === 0 && (
-        <NoMeeting message={t('home.noParticipatingGroups')} />
-      )}
+      {meetingParticipatingData.length === 0 && <Empty message={t('home.noParticipatingGroups')} />}
 
       {meetingParticipatingData.map((groupingData) => (
         <GroupingCard
@@ -41,7 +39,7 @@ export default function ParticipatingContent() {
 
       <SubtitleSection text={t('home.hostingGroup')} />
 
-      {meetingHostingData.length === 0 && <NoMeeting message={t('home.noHostingGroups')} />}
+      {meetingHostingData.length === 0 && <Empty message={t('home.noHostingGroups')} />}
       {meetingHostingData.map((groupingData) => (
         <GroupingCard
           groupingData={groupingData.group}

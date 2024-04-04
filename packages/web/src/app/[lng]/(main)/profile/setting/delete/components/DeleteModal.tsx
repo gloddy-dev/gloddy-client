@@ -6,7 +6,7 @@ import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import useLogout from '@/hooks/token/useLogout';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 interface DeleteModalProps {
   onCancelClick: () => void;

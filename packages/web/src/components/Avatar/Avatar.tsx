@@ -50,7 +50,7 @@ export default function Avatar({
       onClick={onClick}
     >
       <div className="relative flex w-full before:block before:pb-[100%]">
-        <AvatarImage imageUrl={imageUrl} isPending={isPending} />
+        <AvatarImage imageUrl={imageUrl} isPending={isPending} size={size} />
         {iconVariant !== 'none' && (
           <Icon
             id={`32-${iconVariant}`}
@@ -73,7 +73,9 @@ export default function Avatar({
           />
         )}
         <div className="absolute bottom-0 h-8 w-12">
-          {countryImage && <Image src={countryImage} fill className="object-fill" alt="국가" />}
+          {countryImage && (
+            <Image src={countryImage} sizes={'12px'} fill className="object-fill" alt="국가" />
+          )}
         </div>
       </div>
       {children}
@@ -82,9 +84,10 @@ export default function Avatar({
 }
 
 const AvatarImage = memo(function ({
+  size,
   imageUrl,
   isPending,
-}: Pick<AvatarProps, 'imageUrl' | 'isPending'>) {
+}: Pick<AvatarProps, 'imageUrl' | 'isPending' | 'size'>) {
   if (isPending) {
     return (
       <Flex direction="column" justify="center" align="center" className="h-full w-full">
@@ -93,8 +96,23 @@ const AvatarImage = memo(function ({
     );
   }
 
+  const imageSize = {
+    'x-small': '1.7rem',
+    small: '2.5rem',
+    medium: '3.5rem',
+    large: '6rem',
+  };
+
   if (imageUrl) {
-    return <Image src={imageUrl} alt="avatar" className="rounded-full object-cover" fill />;
+    return (
+      <Image
+        src={imageUrl}
+        alt="avatar"
+        sizes={imageSize[size ?? 'medium']}
+        className="rounded-full object-cover"
+        fill
+      />
+    );
   }
 
   return <div className="bg-sub h-full w-full cursor-pointer rounded-full" />;

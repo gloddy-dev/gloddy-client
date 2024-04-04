@@ -16,7 +16,8 @@ import { Divider } from '@/components/Divider';
 import { Spacing } from '@/components/Spacing';
 import { useDidMount } from '@/hooks/common/useDidMount';
 import useBrowser from '@/hooks/useBrowser';
-import { useModal, useToast } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
+import useToast from '@/hooks/useModal/useToast';
 import sendMessageToReactNative from '@/utils/sendMessageToReactNative';
 
 function validateDate(date: Date, time: TimeType, browser: string) {

@@ -94,7 +94,7 @@ const middleware = async (request: NextRequest) => {
 };
 
 const config = {
-  matcher: ['/'],
+  matcher: ['/:path*'],
 };
 
 export { config, middleware };

@@ -17,7 +17,7 @@ import { Tag } from '@/components/Tag';
 import { TextField, TextFieldController } from '@/components/TextField';
 import { personalityList } from '@/constants/personalityList';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 interface Step1InputFormProps extends Step1Props {}
 

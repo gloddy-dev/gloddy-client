@@ -2,14 +2,14 @@
 
 import FeedbackModal from './FeedbackModal';
 import SubtitleSection from './SubtitleSection';
-import NoMeeting from '../../components/NoMeeting';
 
 import { useGetMeetingNotEstimated } from '@/apis/meeting';
 import { useTranslation } from '@/app/i18n/client';
 import { Button } from '@/components/Button';
 import { GroupingCard } from '@/components/Card';
+import { Empty } from '@/components/Empty';
 import { Spacing } from '@/components/Spacing';
-import { useModal } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal/useModal';
 
 export default function FeedbackContent() {
   const { t } = useTranslation('meeting');
@@ -24,7 +24,7 @@ export default function FeedbackContent() {
       <SubtitleSection text={t('home.mutualEvaluationRequired')} />
 
       {meetingNotEstimatedData.length === 0 && (
-        <NoMeeting message={t('home.noMutualEvaluationGroups')} />
+        <Empty message={t('home.noMutualEvaluationGroups')} />
       )}
       {meetingNotEstimatedData.map((groupingData) => (
         <GroupingCard
