@@ -10,7 +10,6 @@ import {
   getMeetingWaiting,
 } from '@/apis/meeting';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
-import { Footer } from '@/components/Footer';
 import { HydrationProvider } from '@/components/Provider';
 
 interface MeetingPageProps {
@@ -43,7 +42,6 @@ export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
           <ContentSection />
         </HydrationProvider>
       </LocalSuspenseErrorBoundary>
-      <Footer page="meeting" lng={lng} />
     </>
   );
 }
