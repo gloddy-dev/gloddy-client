@@ -47,21 +47,10 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
     likeCount,
     isLiked,
     createdAt,
-    isWriter,
-    userId,
-    thumbnail,
     category,
   } = article;
 
-  const {
-    id: writerId,
-    isCertifiedStudent,
-    reliabilityLevel,
-    nickName,
-    countryName,
-    countryImage,
-    profileImage,
-  } = writer;
+  const { isCertifiedStudent, reliabilityLevel, nickName, countryImage, profileImage } = writer;
 
   const locale = i18n.language === 'ko' ? ko : enUS;
 

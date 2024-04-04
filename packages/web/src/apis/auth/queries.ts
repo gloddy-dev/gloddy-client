@@ -1,5 +1,6 @@
-import { Keys, NicknameDuplicateResponse, getNicknameDuplicate, getSchoolSearch } from '.';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+
+import { Keys, NicknameDuplicateResponse, getNicknameDuplicate, getSchoolSearch } from '.';
 
 export const useGetSearchSchool = (searchWord: string) =>
   useSuspenseQuery({
