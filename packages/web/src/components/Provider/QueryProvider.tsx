@@ -18,6 +18,7 @@ export default function QueryProvider({ children }: StrictPropsWithChildren) {
           queries: {
             retry: 0,
             throwOnError: true,
+            staleTime: 60 * 1000,
           },
           mutations: {
             onError: (error) => {

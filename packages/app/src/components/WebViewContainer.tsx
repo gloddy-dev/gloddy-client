@@ -1,32 +1,34 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import messaging from '@react-native-firebase/messaging';
-import { StackActions, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, StackActions, useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { Alert, BackHandler, Dimensions, Linking, Platform } from 'react-native';
-import RNRestart from 'react-native-restart'; // Import package from node modules
+import RNRestart from 'react-native-restart';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import WebView from 'react-native-webview';
+import WebView, { WebViewMessageEvent, WebViewNavigation } from 'react-native-webview';
 
 import Error from './Error';
 import { SOURCE_URL } from '../config';
 import { sendFCMTokenToWebView } from '../utils/sendFCMTokenToWebView';
 
 import { useDidMount } from '@/hooks/useDidMount';
-import useWebViewNavigationSetUp from '@/hooks/useWebViewNavigationSetUp';
 import { getPermission } from '@/utils/getPermission';
-import sendMessageToWebview from '@/utils/sendMessageToWebview';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+type WebViewParams = {
+  url?: string;
+  edges?: any[];
+  title?: string;
+};
+
 export default function WebViewContainer() {
-  useWebViewNavigationSetUp();
   const navigation = useNavigation();
-  const params = useRoute().params;
-  const webViewRef = useRef(null);
+  const params = useRoute<RouteProp<{ params: WebViewParams }, 'params'>>().params;
+  const webViewRef = useRef<WebView>(null);
   const { isError, setIsError, onWebViewError } = useAppError();
+  const [canGoBackInWebView, setCanGoBackInWebView] = useState(false);
   const url = params.url ?? SOURCE_URL;
-  const edges = params?.edges;
 
   useDidMount(async () => {
     /* 권한 요청 */
@@ -34,11 +36,20 @@ export default function WebViewContainer() {
     await messaging().requestPermission();
   });
 
-  /* 안드로이드 뒤로가기 */
-  useDidMount(() => {
+  // Android 뒤로가기 버튼 이벤트 처리
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+
     const handleAndroidBackPress = () => {
-      if (navigation.canGoBack()) navigation.goBack();
-      else {
+      console.log('back pushed ' + canGoBackInWebView);
+
+      if (canGoBackInWebView && webViewRef.current) {
+        webViewRef.current.goBack();
+        return true;
+      } else if (navigation.canGoBack()) {
+        navigation.goBack();
+        return true;
+      } else {
         Alert.alert(
           'Hold on!(잠시만요!)',
           'Are you sure you want to quit the program?(앱을 종료하시겠습니까?)',
@@ -50,33 +61,27 @@ export default function WebViewContainer() {
             { text: 'Confirm(확인)', onPress: () => BackHandler.exitApp() },
           ]
         );
-      }
-
-      if (webViewRef.current) {
-        webViewRef.current.goBack();
         return true;
       }
-      return false;
     };
 
-    if (Platform.OS === 'android') {
-      BackHandler.addEventListener('hardwareBackPress', handleAndroidBackPress);
-      return () => {
-        BackHandler.removeEventListener('hardwareBackPress', handleAndroidBackPress);
-      };
-    }
-  });
+    BackHandler.addEventListener('hardwareBackPress', handleAndroidBackPress);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleAndroidBackPress);
+    };
 
-  /* (iOS)외부 페이지 이동 */
-  const onNavigationStateChange = (navState) => {
-    if (!navState.url.includes(SOURCE_URL)) {
-      Linking.openURL(navState.url).catch((err) => {});
-      return false;
-    }
+    /**
+     * addEventListener로 등록된 handleAndroidBackPress가 생성시의 클로저 환경을 유지하기 때문에
+     * canGoBackInWebView의 상태를 추적하기 위해 의존성 배열에 canGoBackInWebView와 navigation추가
+     */
+  }, [canGoBackInWebView, navigation]);
+
+  const onNavigationStateChange = (navState: WebViewNavigation) => {
+    setCanGoBackInWebView(navState.canGoBack);
   };
 
-  const onShouldStartLoadWithRequest = (navState) => {
-    if (!navState.url.includes(SOURCE_URL)) {
+  const onShouldStartLoadWithRequest = (navState: WebViewNavigation) => {
+    if (SOURCE_URL && !navState.url.includes(SOURCE_URL)) {
       Linking.openURL(navState.url).catch((err) => {});
       return false;
     }
@@ -84,7 +89,7 @@ export default function WebViewContainer() {
   };
 
   /* 페이지 이동 */
-  const requestOnMessage = async (event) => {
+  const requestOnMessage = async (event: WebViewMessageEvent) => {
     const nativeEvent = JSON.parse(event.nativeEvent.data);
     const { type, data } = nativeEvent;
     switch (type) {
@@ -96,11 +101,6 @@ export default function WebViewContainer() {
               url: `${SOURCE_URL}${path}`,
               title,
               edges: title ? ['bottom'] : [],
-              // right: () => { // 어디서 쓰는지 잘 모르겠는데 WARNING 떠서 주석처리
-              //   webViewRef.current?.postMessage(
-              //     JSON.stringify({type: 'NAVIGATION_TAPPED_RIGHT_BUTTON'}),
-              //   );
-              // },
             });
             navigation.dispatch(pushAction);
             break;
@@ -164,7 +164,6 @@ export default function WebViewContainer() {
         pullToRefreshEnabled
         thirdPartyCookiesEnabled={true}
         sharedCookiesEnabled={true}
-        androidHardwareAccelerationDisabled
         onNavigationStateChange={onNavigationStateChange}
         onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
         onMessage={requestOnMessage} // 웹뷰 -> 앱으로 통신
