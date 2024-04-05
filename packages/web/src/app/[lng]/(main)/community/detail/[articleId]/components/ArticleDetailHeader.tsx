@@ -46,8 +46,8 @@ function IconButtonAction() {
   const { articleId } = useNumberParams<['articleId']>();
   const { setBlockId } = useBlockStore();
   const { back } = useAppRouter();
-  const { data: articleData } = useGetCommunityArticleDetail(articleId);
   const { open: openModal, exit: closeModal } = useModal();
+  const { data: articleData } = useGetCommunityArticleDetail(articleId);
   const { mutate: mutateDelete } = usePostDeleteCommunityArticle(articleId);
 
   const handleBlockArticle = () => {

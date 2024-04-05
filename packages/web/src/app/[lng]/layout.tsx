@@ -73,14 +73,12 @@ export default function RootLayout({
     <Layout lng={lng}>
       <ToastProvider>
         <QueryProvider>
-          <ModalProvider>
-            <Suspense>
-              <GoogleAnalytics />
-            </Suspense>
-            {children}
-          </ModalProvider>
+          <ModalProvider>{children}</ModalProvider>
         </QueryProvider>
       </ToastProvider>
+      <Suspense>
+        <GoogleAnalytics />
+      </Suspense>
     </Layout>
   );
 }
@@ -92,7 +90,7 @@ interface LayoutProps {
 function Layout({ lng, children }: StrictPropsWithChildren<LayoutProps>) {
   return (
     <html lang={lng} dir={dir(lng)} className={`${SansFont.variable}`}>
-      <body className="flex h-full min-h-[100dvh] w-screen justify-center overflow-y-scroll bg-slate-50">
+      <body className="flex h-full min-h-screen w-screen justify-center overflow-y-scroll bg-slate-50">
         <div className="max-w-450 text-sign-primary relative min-h-[100dvh] w-full bg-white">
           {children}
         </div>

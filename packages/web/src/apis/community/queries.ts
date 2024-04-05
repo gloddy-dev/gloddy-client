@@ -17,6 +17,7 @@ export const useGetCommunityArticles = (categoryId: number) => {
         ? lastPage.data.currentPage + 1
         : undefined,
     initialPageParam: 0,
+    staleTime: 0,
   });
 
   return {

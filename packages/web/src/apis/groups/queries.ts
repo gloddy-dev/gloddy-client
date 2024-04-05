@@ -20,6 +20,7 @@ export const useGetGroups = () => {
     getNextPageParam: (lastPage) =>
       lastPage.totalPage !== lastPage.currentPage ? lastPage.currentPage + 1 : undefined,
     initialPageParam: 0,
+    staleTime: 0,
   });
 
   return {
