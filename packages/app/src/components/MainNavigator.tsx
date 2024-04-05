@@ -3,7 +3,6 @@ import { TransitionPresets, createStackNavigator } from '@react-navigation/stack
 import React from 'react';
 
 import OnBoarding from './OnBoarding';
-import TabBarNavigator from './TabBarNavigator';
 import WebViewContainer from './WebViewContainer';
 
 import { useDidMount } from '@/hooks/useDidMount';
@@ -29,7 +28,6 @@ export default function MainNavigator() {
         }}
       >
         <Stack.Screen name="OnBoarding" component={OnBoarding} />
-        <Stack.Screen name="BottomTab" component={TabBarNavigator} />
         <Stack.Screen name="WebViewContainer" component={WebViewContainer} />
       </Stack.Navigator>
     </NavigationContainer>
