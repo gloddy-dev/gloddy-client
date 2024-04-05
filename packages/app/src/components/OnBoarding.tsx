@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import { ExpandingDot } from 'react-native-animated-pagination-dots';
@@ -27,16 +28,21 @@ const imageDataList = [
 ];
 
 export default function OnBoarding() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<any>>();
+  const [isPreloadingDone, setIsPreloadingDone] = useState(false);
   const scrollX = useRef(new Animated.Value(0)).current;
   const [pageIndex, setpageIndex] = useState(0);
-  const [lang, setlang] = useState(null);
+  const [lang, setlang] = useState<string | null>(null);
+
   const preloading = async () => {
     const isUserOnBoardSeen = await AsyncStorage.getItem('onBoarding');
     if (!isUserOnBoardSeen) return;
+
     navigation.replace('WebViewContainer', {
       url: `${SOURCE_URL}`,
     });
+
+    setIsPreloadingDone(true);
   };
 
   useEffect(() => {
@@ -44,10 +50,13 @@ export default function OnBoarding() {
     const languageCode = locales && locales.length > 0 ? locales[0].languageCode : 'en';
     setlang(languageCode);
     preloading();
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 500);
   }, []);
+
+  useEffect(() => {
+    if (isPreloadingDone) {
+      SplashScreen.hide();
+    }
+  }, [isPreloadingDone]);
 
   return (
     <View
@@ -84,6 +93,7 @@ export default function OnBoarding() {
                 <View style={{ alignItems: 'center' }}>
                   {lang === 'ko' ? <Bubble1SVG /> : <Bubble1enSVG />}
                   <Image
+                    alt="onboard-image1"
                     style={{
                       width: deviceWidth * 0.8,
                       height: deviceWidth * 0.8,
@@ -98,6 +108,7 @@ export default function OnBoarding() {
                 <View style={{ alignItems: 'center' }}>
                   {lang === 'ko' ? <Bubble2SVG /> : <Bubble2enSVG />}
                   <Image
+                    alt="onboard-image2"
                     style={{
                       width: deviceWidth * 0.8,
                       height: deviceWidth * 0.8,
@@ -111,6 +122,7 @@ export default function OnBoarding() {
                 </View>
               ) : (
                 <Image
+                  alt="onboard-image3"
                   style={{
                     width: deviceWidth * 0.7,
                     height: deviceWidth * 1.6,

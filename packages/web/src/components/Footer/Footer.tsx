@@ -67,7 +67,7 @@ export default function Footer({ isSpacing = true, spacingColor }: FooterProps) 
           >
             <NavLink isReplace href={tab.url} scroll={false}>
               <Icon
-                id={`32-footer-${tab.name}${isSelected(tab) ? '_selected' : '_default'}`}
+                id={`32-footer-${tab.name}_default`}
                 width={32}
                 height={32}
                 className="mx-auto"
