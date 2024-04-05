@@ -73,14 +73,12 @@ export default function RootLayout({
     <Layout lng={lng}>
       <ToastProvider>
         <QueryProvider>
-          <ModalProvider>
-            <Suspense>
-              <GoogleAnalytics />
-            </Suspense>
-            {children}
-          </ModalProvider>
+          <ModalProvider>{children}</ModalProvider>
         </QueryProvider>
       </ToastProvider>
+      <Suspense>
+        <GoogleAnalytics />
+      </Suspense>
     </Layout>
   );
 }
