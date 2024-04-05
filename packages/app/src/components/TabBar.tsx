@@ -23,7 +23,7 @@ const isKeyScreenIconName = (value: string) => value in ScreenIconName;
 const getScreenIcon = (value: string) =>
   isKeyScreenIconName(value) ? ScreenIconName[value as ScreenIconNameKey] : undefined;
 
-function TabBar({ state, navigation, descriptors }: BottomTabBarProps) {
+function TabBar({ state, navigation }: BottomTabBarProps) {
   const onPress = useTabBarPress();
   const renderTabBarButton = useCallback(
     (name: string, index: number) => (
