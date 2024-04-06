@@ -5,6 +5,7 @@ import { Alert, BackHandler, Dimensions, Linking, Platform } from 'react-native'
 import RNRestart from 'react-native-restart';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView, { WebViewMessageEvent, WebViewNavigation } from 'react-native-webview';
+import { WebViewErrorEvent } from 'react-native-webview/lib/WebViewTypes';
 
 import Error from './Error';
 import { SOURCE_URL } from '../config';
@@ -178,10 +179,20 @@ export default function WebViewContainer() {
 
 const useAppError = () => {
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const onWebViewError = () => {
+  const onWebViewError = (event: WebViewErrorEvent) => {
+    // 에러 객체에서 메시지 추출
+    const errorMesage = event.nativeEvent.description;
+    console.error('WebView Error:', errorMesage);
+
+    // 에러 상태 및 메시지 업데이트
     setIsError(true);
+    setErrorMessage(errorMesage);
+
+    // 사용자에게 에러 메시지를 보여주는 Alert
+    Alert.alert('Error', 'An error occurred: ' + errorMesage);
   };
 
-  return { isError, setIsError, onWebViewError };
+  return { isError, setIsError, onWebViewError, errorMessage };
 };
