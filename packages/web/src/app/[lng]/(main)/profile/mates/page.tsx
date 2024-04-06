@@ -7,7 +7,7 @@ import { Keys, getMates } from '@/apis/profile';
 import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
-export default function MatesPage() {
+export default async function MatesPage() {
   return (
     <>
       <MatesHeader />
