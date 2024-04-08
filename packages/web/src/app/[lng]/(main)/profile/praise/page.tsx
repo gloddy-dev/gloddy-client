@@ -7,7 +7,7 @@ import { Keys, getPraises } from '@/apis/profile';
 import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 
-export default function PraisePage() {
+export default async function PraisePage() {
   return (
     <>
       <PraiseHeader />

@@ -5,7 +5,6 @@ import { useTranslation } from '@/app/i18n/client';
 import { Icon } from '@/components/Icon';
 import { Modal } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
-import useLogout from '@/hooks/token/useLogout';
 import useModal from '@/hooks/useModal/useModal';
 
 interface DeleteModalProps {
@@ -16,10 +15,8 @@ export default function DeleteModal({ onCancelClick }: DeleteModalProps) {
   const { open } = useModal();
   const { t } = useTranslation('profile');
   const { mutate } = usePatchSignOut();
-  const { logout } = useLogout();
   const handleDeleteClick = () => {
     mutate();
-    logout();
     open(() => <DeleteCompleteModal />);
   };
 

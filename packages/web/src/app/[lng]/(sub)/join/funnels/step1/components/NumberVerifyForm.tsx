@@ -63,28 +63,12 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
       },
       {
         onSuccess: () => {
-          mutateLogin(
-            { phoneNumber: data.phoneNumber },
-            {
-              onSuccess: async (response: LoginResponse) => {
-                if (!response.existUser) {
-                  nextStep();
-                  return;
-                }
-
-                await login({
-                  accessToken: response.token.accessToken,
-                  refreshToken: response.token.refreshToken,
-                  userId: response.userId,
-                });
-              },
-            }
-          );
+          mutateLogin({ phoneNumber: data.phoneNumber });
         },
         onError: () => {
           setError('verifyNumber', {
             type: 'validate',
-            message: '인증번호가 잘못되었습니다.',
+            message: t('인증 번호를 다시 확인해주세요.'),
           });
         },
       }
