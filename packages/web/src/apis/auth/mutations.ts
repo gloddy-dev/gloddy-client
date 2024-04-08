@@ -20,11 +20,13 @@ export const useLoginMutation = () => {
   return useMutation({
     mutationFn: postLogin,
     onSuccess: async (response: LoginResponse) => {
-      await login({
-        accessToken: response.token.accessToken,
-        refreshToken: response.token.refreshToken,
-        userId: response.userId,
-      });
+      if (response.existUser) {
+        await login({
+          accessToken: response.token.accessToken,
+          refreshToken: response.token.refreshToken,
+          userId: response.userId,
+        });
+      }
     },
   });
 };
