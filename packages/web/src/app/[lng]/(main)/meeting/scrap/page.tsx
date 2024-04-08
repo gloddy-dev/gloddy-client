@@ -13,7 +13,7 @@ interface MeetingPageProps {
   };
 }
 
-export default function MeetingPage({ params: { lng } }: MeetingPageProps) {
+export default async function MeetingPage({ params: { lng } }: MeetingPageProps) {
   return (
     <>
       <MeetingScrapHeader lng={lng} />

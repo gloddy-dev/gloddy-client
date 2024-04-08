@@ -11,7 +11,7 @@ interface PageProps {
   };
 }
 
-export default function page({ params }: PageProps) {
+export default async function page({ params }: PageProps) {
   const groupId = Number(params.groupId);
 
   return (

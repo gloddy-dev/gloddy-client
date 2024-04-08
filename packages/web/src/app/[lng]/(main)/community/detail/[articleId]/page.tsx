@@ -14,7 +14,7 @@ interface CommunityArticlePageProps {
   };
 }
 
-export default function CommunityArticlePage({ params }: CommunityArticlePageProps) {
+export default async function CommunityArticlePage({ params }: CommunityArticlePageProps) {
   const articleId = Number(params.articleId);
 
   return (

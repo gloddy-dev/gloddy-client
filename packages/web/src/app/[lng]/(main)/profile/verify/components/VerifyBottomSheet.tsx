@@ -1,3 +1,8 @@
+import { memo } from 'react';
+
+import type { VerifyType } from '../type';
+import type { UseFormReturn } from 'react-hook-form';
+
 import { useEmailVerifyMutation } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
 import { Button, ButtonGroup } from '@/components/Button';
@@ -6,10 +11,6 @@ import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
 import useAppRouter from '@/hooks/useAppRouter';
 import { useTimer } from '@/hooks/useTimer';
-import { memo } from 'react';
-
-import type { VerifyType } from '../type';
-import type { UseFormReturn } from 'react-hook-form';
 
 interface VerifyBottomSheetProps extends ModalProps {
   onClose: () => void;

@@ -9,19 +9,13 @@ import { ErrorFallback } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 
-interface GroupingPageProps {
-  params: {
-    lng: string;
-  };
-}
-
-export default function GroupingPage({ params: { lng } }: GroupingPageProps) {
+export default async function GroupingPage() {
   return (
     <>
       <GroupingHeader />
       <ErrorBoundary fallbackRender={ErrorFallback}>
         <HydrationProvider queryFn={() => getGroups(0)} queryKey={Keys.getGroups()} isInfiniteQuery>
-          <GroupingCardList lng={lng} />
+          <GroupingCardList />
         </HydrationProvider>
       </ErrorBoundary>
       <CreateGroupButton />
