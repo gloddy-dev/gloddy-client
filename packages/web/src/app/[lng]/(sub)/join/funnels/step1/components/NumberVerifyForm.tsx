@@ -12,7 +12,6 @@ import { LayerLoading } from '@/components/Loading';
 import { useTimerContext } from '@/components/Provider';
 import { TextFieldController } from '@/components/TextField';
 import { regexr } from '@/constants/regexr';
-import useLogin from '@/hooks/token/useLogin';
 
 interface NumberVerifyFormProps {
   setInputStatus: React.Dispatch<React.SetStateAction<'beforeSend' | 'afterSend'>>;
@@ -23,11 +22,10 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
   const hookForm = useJoinContext();
   const { handleSubmit, setError, register, watch, resetField } = hookForm;
   const { time, reset, start } = useTimerContext();
-  const { login } = useLogin();
 
   const { nextStep } = useFunnelContext();
   const { mutate: mutateSMSVerify } = useSMSVerifyMutation();
-  const { mutate: mutateLogin, status } = useLoginMutation();
+  const { mutateAsync: mutateLogin, status } = useLoginMutation();
   const { mutate: mutateSMS } = useSMSMutation();
 
   const handleResend = () => {
@@ -62,8 +60,13 @@ export default function NumberVerifyForm({ setInputStatus }: NumberVerifyFormPro
         code: '' + data.verifyNumber,
       },
       {
-        onSuccess: () => {
-          mutateLogin({ phoneNumber: data.phoneNumber });
+        onSuccess: async () => {
+          const response = await mutateLogin({ phoneNumber: data.phoneNumber });
+
+          if (!response.existUser) {
+            nextStep();
+            return;
+          }
         },
         onError: () => {
           setError('verifyNumber', {
