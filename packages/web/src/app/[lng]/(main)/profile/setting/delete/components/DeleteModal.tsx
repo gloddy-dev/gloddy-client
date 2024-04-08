@@ -16,7 +16,7 @@ export default function DeleteModal({ onCancelClick }: DeleteModalProps) {
   const { t } = useTranslation('profile');
   const { mutate } = usePatchSignOut();
   const handleDeleteClick = () => {
-    mutate();
+    // mutate();
     open(() => <DeleteCompleteModal />);
   };
 

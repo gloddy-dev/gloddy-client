@@ -69,7 +69,7 @@ export const hasToken = () => {
   return accessToken || refreshToken;
 };
 
-export const removeToken = () => {
+export const removeToken = async () => {
   // setTokenAtCookie({ accessToken: '', refreshToken: '', userId: 0 });
   removeLocalCookie(AUTH_KEYS.accessToken);
   removeLocalCookie(AUTH_KEYS.refreshToken);

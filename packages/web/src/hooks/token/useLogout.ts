@@ -5,8 +5,8 @@ import { removeToken } from '@/utils/auth/tokenController';
 export default function useLogout() {
   const router = useRouter();
 
-  const logout = () => {
-    removeToken();
+  const logout = async () => {
+    await removeToken();
 
     router.push('/join');
   };
