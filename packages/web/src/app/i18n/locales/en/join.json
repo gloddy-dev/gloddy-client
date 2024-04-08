@@ -94,5 +94,7 @@
   "건너뛰기": "Skip",
   "인증번호": "Verification Code",
   "인증 번호를 다시 확인해주세요.": "Please check your verification code again.",
-  "인증 번호 재전송은 1분에 한 번만 가능합니다.": "Verification code can only be sent once per minute."
+  "인증 번호 재전송은 1분에 한 번만 가능합니다.": "Verification code can only be sent once per minute.",
+
+  "verificationCodeSended": "Verification code sent."
 }
