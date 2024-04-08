@@ -13,7 +13,7 @@ interface GroupingDetailPageProps {
   };
 }
 
-export default function GroupingDetailPage({ params }: GroupingDetailPageProps) {
+export default async function GroupingDetailPage({ params }: GroupingDetailPageProps) {
   const groupId = Number(params.groupId);
 
   return (

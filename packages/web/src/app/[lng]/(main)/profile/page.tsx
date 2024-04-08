@@ -13,7 +13,7 @@ interface ProfilePageProps {
   };
 }
 
-export default function Profile({ params: { lng } }: ProfilePageProps) {
+export default async function Profile({ params: { lng } }: ProfilePageProps) {
   return (
     <>
       <ProfileHeader />
