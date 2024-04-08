@@ -13,7 +13,7 @@ interface WritePageProps {
   };
 }
 
-export default function WritePage({ params }: WritePageProps) {
+export default async function WritePage({ params }: WritePageProps) {
   const groupId = Number(params.groupId);
 
   return (

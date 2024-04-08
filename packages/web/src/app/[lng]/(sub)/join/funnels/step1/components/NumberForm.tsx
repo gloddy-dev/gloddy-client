@@ -13,6 +13,7 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { useTimerContext } from '@/components/Provider';
 import { Spacing } from '@/components/Spacing';
 import { TextFieldController } from '@/components/TextField';
+import { DEMO_ID } from '@/constants';
 import { regexr } from '@/constants/regexr';
 import useToast from '@/hooks/useModal/useToast';
 
@@ -47,8 +48,12 @@ export default function NumberForm({ inputStatus, setInputStatus }: NumberSectio
     if (timerStatus === 'RUNNING') return;
     timerStart();
     const phoneNumberWithoutHyphen = data.phoneNumber.replace(/[-\s]/g, '');
+    if (phoneNumberWithoutHyphen === DEMO_ID) {
+      mutateLogin({ phoneNumber: data.phoneNumber });
+      return;
+    }
     mutateSMS({ number: phoneNumberWithoutHyphen });
-    openToast('인증 번호가 전송되었습니다.');
+    openToast(t('verificationCodeSended'));
     setInputStatus('afterSend');
   };
 

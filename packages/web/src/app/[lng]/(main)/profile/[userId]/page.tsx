@@ -13,7 +13,7 @@ interface PageProps {
   };
 }
 
-export default function page({ params }: PageProps) {
+export default async function page({ params }: PageProps) {
   const userId = Number(params.userId);
 
   return (

@@ -1,5 +1,6 @@
 import NotificationHeader from './components/NotificationHeader';
 import NotificationSection from './components/NotificationSection';
+
 import { Keys, getNotification } from '@/apis/notifications';
 import { LocalSuspenseErrorBoundary } from '@/components/ErrorBoundary';
 import { HydrationProvider } from '@/components/Provider';

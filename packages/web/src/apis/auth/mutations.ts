@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import {
+  LoginResponse,
   SignUpResponse,
   postEmail,
   postEmailVerify,
@@ -14,8 +15,17 @@ import {
 import useLogin from '@/hooks/token/useLogin';
 
 export const useLoginMutation = () => {
+  const { login } = useLogin();
+
   return useMutation({
     mutationFn: postLogin,
+    onSuccess: async (response: LoginResponse) => {
+      await login({
+        accessToken: response.token.accessToken,
+        refreshToken: response.token.refreshToken,
+        userId: response.userId,
+      });
+    },
   });
 };
 

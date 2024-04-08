@@ -9,11 +9,7 @@ import { Empty } from '@/components/Empty';
 import { ItemList } from '@/components/List';
 import { useBlockStore } from '@/store/useBlockStore';
 
-interface GroupingCardList {
-  lng: string;
-}
-
-export default function GroupingCardList({ lng }: GroupingCardList) {
+export default function GroupingCardList() {
   const { t } = useTranslation('grouping');
   const { ref, inView } = useInView();
   const { blockGroupIds } = useBlockStore();
