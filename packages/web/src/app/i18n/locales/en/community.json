@@ -6,6 +6,8 @@
     "Language": "Language"
   },
 
+  "empty": "No posts yet",
+
   "create": {
     "headerTitle": "Create Post",
     "category": {

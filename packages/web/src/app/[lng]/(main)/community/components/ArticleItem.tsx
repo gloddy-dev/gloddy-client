@@ -6,6 +6,12 @@ import Image from 'next/image';
 import { CommunityArticle } from '@/apis/community';
 import ArticleBadge from '@/app/[lng]/(main)/community/components/ArticleBadge';
 import { useTranslation } from '@/app/i18n/client';
+import CommentIcon from '@/assets/svgs/16-comment_fill.svg';
+import FavoritIcon from '@/assets/svgs/16-favorite.svg';
+import GloddyIcon from '@/assets/svgs/16-reliability-gloddy.svg';
+import HoodIcon from '@/assets/svgs/16-reliability-hood.svg';
+import MateIcon from '@/assets/svgs/16-reliability-mate.svg';
+import SoulMateIcon from '@/assets/svgs/16-reliability-soulmate.svg';
 import { Avatar } from '@/components/Avatar';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
@@ -39,6 +45,13 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
 
   const { isCertifiedStudent, reliabilityLevel, nickName, countryImage, profileImage } = writer;
 
+  const reliabilityIcon = {
+    HOOD: <HoodIcon width={16} height={16} />,
+    MATE: <MateIcon width={16} height={16} />,
+    SOUL_MATE: <SoulMateIcon width={16} height={16} />,
+    GLODDY: <GloddyIcon width={16} height={16} />,
+  };
+
   return (
     <div
       className="p-20"
@@ -71,22 +84,17 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
             countryImage={countryImage}
           />
           <p className="text-paragraph-2">{nickName}</p>
-          <Icon id={`16-reliability-${reliabilityLevel.toLowerCase()}`} width={16} height={16} />
+          {reliabilityIcon[reliabilityLevel]}
         </Flex>
         <Flex align="center" className="gap-8">
           <Flex align="center" className="gap-4">
-            <Icon
-              id="16-favorite_fill"
-              width={16}
-              height={16}
-              className={cn(isLiked ? 'text-warning' : 'text-sign-caption')}
-            />
+            <FavoritIcon className={cn(isLiked ? 'text-warning' : 'text-sign-caption')} />
             <p className={cn(isLiked ? 'text-warning' : 'text-sign-caption') + ' text-subtitle-3'}>
               {likeCount.toString().padStart(2, '0')}
             </p>
           </Flex>
           <Flex align="center" className="gap-4">
-            <Icon id="16-comment_fill" width={16} height={16} />
+            <CommentIcon />
             <p className="text-caption text-sign-brand">
               {commentCount.toString().padStart(2, '0')}
             </p>
