@@ -21,7 +21,7 @@ const DEFAULT_OG_IMAGE = '/images/main_logo.png';
 const SansFont = localFont({
   src: [
     {
-      path: './fonts/Pretendard-Medium.woff2',
+      path: 'fonts/Pretendard-Medium.woff2',
       weight: '500',
       style: 'normal',
     },

@@ -1,20 +1,25 @@
 'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ReactNode } from 'react';
 
 import { ButtonAnimation } from '../Animation';
-import { Icon } from '../Icon';
-import { NavLink } from '../NavLink';
 
 import type { PageType } from '@/types';
 
 import { useTranslation } from '@/app/i18n/client';
+import FooterGrouping from '@/assets/svgs/32-footer-grouping.svg';
+import FooterCommunity from '@/assets/svgs/32-footer-grouping.svg';
+import FooterMeeting from '@/assets/svgs/32-footer-meeting.svg';
+import FooterProfile from '@/assets/svgs/32-footer-profile.svg';
 import cn from '@/utils/cn';
 
 interface TabType {
   name: PageType;
   title: string;
   url: string;
+  icon: ReactNode;
 }
 
 const tabList: TabType[] = [
@@ -22,21 +27,25 @@ const tabList: TabType[] = [
     name: 'grouping',
     title: '매칭',
     url: '/grouping',
+    icon: <FooterGrouping className={'mx-auto'} />,
   },
   {
     name: 'meeting',
     title: '나의모임',
     url: '/meeting/participate?tab=participating',
+    icon: <FooterMeeting className={'mx-auto'} />,
   },
   {
     name: 'community',
     title: '커뮤니티',
     url: '/community?tab=all',
+    icon: <FooterCommunity className={'mx-auto'} />,
   },
   {
     name: 'profile',
     title: '프로필',
     url: '/profile',
+    icon: <FooterProfile className={'mx-auto'} />,
   },
 ];
 
@@ -67,12 +76,7 @@ export default function Footer({ isSpacing = true, spacingColor }: FooterProps) 
             })}
           >
             <Link prefetch={true} replace={true} href={tab.url} scroll={false}>
-              <Icon
-                id={`32-footer-${tab.name}_default`}
-                width={32}
-                height={32}
-                className="mx-auto"
-              />
+              {tab.icon}
               <p>{t(tab.name)}</p>
             </Link>
           </ButtonAnimation>
