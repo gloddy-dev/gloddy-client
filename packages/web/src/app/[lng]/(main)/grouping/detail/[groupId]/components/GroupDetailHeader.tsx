@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
 import BlockDoneModal from '../../../components/BlockDoneModal';
@@ -20,9 +21,10 @@ import { useBlockStore } from '@/store/useBlockStore';
 export default function GroupDetailHeader() {
   const { back } = useAppRouter();
   const { groupId } = useNumberParams<['groupId']>();
+  const searchParams = useSearchParams().get('tab');
 
   return (
-    <Header className="px-4">
+    <Header className="px-4" isSpacing={searchParams !== 'chat'}>
       <Header.Left>
         <IconButton size="large" onClick={() => back()}>
           <Icon id="24-arrow_back" />

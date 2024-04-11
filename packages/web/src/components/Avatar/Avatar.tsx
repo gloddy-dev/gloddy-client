@@ -74,7 +74,7 @@ export default function Avatar({
         )}
         <div className="absolute bottom-0 h-8 w-12">
           {countryImage && (
-            <Image src={countryImage} sizes={'12px'} fill className="object-fill" alt="국가" />
+            <Image src={countryImage} sizes={'16px'} fill className="object-fill" alt="국가" />
           )}
         </div>
       </div>
@@ -84,7 +84,6 @@ export default function Avatar({
 }
 
 const AvatarImage = memo(function ({
-  size,
   imageUrl,
   isPending,
 }: Pick<AvatarProps, 'imageUrl' | 'isPending' | 'size'>) {
@@ -96,19 +95,12 @@ const AvatarImage = memo(function ({
     );
   }
 
-  const imageSize = {
-    'x-small': '1.7rem',
-    small: '2.5rem',
-    medium: '3.5rem',
-    large: '6rem',
-  };
-
   if (imageUrl) {
     return (
       <Image
         src={imageUrl}
         alt="avatar"
-        sizes={imageSize[size ?? 'medium']}
+        sizes={'48px'}
         className="rounded-full object-cover"
         fill
       />

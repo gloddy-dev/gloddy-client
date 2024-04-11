@@ -1,5 +1,6 @@
-import { DAY_OF_WEEK } from '@/constants';
 import { format, getDay, parseISO } from 'date-fns';
+
+import { DAY_OF_WEEK } from '@/constants';
 
 export function formatMeetingDate(meetDate: string, startTime: string) {
   const startDate = parseISO(meetDate);
