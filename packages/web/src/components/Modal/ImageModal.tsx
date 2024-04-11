@@ -48,7 +48,7 @@ export default function ImageModal({ images, currentImage, onClose }: ImageModal
       >
         {images.map((image, index) => (
           <div key={index} className={'relative w-full before:block before:pb-[100%]'}>
-            <Image src={image} alt={`img-${index}`} layout="fill" objectFit="cover" />
+            <Image src={image} alt={`img-${index}`} sizes={'384px'} fill />
           </div>
         ))}
       </Glider>

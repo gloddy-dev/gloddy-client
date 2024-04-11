@@ -114,7 +114,13 @@ export default function ArticleItem({ article }: ArticleItemProps) {
                 open(() => <ImageModal images={images} currentImage={imageUrl} onClose={exit} />)
               }
             >
-              <Image src={imageUrl} alt="article_image" className="object-cover" fill />
+              <Image
+                src={imageUrl}
+                alt="article_image"
+                className="object-cover"
+                fill
+                sizes={'128px'}
+              />
             </div>
           ))}
         </Flex>
