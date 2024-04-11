@@ -78,6 +78,7 @@
   "board": {
     "tab": "게시판",
     "notice": "공지사항",
+    "chat": "채팅방",
     "emptyNotice": "등록된 공지사항이 없어요.",
     "commentCount": "댓글 {{commentCount}}개"
   },

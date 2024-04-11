@@ -63,9 +63,8 @@ export default function GroupingCard({
               src={imageUrl}
               alt="group"
               className="rounded-8 object-cover"
+              sizes="64px"
               loading="lazy"
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
             />
           ) : (
             <ImageSample width={96} height={96} />

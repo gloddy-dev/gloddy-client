@@ -1,15 +1,16 @@
 'use client';
 
-import { useTranslation } from 'react-i18next';
-
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Icon } from '@/components/Icon';
 import useAppRouter from '@/hooks/useAppRouter';
 
-export default function ChatListHeader() {
+interface ChatListHeaderProps {
+  title: string;
+}
+
+export default function ChatListHeader({ title }: ChatListHeaderProps) {
   const { back } = useAppRouter();
-  const { t } = useTranslation('grouping');
 
   return (
     <Header className="px-4">
@@ -17,7 +18,7 @@ export default function ChatListHeader() {
         <IconButton size="large" onClick={() => back()}>
           <Icon id="24-arrow_back" />
         </IconButton>
-        <p>{t('chat.listHeader')}</p>
+        <p>{title}</p>
       </Header.Left>
     </Header>
   );
