@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { ButtonAnimation } from '../Animation';
@@ -65,7 +66,7 @@ export default function Footer({ isSpacing = true, spacingColor }: FooterProps) 
               'text-sign-tertiary': !isSelected(tab),
             })}
           >
-            <NavLink isReplace href={tab.url} scroll={false}>
+            <Link prefetch={true} replace={true} href={tab.url} scroll={false}>
               <Icon
                 id={`32-footer-${tab.name}_default`}
                 width={32}
@@ -73,7 +74,7 @@ export default function Footer({ isSpacing = true, spacingColor }: FooterProps) 
                 className="mx-auto"
               />
               <p>{t(tab.name)}</p>
-            </NavLink>
+            </Link>
           </ButtonAnimation>
         ))}
       </footer>
