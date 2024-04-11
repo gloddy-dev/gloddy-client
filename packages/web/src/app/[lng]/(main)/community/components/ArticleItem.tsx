@@ -1,7 +1,6 @@
 'use client';
 
-import { format, formatDistanceToNow } from 'date-fns';
-import { enUS, ko } from 'date-fns/locale';
+import { ko } from 'date-fns/locale';
 import Image from 'next/image';
 
 import { CommunityArticle } from '@/apis/community';
@@ -14,19 +13,7 @@ import { Flex } from '@/components/Layout';
 import { Spacing } from '@/components/Spacing';
 import useAppRouter from '@/hooks/useAppRouter';
 import cn from '@/utils/cn';
-
-const formatDate = (date: string, locale: Locale) => {
-  const d = new Date(date);
-  const now = Date.now();
-  const diff = (now - d.getTime()) / 1000;
-  if (diff < 60 * 1) {
-    return '방금 전';
-  }
-  if (diff < 60 * 60 * 24 * 3) {
-    return formatDistanceToNow(d, { addSuffix: true, locale });
-  }
-  return format(d, 'MM/dd', { locale });
-};
+import { formatDate } from '@/utils/formatDate';
 
 interface ArticleItemProps {
   articleData: CommunityArticle;
@@ -34,7 +21,7 @@ interface ArticleItemProps {
 }
 
 export default function ArticleItem({ articleData, onClick }: ArticleItemProps) {
-  const { t, i18n } = useTranslation('community');
+  const { t } = useTranslation('community');
   const { push } = useAppRouter();
   const { article, writer } = articleData;
 
@@ -52,8 +39,6 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
 
   const { isCertifiedStudent, reliabilityLevel, nickName, countryImage, profileImage } = writer;
 
-  const locale = i18n.language === 'ko' ? ko : enUS;
-
   return (
     <div
       className="p-20"
@@ -61,7 +46,7 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
     >
       <Flex justify="between" align="center">
         <ArticleBadge type={category.name}>{t(`category.${category.name}`)}</ArticleBadge>
-        <p className="text-caption text-sign-tertiary">{formatDate(createdAt, locale)}</p>
+        <p className="text-caption text-sign-tertiary">{formatDate(createdAt, ko)}</p>
       </Flex>
       <Spacing size={12} />
       <Flex justify="between" className="gap-6">
@@ -72,7 +57,7 @@ export default function ArticleItem({ articleData, onClick }: ArticleItemProps) 
         </div>
         {!!images?.length && (
           <div className="rounded-8 relative h-80 w-80 shrink-0 overflow-hidden">
-            <Image src={images[0]} alt="이미지" sizes="80px" fill className="object-cover" />
+            <Image src={images[0]} alt="이미지" sizes={'90px'} fill className="object-cover" />
           </div>
         )}
       </Flex>

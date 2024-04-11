@@ -1,6 +1,6 @@
 import { ErrorBoundary } from 'react-error-boundary';
 
-import GroupDetailPage from './components/GroupDetail';
+import GroupDetail from './components/GroupDetail';
 import GroupDetailHeader from './components/GroupDetailHeader';
 
 import { Keys, getGroupDetail, getGroupMembers, getNotices } from '@/apis/groups';
@@ -32,7 +32,7 @@ export default async function GroupingDetailPage({ params }: GroupingDetailPageP
             Keys.getNotices(groupId),
           ]}
         >
-          <GroupDetailPage />
+          <GroupDetail />
         </HydrationProvider>
       </ErrorBoundary>
     </>
