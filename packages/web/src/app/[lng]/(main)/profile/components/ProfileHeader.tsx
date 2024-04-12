@@ -1,7 +1,7 @@
 'use client';
+import SettingIcon from '@/assets/svgs/24-settings.svg';
 import { IconButton } from '@/components/Button';
 import { Header } from '@/components/Header';
-import { Icon } from '@/components/Icon';
 import { NavLink } from '@/components/NavLink';
 
 export default function ProfileHeader() {
@@ -10,7 +10,7 @@ export default function ProfileHeader() {
       <Header.Right>
         <NavLink href="/profile/setting">
           <IconButton size="large">
-            <Icon id="24-settings" />
+            <SettingIcon />
           </IconButton>
         </NavLink>
       </Header.Right>

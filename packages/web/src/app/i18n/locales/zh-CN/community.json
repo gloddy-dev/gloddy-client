@@ -5,6 +5,9 @@
     "Q&A": "我想知道",
     "Language": "语言交换"
   },
+
+  "empty": "还没有文章",
+
   "create": {
     "headerTitle": "创建帖子",
     "category": {

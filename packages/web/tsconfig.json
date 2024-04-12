@@ -27,5 +27,5 @@
     "types": ["@types/jest", "google.maps"]
   },
   "exclude": ["node_modules", "mock-server"],
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["svgr.d.ts", "next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"]
 }

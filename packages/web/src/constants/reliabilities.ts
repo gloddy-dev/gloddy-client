@@ -1,4 +1,9 @@
-export const reliabilities = [
+interface ReliabilitiesType {
+  id: number;
+  name: 'HOOD' | 'MATE' | 'SOUL_MATE' | 'GLODDY';
+}
+
+export const reliabilities: ReliabilitiesType[] = [
   {
     id: 1,
     name: 'HOOD',
@@ -9,7 +14,7 @@ export const reliabilities = [
   },
   {
     id: 3,
-    name: 'SOULMATE',
+    name: 'SOUL_MATE',
   },
   {
     id: 4,

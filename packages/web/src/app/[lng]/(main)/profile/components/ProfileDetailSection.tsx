@@ -6,6 +6,14 @@ import { useParams, usePathname } from 'next/navigation';
 
 import { useGetProfileById } from '@/apis/profile';
 import { useTranslation } from '@/app/i18n/client';
+import BirthIcon from '@/assets/svgs/16-birth.svg';
+import FemaleIcon from '@/assets/svgs/16-female.svg';
+import MaleIcon from '@/assets/svgs/16-male.svg';
+import GloddyIcon from '@/assets/svgs/16-reliability-gloddy.svg';
+import HoodIcon from '@/assets/svgs/16-reliability-hood.svg';
+import MateIcon from '@/assets/svgs/16-reliability-mate.svg';
+import SoulMateIcon from '@/assets/svgs/16-reliability-soulmate.svg';
+import ScooleIcon from '@/assets/svgs/16-school.svg';
 import { Avatar } from '@/components/Avatar';
 import { Divider } from '@/components/Divider';
 import { Icon } from '@/components/Icon';
@@ -61,6 +69,13 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
     return num < 10 ? '0' + num : num;
   }
 
+  const reliabilityIcon = {
+    HOOD: <HoodIcon width={16} height={16} />,
+    MATE: <MateIcon width={16} height={16} />,
+    SOUL_MATE: <SoulMateIcon width={16} height={16} />,
+    GLODDY: <GloddyIcon width={16} height={16} />,
+  };
+
   return (
     <>
       <section className="rounded-b-24 shadow-float bg-white">
@@ -88,29 +103,35 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           <h4 className="text-h4 relative flex items-center gap-5">
             {countryImage && (
               <div className="relative h-16 w-24">
-                <Image src={countryImage} fill sizes="32px" className="object-fill" alt="국가" />
+                <Image src={countryImage} fill sizes="24px" className="object-fill" alt="국가" />
               </div>
             )}
             <span>{nickname}</span>
-            <Icon
-              id={`16-reliability-${reliabilityLevel.toLowerCase()}`}
-              className="-right-22 absolute top-0"
-            />
+            {reliabilityIcon[reliabilityLevel]}
           </h4>
           <Spacing size={4} />
           <Flex className="h-18 text-caption text-sign-tertiary gap-4" align="start">
             <Flex className="gap-4" align="center">
-              <Icon id="16-school" width={16} height={16} />
+              <ScooleIcon />
               <span>{school}</span>
             </Flex>
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
-              <Icon id="16-male" width={16} height={16} />
-              <span>{gender === 'MALE' ? t('home.gender.male') : t('home.gender.female')}</span>
+              {gender === 'MALE' ? (
+                <>
+                  <MaleIcon />
+                  <span>{t('home.gender.male')}</span>
+                </>
+              ) : (
+                <>
+                  <FemaleIcon />
+                  {t('home.gender.female')}
+                </>
+              )}
             </Flex>
             <Divider direction="vertical" className="h-12" />
             <Flex className="gap-4" align="center">
-              <Icon id="16-birth" width={16} height={16} />
+              <BirthIcon />
               <span>
                 {age}
                 {t('세')}
@@ -163,13 +184,10 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
               {reliabilities.map((reliabilityItem) => (
                 <Flex
                   key={reliabilityItem.id}
+                  align="center"
                   className={cn({ 'opacity-30': reliabilityLevel !== reliabilityItem.name })}
                 >
-                  <Icon
-                    id={`16-reliability-${reliabilityItem.name.toLowerCase()}`}
-                    width={16}
-                    height={16}
-                  />
+                  {reliabilityIcon[reliabilityItem.name]}
                   <Spacing size={2} direction="horizontal" />
                   <p>{reliabilityItem.name}</p>
                 </Flex>

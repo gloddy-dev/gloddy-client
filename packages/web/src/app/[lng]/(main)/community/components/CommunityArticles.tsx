@@ -4,9 +4,10 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import ArticleItem from './ArticleItem';
-import Empty from './Empty';
 
 import { useGetCommunityArticles } from '@/apis/community/queries';
+import { useTranslation } from '@/app/i18n/client';
+import { Empty } from '@/components/Empty';
 import { ItemList } from '@/components/List';
 import { useBlockStore } from '@/store/useBlockStore';
 
@@ -15,6 +16,7 @@ interface CommunityArticle {
 }
 
 export default function CommunityArticles({ categoryId }: CommunityArticle) {
+  const { t } = useTranslation('community');
   const { ref, inView } = useInView();
   const { blockCommunityArticleIds } = useBlockStore();
   const { data: articleList, fetchNextPage, hasNextPage } = useGetCommunityArticles(categoryId);
@@ -34,7 +36,7 @@ export default function CommunityArticles({ categoryId }: CommunityArticle) {
             )
           );
         }}
-        renderEmpty={() => <Empty />}
+        renderEmpty={() => <Empty message={t('empty')} />}
       />
       <div ref={ref} />
     </>

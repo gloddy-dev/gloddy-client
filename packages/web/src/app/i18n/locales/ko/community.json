@@ -6,6 +6,8 @@
     "Language": "언어교환"
   },
 
+  "empty": "아직 글이 없어요",
+
   "create": {
     "headerTitle": "게시글 작성",
     "category": {

@@ -1,4 +1,4 @@
-import { Icon } from '@/components/Icon';
+import AddIcon from '@/assets/svgs/24-add.svg';
 import cn from '@/utils/cn';
 
 interface FloatButtonProps {
@@ -26,7 +26,7 @@ export default function FloatAddButton({ className, onClick, disabled }: FloatBu
       onClick={onClick}
       disabled={disabled}
     >
-      <Icon id="24-add" />
+      <AddIcon />
     </button>
   );
 }
