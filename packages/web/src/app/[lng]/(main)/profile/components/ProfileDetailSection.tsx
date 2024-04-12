@@ -76,8 +76,6 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
     GLODDY: <GloddyIcon width={16} height={16} />,
   };
 
-  console.log(reliabilityLevel);
-
   return (
     <>
       <section className="rounded-b-24 shadow-float bg-white">
@@ -105,7 +103,7 @@ export default function ProfileDetailSection({ profileData }: ProfileDetailProps
           <h4 className="text-h4 relative flex items-center gap-5">
             {countryImage && (
               <div className="relative h-16 w-24">
-                <Image src={countryImage} fill sizes="32px" className="object-fill" alt="국가" />
+                <Image src={countryImage} fill sizes="24px" className="object-fill" alt="국가" />
               </div>
             )}
             <span>{nickname}</span>
