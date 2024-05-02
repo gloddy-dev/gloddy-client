@@ -1,28 +1,30 @@
 'use client';
 
 import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { FieldValues, UseFormRegister, UseFormWatch, useForm } from 'react-hook-form';
 
 import { useTranslation } from '@/app/i18n/client';
-import { Icon } from '@/components/Icon';
+// import PhotoIcon from '@/assets/svgs/24-poho';
+import SendIcon from '@/assets/svgs/24-send.svg';
 import { TextFieldController } from '@/components/TextField';
 import cn from '@/utils/cn';
 
-export type CreateCommentRequest = {
-  content: string;
-};
+interface MessageFormProps {
+  placeholder: string;
+  watch: UseFormWatch<T>;
+  register: UseFormRegister<T>;
+  onSubmit: () => void;
+  onBlur?: () => void;
+  className?: string;
+}
 
-export default function MessageForm() {
-  const { t } = useTranslation('community');
+export default function MessageForm({
+  placeholder,
+  onBlur,
+  register,
+  className,
+}: MessageFormProps) {
   const textareaRef = useRef<HTMLInputElement>(null);
-  const hookForm = useForm<CreateCommentRequest>({
-    mode: 'onChange',
-    defaultValues: {
-      content: '',
-    },
-  });
-
-  const { handleSubmit, reset, watch, register, setFocus } = hookForm;
 
   return (
     <div className="bottom-fixed bg-white pt-8">
@@ -32,20 +34,12 @@ export default function MessageForm() {
             ref={textareaRef}
             as="textarea"
             hookForm={hookForm}
-            register={register('content', {
-              required: true,
-              pattern: {
-                value: /^[\s\S]{0,150}$/,
-                message: t('comment.commentLengthError'),
-              },
-            })}
-            placeholder={t('comment.placeholder_comment')}
+            register={register}
+            placeholder={placeholder}
             maxCount={150}
-            className={cn('transition-all', {
-              'h-60': watch('content')?.length === 0,
-              '': watch('content')?.length > 0,
-            })}
+            className={className}
             rightCaption=""
+            onBlur={onBlur}
           />
         </div>
 
@@ -54,7 +48,7 @@ export default function MessageForm() {
           className="bg-primary flex h-48 w-48 shrink-0 items-center justify-center rounded-full"
           onMouseDown={(e) => e.preventDefault()}
         >
-          <Icon id="24-send" className={'text-white'} />
+          <SendIcon className={'text-white'} />
         </button>
       </form>
     </div>

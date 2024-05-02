@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
-import { ButtonAnimation } from '../Animation';
-
 import type { PageType } from '@/types';
 
 import { useTranslation } from '@/app/i18n/client';
@@ -68,7 +66,7 @@ export default function Footer({ isSpacing = true, spacingColor }: FooterProps) 
     <>
       <footer className="max-w-450 rounded-t-24 shadow-navigation fixed inset-x-0 bottom-0 mx-auto flex touch-pan-x bg-white pb-8 pt-12">
         {tabList.map((tab: TabType, index) => (
-          <ButtonAnimation
+          <div
             key={`${tab.name}-${index}`}
             className={cn('text-caption flex w-full flex-col text-center', {
               'text-sign-brand': isSelected(tab),
@@ -79,7 +77,7 @@ export default function Footer({ isSpacing = true, spacingColor }: FooterProps) 
               {tab.icon}
               <p>{t(tab.name)}</p>
             </Link>
-          </ButtonAnimation>
+          </div>
         ))}
       </footer>
       {isSpacing && <div className="h-70" style={{ backgroundColor: spacingColor }} />}

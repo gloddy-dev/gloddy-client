@@ -9,6 +9,7 @@ export const colors = {
   'card-ui': PALETTE.gray['030'],
   'brand-color': PALETTE.blue['050'],
   'warning-color': PALETTE.red['050'],
+  dimmed: PALETTE.dimmed['58'],
 
   // Border Colors
   border: {

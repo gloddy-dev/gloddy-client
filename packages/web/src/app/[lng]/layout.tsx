@@ -25,6 +25,11 @@ const SansFont = localFont({
       weight: '500',
       style: 'normal',
     },
+    {
+      path: 'fonts/Pretendard-Regular.woff2',
+      weight: '400',
+      style: 'regular',
+    },
   ],
   display: 'swap',
   variable: '--font-pretendard',

@@ -1,5 +1,9 @@
 import { usePathname } from 'next/navigation';
 
+import GreetingMessage from './GreetingMessage';
+import InfoMessage from './InfoMessage';
+import Message from './Message';
+
 import MessageForm from '@/components/Form/MessageForm';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
@@ -10,19 +14,14 @@ export default function ChatContent() {
 
   return (
     <section className="bg-brand-color h-full overflow-auto">
-      <Spacing size={48} />
+      <Spacing size={20} />
+      <GreetingMessage />
 
-      <div className="flex flex-col gap-10">
-        <div className="h-300 bg-primary"></div>
-        <div className="h-300 bg-primary"></div>
-        <div className="h-300 bg-primary"></div>
-        <div className="h-300 bg-primary"></div>
-        <div className="h-300 bg-primary"></div>
-        <div className="h-300 bg-primary"></div>
-        <div className="h-300 bg-primary"></div>
-        <div className="h-300 bg-primary"></div>
+      <div className="mx-12 flex flex-col gap-8">
+        <InfoMessage message="2023년 12월 30일" />
+        <Message message="응가가 마렵군" name="asd" myMessage={false} time={'오전 05:30'} />
+        <Message message="응가가 마렵군" myMessage={true} time={'오전 05:31'} />
       </div>
-
       <MessageForm />
     </section>
   );

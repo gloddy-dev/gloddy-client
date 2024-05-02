@@ -43,7 +43,6 @@ export default function CommentForm() {
     if (commentId && commentType === 'reply') {
       mutateReply({ params: { articleId, commentId }, payload: { content } });
     } else if (commentType === 'comment') {
-      console.log(commentType, commentId);
       mutateComment({ params: { articleId }, payload: { content } });
     }
   };

@@ -31,7 +31,7 @@ export default function GroupDetail() {
         <Tabs.List>
           <Tabs.Tab value="detail" text={t('details.tab')} />
           <Tabs.Tab value="articles" text={t('board.tab')} disabled={!myGroup} />
-          {/* <Tabs.Tab value="chat" text={t('board.chat')} /> */}
+          <Tabs.Tab value="chat" text={t('board.chat')} />
         </Tabs.List>
         <Tabs.Panel value="detail">
           <DetailContent />
@@ -39,9 +39,9 @@ export default function GroupDetail() {
         <Tabs.Panel value="articles">
           <ArticlesContent />
         </Tabs.Panel>
-        {/* <Tabs.Panel value="chat">
+        <Tabs.Panel value="chat">
           <ChatContent />
-        </Tabs.Panel> */}
+        </Tabs.Panel>
       </Tabs>
       <Spacing size={60} />
     </>

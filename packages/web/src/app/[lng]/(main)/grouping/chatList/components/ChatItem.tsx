@@ -21,7 +21,7 @@ export default function ChatCard({ chatData, children }: PropsWithChildren<ChatC
 
   return (
     <Flex className="bg-white px-20 py-12" direction="column">
-      <NavLink href={`/grouping/detail/${groupId}?tab=detail`} className="flex items-center">
+      <NavLink href={`/grouping/detail/${groupId}?tab=chat`} className="flex items-center">
         <section className="relative h-60 w-60 shrink-0">
           {imageUrl ? (
             <Image
