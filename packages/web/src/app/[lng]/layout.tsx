@@ -10,7 +10,6 @@ import type { StrictPropsWithChildren } from '@/types';
 
 import { GoogleAnalytics } from '@/components/Analytics';
 import { QueryProvider } from '@/components/Provider';
-import ToastProvider from '@/components/Provider/ToastProvider';
 import { BASE_WEB_URL } from '@/constants';
 import ModalProvider from '@/hooks/useModal/ModalProvider';
 
@@ -76,11 +75,9 @@ export default function RootLayout({
 }: StrictPropsWithChildren<RootLayoutProps>) {
   return (
     <Layout lng={lng}>
-      <ToastProvider>
-        <QueryProvider>
-          <ModalProvider>{children}</ModalProvider>
-        </QueryProvider>
-      </ToastProvider>
+      <ModalProvider>
+        <QueryProvider>{children}</QueryProvider>
+      </ModalProvider>
       <Suspense>
         <GoogleAnalytics />
       </Suspense>

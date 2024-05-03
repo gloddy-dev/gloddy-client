@@ -1,4 +1,5 @@
 'use client';
+import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import usePlacesService from 'react-google-autocomplete/lib/usePlacesAutocompleteService';
@@ -12,12 +13,13 @@ import { Button, ButtonGroup } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Flex } from '@/components/Layout';
 import { ItemList } from '@/components/List';
-import { MapView } from '@/components/MapView';
 import { BottomSheet } from '@/components/Modal';
 import { Spacing } from '@/components/Spacing';
 import { TextField } from '@/components/TextField';
 import { GOOGLE_API_KEY } from '@/constants';
 import { LatLng } from '@/types';
+
+const MapView = dynamic(() => import('@/components/MapView/MapView'));
 
 interface LocationBottomSheetProps {
   control: Control<CreateGroupContextValue>;

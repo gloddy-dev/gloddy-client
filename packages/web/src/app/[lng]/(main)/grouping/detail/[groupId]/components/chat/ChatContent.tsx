@@ -4,7 +4,6 @@ import GreetingMessage from './GreetingMessage';
 import InfoMessage from './InfoMessage';
 import Message from './Message';
 
-import MessageForm from '@/components/Form/MessageForm';
 import { Spacing } from '@/components/Spacing';
 import { useNumberParams } from '@/hooks/useNumberParams';
 
@@ -22,7 +21,6 @@ export default function ChatContent() {
         <Message message="응가가 마렵군" name="asd" myMessage={false} time={'오전 05:30'} />
         <Message message="응가가 마렵군" myMessage={true} time={'오전 05:31'} />
       </div>
-      <MessageForm />
     </section>
   );
 }

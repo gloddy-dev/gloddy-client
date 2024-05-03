@@ -1,4 +1,4 @@
-import { GoogleMap, Marker, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 
 import { GOOGLE_API_KEY } from '@/constants';
 import { LatLng } from '@/types';

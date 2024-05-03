@@ -1,9 +1,10 @@
 'use client';
 
-import { useTimer } from '@/hooks/useTimer';
 import { createContext, useContext } from 'react';
 
 import type { StrictPropsWithChildren } from '@/types';
+
+import { useTimer } from '@/hooks/useTimer';
 
 interface TimerContextProps extends ReturnType<typeof useTimer> {}
 

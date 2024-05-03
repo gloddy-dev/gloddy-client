@@ -1,32 +1,21 @@
 'use client';
 
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import usePlacesService from 'react-google-autocomplete/lib/usePlacesAutocompleteService';
+import dynamic from 'next/dynamic';
 
 import { GroupDetailResponse } from '@/apis/groups';
 import { useTranslation } from '@/app/i18n/client';
-import MapView from '@/components/MapView/MapView';
 import { Spacing } from '@/components/Spacing';
-import { GOOGLE_API_KEY } from '@/constants';
-import usePlaceDetails from '@/hooks/usePlaceDetails';
+
+const MapView = dynamic(() => import('@/components/MapView/MapView'));
 
 interface LocationSectionProps extends GroupDetailResponse {}
-
-interface PlaceDetail {
-  url?: string;
-  name?: string;
-  formattedAddress?: string;
-}
 
 export default function LocationSection({
   placeName,
   placeLatitude,
   placeLongitude,
   placeAddress,
-  placeId,
 }: LocationSectionProps) {
-  const { lng } = useParams() as { lng: string };
   const { t } = useTranslation('groupDetail');
 
   return (

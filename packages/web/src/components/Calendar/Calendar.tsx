@@ -1,5 +1,5 @@
-import { format } from 'date-fns';
 import { enUS, ko } from 'date-fns/esm/locale';
+import format from 'date-fns/format';
 import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
