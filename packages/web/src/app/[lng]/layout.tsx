@@ -18,19 +18,9 @@ const DEFAULT_OG_DESC = '조금 더 믿을 만한 모임을 할 수 있도록 �
 const DEFAULT_OG_IMAGE = '/images/main_logo.png';
 
 const SansFont = localFont({
-  src: [
-    {
-      path: 'fonts/Pretendard-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: 'fonts/Pretendard-Regular.woff2',
-      weight: '400',
-      style: 'regular',
-    },
-  ],
+  src: 'fonts/PretendardVariable.woff2',
   display: 'swap',
+  weight: '45 920',
   variable: '--font-pretendard',
 });
 

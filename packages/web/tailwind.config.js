@@ -21,10 +21,6 @@ module.exports = {
       zIndex: {
         modal: '10000000',
       },
-
-      fontFamily: {
-        sans: ['var(--font-pretendard)'],
-      },
     },
   },
 };
